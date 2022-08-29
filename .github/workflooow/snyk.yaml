@@ -1,0 +1,31 @@
+name: Vulnerabilities scanning of dependencies
+on: push
+jobs:
+  Vulnerability_scanning:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Check if gradle project
+        run: echo "IS_GRADLE_PROJECT=$([[ -f ./build.gradle || -f ./build.gradle.kts ]] && echo 'true' || echo 'false')" >> $GITHUB_ENV
+
+      - name: Run Snyk for gradle to check for vulnerabilities
+        if: env.IS_GRADLE_PROJECT == 'true'
+        uses: snyk/actions/gradle-jdk14@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: monitor
+          args: --org=personbruker --configuration-attributes=usage:java-runtime --project-name=${{ github.repository }} --remote-repo-url=https://github.com/${{ github.repository }}.git
+
+      - name: Check if node project
+        run: echo "IS_NODE_PROJECT=$([[ -f ./package.json ]] && echo 'true' || echo 'false')" >> $GITHUB_ENV
+
+      - name: Run Snyk for node to check for vulnerabilities
+        if: env.IS_NODE_PROJECT == 'true'
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: monitor
+          args: --org=personbruker --configuration-attributes=usage:java-runtime --project-name=${{ github.repository }} --remote-repo-url=https://github.com/${{ github.repository }}.git

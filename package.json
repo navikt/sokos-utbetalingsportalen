@@ -1,0 +1,41 @@
+{
+  "name": "sokos-okonomiportalen-frontend",
+  "version": "1.0.0",
+  "description": "sokos-okonomiportalen-frontend",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --base=/okonomiportalen/ --outDir dist",
+    "preview": "vite preview",
+    "pretty-quick": "pretty-quick --pattern \"**/*.*(jsx)\"",
+    "prepare": "husky install"
+  },
+  "author": "navikt",
+  "license": "MIT",
+  "dependencies": {
+    "@navikt/ds-css": "0.18.27",
+    "@navikt/ds-react": "0.17.14",
+    "@navikt/ds-tokens": "0.8.4",
+    "@sentry/react": "7.3.1",
+    "@sentry/tracing": "7.3.1",
+    "js-cookie": "3.0.1",
+    "react-query": "3.34.14",
+    "react-router": "6.2.2",
+    "react-router-dom": "6.2.2",
+    "rollup-plugin-terser": "7.0.2",
+    "vite": "2.8.6",
+    "vite-plugin-mock": "2.9.6",
+    "zustand": "3.7.1"
+  },
+  "devDependencies": {
+    "@eik/rollup-plugin": "4.0.32",
+    "@vitejs/plugin-react": "1.0.7",
+    "husky": "7.0.0",
+    "pretty-quick": "3.1.3",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "prettier": {
+    "printWidth": 120
+  }
+}

@@ -1,0 +1,30 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: tms-min-side
+  namespace: min-side
+  labels:
+    team: min-side
+spec:
+  envFrom:
+    - secret: tms-min-side-secrets
+  image: {{version}}
+  port: 7100
+  liveness:
+    path: /minside/internal/isAlive
+    initialDelay: 10
+  readiness:
+    path: /minside/internal/isReady
+    initialDelay: 10
+  replicas:
+    min: 2
+    max: 4
+  ingresses:
+    - "https://www.dev.nav.no/minside"
+  resources:
+    limits:
+      cpu: "3"
+      memory: 768Mi
+    requests:
+      cpu: "50m"
+      memory: 256Mi

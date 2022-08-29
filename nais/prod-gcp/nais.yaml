@@ -1,0 +1,35 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: tms-min-side
+  namespace: min-side
+  labels:
+    team: min-side
+  annotations:
+    config.linkerd.io/proxy-memory-limit: "512Mi"
+    config.linkerd.io/proxy-memory-request: "128Mi"
+spec:
+  envFrom:
+    - secret: tms-min-side-secrets
+  image: {{version}}
+  port: 7100
+  liveness:
+    path: /minside/internal/isAlive
+    initialDelay: 10
+  readiness:
+    path: /minside/internal/isReady
+    initialDelay: 10
+  replicas:
+    min: 2
+    max: 6
+  ingresses:
+    - "https://person.intern.nav.no/minside"
+    - "https://www.intern.nav.no/minside"
+    - "https://www.nav.no/minside"
+  resources:
+    limits:
+      cpu: "3"
+      memory: 1268Mi
+    requests:
+      cpu: "500m"
+      memory: 1024Mi

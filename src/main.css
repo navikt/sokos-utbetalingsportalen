@@ -1,0 +1,14 @@
+@import '../node_modules/@navikt/ds-css';
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--navds-semantic-color-canvas-background);
+}
+
+.page-wrapper {
+  height: auto;
+  min-height: 70%;
+}
