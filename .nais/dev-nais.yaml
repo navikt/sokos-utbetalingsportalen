@@ -6,7 +6,7 @@ metadata:
   labels:
     team: okonomi
 spec:
-  image: {{version}}
+  image: {{ image }}
   port: 7100
   liveness:
     path: /sokos-okonomiportalen-frontend/internal/isAlive

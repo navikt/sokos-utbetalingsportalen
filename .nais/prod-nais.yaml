@@ -9,7 +9,7 @@ metadata:
     config.linkerd.io/proxy-memory-limit: "512Mi"
     config.linkerd.io/proxy-memory-request: "128Mi"
 spec:
-  image: {{version}}
+  image: {{ image }}
   port: 7100
   liveness:
     path: /sokos-okonomiportalen-frontend/internal/isAlive
