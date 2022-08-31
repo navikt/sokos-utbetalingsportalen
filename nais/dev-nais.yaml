@@ -11,10 +11,10 @@ spec:
   image: {{version}}
   port: 7100
   liveness:
-    path: /minside/internal/isAlive
+    path: /sokos-okonomiportalen-frontend/internal/isAlive
     initialDelay: 10
   readiness:
-    path: /minside/internal/isReady
+    path: /sokos-okonomiportalen-frontend/internal/isReady
     initialDelay: 10
   replicas:
     min: 2
