@@ -6,8 +6,6 @@ metadata:
   labels:
     team: okonomi
 spec:
-  envFrom:
-    - secret: sokos-okonomiportalen-frontend-secrets
   image: {{version}}
   port: 7100
   liveness:

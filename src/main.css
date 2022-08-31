@@ -1,4 +1,5 @@
 @import '../node_modules/@navikt/ds-css';
+@import '../node_modules/@navikt/ds-css-internal';
 
 html, body {
   height: 100%;

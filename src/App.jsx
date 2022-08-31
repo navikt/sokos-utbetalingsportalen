@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
+import Meny from "./components/meny/Meny";
 import Attestasjon from "./micro-frontend/Attestasjon";
 import useStore, { selectIsError } from "./store/store";
 
@@ -9,6 +10,7 @@ const App = () => {
 
   return (
     <Router>
+      <Meny />
       <Layout isError={isError}>
         <Routes>
           <Route path="/attestasjon" exact element={<Attestasjon />} />
