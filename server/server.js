@@ -18,7 +18,7 @@ server.get(`${basePath}/internal/isReady`, async (req, res) => {
 });
 
 // Match everything except internal og static
-server.use(/^(?!.*\/(internal|static)\/).*$/, (req, res) => res.send(`${buildPath}/index.html`)));
+server.use(/^(?!.*\/(internal|static)\/).*$/, (req, res) => res.send(`${buildPath}/index.html`));
 
 const port = 7100;
 server.listen(port, () => console.info(`Listening on port ${port}`));
