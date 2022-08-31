@@ -1,13 +1,13 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: tms-min-side
-  namespace: min-side
+  name: sokos-okonomiportalen-frontend
+  namespace: okonomi
   labels:
-    team: min-side
+    team: okonomi
 spec:
   envFrom:
-    - secret: tms-min-side-secrets
+    - secret: sokos-okonomiportalen-frontend-secrets
   image: {{version}}
   port: 7100
   liveness:
@@ -20,7 +20,7 @@ spec:
     min: 2
     max: 4
   ingresses:
-    - "https://www.dev.nav.no/minside"
+    - "https://okonomiportalen.dev.intern.nav.no"
   resources:
     limits:
       cpu: "3"

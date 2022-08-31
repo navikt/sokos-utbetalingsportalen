@@ -1,31 +1,29 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: tms-min-side
-  namespace: min-side
+  name: sokos-okonomiportalen-frontend
+  namespace: okonomi
   labels:
-    team: min-side
+    team: okonomi
   annotations:
     config.linkerd.io/proxy-memory-limit: "512Mi"
     config.linkerd.io/proxy-memory-request: "128Mi"
 spec:
   envFrom:
-    - secret: tms-min-side-secrets
+    - secret: sokos-okonomiportalen-frontend-secrets
   image: {{version}}
   port: 7100
   liveness:
-    path: /minside/internal/isAlive
+    path: /sokos-okonomiportalen-frontend/internal/isAlive
     initialDelay: 10
   readiness:
-    path: /minside/internal/isReady
+    path: /sokos-okonomiportalen-frontend/internal/isReady
     initialDelay: 10
   replicas:
     min: 2
     max: 6
   ingresses:
-    - "https://person.intern.nav.no/minside"
-    - "https://www.intern.nav.no/minside"
-    - "https://www.nav.no/minside"
+    - "https://okonomiportalen.intern.nav.no"
   resources:
     limits:
       cpu: "3"
