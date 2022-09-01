@@ -18,8 +18,8 @@ const Meny = () => {
         <Dropdown.Menu>
           <Dropdown.Menu.GroupedList>
             <Dropdown.Menu.GroupedList.Heading>Systemer og oppslagsverk</Dropdown.Menu.GroupedList.Heading>
-            <Dropdown.Menu.GroupedList.Item>
-              <Link to="/attestasjon">Attestasjon</Link>
+            <Dropdown.Menu.GroupedList.Item as={Link} to={`/attestasjon`}>
+              Attestasjon
             </Dropdown.Menu.GroupedList.Item>
           </Dropdown.Menu.GroupedList>
         </Dropdown.Menu>
