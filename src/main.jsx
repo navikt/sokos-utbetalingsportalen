@@ -20,9 +20,10 @@ if (getEnvironment() === "production") {
 ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <Authentication>
+      {/*      <Authentication>
         <App />
-      </Authentication>
+      </Authentication>*/}
+      <App />
     </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById("root")
