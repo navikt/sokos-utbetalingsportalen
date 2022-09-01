@@ -1,5 +1,5 @@
-const isProduction = window.location.href.includes("www.okonomiportalen.intern.nav.no");
-const isDevelopment = window.location.href.includes("www.okonomiportalen.dev.intern.nav.no");
+const isProduction = window.location.href.includes("okonomiportalen.intern.nav.no");
+const isDevelopment = window.location.href.includes("okonomiportalen.dev.intern.nav.no");
 
 export const getEnvironment = () => {
   if (isProduction) {
