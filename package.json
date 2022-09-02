@@ -13,9 +13,9 @@
   "author": "navikt",
   "license": "MIT",
   "dependencies": {
-    "@navikt/ds-css": "^1.2.0",
+    "@navikt/ds-css": "^1.2.4",
     "@navikt/ds-css-internal": "^1.2.4",
-    "@navikt/ds-react": "^1.2.0",
+    "@navikt/ds-react": "^1.2.4",
     "@navikt/ds-react-internal": "^1.2.4",
     "@navikt/ds-tokens": "0.8.4",
     "@sentry/react": "7.3.1",
