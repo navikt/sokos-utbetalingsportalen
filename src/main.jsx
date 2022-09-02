@@ -9,9 +9,9 @@ import App from "./App";
 import Authentication from "./components/authentication/Authentication";
 import "./main.css";
 
-if (getEnvironment() === "production") {
+if (getEnvironment() === "development") {
   Sentry.init({
-    dsn: "https://06300e573bfb494a8241395dc8d43c0d@sentry.gc.nav.no/129",
+    dsn: "https://3f04bb1c29d111ed88a70242ac16001a@sentry.gc.nav.no/129",
     integrations: [new BrowserTracing()],
     tracesSampleRate: 0.1,
   });
