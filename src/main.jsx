@@ -11,7 +11,7 @@ import "./main.css";
 
 if (getEnvironment() === "development") {
   Sentry.init({
-    dsn: "https://3f04bb1c29d111ed88a70242ac16001a@sentry.gc.nav.no/129",
+    dsn: "https://28a8206a1e7e4fa8b51b90445d099594@sentry.gc.nav.no/141",
     integrations: [new BrowserTracing()],
     tracesSampleRate: 0.1,
   });
