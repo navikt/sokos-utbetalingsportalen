@@ -1,0 +1,65 @@
+name: Bygg og test PR
+
+on:
+  pull_request:
+
+jobs:
+  build-pull-request:
+    name: Bygg og test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sjekker ut repo
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Cache klient node_modules
+        id: cache-node-modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Cache server node_modules
+        id: cache-server-node-modules
+        uses: actions/cache@v2
+        with:
+          path: server/node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('server/package-lock.json') }}
+
+      - name: Installerer dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm install
+
+      - name: Installerer dependencies for server
+        if: steps.cache-server-node-modules.outputs.cache-hit != 'true'
+        run: cd server && npm install
+
+      - name: Kjører tester
+        run: npm run test
+
+      - name: Bygger applikasjonen
+        run: npm run build
+
+  reportFailure:
+    name: Slack notifikasjon bygg feiler
+    needs: [ build-pull-request ]
+    if: ${{ failure() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Sender notifikasjon til Slack
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: po-utbetaling-workflow
+          SLACK_COLOR: '#ff0000'
+          SLACK_ICON: https://user-images.githubusercontent.com/29889280/178134303-4556873f-b2d6-46a0-b5af-a587b0fabb96.png
+          SLACK_TITLE: ${{ github.repository }}
+          SLACK_MESSAGE: 'Bygg og test PR feilet! :ghost:'
+          SLACK_USERNAME: workflowBot
+          MSG_MINIMAL: actions url,commit
+          SLACK_FOOTER: 'po-utbetaling'
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
