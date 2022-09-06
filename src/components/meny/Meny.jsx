@@ -9,7 +9,9 @@ const Meny = () => {
 
   return (
     <Header>
-      <Header.Title as="h1">Økonomiportalen</Header.Title>
+      <Header.Title as={Link} to={`/`}>
+        Økonomiportalen
+      </Header.Title>
       <Dropdown>
         <Header.Button as={Dropdown.Toggle} className="ml-auto">
           <System style={{ fontSize: "1.5rem" }} title="Systemer og oppslagsverk" />
