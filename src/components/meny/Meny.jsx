@@ -25,7 +25,7 @@ const Meny = () => {
         </Dropdown.Menu>
       </Dropdown>
       <Dropdown>
-        <Header.UserButton as={Dropdown.Toggle} name="Ola Normann" description="Enhet: Skien" className="ml-auto" />
+        <Header.UserButton as={Dropdown.Toggle} name="Ola Normann" description="Enhet: Skien" />
         <Dropdown.Menu>
           <Dropdown.Menu.List>
             <Dropdown.Menu.List.Item>Logg ut</Dropdown.Menu.List.Item>
