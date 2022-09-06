@@ -38,9 +38,6 @@ jobs:
         if: steps.cache-server-node-modules.outputs.cache-hit != 'true'
         run: cd server && npm install
 
-      - name: Kjører tester
-        run: npm run test
-
       - name: Bygger applikasjonen
         run: npm run build
 
