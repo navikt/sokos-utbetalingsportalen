@@ -1,7 +1,7 @@
 import * as Sentry from "@sentry/react";
+import ReactDOM from "react-dom/client";
 import { BrowserTracing } from "@sentry/tracing";
 import React from "react";
-import ReactDOM from "react-dom";
 import { QueryClientProvider } from "react-query";
 import { getEnvironment } from "./api/environment";
 import { queryClient } from "./api/query";
@@ -17,7 +17,9 @@ if (getEnvironment() === "development") {
   });
 }
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       {/*      <Authentication>
@@ -25,6 +27,5 @@ ReactDOM.render(
       </Authentication>*/}
       <App />
     </QueryClientProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
