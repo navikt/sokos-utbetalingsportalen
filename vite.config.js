@@ -3,8 +3,8 @@ import react from "@vitejs/plugin-react";
 import { terser } from "rollup-plugin-terser";
 import { viteMockServe } from "vite-plugin-mock";
 
-const reactUrl = "https://www.dev.nav.no/tms-min-side-assets/react/17/esm/index.js";
-const reactDomUrl = "https://www.dev.nav.no/tms-min-side-assets/react-dom/17/esm/index.js";
+const reactUrl = "https://www.dev.nav.no/tms-min-side-assets/react/18/esm/index.js";
+const reactDomUrl = "https://www.dev.nav.no/tms-min-side-assets/react-dom/18/esm/index.js";
 
 export default ({ command }) => ({
   plugins: [
