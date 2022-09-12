@@ -32,7 +32,7 @@
   "devDependencies": {
     "@eik/rollup-plugin": "4.0.33",
     "@vitejs/plugin-react": "2.1.0",
-    "autoprefixer": "^10.4.8",
+    "autoprefixer": "^10.4.9",
     "husky": "8.0.1",
     "postcss": "^8.4.16",
     "pretty-quick": "3.1.3",
