@@ -14,7 +14,7 @@ const App = () => {
       <Meny />
       <Layout isError={isError}>
         <Routes>
-          <Route index element={<Velkommen />} />
+          <Route path="/" element={<Velkommen />} />
           <Route path="/attestasjon" exact element={<Attestasjon />} />
         </Routes>
       </Layout>
