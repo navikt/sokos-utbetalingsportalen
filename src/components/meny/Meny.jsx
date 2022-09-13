@@ -9,7 +9,7 @@ const Meny = () => {
 
   return (
     <Header>
-      <Header.Title as={Link} to={`/`}>
+      <Header.Title as={Link} to={"/"}>
         Økonomiportalen
       </Header.Title>
       <Dropdown>
