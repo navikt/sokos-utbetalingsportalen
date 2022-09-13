@@ -15,8 +15,8 @@ spec:
     path: /okonomiportalen/internal/isReady
     initialDelay: 10
   replicas:
-    min: 2
-    max: 4
+    min: 1
+    max: 2
   ingresses:
     - "https://okonomiportalen.dev.intern.nav.no"
   resources:
