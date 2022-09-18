@@ -48,12 +48,12 @@ jobs:
       - name: Sender notifikasjon til Slack
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_CHANNEL: po-utbetaling-workflow
+          SLACK_CHANNEL: team-mob-workflow
           SLACK_COLOR: '#ff0000'
           SLACK_ICON: https://user-images.githubusercontent.com/29889280/178134303-4556873f-b2d6-46a0-b5af-a587b0fabb96.png
           SLACK_TITLE: ${{ github.repository }}
           SLACK_MESSAGE: 'Deploy til dev og prod feilet! :ghost:'
           SLACK_USERNAME: workflowBot
           MSG_MINIMAL: actions url,commit
-          SLACK_FOOTER: 'po-utbetaling'
+          SLACK_FOOTER: 'team-mob'
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
