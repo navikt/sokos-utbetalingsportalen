@@ -1,0 +1,103 @@
+name: Bygg og push Docker image
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+      - 'LICENCE'
+      - 'CODEOWNERS'
+env:
+  IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
+  LATEST_IMAGE: ghcr.io/${{ github.repository }}:latest
+  GITHUB_USERNAME: x-access-token
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  bygg-og-push-docker-image:
+    name: Bygg/test og push Docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sjekker ut repo
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      # - name: Cache klient node_modules
+      #   id: cache-node-modules
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: node_modules
+      #     key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
+
+      # - name: Cache server node_modules
+      #   id: cache-server-node-modules
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: server/node_modules
+      #     key: ${{ runner.os }}-modules-${{ hashFiles('server/package-lock.json') }}
+
+      - name: Installerer dependencies
+        # if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm install
+
+      - name: Installerer dependencies for server
+        # if: steps.cache-server-node-modules.outputs.cache-hit != 'true'
+        run: cd server && npm install
+
+      - name: Bygger applikasjonen
+        run: npm run build
+
+      - name: Bygg docker image
+        uses: docker/setup-buildx-action@v2
+
+      - name: Logger på Github Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ env.GITHUB_USERNAME }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: ${{ env.IMAGE }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Tag image latest
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: ${{ env.LATEST_IMAGE }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  reportFailure:
+    name: Slack notifikasjon bygg feiler
+    needs: [ bygg-og-push-docker-image ]
+    if: ${{ failure() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Sender notifikasjon til Slack
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: team-mob-workflow
+          SLACK_COLOR: '#ff0000'
+          SLACK_ICON: https://user-images.githubusercontent.com/29889280/178134303-4556873f-b2d6-46a0-b5af-a587b0fabb96.png
+          SLACK_TITLE: ${{ github.repository }}
+          SLACK_MESSAGE: 'Bygg og push Docker image feilet! :ghost:'
+          SLACK_USERNAME: workflowBot
+          MSG_MINIMAL: actions url,commit
+          SLACK_FOOTER: 'team-mob'
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

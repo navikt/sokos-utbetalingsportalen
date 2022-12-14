@@ -1,0 +1,59 @@
+name: Deploy til dev og prod
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Bygg og push Docker image"]
+    types:
+      - completed
+
+env:
+  IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
+
+jobs:
+  deploy-dev-gcp:
+    name: Deploy til dev-gcp
+    if: github.event.workflow_run.conclusion == 'success' && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/master')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-gcp
+          RESOURCE: .nais/dev-nais.yaml
+
+#  deploy-prod-gcp:
+#    name: Deploy til prod-gcp
+#    needs: deploy-dev-gcp
+#    if: github.ref == 'refs/heads/master'
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#      - uses: nais/deploy/actions/deploy@v1
+#        env:
+#          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+#          CLUSTER: prod-gcp
+#          RESOURCE: .nais/prod-nais.yaml
+
+
+  reportFailure:
+    name: Slack notifikasjon bygg feiler
+    needs: [ deploy-dev-gcp ]
+    # needs: [ deploy-dev-gcp, deploy-prod-gcp ]
+    if: ${{ failure() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Sender notifikasjon til Slack
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: team-mob-workflow
+          SLACK_COLOR: '#ff0000'
+          SLACK_ICON: https://user-images.githubusercontent.com/29889280/178134303-4556873f-b2d6-46a0-b5af-a587b0fabb96.png
+          SLACK_TITLE: ${{ github.repository }}
+          SLACK_MESSAGE: 'Deploy til dev og prod feilet! :ghost:'
+          SLACK_USERNAME: workflowBot
+          MSG_MINIMAL: actions url,commit
+          SLACK_FOOTER: 'team-mob'
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

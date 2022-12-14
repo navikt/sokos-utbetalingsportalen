@@ -25,8 +25,7 @@ jobs:
         uses: snyk/actions/node@master
         with:
           command: monitor
-          args: --org=po-utbetaling --project-name=${{ github.repository }} --remote-repo-url=https://github.com/${{ github.repository }}.git
-          json: true
+          args: --org=team-mob --project-name=${{ github.repository }} --remote-repo-url=https://github.com/${{ github.repository }}.git
 
   docker-image-vulnerabilities:
     name: Skanner docker image for sårbarheter
