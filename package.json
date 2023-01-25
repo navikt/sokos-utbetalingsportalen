@@ -7,8 +7,9 @@
     "dev": "vite",
     "build": "vite build --base=/okonomiportalen/ --outDir dist",
     "preview": "vite preview",
-    "pretty-quick": "pretty-quick --pattern \"**/*.*(jsx)\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "eslint --fix --ext .js,.jsx .",
+    "lint:staged": "eslint -c .eslintrc.pre-commit.js --fix --ext .js,.jsx ."
   },
   "author": "navikt",
   "license": "MIT",
@@ -20,6 +21,7 @@
     "@navikt/ds-tokens": "1.3.0",
     "@sentry/react": "7.12.1",
     "@sentry/tracing": "7.12.1",
+    "amplitude-js": "^8.21.1",
     "js-cookie": "3.0.1",
     "react-query": "3.39.2",
     "react-router": "6.3.0",
@@ -32,15 +34,31 @@
   "devDependencies": {
     "@eik/rollup-plugin": "4.0.33",
     "@vitejs/plugin-react": "2.1.0",
-    "autoprefixer": "^10.4.9",
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.30.1",
     "husky": "8.0.1",
+    "autoprefixer": "^10.4.9",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
     "postcss": "^8.4.16",
-    "pretty-quick": "3.1.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwindcss": "^3.1.8"
   },
   "prettier": {
     "printWidth": 120
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint -c .eslintrc.pre-commit.js --fix",
+      "prettier --cache --write",
+      "git add"
+    ],
+    "*.{css,md,html,json}": [
+      "prettier --cache --write",
+      "git add"
+    ]
   }
 }
