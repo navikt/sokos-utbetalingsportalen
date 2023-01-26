@@ -1,4 +1,4 @@
-FROM node:16-alpine@sha256:bf1e1c4761cd5e417b5ed60d5c599266270b728878089efcd1d63a8bd1dde446
+FROM node:lts-alpine@sha256:09faa7dabeae557cb6baff17be5b216fc4e3c9608aa04fe71695aad3d229a9c7
 RUN apk add --no-cache bash
 ENV NODE_ENV production
 
