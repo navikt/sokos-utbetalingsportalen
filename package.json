@@ -53,12 +53,10 @@
   "lint-staged": {
     "*.{js,jsx}": [
       "eslint -c .eslintrc.pre-commit.js --fix",
-      "prettier --cache --write",
-      "git add"
+      "prettier --cache --write"
     ],
     "*.{css,md,html,json}": [
-      "prettier --cache --write",
-      "git add"
+      "prettier --cache --write"
     ]
   }
 }

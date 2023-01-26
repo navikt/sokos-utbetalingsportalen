@@ -1,3 +1,4 @@
 #!/bin/sh
-
+. "$(dirname "$0")/_/husky.sh"
+. "$(dirname "$0")/scripts/check-no-a11y-ignored.sh"
 npx lint-staged
