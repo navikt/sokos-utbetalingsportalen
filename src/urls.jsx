@@ -19,9 +19,9 @@ const BASE_URL = {
 };
 
 const ATTESTASJON_URL = {
-  local: "http://localhost:5173/sokos-attestasjon-frontend/bundle.js",
-  development: "https://okonomiportalen.dev.intern.nav.no/sokos-attestasjon-frontend/bundle.js",
-  production: "https://okonomiportalen.intern.nav.no/sokos-attestasjon-frontend/bundle.js",
+  local: "http://localhost:5173/attestasjon/bundle.js",
+  development: "https://okonomiportalen.dev.intern.nav.no/attestasjon/bundle.js",
+  production: "https://okonomiportalen.intern.nav.no/attestasjon/bundle.js",
 };
 
 export const okonomiportalenUrl = OKONOMIPORTALEN_URL[getEnvironment()];
