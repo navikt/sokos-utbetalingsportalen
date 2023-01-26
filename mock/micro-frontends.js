@@ -2,7 +2,7 @@ import attestasjon from "./bundle/attestasjon";
 
 export default [
   {
-    url: "/sokos-attestasjon-frontend/bundle.js",
+    url: "/attestasjon/bundle.js",
     method: "get",
     rawResponse: async (req, res) => {
       res.setHeader("Content-Type", "text/javascript");
