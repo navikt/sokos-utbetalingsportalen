@@ -50,7 +50,7 @@ jobs:
           args: --file=Dockerfile --severity-threshold=high
 
   reportFailure:
-    name: Slack notifikasjon bygg feiler
+    name: Slack notifikasjon for sikkerhet tester feilet
     needs: [ app-dependencies-vulnerabilities, docker-image-vulnerabilities ]
     if: ${{ failure() }}
     runs-on: ubuntu-latest
@@ -59,11 +59,11 @@ jobs:
       - name: Sender notifikasjon til Slack
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_CHANNEL: team-mob-workflow
+          SLACK_CHANNEL: team-mob-security-workflow
           SLACK_COLOR: '#ff0000'
           SLACK_ICON: https://user-images.githubusercontent.com/29889280/178134303-4556873f-b2d6-46a0-b5af-a587b0fabb96.png
           SLACK_TITLE: ${{ github.repository }}
-          SLACK_MESSAGE: 'Sårbarhetstester feilet! :ghost:'
+          SLACK_MESSAGE: 'Workflow for sikkerhet tester feilet! :ghost:'
           SLACK_USERNAME: workflowBot
           MSG_MINIMAL: actions url,commit
           SLACK_FOOTER: 'team-mob'
