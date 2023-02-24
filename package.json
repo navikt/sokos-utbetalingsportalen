@@ -6,11 +6,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/okonomiportalen/ --outDir dist",
+    "build": "vite build --outDir dist",
     "preview": "vite preview",
     "prepare": "husky install",
-    "lint": "eslint --fix --ext .js,.jsx .",
-    "lint:staged": "eslint -c .eslintrc.pre-commit.js --fix --ext .js,.jsx ."
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
+    "lint:staged": "eslint -c .eslintrc.json --fix --ext .js,.jsx,.ts,.tsx ."
   },
   "author": "navikt",
   "license": "MIT",
@@ -20,8 +20,12 @@
     "@navikt/ds-react": "^2.1.1",
     "@navikt/ds-react-internal": "^2.1.1",
     "@navikt/ds-tokens": "2.1.1",
+    "@rollup/plugin-typescript": "^11.0.0",
     "@sentry/react": "7.34.0",
     "@sentry/tracing": "7.34.0",
+    "@types/js-cookie": "^3.0.3",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
     "amplitude-js": "^8.21.4",
     "js-cookie": "3.0.1",
     "react-query": "3.39.3",
@@ -34,26 +38,34 @@
   },
   "devDependencies": {
     "@eik/rollup-plugin": "4.0.40",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@vitejs/plugin-react": "3.0.1",
-    "eslint": "^8.32.0",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-react": "^7.32.1",
-    "husky": "8.0.3",
     "autoprefixer": "^10.4.13",
+    "eslint": "^8.34.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-standard-with-typescript": "^34.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.32.2",
+    "husky": "8.0.3",
     "lint-staged": "^13.1.0",
-    "prettier": "^2.8.3",
     "postcss": "^8.4.21",
+    "prettier": "^2.8.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "tailwindcss": "^3.2.4"
+    "source-map-loader": "^4.0.1",
+    "tailwindcss": "^3.2.4",
+    "ts-loader": "^9.4.2",
+    "typescript": "^4.9.5"
   },
   "prettier": {
     "printWidth": 120
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "eslint -c .eslintrc.pre-commit.js --fix",
+      "eslint -c .eslintrc.json --fix",
       "prettier --cache --write"
     ],
     "*.{css,md,html,json}": [
