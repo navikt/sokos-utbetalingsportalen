@@ -1,23 +1,23 @@
-import { System } from '@navikt/ds-icons'
-import { Dropdown, Header } from '@navikt/ds-react-internal'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { System } from "@navikt/ds-icons";
+import { Dropdown, Header } from "@navikt/ds-react-internal";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Meny = (): JSX.Element => {
   return (
     <Header>
-      <Header.Title as={Link} to={'/'}>
+      <Header.Title as={Link} to={"/"}>
         Økonomiportalen
       </Header.Title>
       <Dropdown>
         <Header.Button as={Dropdown.Toggle} className="ml-auto">
-          <System style={{ fontSize: '1.5rem' }} title="Systemer og oppslagsverk" />
+          <System style={{ fontSize: "1.5rem" }} title="Systemer og oppslagsverk" />
         </Header.Button>
 
         <Dropdown.Menu>
           <Dropdown.Menu.GroupedList>
             <Dropdown.Menu.GroupedList.Heading>Systemer og oppslagsverk</Dropdown.Menu.GroupedList.Heading>
-            <Dropdown.Menu.GroupedList.Item as={Link} to={`/attestasjon`}>
+            <Dropdown.Menu.GroupedList.Item as={Link} to={"/attestasjon"}>
               Attestasjon
             </Dropdown.Menu.GroupedList.Item>
           </Dropdown.Menu.GroupedList>
@@ -32,7 +32,7 @@ const Meny = (): JSX.Element => {
         </Dropdown.Menu>
       </Dropdown>
     </Header>
-  )
-}
+  );
+};
 
-export default Meny
+export default Meny;
