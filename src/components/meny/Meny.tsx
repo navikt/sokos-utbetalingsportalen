@@ -3,7 +3,7 @@ import { Dropdown, Header } from "@navikt/ds-react-internal";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Meny = (): JSX.Element => {
+const Meny = () => {
   return (
     <Header>
       <Header.Title as={Link} to={"/"}>
