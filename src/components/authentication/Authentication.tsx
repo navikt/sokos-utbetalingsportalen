@@ -2,7 +2,7 @@ import React, { type PropsWithChildren } from "react";
 import { useQuery } from "react-query";
 import { fetcher } from "../../api/api";
 import redirectToIdPorten from "../../api/redirectToIdPorten";
-import { authenticationUrl, baseUrl } from "../../urls";
+import { sokosAuthUrl, baseUrl } from "../../urls";
 import ContentLoader from "../loader/ContentLoader";
 
 const Authentication = ({ children }: PropsWithChildren) => {
@@ -10,7 +10,7 @@ const Authentication = ({ children }: PropsWithChildren) => {
     data: status,
     isLoading: isLoadingStatus,
     isError,
-  } = useQuery<{ authenticated: boolean }, boolean>(authenticationUrl, fetcher);
+  } = useQuery<{ authenticated: boolean }, boolean>(sokosAuthUrl, fetcher);
 
   const redirectUrl = baseUrl + window.location.pathname;
 
