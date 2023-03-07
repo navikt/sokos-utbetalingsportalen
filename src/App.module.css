@@ -1,0 +1,12 @@
+.button_bra {
+  border: black;
+  background: cadetblue;
+  padding: 5px;
+  margin: 10px;
+}
+.button_dumt {
+  border: black;
+  background: orangered;
+  padding: 5px;
+  margin: 10px;
+}
