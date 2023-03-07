@@ -1,3 +1,4 @@
+// @ts-ignore
 import importMapPlugin from "@eik/rollup-plugin";
 import react from "@vitejs/plugin-react";
 import { terser } from "rollup-plugin-terser";
@@ -6,7 +7,7 @@ import { viteMockServe } from "vite-plugin-mock";
 const reactUrl = "https://www.nav.no/tms-min-side-assets/react/18/esm/index.js";
 const reactDomUrl = "https://www.nav.no/tms-min-side-assets/react-dom/18/esm/index.js";
 
-export default ({ command }) => ({
+export default ({ command }: { command: string }) => ({
   plugins: [
     react(),
     viteMockServe({
