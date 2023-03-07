@@ -6,10 +6,10 @@ const OKONOMIPORTALEN_URL: Record<string, string> = {
   production: 'https://okonomiportalen.intern.nav.no/okonomiportalen'
 }
 
-const SOKOS_OKONOMIPORTALEN_PROXY_URL: Record<string, string> = {
-  local: 'http://localhost:5173/sokos-okonomiportalen-proxy',
-  development: 'https://okonomiportalen.dev.intern.nav.no/sokos-okonomiportalen-proxy',
-  production: 'https://okonomiportalen.intern.nav.no/sokos-okonomiportalen-proxy'
+const SOKOS_OP_AUTH_URL: Record<string, string> = {
+  local: 'http://localhost:5173/sokos-op-auth',
+  development: 'https://okonomiportalen.dev.intern.nav.no/sokos-op-auth',
+  production: 'https://okonomiportalen.intern.nav.no/sokos-op-auth'
 }
 
 const BASE_URL: Record<string, string> = {
@@ -26,6 +26,5 @@ const ATTESTASJON_URL: Record<string, string> = {
 
 export const okonomiportalenUrl = OKONOMIPORTALEN_URL[getEnvironment()]
 export const attestasjonUrl = ATTESTASJON_URL[getEnvironment()]
-export const sokosOkonomiportalenProxy = SOKOS_OKONOMIPORTALEN_PROXY_URL[getEnvironment()]
-export const authenticationUrl = `${SOKOS_OKONOMIPORTALEN_PROXY_URL[getEnvironment()]}/login/status`
+export const sokosAuthUrl = `${SOKOS_OP_AUTH_URL[getEnvironment()]}/login/status`
 export const baseUrl = BASE_URL[getEnvironment()]

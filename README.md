@@ -1,3 +1,3 @@
-# sokos-okonomiportalen-frontend
+# sokos-op-fasade
 
-Container som setter sammen mikrofrontends for Økonomiportalen.
+Fasade applikasjon som setter sammen mikrofrontends for Økonomiportalen.

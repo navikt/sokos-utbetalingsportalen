@@ -1,7 +1,7 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: sokos-okonomiportalen-frontend
+  name: sokos-op-fasade
   namespace: okonomi
   labels:
     team: okonomi
@@ -12,10 +12,10 @@ spec:
   image: {{ image }}
   port: 7100
   liveness:
-    path: /sokos-okonomiportalen-frontend/internal/isAlive
+    path: /okonomiportalen/internal/isAlive
     initialDelay: 10
   readiness:
-    path: /sokos-okonomiportalen-frontend/internal/isReady
+    path: /okonomiportalen/internal/isReady
     initialDelay: 10
   replicas:
     min: 2

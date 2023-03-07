@@ -1,7 +1,7 @@
 {
-  "name": "sokos-okonomiportalen-frontend",
+  "name": "sokos-op-fasade",
   "version": "1.0.0",
-  "description": "sokos-okonomiportalen-frontend",
+  "description": "sokos-op-fasade",
   "type": "module",
   "scripts": {
     "dev": "vite",

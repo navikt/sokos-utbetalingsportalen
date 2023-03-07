@@ -1,7 +1,7 @@
-import { sokosOkonomiportalenProxy } from '../urls'
+import { sokosAuthUrl } from '../urls'
 
 const redirectToIdPorten = (redirectUrl: string): void => {
-  window.location.assign(`${sokosOkonomiportalenProxy}/login?redirect_uri=${redirectUrl}${window.location.search}`)
+  window.location.assign(`${sokosAuthUrl}/login?redirect_uri=${redirectUrl}${window.location.search}`)
 }
 
 export default redirectToIdPorten
