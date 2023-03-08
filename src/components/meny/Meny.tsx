@@ -1,12 +1,8 @@
 import { System } from "@navikt/ds-icons";
 import { Dropdown, Header } from "@navikt/ds-react-internal";
-import React from "react";
 import { Link } from "react-router-dom";
-import useStore, { selectLanguage } from "../../store/store";
 
 const Meny = () => {
-  const language = useStore(selectLanguage);
-
   return (
     <Header>
       <Header.Title as={Link} to={"/"}>
@@ -20,7 +16,7 @@ const Meny = () => {
         <Dropdown.Menu>
           <Dropdown.Menu.GroupedList>
             <Dropdown.Menu.GroupedList.Heading>Systemer og oppslagsverk</Dropdown.Menu.GroupedList.Heading>
-            <Dropdown.Menu.GroupedList.Item as={Link} to={`/attestasjon`}>
+            <Dropdown.Menu.GroupedList.Item as={Link} to={"/attestasjon"}>
               Attestasjon
             </Dropdown.Menu.GroupedList.Item>
           </Dropdown.Menu.GroupedList>

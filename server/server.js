@@ -1,5 +1,4 @@
 const express = require("express");
-const logger = require("./logger");
 const path = require("path");
 const basePath = "/okonomiportalen";
 const buildPath = path.resolve(__dirname, "../dist");

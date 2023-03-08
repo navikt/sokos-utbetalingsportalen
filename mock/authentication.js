@@ -1,6 +1,6 @@
 export default [
   {
-    url: "/sokos-okonomiportalen-proxy/login/status",
+    url: "/sokos-op-auth/login/status",
     method: "get",
     response: () => {
       return {
