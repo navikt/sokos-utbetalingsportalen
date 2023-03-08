@@ -1,6 +1,5 @@
-import React from 'react'
-import { Heading } from '@navikt/ds-react'
-import HjemCSS from './Hjem.module.css'
+import { Heading } from "@navikt/ds-react";
+import HjemCSS from "./Hjem.module.css";
 
 const Hjem = (): JSX.Element => {
   return (
@@ -8,7 +7,7 @@ const Hjem = (): JSX.Element => {
       <div className={HjemCSS.moro}></div>
       The red fox jumps over the lazy brown dog.
     </Heading>
-  )
-}
+  );
+};
 
-export default Hjem
+export default Hjem;

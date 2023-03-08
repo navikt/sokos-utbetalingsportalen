@@ -1,10 +1,10 @@
-import React, { type PropsWithChildren } from 'react'
-import FeilMelding from '../feilmelding/Feilmelding'
-import LayoutCSS from './Layout.module.css'
+import { type PropsWithChildren } from "react";
+import FeilMelding from "../feilmelding/Feilmelding";
+import LayoutCSS from "./Layout.module.css";
 
 type LayoutProps = {
-  isError: boolean
-}
+  isError: boolean;
+};
 
 const Layout = ({ children, isError }: LayoutProps & PropsWithChildren): JSX.Element => {
   return (
@@ -14,7 +14,7 @@ const Layout = ({ children, isError }: LayoutProps & PropsWithChildren): JSX.Ele
         {children}
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
