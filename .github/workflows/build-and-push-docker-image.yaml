@@ -8,6 +8,7 @@ on:
       - '**.md'
       - 'LICENCE'
       - 'CODEOWNERS'
+      - '.github/workflows/snyk.yaml'
 env:
   IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
   LATEST_IMAGE: ghcr.io/${{ github.repository }}:latest
@@ -27,26 +28,26 @@ jobs:
           node-version: '16'
           cache: 'npm'
 
-      # - name: Cache klient node_modules
-      #   id: cache-node-modules
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: node_modules
-      #     key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
+      - name: Cache klient node_modules
+        id: cache-node-modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
 
-      # - name: Cache server node_modules
-      #   id: cache-server-node-modules
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: server/node_modules
-      #     key: ${{ runner.os }}-modules-${{ hashFiles('server/package-lock.json') }}
+      - name: Cache server node_modules
+        id: cache-server-node-modules
+        uses: actions/cache@v2
+        with:
+          path: server/node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('server/package-lock.json') }}
 
       - name: Installerer dependencies
-        # if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm install
 
       - name: Installerer dependencies for server
-        # if: steps.cache-server-node-modules.outputs.cache-hit != 'true'
+        if: steps.cache-server-node-modules.outputs.cache-hit != 'true'
         run: cd server && npm install
 
       - name: Bygger applikasjonen
