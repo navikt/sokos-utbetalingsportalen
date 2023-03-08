@@ -1,6 +1,5 @@
 import { System } from "@navikt/ds-icons";
 import { Dropdown, Header } from "@navikt/ds-react-internal";
-import React from "react";
 import { Link } from "react-router-dom";
 
 const Meny = () => {
