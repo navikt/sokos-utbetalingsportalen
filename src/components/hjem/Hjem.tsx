@@ -1,4 +1,3 @@
-import React from "react";
 import { Heading } from "@navikt/ds-react";
 import HjemCSS from "./Hjem.module.css";
 import useIsErrorStore, { selectIsError } from "../../store/store";

@@ -5,7 +5,14 @@ module.exports = {
     es2021: true,
   },
   parser: "@typescript-eslint/parser",
-  ignorePatterns: ["index.js", ".eslintrc.*", "**/dist/*.js", "vite.config.ts", "/server/server.js", "plugin:react/recommended"],
+  ignorePatterns: [
+    "index.js",
+    ".eslintrc.*",
+    "**/dist/*.js",
+    "vite.config.ts",
+    "/server/server.js",
+    "plugin:react/recommended",
+  ],
   plugins: ["@typescript-eslint", "jsx-a11y", "react"],
   extends: [
     "eslint:recommended",
@@ -23,10 +30,10 @@ module.exports = {
     "@typescript-eslint/no-unused-vars": [
       "warn", // or "error"
       {
-        "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_",
-        "caughtErrorsIgnorePattern": "^_"
-      }
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
+        caughtErrorsIgnorePattern: "^_",
+      },
     ],
   },
-}
+};
