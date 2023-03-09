@@ -56,7 +56,7 @@ jobs:
 
   deploy-manuell-dev-gcp:
     name: Deploy manuell til dev-gcp
-    needs: [ bygg ]
+    needs: [ bygg-og-push-docker-image ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -64,4 +64,4 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
-          RESOURCE: .nais/naiserator-manuell.yaml
+          RESOURCE: .nais/manual-dev-nais.yaml
