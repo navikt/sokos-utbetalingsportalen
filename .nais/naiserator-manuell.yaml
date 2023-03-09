@@ -1,0 +1,28 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: sokos-op-fasade-manuell
+  namespace: okonomi
+  labels:
+    team: okonomi
+spec:
+  image: {{ image }}
+  port: 7100
+  liveness:
+    path: /okonomiportalen/internal/isAlive
+    initialDelay: 10
+  readiness:
+    path: /okonomiportalen/internal/isReady
+    initialDelay: 10
+  replicas:
+    min: 1
+    max: 2
+  ingresses:
+    - "https://okonomiportalen-manuell.dev.intern.nav.no"
+  resources:
+    limits:
+      cpu: "3"
+      memory: 768Mi
+    requests:
+      cpu: "50m"
+      memory: 256Mi

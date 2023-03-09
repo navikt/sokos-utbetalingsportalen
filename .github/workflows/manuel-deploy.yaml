@@ -1,11 +1,16 @@
-name: Bygg og test PR
+name: Manuell deploy
 
 on:
-  pull_request:
+  workflow_dispatch:
+
+env:
+  IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}-manuell
+  GITHUB_USERNAME: x-access-token
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  build-pull-request:
-    name: Bygg og test
+  bygg-og-push-docker-image:
+    name: Bygg/test og push Docker image
     runs-on: ubuntu-latest
     steps:
       - name: Sjekker ut repo
@@ -32,11 +37,31 @@ jobs:
 
       - name: Installerer dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: npm ci
+        run: npm install
 
       - name: Installerer dependencies for server
         if: steps.cache-server-node-modules.outputs.cache-hit != 'true'
-        run: cd server && npm ci
+        run: cd server && npm install
 
       - name: Bygger applikasjonen
         run: npm run build
+
+      - name: Bygg og publiser Docker image
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          docker build --tag ${IMAGE} .
+          docker login ghcr.io -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+          docker push ${IMAGE}
+
+  deploy-manuell-dev-gcp:
+    name: Deploy manuell til dev-gcp
+    needs: [ bygg ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-gcp
+          RESOURCE: .nais/naiserator-manuell.yaml
