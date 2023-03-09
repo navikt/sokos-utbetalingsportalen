@@ -1,24 +1,20 @@
 import React, { type PropsWithChildren } from "react";
-import { useQuery } from "react-query";
 import { fetcher } from "../../api/api";
 import redirectToIdPorten from "../../api/redirectToIdPorten";
 import { sokosAuthUrl, baseUrl } from "../../urls";
 import ContentLoader from "../loader/ContentLoader";
+import useSWR from "swr";
 
 const Authentication = ({ children }: PropsWithChildren) => {
-  const {
-    data: status,
-    isLoading: isLoadingStatus,
-    isError,
-  } = useQuery<{ authenticated: boolean }, boolean>(sokosAuthUrl, fetcher);
+  const { data, isLoading, error } = useSWR(sokosAuthUrl, fetcher);
 
   const redirectUrl = baseUrl + window.location.pathname;
 
-  if (isLoadingStatus) {
+  if (isLoading) {
     return <ContentLoader />;
   }
 
-  if (status?.authenticated === undefined || !status?.authenticated || isError) {
+  if (!data || !data.authenticated || error) {
     redirectToIdPorten(redirectUrl);
     return null;
   }
