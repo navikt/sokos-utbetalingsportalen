@@ -1,8 +1,11 @@
 import { System } from "@navikt/ds-icons";
 import { Dropdown, Header } from "@navikt/ds-react-internal";
 import { Link } from "react-router-dom";
+import useStore, { selectSetIsLoggedIn } from "../../store/store";
 
 const Meny = () => {
+  const setIsLoggedIn = useStore(selectSetIsLoggedIn);
+  const clickedLogoutHandler = () => setIsLoggedIn(false);
   return (
     <Header>
       <Header.Title as={Link} to={"/"}>
@@ -26,7 +29,7 @@ const Meny = () => {
         <Header.UserButton as={Dropdown.Toggle} name="Ola Normann" description="Enhet: Skien" />
         <Dropdown.Menu>
           <Dropdown.Menu.List>
-            <Dropdown.Menu.List.Item>Logg ut</Dropdown.Menu.List.Item>
+            <Dropdown.Menu.List.Item onClick={clickedLogoutHandler}>Logg ut</Dropdown.Menu.List.Item>
           </Dropdown.Menu.List>
         </Dropdown.Menu>
       </Dropdown>

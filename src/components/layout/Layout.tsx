@@ -1,16 +1,10 @@
 import { type PropsWithChildren } from "react";
-import FeilMelding from "../feilmelding/Feilmelding";
 import LayoutCSS from "./Layout.module.css";
-import useIsErrorStore, { selectIsError } from "../../store/store";
 
 const Layout = ({ children }: PropsWithChildren) => {
-  const isError = useIsErrorStore(selectIsError);
   return (
     <div className={LayoutCSS.layout}>
-      <main className={LayoutCSS.main}>
-        {isError ? <FeilMelding /> : null}
-        {children}
-      </main>
+      <main className={LayoutCSS.main}>{children}</main>
     </div>
   );
 };
