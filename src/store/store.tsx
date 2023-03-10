@@ -12,20 +12,17 @@ export type State = {
   setIsLoggedIn: (b: boolean) => void;
 };
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore Fordi typen til "set" blir et kjempeuttrykk
+const actions = (set) => ({
+  setIsError: (isError: boolean) => set((state: State): State => ({ ...state, isError })),
+  setIsLoggedIn: (isLoggedIn: boolean) => set((state: State): State => ({ ...state, isLoggedIn })),
+});
+
 const useStore = create<State>((set) => ({
   isError: false,
-  setIsError: (isError) =>
-    set((state) => ({
-      ...state,
-      isError,
-    })),
   isLoggedIn: false,
-  setIsLoggedIn: (isLoggedIn) => {
-    set((state) => ({
-      ...state,
-      isLoggedIn,
-    }));
-  },
+  ...actions(set),
 }));
 
 export default useStore;
