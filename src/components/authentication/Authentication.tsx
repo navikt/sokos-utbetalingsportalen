@@ -8,7 +8,7 @@ import useStore, { selectIsLoggedIn } from "../../store/store";
 
 const Authentication = ({ children }: PropsWithChildren) => {
   const isLoggedIn = useStore(selectIsLoggedIn);
-  const { data, isLoading, error } = useSWR(sokosLoginApiUrl, fetcher);
+  const { data, isLoading, error } = useSWR(sokosLoginApiUrl, fetcher, { shouldRetryOnError: false });
 
   if (isLoading) {
     return <ContentLoader />;
