@@ -18,14 +18,14 @@ jobs:
 
       - name: Cache klient node_modules
         id: cache-node-modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
 
       - name: Cache server node_modules
         id: cache-server-node-modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: server/node_modules
           key: ${{ runner.os }}-modules-${{ hashFiles('server/package-lock.json') }}

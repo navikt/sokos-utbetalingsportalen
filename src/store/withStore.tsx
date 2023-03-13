@@ -1,8 +1,8 @@
-import { IsErrorState } from "./store.js";
+import { State } from "./store.js";
 import React, { ComponentType } from "react";
 
 type WithStoreProps = {
-  store: IsErrorState;
+  store: State;
 };
 
 const withStore =

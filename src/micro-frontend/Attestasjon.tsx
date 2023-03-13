@@ -6,7 +6,7 @@ import FeilMelding from "../components/feilmelding/Feilmelding";
 
 const AttestasjonBundle: LazyExoticComponent<() => JSX.Element> = React.lazy(() => import(attestasjonUrl));
 
-const Attestasjon = (): JSX.Element => {
+const Attestasjon = () => {
   return (
     <React.Suspense fallback={<ContentLoader />}>
       <ErrorBoundary fallbackRender={() => <FeilMelding />}>

@@ -1,9 +1,9 @@
 import { Heading } from "@navikt/ds-react";
 import HjemCSS from "./Hjem.module.css";
-import useIsErrorStore, { selectIsError } from "../../store/store";
+import useStore, { selectIsError } from "../../store/store";
 
-const Hjem = (): JSX.Element => {
-  const isError = useIsErrorStore<boolean>(selectIsError);
+const Hjem = () => {
+  const isError = useStore<boolean>(selectIsError);
   return (
     <Heading level="1" size="medium" className="text-center">
       <div className={HjemCSS.moro}></div>

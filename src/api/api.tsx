@@ -12,10 +12,8 @@ const checkResponse = (response: Response) => {
   }
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-export const fetcher = async ({ queryKey }) => {
-  const response = await fetch(queryKey, {
+export const fetcher = async (url: URL) => {
+  const response = await fetch(url, {
     method: "GET",
     credentials: "include",
   });

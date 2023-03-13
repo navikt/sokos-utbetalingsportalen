@@ -1,26 +1,21 @@
 import React, { type PropsWithChildren } from "react";
-import { useQuery } from "react-query";
 import { fetcher } from "../../api/api";
-import redirectToIdPorten from "../../api/redirectToIdPorten";
-import { sokosAuthUrl, baseUrl } from "../../urls";
+import { sokosLoginApiUrl } from "../../urls";
 import ContentLoader from "../loader/ContentLoader";
+import useSWR from "swr";
+import Login from "../../pages/Login";
+import useStore, { selectIsLoggedIn } from "../../store/store";
 
 const Authentication = ({ children }: PropsWithChildren) => {
-  const {
-    data: status,
-    isLoading: isLoadingStatus,
-    isError,
-  } = useQuery<{ authenticated: boolean }, boolean>(sokosAuthUrl, fetcher);
+  const isLoggedIn = useStore(selectIsLoggedIn);
+  const { data, isLoading, error } = useSWR(sokosLoginApiUrl, fetcher, { shouldRetryOnError: false });
 
-  const redirectUrl = baseUrl + window.location.pathname;
-
-  if (isLoadingStatus) {
+  if (isLoading) {
     return <ContentLoader />;
   }
 
-  if (status?.authenticated === undefined || !status?.authenticated || isError) {
-    redirectToIdPorten(redirectUrl);
-    return null;
+  if (!isLoggedIn && (!data || !data.authenticated || error)) {
+    return <Login />;
   }
 
   return <React.Fragment>{children}</React.Fragment>;
