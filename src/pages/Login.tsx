@@ -12,7 +12,7 @@ function Login() {
     redirect(baseUrl);
   };
 
-  return <Button onClick={autoriser}>Logg inn</Button>;
+  return <Button onClick={autoriser}>Denne siden blir byttet ut med Azure Ad login. Trykk for å gå videre</Button>;
 }
 
 export default Login;
