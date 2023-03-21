@@ -13,9 +13,9 @@ const BASE_URL: Record<string, string> = {
 };
 
 const MIKROFRONTEND_URL: Record<string, string> = {
-  local: "http://localhost:5173/mikrofrontend/bundle.js",
-  development: "https://okonomiportalen.dev.intern.nav.no/mikrofrontend/bundle.js",
-  production: "https://okonomiportalen.intern.nav.no/mikrofrontend/bundle.js",
+  local: "http://localhost:5173/attestasjon/bundle.js",
+  development: "https://okonomiportalen.dev.intern.nav.no/attestasjon/bundle.js",
+  production: "https://okonomiportalen.intern.nav.no/attestasjon/bundle.js",
 };
 
 export const sokosLoginApiUrl = `${SOKOS_OP_PROXY_URL[getEnvironment()]}/login/status`;
