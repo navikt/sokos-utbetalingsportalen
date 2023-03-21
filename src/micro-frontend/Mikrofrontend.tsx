@@ -1,19 +1,19 @@
 import React, { LazyExoticComponent } from "react";
 import ContentLoader from "../components/loader/ContentLoader.js";
-import { attestasjonUrl } from "../urls.js";
+import { mikrofrontendUrl } from "../urls.js";
 import { ErrorBoundary } from "react-error-boundary";
 import FeilMelding from "../components/feilmelding/Feilmelding";
 
-const AttestasjonBundle: LazyExoticComponent<() => JSX.Element> = React.lazy(() => import(attestasjonUrl));
+const MikrofrontendBundle: LazyExoticComponent<() => JSX.Element> = React.lazy(() => import(mikrofrontendUrl));
 
-const Attestasjon = () => {
+const Mikrofrontend = () => {
   return (
     <React.Suspense fallback={<ContentLoader />}>
       <ErrorBoundary fallbackRender={() => <FeilMelding />}>
-        <AttestasjonBundle />
+        <MikrofrontendBundle />
       </ErrorBoundary>
     </React.Suspense>
   );
 };
 
-export default Attestasjon;
+export default Mikrofrontend;

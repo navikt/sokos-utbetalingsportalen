@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Hjem from "./components/hjem/Hjem";
 import Layout from "./components/layout/Layout";
 import Meny from "./components/meny/Meny";
-import Attestasjon from "./micro-frontend/Attestasjon";
+import Mikrofrontend from "./micro-frontend/Mikrofrontend";
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<Hjem />} />
-          <Route path="/attestasjon" element={<Attestasjon />} />
+          <Route path="/mikrofrontend" element={<Mikrofrontend />} />
         </Routes>
       </Layout>
     </Router>
