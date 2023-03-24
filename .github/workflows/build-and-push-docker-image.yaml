@@ -8,7 +8,7 @@ on:
       - '**.md'
       - 'LICENCE'
       - 'CODEOWNERS'
-      - '.github/workflows/snyk.yaml'
+      - '.github/workflows/security.yaml'
       - '.github/workflows/manual-dev-nais.yaml'
 
 env:
