@@ -2,15 +2,24 @@ import { System } from "@navikt/ds-icons";
 import { Dropdown, Header } from "@navikt/ds-react-internal";
 import { Link } from "react-router-dom";
 import useStore, { selectSetIsLoggedIn } from "../../store/store";
+import nav from "../../../assets/images/Hvit.png";
+import { TextField } from "@navikt/ds-react";
 
 const TopBar = () => {
   const setIsLoggedIn = useStore(selectSetIsLoggedIn);
   const clickedLogoutHandler = () => setIsLoggedIn(false);
   return (
     <Header>
+      <img src={nav} alt="logo" width={70} height={30} />
       <Header.Title as={Link} to={"/"}>
         Økonomiportalen
       </Header.Title>
+      <div id="djelderIDDiv" className="flex items-stretch space-x-7 p-2">
+        <div id="nr2" className="flex justify-center items-center">
+          GjelderID:{" "}
+        </div>
+        <TextField label="" hideLabel size="small" />
+      </div>
       <Dropdown>
         <Header.Button as={Dropdown.Toggle} className="ml-auto">
           <System style={{ fontSize: "1.5rem" }} title="Systemer og oppslagsverk" />
