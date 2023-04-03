@@ -1,8 +1,8 @@
 import { Chat, Heading } from "@navikt/ds-react";
-import useStore, { selectIsError } from "../../store/store";
+import useStore, { selectIsError } from "../store/store";
 import { ExclamationmarkTriangleIcon, InformationIcon } from "@navikt/aksel-icons";
 
-const Hjem = () => {
+const Information = () => {
   const isError = useStore<boolean>(selectIsError);
   return (
     <Heading level="1" size="medium" className="text-center">
@@ -15,7 +15,7 @@ const Hjem = () => {
           backgroundColor="rgba(255,240,230,1)"
           timestamp="03.04.2023 14:45"
         >
-          <Chat.Bubble>IRISen stenger om 5 min. Alle må hjem.</Chat.Bubble>
+          <Chat.Bubble>IRIS stengt. God påske</Chat.Bubble>
         </Chat>
         <Chat
           avatar={<InformationIcon />}
@@ -52,4 +52,4 @@ const Hjem = () => {
   );
 };
 
-export default Hjem;
+export default Information;

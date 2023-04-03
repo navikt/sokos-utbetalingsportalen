@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Hjem from "./components/hjem/Hjem";
+import Information from "./pages/Information";
 import Layout from "./components/layout/Layout";
 import TopBar from "./components/topbar/TopBar";
 import Mikrofrontend from "./micro-frontend/Mikrofrontend";
@@ -10,7 +10,7 @@ const App = () => {
       <TopBar />
       <Layout>
         <Routes>
-          <Route path="/" element={<Hjem />} />
+          <Route path="/" element={<Information />} />
           <Route path="/mikrofrontend" element={<Mikrofrontend />} />
         </Routes>
       </Layout>
