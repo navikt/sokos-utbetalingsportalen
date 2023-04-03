@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Hjem from "./components/hjem/Hjem";
 import Layout from "./components/layout/Layout";
-import Meny from "./components/meny/Meny";
+import TopBar from "./components/topbar/TopBar";
 import Mikrofrontend from "./micro-frontend/Mikrofrontend";
 
 const App = () => {
   return (
     <Router>
-      <Meny />
+      <TopBar />
       <Layout>
         <Routes>
           <Route path="/" element={<Hjem />} />

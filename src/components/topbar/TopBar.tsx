@@ -3,7 +3,7 @@ import { Dropdown, Header } from "@navikt/ds-react-internal";
 import { Link } from "react-router-dom";
 import useStore, { selectSetIsLoggedIn } from "../../store/store";
 
-const Meny = () => {
+const TopBar = () => {
   const setIsLoggedIn = useStore(selectSetIsLoggedIn);
   const clickedLogoutHandler = () => setIsLoggedIn(false);
   return (
@@ -37,4 +37,4 @@ const Meny = () => {
   );
 };
 
-export default Meny;
+export default TopBar;
