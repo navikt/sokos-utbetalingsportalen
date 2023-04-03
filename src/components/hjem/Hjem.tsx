@@ -1,4 +1,4 @@
-import { Chat, GuidePanel, Heading, Panel } from "@navikt/ds-react";
+import { Chat, Heading } from "@navikt/ds-react";
 import useStore, { selectIsError } from "../../store/store";
 import { ExclamationmarkTriangleIcon, InformationIcon } from "@navikt/aksel-icons";
 
