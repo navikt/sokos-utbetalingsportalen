@@ -1,0 +1,28 @@
+name: Deploy alarmer
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+      - 'LICENCE'
+      - 'Dockerfile'
+      - 'CODEOWNERS'
+      - '.gitignore'
+      - '.github/workflows/build-pr.yaml'
+      - '.github/workflows/manual-deploy.yaml'
+      - '.github/workflows/security.yaml'
+      - '.nais/naiserator-manuell.yaml'
+jobs:
+  deploy-alerts-dev:
+    name: Deploy alarmer til dev
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sjekker ut kode
+        uses: actions/checkout@v3
+      - name: Deploy til dev
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-gcp
+          RESOURCE: .nais/alerts-dev.yaml

@@ -2,16 +2,14 @@ name: Sikkerhet
 
 on:
   workflow_run:
-    workflows: ["Deploy til dev og prod"]
+    workflows: ["Bygg, test og deploy til dev/prod"]
     types:
       - completed
   schedule:
     - cron: '0 6 * * *'
 
 env:
-  IMAGE_LATEST: ghcr.io/${{ github.repository }}:latest
-  GITHUB_USERNAME: x-access-token
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  LATEST_IMAGE: ${{ github.event.repository.name }}:latest
 
 jobs:
   vulnerability-analyze:
@@ -47,17 +45,18 @@ jobs:
         with:
           category: "/language:${{matrix.language}}"
 
-      - name: Logger på Github Container Registry
-        uses: docker/login-action@v2
+      - name: Logger inn på Google Artifact Registry
+        uses: nais/login@v0
+        id: login
         with:
-          registry: ghcr.io
-          username: ${{ env.GITHUB_USERNAME }}
-          password: ${{ env.GITHUB_TOKEN }}
+          team: okonomi
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
 
       - name: Run Trivy vulnerability scanner on docker image
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ${{ env.IMAGE_LATEST }}
+          image-ref: ${{ steps.login.outputs.registry }}/${{ env.LATEST_IMAGE }}
           ignore-unfixed: true
           format: 'sarif'
           output: 'trivy-results.sarif'

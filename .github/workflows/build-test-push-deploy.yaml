@@ -1,15 +1,27 @@
-name: Manuell deploy til dev
-run-name: Deploy branch ${{ github.ref_name }} by @${{ github.actor }}
+name: Bygg, test og deploy til dev/prod
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+      - 'LICENCE'
+      - 'CODEOWNERS'
+      - '.gitignore'
+      - '.github/workflows/build-pr.yaml'
+      - '.github/workflows/manual-deploy.yaml'
+      - '.github/workflows/security.yaml'
+      - '.github/workflows/alerts-dev.yaml'
+      - '.nais/alerts-dev.yaml'
+      - '.nais/naiserator-manuell.yaml'
 
 jobs:
-   bygg-push-deploy:
+  bygg-test-push-image:
     permissions:
       contents: "read"
       id-token: "write"
-    name: Bygg og push Docker container
+    name: Bygg/test og push Docker image
     runs-on: ubuntu-latest
     steps:
       - name: Sjekker ut repo
@@ -36,14 +48,17 @@ jobs:
 
       - name: Installerer dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: npm install
+        run: npm ci
 
       - name: Installerer dependencies for server
         if: steps.cache-server-node-modules.outputs.cache-hit != 'true'
-        run: cd server && npm install
+        run: cd server && npm ci
 
       - name: Bygger applikasjonen
         run: npm run build
+
+      - name: Bygg docker image
+        uses: docker/setup-buildx-action@v2
 
       - name: Push docker image til Google Artifact Registry
         uses: nais/docker-build-push@v0
@@ -52,13 +67,13 @@ jobs:
           team: okonomi
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-          tag: manuell
+          tag: latest
     outputs:
       image: ${{ steps.docker-build-push.outputs.image }}
 
-  deploy-manuell-dev-gcp:
-    name: Deploy manuell til dev-gcp
-    needs:  bygg-push-deploy
+  deploy-dev-gcp:
+    name: Deploy til dev-gcp
+    needs: bygg-test-push-image
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -66,5 +81,19 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
-          IMAGE: ${{ needs.bygg-push-deploy.outputs.image }}
-          RESOURCE: .nais/manual-dev-nais.yaml
+          IMAGE: ${{ needs.bygg-test-push-image.outputs.image }}
+          RESOURCE: .nais/naiserator-dev.yaml
+
+  #  deploy-prod-gcp:
+  #    name: Deploy til prod-gcp
+  #    needs: deploy-dev-gcp
+  #    if: github.ref == 'refs/heads/master'
+  #    runs-on: ubuntu-latest
+  #    steps:
+  #      - uses: actions/checkout@v3
+  #      - uses: nais/deploy/actions/deploy@v1
+  #        env:
+  #          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+  #          CLUSTER: prod-gcp
+  #          IMAGE: ${{ needs.bygg-test-push-image.outputs.image }}
+  #          RESOURCE: .nais/naiserator-prod.yaml
