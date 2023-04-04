@@ -56,15 +56,15 @@ jobs:
     outputs:
       image: ${{ steps.docker-build-push.outputs.image }}
 
-  deploy-manuell-dev-gcp:
-    name: Deploy manuell til dev-gcp
-    needs:  bygg-push-deploy
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: nais/deploy/actions/deploy@v1
-        env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          CLUSTER: dev-gcp
-          IMAGE: ${{ needs.bygg-push-deploy.outputs.image }}
-          RESOURCE: .nais/manual-dev-nais.yaml
+   deploy-dev-gcp:
+     name: Deploy til dev-gcp
+     needs: bygg-test-push-image
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/checkout@v3
+       - uses: nais/deploy/actions/deploy@v1
+         env:
+           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+           CLUSTER: dev-gcp
+           IMAGE: ${{ needs.bygg-test-push-image.outputs.image }}
+           RESOURCE: .nais/naiserator-dev.yaml
