@@ -3,11 +3,15 @@ import Information from "./pages/Information";
 import Layout from "./components/layout/Layout";
 import TopBar from "./components/topbar/TopBar";
 import Mikrofrontend from "./micro-frontend/Mikrofrontend";
+import SideBar from "./components/sidebar/SideBar";
 
 const App = () => {
   return (
     <Router>
       <TopBar />
+      <div className="flex ">
+        <SideBar />
+      </div>
       <Layout>
         <Routes>
           <Route path="/" element={<Information />} />
