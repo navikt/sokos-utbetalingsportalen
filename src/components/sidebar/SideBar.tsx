@@ -1,6 +1,8 @@
-import React, { useState } from "react";
 import { MenuHamburgerIcon } from "@navikt/aksel-icons";
 import { BodyLong, Link } from "@navikt/ds-react";
+import { useState } from "react";
+import { Link as ReactLink } from "react-router-dom";
+import { Path } from "../../models/path";
 
 const SideBar = () => {
   const [showSideBar, setShowSideBar] = useState(false);
@@ -18,8 +20,15 @@ const SideBar = () => {
           </div>
           <BodyLong className="px-10 top-1.5 flex flex-col">
             <h3>Chappai moduler</h3>
-            <Link href="#">Postering</Link>
-            <Link href="#">Attestasjon</Link>
+            <Link as={ReactLink} to={Path.Mikrofrontend}>
+              Mikrofrontend
+            </Link>
+            <Link as={ReactLink} to={Path.Attestasjon}>
+              Attestasjon
+            </Link>
+            <Link as={ReactLink} to={Path.Postering}>
+              Postering
+            </Link>
           </BodyLong>
         </div>
       ) : (
