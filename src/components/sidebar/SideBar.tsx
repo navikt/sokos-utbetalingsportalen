@@ -1,11 +1,19 @@
 import { MenuHamburgerIcon } from "@navikt/aksel-icons";
-import { BodyLong, Link } from "@navikt/ds-react";
+import { BodyLong } from "@navikt/ds-react";
 import { useState } from "react";
-import { Link as ReactLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Path } from "../../models/path";
+import classes from "./SideBar.module.css";
 
 const SideBar = () => {
-  const [showSideBar, setShowSideBar] = useState(false);
+  const [showSideBar, setShowSideBar] = useState(true);
+
+  const handleGoToLink = () => {
+    setTimeout(() => {
+      console.log("BØ");
+    }, 5000);
+  };
+
   return (
     <div>
       {showSideBar ? (
@@ -20,13 +28,13 @@ const SideBar = () => {
           </div>
           <BodyLong className="px-10 top-1.5 flex flex-col">
             <h3>Chappai moduler</h3>
-            <Link as={ReactLink} to={Path.Mikrofrontend}>
+            <Link className={classes.link} to={Path.Mikrofrontend} onClick={handleGoToLink}>
               Mikrofrontend
             </Link>
-            <Link as={ReactLink} to={Path.Attestasjon}>
+            <Link className={classes.link} to={Path.Attestasjon}>
               Attestasjon
             </Link>
-            <Link as={ReactLink} to={Path.Postering}>
+            <Link className={classes.link} to={Path.Postering}>
               Postering
             </Link>
           </BodyLong>

@@ -1,9 +1,10 @@
 import { Chat, Heading } from "@navikt/ds-react";
-import useStore, { selectIsError } from "../store/store";
+import useStore, { selectGjelderID } from "../store/store";
 import { ExclamationmarkTriangleIcon, InformationIcon } from "@navikt/aksel-icons";
 
 const Information = () => {
-  const isError = useStore<boolean>(selectIsError);
+  const gjelderId = useStore(selectGjelderID);
+
   return (
     <Heading level="1" size="medium" className="text-center">
       <Heading level="1" size="large" spacing>
@@ -46,6 +47,7 @@ const Information = () => {
           timestamp="03.04.2023 13:15"
         >
           <Chat.Bubble>JAFFA CREE</Chat.Bubble>
+          <Chat.Bubble>Gjelder ID = {gjelderId}</Chat.Bubble>
         </Chat>
       </div>
     </Heading>
