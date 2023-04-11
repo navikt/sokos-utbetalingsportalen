@@ -7,12 +7,6 @@ import classes from "./SideBar.module.css";
 const SideBar = () => {
   const [showSideBar, setShowSideBar] = useState(true);
 
-  const handleGoToLink = () => {
-    setTimeout(() => {
-      console.log("BØ");
-    }, 5000);
-  };
-
   return (
     <div>
       {showSideBar ? (
@@ -27,7 +21,7 @@ const SideBar = () => {
           </div>
           <ul className="px-10 top-1.5 flex flex-col">
             <h3>Chappai moduler</h3>
-            <Link className={classes.link} to={Path.Mikrofrontend} onClick={handleGoToLink}>
+            <Link className={classes.link} to={Path.Mikrofrontend}>
               Mikrofrontend
             </Link>
             <Link className={classes.link} to={Path.Attestasjon}>
