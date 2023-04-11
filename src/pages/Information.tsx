@@ -6,8 +6,8 @@ const Information = () => {
   const gjelderId = useStore(selectGjelderID);
 
   return (
-    <Heading level="1" size="medium" className="text-center">
-      <Heading level="1" size="large" spacing>
+    <>
+      <Heading level="2" size="large" spacing className="text-center">
         Informasjon
       </Heading>
       <div id="info" className="space-y-3">
@@ -50,7 +50,7 @@ const Information = () => {
           <Chat.Bubble>Gjelder ID = {gjelderId}</Chat.Bubble>
         </Chat>
       </div>
-    </Heading>
+    </>
   );
 };
 

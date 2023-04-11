@@ -2,7 +2,7 @@ import React from "react";
 import useStore, { selectSetIsLoggedIn } from "../store/store";
 import { redirect } from "react-router";
 import { baseUrl } from "../urls";
-import { BodyLong, Button, Heading, Panel, TextField } from "@navikt/ds-react";
+import { Button, Heading, Panel, TextField } from "@navikt/ds-react";
 
 function Login() {
   const setIsLoggedIn = useStore(selectSetIsLoggedIn);
@@ -18,7 +18,7 @@ function Login() {
         <Heading spacing level="3" size="large">
           Logg inn i Chappai
         </Heading>
-        <BodyLong>
+        <div>
           <div id="divlogin" className="items-center justify-center">
             <TextField
               id="txtbrukerid"
@@ -33,7 +33,7 @@ function Login() {
               Trykk for å gå videre
             </Button>
           </div>
-        </BodyLong>
+        </div>
       </Panel>
     </div>
   );

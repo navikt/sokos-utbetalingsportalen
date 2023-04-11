@@ -1,5 +1,4 @@
 import { MenuHamburgerIcon } from "@navikt/aksel-icons";
-import { BodyLong } from "@navikt/ds-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Path } from "../../models/path";
@@ -26,7 +25,7 @@ const SideBar = () => {
               X
             </button>
           </div>
-          <BodyLong className="px-10 top-1.5 flex flex-col">
+          <ul className="px-10 top-1.5 flex flex-col">
             <h3>Chappai moduler</h3>
             <Link className={classes.link} to={Path.Mikrofrontend} onClick={handleGoToLink}>
               Mikrofrontend
@@ -37,7 +36,7 @@ const SideBar = () => {
             <Link className={classes.link} to={Path.Postering}>
               Postering
             </Link>
-          </BodyLong>
+          </ul>
         </div>
       ) : (
         <svg
