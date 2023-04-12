@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build --base=/okonomiportalen/ --outDir dist",
+    "build:gh-pages": "vite build --mode=dev-ekstern --base=/okonomiportalen/",
     "preview": "vite preview",
     "test": "vitest",
     "prepare": "husky install",
