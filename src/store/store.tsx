@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { isFunction } from "swr/_internal";
 
 export const selectIsError = (state: State) => state.isError;
 export const selectSetIsError = (state: State) => state.setIsError;
@@ -6,6 +7,13 @@ export const selectIsLoggedIn = (state: State) => state.isLoggedIn;
 export const selectSetIsLoggedIn = (state: State) => state.setIsLoggedIn;
 export const selectGjelderID = (state: State) => state.gjelderid;
 export const selectSetGjelderID = (state: State) => state.setGjelderID;
+
+export const selectDebug = (state: State) =>
+  [state]
+    .map(Object.keys)
+    .map((k) => k.filter((key) => !isFunction(state[key])).map((key) => [key, state[key]]))
+    .map(Object.fromEntries)
+    .map((ar) => JSON.stringify(ar));
 
 export type State = {
   isError: boolean;

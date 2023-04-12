@@ -1,9 +1,50 @@
 import { Chat, Heading } from "@navikt/ds-react";
 import useStore, { selectGjelderID } from "../store/store";
 import { ExclamationmarkTriangleIcon, InformationIcon } from "@navikt/aksel-icons";
+import React from "react";
+
+type Utseende = {
+  color: string;
+  component: JSX.Element;
+};
+
+const Meldingtype = {
+  WARNING: { color: "rgba(255,240,230,1)", component: <ExclamationmarkTriangleIcon /> },
+  INFO: { color: "rgba(230,240,255,1)", component: <InformationIcon /> },
+};
+
+type Melding = {
+  melding: string;
+  timestamp?: string;
+  type?: Utseende;
+};
+
+const meldinger: Melding[] = [
+  { melding: "JAFFA CREE" },
+  { melding: "Det blir mangel på jaffacakes om kort tid", timestamp: "03.04.2023 13:15" },
+  {
+    melding: "På grunn av lite jaffacakes er det lite strøm og Chappai vil oppleves treg",
+    timestamp: "03.04.2023 14:15",
+  },
+  { melding: "På grunn av manglende ZPM må vi stenge Chappai,", timestamp: "03.04.2023 14:35" },
+  { melding: "IRISen stenger om 5 min. Alle må hjem.", timestamp: "03.04.2023 14:40" },
+  { melding: "IRIS stengt. God påske", timestamp: "03.04.2023 14:45", type: Meldingtype.WARNING },
+];
 
 const Information = () => {
   const gjelderId = useStore(selectGjelderID);
+  const gjelderIdMelding: Melding = { melding: "Gjelder ID " + gjelderId };
+  const meldingElements = [gjelderIdMelding, ...meldinger].reverse().map((m, index) => (
+    <Chat
+      key={index}
+      avatar={m.type?.component ?? Meldingtype.INFO.component}
+      timestamp={m?.timestamp ?? ""}
+      backgroundColor={m.type?.color ?? Meldingtype.INFO.color}
+      position={index % 2 ? "right" : "left"}
+    >
+      <Chat.Bubble>{m.melding}</Chat.Bubble>
+    </Chat>
+  ));
 
   return (
     <>
@@ -11,44 +52,7 @@ const Information = () => {
         Informasjon
       </Heading>
       <div id="info" className="space-y-3">
-        <Chat
-          avatar={<ExclamationmarkTriangleIcon />}
-          backgroundColor="rgba(255,240,230,1)"
-          timestamp="03.04.2023 14:45"
-        >
-          <Chat.Bubble>IRIS stengt. God påske</Chat.Bubble>
-        </Chat>
-        <Chat
-          avatar={<InformationIcon />}
-          backgroundColor="rgba(230,240,255,1)"
-          position="right"
-          timestamp="03.04.2023 14:40"
-        >
-          <Chat.Bubble>IRISen stenger om 5 min. Alle må hjem.</Chat.Bubble>
-        </Chat>
-        <Chat avatar={<InformationIcon />} backgroundColor="rgba(230,240,255,1)" timestamp="03.04.2023 14:35">
-          <Chat.Bubble>På grunn av manglende ZPM må vi stenge Chappai,</Chat.Bubble>
-        </Chat>
-        <Chat
-          avatar={<InformationIcon />}
-          backgroundColor="rgba(230,240,255,1)"
-          position="right"
-          timestamp="03.04.2023 14:15"
-        >
-          <Chat.Bubble>På grunn av lite jaffacakes er det lite strøm og Chappai vil oppleves treg</Chat.Bubble>
-        </Chat>
-        <Chat avatar={<InformationIcon />} backgroundColor="rgba(230,240,255,1)" timestamp="03.04.2023 13:15">
-          <Chat.Bubble>Det blir mangel på jaffacakes om kort tid</Chat.Bubble>
-        </Chat>
-        <Chat
-          avatar={<InformationIcon />}
-          backgroundColor="rgba(230,240,255,1)"
-          position={"right"}
-          timestamp="03.04.2023 13:15"
-        >
-          <Chat.Bubble>JAFFA CREE</Chat.Bubble>
-          <Chat.Bubble>Gjelder ID = {gjelderId}</Chat.Bubble>
-        </Chat>
+        {meldingElements}
       </div>
     </>
   );
