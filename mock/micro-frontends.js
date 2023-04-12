@@ -1,6 +1,7 @@
 import mikrofrontend from "./bundle/mikrofrontend";
 import attestasjon from "./bundle/attestasjon";
 import postering from "./bundle/postering";
+import utbetalingfrontendpoc from "./bundle/utbetaling-frontend-poc";
 
 export default [
   {
@@ -31,6 +32,16 @@ export default [
       res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5173");
       res.statusCode = 200;
       res.end(postering);
+    },
+  },
+  {
+    url: "/utbetaling-frontend-poc/bundle.js",
+    method: "get",
+    rawResponse: async (_req, res) => {
+      res.setHeader("Content-Type", "text/javascript");
+      res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5173");
+      res.statusCode = 200;
+      res.end(utbetalingfrontendpoc);
     },
   },
 ];

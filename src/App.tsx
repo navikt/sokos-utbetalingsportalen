@@ -5,6 +5,7 @@ import TopBar from "./components/topbar/TopBar";
 import Mikrofrontend from "./micro-frontend/Mikrofrontend";
 import Attestasjon from "./micro-frontend/Attestasjon";
 import Postering from "./micro-frontend/Postering";
+import UtbetalingFrontendPoc from "./micro-frontend/UtbetalingFrontendPoc";
 import SideBar from "./components/sidebar/SideBar";
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/mikrofrontend" element={<Mikrofrontend />} />
           <Route path="/attestasjon" element={<Attestasjon />} />
           <Route path="/postering" element={<Postering />} />
+          <Route path="/utbetaling-frontend-poc" element={<UtbetalingFrontendPoc />} />
         </Routes>
       </Layout>
     </Router>
