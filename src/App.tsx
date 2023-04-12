@@ -21,7 +21,7 @@ const App = () => {
           <Route path="/mikrofrontend" element={<Mikrofrontend />} />
           <Route path="/attestasjon" element={<Attestasjon />} />
           <Route path="/postering" element={<Postering />} />
-          <Route path="/utbetaling-frontend-poc" element={<UtbetalingFrontendPoc />} />
+          <Route path="/utbetaling-frontend-poc/*" element={<UtbetalingFrontendPoc />} />
         </Routes>
       </Layout>
     </Router>
