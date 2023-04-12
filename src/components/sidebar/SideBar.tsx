@@ -30,6 +30,9 @@ const SideBar = () => {
             <Link className={classes.link} to={Path.Postering}>
               Postering
             </Link>
+            <Link className={classes.link} to={Path.UtbetalingFrontendPoc}>
+              Utbetaling Frontend Poc
+            </Link>
           </ul>
         </div>
       ) : (

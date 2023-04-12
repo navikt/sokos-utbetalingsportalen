@@ -30,8 +30,15 @@ const POSTERING_URL: Record<string, string> = {
   production: "https://okonomiportalen.intern.nav.no/postering/bundle.js",
 };
 
+const UTBETALING_FRONTEND_POC_URL: Record<string, string> = {
+  local: "http://localhost:5173/utbetaling-frontend-poc/bundle.js",
+  development: "https://utbetalinger-frontend-poc.dev.nav.no/utbetalinger-frontend-poc/bundle.js",
+  production: "https://okonomiportalen.intern.nav.no/utbetaling-frontend-poc/bundle.js",
+};
+
 export const sokosLoginApiUrl = `${SOKOS_OP_PROXY_URL[getEnvironment()]}/login/status`;
 export const baseUrl = BASE_URL[getEnvironment()];
 export const mikrofrontendUrl = MIKROFRONTEND_URL[getEnvironment()];
 export const attestasjonUrl = ATTESTASJON_URL[getEnvironment()];
 export const posteringUrl = POSTERING_URL[getEnvironment()];
+export const utbetalingFrontendPocUrl = UTBETALING_FRONTEND_POC_URL[getEnvironment()];
