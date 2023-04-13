@@ -8,13 +8,13 @@ const SOKOS_OP_PROXY_URL: Record<string, string> = {
 
 const BASE_URL: Record<string, string> = {
   local: "http://localhost:5173",
-  development: "https://okonomiportalen.intern.dev.nav.no",
+  development: "https://www.intern.dev.nav.no",
   // production: "https://okonomiportalen.nav.no",
 };
 
 const MIKROFRONTEND_URL: Record<string, string> = {
   local: "http://localhost:5173/mikrofrontend/bundle.js",
-  development: "https://okonomiportalen.intern.dev.nav.no/mikrofrontend",
+  development: "https://www.intern.dev.nav.no/mikrofrontend",
   // production: "https://okonomiportalen.intern.nav.no/mikrofrontend/bundle.js",
 };
 
