@@ -32,7 +32,7 @@ const POSTERING_URL: Record<string, string> = {
 
 const UTBETALING_FRONTEND_POC_URL: Record<string, string> = {
   local: "http://localhost:5173/utbetaling-frontend-poc/bundle.js",
-  development: "https://utbetalinger-frontend-poc.dev.nav.no/utbetalinger-frontend-poc/bundle.js",
+  development: "https://okonomiportalen.dev.intern.nav.no/utbetalinger-frontend-poc/bundle.js",
   production: "https://okonomiportalen.intern.nav.no/utbetaling-frontend-poc/bundle.js",
 };
 
