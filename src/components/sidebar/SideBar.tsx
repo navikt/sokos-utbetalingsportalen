@@ -21,16 +21,10 @@ const SideBar = () => {
           </div>
           <ul className="px-10 top-1.5 flex flex-col">
             <h3>Chappai moduler</h3>
-            <Link className={classes.link} to={Path.Mikrofrontend}>
+            <Link className={classes.link} to={Path.SOKOS_MIKROFRONTEND_TEMPLATE}>
               Mikrofrontend
             </Link>
-            <Link className={classes.link} to={Path.Attestasjon}>
-              Attestasjon
-            </Link>
-            <Link className={classes.link} to={Path.Postering}>
-              Postering
-            </Link>
-            <Link className={classes.link} to={Path.UtbetalingFrontendPoc}>
+            <Link className={classes.link} to={Path.UTBETALINGER_FRONTEND_POC}>
               Utbetaling Frontend Poc
             </Link>
           </ul>

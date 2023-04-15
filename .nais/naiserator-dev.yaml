@@ -18,7 +18,7 @@ spec:
     min: 1
     max: 2
   ingresses:
-    - "https://okonomiportalen.dev.intern.nav.no"
+    - "https://okonomiportalen.intern.dev.nav.no"
   resources:
     limits:
       cpu: "3"

@@ -1,7 +1,6 @@
 import { Chat, Heading } from "@navikt/ds-react";
 import useStore, { selectGjelderID } from "../store/store";
 import { ExclamationmarkTriangleIcon, InformationIcon } from "@navikt/aksel-icons";
-import React from "react";
 
 type Utseende = {
   color: string;
