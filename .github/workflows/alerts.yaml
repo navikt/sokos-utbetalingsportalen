@@ -13,6 +13,7 @@ on:
       - '.github/workflows/manual-deploy.yaml'
       - '.github/workflows/security.yaml'
       - '.nais/naiserator-manuell.yaml'
+      - '.nais/alerts.yaml'
 jobs:
   deploy-alerts-dev:
     name: Deploy alarmer til dev
