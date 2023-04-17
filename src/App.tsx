@@ -13,14 +13,14 @@ const App = () => {
       <TopBar />
       <div className="flex ">
         <SideBar />
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Information />} />
+            <Route path={Path.SOKOS_MIKROFRONTEND_TEMPLATE} element={<SokosMikrofrontendTemplate />} />
+            <Route path={Path.UTBETALINGER_FRONTEND_POC} element={<UtbetalingFrontendPoc />} />
+          </Routes>
+        </Layout>
       </div>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Information />} />
-          <Route path={Path.SOKOS_MIKROFRONTEND_TEMPLATE} element={<SokosMikrofrontendTemplate />} />
-          <Route path={Path.UTBETALINGER_FRONTEND_POC} element={<UtbetalingFrontendPoc />} />
-        </Routes>
-      </Layout>
     </Router>
   );
 };
