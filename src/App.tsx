@@ -11,15 +11,17 @@ const App = () => {
   return (
     <Router>
       <TopBar />
-      <div className="flex ">
+      <div className="flex w-screen">
         <SideBar />
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Information />} />
-            <Route path={Path.SOKOS_MIKROFRONTEND_TEMPLATE} element={<SokosMikrofrontendTemplate />} />
-            <Route path={Path.UTBETALINGER_FRONTEND_POC} element={<UtbetalingFrontendPoc />} />
-          </Routes>
-        </Layout>
+        <div className={"w-screen"}>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Information />} />
+              <Route path={Path.SOKOS_MIKROFRONTEND_TEMPLATE} element={<SokosMikrofrontendTemplate />} />
+              <Route path={Path.UTBETALINGER_FRONTEND_POC} element={<UtbetalingFrontendPoc />} />
+            </Routes>
+          </Layout>
+        </div>
       </div>
     </Router>
   );

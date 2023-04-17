@@ -11,15 +11,16 @@ const SideBar = ({ z }) => {
     <>
       <div
         id="offcanvassidebar"
-        className={`bg-blue-300 h-screen overflow-hidden top-12 left-0 flex-col ${showSideBar ? "w-100" : "w-0"}`}
+        className={`bg-neutral-800 h-screen overflow-hidden top-12 left-0 flex-col ${
+          showSideBar ? "min-w-fit w-100" : "w-0"
+        }`}
       >
-        <div className="p-3 flex justify-end">
+        <div className="p-3 flex justify-end text-white">
           <button className="cursor-pointer" onClick={() => setShowSideBar(!showSideBar)}>
             X
           </button>
         </div>
-        <ul className="px-10 top-1.5 flex flex-col">
-          <h3>Chappai moduler</h3>
+        <ul className="px-10 top-1.5 flex flex-col text-white">
           <Link className={classes.link} to={Path.SOKOS_MIKROFRONTEND_TEMPLATE}>
             Mikrofrontend
           </Link>
