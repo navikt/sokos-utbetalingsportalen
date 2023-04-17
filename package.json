@@ -24,8 +24,7 @@
     "@navikt/ds-tokens": "^2.8.12",
     "@rollup/plugin-terser": "^0.4.1",
     "@rollup/plugin-typescript": "^11.1.0",
-    "@sentry/react": "^7.47.0",
-    "@sentry/tracing": "^7.47.0",
+    "@sentry/react": "^7.48.0",
     "@types/react": "^18.0.35",
     "@types/react-dom": "^18.0.11",
     "amplitude-js": "^8.21.8",
@@ -39,7 +38,7 @@
     "zustand": "^4.3.7"
   },
   "devDependencies": {
-    "@eik/rollup-plugin": "^4.0.46",
+    "@eik/rollup-plugin": "^4.0.47",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@vitejs/plugin-react": "^3.1.0",
     "autoprefixer": "^10.4.14",
@@ -53,7 +52,7 @@
     "eslint-plugin-react": "^7.32.2",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.1",
-    "postcss": "^8.4.21",
+    "postcss": "^8.4.22",
     "prettier": "^2.8.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
