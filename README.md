@@ -53,7 +53,7 @@ Det foreligger også mulighet for manuell deploy til dev.
 
 ### Logging
 
-Sentry URL
+https://sentry.gc.nav.no/organizations/nav/projects/sokos-op-fasade/?project=160
 
 ### Alarmer
 
