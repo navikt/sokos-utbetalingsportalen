@@ -10,7 +10,7 @@ spec:
     - name: sokos-op-fasade-alerts
       rules:
         - alert: Applikasjon nede
-          expr: kube_deployment_status_replicas_available{deployment="{{app}}"} == 0
+          expr: kube_deployment_status_replicas_available{deployment="sokos-op-fasade"} == 0
           for: 5m
           annotations:
             action: "`kubectl describe pod {{ $labels.deployment }} -n {{ $labels.namespace }}` for events, og `kubectl logs -l {{ $labels.deployment }} -n {{ $labels.namespace }}` for logger"

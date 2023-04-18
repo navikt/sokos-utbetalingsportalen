@@ -1,3 +1,7 @@
+.link {
+  color: white;
+}
+
 .link:hover {
   text-decoration: underline;
 }

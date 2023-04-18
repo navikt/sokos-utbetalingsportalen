@@ -1,29 +1,28 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Information from "./pages/Information";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
-import TopBar from "./components/topbar/TopBar";
-import Mikrofrontend from "./micro-frontend/Mikrofrontend";
-import Attestasjon from "./micro-frontend/Attestasjon";
-import Postering from "./micro-frontend/Postering";
-import UtbetalingFrontendPoc from "./micro-frontend/UtbetalingFrontendPoc";
 import SideBar from "./components/sidebar/SideBar";
+import TopBar from "./components/topbar/TopBar";
+import SokosMikrofrontendTemplate from "./micro-frontend/SokosMikrofrontendTemplate";
+import UtbetalingFrontendPoc from "./micro-frontend/UtbetalingFrontendPoc";
+import { Path } from "./models/path";
+import Information from "./pages/Information";
 
 const App = () => {
   return (
     <Router>
       <TopBar />
-      <div className="flex ">
+      <div className="flex w-screen">
         <SideBar />
+        <div className={"w-screen"}>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Information />} />
+              <Route path={Path.SOKOS_MIKROFRONTEND_TEMPLATE} element={<SokosMikrofrontendTemplate />} />
+              <Route path={Path.UTBETALINGER_FRONTEND_POC} element={<UtbetalingFrontendPoc />} />
+            </Routes>
+          </Layout>
+        </div>
       </div>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Information />} />
-          <Route path="/mikrofrontend" element={<Mikrofrontend />} />
-          <Route path="/attestasjon" element={<Attestasjon />} />
-          <Route path="/postering" element={<Postering />} />
-          <Route path="/utbetaling-frontend-poc" element={<UtbetalingFrontendPoc />} />
-        </Routes>
-      </Layout>
     </Router>
   );
 };

@@ -5,7 +5,7 @@
   flex-direction: column;
 }
 
-main {
+.main {
   width: 100%;
   max-width: 808px;
 }

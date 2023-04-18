@@ -14,9 +14,9 @@ const Authentication = ({ children }: PropsWithChildren) => {
     return <ContentLoader />;
   }
 
-  if (!isLoggedIn && (!data || !data.authenticated || error)) {
+  /*   if (!isLoggedIn && (!data || !data.authenticated || error)) {
     return <Login />;
-  }
+  } */
 
   return <React.Fragment>{children}</React.Fragment>;
 };

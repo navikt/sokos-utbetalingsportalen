@@ -12,8 +12,8 @@ on:
       - '.github/workflows/build-pr.yaml'
       - '.github/workflows/manual-deploy.yaml'
       - '.github/workflows/security.yaml'
-      - '.github/workflows/alerts-dev.yaml'
-      - '.nais/alerts-dev.yaml'
+      - '.github/workflows/alerts.yaml'
+      - '.nais/alerts.yaml'
       - '.nais/naiserator-manuell.yaml'
 
 jobs:

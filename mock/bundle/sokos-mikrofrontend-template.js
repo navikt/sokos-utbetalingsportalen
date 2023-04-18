@@ -1,4 +1,4 @@
-const mikrofrontend = `var react = {exports: {}};
+const sokosmikrofrontendtemplate = `var react = {exports: {}};
 var react_production_min = {};
 /*
 object-assign
@@ -460,4 +460,4 @@ const App = () => {
 export { App as default };
 `;
 
-export default mikrofrontend;
+export default sokosmikrofrontendtemplate;

@@ -1,5 +1,4 @@
 import * as Sentry from "@sentry/react";
-import { BrowserTracing } from "@sentry/tracing";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { getEnvironment } from "./api/environment";
@@ -9,8 +8,8 @@ import Authentication from "./components/authentication/Authentication";
 
 if (getEnvironment() === "development") {
   Sentry.init({
-    dsn: "https://28a8206a1e7e4fa8b51b90445d099594@sentry.gc.nav.no/141",
-    integrations: [new BrowserTracing()],
+    dsn: "https://22607cbddbde496281d3954c8340e6cb@sentry.gc.nav.no/160",
+    integrations: [new Sentry.BrowserTracing()],
     tracesSampleRate: 0.1,
   });
 }

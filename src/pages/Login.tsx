@@ -1,4 +1,3 @@
-import React from "react";
 import useStore, { selectSetIsLoggedIn } from "../store/store";
 import { redirect } from "react-router";
 import { baseUrl } from "../urls";
