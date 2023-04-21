@@ -23,9 +23,8 @@ server.use(
 
 server.get("/logout", (req, res) => {
   console.log("AUTH HEADER:: ", req.headers.authorization);
-  if (req.headers.authorization) {
-    res.redirect("/oauth2/logout/local");
-  }
+  req.headers.authorization = "";
+  res.redirect("/");
 });
 
 server.get(`${basePath}/internal/isAlive`, async (_req, res) => {
