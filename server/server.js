@@ -22,7 +22,7 @@ server.use(
 );
 
 server.get("/logout", (req, res, next) => {
-  res.redirect("/oauth2/logout/local");
+  res.get("/oauth2/logout/local");
   return res.redirect("/");
 });
 
