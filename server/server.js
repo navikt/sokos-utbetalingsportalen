@@ -22,8 +22,7 @@ server.use(
 );
 
 server.get("/logout", async (_req, res) => {
-  res.redirect("/oauth2/logout/local");
-  return res.redirect("/");
+  res.redirect("/oauth2/logout/local?post_logout_redirect_uri=okonomiportalen.intern.dev.nav.no");
 });
 
 server.get(`${basePath}/internal/isAlive`, async (_req, res) => {
