@@ -21,6 +21,12 @@ server.use(
   })
 );
 
+server.get("/logout", (req, res) => {
+  if (req.headers.authorization) {
+    res.redirect("/oauth2/logout");
+  }
+});
+
 server.get(`${basePath}/internal/isAlive`, async (_req, res) => {
   res.sendStatus(200);
 });
