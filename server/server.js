@@ -24,7 +24,7 @@ server.use(
 server.get("/logout", (req, res) => {
   console.log("AUTH HEADER:: ", req.headers.authorization);
   if (req.headers.authorization) {
-    res.redirect("/oauth2/logout/local?redirect=okonomiportalen.intern.dev.nav.no");
+    res.redirect("/oauth2/logout/local");
   }
 });
 
