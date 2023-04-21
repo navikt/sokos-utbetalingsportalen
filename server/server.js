@@ -23,7 +23,7 @@ server.use(
 
 server.get("/logout", (req, res) => {
   if (req.headers.authorization) {
-    res.redirect("/oauth2/logout");
+    res.redirect("/oauth2/logout/local?redirect=www.nav.no");
   }
 });
 
