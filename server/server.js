@@ -22,7 +22,8 @@ server.use(
 );
 
 server.get("/logout", (req, res, next) => {
-  return res.get("/oauth2/logout/local");
+  res.redirect("/oauth2/logout/local");
+  return res.redirect("/");
 });
 
 server.get(`${basePath}/internal/isAlive`, async (_req, res) => {
