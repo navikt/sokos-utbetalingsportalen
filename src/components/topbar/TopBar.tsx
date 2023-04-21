@@ -12,6 +12,7 @@ const TopBar = () => {
   const gjelderId = useStore(selectGjelderID);
 
   const clickedLogoutHandler = () => {
+    window.location.href = "/logout";
     setIsLoggedIn(false);
   };
 
