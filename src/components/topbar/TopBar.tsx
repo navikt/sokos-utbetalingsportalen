@@ -1,15 +1,20 @@
 import { Dropdown, Header } from "@navikt/ds-react-internal";
 import { Link } from "react-router-dom";
+import useSWR from "swr";
 import useStore, { selectGjelderID, selectSetGjelderID, selectSetIsLoggedIn } from "../../store/store";
 import nav from "../../../assets/images/Hvit.png";
 import { Label, TextField } from "@navikt/ds-react";
+import { Path } from "../../models/path";
 
 const TopBar = () => {
   const setIsLoggedIn = useStore(selectSetIsLoggedIn);
   const setGjelderId = useStore(selectSetGjelderID);
   const gjelderId = useStore(selectGjelderID);
 
-  const clickedLogoutHandler = () => setIsLoggedIn(false);
+  const clickedLogoutHandler = () => {
+    useSWR(Path.LOG_OUT);
+    setIsLoggedIn(false);
+  };
 
   const handleGjelderIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setGjelderId(event.target.value);
