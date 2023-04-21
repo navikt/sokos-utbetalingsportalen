@@ -22,11 +22,6 @@ server.use(
 );
 
 server.get("/logout", (req, res, next) => {
-  req.session.destroy((err) => {
-    if (err) {
-      next(err);
-    }
-  });
   return res.redirect("/oauth2/logout/local?post_logout_redirect_uri=okonomiportalen.intern.nav.no");
 });
 
