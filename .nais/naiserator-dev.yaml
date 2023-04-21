@@ -21,7 +21,7 @@ spec:
     application:
       enabled: true
       tenant: trygdeetaten.no
-      allowAllUsers: true
+      allowAllUsers: false
       claims:
         extra:
           - "NAVident"
