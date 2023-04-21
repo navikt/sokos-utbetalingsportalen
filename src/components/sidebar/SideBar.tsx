@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Path } from "../../models/path";
 import classes from "./SideBar.module.css";
 
-const SideBar = ({ z }) => {
+const SideBar = () => {
   const [showSideBar, setShowSideBar] = useState(true);
 
   return (
