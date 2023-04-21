@@ -1,6 +1,5 @@
 import { Dropdown, Header } from "@navikt/ds-react-internal";
 import { Link } from "react-router-dom";
-import Redirect from "react-router-dom";
 import useStore, { selectGjelderID, selectSetGjelderID, selectSetIsLoggedIn } from "../../store/store";
 import nav from "../../../assets/images/Hvit.png";
 import { Label, TextField } from "@navikt/ds-react";
@@ -39,8 +38,8 @@ const TopBar = () => {
         <Dropdown.Menu>
           <Dropdown.Menu.List>
             <Dropdown.Menu.List.Item>Min profil</Dropdown.Menu.List.Item>
-            <Dropdown.Menu.List.Item as={Link} to={Path.LOG_OUT}>
-              Logg ut
+            <Dropdown.Menu.List.Item>
+              <Link to={Path.LOG_OUT}>Logg ut</Link>
             </Dropdown.Menu.List.Item>
           </Dropdown.Menu.List>
         </Dropdown.Menu>
