@@ -27,7 +27,6 @@ spec:
           - "NAVident"
     sidecar:
       enabled: true
-      autoLogin: true
       autoLoginIgnorePaths:
         - /internal/*
   ingresses:
