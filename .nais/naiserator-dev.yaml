@@ -21,12 +21,13 @@ spec:
     application:
       enabled: true
       tenant: trygdeetaten.no
-      allowAllUsers: false
+      allowAllUsers: true
       claims:
         extra:
           - "NAVident"
     sidecar:
       enabled: true
+      autoLogin: true
       autoLoginIgnorePaths:
         - /internal/*
   ingresses:
