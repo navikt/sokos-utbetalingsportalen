@@ -21,8 +21,8 @@ server.use(
   })
 );
 
-server.get("/logout", (req, res, next) => {
-  res.get("/oauth2/logout/local");
+server.get("/logout", async (_req, res) => {
+  res.redirect("/oauth2/logout/local");
   return res.redirect("/");
 });
 
