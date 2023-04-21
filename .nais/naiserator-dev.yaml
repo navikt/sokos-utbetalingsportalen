@@ -17,6 +17,18 @@ spec:
   replicas:
     min: 1
     max: 2
+  azure:
+    application:
+      enabled: true
+      tenant: trygdeetaten.no
+      claims:
+        extra:
+          - "NAVident"
+    sidecar:
+      enabled: true
+      autoLogin: true
+      autoLoginIgnorePaths:
+        - /internal/*
   ingresses:
     - "https://okonomiportalen.intern.dev.nav.no"
   resources:
