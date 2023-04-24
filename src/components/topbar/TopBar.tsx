@@ -3,18 +3,11 @@ import { Link } from "react-router-dom";
 import useStore, { selectGjelderID, selectSetGjelderID, selectUserInfo } from "../../store/store";
 import nav from "../../../assets/images/Hvit.png";
 import { Label, TextField } from "@navikt/ds-react";
-import { Path } from "../../models/path";
-import { baseUrl } from "../../urls";
 
 const TopBar = () => {
   const setGjelderId = useStore(selectSetGjelderID);
   const userInfo = useStore(selectUserInfo);
   const gjelderId = useStore(selectGjelderID);
-
-  const clickedLogoutHandler = () => {
-    fetch(Path.LOG_OUT);
-    window.location.href = baseUrl;
-  };
 
   const handleGjelderIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setGjelderId(event.target.value);
@@ -45,7 +38,6 @@ const TopBar = () => {
         <Dropdown.Menu>
           <Dropdown.Menu.List>
             <Dropdown.Menu.List.Item>Min profil</Dropdown.Menu.List.Item>
-            <Dropdown.Menu.List.Item onClick={clickedLogoutHandler}>Logg ut</Dropdown.Menu.List.Item>
           </Dropdown.Menu.List>
         </Dropdown.Menu>
       </Dropdown>
