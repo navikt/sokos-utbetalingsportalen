@@ -1,9 +1,10 @@
 import { getEnvironment } from "./api/environment";
+import { Path } from "./models/path";
 
-const SOKOS_OP_PROXY_URL: Record<string, string> = {
-  local: "http://localhost:5173/sokos-op-proxy",
-  development: "https://okonomiportalen.intern.dev.nav.no/sokos-op-proxy",
-  production: "https://okonomiportalen.intern.nav.no/sokos-op-proxy",
+const AUTH_URL: Record<string, string> = {
+  local: "http://localhost:5173/mock/auth",
+  development: `https://okonomiportalen.intern.dev.nav.no/${Path.BRUKER_IDENT}`,
+  production: `https://okonomiportalen.intern.dev.nav.no/${Path.BRUKER_IDENT}`,
 };
 
 const BASE_URL: Record<string, string> = {
@@ -24,7 +25,7 @@ const UTBETALING_FRONTEND_POC_URL: Record<string, string> = {
   production: "https://okonomiportalen.intern.nav.no/utbetaling-frontend-poc/bundle.js",
 };
 
-export const sokosLoginApiUrl = `${SOKOS_OP_PROXY_URL[getEnvironment()]}/login/status`;
+export const authUrl = AUTH_URL[getEnvironment()];
 export const baseUrl = BASE_URL[getEnvironment()];
 export const sokosMikrofrontendTemplateUrl = SOKOS_MIKROFRONTEND_TEMPLATE_URL[getEnvironment()];
 export const utbetalingFrontendPocUrl = UTBETALING_FRONTEND_POC_URL[getEnvironment()];

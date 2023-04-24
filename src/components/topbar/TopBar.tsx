@@ -1,20 +1,18 @@
 import { Dropdown, Header } from "@navikt/ds-react-internal";
-import { Link, NavigateProps, useNavigation } from "react-router-dom";
-import useStore, { selectGjelderID, selectSetGjelderID, selectSetIsLoggedIn } from "../../store/store";
+import { Link } from "react-router-dom";
+import useStore, { selectGjelderID, selectSetGjelderID, selectUserInfo } from "../../store/store";
 import nav from "../../../assets/images/Hvit.png";
 import { Label, TextField } from "@navikt/ds-react";
 import { Path } from "../../models/path";
 import { baseUrl } from "../../urls";
-import axios from "axios";
 
 const TopBar = () => {
-  const setIsLoggedIn = useStore(selectSetIsLoggedIn);
   const setGjelderId = useStore(selectSetGjelderID);
+  const userInfo = useStore(selectUserInfo);
   const gjelderId = useStore(selectGjelderID);
 
   const clickedLogoutHandler = () => {
     fetch(Path.LOG_OUT);
-    setIsLoggedIn(false);
     window.location.href = baseUrl;
   };
 
@@ -38,7 +36,12 @@ const TopBar = () => {
         <p>{gjelderId}</p>
       </div>
       <Dropdown>
-        <Header.UserButton as={Dropdown.Toggle} name="Ola Normann" description="x143765" className="ml-auto" />
+        <Header.UserButton
+          as={Dropdown.Toggle}
+          name={userInfo.name}
+          description={userInfo.NAVident}
+          className="ml-auto"
+        />
         <Dropdown.Menu>
           <Dropdown.Menu.List>
             <Dropdown.Menu.List.Item>Min profil</Dropdown.Menu.List.Item>

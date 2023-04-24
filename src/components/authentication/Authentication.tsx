@@ -1,22 +1,30 @@
-import React, { type PropsWithChildren } from "react";
+import React, { useEffect, type PropsWithChildren } from "react";
 import { fetcher } from "../../api/api";
-import { sokosLoginApiUrl } from "../../urls";
 import ContentLoader from "../loader/ContentLoader";
 import useSWR from "swr";
-import Login from "../../pages/Login";
-import useStore, { selectIsLoggedIn } from "../../store/store";
+import useStore, { selectSetUserInfo, selectUserInfo } from "../../store/store";
+import FeilMelding from "../feilmelding/Feilmelding";
+import { authUrl } from "../../urls";
 
 const Authentication = ({ children }: PropsWithChildren) => {
-  const isLoggedIn = useStore(selectIsLoggedIn);
-  const { data, isLoading, error } = useSWR(sokosLoginApiUrl, fetcher, { shouldRetryOnError: false });
+  const setUserInfo = useStore(selectSetUserInfo);
+  const userInfo = useStore(selectUserInfo);
+
+  const { data, isLoading, error } = useSWR(authUrl, fetcher, { shouldRetryOnError: false });
+
+  console.log("DETTE FÅR VI UT ::: ", data);
+
+  useEffect(() => {
+    setUserInfo({ ...data });
+  }, [data]);
 
   if (isLoading) {
     return <ContentLoader />;
   }
 
-  /*   if (!isLoggedIn && (!data || !data.authenticated || error)) {
-    return <Login />;
-  } */
+  if (!userInfo || error) {
+    return <FeilMelding feilmelding={error.message} />;
+  }
 
   return <React.Fragment>{children}</React.Fragment>;
 };

@@ -1,12 +1,12 @@
 export default [
   {
-    url: "/sokos-op-proxy/login/status",
+    url: "/mock/auth",
     method: "get",
     status: 401,
     response: () => {
       return {
-        authenticated: false,
-        level: "Level3",
+        name: "Ola Nordmann",
+        NAVident: "x123456",
       };
     },
   },
