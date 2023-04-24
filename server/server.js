@@ -47,8 +47,8 @@ async function validerToken(token) {
   });
 }
 
-app.use(express.urlencoded());
-app.use(express.json());
+server.use(express.urlencoded());
+server.use(express.json());
 server.disable("x-powered-by");
 
 server.use(
@@ -64,7 +64,7 @@ server.use(
   })
 );
 
-app.get("/brukerident", async (req, res) => {
+server.get("/brukerident", async (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
   console.log("token :::::::: ", token);
   const {
