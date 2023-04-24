@@ -64,8 +64,8 @@ server.use(
   })
 );
 
-server.get(`${basePath}/brukerident`, async (req, res) => {
-  const token = req.headers.authorization?.split(" ")[1];
+server.get(`${basePath}/brukerident`, async (_req, _res) => {
+  const token = _req.headers.authorization?.split(" ")[1];
   console.log("token :::::::: ", token);
   const {
     payload: { name, NAVident },
@@ -73,7 +73,7 @@ server.get(`${basePath}/brukerident`, async (req, res) => {
 
   console.log(`Lastet sokos-op-fasade for ${NAVident}`);
 
-  res.status(200).json({
+  _res.status(200).json({
     name,
     NAVident,
   });

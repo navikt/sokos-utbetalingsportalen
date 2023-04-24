@@ -3,8 +3,8 @@ import { Path } from "./models/path";
 
 const AUTH_URL: Record<string, string> = {
   local: "http://localhost:5173/mock/auth",
-  development: `https://okonomiportalen.intern.dev.nav.no/${Path.BRUKER_IDENT}`,
-  production: `https://okonomiportalen.intern.dev.nav.no/${Path.BRUKER_IDENT}`,
+  development: Path.BRUKER_IDENT,
+  production: Path.BRUKER_IDENT,
 };
 
 const BASE_URL: Record<string, string> = {
