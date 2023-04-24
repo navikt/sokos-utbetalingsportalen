@@ -19,8 +19,6 @@ async function jwks() {
     _remoteJWKSet = jose.createRemoteJWKSet(new URL(iss.metadata.jwks_uri));
   }
 
-  console.log("_remoteJWKSet::::::::::: ", _remoteJWKSet);
-
   return _remoteJWKSet;
 }
 
@@ -31,8 +29,6 @@ async function issuer() {
     if (!AZURE_APP_WELL_KNOWN_URL) throw new Error("Miljøvariabelen AZURE_APP_WELL_KNOWN_URL må være satt!");
     _issuer = await oidc.Issuer.discover(AZURE_APP_WELL_KNOWN_URL);
   }
-
-  console.log("_isser:::::::: ", _issuer);
 
   return _issuer;
 }
@@ -61,7 +57,7 @@ server.use(
   })
 );
 
-server.get("/brukerident", async (_req, _res) => {
+server.get("/brukerident", async (_req, res) => {
   const token = _req.headers.authorization?.split(" ")[1];
   console.log("token :::::::: ", token);
   const {
@@ -70,7 +66,7 @@ server.get("/brukerident", async (_req, _res) => {
 
   console.log(`Lastet sokos-op-fasade for ${NAVident}`);
 
-  _res.status(200).json({
+  res.status(200).json({
     name,
     NAVident,
   });
