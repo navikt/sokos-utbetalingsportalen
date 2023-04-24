@@ -1,9 +1,9 @@
-import React, { useEffect, type PropsWithChildren } from "react";
+import React, { type PropsWithChildren, useEffect } from "react";
 import { fetcher } from "../../api/api";
 import ContentLoader from "../loader/ContentLoader";
 import useSWR from "swr";
 import useStore, { selectSetUserInfo, selectUserInfo } from "../../store/store";
-import FeilMelding from "../feilmelding/Feilmelding";
+import Feilside from "../../pages/Feilside";
 import { authUrl } from "../../urls";
 
 const Authentication = ({ children }: PropsWithChildren) => {
@@ -21,7 +21,7 @@ const Authentication = ({ children }: PropsWithChildren) => {
   }
 
   if (!userInfo || error) {
-    return <FeilMelding feilmelding={error.message} />;
+    return <Feilside tittel={"Feil ved innlogging"} melding={"Vi greide ikke å logge deg inn"} />;
   }
 
   return <React.Fragment>{children}</React.Fragment>;
