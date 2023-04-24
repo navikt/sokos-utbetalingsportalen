@@ -27,9 +27,10 @@ spec:
           - "NAVident"
     sidecar:
       enabled: true
-      autoLogin: true
+      autoLogin: false
       autoLoginIgnorePaths:
         - /internal/*
+        - /okonomiportalen/assets/*
   ingresses:
     - "https://okonomiportalen.intern.dev.nav.no"
   resources:

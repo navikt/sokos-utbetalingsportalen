@@ -15,6 +15,7 @@ const TopBar = () => {
   const clickedLogoutHandler = () => {
     window.location.href = Path.LOG_OUT;
     setIsLoggedIn(false);
+    window.location.replace(baseUrl);
   };
 
   const handleGjelderIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
