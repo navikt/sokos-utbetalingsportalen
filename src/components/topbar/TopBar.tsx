@@ -2,9 +2,7 @@ import { Dropdown, Header } from "@navikt/ds-react-internal";
 import { Link } from "react-router-dom";
 import useStore, { selectGjelderID, selectSetGjelderID, selectSetIsLoggedIn } from "../../store/store";
 import nav from "../../../assets/images/Hvit.png";
-import useSWR from "swr";
 import { Label, TextField } from "@navikt/ds-react";
-import { fetcher } from "../../api/api";
 import { Path } from "../../models/path";
 import { baseUrl } from "../../urls";
 import axios from "axios";
@@ -17,7 +15,6 @@ const TopBar = () => {
   const clickedLogoutHandler = () => {
     axios.get(Path.LOG_OUT);
     setIsLoggedIn(false);
-    window.location.replace(baseUrl);
   };
 
   const handleGjelderIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
