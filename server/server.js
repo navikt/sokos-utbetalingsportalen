@@ -5,11 +5,8 @@ const buildPath = path.resolve(__dirname, "../dist");
 const server = express();
 const expressStaticGzip = require("express-static-gzip");
 const RateLimit = require("express-rate-limit");
-
-const SOKOS_PDL_PROXY_URL = process.env.SOKOS_PDL_PROXY_REST_URL || "http://localhost:9102";
-const _tokenStorage = {
-  sokosPdlProxy: {},
-};
+const jose = require("jose");
+const oidc = require("openid-client");
 
 /* fra https://github.com/navikt/dp-auth/blob/main/lib/providers/idporten.ts */
 let _issuer;
@@ -64,7 +61,7 @@ server.use(
   })
 );
 
-server.get("/brukerident", async (_req, _res) => {
+server.get(`${basePath}/brukerident`, async (_req, _res) => {
   const token = _req.headers.authorization?.split(" ")[1];
   console.log("token :::::::: ", token);
   const {
