@@ -30,7 +30,6 @@ spec:
       autoLogin: true
       autoLoginIgnorePaths:
         - /internal/*
-        - /okonomiportalen/assets/*
   ingresses:
     - "https://okonomiportalen.intern.dev.nav.no"
   resources:
