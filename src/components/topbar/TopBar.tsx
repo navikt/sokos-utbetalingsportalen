@@ -13,7 +13,7 @@ const TopBar = () => {
   const gjelderId = useStore(selectGjelderID);
 
   const clickedLogoutHandler = () => {
-    axios.get(Path.LOG_OUT);
+    window.location.href = Path.LOG_OUT;
     setIsLoggedIn(false);
   };
 
