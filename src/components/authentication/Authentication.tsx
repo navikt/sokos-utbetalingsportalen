@@ -4,13 +4,13 @@ import ContentLoader from "../loader/ContentLoader";
 import useSWR from "swr";
 import useStore, { selectSetUserInfo, selectUserInfo } from "../../store/store";
 import FeilMelding from "../feilmelding/Feilmelding";
-import { authUrl } from "../../urls";
+import { Path } from "../../models/path";
 
 const Authentication = ({ children }: PropsWithChildren) => {
   const setUserInfo = useStore(selectSetUserInfo);
   const userInfo = useStore(selectUserInfo);
 
-  const { data, isLoading, error } = useSWR(authUrl, fetcher, { shouldRetryOnError: false });
+  const { data, isLoading, error } = useSWR(Path.BRUKER_IDENT, fetcher, { shouldRetryOnError: false });
 
   console.log("DETTE FÅR VI UT ::: ", data);
 
