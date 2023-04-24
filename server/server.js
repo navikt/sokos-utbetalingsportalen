@@ -64,7 +64,7 @@ server.use(
   })
 );
 
-server.get(`${basePath}/brukerident`, async (_req, _res) => {
+server.get("/brukerident", async (_req, _res) => {
   const token = _req.headers.authorization?.split(" ")[1];
   console.log("token :::::::: ", token);
   const {
