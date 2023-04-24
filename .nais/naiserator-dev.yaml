@@ -27,7 +27,7 @@ spec:
           - "NAVident"
     sidecar:
       enabled: true
-      autoLogin: false
+      autoLogin: true
       autoLoginIgnorePaths:
         - /internal/*
         - /okonomiportalen/assets/*
