@@ -1,11 +1,23 @@
-import { type PropsWithChildren } from "react";
 import LayoutCSS from "./Layout.module.css";
+import TopBar from "../topbar/TopBar";
+import SideBar from "../sidebar/SideBar";
+import { Outlet } from "react-router-dom";
 
-const Layout = ({ children }: PropsWithChildren) => {
+const Layout = () => {
   return (
-    <div className={LayoutCSS.layout}>
-      <main className={LayoutCSS.main}>{children}</main>
-    </div>
+    <>
+      <TopBar />
+      <div className="flex w-screen">
+        <SideBar />
+        <div className={"w-screen"}>
+          <div className={LayoutCSS.layout}>
+            <main className={LayoutCSS.main}>
+              <Outlet />
+            </main>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

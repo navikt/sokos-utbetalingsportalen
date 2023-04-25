@@ -1,29 +1,34 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Layout from "./components/layout/Layout";
-import SideBar from "./components/sidebar/SideBar";
-import TopBar from "./components/topbar/TopBar";
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import SokosMikrofrontendTemplate from "./micro-frontend/SokosMikrofrontendTemplate";
 import UtbetalingFrontendPoc from "./micro-frontend/UtbetalingFrontendPoc";
 import { Path } from "./models/path";
 import Information from "./pages/Information";
+import Feilside from "./pages/Feilside";
+import Layout from "./components/layout/Layout";
 
 const App = () => {
   return (
-    <Router>
-      <TopBar />
-      <div className="flex w-screen">
-        <SideBar />
-        <div className={"w-screen"}>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Information />} />
-              <Route path={Path.SOKOS_MIKROFRONTEND_TEMPLATE} element={<SokosMikrofrontendTemplate />} />
-              <Route path={Path.UTBETALINGER_FRONTEND_POC} element={<UtbetalingFrontendPoc />} />
-            </Routes>
-          </Layout>
-        </div>
-      </div>
-    </Router>
+    <RouterProvider
+      router={createBrowserRouter(
+        createRoutesFromElements(
+          <Route
+            path="/"
+            element={<Layout />}
+            errorElement={
+              <Feilside
+                tittel={"Siden finnes ikke"}
+                melding={"Du har forsøkt å gå inn på en side som ikke eksisterer!"}
+                knapp
+              />
+            }
+          >
+            <Route path="/" element={<Information />} />
+            <Route path={Path.SOKOS_MIKROFRONTEND_TEMPLATE} element={<SokosMikrofrontendTemplate />} />
+            <Route path={Path.UTBETALINGER_FRONTEND_POC} element={<UtbetalingFrontendPoc />} />
+          </Route>
+        )
+      )}
+    />
   );
 };
 
