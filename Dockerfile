@@ -3,7 +3,7 @@ RUN apk add --no-cache bash
 ENV NODE_ENV production
 
 WORKDIR usr/src/app
-COPY server server/
+COPY server/build server/
 COPY dist dist/
 
 WORKDIR server
@@ -11,5 +11,4 @@ RUN npm install
 
 CMD ["node", "server.js"]
 
-ENV PORT=7100
-EXPOSE $PORT
+EXPOSE 8080
