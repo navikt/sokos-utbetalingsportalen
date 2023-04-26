@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "build",
     /* Language and Environment */
     "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
     /* Modules */
@@ -10,5 +11,5 @@
     "strict": true /* Enable all strict type-checking options. */,
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": ["."]
+  "include": ["./"]
 }
