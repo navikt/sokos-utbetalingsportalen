@@ -2,7 +2,7 @@
   "name": "sokos-okonomiportalen-frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "server.ts",
   "scripts": {
     "start": "node server.ts"
   },
