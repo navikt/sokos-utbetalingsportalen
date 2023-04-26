@@ -10,7 +10,6 @@ module.exports = {
     ".eslintrc.*",
     "**/dist/*.js",
     "vite.config.ts",
-    "/server/server.js",
     "plugin:react/recommended",
   ],
   plugins: ["@typescript-eslint", "jsx-a11y", "react"],

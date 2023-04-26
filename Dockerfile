@@ -9,7 +9,7 @@ COPY dist dist/
 WORKDIR server
 RUN npm install
 
-CMD ["node", "./server.js"]
+CMD ["node", "./server.ts"]
 
 ENV PORT=7100
 EXPOSE $PORT
