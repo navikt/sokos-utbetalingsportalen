@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    es2021: true,
+    es2021: true
   },
   parser: "@typescript-eslint/parser",
   ignorePatterns: [
@@ -11,6 +11,7 @@ module.exports = {
     "**/dist/*.js",
     "vite.config.ts",
     "plugin:react/recommended",
+    "**/build/*.js"
   ],
   plugins: ["@typescript-eslint", "jsx-a11y", "react"],
   extends: [
@@ -18,7 +19,7 @@ module.exports = {
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:jsx-a11y/recommended",
-    "plugin:react/recommended",
+    "plugin:react/recommended"
   ],
   rules: {
     //ref https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
@@ -31,8 +32,14 @@ module.exports = {
       {
         argsIgnorePattern: "^_",
         varsIgnorePattern: "^_",
-        caughtErrorsIgnorePattern: "^_",
-      },
+        caughtErrorsIgnorePattern: "^_"
+      }
     ],
+    "@typescript-eslint/no-var-requires": 0,
+  },
+  settings: {
+    react: {
+      version: "detect",
+    },
   },
 };
