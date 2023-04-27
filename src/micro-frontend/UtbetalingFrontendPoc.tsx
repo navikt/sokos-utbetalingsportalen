@@ -5,7 +5,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import FeilMelding from "../components/feilmelding/Feilmelding";
 
 const UtbetalingFrontendPocBundle: LazyExoticComponent<() => JSX.Element> = React.lazy(
-  () => import(utbetalingFrontendPocUrl)
+  () => import(/* @vite-ignore */ utbetalingFrontendPocUrl)
 );
 
 const UtbetalingFrontendPoc = () => {

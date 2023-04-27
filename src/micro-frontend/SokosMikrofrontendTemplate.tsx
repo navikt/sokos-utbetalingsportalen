@@ -5,7 +5,7 @@ import ContentLoader from "../components/loader/ContentLoader.js";
 import { sokosMikrofrontendTemplateUrl } from "../urls.js";
 
 const SokosMikrofrontendTemplateBundle: LazyExoticComponent<() => JSX.Element> = React.lazy(
-  () => import(sokosMikrofrontendTemplateUrl)
+  () => import(/* @vite-ignore */ sokosMikrofrontendTemplateUrl)
 );
 
 const SokosMikrofrontendTemplate = () => {
