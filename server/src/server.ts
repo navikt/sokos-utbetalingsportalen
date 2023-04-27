@@ -28,7 +28,7 @@ const startServer = () => {
 
   server.get("/brukerident", hentBrukerIdent);
 
-  server.get([`/internal/isAlive`, `/internal/isReady`], (_, res) => res.sendStatus(200));
+  server.get([`/internal/isAlive`, `/internal/isReady`], (_req: Request, res: Response) => res.sendStatus(200));
 
   // Match everything except internal og static
   server.use(/^(?!.*\/(internal|static)\/).*$/, (_req: Request, res: Response) =>
