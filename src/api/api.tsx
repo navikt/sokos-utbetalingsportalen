@@ -1,3 +1,6 @@
+import { authUrl } from "../urls";
+import { UserInfo } from "../models/UserInfo";
+
 class FetchError extends Error {
   response: Response;
   constructor(response: Response, message: string) {
@@ -20,4 +23,10 @@ export const fetcher = async (url: URL) => {
   checkResponse(response);
 
   return response.json();
+};
+
+export const authenticationLoader = async () => {
+  return fetch(authUrl)
+    .then((response: Response) => response.json() as UserInfo)
+    .catch(console.log);
 };
