@@ -5,6 +5,7 @@ import RateLimit from "express-rate-limit";
 import { hentBrukerIdent, initializeAzureAd } from "./azureAd";
 import { logger } from "./logger";
 
+const BASE_PATH = "/okonomiportalen";
 const BUILD_PATH = path.resolve(__dirname, "../dist");
 const PORT = process.env.APP_PORT || 8080;
 const server: Express = express();
@@ -15,6 +16,7 @@ const startServer = () => {
   server.disable("x-powered-by");
 
   server.use(
+    BASE_PATH,
     expressStaticGzip(BUILD_PATH, {
       index: false,
       enableBrotli: true,
@@ -28,7 +30,9 @@ const startServer = () => {
 
   server.get("/brukerident", hentBrukerIdent);
 
-  server.get([`/internal/isAlive`, `/internal/isReady`], (_req: Request, res: Response) => res.sendStatus(200));
+  server.get([`${BASE_PATH}/internal/isAlive`, `${BASE_PATH}/internal/isReady`], (_req: Request, res: Response) =>
+    res.sendStatus(200)
+  );
 
   // Match everything except internal og static
   server.use(/^(?!.*\/(internal|static)\/).*$/, (_req: Request, res: Response) =>

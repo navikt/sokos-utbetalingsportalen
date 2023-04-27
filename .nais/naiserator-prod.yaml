@@ -43,4 +43,4 @@ spec:
     - name: SOKOS_MIKROFRONTEND_API_REST_URL
       value: https://sokos-mikrofrontend-api.intern.dev.nav.no
     - name: APP_PORT
-      value: 8080
+      value: "8080"
