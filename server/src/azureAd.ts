@@ -68,7 +68,7 @@ export const hentBrukerIdent: RequestHandler = async (req: Request, res: Respons
   const brukerInformasjon = hentNavIdent(brukerensAccessToken);
 
   res.status(200).json({
-    brukerInformasjon,
+    ...brukerInformasjon,
   });
 };
 
