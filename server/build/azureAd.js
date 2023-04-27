@@ -40,7 +40,7 @@ const clientId = process.env.AZURE_APP_CLIENT_ID;
 const jwksUri = process.env.AZURE_OPENID_CONFIG_JWKS_URI;
 let azureAdIssuer;
 let remoteJWKSet;
-const navIdentClaim = "NAVident";
+const navIdentClaim = "navIdent";
 const nameClaim = "name";
 function discoverAzureAdIssuer() {
   return __awaiter(this, void 0, void 0, function* () {

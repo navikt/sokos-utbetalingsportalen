@@ -6,7 +6,7 @@ export default [
     response: () => {
       return {
         name: "Ola Nordmann",
-        NAVident: "x123456",
+        navIdent: "x123456",
       };
     },
   },

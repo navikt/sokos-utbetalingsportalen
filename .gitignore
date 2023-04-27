@@ -108,3 +108,4 @@ build
 .tern-port
 
 server/secure.log
+server/build

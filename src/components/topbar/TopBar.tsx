@@ -32,7 +32,7 @@ const TopBar = () => {
         <Header.UserButton
           as={Dropdown.Toggle}
           name={userInfo.name}
-          description={userInfo.NAVident}
+          description={userInfo.navIdent}
           className="ml-auto"
         />
         <Dropdown.Menu>

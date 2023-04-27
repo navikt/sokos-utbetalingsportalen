@@ -13,7 +13,7 @@ const jwksUri = process.env.AZURE_OPENID_CONFIG_JWKS_URI;
 let azureAdIssuer: Issuer<Client>;
 let remoteJWKSet: GetKeyFunction<JWSHeaderParameters, FlattenedJWSInput>;
 
-const navIdentClaim = "NAVident";
+const navIdentClaim = "navIdent";
 const nameClaim = "name";
 
 async function discoverAzureAdIssuer() {
