@@ -7,12 +7,12 @@ metadata:
     team: okonomi
 spec:
   image: {{ image }}
-  port: 7100
+  port: 8080
   liveness:
-    path: /okonomiportalen/internal/isAlive
+    path: /internal/isAlive
     initialDelay: 10
   readiness:
-    path: /okonomiportalen/internal/isReady
+    path: /internal/isReady
     initialDelay: 10
   replicas:
     min: 1
@@ -40,7 +40,7 @@ spec:
       cpu: "50m"
       memory: 256Mi
     env:
-    - name: SOKOS_PDL_PROXY_REST_URL
-      value: https://sokos-pdl-proxy.intern.dev.nav.no
-    - name: FSS_CONTEXT
-      value: dev-fss
+    - name: SOKOS_MIKROFRONTEND_API_REST_URL
+      value: https://sokos-mikrofrontend-api.intern.dev.nav.no
+    - name: APP_PORT
+      value: 8080

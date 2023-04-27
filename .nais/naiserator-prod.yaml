@@ -5,27 +5,42 @@ metadata:
   namespace: okonomi
   labels:
     team: okonomi
-  annotations:
-    config.linkerd.io/proxy-memory-limit: "512Mi"
-    config.linkerd.io/proxy-memory-request: "128Mi"
 spec:
   image: {{ image }}
-  port: 7100
+  port: 8080
   liveness:
-    path: /okonomiportalen/internal/isAlive
+    path: /internal/isAlive
     initialDelay: 10
   readiness:
-    path: /okonomiportalen/internal/isReady
+    path: /internal/isReady
     initialDelay: 10
   replicas:
-    min: 2
-    max: 4
+    min: 1
+    max: 2
+  azure:
+    application:
+      enabled: true
+      tenant: trygdeetaten.no
+      allowAllUsers: true
+      claims:
+        extra:
+          - "NAVident"
+    sidecar:
+      enabled: true
+      autoLogin: true
+      autoLoginIgnorePaths:
+        - /internal/*
   ingresses:
     - "https://okonomiportalen.intern.nav.no"
   resources:
     limits:
       cpu: "3"
-      memory: 1268Mi
+      memory: 768Mi
     requests:
-      cpu: "500m"
-      memory: 1024Mi
+      cpu: "50m"
+      memory: 256Mi
+    env:
+    - name: SOKOS_MIKROFRONTEND_API_REST_URL
+      value: https://sokos-mikrofrontend-api.intern.dev.nav.no
+    - name: APP_PORT
+      value: 8080

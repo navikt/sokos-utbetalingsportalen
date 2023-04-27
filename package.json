@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/okonomiportalen/ --outDir dist",
+    "build": "vite build --outDir dist",
     "build:gh-pages": "vite build --mode=dev-ekstern --base=/sokos-op-fasade/",
     "preview": "vite preview",
     "test": "vitest",
