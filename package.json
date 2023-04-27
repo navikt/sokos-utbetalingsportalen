@@ -31,7 +31,6 @@
     "react-offcanvas": "^0.4.0",
     "react-router": "^6.10.0",
     "react-router-dom": "^6.10.0",
-    "swr": "^2.1.3",
     "vite": "^4.2.1",
     "vite-plugin-mock": "^2.9.6",
     "zustand": "^4.3.7"

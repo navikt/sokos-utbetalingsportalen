@@ -5,6 +5,7 @@ import { Path } from "./models/path";
 import Information from "./pages/Information";
 import Feilside from "./pages/Feilside";
 import Layout from "./components/layout/Layout";
+import { authenticationLoader } from "./api/api";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route
             path="/"
             element={<Layout />}
+            loader={authenticationLoader}
             errorElement={
               <Feilside
                 tittel={"Siden finnes ikke"}

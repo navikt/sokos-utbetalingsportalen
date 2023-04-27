@@ -1,12 +1,12 @@
 import { Dropdown, Header } from "@navikt/ds-react-internal";
-import { Link } from "react-router-dom";
-import useStore, { selectGjelderID, selectSetGjelderID, selectUserInfo } from "../../store/store";
+import { Link, useLoaderData } from "react-router-dom";
+import useStore, { selectGjelderID, selectSetGjelderID } from "../../store/store";
 import nav from "../../../assets/images/Hvit.png";
 import { Label, TextField } from "@navikt/ds-react";
 
 const TopBar = () => {
   const setGjelderId = useStore(selectSetGjelderID);
-  const userInfo = useStore(selectUserInfo);
+  const userInfo = useLoaderData();
   const gjelderId = useStore(selectGjelderID);
 
   const handleGjelderIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
