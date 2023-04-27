@@ -36,7 +36,6 @@ const startServer = () => {
     res.sendStatus(200)
   );
 
-  // Match everything except internal og static
   server.get(["/", "/*"], (_req: Request, res: Response) => res.sendFile(`${BUILD_PATH}/index.html`));
 
   server.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

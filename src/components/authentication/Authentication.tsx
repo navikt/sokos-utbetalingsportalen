@@ -10,11 +10,15 @@ const Authentication = ({ children }: PropsWithChildren) => {
   const setUserInfo = useStore(selectSetUserInfo);
   const userInfo = useStore(selectUserInfo);
 
-  const { data, isLoading, error } = useSWR(authUrl, fetcher, { shouldRetryOnError: false });
+  const {
+    data: { brukerInformasjon },
+    isLoading,
+    error,
+  } = useSWR(authUrl, fetcher, { shouldRetryOnError: false });
 
   useEffect(() => {
-    setUserInfo({ ...data.brukerInformasjon });
-  }, [data]);
+    setUserInfo({ ...brukerInformasjon });
+  }, [brukerInformasjon]);
 
   if (isLoading) {
     return <ContentLoader />;

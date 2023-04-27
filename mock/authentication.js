@@ -5,8 +5,10 @@ export default [
     status: 401,
     response: () => {
       return {
-        name: "Ola Nordmann",
-        NAVident: "x123456",
+        brukerInformasjon: {
+          name: "Ola Nordmann",
+          NAVident: "x123456",
+        },
       };
     },
   },
