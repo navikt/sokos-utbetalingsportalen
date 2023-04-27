@@ -13,7 +13,7 @@ const Authentication = ({ children }: PropsWithChildren) => {
   const { data, isLoading, error } = useSWR(authUrl, fetcher, { shouldRetryOnError: false });
 
   useEffect(() => {
-    setUserInfo({ ...data });
+    setUserInfo({ ...data.brukerInformasjon });
   }, [data]);
 
   if (isLoading) {
