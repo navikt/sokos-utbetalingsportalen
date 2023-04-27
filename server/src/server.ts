@@ -28,6 +28,8 @@ const startServer = () => {
     })
   );
 
+  server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
+
   server.get("/brukerident", hentBrukerIdent);
 
   server.get([`${BASE_PATH}/internal/isAlive`, `${BASE_PATH}/internal/isReady`], (_req: Request, res: Response) =>
@@ -35,9 +37,7 @@ const startServer = () => {
   );
 
   // Match everything except internal og static
-  server.use(/^(?!.*\/(internal|static)\/).*$/, (_req: Request, res: Response) =>
-    res.sendFile(`${BUILD_PATH}/index.html`)
-  );
+  server.get(["/", "/*"], (_req: Request, res: Response) => res.sendFile(`${BUILD_PATH}/index.html`));
 
   server.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
 };

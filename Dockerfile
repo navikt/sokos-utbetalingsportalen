@@ -1,14 +1,15 @@
-FROM node:lts-alpine@sha256:2ffec31a58e85fbcd575c544a3584f6f4d128779e6b856153a04366b8dd01bb0
+FROM node:lts-alpine@sha256:9a3cb11e78b5082ce7d22bb5113ed5bb7ac4c20195c05f3981e765e21e31c29c
 RUN apk add --no-cache bash
 ENV NODE_ENV production
 
 WORKDIR usr/src/app
-COPY server server/
 COPY dist dist/
+COPY server/package*.json server/
+COPY server/build server/
 
 WORKDIR server
 RUN npm ci
 
-CMD ["node", "dist/server.js"]
+CMD ["node", "server.js"]
 
 EXPOSE 8080
