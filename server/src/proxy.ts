@@ -18,24 +18,12 @@ export const setupProxy = (fromPath: string, toTarget: string): RequestHandler =
       logProvider: () => logger,
     }
   );
-export const proxyWithOboToken = (
-  path: string,
-  apiUrl: string,
-  apiScope: string,
-  customMiddleware?: RequestHandler
-) => {
+export const proxyWithOboToken = (path: string, apiUrl: string, apiScope: string) => {
   console.log("path ", path);
   console.log("apiUrl ", apiUrl);
   console.log("apiScope ", apiScope);
-  console.log("customMiddleware ", customMiddleware);
   console.log("proxyWithOboToken metoden kjøres");
-  server.use(
-    path,
-    respondUnauthorizedIfNotLoggedIn,
-    customMiddleware ? customMiddleware : emptyMiddleware,
-    setOnBehalfOfToken(apiScope),
-    setupProxy(path, apiUrl)
-  );
+  server.use(path, respondUnauthorizedIfNotLoggedIn, setOnBehalfOfToken(apiScope), setupProxy(path, apiUrl));
   console.log("proxyWithOboToken ferdig kjørt");
 };
 
