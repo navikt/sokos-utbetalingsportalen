@@ -8,19 +8,16 @@ export const setupProxy = (fromPath: string, toTarget: string): RequestHandler =
   console.log("setter opp proxy");
   console.log("toTarget", toTarget);
   console.log("fromPath", fromPath);
-  return createProxyMiddleware(
-    {
-      target: toTarget,
-      changeOrigin: true,
-      secure: true,
-      pathRewrite: (path) => path.replace(fromPath, ""),
-      // Fikser proxien ved bruk sammen med express.json()-middleware i server.ts
-      onProxyReq: fixRequestBody,
+  return createProxyMiddleware({
+    target: toTarget,
+    changeOrigin: true,
+    secure: true,
+    pathRewrite: (path) => path.replace(fromPath, ""),
+    logger,
+    on: {
+      proxyReq: fixRequestBody,
     },
-    {
-      logProvider: () => logger,
-    }
-  );
+  });
 };
 export const proxyWithOboToken = (
   path: string,
