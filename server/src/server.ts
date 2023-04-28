@@ -38,11 +38,14 @@ const startServer = () => {
     })
   );
 
-  proxyWithOboToken("/api", sokosMikrofrontendApi, scopes.mikrofrontendApi);
-
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
 
   server.get("/brukerident", respondUnauthorizedIfNotLoggedIn, fetchUserId);
+
+  console.log("ingress :: ", sokosMikrofrontendApi);
+  console.log("scope?? :: ", scopes.mikrofrontendApi);
+
+  proxyWithOboToken("/api", sokosMikrofrontendApi, scopes.mikrofrontendApi);
 
   server.get([`${BASE_PATH}/internal/isAlive`, `${BASE_PATH}/internal/isReady`], (_req: Request, res: Response) =>
     res.sendStatus(200)

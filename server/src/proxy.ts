@@ -24,6 +24,7 @@ export const proxyWithOboToken = (
   apiScope: string,
   customMiddleware?: RequestHandler
 ) => {
+  console.log("proxyWithOboToken metoden kjøres");
   server.use(
     path,
     respondUnauthorizedIfNotLoggedIn,
@@ -31,8 +32,10 @@ export const proxyWithOboToken = (
     setOnBehalfOfToken(apiScope),
     setupProxy(path, apiUrl)
   );
+  console.log("proxyWithOboToken ferdig kjørt");
 };
 
 export const emptyMiddleware: RequestHandler = (_: Request, __: Response, next: NextFunction) => {
+  console.log("emptyMiddleware metoden kjøres");
   next();
 };
