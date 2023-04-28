@@ -39,33 +39,27 @@ const startServer = () => {
   );
 
   console.log("1");
-  server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
-
-  console.log("2");
-
-  server.get("/brukerident", respondUnauthorizedIfNotLoggedIn, fetchUserId);
-
-  console.log("3");
-
-  console.log("ingress :: ", sokosMikrofrontendApi);
-  console.log("scope?? :: ", scopes.mikrofrontendApi);
-
-  proxyWithOboToken("/api", "https://sokos-mikrofrontend-api.intern.dev.nav.no", scopes.mikrofrontendApi);
-
-  console.log("4");
-
   server.get([`${BASE_PATH}/internal/isAlive`, `${BASE_PATH}/internal/isReady`], (_req: Request, res: Response) =>
     res.sendStatus(200)
   );
 
-  console.log("5");
+  console.log("2");
+  server.get("/brukerident", respondUnauthorizedIfNotLoggedIn, fetchUserId);
 
+  console.log("3");
+  proxyWithOboToken("/api", "https://sokos-mikrofrontend-api.intern.dev.nav.no", scopes.mikrofrontendApi);
+
+  console.log("4");
+  server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
+
+  console.log("scope?? :: ", scopes.mikrofrontendApi);
+
+  console.log("5");
   server.get(["/", "/*"], redirectIfUnauthorized, (_req: Request, res: Response) =>
     res.sendFile(`${BUILD_PATH}/index.html`)
   );
 
   console.log("6");
-
   server.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
 };
 
