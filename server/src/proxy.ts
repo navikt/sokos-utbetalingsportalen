@@ -24,6 +24,10 @@ export const proxyWithOboToken = (
   apiScope: string,
   customMiddleware?: RequestHandler
 ) => {
+  console.log("path ", path);
+  console.log("apiUrl ", apiUrl);
+  console.log("apiScope ", apiScope);
+  console.log("customMiddleware ", customMiddleware);
   console.log("proxyWithOboToken metoden kjøres");
   server.use(
     path,
