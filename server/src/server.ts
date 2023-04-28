@@ -12,13 +12,13 @@ export const server: Express = express();
 const BASE_PATH = "/okonomiportalen";
 const BUILD_PATH = path.resolve(__dirname, "../dist");
 const PORT = process.env.APP_PORT || 8080;
-const CLUSTER = process.env.NAIS_CLUSTER_NAME || "";
+const CLUSTER = process.env.NAIS_CLUSTER_NAME;
 
 const scopes = {
   mikrofrontendApi: `api://${CLUSTER}.okonomi.sokos-mikrofrontend-api/.default`,
 };
 
-const sokosMikrofrontendApi = process.env.SOKOS_MIKROFRONTEND_API_REST_URL || "";
+const sokosMikrofrontendApi = process.env.SOKOS_MIKROFRONTEND_API_REST_URL;
 
 const startServer = () => {
   server.use(express.urlencoded());
