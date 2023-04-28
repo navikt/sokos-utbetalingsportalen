@@ -45,7 +45,7 @@ const startServer = () => {
   console.log("ingress :: ", sokosMikrofrontendApi);
   console.log("scope?? :: ", scopes.mikrofrontendApi);
 
-  proxyWithOboToken("/api", sokosMikrofrontendApi, scopes.mikrofrontendApi);
+  proxyWithOboToken("/api", "https://sokos-mikrofrontend-api.intern.dev.nav.no", scopes.mikrofrontendApi);
 
   server.get([`${BASE_PATH}/internal/isAlive`, `${BASE_PATH}/internal/isReady`], (_req: Request, res: Response) =>
     res.sendStatus(200)
