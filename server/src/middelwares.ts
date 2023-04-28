@@ -39,7 +39,9 @@ export async function respondUnauthorizedIfNotLoggedIn(req: Request, res: Expres
 
 export function retrieveToken(headers: IncomingHttpHeaders) {
   const brukerensAccessToken = headers.authorization?.replace("Bearer ", "");
+  console.log("brukerensAccessToken ", brukerensAccessToken);
   if (!brukerensAccessToken) {
+    console.log("brukerensAccessToken tryna");
     throw Error("Kunne ikke hente token");
   }
   return brukerensAccessToken;
@@ -59,34 +61,31 @@ export async function fetchUserId(req: Request, res: ExpressResponse) {
   });
 }
 
-export function setOnBehalfOfToken(scope: string) {
-  console.log("setOnBehalfOfToken metoden kjøres");
-  return async (req: Request, res: ExpressResponse, next: NextFunction) => {
-    const accessToken = retrieveToken(req.headers);
+export const setOnBehalfOfToken = (scope: string) => async (req: Request, res: ExpressResponse, next: NextFunction) => {
+  const accessToken = retrieveToken(req.headers);
 
-    console.log("får vi accessToken? ", accessToken);
+  console.log("får vi accessToken? ", accessToken);
 
-    if (!accessToken) {
-      console.log("INGEN ACCESSTOKEN!");
-      res.status(500).send("Kan ikke be om OBO-token siden access-token ikke finnes");
-    } else {
-      console.log("inne i else i setOnBehalfOfToken metoden");
-      try {
-        const token = await getOnBehalfOfToken(accessToken, scope);
-        console.log("token???????????? ", token);
-        req.headers.authorization = `Bearer ${token.access_token}`;
-        next();
-      } catch (e) {
-        const respons = e as Response;
+  if (!accessToken) {
+    console.log("INGEN ACCESSTOKEN!");
+    res.status(500).send("Kan ikke be om OBO-token siden access-token ikke finnes");
+  } else {
+    console.log("inne i else i setOnBehalfOfToken metoden");
+    try {
+      const token = await getOnBehalfOfToken(accessToken, scope);
+      console.log("token???????????? ", token);
+      req.headers.authorization = `Bearer ${token.access_token}`;
+      next();
+    } catch (e) {
+      const respons = e as Response;
 
-        // 400 Bad request under OBO-veksling betyr at bruker
-        // ikke tilhører gruppene som kreves for å kalle appen.
-        if (respons.status === 400) {
-          res.status(403).send(`Bruker har ikke tilgang til scope ${scope}`);
-        } else {
-          res.status(respons.status).send(respons.statusText);
-        }
+      // 400 Bad request under OBO-veksling betyr at bruker
+      // ikke tilhører gruppene som kreves for å kalle appen.
+      if (respons.status === 400) {
+        res.status(403).send(`Bruker har ikke tilgang til scope ${scope}`);
+      } else {
+        res.status(respons.status).send(respons.statusText);
       }
     }
-  };
-}
+  }
+};
