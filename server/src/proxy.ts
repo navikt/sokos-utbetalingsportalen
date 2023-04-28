@@ -4,8 +4,11 @@ import { respondUnauthorizedIfNotLoggedIn, setOnBehalfOfToken } from "./middelwa
 import { createProxyMiddleware, fixRequestBody } from "http-proxy-middleware";
 import { logger } from "./logger";
 
-export const setupProxy = (fromPath: string, toTarget: string): RequestHandler =>
-  createProxyMiddleware(
+export const setupProxy = (fromPath: string, toTarget: string): RequestHandler => {
+  console.log("setter opp proxy");
+  console.log("toTarget", toTarget);
+  console.log("fromPath", fromPath);
+  return createProxyMiddleware(
     {
       target: toTarget,
       changeOrigin: true,
@@ -18,10 +21,17 @@ export const setupProxy = (fromPath: string, toTarget: string): RequestHandler =
       logProvider: () => logger,
     }
   );
-export const proxyWithOboToken = (path: string, apiUrl: string, apiScope: string) => {
+};
+export const proxyWithOboToken = (
+  path: string,
+  apiUrl: string,
+  apiScope: string,
+  customMiddleware?: RequestHandler
+) => {
   console.log("path ", path);
   console.log("apiUrl ", apiUrl);
   console.log("apiScope ", apiScope);
+  console.log("customMiddleware ", customMiddleware);
   console.log("proxyWithOboToken metoden kjøres");
   server.use(path, respondUnauthorizedIfNotLoggedIn, setOnBehalfOfToken(apiScope), setupProxy(path, apiUrl));
   console.log("proxyWithOboToken ferdig kjørt");
