@@ -3,10 +3,9 @@ import { Client, Issuer } from "openid-client";
 import { GetKeyFunction } from "jose/dist/types/types";
 import { logger } from "./logger";
 
-const discoveryUrl =
-  "https://login.microsoftonline.com/966ac572-f5b7-4bbe-aa88-c76419c0f851/v2.0/.well-known/openid-configuration";
+const discoveryUrl = process.env.AZURE_APP_WELL_KNOWN_URL;
 const clientId = process.env.AZURE_APP_CLIENT_ID;
-const jwksUri = "https://login.microsoftonline.com/966ac572-f5b7-4bbe-aa88-c76419c0f851/discovery/v2.0/keys";
+const jwksUri = process.env.AZURE_OPENID_CONFIG_JWKS_URI;
 
 let azureAdIssuer: Issuer<Client>;
 let remoteJWKSet: GetKeyFunction<JWSHeaderParameters, FlattenedJWSInput>;
