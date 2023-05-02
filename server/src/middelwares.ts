@@ -37,7 +37,6 @@ export async function respondUnauthorizedIfNotLoggedIn(req: Request, res: Expres
 
 export function retrieveToken(headers: IncomingHttpHeaders) {
   const brukerensAccessToken = headers.authorization?.replace("Bearer ", "");
-  console.log("BRUKERACCESSTOKEN!!! ", brukerensAccessToken, "\n");
   if (!brukerensAccessToken) {
     throw Error("Kunne ikke hente token");
   }
@@ -66,6 +65,7 @@ export const setOnBehalfOfToken = (scope: string) => async (req: Request, res: E
   } else {
     try {
       const token = await getOnBehalfOfToken(accessToken, scope);
+      console.log("TOKEN!!!!! ::::::: ", token);
       req.headers.authorization = `Bearer ${token.access_token}`;
       next();
     } catch (e) {
