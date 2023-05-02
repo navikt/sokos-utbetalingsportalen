@@ -43,6 +43,6 @@ spec:
     requests:
       cpu: "50m"
       memory: 256Mi
-    env:
-    - name: SOKOS_MIKROFRONTEND_API_URL
-      value: http://sokos-mikrofrontend-api
+  env:
+  - name: SOKOS_MIKROFRONTEND_API_URL
+    value: http://sokos-mikrofrontend-api

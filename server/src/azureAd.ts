@@ -2,15 +2,13 @@ import { createRemoteJWKSet, FlattenedJWSInput, JWSHeaderParameters, jwtVerify }
 import { Client, Issuer } from "openid-client";
 import { GetKeyFunction } from "jose/dist/types/types";
 import { logger } from "./logger";
-
-const discoveryUrl = process.env.AZURE_APP_WELL_KNOWN_URL;
-const clientId = process.env.AZURE_APP_CLIENT_ID;
-const jwksUri = process.env.AZURE_OPENID_CONFIG_JWKS_URI;
+import Configuration from "./config";
 
 let azureAdIssuer: Issuer<Client>;
 let remoteJWKSet: GetKeyFunction<JWSHeaderParameters, FlattenedJWSInput>;
 
 async function discoverAzureAdIssuer() {
+  const discoveryUrl = Configuration.AZURE_APP_WELL_KNOWN_URL;
   if (discoveryUrl) {
     azureAdIssuer = await Issuer.discover(discoveryUrl);
   } else {
@@ -19,11 +17,13 @@ async function discoverAzureAdIssuer() {
 }
 
 function initializeRemoteJWKSet() {
-  const jwksUrl = new URL(jwksUri || "");
+  const jwksUri = Configuration.AZURE_OPENID_CONFIG_JWKS_URI;
+  const jwksUrl = new URL(jwksUri);
   remoteJWKSet = createRemoteJWKSet(jwksUrl);
 }
 
 export async function tokenIsValid(brukerensAccessToken: string) {
+  const clientId = Configuration.AZURE_APP_CLIENT_ID;
   try {
     const verification = await jwtVerify(brukerensAccessToken, remoteJWKSet, {
       audience: clientId,

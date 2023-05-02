@@ -1,4 +1,5 @@
 import { logger } from "./logger";
+import Configuration from "./config";
 
 type OboToken = {
   access_token: string;
@@ -51,13 +52,13 @@ async function fetchNewOnBehalfOfToken(accessToken: string, scope: string): Prom
   } = {
     grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
     scope,
-    client_id: process.env.AZURE_APP_CLIENT_ID || "",
-    client_secret: process.env.AZURE_APP_CLIENT_SECRET || "",
+    client_id: Configuration.AZURE_APP_CLIENT_ID || "",
+    client_secret: Configuration.AZURE_APP_CLIENT_SECRET,
     assertion: accessToken,
     requested_token_use: "on_behalf_of",
   };
 
-  const url = process.env.AZURE_OPENID_CONFIG_TOKEN_ENDPOINT || "";
+  const url = Configuration.AZURE_OPENID_CONFIG_TOKEN_ENDPOINT || "";
 
   // eslint-disable-next-line no-useless-catch
   try {
