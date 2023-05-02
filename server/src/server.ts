@@ -11,14 +11,13 @@ export const server: Express = express();
 
 const BASE_PATH = "/okonomiportalen";
 const BUILD_PATH = path.resolve(__dirname, "../dist");
-const PORT = process.env.APP_PORT || 8080;
 const CLUSTER = process.env.NAIS_CLUSTER_NAME;
 
 const scopes = {
   mikrofrontendApi: `api://${CLUSTER}.okonomi.sokos-mikrofrontend-api/.default`,
 };
 
-const sokosMikrofrontendApi = process.env.SOKOS_MIKROFRONTEND_API_REST_URL;
+const { SOKOS_MIKROFRONTEND_API_URL } = process.env;
 
 const startServer = () => {
   server.use(express.urlencoded());
@@ -38,29 +37,21 @@ const startServer = () => {
     })
   );
 
-  console.log("1");
   server.get([`${BASE_PATH}/internal/isAlive`, `${BASE_PATH}/internal/isReady`], (_req: Request, res: Response) =>
     res.sendStatus(200)
   );
 
-  console.log("2");
   server.get("/brukerident", respondUnauthorizedIfNotLoggedIn, fetchUserId);
 
-  console.log("3");
-  proxyWithOboToken("/mikrofrontend-api", "http://sokos-mikrofrontend-api", scopes.mikrofrontendApi);
+  proxyWithOboToken("/mikrofrontend-api", SOKOS_MIKROFRONTEND_API_URL ?? "", scopes.mikrofrontendApi);
 
-  console.log("4");
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
 
-  console.log("scope?? :: ", scopes.mikrofrontendApi);
-
-  console.log("5");
   server.get(["/", "/*"], redirectIfUnauthorized, (_req: Request, res: Response) =>
     res.sendFile(`${BUILD_PATH}/index.html`)
   );
 
-  console.log("6");
-  server.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+  server.listen(8080, () => console.log("Server listening on port 8080"));
 };
 
 initializeAzureAd()

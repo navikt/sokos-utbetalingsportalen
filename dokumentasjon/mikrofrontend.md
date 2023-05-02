@@ -19,7 +19,7 @@ spec:
   }, /*#__PURE__*/React.createElement("h2", null, "Mikrofrontend container"));
 ```
 
-Kan du endre "Mikrofrontend container" til å være noe annet.
+kan du endre "Mikrofrontend container" til å være noe annet.
 
 3. Legg inn dummy mock path under [micro-frontends.js](mock/micro-frontends.js)
 
@@ -29,4 +29,18 @@ Kan du endre "Mikrofrontend container" til å være noe annet.
 
 6. Path som du la under [path.ts](src/models/path.tsx) skal importeres til [App.tsx](src/App.tsx)
 
-Nå er `sokos-op-fasade` klar til å kunne rendre mikfrofrontend i NAIS.
+7. Under [server.ts](../server/src/server.ts) må du legge inn proxy til tjenesten mikfrofrontend skal snakke med.
+
+```
+proxyWithOboToken("/mikrofrontend-api", SOKOS_MIKROFRONTEND_API_URL ?? "", scopes.mikrofrontendApi);
+```
+
+Variablen `SOKOS_MIKROFRONTEND_API_URL` hentes fra kodeblokken som henter `env` variablene fra naiserator filen.
+
+```
+const {
+    SOKOS_MIKROFRONTEND_API_URL
+} = process.env;
+```
+
+Nå er `sokos-op-fasade` klar til å kunne rendre mikfrofrontend i NAIS og rute rest kallene til riktig api.

@@ -65,7 +65,6 @@ export const setOnBehalfOfToken = (scope: string) => async (req: Request, res: E
   } else {
     try {
       const token = await getOnBehalfOfToken(accessToken, scope);
-      console.log("TOKEN!!!!! ::::::: ", token);
       req.headers.authorization = `Bearer ${token.access_token}`;
       next();
     } catch (e) {

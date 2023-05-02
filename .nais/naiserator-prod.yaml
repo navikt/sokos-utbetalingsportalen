@@ -40,7 +40,5 @@ spec:
       cpu: "50m"
       memory: 256Mi
     env:
-    - name: SOKOS_MIKROFRONTEND_API_REST_URL
+    - name: SOKOS_MIKROFRONTEND_API_URL
       value: https://sokos-mikrofrontend-api.intern.dev.nav.no
-    - name: APP_PORT
-      value: "8080"

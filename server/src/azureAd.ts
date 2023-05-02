@@ -1,4 +1,4 @@
-import { createRemoteJWKSet, decodeJwt, FlattenedJWSInput, JWSHeaderParameters, jwtVerify } from "jose";
+import { createRemoteJWKSet, FlattenedJWSInput, JWSHeaderParameters, jwtVerify } from "jose";
 import { Client, Issuer } from "openid-client";
 import { GetKeyFunction } from "jose/dist/types/types";
 import { logger } from "./logger";

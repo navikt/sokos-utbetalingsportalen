@@ -5,9 +5,6 @@ import { createProxyMiddleware, fixRequestBody } from "http-proxy-middleware";
 import { logger } from "./logger";
 
 export const setupProxy = (fromPath: string, toTarget: string): RequestHandler => {
-  console.log("setupProxy metode");
-  console.log("toTarget", toTarget);
-  console.log("fromPath", fromPath);
   return createProxyMiddleware({
     target: toTarget,
     changeOrigin: true,
@@ -25,12 +22,13 @@ export const proxyWithOboToken = (
   apiScope: string,
   customMiddleware?: RequestHandler
 ) => {
-  console.log("proxyWithOboToken metode");
-  console.log("path ", path);
-  console.log("apiUrl ", apiUrl);
-  console.log("apiScope ", apiScope);
-  console.log("customMiddleware ", customMiddleware);
-  server.use(path, respondUnauthorizedIfNotLoggedIn, setOnBehalfOfToken(apiScope), setupProxy(path, apiUrl));
+  server.use(
+    path,
+    respondUnauthorizedIfNotLoggedIn,
+    customMiddleware ? customMiddleware : emptyMiddleware,
+    setOnBehalfOfToken(apiScope),
+    setupProxy(path, apiUrl)
+  );
 };
 
 export const emptyMiddleware: RequestHandler = (_: Request, __: Response, next: NextFunction) => {

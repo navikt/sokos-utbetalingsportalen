@@ -3,6 +3,7 @@ import { UserInfo } from "../models/UserInfo";
 
 class FetchError extends Error {
   response: Response;
+
   constructor(response: Response, message: string) {
     super(message);
     this.response = response;
