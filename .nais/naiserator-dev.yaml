@@ -30,6 +30,10 @@ spec:
       autoLogin: true
       autoLoginIgnorePaths:
         - /internal/*
+  accessPolicy:
+    outbound:
+      rules:
+        - application: sokos-mikrofrontend-api
   ingresses:
     - "https://okonomiportalen.intern.dev.nav.no"
   resources:
@@ -40,7 +44,7 @@ spec:
       cpu: "50m"
       memory: 256Mi
     env:
-    - name: SOKOS_MIKROFRONTEND_API_REST_URL
-      value: https://sokos-mikrofrontend-api.intern.dev.nav.no
+    - name: SOKOS_MIKROFRONTEND_API_URL
+      value: http://sokos-mikrofrontend-api
     - name: APP_PORT
       value: "8080"

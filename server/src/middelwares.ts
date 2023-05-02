@@ -28,20 +28,17 @@ export async function redirectIfUnauthorized(req: Request, res: ExpressResponse,
 }
 
 export async function respondUnauthorizedIfNotLoggedIn(req: Request, res: ExpressResponse, next: NextFunction) {
-  console.log("respondUnauthorizedIfNotLoggedIn metoden");
   if (await isUserLoggedIn(req)) {
     next();
   } else {
-    console.log("respondUnauthorizedIfNotLoggedIn 401");
     res.status(401).send("Brukeren har ingen gyldig sesjon");
   }
 }
 
 export function retrieveToken(headers: IncomingHttpHeaders) {
   const brukerensAccessToken = headers.authorization?.replace("Bearer ", "");
-  console.log("brukerensAccessToken ", brukerensAccessToken);
+  console.log("BRUKERACCESSTOKEN!!! ", brukerensAccessToken, "\n");
   if (!brukerensAccessToken) {
-    console.log("brukerensAccessToken tryna");
     throw Error("Kunne ikke hente token");
   }
   return brukerensAccessToken;
@@ -64,16 +61,11 @@ export async function fetchUserId(req: Request, res: ExpressResponse) {
 export const setOnBehalfOfToken = (scope: string) => async (req: Request, res: ExpressResponse, next: NextFunction) => {
   const accessToken = retrieveToken(req.headers);
 
-  console.log("får vi accessToken? ", accessToken);
-
   if (!accessToken) {
-    console.log("INGEN ACCESSTOKEN!");
     res.status(500).send("Kan ikke be om OBO-token siden access-token ikke finnes");
   } else {
-    console.log("inne i else i setOnBehalfOfToken metoden");
     try {
       const token = await getOnBehalfOfToken(accessToken, scope);
-      console.log("token???????????? ", token);
       req.headers.authorization = `Bearer ${token.access_token}`;
       next();
     } catch (e) {

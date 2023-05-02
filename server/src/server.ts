@@ -47,7 +47,7 @@ const startServer = () => {
   server.get("/brukerident", respondUnauthorizedIfNotLoggedIn, fetchUserId);
 
   console.log("3");
-  proxyWithOboToken("/api/employee", "https://sokos-mikrofrontend-api.intern.dev.nav.no", scopes.mikrofrontendApi);
+  proxyWithOboToken("/mikrofrontendApi", "SOKOS_MIKROFRONTEND_API_URL", scopes.mikrofrontendApi);
 
   console.log("4");
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
