@@ -10,11 +10,9 @@ on:
       - 'CODEOWNERS'
       - '.gitignore'
       - '.github/workflows/build-pr.yaml'
-      - '.github/workflows/manual-deploy.yaml'
       - '.github/workflows/security.yaml'
       - '.github/workflows/alerts.yaml'
       - '.nais/alerts.yaml'
-      - '.nais/naiserator-manuell.yaml'
 
 jobs:
   bygg-test-push-image:

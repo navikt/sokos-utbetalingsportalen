@@ -10,9 +10,7 @@ on:
       - 'CODEOWNERS'
       - '.gitignore'
       - '.github/workflows/build-pr.yaml'
-      - '.github/workflows/manual-deploy.yaml'
       - '.github/workflows/security.yaml'
-      - '.nais/naiserator-manuell.yaml'
       - '.nais/alerts.yaml'
 jobs:
   deploy-alerts-dev:
