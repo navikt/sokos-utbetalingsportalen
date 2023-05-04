@@ -12,9 +12,7 @@ const Layout = () => {
         <div className={"w-screen"}>
           <div className={LayoutCSS.layout}>
             <div className={LayoutCSS.main}>
-              <div className={LayoutCSS.contentWrapper}>
-                <Outlet />
-              </div>
+              <Outlet />
             </div>
           </div>
         </div>
