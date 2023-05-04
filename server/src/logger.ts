@@ -1,11 +1,17 @@
 import fs from "fs";
-import winston from "winston";
+import winston, { format } from "winston";
 import winstonSyslog from "winston-syslog";
+const { combine, timestamp, json } = format;
 
 const { NAIS_APP_NAME } = process.env;
 
 export const logger = winston.createLogger({
-  format: winston.format.json(),
+  format: winston.format.combine(
+    timestamp({
+      format: "YYYY-MM-DD HH:mm:ss",
+    }),
+    json()
+  ),
   transports: [new winston.transports.Console()],
 });
 

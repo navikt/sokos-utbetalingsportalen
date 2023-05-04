@@ -3,7 +3,7 @@ import path from "path";
 import expressStaticGzip from "express-static-gzip";
 import RateLimit from "express-rate-limit";
 import { initializeAzureAd } from "./azureAd";
-import { logger } from "./logger";
+import { auditLog, logger, secureLog } from "./logger";
 import { fetchUserId, redirectIfUnauthorized, respondUnauthorizedIfNotLoggedIn } from "./middelwares";
 import { proxyWithOboToken } from "./proxy";
 import Configuration from "./config";
@@ -48,6 +48,10 @@ const startServer = () => {
   server.get(["/", "/*"], redirectIfUnauthorized, (_req: Request, res: Response) =>
     res.sendFile(`${BUILD_PATH}/index.html`)
   );
+
+  logger.info("Kjører opp server");
+  secureLog.info("Kjører opp server");
+  auditLog.info("Kjører opp server");
 
   server.listen(Configuration.SERVER_PORT, () => console.log(`Server listening on port ${Configuration.SERVER_PORT}`));
 };
