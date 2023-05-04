@@ -11,9 +11,11 @@ const Layout = () => {
         <SideBar />
         <div className={"w-screen"}>
           <div className={LayoutCSS.layout}>
-            <main className={LayoutCSS.main}>
-              <Outlet />
-            </main>
+            <div className={LayoutCSS.main}>
+              <div className={LayoutCSS.contentWrapper}>
+                <Outlet />
+              </div>
+            </div>
           </div>
         </div>
       </div>
