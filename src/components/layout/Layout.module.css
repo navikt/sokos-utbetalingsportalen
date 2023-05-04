@@ -3,10 +3,10 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 1rem 2rem 0 2rem;
+  margin: 0.5rem 0.5rem 0 0.5rem;
 }
 
 .main {
   width: 100%;
-  max-width: 808px;
+  max-width: 912px;
 }
