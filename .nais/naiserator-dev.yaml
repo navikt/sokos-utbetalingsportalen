@@ -17,6 +17,8 @@ spec:
   replicas:
     min: 1
     max: 2
+  secureLogs:
+    enabled: true
   azure:
     application:
       enabled: true
@@ -48,6 +50,6 @@ spec:
     value: "/okonomiportalen"
   - name: SERVER_PORT
     value: "8080"
-    
+
   - name: SOKOS_MIKROFRONTEND_API_URL
     value: http://sokos-mikrofrontend-api
