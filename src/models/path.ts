@@ -1,5 +1,5 @@
 export enum Path {
   SOKOS_MIKROFRONTEND_TEMPLATE = "/mikrofrontend",
-  UTBETALINGER_FRONTEND_POC = "/utbetalinger",
+  SØK_POSTERINGER = "/utbetalinger",
   BRUKER_IDENT = "/brukerident",
 }
