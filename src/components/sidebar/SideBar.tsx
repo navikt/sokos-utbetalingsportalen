@@ -27,6 +27,9 @@ const SideBar = () => {
           <Link className={classes.link} to={Path.SØK_POSTERINGER}>
             Søk Posteringer
           </Link>
+          <Link className={classes.link} to={Path.UTBETALINGER}>
+            SHADOW
+          </Link>
         </ul>
       </div>
       {!showSideBar && (

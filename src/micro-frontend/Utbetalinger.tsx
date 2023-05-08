@@ -1,21 +1,21 @@
 import React, { LazyExoticComponent } from "react";
 import ContentLoader from "../components/loader/ContentLoader.js";
-import { utbetalingFrontendPocUrl } from "../urls.js";
+import { utbetalingerUrl } from "../urls.js";
 import { ErrorBoundary } from "react-error-boundary";
 import FeilMelding from "../components/feilmelding/Feilmelding";
 
-const UtbetalingFrontendPocBundle: LazyExoticComponent<() => JSX.Element> = React.lazy(
-  () => import(/* @vite-ignore */ utbetalingFrontendPocUrl)
+const UtbetalingerBundle: LazyExoticComponent<() => JSX.Element> = React.lazy(
+  () => import(/* @vite-ignore */ utbetalingerUrl)
 );
 
-const UtbetalingFrontendPoc = () => {
+const Utbetalinger = () => {
   return (
     <React.Suspense fallback={<ContentLoader />}>
       <ErrorBoundary fallbackRender={() => <FeilMelding />}>
-        <UtbetalingFrontendPocBundle />
+        <UtbetalingerBundle />
       </ErrorBoundary>
     </React.Suspense>
   );
 };
 
-export default UtbetalingFrontendPoc;
+export default Utbetalinger;

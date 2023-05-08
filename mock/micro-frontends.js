@@ -1,5 +1,6 @@
 import sokosmikrofrontendtemplate from "./bundle/sokos-mikrofrontend-template";
 import utbetalingfrontendpoc from "./bundle/utbetaling-frontend-poc";
+import utbetalinger from "./bundle/utbetalinger.js";
 
 export default [
   {
@@ -20,6 +21,16 @@ export default [
       res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5173");
       res.statusCode = 200;
       res.end(utbetalingfrontendpoc);
+    },
+  },
+  {
+    url: "/utbetalinger/bundle.js",
+    method: "get",
+    rawResponse: async (_req, res) => {
+      res.setHeader("Content-Type", "text/javascript");
+      res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5173");
+      res.statusCode = 200;
+      res.end(utbetalinger);
     },
   },
 ];

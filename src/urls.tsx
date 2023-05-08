@@ -25,7 +25,14 @@ const SØK_POSTERINGER_URL: Record<string, string> = {
   production: "https://okonomiportalen.intern.nav.no/utbetaling-frontend-poc/bundle.js",
 };
 
+const UTBETALINGER_URL: Record<string, string> = {
+  local: "http://localhost:5173/utbetalinger/bundle.js",
+  development: "https://okonomiportalen.intern.dev.nav.no/utbetalinger/bundle.js",
+  production: "https://okonomiportalen.intern.nav.no/utbetalinger/bundle.js",
+};
+
 export const authUrl = AUTH_URL[getEnvironment()];
 export const baseUrl = BASE_URL[getEnvironment()];
 export const sokosMikrofrontendTemplateUrl = SOKOS_MIKROFRONTEND_TEMPLATE_URL[getEnvironment()];
 export const utbetalingFrontendPocUrl = SØK_POSTERINGER_URL[getEnvironment()];
+export const utbetalingerUrl = UTBETALINGER_URL[getEnvironment()];
