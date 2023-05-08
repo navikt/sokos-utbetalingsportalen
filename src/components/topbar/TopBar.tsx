@@ -3,7 +3,6 @@ import { Link, useLoaderData } from "react-router-dom";
 import useStore, { selectGjelderID, selectSetGjelderID } from "../../store/store";
 import nav from "../../../assets/images/Hvit.png";
 import { Label, TextField } from "@navikt/ds-react";
-import styles from "./TopBar.module.css";
 
 const TopBar = () => {
   const setGjelderId = useStore(selectSetGjelderID);
@@ -16,13 +15,13 @@ const TopBar = () => {
 
   return (
     <Header>
-      <div className={styles.logo}>
+      <div className="w-16 p-1 ml-3">
         <img src={nav} alt="logo" />
       </div>
       <Header.Title as={Link} to={"/"}>
         Økonomiportalen
       </Header.Title>
-      <div id="gjelder-id" className={styles.gjelderid}>
+      <div id="gjelder-id" className="w-fit flex justify-end items-stretch space-x-7 p-2">
         <div id="gjelder-id-tekst" className="flex justify-center items-center">
           <Label>GjelderID: </Label>
         </div>

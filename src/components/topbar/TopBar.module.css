@@ -1,7 +1,0 @@
-.gjelderid {
-  @apply w-fit flex justify-end items-stretch space-x-7 p-2;
-}
-
-.logo {
-  @apply w-16 p-1 ml-3;
-}
