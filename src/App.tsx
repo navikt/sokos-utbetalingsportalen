@@ -26,7 +26,7 @@ const App = () => {
           >
             <Route path="/" element={<Information />} />
             <Route path={Path.SOKOS_MIKROFRONTEND_TEMPLATE} element={<SokosMikrofrontendTemplate />} />
-            <Route path={Path.SØK_POSTERINGER} element={<UtbetalingFrontendPoc />} />
+            <Route path={Path.UTBETALINGER} element={<UtbetalingFrontendPoc />} />
           </Route>
         )
       )}
