@@ -24,11 +24,8 @@ const SideBar = () => {
           <Link className={classes.link} to={Path.SOKOS_MIKROFRONTEND_TEMPLATE}>
             Mikrofrontend
           </Link>
-          <Link className={classes.link} to={Path.SØK_POSTERINGER}>
-            Søk Posteringer
-          </Link>
           <Link className={classes.link} to={Path.UTBETALINGER}>
-            SHADOW
+            Søk Posteringer
           </Link>
         </ul>
       </div>

@@ -6,7 +6,6 @@ import Information from "./pages/Information";
 import Feilside from "./pages/Feilside";
 import Layout from "./components/layout/Layout";
 import { authenticationLoader } from "./api/api";
-import Utbetalinger from "./micro-frontend/Utbetalinger";
 
 const App = () => {
   return (
@@ -28,7 +27,6 @@ const App = () => {
             <Route path="/" element={<Information />} />
             <Route path={Path.SOKOS_MIKROFRONTEND_TEMPLATE} element={<SokosMikrofrontendTemplate />} />
             <Route path={Path.SØK_POSTERINGER} element={<UtbetalingFrontendPoc />} />
-            <Route path={Path.UTBETALINGER} element={<Utbetalinger />} />
           </Route>
         )
       )}
