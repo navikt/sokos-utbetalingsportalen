@@ -10,6 +10,7 @@ import { logger } from "./logger";
 
 export const server: Express = express();
 
+const SERVER_BASE_PATH = "/okonomiportalen";
 const BUILD_PATH = path.resolve(__dirname, "../dist");
 
 const scopes = {
@@ -22,7 +23,7 @@ const startServer = () => {
   server.disable("x-powered-by");
 
   server.use(
-    Configuration.SERVER_BASE_PATH,
+    SERVER_BASE_PATH,
     expressStaticGzip(BUILD_PATH, {
       index: false,
       enableBrotli: true,
@@ -35,7 +36,7 @@ const startServer = () => {
   );
 
   server.get(
-    [`${Configuration.SERVER_BASE_PATH}/internal/isAlive`, `${Configuration.SERVER_BASE_PATH}/internal/isReady`],
+    [`${SERVER_BASE_PATH}/internal/isAlive`, `${SERVER_BASE_PATH}/internal/isReady`],
     (_req: Request, res: Response) => res.sendStatus(200)
   );
 
@@ -49,7 +50,7 @@ const startServer = () => {
     res.sendFile(`${BUILD_PATH}/index.html`)
   );
 
-  server.listen(Configuration.SERVER_PORT, () => console.log(`Server listening on port ${Configuration.SERVER_PORT}`));
+  server.listen(Configuration.PORT, () => console.log(`Server listening on port ${Configuration.PORT}`));
 };
 
 initializeAzureAd()

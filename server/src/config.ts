@@ -7,8 +7,7 @@ dotenv.config();
 // as someone could skip these varibales or not setup a .env file at all
 interface ENV {
   // Server env
-  SERVER_BASE_PATH: string | undefined;
-  SERVER_PORT: string | undefined;
+  PORT: string | undefined;
 
   // AzureAD env
   AZURE_APP_WELL_KNOWN_URL: string | undefined;
@@ -25,8 +24,7 @@ interface ENV {
 }
 
 interface Config {
-  SERVER_BASE_PATH: string;
-  SERVER_PORT: string;
+  PORT: string;
 
   AZURE_APP_WELL_KNOWN_URL: string;
   AZURE_APP_CLIENT_ID: string;
@@ -43,8 +41,7 @@ interface Config {
 
 const getConfig = (): ENV => {
   return {
-    SERVER_BASE_PATH: process.env.SERVER_BASE_PATH,
-    SERVER_PORT: process.env.SERVER_PORT,
+    PORT: process.env.PORT || "8080",
     AZURE_APP_WELL_KNOWN_URL: process.env.AZURE_APP_WELL_KNOWN_URL,
     AZURE_APP_CLIENT_ID: process.env.AZURE_APP_CLIENT_ID,
     AZURE_APP_CLIENT_SECRET: process.env.AZURE_APP_CLIENT_SECRET,

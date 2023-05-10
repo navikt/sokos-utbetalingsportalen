@@ -40,10 +40,5 @@ spec:
       cpu: "50m"
       memory: 256Mi
   env:
-    - name: SERVER_BASE_PATH
-      value: "/okonomiportalen"
-    - name: SERVER_PORT
-      value: "8080"
-
     - name: SOKOS_MIKROFRONTEND_API_URL
       value: http://sokos-mikrofrontend-api
