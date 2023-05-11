@@ -1,11 +1,11 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
+import { authenticationLoader } from "./api/api";
+import Layout from "./components/layout/Layout";
 import SokosMikrofrontendTemplate from "./micro-frontend/SokosMikrofrontendTemplate";
 import UtbetalingFrontendPoc from "./micro-frontend/UtbetalingFrontendPoc";
 import { Path } from "./models/path";
-import Information from "./pages/Information";
 import Feilside from "./pages/Feilside";
-import Layout from "./components/layout/Layout";
-import { authenticationLoader } from "./api/api";
+import Information from "./pages/Information";
 
 const App = () => {
   return (

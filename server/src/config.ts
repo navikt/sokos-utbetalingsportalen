@@ -16,11 +16,10 @@ interface ENV {
   AZURE_OPENID_CONFIG_JWKS_URI: string | undefined;
   AZURE_OPENID_CONFIG_TOKEN_ENDPOINT: string | undefined;
 
-  // NAIS env
-  NAIS_CLUSTER_NAME: string | undefined;
-
   // REST urls env
-  SOKOS_MIKROFRONTEND_API_URL: string | undefined;
+  SOKOS_MIKROFRONTEND_API: string | undefined;
+  SOKOS_MIKROFRONTEND_API_SCOPE: string | undefined;
+  SOKOS_MIKROFRONTEND_PATH: string | undefined;
 }
 
 interface Config {
@@ -32,9 +31,9 @@ interface Config {
   AZURE_OPENID_CONFIG_JWKS_URI: string;
   AZURE_OPENID_CONFIG_TOKEN_ENDPOINT: string;
 
-  NAIS_CLUSTER_NAME: string;
-
-  SOKOS_MIKROFRONTEND_API_URL: string;
+  SOKOS_MIKROFRONTEND_API: string;
+  SOKOS_MIKROFRONTEND_API_SCOPE: string;
+  SOKOS_MIKROFRONTEND_PATH: string;
 }
 
 // Loading process.env as ENV interface
@@ -42,13 +41,16 @@ interface Config {
 const getConfig = (): ENV => {
   return {
     PORT: process.env.PORT || "8080",
+
     AZURE_APP_WELL_KNOWN_URL: process.env.AZURE_APP_WELL_KNOWN_URL,
     AZURE_APP_CLIENT_ID: process.env.AZURE_APP_CLIENT_ID,
     AZURE_APP_CLIENT_SECRET: process.env.AZURE_APP_CLIENT_SECRET,
     AZURE_OPENID_CONFIG_JWKS_URI: process.env.AZURE_OPENID_CONFIG_JWKS_URI,
     AZURE_OPENID_CONFIG_TOKEN_ENDPOINT: process.env.AZURE_OPENID_CONFIG_TOKEN_ENDPOINT,
-    NAIS_CLUSTER_NAME: process.env.NAIS_CLUSTER_NAME,
-    SOKOS_MIKROFRONTEND_API_URL: process.env.SOKOS_MIKROFRONTEND_API_URL,
+
+    SOKOS_MIKROFRONTEND_API: process.env.SOKOS_MIKROFRONTEND_API_URL,
+    SOKOS_MIKROFRONTEND_API_SCOPE: process.env.SOKOS_MIKROFRONTEND_API_URL_SCOPE,
+    SOKOS_MIKROFRONTEND_PATH: process.env.SOKOS_MIKROFRONTEND_PATH,
   };
 };
 

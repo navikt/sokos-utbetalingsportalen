@@ -10,12 +10,8 @@ import { logger } from "./logger";
 
 export const server: Express = express();
 
-const SERVER_BASE_PATH = "/okonomiportalen";
+const BASE_PATH = "/okonomiportalen";
 const BUILD_PATH = path.resolve(__dirname, "../dist");
-
-const scopes = {
-  mikrofrontendApi: `api://${Configuration.NAIS_CLUSTER_NAME}.okonomi.sokos-mikrofrontend-api/.default`,
-};
 
 const startServer = () => {
   server.use(express.urlencoded({ extended: true }));
@@ -23,7 +19,7 @@ const startServer = () => {
   server.disable("x-powered-by");
 
   server.use(
-    SERVER_BASE_PATH,
+    BASE_PATH,
     expressStaticGzip(BUILD_PATH, {
       index: false,
       enableBrotli: true,
@@ -35,14 +31,17 @@ const startServer = () => {
     })
   );
 
-  server.get(
-    [`${SERVER_BASE_PATH}/internal/isAlive`, `${SERVER_BASE_PATH}/internal/isReady`],
-    (_req: Request, res: Response) => res.sendStatus(200)
+  server.get([`${BASE_PATH}/internal/isAlive`, `${BASE_PATH}/internal/isReady`], (_req: Request, res: Response) =>
+    res.sendStatus(200)
   );
 
   server.get("/brukerident", respondUnauthorizedIfNotLoggedIn, fetchUserId);
 
-  proxyWithOboToken("/mikrofrontend-api", Configuration.SOKOS_MIKROFRONTEND_API_URL, scopes.mikrofrontendApi);
+  proxyWithOboToken(
+    "/mikrofrontend-api",
+    Configuration.SOKOS_MIKROFRONTEND_API,
+    Configuration.SOKOS_MIKROFRONTEND_API_SCOPE
+  );
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
 

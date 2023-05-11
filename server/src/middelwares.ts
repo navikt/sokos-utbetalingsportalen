@@ -14,8 +14,8 @@ const nameClaim = "name";
 
 function hentNavIdent(token: string): BrukerInformasjon {
   const claims = decodeJwt(token);
-  const navIdent = String(claims[navIdentClaim]) || "";
-  const name = String(claims[nameClaim]) || "";
+  const navIdent = String(claims[navIdentClaim]);
+  const name = String(claims[nameClaim]);
   return { navIdent, name };
 }
 
