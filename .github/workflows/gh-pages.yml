@@ -30,7 +30,7 @@ jobs:
         run: npm run build:gh-pages
       - name: Deploy
         if: success()
-        uses: crazy-max/ghaction-github-pages@v2
+        uses: crazy-max/ghaction-github-pages@v3
         with:
           build_dir: dist
         env:
