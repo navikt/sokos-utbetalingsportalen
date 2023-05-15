@@ -21,7 +21,7 @@ async function getUserADGroups(accessToken: string): Promise<string[]> {
     const adGroupsResponse = await fetch(memberOfApiUrl, {
       headers: {
         Authorization: `Bearer ${oboToken.access_token}`,
-        ConsistencyLever: "eventual",
+        ConsistencyLevel: "eventual",
       },
     });
     console.log("adGroupsResponse :::::: ", adGroupsResponse);
