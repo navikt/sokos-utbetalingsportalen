@@ -17,14 +17,17 @@ type MemberOfResponse = {
 async function getUserADGroups(accessToken: string): Promise<string[]> {
   try {
     const oboToken = await getOnBehalfOfToken(accessToken, apiScope);
+    console.log("oboToken:::::: ", oboToken);
     const adGroupsResponse = await fetch(memberOfApiUrl, {
       headers: {
         Authorization: `Bearer ${oboToken.access_token}`,
         ConsistencyLever: "eventual",
       },
     });
+    console.log("adGroupsResponse :::::: ", adGroupsResponse);
 
     const adGroups: MemberOfResponse = await adGroupsResponse.json();
+    console.log("adGroups :::::: ", adGroups);
     console.log("HVA FÅR JEG HER 1111?? :: " + adGroups.value.map((groups) => groups.id));
     console.log("HVA FÅR JEG HER 2222?? :: ", adGroups);
     return adGroups.value.map((groups) => groups.id);
