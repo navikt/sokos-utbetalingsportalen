@@ -27,7 +27,13 @@ export const fetcher = async (url: URL) => {
 };
 
 export const authenticationLoader = async () => {
-  return fetch(authUrl)
-    .then((response: Response) => response.json() as UserInfo)
-    .catch(console.log);
+  try {
+    const response = await fetch(authUrl);
+    if (response.ok) {
+      const userInfo: UserInfo = await response.json();
+      return userInfo;
+    }
+  } catch (error) {
+    throw new Error("Failed to fetch authentication data");
+  }
 };

@@ -12,7 +12,7 @@ type BrukerInformasjon = {
 const navIdentClaim = "NAVident";
 const nameClaim = "name";
 
-function hentNavIdent(token: string): BrukerInformasjon {
+function getNavIdent(token: string): BrukerInformasjon {
   const claims = decodeJwt(token);
   const navIdent = String(claims[navIdentClaim]);
   const name = String(claims[nameClaim]);
@@ -50,7 +50,7 @@ export async function isUserLoggedIn(req: Request): Promise<boolean> {
 
 export async function fetchUserId(req: Request, res: ExpressResponse) {
   const brukerensAccessToken = retrieveToken(req.headers);
-  const brukerInformasjon = hentNavIdent(brukerensAccessToken);
+  const brukerInformasjon = getNavIdent(brukerensAccessToken);
 
   res.status(200).json({
     ...brukerInformasjon,

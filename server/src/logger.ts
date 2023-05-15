@@ -1,7 +1,7 @@
 import fs from "fs";
 import winston, { format } from "winston";
 import winstonSyslog from "winston-syslog";
-const { combine, timestamp, json } = format;
+const { timestamp, json } = format;
 
 const { NAIS_APP_NAME } = process.env;
 
