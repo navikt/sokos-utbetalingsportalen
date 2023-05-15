@@ -7,8 +7,6 @@ import { fetchUserId, redirectIfUnauthorized, respondUnauthorizedIfNotLoggedIn }
 import { proxyWithOboToken } from "./proxy";
 import Configuration from "./config";
 import { logger } from "./logger";
-import { getUserADGroups } from "./microsoftGraphApi";
-import { getUserAccessPolicy } from "./accessPolicy";
 
 export const server: Express = express();
 
@@ -38,8 +36,6 @@ const startServer = () => {
   );
 
   server.get("/brukerident", respondUnauthorizedIfNotLoggedIn, fetchUserId);
-
-  console.log("HVA FÅR JEG UT AV DENNE?? :: " + getUserAccessPolicy);
 
   proxyWithOboToken(
     "/mikrofrontend-api",

@@ -14,7 +14,7 @@ type MemberOfResponse = {
   value: Membership[];
 };
 
-export const getUserADGroups = async (accessToken: string): Promise<string[]> => {
+async function getUserADGroups(accessToken: string): Promise<string[]> {
   try {
     const oboToken = await getOnBehalfOfToken(accessToken, apiScope);
     const adGroupsResponse = await fetch(memberOfApiUrl, {
@@ -25,7 +25,8 @@ export const getUserADGroups = async (accessToken: string): Promise<string[]> =>
     });
 
     const adGroups: MemberOfResponse = await adGroupsResponse.json();
-    console.log("HVA FÅR JEG UT HER?? :: " + adGroups.value.map((groups) => groups.id));
+    console.log("HVA FÅR JEG HER 1111?? :: " + adGroups.value.map((groups) => groups.id));
+    console.log("HVA FÅR JEG HER 2222?? :: ", adGroups);
     return adGroups.value.map((groups) => groups.id);
   } catch (error) {
     const errorMessage = "Fetch user ad groups failed";
@@ -33,4 +34,15 @@ export const getUserADGroups = async (accessToken: string): Promise<string[]> =>
     logger.error(errorMessage + ": " + error);
     throw new Error(errorMessage);
   }
-};
+}
+
+export async function getUserAccesses(accessToken: string) {
+  try {
+    const userAdGroups = await getUserADGroups(accessToken);
+    console.log("userAdGroups :: ", userAdGroups);
+    return userAdGroups;
+  } catch (error) {
+    const errorMessage = "Klarte ikke å sjekke brukerens tilganger:";
+    logger.error(errorMessage + ": " + error);
+  }
+}

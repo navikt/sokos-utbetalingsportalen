@@ -29,6 +29,7 @@ export const fetcher = async (url: URL) => {
 export const authenticationLoader = async () => {
   try {
     const response = await fetch(authUrl);
+    console.log(response);
     if (response.ok) {
       const userInfo: UserInfo = await response.json();
       return userInfo;

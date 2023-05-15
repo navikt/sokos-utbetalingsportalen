@@ -3,6 +3,7 @@ import { NextFunction, Request, Response as ExpressResponse } from "express";
 import { tokenIsValid } from "./azureAd";
 import { decodeJwt } from "jose";
 import { getOnBehalfOfToken } from "./onBehalfOfToken";
+import { getUserAccesses } from "./microsoftGraphApi";
 
 type BrukerInformasjon = {
   navIdent: string;
@@ -51,6 +52,10 @@ export async function isUserLoggedIn(req: Request): Promise<boolean> {
 export async function fetchUserId(req: Request, res: ExpressResponse) {
   const brukerensAccessToken = retrieveToken(req.headers);
   const brukerInformasjon = getNavIdent(brukerensAccessToken);
+
+  const adGrupper = getUserAccesses(brukerensAccessToken);
+
+  console.log("adGrupper ::::::: ", adGrupper);
 
   res.status(200).json({
     ...brukerInformasjon,
