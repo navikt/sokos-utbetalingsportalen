@@ -24,9 +24,8 @@ spec:
       enabled: true
       allowAllUsers: false
       claims:
-        claims:
-          groups:
-            - id: "0155880b-f708-4f61-ade8-00931fe41b89" # 0000-GA-SOKOS-CHAPPAI
+        groups:
+          - id: "0155880b-f708-4f61-ade8-00931fe41b89" # 0000-GA-SOKOS-CHAPPAI
     sidecar:
       enabled: true
       autoLogin: true
