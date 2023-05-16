@@ -10,10 +10,13 @@ type BrukerInformasjon = {
   name: string;
 };
 
+const navIdentClaim = "NAVident";
+const nameClaim = "name";
+
 function getNavIdent(token: string): BrukerInformasjon {
   const claims = decodeJwt(token);
-  const navIdent = String(claims["NAVident"]);
-  const name = String(claims["name"]);
+  const navIdent = String(claims[navIdentClaim]);
+  const name = String(claims[nameClaim]);
   return { navIdent, name };
 }
 
@@ -48,6 +51,7 @@ export async function isUserLoggedIn(req: Request): Promise<boolean> {
 
 export async function fetchUserId(req: Request, res: ExpressResponse) {
   const brukerensAccessToken = retrieveToken(req.headers);
+  console.log("brukerensAccessToken :::: ", brukerensAccessToken);
   const brukerInformasjon = getNavIdent(brukerensAccessToken);
   const adGrupper = getUserAccesses(brukerensAccessToken);
 

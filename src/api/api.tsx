@@ -31,7 +31,6 @@ export const authenticationLoader = async () => {
     const response = await fetch(authUrl);
     if (response.ok) {
       const userDataInfo: UserDataInfo = await response.json();
-      console.log(userDataInfo);
       return userDataInfo;
     }
   } catch (error) {
