@@ -31,15 +31,6 @@ export default ({ command }: ConfigEnv) => ({
     },
     terser(),
   ],
-  build: {
-    rollupOptions: {
-      output: {
-        entryFileNames: "assets/[name].js",
-        chunkFileNames: "assets/[name].js",
-        assetFileNames: "assets/[name].[ext]",
-      },
-    },
-  },
   css: {
     modules: {
       generateScopedName: "[name]__[local]___[hash:base64:5]",

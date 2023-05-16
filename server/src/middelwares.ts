@@ -51,7 +51,6 @@ export async function isUserLoggedIn(req: Request): Promise<boolean> {
 
 export async function fetchUserId(req: Request, res: ExpressResponse) {
   const brukerensAccessToken = retrieveToken(req.headers);
-  console.log("brukerensAccessToken :::: ", brukerensAccessToken);
   const brukerInformasjon = getNavIdent(brukerensAccessToken);
   const adGrupper = getUserAccesses(brukerensAccessToken);
 
