@@ -42,9 +42,7 @@ async function getUserADGroups(accessToken: string): Promise<string[]> {
 export async function getUserAccesses(accessToken: string): Promise<string[]> {
   try {
     const adGroupsMemberOf = await getUserADGroups(accessToken);
-    const haveAccessesToGroups = adGroupsMemberOf.filter((adGroup) => allAdGroups.includes(adGroup));
-    console.log("haveAccessesToGroups :::: ", haveAccessesToGroups);
-    return haveAccessesToGroups;
+    return adGroupsMemberOf.filter((adGroup) => allAdGroups.includes(adGroup));
   } catch (error) {
     const errorMessage = "Failed to check user accesses: ";
     logger.error(errorMessage + error);

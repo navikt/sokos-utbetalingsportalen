@@ -32,7 +32,7 @@ export async function tokenIsValid(brukerensAccessToken: string) {
 
     return !!verification.payload;
   } catch (e) {
-    logger.error("Noe galt skjedde under validering av token:", e);
+    logger.error("Noe galt skjedde under validering av token: ", e);
     return false;
   }
 }
@@ -41,6 +41,6 @@ export async function initializeAzureAd() {
   await discoverAzureAdIssuer()
     .then(initializeRemoteJWKSet)
     .catch((e) => {
-      throw Error("Klarte ikke å initialisere AzureAD:" + e);
+      throw Error("Klarte ikke å initialisere AzureAD: " + e);
     });
 }
