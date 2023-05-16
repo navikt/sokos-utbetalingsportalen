@@ -1,4 +1,3 @@
-// @ts-ignore
 import importMapPlugin from "@eik/rollup-plugin";
 import react from "@vitejs/plugin-react";
 import { viteMockServe } from "vite-plugin-mock";
