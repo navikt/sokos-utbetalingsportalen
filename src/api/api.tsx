@@ -1,5 +1,5 @@
 import { authUrl } from "../urls";
-import { UserInfo } from "../models/UserInfo";
+import { UserDataInfo } from "../models/UserDataInfo";
 
 class FetchError extends Error {
   response: Response;
@@ -29,10 +29,10 @@ export const fetcher = async (url: URL) => {
 export const authenticationLoader = async () => {
   try {
     const response = await fetch(authUrl);
-    console.log(response);
     if (response.ok) {
-      const userInfo: UserInfo = await response.json();
-      return userInfo;
+      const userDataInfo: UserDataInfo = await response.json();
+      console.log(userDataInfo);
+      return userDataInfo;
     }
   } catch (error) {
     throw new Error("Failed to fetch authentication data");

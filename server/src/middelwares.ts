@@ -52,13 +52,12 @@ export async function isUserLoggedIn(req: Request): Promise<boolean> {
 export async function fetchUserId(req: Request, res: ExpressResponse) {
   const brukerensAccessToken = retrieveToken(req.headers);
   const brukerInformasjon = getNavIdent(brukerensAccessToken);
-
+  console.log("brukerInformasjon ::::: ", brukerInformasjon);
   const adGrupper = getUserAccesses(brukerensAccessToken);
-
-  console.log("adGrupper ::::::: ", adGrupper);
 
   res.status(200).json({
     ...brukerInformasjon,
+    ...adGrupper,
   });
 }
 

@@ -45,6 +45,18 @@ spec:
       cpu: "50m"
       memory: 256Mi
   env:
+
+  # Tilganger
+  - name: AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ
+    value: 1b717a23-d376-471c-9fc6-356299fadc2b
+  - name: AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_WRITE
+    value: 3269dc21-a724-4b59-bc37-6120d6af2adc
+  - name: AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ
+    value: b01fb216-fcb3-4ede-b7da-71fffe859763
+  - name: AD_GRUPPE_SOKOS_MF_UTBETALINGER_WRITE
+    value: a366c33c-7456-4183-a0d5-80eb8195a7da
+
+  # API'er
   - name: SOKOS_MIKROFRONTEND_API
     value: http://sokos-mikrofrontend-api
   - name: SOKOS_MIKROFRONTEND_API_SCOPE
