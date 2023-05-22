@@ -10,7 +10,6 @@ const SideBar = () => {
   return (
     <>
       <div
-        id="offcanvassidebar"
         className={`bg-neutral-800 h-screen overflow-hidden top-12 left-0 flex-col ${
           showSideBar ? "min-w-fit w-100" : "w-0"
         }`}
