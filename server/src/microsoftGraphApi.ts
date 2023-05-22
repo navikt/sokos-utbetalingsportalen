@@ -15,10 +15,15 @@ type MemberOfResponse = {
   value: Membership[];
 };
 
-const prefix = "AD_GRUPPE_SOKOS_MF_";
-const allAdGroups: string[] = Object.entries(Configuration)
-  .filter(([key]) => key.startsWith(prefix))
-  .map(([_, value]) => value);
+const PREFIX = "AD_GRUPPE_SOKOS_MF_";
+
+function filterADGroups(adGroupsMemberOf: string[]): string[] {
+  const allAdGroups: string[] = Object.entries(Configuration)
+    .filter(([key]) => key.startsWith(PREFIX))
+    .map(([, value]) => value);
+
+  return adGroupsMemberOf.filter((adGroup) => allAdGroups.includes(adGroup));
+}
 
 async function getUserADGroups(accessToken: string): Promise<string[]> {
   try {
@@ -42,7 +47,7 @@ async function getUserADGroups(accessToken: string): Promise<string[]> {
 export async function getUserAccesses(accessToken: string): Promise<string[]> {
   try {
     const adGroupsMemberOf = await getUserADGroups(accessToken);
-    return adGroupsMemberOf.filter((adGroup) => allAdGroups.includes(adGroup));
+    return filterADGroups(adGroupsMemberOf);
   } catch (error) {
     const errorMessage = "Failed to check user accesses: ";
     logger.error(errorMessage + error);
