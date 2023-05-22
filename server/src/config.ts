@@ -16,33 +16,37 @@ interface ENV {
   AZURE_OPENID_CONFIG_JWKS_URI: string | undefined;
   AZURE_OPENID_CONFIG_TOKEN_ENDPOINT: string | undefined;
 
-  // REST urls env
+  // sokos-mikrofrontend-template
   SOKOS_MIKROFRONTEND_API: string | undefined;
   SOKOS_MIKROFRONTEND_API_SCOPE: string | undefined;
-  SOKOS_MIKROFRONTEND_PATH: string | undefined;
-
-  // Tilganger
+  SOKOS_MIKROFRONTEND_PROXY: string | undefined;
   AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ: string | undefined;
   AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_WRITE: string | undefined;
+
+  // utbetalinger-frontend-poc
   AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ: string | undefined;
   AD_GRUPPE_SOKOS_MF_UTBETALINGER_WRITE: string | undefined;
 }
 
 interface Config {
+  // Server env
   PORT: string;
 
+  // AzureAD env
   AZURE_APP_WELL_KNOWN_URL: string;
   AZURE_APP_CLIENT_ID: string;
   AZURE_APP_CLIENT_SECRET: string;
   AZURE_OPENID_CONFIG_JWKS_URI: string;
   AZURE_OPENID_CONFIG_TOKEN_ENDPOINT: string;
 
+  // sokos-mikrofrontend-template
   SOKOS_MIKROFRONTEND_API: string;
   SOKOS_MIKROFRONTEND_API_SCOPE: string;
-  SOKOS_MIKROFRONTEND_PATH: string;
-
+  SOKOS_MIKROFRONTEND_PROXY: string;
   AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ: string;
   AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_WRITE: string;
+
+  // utbetalinger-frontend-poc
   AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ: string;
   AD_GRUPPE_SOKOS_MF_UTBETALINGER_WRITE: string;
 }
@@ -51,20 +55,24 @@ interface Config {
 
 const getConfig = (): ENV => {
   return {
+    // Server env
     PORT: process.env.PORT || "8080",
 
+    // AzureAD env
     AZURE_APP_WELL_KNOWN_URL: process.env.AZURE_APP_WELL_KNOWN_URL,
     AZURE_APP_CLIENT_ID: process.env.AZURE_APP_CLIENT_ID,
     AZURE_APP_CLIENT_SECRET: process.env.AZURE_APP_CLIENT_SECRET,
     AZURE_OPENID_CONFIG_JWKS_URI: process.env.AZURE_OPENID_CONFIG_JWKS_URI,
     AZURE_OPENID_CONFIG_TOKEN_ENDPOINT: process.env.AZURE_OPENID_CONFIG_TOKEN_ENDPOINT,
 
+    // sokos-mikrofrontend-template
     SOKOS_MIKROFRONTEND_API: process.env.SOKOS_MIKROFRONTEND_API,
     SOKOS_MIKROFRONTEND_API_SCOPE: process.env.SOKOS_MIKROFRONTEND_API_SCOPE,
-    SOKOS_MIKROFRONTEND_PATH: process.env.SOKOS_MIKROFRONTEND_PATH,
-
+    SOKOS_MIKROFRONTEND_PROXY: process.env.SOKOS_MIKROFRONTEND_PROXY,
     AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ: process.env.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ,
     AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_WRITE: process.env.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_WRITE,
+
+    // utbetalinger-frontend-poc
     AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ: process.env.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ,
     AD_GRUPPE_SOKOS_MF_UTBETALINGER_WRITE: process.env.AD_GRUPPE_SOKOS_MF_UTBETALINGER_WRITE,
   };

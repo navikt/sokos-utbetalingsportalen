@@ -7,12 +7,6 @@ const AUTH_URL: Record<string, string> = {
   production: Path.BRUKER_IDENT,
 };
 
-const BASE_URL: Record<string, string> = {
-  local: "http://localhost:5173",
-  development: "https://okonomiportalen.intern.dev.nav.no",
-  production: "https://okonomiportalen.intern.nav.no",
-};
-
 const SOKOS_MIKROFRONTEND_TEMPLATE_URL: Record<string, string> = {
   local: "http://localhost:5173/sokos-mikrofrontend-template/bundle.js",
   development: "https://okonomiportalen.intern.dev.nav.no/sokos-mikrofrontend-template/bundle.js",
@@ -26,6 +20,5 @@ const SØK_POSTERINGER_URL: Record<string, string> = {
 };
 
 export const authUrl = AUTH_URL[getEnvironment()];
-export const baseUrl = BASE_URL[getEnvironment()];
 export const sokosMikrofrontendTemplateUrl = SOKOS_MIKROFRONTEND_TEMPLATE_URL[getEnvironment()];
 export const utbetalingFrontendPocUrl = SØK_POSTERINGER_URL[getEnvironment()];

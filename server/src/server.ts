@@ -38,7 +38,7 @@ const startServer = () => {
   server.get("/brukerident", respondUnauthorizedIfNotLoggedIn, fetchUserId);
 
   proxyWithOboToken(
-    "/mikrofrontend-api",
+    Configuration.SOKOS_MIKROFRONTEND_PROXY,
     Configuration.SOKOS_MIKROFRONTEND_API,
     Configuration.SOKOS_MIKROFRONTEND_API_SCOPE
   );

@@ -56,7 +56,7 @@ spec:
     value: http://sokos-mikrofrontend-api
   - name: SOKOS_MIKROFRONTEND_API_SCOPE
     value: api://dev-gcp.okonomi.sokos-mikrofrontend-api/.default
-  - name: SOKOS_MIKROFRONTEND_PATH
+  - name: SOKOS_MIKROFRONTEND_PROXY
     value: "/mikrofrontend-api"
 
   # Utbetalinger

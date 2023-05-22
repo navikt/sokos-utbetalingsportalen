@@ -1,6 +1,11 @@
 import { authUrl } from "../urls";
 import { UserDataInfo } from "../models/UserDataInfo";
 
+type Props = {
+  path: string;
+  options?: object;
+};
+
 class FetchError extends Error {
   response: Response;
 
@@ -10,20 +15,21 @@ class FetchError extends Error {
   }
 }
 
-const checkResponse = (response: Response) => {
+export const includeCredentials = {
+  credentials: "include",
+};
+
+export const fetcher = async ({ path, options }: Props) => {
+  const response = await fetch(path, {
+    method: "GET",
+    ...options,
+  });
+
   if (!response.ok) {
     throw new FetchError(response, "Fetch request failed");
   }
-};
 
-export const fetcher = async (url: URL) => {
-  const response = await fetch(url, {
-    method: "GET",
-    credentials: "include",
-  });
-  checkResponse(response);
-
-  return response.json();
+  return await response.json();
 };
 
 export const authenticationLoader = async () => {
