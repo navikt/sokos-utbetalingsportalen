@@ -38,7 +38,7 @@ const SideBar = () => {
           width="100"
           height="100"
         >
-          <MenuHamburgerIcon />
+          <MenuHamburgerIcon fontSize="1.5rem" />
         </svg>
       )}
     </>
