@@ -3,7 +3,7 @@ import path from "path";
 import expressStaticGzip from "express-static-gzip";
 import RateLimit from "express-rate-limit";
 import { initializeAzureAd } from "./azureAd";
-import { fetchUserId, redirectIfUnauthorized, respondUnauthorizedIfNotLoggedIn } from "./middelwares";
+import { fetchUserData, redirectIfUnauthorized, respondUnauthorizedIfNotLoggedIn } from "./middelwares";
 import { proxyWithOboToken } from "./proxy";
 import Configuration from "./config";
 import { logger } from "./logger";
@@ -35,7 +35,7 @@ const startServer = () => {
     res.sendStatus(200)
   );
 
-  server.get("/brukerident", respondUnauthorizedIfNotLoggedIn, fetchUserId);
+  server.get("/bruker", respondUnauthorizedIfNotLoggedIn, fetchUserData);
 
   proxyWithOboToken(
     Configuration.SOKOS_MIKROFRONTEND_PROXY,
@@ -54,4 +54,4 @@ const startServer = () => {
 
 initializeAzureAd()
   .then(() => startServer())
-  .catch((e) => logger.error("Kunne ikke starte server", e.message));
+  .catch((e) => logger.error("Failed to start server", e.message));

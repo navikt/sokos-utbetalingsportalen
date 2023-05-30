@@ -2,7 +2,7 @@ import { MenuHamburgerIcon } from "@navikt/aksel-icons";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Path } from "../../models/path";
-import classes from "./SideBar.module.css";
+import styles from "./SideBar.module.css";
 
 const SideBar = () => {
   const [showSideBar, setShowSideBar] = useState(true);
@@ -20,10 +20,10 @@ const SideBar = () => {
           </button>
         </div>
         <ul className="px-10 top-1.5 flex flex-col text-white">
-          <Link className={classes.link} to={Path.SOKOS_MIKROFRONTEND_TEMPLATE}>
+          <Link className={styles.link} to={Path.SOKOS_MIKROFRONTEND_TEMPLATE}>
             Mikrofrontend
           </Link>
-          <Link className={classes.link} to={Path.UTBETALINGER}>
+          <Link className={styles.link} to={Path.UTBETALINGER}>
             Søk Posteringer
           </Link>
         </ul>

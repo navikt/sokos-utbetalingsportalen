@@ -4,5 +4,5 @@ export enum Path {
   UTBETALINGER = "/utbetalinger",
 
   // Server path
-  BRUKER_IDENT = "/brukerident",
+  BRUKER_IDENT = "/bruker",
 }

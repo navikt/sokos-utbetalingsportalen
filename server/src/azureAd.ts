@@ -12,7 +12,7 @@ async function discoverAzureAdIssuer() {
   if (discoveryUrl) {
     azureAdIssuer = await Issuer.discover(discoveryUrl);
   } else {
-    throw Error(`Miljøvariabelen "AZURE_APP_WELL_KNOWN_URL" må være definert`);
+    throw Error(`Environment "AZURE_APP_WELL_KNOWN_URL" must be defined`);
   }
 }
 
@@ -32,7 +32,7 @@ export async function tokenIsValid(brukerensAccessToken: string) {
 
     return !!verification.payload;
   } catch (e) {
-    logger.error("Noe galt skjedde under validering av token: ", e);
+    logger.error("Something went wrong while validating the token: ", e);
     return false;
   }
 }
@@ -41,6 +41,6 @@ export async function initializeAzureAd() {
   await discoverAzureAdIssuer()
     .then(initializeRemoteJWKSet)
     .catch((e) => {
-      throw Error("Klarte ikke å initialisere AzureAD: " + e);
+      throw Error("Failed to initialize AzureAD: " + e);
     });
 }

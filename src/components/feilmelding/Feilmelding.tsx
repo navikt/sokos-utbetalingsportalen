@@ -1,5 +1,5 @@
 import { Alert } from "@navikt/ds-react";
-import FeilmeldingCSS from "./Feilmelding.module.css";
+import styles from "./Feilmelding.module.css";
 
 type FeilmeldingProps = {
   feilmelding?: string;
@@ -8,7 +8,7 @@ type FeilmeldingProps = {
 const FeilMelding = ({ feilmelding }: FeilmeldingProps) => {
   return (
     <>
-      <Alert variant="error" className={FeilmeldingCSS.feilmelding}>
+      <Alert variant="error" className={styles.feilmelding}>
         {feilmelding ?? "Dette er en feilmelding"}
       </Alert>
     </>

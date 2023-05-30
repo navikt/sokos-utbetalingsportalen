@@ -76,7 +76,7 @@ async function fetchNewOnBehalfOfToken(accessToken: string, scope: string): Prom
       return body as OboToken;
     } else {
       logger.error(
-        `Klarte ikke å hente on behalf of token for scope "${scope}", fikk status ${response.status} (${response.statusText}) årsak: `,
+        `Failed to retrieve on behalf of token for scope "${scope}", got status ${response.status} (${response.statusText}) reason:`,
         body
       );
 

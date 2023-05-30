@@ -87,7 +87,7 @@ const getConfig = (): ENV => {
 const getSanitzedConfig = (config: ENV): Config => {
   for (const [key, value] of Object.entries(config)) {
     if (value === undefined) {
-      throw new Error(`Kunne ikke starte server, mangler ${key} env`);
+      throw new Error(`Server startup failed, missing ${key} env`);
     }
   }
   return config as Config;

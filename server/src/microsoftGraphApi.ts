@@ -15,11 +15,11 @@ type MemberOfResponse = {
   value: Membership[];
 };
 
-const PREFIX = "AD_GRUPPE_SOKOS_MF_";
+const ADGROUP_PREFIX = "AD_GRUPPE_SOKOS_MF_";
 
 function filterADGroups(adGroupsMemberOf: string[]): string[] {
   const allAdGroups: string[] = Object.entries(Configuration)
-    .filter(([key]) => key.startsWith(PREFIX))
+    .filter(([key]) => key.startsWith(ADGROUP_PREFIX))
     .map(([, value]) => value);
 
   return adGroupsMemberOf.filter((adGroup) => allAdGroups.includes(adGroup));

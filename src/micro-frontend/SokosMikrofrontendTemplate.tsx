@@ -4,7 +4,7 @@ import FeilMelding from "../components/feilmelding/Feilmelding.js";
 import ContentLoader from "../components/loader/ContentLoader.js";
 import { sokosMikrofrontendTemplateUrl } from "../urls.js";
 
-const SokosMikrofrontendTemplateBundle: LazyExoticComponent<() => JSX.Element> = React.lazy(
+const SokosMikrofrontendTemplateBundle: LazyExoticComponent<() => React.ReactElement> = React.lazy(
   () => import(/* @vite-ignore */ sokosMikrofrontendTemplateUrl)
 );
 
