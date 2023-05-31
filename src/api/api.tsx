@@ -50,7 +50,7 @@ export const authenticationLoader = async () => {
 const getAzureAdGroups = async () => await authenticationLoader().then((data) => data.adGroups);
 
 const hasAccessToMicrofrontend = async (azureGroup: string) =>
-  (await getAzureAdGroups()).some((groupId) => groupId === groupId[azureGroup]);
+  (await getAzureAdGroups()).some((azureAdGroupId) => azureAdGroupId === groupId[azureGroup]);
 
 export const checkAccessToMicrofrontend = (groupName: string) => async () => {
   if (!(await hasAccessToMicrofrontend(groupName))) return redirect("/forbidden");
