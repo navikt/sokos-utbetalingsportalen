@@ -1,5 +1,9 @@
 import { authUrl } from "../urls";
 import { UserData } from "../models/UserData";
+import { redirect } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getEnvironment } from "./environment";
+import { groupId } from "../groupids";
 
 type Props = {
   path: string;
@@ -42,4 +46,22 @@ export const authenticationLoader = async () => {
   } catch (error) {
     throw new Error("Failed to fetch authentication data");
   }
+};
+
+const getGroups = async () => await authenticationLoader().then((data) => data.adGroups);
+
+export const hasAccessToLoader = (groupName: string) => async () => {
+  if (!(await hasAccessTo(groupName))) return redirect("/forbidden");
+  else return true;
+};
+
+export const hasAccessTo = async (name: string) => (await getGroups()).some((groupId) => groupId === groupId[name]);
+
+export const useAuth = () => {
+  const [groups, setGroups] = useState<Array<string>>([]);
+  useEffect(() => {
+    const load = async () => await getGroups().then(setGroups);
+    load();
+  }, []);
+  return (group: string) => groups.some((id) => id === groupId[group]);
 };

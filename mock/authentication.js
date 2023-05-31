@@ -2,7 +2,7 @@ export default [
   {
     url: "/mock/auth",
     method: "get",
-    status: 401,
+    status: 200,
     response: () => {
       return {
         name: "Ola Nordmann",
