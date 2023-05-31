@@ -4,7 +4,7 @@ import Layout from "./components/layout/Layout";
 import SokosMikrofrontendTemplate from "./micro-frontend/SokosMikrofrontendTemplate";
 import UtbetalingFrontendPoc from "./micro-frontend/UtbetalingFrontendPoc";
 import { Path } from "./models/path";
-import Feilside, { FinnesIkke, ManglerInnlogging } from "./pages/Feilside";
+import Feilside, { NotFound, NoAccess } from "./pages/Feilside";
 import Information from "./pages/Information";
 import { GroupName } from "./groupids";
 
@@ -26,9 +26,9 @@ const App = () => {
                 element={<UtbetalingFrontendPoc />}
                 loader={hasAccessToLoader(GroupName.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ)}
               />
-              <Route path="/forbidden" element={<ManglerInnlogging />} />
+              <Route path="/forbidden" element={<NoAccess />} />
             </Route>
-            <Route path="*" element={<FinnesIkke />} />
+            <Route path="*" element={<NotFound />} />
           </>
         )
       )}

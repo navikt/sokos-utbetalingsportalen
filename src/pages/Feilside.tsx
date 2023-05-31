@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 export type FeilsideProps = {
   tittel?: string;
   melding?: string;
-  knapp?: any;
 };
 const Feilside = (props: FeilsideProps) => {
   const { tittel = "Feil", melding = "En feil har skjedd!" } = props;
@@ -24,10 +23,8 @@ const Feilside = (props: FeilsideProps) => {
 };
 export default Feilside;
 
-export const ManglerInnlogging = () => (
-  <Feilside tittel={"Mangler tilgang"} melding={"Du har ikke tilgang til denne siden!"} />
-);
+export const NoAccess = () => <Feilside tittel={"Mangler tilgang"} melding={"Du har ikke tilgang til denne siden!"} />;
 
-export const FinnesIkke = () => (
-  <Feilside tittel={"Siden finnes ikke"} melding={"Du har forsøkt å gå inn på en side som ikke eksisterer!"} knapp />
+export const NotFound = () => (
+  <Feilside tittel={"Siden finnes ikke"} melding={"Du har forsøkt å gå inn på en side som ikke eksisterer!"} />
 );
