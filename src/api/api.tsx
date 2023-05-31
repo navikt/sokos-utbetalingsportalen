@@ -61,7 +61,7 @@ export const useAuth = () => {
   const [groups, setGroups] = useState<Array<string>>([]);
   useEffect(() => {
     const load = async () => await getAzureAdGroups().then(setGroups);
-    load();
+    load().catch();
   }, []);
   return (group: string) => groups.some((id) => id === groupId[group]);
 };
