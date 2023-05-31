@@ -2,8 +2,7 @@ import { authUrl } from "../urls";
 import { UserData } from "../models/UserData";
 import { redirect } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getEnvironment } from "./environment";
-import { groupId } from "../groupids";
+import { groupId } from "../azureAdGroups";
 
 type Props = {
   path: string;
@@ -48,19 +47,20 @@ export const authenticationLoader = async () => {
   }
 };
 
-const getGroups = async () => await authenticationLoader().then((data) => data.adGroups);
+const getAzureAdGroups = async () => await authenticationLoader().then((data) => data.adGroups);
 
-export const hasAccessToLoader = (groupName: string) => async () => {
-  if (!(await hasAccessTo(groupName))) return redirect("/forbidden");
+const hasAccessToMicrofrontend = async (azureGroup: string) =>
+  (await getAzureAdGroups()).some((groupId) => groupId === groupId[azureGroup]);
+
+export const checkAccessToMicrofrontend = (groupName: string) => async () => {
+  if (!(await hasAccessToMicrofrontend(groupName))) return redirect("/forbidden");
   else return true;
 };
-
-export const hasAccessTo = async (name: string) => (await getGroups()).some((groupId) => groupId === groupId[name]);
 
 export const useAuth = () => {
   const [groups, setGroups] = useState<Array<string>>([]);
   useEffect(() => {
-    const load = async () => await getGroups().then(setGroups);
+    const load = async () => await getAzureAdGroups().then(setGroups);
     load();
   }, []);
   return (group: string) => groups.some((id) => id === groupId[group]);

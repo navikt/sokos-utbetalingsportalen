@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Path } from "../../models/path";
 import styles from "./SideBar.module.css";
 import { useAuth } from "../../api/api";
-import { GroupName } from "../../groupids";
+import { GroupName } from "../../azureAdGroups";
 
 const SideBar = () => {
   const hasAccess = useAuth();
