@@ -52,7 +52,7 @@ export async function isUserLoggedIn(req: Request): Promise<boolean> {
 export async function fetchUserData(req: Request, res: ExpressResponse) {
   const userAccessToken = retrieveToken(req.headers);
   const userInformation = getUserInformation(userAccessToken);
-  const adGroups = getUserAccesses(userAccessToken);
+  const adGroups = await getUserAccesses(userAccessToken);
 
   console.log("adGroups", adGroups);
 
