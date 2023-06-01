@@ -57,8 +57,9 @@ export async function fetchUserData(req: Request, res: ExpressResponse) {
   console.log("adGroups", adGroups);
 
   res.status(200).json({
-    ...userInformation,
-    ...adGroups,
+    name: userInformation.name,
+    navIdent: userInformation.navIdent,
+    adGroups: adGroups,
   });
 }
 
