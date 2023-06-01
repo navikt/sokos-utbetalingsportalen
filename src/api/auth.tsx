@@ -22,7 +22,7 @@ const getAzureAdGroups = async () => {
     throw Error("Cannot fetch AD Groups");
   }
   console.log("data.adGroups ::::: ", data.adGroups);
-  return data.adGroups as Array<string>;
+  return data.adGroups || ([] as Array<string>);
 };
 
 const hasAccessToMicrofrontend = async (azureGroup: string) =>
