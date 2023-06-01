@@ -1,9 +1,3 @@
-import { authUrl } from "../urls";
-import { UserData } from "../models/UserData";
-import { redirect } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { groupId } from "../azureAdGroups";
-
 type Props = {
   path: string;
   options?: object;
@@ -29,39 +23,8 @@ export const fetcher = async ({ path, options }: Props) => {
   });
 
   if (!response.ok) {
-    throw new FetchError(response, "Fetch request failed");
+    throw new FetchError(response, "Error in response");
   }
 
   return await response.json();
-};
-
-export const authenticationLoader = async () => {
-  try {
-    const response = await fetch(authUrl);
-    if (response.ok) {
-      const userData: UserData = await response.json();
-      return userData;
-    }
-  } catch (error) {
-    throw new Error("Failed to fetch authentication data");
-  }
-};
-
-const getAzureAdGroups = async () => await authenticationLoader().then((data) => data.adGroups);
-
-const hasAccessToMicrofrontend = async (azureGroup: string) =>
-  (await getAzureAdGroups()).some((azureAdGroupId) => azureAdGroupId === groupId[azureGroup]);
-
-export const checkAccessToMicrofrontend = (groupName: string) => async () => {
-  if (!(await hasAccessToMicrofrontend(groupName))) return redirect("/forbidden");
-  else return true;
-};
-
-export const useAuth = () => {
-  const [groups, setGroups] = useState<Array<string>>([]);
-  useEffect(() => {
-    const load = async () => await getAzureAdGroups().then(setGroups);
-    load().catch();
-  }, []);
-  return (group: string) => groups.some((id) => id === groupId[group]);
 };

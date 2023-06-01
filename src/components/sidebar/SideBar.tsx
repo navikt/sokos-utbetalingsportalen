@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Path } from "../../models/path";
 import styles from "./SideBar.module.css";
-import { useAuth } from "../../api/api";
-import { GroupName } from "../../azureAdGroups";
+import { AzureAdGroupName } from "../../azureAdGroups";
+import { useAuth } from "../../api/auth";
 
 const SideBar = () => {
   const hasAccess = useAuth();
@@ -23,12 +23,12 @@ const SideBar = () => {
           </button>
         </div>
         <ul className="px-10 top-1.5 flex flex-col text-white">
-          {hasAccess(GroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ) && (
+          {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ) && (
             <Link className={styles.link} to={Path.SOKOS_MIKROFRONTEND_TEMPLATE}>
               Mikrofrontend
             </Link>
           )}
-          {hasAccess(GroupName.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ) && (
+          {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ) && (
             <Link className={styles.link} to={Path.UTBETALINGER}>
               Søk Posteringer
             </Link>
