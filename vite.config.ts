@@ -30,6 +30,9 @@ export default ({ command }: ConfigEnv) => ({
     },
     terser(),
   ],
+  build: {
+    sourcemap: true,
+  },
   css: {
     modules: {
       generateScopedName: "[name]__[local]___[hash:base64:5]",
