@@ -3,8 +3,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Path } from "../../models/path";
 import styles from "./SideBar.module.css";
+import { AzureAdGroupName } from "../../azureAdGroups";
+import { useAuth } from "../../api/auth";
 
 const SideBar = () => {
+  const hasAccess = useAuth();
   const [showSideBar, setShowSideBar] = useState(true);
 
   return (
@@ -20,12 +23,16 @@ const SideBar = () => {
           </button>
         </div>
         <ul className="px-10 top-1.5 flex flex-col text-white">
-          <Link className={styles.link} to={Path.SOKOS_MIKROFRONTEND_TEMPLATE}>
-            Mikrofrontend
-          </Link>
-          <Link className={styles.link} to={Path.UTBETALINGER}>
-            Søk Posteringer
-          </Link>
+          {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ) && (
+            <Link className={styles.link} to={Path.SOKOS_MIKROFRONTEND_TEMPLATE}>
+              Mikrofrontend
+            </Link>
+          )}
+          {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ) && (
+            <Link className={styles.link} to={Path.UTBETALINGER}>
+              Søk Posteringer
+            </Link>
+          )}
         </ul>
       </div>
       {!showSideBar && (

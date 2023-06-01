@@ -1,6 +1,3 @@
-import { authUrl } from "../urls";
-import { UserData } from "../models/UserData";
-
 type Props = {
   path: string;
   options?: object;
@@ -26,20 +23,8 @@ export const fetcher = async ({ path, options }: Props) => {
   });
 
   if (!response.ok) {
-    throw new FetchError(response, "Fetch request failed");
+    throw new FetchError(response, "Error in response");
   }
 
   return await response.json();
-};
-
-export const authenticationLoader = async () => {
-  try {
-    const response = await fetch(authUrl);
-    if (response.ok) {
-      const userData: UserData = await response.json();
-      return userData;
-    }
-  } catch (error) {
-    throw new Error("Failed to fetch authentication data");
-  }
 };
