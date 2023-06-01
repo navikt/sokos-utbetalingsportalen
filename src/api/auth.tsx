@@ -6,22 +6,16 @@ import { fetcher } from "./api";
 
 export const authenticationLoader = async () => {
   try {
-    const response = await fetcher({ path: authUrl });
-    console.log("response :::::: ", response);
-    return response;
+    return await fetcher({ path: authUrl });
   } catch (error) {
-    console.log("feil inne i authenticationLoader");
     throw new Error("Fetch request failed");
   }
 };
 const getAzureAdGroups = async () => {
   const data = await authenticationLoader();
-  console.log("data ::::: ", JSON.stringify(data));
   if (!data) {
-    console.log("Feil inne i getAzureAdGroups");
     throw Error("Cannot fetch AD Groups");
   }
-  console.log("data.adGroups ::::: ", data.adGroups);
   return data.adGroups as Array<string>;
 };
 

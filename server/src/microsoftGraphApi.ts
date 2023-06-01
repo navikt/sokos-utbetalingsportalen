@@ -22,8 +22,6 @@ function filterADGroups(adGroupsMemberOf: string[]): string[] {
     .filter(([key]) => key.startsWith(ADGROUP_PREFIX))
     .map(([, value]) => value);
 
-  console.log("allAdGroups", allAdGroups);
-
   return adGroupsMemberOf.filter((adGroup) => allAdGroups.includes(adGroup));
 }
 
@@ -38,7 +36,6 @@ async function getUserADGroups(accessToken: string): Promise<string[]> {
     });
 
     const adGroups: MemberOfResponse = await adGroupsResponse.json();
-    console.log("adGroups getUserADGroups metode", adGroups);
     return adGroups.value.map((groups) => groups.id);
   } catch (error) {
     const errorMessage = "Fetch user ad groups failed: ";
@@ -50,7 +47,6 @@ async function getUserADGroups(accessToken: string): Promise<string[]> {
 export async function getUserAccesses(accessToken: string): Promise<string[]> {
   try {
     const adGroupsMemberOf = await getUserADGroups(accessToken);
-    console.log("adGroupsMemberOf", adGroupsMemberOf);
     return filterADGroups(adGroupsMemberOf);
   } catch (error) {
     const errorMessage = "Failed to check user accesses: ";

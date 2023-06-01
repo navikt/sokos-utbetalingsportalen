@@ -54,8 +54,6 @@ export async function fetchUserData(req: Request, res: ExpressResponse) {
   const userInformation = getUserInformation(userAccessToken);
   const adGroups = await getUserAccesses(userAccessToken);
 
-  console.log("adGroups", adGroups);
-
   res.status(200).json({
     name: userInformation.name,
     navIdent: userInformation.navIdent,
