@@ -17,7 +17,7 @@
     "@navikt/aksel-icons": "^3.4.2",
     "@navikt/ds-css": "^3.4.2",
     "@navikt/ds-css-internal": "^3.4.2",
-    "@navikt/ds-react": "^3.4.2",
+    "@navikt/ds-react": "^4.1.2",
     "@navikt/ds-react-internal": "^3.4.2",
     "@navikt/ds-tokens": "^4.0.0",
     "react-error-boundary": "^4.0.4",
