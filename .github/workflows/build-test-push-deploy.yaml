@@ -12,7 +12,8 @@ on:
       - '.github/workflows/build-pr.yaml'
       - '.github/workflows/security.yaml'
       - '.github/workflows/alerts.yaml'
-      - '.nais/alerts.yaml'
+      - '.nais/alerts-dev.yaml'
+      - '.nais/alerts-prod.yaml'
 
 jobs:
   bygg-test-push-image:

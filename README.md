@@ -57,7 +57,7 @@ https://sentry.gc.nav.no/organizations/nav/projects/sokos-op-fasade/?project=160
 
 ### Alarmer
 
-Vi bruker [nais-alerts](https://doc.nais.io/observability/alerts) for å sette opp alarmer. Disse finner man konfigurert i [.nais/alerts.yaml](.nais/alerts.yaml) filen.
+Vi bruker [nais-alerts](https://doc.nais.io/observability/alerts) for å sette opp alarmer. Disse finner man konfigurert i [.nais/alerts.yaml](.nais/alerts-dev.yaml) filen.
 
 ### Grafana
 

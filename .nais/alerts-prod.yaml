@@ -38,42 +38,22 @@ spec:
         - apiURL:
             key: apiUrl
             name: slack-webhook
-          channel: '#team-mob-alerts-dev'
+          channel: '#team-mob-alerts-prod'
           iconEmoji: ':alert:'
-          username: Alert ({{ cluster }})
+          username: 'Alert prod-gcp'
           sendResolved: true
           title: |-
             [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }}
           text: >-
-            {{ range .Alerts -}}
-            *Alert:* {{ .Annotations.title }}{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
-            *Description:* {{ .Annotations.description }}
-            *Details:*
-            {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
-            {{ end }}
-            {{ end }}
-          color: |-
-            {{ if eq .Status "firing" -}}
-              {{ if eq .CommonLabels.severity "warning" -}}
-                warning
-              {{- else if eq .CommonLabels.severity "fatal" -}}
-                #611f69
-              {{- else if eq .CommonLabels.severity "critical" -}}
-                #611f69
-              {{- else if eq .CommonLabels.severity "danger" -}}
-                danger
-              {{- else if eq .CommonLabels.severity "error" -}}
-                danger
-              {{- else if eq .CommonLabels.severity "notice" -}}
-                good
-              {{- else if eq .CommonLabels.severity "info" -}}
-                #36c5f0
-              {{- else -}}
-                .CommonLabels.severity
-              {{- end -}}
-            {{ else -}}
-            good
+            {{ range .Alerts }}
+            {{ if or .Annotations.summary .Annotations.message }}
+            {{ or .Annotations.summary .Annotations.message }}
+            {{ println " " }}
             {{- end }}
+            {{- if .Annotations.action }}
+            • *action*: {{ .Annotations.action }} {{ println " " }}
+            {{- end }}
+            {{ end }}
   route:
     groupBy:
       - alertname
