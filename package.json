@@ -15,7 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "@navikt/aksel-icons": "^3.4.2",
-    "@navikt/ds-css": "^3.4.2",
+    "@navikt/ds-css": "^4.1.3",
     "@navikt/ds-css-internal": "^3.4.2",
     "@navikt/ds-react": "^3.4.2",
     "@navikt/ds-react-internal": "^3.4.2",
