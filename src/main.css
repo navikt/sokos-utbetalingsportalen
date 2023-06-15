@@ -1,6 +1,5 @@
 @import "tailwindcss/base";
-@import "../node_modules/@navikt/ds-css";
-@import "../node_modules/@navikt/ds-css-internal";
+@import url("https://cdn.nav.no/aksel/@navikt/ds-css/4.1.4/index.min.css");
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 

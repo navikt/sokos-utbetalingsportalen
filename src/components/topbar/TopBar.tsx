@@ -1,4 +1,4 @@
-import { Dropdown, Header } from "@navikt/ds-react-internal";
+import { Dropdown, InternalHeader as Header } from "@navikt/ds-react";
 import { Link, useLoaderData } from "react-router-dom";
 import useStore, { selectGjelderID, selectSetGjelderID } from "../../store/store";
 import nav from "../../../assets/images/Hvit.png";
