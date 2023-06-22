@@ -52,7 +52,7 @@
   },
   "stylelint": {
     "extends": [
-      "plugin:@navikt/aksel-stylelint/recommended"
+      "@navikt/aksel-stylelint/recommended"
     ]
   },
   "prettier": {
