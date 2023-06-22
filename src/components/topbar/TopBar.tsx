@@ -27,7 +27,6 @@ const TopBar = () => {
           <Label>GjelderID: </Label>
         </div>
         <TextField label="" hideLabel size="small" onBlur={handleGjelderIdChange} />
-        <p>{gjelderId}</p>
       </div>
       <Dropdown>
         <Header.UserButton
