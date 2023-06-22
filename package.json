@@ -14,7 +14,7 @@
   "author": "navikt",
   "license": "MIT",
   "dependencies": {
-    "@navikt/aksel-icons": "^4.1.7",
+    "@navikt/aksel-icons": "^4.3.0",
     "@navikt/ds-react": "^4.1.7",
     "react-error-boundary": "^4.0.10",
     "react-router-dom": "^6.13.0",
