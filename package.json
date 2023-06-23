@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@eik/rollup-plugin": "^4.0.49",
-    "@navikt/aksel-stylelint": "^4.1.7",
+    "@navikt/aksel-stylelint": "^4.4.0",
     "@rollup/plugin-terser": "^0.4.3",
     "@types/react": "^18.2.13",
     "@types/react-dom": "^18.2.6",
