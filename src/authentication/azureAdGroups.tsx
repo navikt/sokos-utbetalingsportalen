@@ -1,4 +1,4 @@
-import { getEnvironment } from "./utils/environment";
+import { getEnvironment } from "../utils/environment";
 
 const AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ: Record<string, string> = {
   local: "1b717a23-d376-471c-9fc6-356299fadc2b",

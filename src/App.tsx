@@ -1,12 +1,12 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
-import { authenticationLoader, checkAccessToMicrofrontend } from "./api/auth";
+import { authenticationLoader, checkAccessToMicrofrontend } from "./authentication/authentication";
 import Layout from "./components/layout/Layout";
 import SokosMikrofrontendTemplate from "./micro-frontend/SokosMikrofrontendTemplate";
 import UtbetalingFrontendPoc from "./micro-frontend/UtbetalingFrontendPoc";
 import { Path } from "./models/path";
 import Feilside, { NotFound, NoAccess } from "./pages/Feilside";
 import Information from "./pages/Information";
-import { AzureAdGroupName } from "./azureAdGroups";
+import { AzureAdGroupName } from "./authentication/azureAdGroups";
 
 const App = () => {
   return (

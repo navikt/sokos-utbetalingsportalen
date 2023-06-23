@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Path } from "../../models/path";
 import styles from "./SideBar.module.css";
-import { AzureAdGroupName } from "../../azureAdGroups";
-import { useAuth } from "../../api/auth";
+import { AzureAdGroupName } from "../../authentication/azureAdGroups";
+import { useAuth } from "../../authentication/authentication";
 
 const SideBar = () => {
   const hasAccess = useAuth();

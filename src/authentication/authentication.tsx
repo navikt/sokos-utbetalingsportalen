@@ -1,8 +1,8 @@
 import { authUrl } from "../urls";
-import { AzureAdGroupNameId } from "../azureAdGroups";
+import { AzureAdGroupNameId } from "./azureAdGroups";
 import { redirect } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetcher } from "./api";
+import { fetcher } from "../api/api";
 
 export const authenticationLoader = async () => {
   try {
