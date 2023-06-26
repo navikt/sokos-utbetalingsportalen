@@ -41,7 +41,7 @@ export async function getOnBehalfOfToken(accessToken: string, scope: string) {
   }
 }
 
-async function fetchNewOnBehalfOfToken(accessToken: string, scope: string): Promise<OboToken> {
+async function fetchNewOnBehalfOfToken(accessToken: string, scope: string) {
   const formData: {
     grant_type: string;
     requested_token_use: string;

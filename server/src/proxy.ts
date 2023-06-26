@@ -4,7 +4,7 @@ import { respondUnauthorizedIfNotLoggedIn, setOnBehalfOfToken } from "./middelwa
 import { createProxyMiddleware, fixRequestBody } from "http-proxy-middleware";
 import { logger } from "./logger";
 
-export const setupProxy = (fromPath: string, toTarget: string): RequestHandler => {
+export const setupProxy = (fromPath: string, toTarget: string) => {
   return createProxyMiddleware({
     target: toTarget,
     changeOrigin: true,

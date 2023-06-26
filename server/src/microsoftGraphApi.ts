@@ -17,7 +17,7 @@ type MemberOfResponse = {
 
 const ADGROUP_PREFIX = "AD_GRUPPE_SOKOS_MF_";
 
-function filterADGroups(adGroupsMemberOf: string[]): string[] {
+function filterADGroups(adGroupsMemberOf: string[]) {
   const allAdGroups: string[] = Object.entries(Configuration)
     .filter(([key]) => key.startsWith(ADGROUP_PREFIX))
     .map(([, value]) => value);
@@ -25,7 +25,7 @@ function filterADGroups(adGroupsMemberOf: string[]): string[] {
   return adGroupsMemberOf.filter((adGroup) => allAdGroups.includes(adGroup));
 }
 
-async function getUserADGroups(accessToken: string): Promise<string[]> {
+async function getUserADGroups(accessToken: string) {
   try {
     const oboToken = await getOnBehalfOfToken(accessToken, apiScope);
     const adGroupsResponse = await fetch(memberOfApiUrl, {
@@ -44,7 +44,7 @@ async function getUserADGroups(accessToken: string): Promise<string[]> {
   }
 }
 
-export async function getUserAccesses(accessToken: string): Promise<string[]> {
+export async function getUserAccesses(accessToken: string) {
   try {
     const adGroupsMemberOf = await getUserADGroups(accessToken);
     return filterADGroups(adGroupsMemberOf);

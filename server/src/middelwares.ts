@@ -44,7 +44,7 @@ export function retrieveToken(headers: IncomingHttpHeaders) {
   return userAccessToken;
 }
 
-export async function isUserLoggedIn(req: Request): Promise<boolean> {
+export async function isUserLoggedIn(req: Request) {
   const userAccessToken = retrieveToken(req.headers);
   return !!userAccessToken && (await tokenIsValid(userAccessToken));
 }
