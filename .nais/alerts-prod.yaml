@@ -31,7 +31,7 @@ spec:
             namespace: okonomi
             severity: danger
             sokos_op_fasade_type: sokos-op-fasade
-            alert_type: customg
+            alert_type: custom
 
 ---
 
