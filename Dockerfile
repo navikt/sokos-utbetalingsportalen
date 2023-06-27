@@ -3,7 +3,7 @@ FROM node:lts-alpine@sha256:2ffec31a58e85fbcd575c544a3584f6f4d128779e6b856153a04
 
 WORKDIR /usr/src/app
 
-COPY server/package*.json server/pnpm-lock.yaml ./
+COPY package*.json pnpm-lock.yaml ./
 
 RUN npm install -g pnpm
 
@@ -16,7 +16,7 @@ RUN apk add --no-cache bash
 
 WORKDIR /usr/src/app
 
-COPY --from=builder /usr/src/app/server/node_modules/ server/node_modules/
+COPY --from=builder /usr/src/app/node_modules/ node_modules/
 COPY dist/ dist/
 COPY server/build/ server/
 
