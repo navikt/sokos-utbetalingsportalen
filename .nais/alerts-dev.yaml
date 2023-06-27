@@ -13,7 +13,6 @@ spec:
           expr: kube_deployment_status_replicas_available{deployment="sokos-op-fasade"} == 0
           for: 2m
           annotations:
-            action: "`kubectl describe pod {{ $labels.deployment }} -n {{ $labels.namespace }}` for events, og `kubectl logs -l {{ $labels.deployment }} -n {{ $labels.namespace }}` for logger"
             summary: "App {{ $labels.deployment }} er nede i namespace {{ $labels.namespace }}"
           labels:
             namespace: okonomi
