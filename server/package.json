@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/server.ts",
   "scripts": {
-    "dev": "nodemon src/server.ts",
+    "dev": "nodemon src/server.ts AZURE_APP_WELL_KNOWN_URL=dummy",
     "build": "tsc --build"
   },
   "author": "navikt",
