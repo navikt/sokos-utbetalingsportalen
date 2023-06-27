@@ -13,7 +13,20 @@ spec:
           expr: kube_deployment_status_replicas_available{deployment="sokos-op-fasade"} == 0
           for: 2m
           annotations:
+            action: "Sjek hvorfor applikasjonen er nede"
             summary: "App {{ $labels.deployment }} er nede i namespace {{ $labels.namespace }}"
+          labels:
+            namespace: okonomi
+            severity: danger
+            sokos_op_fasade_type: sokos-op-fasade
+            alert_type: custom
+
+        - alert: Applikasjonen har restartet flere ganger de siste 5 minuttene!
+          expr: sum(increase(kube_pod_container_status_restarts_total{container=~"sokos-op-fasade"}[5m])) by (container) > 2
+          for: 2m
+          annotations:
+            action: "Sjekk hvorfor applikasjonen ikke klarer å restarte"
+            summary: "App {{ $labels.deployment }} restarter mange ganger {{ $labels.namespace }}"
           labels:
             namespace: okonomi
             severity: danger
