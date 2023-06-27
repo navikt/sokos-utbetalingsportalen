@@ -14,6 +14,9 @@ on:
       - '.github/workflows/alerts.yaml'
       - '.nais/alerts-dev.yaml'
       - '.nais/alerts-prod.yaml'
+env:
+  CI: true
+  TZ: Europe/Oslo
 
 jobs:
   bygg-test-push-image:
@@ -26,39 +29,51 @@ jobs:
       - name: Sjekker ut repo
         uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
+      - name: Installerer node.js
+        uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
+          cache: 'pnpm'
 
-      - name: Cache klient node_modules
-        id: cache-node-modules
+      - name: Installere pnpm
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: false
+
+      - name: Hente pnpm store mappe
+        id: pnpm-cache
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setter opp pnpm cache for klient
         uses: actions/cache@v3
         with:
-          path: node_modules
-          key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
-      - name: Cache server node_modules
-        id: cache-server-node-modules
+      - name: Setter opp pnpm cache for server
         uses: actions/cache@v3
         with:
-          path: server/node_modules
-          key: ${{ runner.os }}-modules-${{ hashFiles('server/package-lock.json') }}
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('server/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
       - name: Installerer dependencies
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: npm ci
+        run: pnpm install
 
       - name: Installerer dependencies for server
-        if: steps.cache-server-node-modules.outputs.cache-hit != 'true'
-        run: cd server && npm ci
-
+        run: cd server && pnpm install
 
       - name: Bygger applikasjonen
-        run: npm run build
+        run: pnpm run build
 
       - name: Bygger server
-        run: cd server && npm run build
+        run: cd server && pnpm run build
 
       - name: Bygg docker image
         uses: docker/setup-buildx-action@v2

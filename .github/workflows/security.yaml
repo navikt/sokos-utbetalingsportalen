@@ -7,9 +7,10 @@ on:
       - completed
   schedule:
     - cron: '0 6 * * *'
-
 env:
   LATEST_IMAGE: ${{ github.event.repository.name }}:latest
+  CI: true
+  TZ: Europe/Oslo
 
 jobs:
   vulnerability-analyze:
@@ -30,7 +31,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Initialiserer CodeQL
         uses: github/codeql-action/init@v2

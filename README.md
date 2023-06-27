@@ -24,14 +24,15 @@ Okonomiportalen er arbeidsflaten for okonomi medarbeidere i Økonomi linjen i NA
 ### Forutsetninger
 
 - Node.js
+- pnpm `npm install -g pnpm`
 
 ### Bygge prosjekt
 
-- `npm install` for å installere avhengigheter
+- `pnpm install` for å installere avhengigheter
 
 ### Lokal utvikling
 
-- `npm run dev`
+- `pnpm run dev`
 
 # 3. Programvarearkitektur
 
