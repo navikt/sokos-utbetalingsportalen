@@ -26,8 +26,8 @@ devDependencies:
     specifier: ^4.0.49
     version: 4.0.49
   '@navikt/aksel-stylelint':
-    specifier: ^4.4.1
-    version: 4.4.1
+    specifier: ^4.4.2
+    version: 4.4.2
   '@rollup/plugin-terser':
     specifier: ^0.4.3
     version: 0.4.3
@@ -732,8 +732,8 @@ packages:
     resolution: {integrity: sha512-62HZh0MUmDpf/XHIBVzSQyWCWEuv4hmzubQPNumADBdGAe3HXKN+CuT3USVJFX2XtVrsv/akALMBUWi+DvxaVA==}
     dev: false
 
-  /@navikt/aksel-stylelint@4.4.1:
-    resolution: {integrity: sha512-SRa1MV6mGoNdHz+1d4KYyIKjFHvOLjCzjoQZn5UNWPWunEoD+yEjEdqse77iQtwLbnj+AhG4VT67eqkVIi8/SQ==}
+  /@navikt/aksel-stylelint@4.4.2:
+    resolution: {integrity: sha512-vd9T3g/XcT3z1LTmsTUbjzh1ojOSh8espx/qYEmlKqK+SYJGN0LIduS5ed5hvztzR8H6kVzOB5GEzMnGsls8WA==}
     dev: true
 
   /@navikt/ds-react@4.4.1(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0):
