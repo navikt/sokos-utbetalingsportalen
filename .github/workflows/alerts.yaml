@@ -12,9 +12,6 @@ on:
       - '.github/workflows/build-pr.yaml'
       - '.github/workflows/security.yaml'
       - '.github/workflows/build-test-push-deploy.yaml'
-env:
-  CI: true
-  TZ: Europe/Oslo
 
 jobs:
   deploy-alerts-dev:

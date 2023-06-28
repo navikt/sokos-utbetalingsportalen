@@ -2,9 +2,6 @@ name: Bygg og test PR
 
 on:
   pull_request:
-env:
-  CI: true
-  TZ: Europe/Oslo
 
 jobs:
   build-pull-request:

@@ -15,7 +15,6 @@ on:
       - '.nais/alerts-dev.yaml'
       - '.nais/alerts-prod.yaml'
 env:
-  CI: true
   TZ: Europe/Oslo
 
 jobs:
