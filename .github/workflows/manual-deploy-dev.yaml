@@ -1,20 +1,7 @@
-name: Bygg, test og deploy til dev/prod
+name: Manuell deploy til dev
 
 on:
-  push:
-    branches:
-      - master
-    paths-ignore:
-      - '**.md'
-      - 'LICENCE'
-      - 'CODEOWNERS'
-      - '.gitignore'
-      - '.github/workflows/build-pr.yaml'
-      - '.github/workflows/manual-deploy-dev.yaml'
-      - '.github/workflows/security.yaml'
-      - '.github/workflows/alerts.yaml'
-      - '.nais/alerts-dev.yaml'
-      - '.nais/alerts-prod.yaml'
+  workflow_dispatch:
 env:
   TZ: Europe/Oslo
 
@@ -100,17 +87,3 @@ jobs:
           CLUSTER: dev-gcp
           IMAGE: ${{ needs.bygg-test-push-image.outputs.image }}
           RESOURCE: .nais/naiserator-dev.yaml
-
-  #  deploy-prod-gcp:
-  #    name: Deploy til prod-gcp
-  #    needs: deploy-dev-gcp
-  #    if: github.ref == 'refs/heads/master'
-  #    runs-on: ubuntu-latest
-  #    steps:
-  #      - uses: actions/checkout@v3
-  #      - uses: nais/deploy/actions/deploy@v1
-  #        env:
-  #          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-  #          CLUSTER: prod-gcp
-  #          IMAGE: ${{ needs.bygg-test-push-image.outputs.image }}
-  #          RESOURCE: .nais/naiserator-prod.yaml
