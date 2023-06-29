@@ -71,12 +71,12 @@ jobs:
           team: okonomi
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-          tag: latest
+          tag: manuell
     outputs:
       image: ${{ steps.docker-build-push.outputs.image }}
 
-  deploy-dev-gcp:
-    name: Deploy til dev-gcp
+  deploy-manuell-dev-gcp:
+    name: Deploy manuelt til dev-gcp
     needs: bygg-test-push-image
     runs-on: ubuntu-latest
     steps:
