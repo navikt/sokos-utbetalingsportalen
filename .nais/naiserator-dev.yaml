@@ -36,6 +36,7 @@ spec:
     outbound:
       rules:
         - application: sokos-mikrofrontend-api
+        - application: sokos-skattekort-person
   ingresses:
     - "https://okonomiportalen.intern.dev.nav.no"
   resources:
@@ -64,3 +65,7 @@ spec:
     value: b01fb216-fcb3-4ede-b7da-71fffe859763
   - name: AD_GRUPPE_SOKOS_MF_UTBETALINGER_WRITE
     value: a366c33c-7456-4183-a0d5-80eb8195a7da
+
+  # Skattekort
+  - name: SOKOS_SKATTEKORT_PERSON
+    value: api://dev-gcp.okonomi.sokos-skattekort-person/.default

@@ -40,7 +40,8 @@ const startServer = () => {
   proxyWithOboToken(
     Configuration.SOKOS_MIKROFRONTEND_PROXY,
     Configuration.SOKOS_MIKROFRONTEND_API,
-    Configuration.SOKOS_MIKROFRONTEND_API_SCOPE
+    Configuration.SOKOS_MIKROFRONTEND_API_SCOPE,
+    Configuration.SOKOS_SKATTEKORT_PERSON
   );
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));

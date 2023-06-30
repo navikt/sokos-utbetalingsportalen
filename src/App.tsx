@@ -7,6 +7,7 @@ import { Path } from "./models/path";
 import Feilside, { NotFound, NoAccess } from "./pages/Feilside";
 import Information from "./pages/Information";
 import { AzureAdGroupName } from "./authentication/azureAdGroups";
+import SokosOpSkattekort from "./micro-frontend/SokosOpSkattekort";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
                 element={<UtbetalingFrontendPoc />}
                 loader={checkAccessToMicrofrontend(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ)}
               />
+              <Route path={Path.SOKOSOPSKATTEKORT} element={<SokosOpSkattekort />} />
               <Route path="/forbidden" element={<NoAccess />} />
             </Route>
             <Route path="*" element={<NotFound />} />

@@ -33,6 +33,9 @@ const SideBar = () => {
               Søk Posteringer
             </Link>
           )}
+          <Link className={styles.link} to={Path.SOKOSOPSKATTEKORT}>
+            Skattekort
+          </Link>
         </ul>
       </div>
       {!showSideBar && (
