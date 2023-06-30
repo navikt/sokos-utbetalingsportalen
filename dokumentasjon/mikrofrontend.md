@@ -31,21 +31,7 @@ kan du endre "Mikrofrontend container" til å være noe annet.
 
 7. Under [Sidebar.tsx](src/components/sidebar/SideBar.tsx) må du legge inn mikfrofrontend under menypunktet.
 
-8. Under [server.ts](../server/src/server.ts) må du legge inn proxy til tjenesten mikfrofrontend skal snakke med.
-
-```
-proxyWithOboToken("/mikrofrontend-api", SOKOS_MIKROFRONTEND_API_URL ?? "", scopes.mikrofrontendApi);
-```
-
-Variablen `SOKOS_MIKROFRONTEND_API_URL` hentes fra kodeblokken som henter `env` variablene fra naiserator filen.
-
-```
-const {
-    SOKOS_MIKROFRONTEND_API_URL
-} = process.env;
-```
-
-9. I [naiserator-dev.yaml](../.nais/naiserator-dev.yaml) of [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs. Se f.es hvilken `env` variabler de andre har lagt inn. Husk å legge inn under `accessPolicy` hvilken backend som mikrofrontend skal snakke med. F.eks:
+8. I [naiserator-dev.yaml](../.nais/naiserator-dev.yaml) of [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs. Se f.es hvilken `env` variabler de andre har lagt inn. Husk å legge inn under `accessPolicy` hvilken backend som mikrofrontend skal snakke med. F.eks:
 
 ```
   accessPolicy:
@@ -53,5 +39,17 @@ const {
       rules:
         - application: sokos-mikrofrontend-api
 ```
+
+9. Under [server.ts](../server/src/server.ts) må du legge inn proxy til tjenesten mikfrofrontend skal snakke med.
+
+```
+  proxyWithOboToken(
+    Configuration.SOKOS_MIKROFRONTEND_PROXY,
+    Configuration.SOKOS_MIKROFRONTEND_API,
+    Configuration.SOKOS_MIKROFRONTEND_API_SCOPE
+  );
+```
+
+Env variablene hentes fra [config.ts](server/src/config.ts) som henter alle `env` variablene fra naiserator filen som du har lagt inn under pkt. 8.
 
 Nå er `sokos-op-fasade` klar til å kunne rendre mikfrofrontend i NAIS og rute rest kallene til riktig api.
