@@ -1,13 +1,13 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import { authenticationLoader, checkAccessToMicrofrontend } from "./authentication/authentication";
+import { AzureAdGroupName } from "./authentication/azureAdGroups";
 import Layout from "./components/layout/Layout";
 import SokosMikrofrontendTemplate from "./micro-frontend/SokosMikrofrontendTemplate";
-import UtbetalingFrontendPoc from "./micro-frontend/UtbetalingFrontendPoc";
-import { Path } from "./models/path";
-import Feilside, { NotFound, NoAccess } from "./pages/Feilside";
-import Information from "./pages/Information";
-import { AzureAdGroupName } from "./authentication/azureAdGroups";
 import SokosOpSkattekort from "./micro-frontend/SokosOpSkattekort";
+import UtbetalingFrontendPoc from "./micro-frontend/UtbetalingFrontendPoc";
+import { Path } from "./models/Path";
+import Feilside, { NoAccess, NotFound } from "./pages/Feilside";
+import Information from "./pages/Information";
 
 const App = () => {
   return (
@@ -27,7 +27,7 @@ const App = () => {
                 element={<UtbetalingFrontendPoc />}
                 loader={checkAccessToMicrofrontend(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ)}
               />
-              <Route path={Path.SOKOSOPSKATTEKORT} element={<SokosOpSkattekort />} />
+              <Route path={Path.SOKOS_OP_SKATTEKORT} element={<SokosOpSkattekort />} />
               <Route path="/forbidden" element={<NoAccess />} />
             </Route>
             <Route path="*" element={<NotFound />} />

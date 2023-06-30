@@ -1,5 +1,5 @@
+import { Path } from "./models/Path";
 import { getEnvironment } from "./utils/environment";
-import { Path } from "./models/path";
 
 const AUTH_URL: Record<string, string> = {
   local: "http://localhost:5173/mock/auth",

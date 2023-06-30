@@ -1,10 +1,10 @@
 import { MenuHamburgerIcon } from "@navikt/aksel-icons";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Path } from "../../models/path";
-import styles from "./SideBar.module.css";
-import { AzureAdGroupName } from "../../authentication/azureAdGroups";
 import { useAuth } from "../../authentication/authentication";
+import { AzureAdGroupName } from "../../authentication/azureAdGroups";
+import { Path } from "../../models/Path";
+import styles from "./SideBar.module.css";
 
 const SideBar = () => {
   const hasAccess = useAuth();
@@ -33,7 +33,7 @@ const SideBar = () => {
               Søk Posteringer
             </Link>
           )}
-          <Link className={styles.link} to={Path.SOKOSOPSKATTEKORT}>
+          <Link className={styles.link} to={Path.SOKOS_OP_SKATTEKORT}>
             Skattekort
           </Link>
         </ul>
