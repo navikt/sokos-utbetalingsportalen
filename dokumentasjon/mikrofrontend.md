@@ -29,7 +29,9 @@ kan du endre "Mikrofrontend container" til å være noe annet.
 
 6. Path som du la under [path.ts](src/models/path.tsx) skal importeres til [App.tsx](src/App.tsx)
 
-7. Under [server.ts](../server/src/server.ts) må du legge inn proxy til tjenesten mikfrofrontend skal snakke med.
+7. Under [Sidebar.tsx](src/components/sidebar/SideBar.tsx) må du legge inn mikfrofrontend under menypunktet.
+
+8. Under [server.ts](../server/src/server.ts) må du legge inn proxy til tjenesten mikfrofrontend skal snakke med.
 
 ```
 proxyWithOboToken("/mikrofrontend-api", SOKOS_MIKROFRONTEND_API_URL ?? "", scopes.mikrofrontendApi);
@@ -42,5 +44,7 @@ const {
     SOKOS_MIKROFRONTEND_API_URL
 } = process.env;
 ```
+
+9. I [naiserator-dev.yaml](../.nais/naiserator-dev.yaml) of [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs. Se f.es hvilken `env` variabler de andre har lagt inn.
 
 Nå er `sokos-op-fasade` klar til å kunne rendre mikfrofrontend i NAIS og rute rest kallene til riktig api.

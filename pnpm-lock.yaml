@@ -6,11 +6,11 @@ settings:
 
 dependencies:
   '@navikt/aksel-icons':
-    specifier: ^4.4.1
-    version: 4.4.1
+    specifier: ^4.5.0
+    version: 4.5.0
   '@navikt/ds-react':
-    specifier: ^4.4.1
-    version: 4.4.1(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^4.5.0
+    version: 4.5.0(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)
   react-error-boundary:
     specifier: ^4.0.10
     version: 4.0.10(react@18.2.0)
@@ -26,8 +26,8 @@ devDependencies:
     specifier: ^4.0.49
     version: 4.0.49
   '@navikt/aksel-stylelint':
-    specifier: ^4.4.1
-    version: 4.4.1
+    specifier: ^4.5.0
+    version: 4.5.0
   '@rollup/plugin-terser':
     specifier: ^0.4.3
     version: 0.4.3
@@ -62,8 +62,8 @@ devDependencies:
     specifier: ^8.0.3
     version: 8.0.3
   lint-staged:
-    specifier: ^13.2.2
-    version: 13.2.2
+    specifier: ^13.2.3
+    version: 13.2.3
   postcss:
     specifier: ^8.4.24
     version: 8.4.24
@@ -728,16 +728,16 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@navikt/aksel-icons@4.4.1:
-    resolution: {integrity: sha512-62HZh0MUmDpf/XHIBVzSQyWCWEuv4hmzubQPNumADBdGAe3HXKN+CuT3USVJFX2XtVrsv/akALMBUWi+DvxaVA==}
+  /@navikt/aksel-icons@4.5.0:
+    resolution: {integrity: sha512-JLnEzkATTc1b8CmXgD+fGdXsR1Gm5DjcAcljaXD1hoJvNilkAA5E/8ft0hBq9X1wVdI1uQPEmsw2QHCaJDwZ1A==}
     dev: false
 
-  /@navikt/aksel-stylelint@4.4.1:
-    resolution: {integrity: sha512-SRa1MV6mGoNdHz+1d4KYyIKjFHvOLjCzjoQZn5UNWPWunEoD+yEjEdqse77iQtwLbnj+AhG4VT67eqkVIi8/SQ==}
+  /@navikt/aksel-stylelint@4.5.0:
+    resolution: {integrity: sha512-wx2v/UNIl5bJkqXbezaKpeDMqLbCVUPr6jS7Q9KXGpW8jJ2cHIG2KPBhtwtw1dgcKr/0HOESy0Kue0H9q9jazA==}
     dev: true
 
-  /@navikt/ds-react@4.4.1(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-FIf5nXx7DgJUvHDUC5Apfnv/CR/9tmIyAeUStkw3X7wW0Yqhz0ESgo+Y9PnXCZMThLCxHrklFF81eKkakMRS6A==}
+  /@navikt/ds-react@4.5.0(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-dG+ZFczAc43hTiR2POOG6FbvZUqdxq23dv8cpaJ00nAV5roOXHUq2G4nuhsiYg4Xg8g3ljBGiHfqXGFEg6r0AQ==}
     peerDependencies:
       '@types/react': ^17.0.30 || ^18.0.0
       react: ^17.0.0 || ^18.0.0
@@ -746,7 +746,7 @@ packages:
         optional: true
     dependencies:
       '@floating-ui/react': 0.24.1(react-dom@18.2.0)(react@18.2.0)
-      '@navikt/aksel-icons': 4.4.1
+      '@navikt/aksel-icons': 4.5.0
       '@radix-ui/react-tabs': 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-toggle-group': 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.14
@@ -2931,8 +2931,8 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /lint-staged@13.2.2:
-    resolution: {integrity: sha512-71gSwXKy649VrSU09s10uAT0rWCcY3aewhMaHyl2N84oBk4Xs9HgxvUp3AYu+bNsK4NrOYYxvSgg7FyGJ+jGcA==}
+  /lint-staged@13.2.3:
+    resolution: {integrity: sha512-zVVEXLuQIhr1Y7R7YAWx4TZLdvuzk7DnmrsTNL0fax6Z3jrpFcas+vKbzxhhvp6TA55m1SQuWkpzI1qbfDZbAg==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
