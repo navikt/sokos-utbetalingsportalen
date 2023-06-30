@@ -5,7 +5,7 @@ import Layout from "./components/layout/Layout";
 import SokosMikrofrontendTemplate from "./micro-frontend/SokosMikrofrontendTemplate";
 import SokosOpSkattekort from "./micro-frontend/SokosOpSkattekort";
 import UtbetalingFrontendPoc from "./micro-frontend/UtbetalingFrontendPoc";
-import { Path } from "./models/Path";
+import { Path } from "./models/RoutePath";
 import Feilside, { NoAccess, NotFound } from "./pages/Feilside";
 import Information from "./pages/Information";
 

@@ -1,4 +1,4 @@
-import { Path } from "./models/Path";
+import { Path } from "./models/RoutePath";
 import { getEnvironment } from "./utils/environment";
 
 const AUTH_URL: Record<string, string> = {

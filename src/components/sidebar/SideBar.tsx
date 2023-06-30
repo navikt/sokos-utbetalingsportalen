@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../authentication/authentication";
 import { AzureAdGroupName } from "../../authentication/azureAdGroups";
-import { Path } from "../../models/Path";
+import { Path } from "../../models/RoutePath";
 import styles from "./SideBar.module.css";
 
 const SideBar = () => {
