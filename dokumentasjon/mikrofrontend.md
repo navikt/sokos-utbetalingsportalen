@@ -45,6 +45,13 @@ const {
 } = process.env;
 ```
 
-9. I [naiserator-dev.yaml](../.nais/naiserator-dev.yaml) of [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs. Se f.es hvilken `env` variabler de andre har lagt inn.
+9. I [naiserator-dev.yaml](../.nais/naiserator-dev.yaml) of [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs. Se f.es hvilken `env` variabler de andre har lagt inn. Husk å legge inn under `accessPolicy` hvilken backend som mikrofrontend skal snakke med. F.eks:
+
+```
+  accessPolicy:
+    outbound:
+      rules:
+        - application: sokos-mikrofrontend-api
+```
 
 Nå er `sokos-op-fasade` klar til å kunne rendre mikfrofrontend i NAIS og rute rest kallene til riktig api.
