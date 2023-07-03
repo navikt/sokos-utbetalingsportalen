@@ -36,7 +36,8 @@ spec:
     outbound:
       rules:
         - application: sokos-mikrofrontend-api
-        - application: sokos-skattekort-person
+      external:
+        - host: sokos-skattekort-person.dev-fss-pub.nais.io
   ingresses:
     - "https://okonomiportalen.intern.dev.nav.no"
   resources:
@@ -66,7 +67,7 @@ spec:
   - name: AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ
     value: a13b4176-e328-4e1c-b181-ff676a7146b1
   - name: SOKOS_SKATTEKORT_PERSON_API
-    value: http://sokos-skattekort-person.dev.intern.nav.no
+    value: https://sokos-skattekort-person.dev-fss-pub.nais.io
   - name: SOKOS_SKATTEKORT_PERSON_API_SCOPE
     value: api://dev-fss.okonomi.sokos-skattekort-person/.default
   - name: SOKOS_SKATTEKORT_PROXY
