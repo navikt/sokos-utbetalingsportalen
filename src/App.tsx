@@ -27,7 +27,11 @@ const App = () => {
                 element={<UtbetalingFrontendPoc />}
                 loader={checkAccessToMicrofrontend(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ)}
               />
-              <Route path={Path.SOKOS_OP_SKATTEKORT} element={<SokosOpSkattekort />} />
+              <Route
+                path={Path.SOKOS_OP_SKATTEKORT}
+                element={<SokosOpSkattekort />}
+                loader={checkAccessToMicrofrontend(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ)}
+              />
               <Route path="/forbidden" element={<NoAccess />} />
             </Route>
             <Route path="*" element={<NotFound />} />

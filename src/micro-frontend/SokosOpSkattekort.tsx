@@ -4,16 +4,18 @@ import { skattekortUrl } from "../urls.js";
 import { ErrorBoundary } from "react-error-boundary";
 import FeilMelding from "../components/feilmelding/Feilmelding";
 
-const T: LazyExoticComponent<() => React.ReactElement> = React.lazy(() => import(/* @vite-ignore */ skattekortUrl));
+const SokosOpSkattekortBundle: LazyExoticComponent<() => React.ReactElement> = React.lazy(
+  () => import(/* @vite-ignore */ skattekortUrl)
+);
 
-const U = () => {
+const SokosOpSkattekort = () => {
   return (
     <React.Suspense fallback={<ContentLoader />}>
       <ErrorBoundary fallbackRender={() => <FeilMelding />}>
-        <T />
+        <SokosOpSkattekortBundle />
       </ErrorBoundary>
     </React.Suspense>
   );
 };
 
-export default U;
+export default SokosOpSkattekort;
