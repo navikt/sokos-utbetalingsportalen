@@ -1,7 +1,7 @@
-type Props = {
+interface Props {
   path: string;
-  options?: object;
-};
+  options?: RequestInit;
+}
 
 class FetchError extends Error {
   response: Response;
@@ -12,17 +12,11 @@ class FetchError extends Error {
   }
 }
 
-export const includeCredentials = {
-  credentials: "include",
-};
-
 export const fetcher = async ({ path, options }: Props) => {
-  const response = await fetch(path, {
-    ...options,
-  });
+  const response = await fetch(path, options);
 
   if (!response.ok) {
-    throw new FetchError(response, "Error in response");
+    throw new FetchError(response, "Fetch request failed");
   }
 
   return await response.json();
