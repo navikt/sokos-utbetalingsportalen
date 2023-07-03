@@ -44,7 +44,7 @@ const startServer = () => {
   );
 
   proxyWithOboToken(
-    Configuration.SOKOS_MIKROFRONTEND_PROXY,
+    Configuration.SOKOS_SKATTEKORT_PROXY,
     Configuration.SOKOS_SKATTEKORT_PERSON_API,
     Configuration.SOKOS_SKATTEKORT_PERSON_API_SCOPE
   );
