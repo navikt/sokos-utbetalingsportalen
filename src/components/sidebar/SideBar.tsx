@@ -33,9 +33,11 @@ const SideBar = () => {
               Søk Posteringer
             </Link>
           )}
-          <Link className={styles.link} to={Path.SOKOS_OP_SKATTEKORT}>
-            Skattekort
-          </Link>
+          {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ) && (
+            <Link className={styles.link} to={Path.SOKOS_OP_SKATTEKORT}>
+              Skattekort
+            </Link>
+          )}
         </ul>
       </div>
       {!showSideBar && (
