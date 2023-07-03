@@ -3,8 +3,7 @@ import { logger } from "./logger";
 import Configuration from "./config";
 
 const apiScope = "https://graph.microsoft.com/.default";
-const memberOfApiQuery =
-  "$count=true&$orderby=displayName&$filter=startswith(displayName, '0000-GA-SOKOS-MF')%20and%20endsWith(displayName,'READ')";
+const memberOfApiQuery = "$count=true&$orderby=displayName&$filter=startswith(displayName, '0000-GA-SOKOS-MF')";
 const memberOfApiUrl = "https://graph.microsoft.com/v1.0/me/memberOf/?" + memberOfApiQuery;
 
 type Membership = {
