@@ -29,7 +29,7 @@ const SideBar = () => {
             </Link>
           )}
           {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ) && (
-            <Link className={styles.link} to={Path.UTBETALINGER}>
+            <Link className={styles.link} to={Path.UTBETALINGER_FRONTEND_POC}>
               Søk Posteringer
             </Link>
           )}
