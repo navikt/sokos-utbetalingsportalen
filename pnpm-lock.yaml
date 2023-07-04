@@ -8,6 +8,9 @@ dependencies:
   '@navikt/aksel-icons':
     specifier: ^4.5.0
     version: 4.5.0
+  '@navikt/ds-css':
+    specifier: ^4.6.1
+    version: 4.6.1
   '@navikt/ds-react':
     specifier: ^4.5.0
     version: 4.5.0(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)
@@ -735,6 +738,10 @@ packages:
   /@navikt/aksel-stylelint@4.5.0:
     resolution: {integrity: sha512-wx2v/UNIl5bJkqXbezaKpeDMqLbCVUPr6jS7Q9KXGpW8jJ2cHIG2KPBhtwtw1dgcKr/0HOESy0Kue0H9q9jazA==}
     dev: true
+
+  /@navikt/ds-css@4.6.1:
+    resolution: {integrity: sha512-5ySUuoKrcRMSvIqcfQSHFeW/NDpnz9M3SIUTXfty7t5BE/lFPnf7DEMOqZ6cHfKxpy7ozKPCbaKZwgxYFXiFsQ==}
+    dev: false
 
   /@navikt/ds-react@4.5.0(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-dG+ZFczAc43hTiR2POOG6FbvZUqdxq23dv8cpaJ00nAV5roOXHUq2G4nuhsiYg4Xg8g3ljBGiHfqXGFEg6r0AQ==}
