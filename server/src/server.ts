@@ -43,6 +43,12 @@ const startServer = () => {
     Configuration.SOKOS_MIKROFRONTEND_API_SCOPE
   );
 
+  proxyWithOboToken(
+    Configuration.SOKOS_SKATTEKORT_PROXY,
+    Configuration.SOKOS_SKATTEKORT_PERSON_API,
+    Configuration.SOKOS_SKATTEKORT_PERSON_API_SCOPE
+  );
+
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
 
   server.get(["/", "/*"], redirectIfUnauthorized, (_req: Request, res: Response) =>

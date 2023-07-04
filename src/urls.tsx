@@ -1,5 +1,5 @@
+import { Path } from "./models/RoutePath";
 import { getEnvironment } from "./utils/environment";
-import { Path } from "./models/path";
 
 const AUTH_URL: Record<string, string> = {
   local: "http://localhost:5173/mock/auth",
@@ -19,6 +19,13 @@ const SØK_POSTERINGER_URL: Record<string, string> = {
   production: "https://okonomiportalen.intern.nav.no/utbetaling-frontend-poc/bundle.js",
 };
 
+const SKATTEKORT_URL: Record<string, string> = {
+  local: "http://localhost:5173/sokos-op-skattekort/bundle.js",
+  development: "https://okonomiportalen.intern.dev.nav.no/sokos-op-skattekort/bundle.js",
+  production: "https://okonomiportalen.intern.nav.no/sokos-op-skattekort/bundle.js",
+};
+
 export const authUrl = AUTH_URL[getEnvironment()];
 export const sokosMikrofrontendTemplateUrl = SOKOS_MIKROFRONTEND_TEMPLATE_URL[getEnvironment()];
 export const utbetalingFrontendPocUrl = SØK_POSTERINGER_URL[getEnvironment()];
+export const skattekortUrl = SKATTEKORT_URL[getEnvironment()];

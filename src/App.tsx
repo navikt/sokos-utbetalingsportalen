@@ -1,12 +1,12 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import { authenticationLoader, checkAccessToMicrofrontend } from "./authentication/authentication";
-import Layout from "./components/layout/Layout";
-import SokosMikrofrontendTemplate from "./micro-frontend/SokosMikrofrontendTemplate";
-import UtbetalingFrontendPoc from "./micro-frontend/UtbetalingFrontendPoc";
-import { Path } from "./models/path";
-import Feilside, { NotFound, NoAccess } from "./pages/Feilside";
-import Information from "./pages/Information";
 import { AzureAdGroupName } from "./authentication/azureAdGroups";
+import Layout from "./components/layout/Layout";
+import { Path } from "./models/RoutePath";
+import Feilside, { NoAccess, NotFound } from "./pages/Feilside";
+import Information from "./pages/Information";
+import Mikrofrontend from "./Mikrofrontend";
+import { skattekortUrl, sokosMikrofrontendTemplateUrl, utbetalingFrontendPocUrl } from "./urls";
 
 const App = () => {
   return (
@@ -18,13 +18,18 @@ const App = () => {
               <Route path="/" element={<Information />} />
               <Route
                 path={Path.SOKOS_MIKROFRONTEND_TEMPLATE}
-                element={<SokosMikrofrontendTemplate />}
+                element={<Mikrofrontend url={sokosMikrofrontendTemplateUrl} includeGjelderId />}
                 loader={checkAccessToMicrofrontend(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ)}
               />
               <Route
-                path={Path.UTBETALINGER}
-                element={<UtbetalingFrontendPoc />}
+                path={Path.UTBETALINGER_FRONTEND_POC}
+                element={<Mikrofrontend url={utbetalingFrontendPocUrl} />}
                 loader={checkAccessToMicrofrontend(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ)}
+              />
+              <Route
+                path={Path.SOKOS_OP_SKATTEKORT}
+                element={<Mikrofrontend url={skattekortUrl} />}
+                loader={checkAccessToMicrofrontend(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ)}
               />
               <Route path="/forbidden" element={<NoAccess />} />
             </Route>
