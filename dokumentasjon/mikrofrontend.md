@@ -13,7 +13,17 @@ kan du endre "Mikrofrontend container" til å være noe annet.
 
 2. Legg inn dummy mock path under [micro-frontends.js](mock/micro-frontends.js)
 
-3. Legg kompontent under [micro-frontend](src/micro-frontend)
+3. Legg `Route` i [App.tsx](../src/App.tsx)
+
+```
+ <Route
+                path={Path.SOKOS_MIKROFRONTEND_TEMPLATE}
+                element={<Mikrofrontend url={sokosMikrofrontendTemplateUrl} includeGjelderId />}
+                loader={checkAccessToMicrofrontend(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ)}
+              />
+```
+
+NB! Hvis du ikke trenger `gjelderId` så trenger du ikke spesifisere `includeGjelderId`
 
 4. Legg in path til applikasjonen din under [path.ts](src/models/path.ts)
 
@@ -30,6 +40,8 @@ kan du endre "Mikrofrontend container" til å være noe annet.
         - application: sokos-mikrofrontend-api
 ```
 
+Skal tjenesten snakke med en i `fss` cluster så må du følgende [hvordan å nå applikasjon on-premise](https://docs.nais.io/clusters/migrating-to-gcp/#how-do-i-reach-an-application-found-on-premises-from-my-application-in-gcp)
+
 8. Under [server.ts](../server/src/server.ts) må du legge inn proxy til tjenesten mikfrofrontend skal snakke med.
 
 ```
@@ -41,5 +53,6 @@ kan du endre "Mikrofrontend container" til å være noe annet.
 ```
 
 Env variablene hentes fra [config.ts](server/src/config.ts) som henter alle `env` variablene fra naiserator filen som du har lagt inn under pkt. 8.
+NB! Tre env variabler som MÅ være med er følgende: PROXY , API, OG API_SCOPE må være lagt inn.
 
-🎉 gNå er `sokos-op-fasade` klar til å kunne rendre mikfrofrontend i NAIS og rute rest kallene til riktig api.
+🎉 Nå er `sokos-op-fasade` klar til å kunne rendre mikfrofrontend i NAIS og rute rest kallene til riktig api.
