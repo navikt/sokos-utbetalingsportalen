@@ -15,11 +15,11 @@ type MemberOfResponse = {
   value: Membership[];
 };
 
-const READ_PREFIX = "READ";
+const READ_SUFFIX = "READ";
 
 function filterADGroups(adGroupsMemberOf: string[]) {
   const allAdGroups: string[] = Object.entries(Configuration)
-    .filter(([key]) => key.endsWith(READ_PREFIX))
+    .filter(([key]) => key.endsWith(READ_SUFFIX))
     .map(([, value]) => value);
 
   return adGroupsMemberOf.filter((adGroup) => allAdGroups.includes(adGroup));
