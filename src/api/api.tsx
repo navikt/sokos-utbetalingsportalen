@@ -12,7 +12,7 @@ class FetchError extends Error {
   }
 }
 
-export const fetcher = async ({ path, options }: Props) => {
+export const fetcher = async <TData = any,>({ path, options }: Props) => {
   const response = await fetch(path, options);
 
   if (!response.ok) {
