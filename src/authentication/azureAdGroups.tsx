@@ -1,10 +1,10 @@
 import { getEnvironment } from "../utils/environment";
 
-const AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ: Record<string, string> = {
+const AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ = {
   local: "1b717a23-d376-471c-9fc6-356299fadc2b",
   development: "1b717a23-d376-471c-9fc6-356299fadc2b",
   production: "",
-};
+} as const;
 
 const AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ: Record<string, string> = {
   local: "b01fb216-fcb3-4ede-b7da-71fffe859763",
@@ -18,21 +18,19 @@ const AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ: Record<string, string> = {
   production: "",
 };
 
-export const AzureAdGroupName: AzureGroupName = {
+type Dictionary = Record<string, string>;
+
+export const AzureAdGroupName = {
   AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ: "AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ",
   AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ: "AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ",
   AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ: "AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ",
-};
-export const AzureAdGroupNameId: AzureGroupId = {
+} as const satisfies Dictionary;
+
+// Kan også hente ut navnet og bruker det som et parameter i en funksjon
+export type AzureAdGroupNames = keyof typeof AzureAdGroupName;
+
+export const AzureAdGroupNameId = {
   AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ: AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ[getEnvironment()],
   AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ: AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ[getEnvironment()],
   AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ: AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ[getEnvironment()],
-};
-
-type AzureGroupId = {
-  [key: string]: string;
-};
-
-type AzureGroupName = {
-  [key: string]: string;
-};
+} as const satisfies Dictionary;
