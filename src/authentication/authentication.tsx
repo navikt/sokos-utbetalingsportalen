@@ -3,14 +3,16 @@ import { AzureAdGroupNameId, AzureAdGroupNames } from "./azureAdGroups";
 import { redirect } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetcher } from "../api/api";
+import { UserData } from "../models/UserData";
 
 export const authenticationLoader = async () => {
   try {
-    return await fetcher({ path: authUrl });
+    return await fetcher<UserData>({ path: authUrl });
   } catch (error) {
     throw new Error("Fetch request failed");
   }
 };
+
 const getAzureAdGroups = async () => {
   const data = await authenticationLoader();
   if (!data) {
