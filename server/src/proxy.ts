@@ -16,6 +16,7 @@ export const setupProxy = (fromPath: string, toTarget: string) => {
     },
   });
 };
+
 export const proxyWithOboToken = (
   path: string,
   apiUrl: string,
