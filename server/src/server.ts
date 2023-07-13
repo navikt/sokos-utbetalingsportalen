@@ -10,6 +10,7 @@ import { logger } from "./logger";
 
 export const server: Express = express();
 
+const SERVER_PORT = 8080;
 const BASE_PATH = "/okonomiportalen";
 const BUILD_PATH = path.resolve(__dirname, "../dist");
 
@@ -55,7 +56,7 @@ const startServer = () => {
     res.sendFile(`${BUILD_PATH}/index.html`)
   );
 
-  server.listen(Config.PORT, () => console.log(`Server listening on port ${Config.PORT}`));
+  server.listen(SERVER_PORT, () => console.log(`Server listening on port ${SERVER_PORT}`));
 };
 
 initializeAzureAd()

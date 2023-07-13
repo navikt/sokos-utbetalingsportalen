@@ -4,9 +4,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const ConfigSchema = z.object({
-  // Server env
-  PORT: z.string(),
-
   // AzureAD env
   AZURE_APP_WELL_KNOWN_URL: z.string(),
   AZURE_APP_CLIENT_ID: z.string(),
