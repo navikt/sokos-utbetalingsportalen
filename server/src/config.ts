@@ -35,11 +35,11 @@ type Config = z.infer<typeof ConfigSchema>;
 const getConfig = (): Config => {
   const result = ConfigSchema.safeParse(process.env);
 
-  if (result.success) {
-    return result.data;
-  } else {
+  if (!result.success) {
     throw new Error(`Server startup failed: ${result.error.message}`);
   }
+
+  return result.data;
 };
 
 const Configuration = getConfig();
