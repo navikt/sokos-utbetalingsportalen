@@ -5,7 +5,7 @@ import RateLimit from "express-rate-limit";
 import { initializeAzureAd } from "./azureAd";
 import { fetchUserData, redirectIfUnauthorized, respondUnauthorizedIfNotLoggedIn } from "./middelwares";
 import { proxyWithOboToken } from "./proxy";
-import Configuration from "./config";
+import Config from "./config";
 import { logger } from "./logger";
 
 export const server: Express = express();
@@ -38,15 +38,15 @@ const startServer = () => {
   server.get("/bruker", respondUnauthorizedIfNotLoggedIn, fetchUserData);
 
   proxyWithOboToken(
-    Configuration.SOKOS_MIKROFRONTEND_PROXY,
-    Configuration.SOKOS_MIKROFRONTEND_API,
-    Configuration.SOKOS_MIKROFRONTEND_API_SCOPE
+    Config.SOKOS_MIKROFRONTEND_PROXY,
+    Config.SOKOS_MIKROFRONTEND_API,
+    Config.SOKOS_MIKROFRONTEND_API_SCOPE
   );
 
   proxyWithOboToken(
-    Configuration.SOKOS_SKATTEKORT_PROXY,
-    Configuration.SOKOS_SKATTEKORT_PERSON_API,
-    Configuration.SOKOS_SKATTEKORT_PERSON_API_SCOPE
+    Config.SOKOS_SKATTEKORT_PROXY,
+    Config.SOKOS_SKATTEKORT_PERSON_API,
+    Config.SOKOS_SKATTEKORT_PERSON_API_SCOPE
   );
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
@@ -55,7 +55,7 @@ const startServer = () => {
     res.sendFile(`${BUILD_PATH}/index.html`)
   );
 
-  server.listen(Configuration.PORT, () => console.log(`Server listening on port ${Configuration.PORT}`));
+  server.listen(Config.PORT, () => console.log(`Server listening on port ${Config.PORT}`));
 };
 
 initializeAzureAd()
