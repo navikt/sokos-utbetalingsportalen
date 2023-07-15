@@ -5,15 +5,10 @@ import { decodeJwt } from "jose";
 import { getOnBehalfOfToken } from "./onBehalfOfToken";
 import { getUserAccesses } from "./microsoftGraphApi";
 
-type UserInformation = {
-  navIdent: string;
-  name: string;
-};
-
 const navIdentClaim = "NAVident";
 const nameClaim = "name";
 
-function getUserInformation(token: string): UserInformation {
+function getUserInformation(token: string) {
   const claims = decodeJwt(token);
   const navIdent = String(claims[navIdentClaim]);
   const name = String(claims[nameClaim]);
@@ -39,7 +34,7 @@ export async function respondUnauthorizedIfNotLoggedIn(req: Request, res: Expres
 export function retrieveToken(headers: IncomingHttpHeaders) {
   const userAccessToken = headers.authorization?.replace("Bearer ", "");
   if (!userAccessToken) {
-    throw Error("Failed to retrieve token");
+    throw new Error("Failed to retrieve token");
   }
   return userAccessToken;
 }

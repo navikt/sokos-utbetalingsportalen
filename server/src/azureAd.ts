@@ -33,6 +33,6 @@ export async function initializeAzureAd() {
   await discoverAzureAdIssuer()
     .then(initializeRemoteJWKSet)
     .catch((e) => {
-      throw Error("Failed to initialize AzureAD: " + e);
+      throw new Error("Failed to initialize AzureAD: " + e);
     });
 }

@@ -4,6 +4,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const ConfigSchema = z.object({
+  // NAIS env
+  NAIS_APP_NAME: z.string(),
+
   // AzureAD env
   AZURE_APP_WELL_KNOWN_URL: z.string(),
   AZURE_APP_CLIENT_ID: z.string(),
