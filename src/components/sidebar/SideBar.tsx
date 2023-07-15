@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../authentication/authentication";
 import { AzureAdGroupName } from "../../authentication/azureAdGroups";
-import { Path } from "../../models/RoutePath";
+import { ROUTE_PATH } from "../../models/RoutePath";
 import styles from "./SideBar.module.css";
 
 const SideBar = () => {
@@ -24,17 +24,17 @@ const SideBar = () => {
         </div>
         <ul className="px-10 top-1.5 flex flex-col text-white">
           {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ) && (
-            <Link className={styles.link} to={Path.SOKOS_MIKROFRONTEND_TEMPLATE}>
+            <Link className={styles.link} to={ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE}>
               Mikrofrontend
             </Link>
           )}
           {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ) && (
-            <Link className={styles.link} to={Path.UTBETALINGER_FRONTEND_POC}>
+            <Link className={styles.link} to={ROUTE_PATH.UTBETALINGER_FRONTEND_POC}>
               Søk Posteringer
             </Link>
           )}
           {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ) && (
-            <Link className={styles.link} to={Path.SOKOS_OP_SKATTEKORT}>
+            <Link className={styles.link} to={ROUTE_PATH.SOKOS_OP_SKATTEKORT}>
               Skattekort
             </Link>
           )}
