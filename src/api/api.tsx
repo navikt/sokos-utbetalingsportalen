@@ -1,7 +1,7 @@
-interface Props {
+type Props = {
   path: string;
   options?: RequestInit;
-}
+};
 
 class FetchError extends Error {
   response: Response;

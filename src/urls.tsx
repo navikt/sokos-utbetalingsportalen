@@ -1,12 +1,12 @@
-import { Path } from "./models/RoutePath";
+import { ROUTE_PATH } from "./models/RoutePath";
 import { getEnvironment } from "./utils/environment";
 
 type Dictionary = Record<string, string>;
 
 const AUTH_URL = {
   local: "http://localhost:5173/mock/auth",
-  development: Path.BRUKER_IDENT,
-  production: Path.BRUKER_IDENT,
+  development: ROUTE_PATH.BRUKER_IDENT,
+  production: ROUTE_PATH.BRUKER_IDENT,
 } as const satisfies Dictionary;
 
 const SOKOS_MIKROFRONTEND_TEMPLATE_URL = {
