@@ -1,7 +1,7 @@
-interface Props {
+type Props = {
   path: string;
   options?: RequestInit;
-}
+};
 
 class FetchError extends Error {
   response: Response;
@@ -12,7 +12,7 @@ class FetchError extends Error {
   }
 }
 
-export const fetcher = async ({ path, options }: Props) => {
+export const fetcher = async <TData = unknown,>({ path, options }: Props): Promise<TData> => {
   const response = await fetch(path, options);
 
   if (!response.ok) {

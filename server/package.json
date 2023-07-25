@@ -19,7 +19,8 @@
     "jose": "^4.14.4",
     "openid-client": "^5.4.2",
     "winston": "3.9.0",
-    "winston-syslog": "^2.7.0"
+    "winston-syslog": "^2.7.0",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",

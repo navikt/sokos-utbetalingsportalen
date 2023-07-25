@@ -2,7 +2,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import { authenticationLoader, checkAccessToMicrofrontend } from "./authentication/authentication";
 import { AzureAdGroupName } from "./authentication/azureAdGroups";
 import Layout from "./components/layout/Layout";
-import { Path } from "./models/RoutePath";
+import { ROUTE_PATH } from "./models/RoutePath";
 import Feilside, { NoAccess, NotFound } from "./pages/Feilside";
 import Information from "./pages/Information";
 import Mikrofrontend from "./Mikrofrontend";
@@ -17,17 +17,17 @@ const App = () => {
             <Route path="/" element={<Layout />} loader={authenticationLoader} errorElement={<Feilside />}>
               <Route path="/" element={<Information />} />
               <Route
-                path={Path.SOKOS_MIKROFRONTEND_TEMPLATE}
+                path={ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE}
                 element={<Mikrofrontend url={sokosMikrofrontendTemplateUrl} includeGjelderId />}
                 loader={checkAccessToMicrofrontend(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ)}
               />
               <Route
-                path={Path.UTBETALINGER_FRONTEND_POC}
+                path={ROUTE_PATH.UTBETALINGER_FRONTEND_POC}
                 element={<Mikrofrontend url={utbetalingFrontendPocUrl} />}
                 loader={checkAccessToMicrofrontend(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ)}
               />
               <Route
-                path={Path.SOKOS_OP_SKATTEKORT}
+                path={ROUTE_PATH.SOKOS_OP_SKATTEKORT}
                 element={<Mikrofrontend url={skattekortUrl} />}
                 loader={checkAccessToMicrofrontend(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ)}
               />

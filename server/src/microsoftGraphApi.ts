@@ -1,6 +1,6 @@
 import { getOnBehalfOfToken } from "./onBehalfOfToken";
 import { logger } from "./logger";
-import Configuration from "./config";
+import Config from "./config";
 
 const apiScope = "https://graph.microsoft.com/.default";
 const memberOfApiQuery = "$count=true&$orderby=displayName&$filter=startswith(displayName, '0000-GA-SOKOS-MF')";
@@ -18,7 +18,7 @@ type MemberOfResponse = {
 const READ_SUFFIX = "READ";
 
 function filterADGroups(adGroupsMemberOf: string[]) {
-  const allAdGroups: string[] = Object.entries(Configuration)
+  const allAdGroups: string[] = Object.entries(Config)
     .filter(([key]) => key.endsWith(READ_SUFFIX))
     .map(([, value]) => value);
 

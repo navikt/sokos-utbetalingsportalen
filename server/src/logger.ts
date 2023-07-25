@@ -1,9 +1,8 @@
 import fs from "fs";
 import winston, { format } from "winston";
 import winstonSyslog from "winston-syslog";
+import Config from "./config";
 const { timestamp, json } = format;
-
-const { NAIS_APP_NAME } = process.env;
 
 export const logger = winston.createLogger({
   format: winston.format.combine(
@@ -34,7 +33,7 @@ export const auditLog = winston.createLogger({
     new winstonSyslog.Syslog({
       host: "audit.nais",
       port: 6514,
-      app_name: NAIS_APP_NAME,
+      app_name: Config.NAIS_APP_NAME,
       protocol: "tcp",
       eol: "\n", // Trengs for å kunne logge til rsyslog server
     }),
