@@ -1,54 +1,43 @@
-name: Bygg og test PR
+name: Build/test PR
 
 on:
   pull_request:
 
 jobs:
-  build-pull-request:
-    name: Bygg og test
+  build-pr:
+    name: Build and test
     runs-on: ubuntu-latest
     steps:
-      - name: Sjekker ut repo
-        uses: actions/checkout@v3
-
-      - name: Installerer node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '18'
-
-      - name: Installere pnpm
-        uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v2
         id: pnpm-install
         with:
           version: 8
           run_install: false
-
-      - name: Hente pnpm store mappe
-        id: pnpm-cache
+      - id: pnpm-cache
         run: |
           echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - name: Setter opp pnpm cache for klient
-        uses: actions/cache@v3
+      - uses: actions/cache@v3
         with:
           path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-
-      - name: Setter opp pnpm cache for server
-        uses: actions/cache@v3
+      - uses: actions/cache@v3
         with:
           path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('server/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Installerer dependencies
+      - name: Install dependencies for client
         run: pnpm install
 
-      - name: Installerer dependencies for server
+      - name: Install dependencies for server
         run: cd server && pnpm install
 
-      - name: Bygger applikasjonen
+      - name: Build app
         run: pnpm run build

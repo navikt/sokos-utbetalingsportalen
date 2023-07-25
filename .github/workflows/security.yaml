@@ -26,23 +26,18 @@ jobs:
       matrix:
         language: [ 'javascript' ]
     steps:
-      - name: Sjekker ut repo
-        uses: actions/checkout@v3
-
-      - name: Initialiserer CodeQL
-        uses: github/codeql-action/init@v2
+      - uses: actions/checkout@v3
+      - uses: github/codeql-action/init@v2
         with:
           languages: ${{ matrix.language }}
-
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v2
+      - uses: github/codeql-action/autobuild@v2
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
         with:
           category: "/language:${{matrix.language}}"
 
-      - name: Logger inn på Google Artifact Registry
+      - name: Login to Google Artifact Registry
         uses: nais/login@v0
         id: login
         with:
