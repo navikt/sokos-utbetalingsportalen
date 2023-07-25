@@ -65,6 +65,9 @@ jobs:
       - name: Build app
         run: pnpm run build
 
+      - name: Build server
+        run: cd server && pnpm run build
+
       - name: Build docker image
         uses: docker/setup-buildx-action@v2
 
