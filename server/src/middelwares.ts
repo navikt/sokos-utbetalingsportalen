@@ -17,12 +17,7 @@ const claimSchema = z.object({
 function getUserInformation(token: string) {
   const claims = decodeJwt(token);
   const parsedClaimResult = claimSchema.parse(claims);
-  console.log("parsedClaimResult::::", parsedClaimResult);
-  const navIdent = parsedClaimResult.NAVident;
-  console.log("navIdent::::", navIdent);
-  const name = parsedClaimResult.name;
-  console.log("name::::", name);
-  return { navIdent, name };
+  return { navIdent: parsedClaimResult[navIdentClaim], name: parsedClaimResult[nameClaim] };
 }
 
 export async function redirectIfUnauthorized(req: Request, res: ExpressResponse, next: NextFunction) {
