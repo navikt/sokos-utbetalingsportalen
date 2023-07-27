@@ -1,3 +1,4 @@
+import { z } from "zod";
 import { IncomingHttpHeaders } from "http";
 import { NextFunction, Request, Response as ExpressResponse } from "express";
 import { tokenIsValid } from "./azureAd";
@@ -8,10 +9,19 @@ import { getUserAccesses } from "./microsoftGraphApi";
 const navIdentClaim = "NAVident";
 const nameClaim = "name";
 
+const claimSchema = z.object({
+  [navIdentClaim]: z.string(),
+  [nameClaim]: z.string(),
+});
+
 function getUserInformation(token: string) {
   const claims = decodeJwt(token);
-  const navIdent = String(claims[navIdentClaim]);
-  const name = String(claims[nameClaim]);
+  const parsedClaimResult = claimSchema.parse(claims);
+  console.log("parsedClaimResult::::", parsedClaimResult);
+  const navIdent = parsedClaimResult.NAVident;
+  console.log("navIdent::::", navIdent);
+  const name = parsedClaimResult.name;
+  console.log("name::::", name);
   return { navIdent, name };
 }
 
