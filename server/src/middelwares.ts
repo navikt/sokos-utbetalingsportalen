@@ -14,6 +14,12 @@ const claimSchema = z.object({
   [nameClaim]: z.string(),
 });
 
+const userDataResponseSchema = z.object({
+  name: z.string(),
+  navIdent: z.string(),
+  adGroups: z.array(z.string()),
+});
+
 function getUserInformation(token: string) {
   const claims = decodeJwt(token);
   const parsedClaimResult = claimSchema.parse(claims);
@@ -54,11 +60,13 @@ export async function fetchUserData(req: Request, res: ExpressResponse) {
   const userInformation = getUserInformation(userAccessToken);
   const adGroups = await getUserAccesses(userAccessToken);
 
-  res.status(200).json({
+  const responseData = userDataResponseSchema.parse({
     name: userInformation.name,
     navIdent: userInformation.navIdent,
     adGroups: adGroups,
   });
+
+  res.status(200).send(responseData);
 }
 
 export const setOnBehalfOfToken = (scope: string) => async (req: Request, res: ExpressResponse, next: NextFunction) => {
