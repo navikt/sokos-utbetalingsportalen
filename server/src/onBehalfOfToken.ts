@@ -1,25 +1,41 @@
 import { logger } from "./logger";
 import Config from "./config";
+import { z } from "zod";
 
-type OboToken = {
-  access_token: string;
-  expires_in: number;
-  ext_expires_in: number;
-  token_type: string;
-};
+const OboTokenSchema = z.object({
+  access_token: z.string(),
+  expires_in: z.number(),
+  ext_expires_in: z.number(),
+  token_type: z.string(),
+});
 
-type CachedOboToken = {
-  token: OboToken;
-  expires: number;
-};
+const CachedOboTokenSchema = z.object({
+  token: OboTokenSchema,
+  expires: z.number(),
+});
+type CachedOboToken = z.infer<typeof CachedOboTokenSchema>;
 
-type Scope = string;
+const ScopeSchema = z.string();
+type Scope = z.infer<typeof ScopeSchema>;
 
-export type AccessToken = string;
+const AccessTokenSchema = z.string();
+type AccessToken = z.infer<typeof AccessTokenSchema>;
+
+const FormDataSchema = z.object({
+  grant_type: z.string(),
+  scope: z.string(),
+  client_id: z.string(),
+  client_secret: z.string(),
+  assertion: z.string(),
+  requested_token_use: z.string(),
+});
 
 const tokenCache: Record<Scope, Record<AccessToken, CachedOboToken>> = {};
 
 export async function getOnBehalfOfToken(accessToken: string, scope: string) {
+  ScopeSchema.parse(scope);
+  AccessTokenSchema.parse(accessToken);
+
   const cachedOboToken = tokenCache[scope]?.[accessToken];
 
   if (cachedOboToken && isTokenValid(cachedOboToken)) {
@@ -42,21 +58,17 @@ export async function getOnBehalfOfToken(accessToken: string, scope: string) {
 }
 
 async function fetchNewOnBehalfOfToken(accessToken: string, scope: string) {
-  const formData: {
-    grant_type: string;
-    requested_token_use: string;
-    scope: string;
-    assertion: string;
-    client_secret: string;
-    client_id: string;
-  } = {
+  ScopeSchema.parse(scope);
+  AccessTokenSchema.parse(accessToken);
+
+  const formData = FormDataSchema.parse({
     grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
     scope,
     client_id: Config.AZURE_APP_CLIENT_ID,
     client_secret: Config.AZURE_APP_CLIENT_SECRET,
     assertion: accessToken,
     requested_token_use: "on_behalf_of",
-  };
+  });
 
   const url = Config.AZURE_OPENID_CONFIG_TOKEN_ENDPOINT;
 
@@ -72,11 +84,11 @@ async function fetchNewOnBehalfOfToken(accessToken: string, scope: string) {
     const body = await response.json();
 
     if (response.ok) {
-      return body as OboToken;
+      return OboTokenSchema.parse(body);
     } else {
       logger.error(
         `Failed to retrieve on behalf of token for scope "${scope}", got status ${response.status} (${response.statusText}) reason:`,
-        body
+        body,
       );
 
       throw response;
