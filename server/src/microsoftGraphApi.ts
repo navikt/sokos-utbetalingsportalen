@@ -1,3 +1,4 @@
+import { z } from "zod";
 import { getOnBehalfOfToken } from "./onBehalfOfToken";
 import { logger } from "./logger";
 import Config from "./config";
@@ -6,14 +7,14 @@ const apiScope = "https://graph.microsoft.com/.default";
 const memberOfApiQuery = "$count=true&$orderby=displayName&$filter=startswith(displayName, '0000-GA-SOKOS-MF')";
 const memberOfApiUrl = "https://graph.microsoft.com/v1.0/me/memberOf/?" + memberOfApiQuery;
 
-type Membership = {
-  id: string;
-  displayName: string;
-};
+const Membership = z.object({
+  id: z.string(),
+  displayName: z.string(),
+});
 
-type MemberOfResponse = {
-  value: Membership[];
-};
+const MembershipResponseSchema = z.object({
+  value: z.array(Membership),
+});
 
 const READ_SUFFIX = "READ";
 
@@ -35,8 +36,8 @@ async function getUserADGroups(accessToken: string) {
       },
     });
 
-    const adGroups: MemberOfResponse = await adGroupsResponse.json();
-    return adGroups.value.map((groups) => groups.id);
+    const adGroups = MembershipResponseSchema.parse(await adGroupsResponse.json());
+    return adGroups.value.map((group) => group.id);
   } catch (error) {
     const errorMessage = "Fetch user ad groups failed: ";
     logger.error(errorMessage + error);

@@ -22,7 +22,7 @@ jobs:
     permissions:
       contents: "read"
       id-token: "write"
-    name: Bygg/test & push image
+    name: Build/test & push image
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -39,17 +39,13 @@ jobs:
         id: pnpm-cache
         run: |
           echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - name: Initialize cache for client
-        uses: actions/cache@v3
+      - uses: actions/cache@v3
         with:
           path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-
-      - name: Initialize cache for server
-        uses: actions/cache@v3
+      - uses: actions/cache@v3
         with:
           path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('server/pnpm-lock.yaml') }}
@@ -83,7 +79,7 @@ jobs:
       image: ${{ steps.docker-build-push.outputs.image }}
 
   deploy-dev:
-    name: Deploy til dev
+    name: Deploy to dev
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -97,7 +93,7 @@ jobs:
           PRINT_PAYLOAD: true
 
   #  deploy-prod:
-  #    name: Deploy til prod
+  #    name: Deploy to prod
   #    needs: deploy-dev
   #    if: github.ref == 'refs/heads/master'
   #    runs-on: ubuntu-latest
