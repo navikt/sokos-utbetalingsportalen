@@ -9,33 +9,14 @@ const OboTokenSchema = z.object({
   token_type: z.string(),
 });
 
-const CachedOboTokenSchema = z.object({
-  token: OboTokenSchema,
-  expires: z.number(),
-});
-type CachedOboToken = z.infer<typeof CachedOboTokenSchema>;
-
-const ScopeSchema = z.string();
-type Scope = z.infer<typeof ScopeSchema>;
-
-const AccessTokenSchema = z.string();
-type AccessToken = z.infer<typeof AccessTokenSchema>;
-
-const FormDataSchema = z.object({
-  grant_type: z.string(),
-  scope: z.string(),
-  client_id: z.string(),
-  client_secret: z.string(),
-  assertion: z.string(),
-  requested_token_use: z.string(),
-});
+type OboToken = z.infer<typeof OboTokenSchema>;
+type CachedOboToken = { token: OboToken; expires: number };
+type Scope = string;
+type AccessToken = string;
 
 const tokenCache: Record<Scope, Record<AccessToken, CachedOboToken>> = {};
 
 export async function getOnBehalfOfToken(accessToken: string, scope: string) {
-  ScopeSchema.parse(scope);
-  AccessTokenSchema.parse(accessToken);
-
   const cachedOboToken = tokenCache[scope]?.[accessToken];
 
   if (cachedOboToken && isTokenValid(cachedOboToken)) {
@@ -58,17 +39,14 @@ export async function getOnBehalfOfToken(accessToken: string, scope: string) {
 }
 
 async function fetchNewOnBehalfOfToken(accessToken: string, scope: string) {
-  ScopeSchema.parse(scope);
-  AccessTokenSchema.parse(accessToken);
-
-  const formData = FormDataSchema.parse({
+  const formData = {
     grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
     scope,
     client_id: Config.AZURE_APP_CLIENT_ID,
     client_secret: Config.AZURE_APP_CLIENT_SECRET,
     assertion: accessToken,
     requested_token_use: "on_behalf_of",
-  });
+  };
 
   const url = Config.AZURE_OPENID_CONFIG_TOKEN_ENDPOINT;
 

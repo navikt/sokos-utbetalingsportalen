@@ -11,7 +11,7 @@ async function discoverAzureAdIssuer() {
   azureAdIssuer = await Issuer.discover(Config.AZURE_APP_WELL_KNOWN_URL);
 }
 
-function initializeRemoteJWKSet() {
+async function initializeRemoteJWKSet() {
   remoteJWKSet = createRemoteJWKSet(new URL(Config.AZURE_OPENID_CONFIG_JWKS_URI));
 }
 

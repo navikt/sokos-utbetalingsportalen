@@ -2,7 +2,7 @@ import { z } from "zod";
 import { IncomingHttpHeaders } from "http";
 import { NextFunction, Request, Response as ExpressResponse } from "express";
 import { tokenIsValid } from "./azureAd";
-import { decodeJwt } from "jose";
+import { decodeJwt, jwtVerify } from "jose";
 import { getOnBehalfOfToken } from "./onBehalfOfToken";
 import { getUserAccesses } from "./microsoftGraphApi";
 
@@ -14,16 +14,10 @@ const claimSchema = z.object({
   [nameClaim]: z.string(),
 });
 
-const userDataResponseSchema = z.object({
-  name: z.string(),
-  navIdent: z.string(),
-  adGroups: z.array(z.string()),
-});
-
 function getUserInformation(token: string) {
   const claims = decodeJwt(token);
-  const parsedClaimResult = claimSchema.parse(claims);
-  return { navIdent: parsedClaimResult[navIdentClaim], name: parsedClaimResult[nameClaim] };
+  const validatedClaim = claimSchema.parse(claims);
+  return { navIdent: validatedClaim[navIdentClaim], name: validatedClaim[nameClaim] };
 }
 
 export async function redirectIfUnauthorized(req: Request, res: ExpressResponse, next: NextFunction) {
@@ -60,13 +54,13 @@ export async function fetchUserData(req: Request, res: ExpressResponse) {
   const userInformation = getUserInformation(userAccessToken);
   const adGroups = await getUserAccesses(userAccessToken);
 
-  const responseData = userDataResponseSchema.parse({
+  const responseData = {
     name: userInformation.name,
     navIdent: userInformation.navIdent,
     adGroups: adGroups,
-  });
+  };
 
-  res.status(200).send(responseData);
+  res.status(200).send(responseData).json();
 }
 
 export const setOnBehalfOfToken = (scope: string) => async (req: Request, res: ExpressResponse, next: NextFunction) => {

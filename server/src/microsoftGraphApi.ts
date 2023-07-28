@@ -18,14 +18,6 @@ const MembershipResponseSchema = z.object({
 
 const READ_SUFFIX = "READ";
 
-function filterADGroups(adGroupsMemberOf: string[]) {
-  const allAdGroups: string[] = Object.entries(Config)
-    .filter(([key]) => key.endsWith(READ_SUFFIX))
-    .map(([, value]) => value);
-
-  return adGroupsMemberOf.filter((adGroup) => allAdGroups.includes(adGroup));
-}
-
 async function getUserADGroups(accessToken: string) {
   try {
     const oboToken = await getOnBehalfOfToken(accessToken, apiScope);
@@ -35,9 +27,8 @@ async function getUserADGroups(accessToken: string) {
         ConsistencyLevel: "eventual",
       },
     });
-
-    const adGroups = MembershipResponseSchema.parse(await adGroupsResponse.json());
-    return adGroups.value.map((group) => group.id);
+    const validateAdGroupsResponse = MembershipResponseSchema.parse(await adGroupsResponse.json());
+    return validateAdGroupsResponse.value.map((group) => group.id);
   } catch (error) {
     const errorMessage = "Fetch user ad groups failed: ";
     logger.error(errorMessage + error);
@@ -54,4 +45,12 @@ export async function getUserAccesses(accessToken: string) {
     logger.error(errorMessage + error);
     throw new Error(errorMessage);
   }
+}
+
+function filterADGroups(adGroupsMemberOf: string[]) {
+  const allAdGroups: string[] = Object.entries(Config)
+    .filter(([key]) => key.endsWith(READ_SUFFIX))
+    .map(([, value]) => value);
+
+  return adGroupsMemberOf.filter((adGroup) => allAdGroups.includes(adGroup));
 }
