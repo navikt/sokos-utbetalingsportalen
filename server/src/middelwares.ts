@@ -2,7 +2,7 @@ import { z } from "zod";
 import { IncomingHttpHeaders } from "http";
 import { NextFunction, Request, Response as ExpressResponse } from "express";
 import { tokenIsValid } from "./azureAd";
-import { decodeJwt, jwtVerify } from "jose";
+import { decodeJwt } from "jose";
 import { getOnBehalfOfToken } from "./onBehalfOfToken";
 import { getUserAccesses } from "./microsoftGraphApi";
 
