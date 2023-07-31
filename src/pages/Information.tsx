@@ -8,7 +8,7 @@ const Information = () => {
         Informasjon
       </Heading>
       <div className={styles.informasjon__bodyLong}>
-        <BodyLong>Bare en testside for informasjon</BodyLong>
+        <BodyLong>Her skal jeg komme informasjonside for saksbehandlere</BodyLong>
         <BodyLong>
           Amet dolore non tempor incididunt dolor est enim aute commodo cillum quis. Ex esse veniam ipsum quis. Pariatur
           duis do qui exercitation ut laboris sit veniam nostrud nulla esse. In aute sint enim reprehenderit ut
