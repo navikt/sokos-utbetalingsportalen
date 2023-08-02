@@ -6,18 +6,14 @@ import { decodeJwt } from "jose";
 import { getOnBehalfOfToken } from "./onBehalfOfToken";
 import { getUserAccesses } from "./microsoftGraphApi";
 
-const navIdentClaim = "NAVident";
-const nameClaim = "name";
-
-const claimSchema = z.object({
-  [navIdentClaim]: z.string(),
-  [nameClaim]: z.string(),
+const ClaimSchema = z.object({
+  NAVident: z.string(),
+  name: z.string(),
 });
 
 function getUserInformation(token: string) {
   const claims = decodeJwt(token);
-  const validatedClaim = claimSchema.parse(claims);
-  return { navIdent: validatedClaim[navIdentClaim], name: validatedClaim[nameClaim] };
+  return ClaimSchema.parse(claims);
 }
 
 export async function redirectIfUnauthorized(req: Request, res: ExpressResponse, next: NextFunction) {
@@ -54,13 +50,11 @@ export async function fetchUserData(req: Request, res: ExpressResponse) {
   const userInformation = getUserInformation(userAccessToken);
   const adGroups = await getUserAccesses(userAccessToken);
 
-  const responseData = {
+  res.status(200).json({
     name: userInformation.name,
-    navIdent: userInformation.navIdent,
+    navIdent: userInformation.NAVident,
     adGroups: adGroups,
-  };
-
-  res.status(200).send(responseData).json();
+  });
 }
 
 export const setOnBehalfOfToken = (scope: string) => async (req: Request, res: ExpressResponse, next: NextFunction) => {
