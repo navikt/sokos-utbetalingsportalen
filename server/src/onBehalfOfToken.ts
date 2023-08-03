@@ -19,7 +19,7 @@ const tokenCache: Record<Scope, Record<AccessToken, CachedOboToken>> = {};
 export async function getOnBehalfOfToken(accessToken: string, scope: string) {
   const cachedOboToken = tokenCache[scope]?.[accessToken];
 
-  if (cachedOboToken && isTokenValid(cachedOboToken)) {
+  if (cachedOboToken && oboTokenIsValid(cachedOboToken)) {
     return cachedOboToken.token;
   } else {
     const newOboToken = await fetchNewOnBehalfOfToken(accessToken, scope);
@@ -76,6 +76,6 @@ async function fetchNewOnBehalfOfToken(accessToken: string, scope: string) {
   }
 }
 
-function isTokenValid(token: CachedOboToken) {
+function oboTokenIsValid(token: CachedOboToken) {
   return token.expires >= Date.now() - 5000;
 }

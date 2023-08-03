@@ -4,7 +4,7 @@ import { respondUnauthorizedIfNotLoggedIn, setOnBehalfOfToken } from "./middelwa
 import { createProxyMiddleware, fixRequestBody } from "http-proxy-middleware";
 import { logger } from "./logger";
 
-export const setupProxy = (fromPath: string, toTarget: string) => {
+export const setupRouteProxy = (fromPath: string, toTarget: string) => {
   return createProxyMiddleware({
     target: toTarget,
     changeOrigin: true,
@@ -17,18 +17,18 @@ export const setupProxy = (fromPath: string, toTarget: string) => {
   });
 };
 
-export const proxyWithOboToken = (
+export const routeProxyWithOboToken = (
   path: string,
   apiUrl: string,
   apiScope: string,
-  customMiddleware?: RequestHandler
+  customMiddleware?: RequestHandler,
 ) => {
   server.use(
     path,
     respondUnauthorizedIfNotLoggedIn,
     customMiddleware ? customMiddleware : emptyMiddleware,
     setOnBehalfOfToken(apiScope),
-    setupProxy(path, apiUrl)
+    setupRouteProxy(path, apiUrl),
   );
 };
 

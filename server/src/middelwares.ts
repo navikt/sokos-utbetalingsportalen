@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { IncomingHttpHeaders } from "http";
 import { NextFunction, Request, Response as ExpressResponse } from "express";
-import { tokenIsValid } from "./azureAd";
+import { userAccessTokenIsValid } from "./azureAd";
 import { decodeJwt } from "jose";
 import { getOnBehalfOfToken } from "./onBehalfOfToken";
 import { getUserAccesses } from "./microsoftGraphApi";
@@ -14,6 +14,19 @@ const ClaimSchema = z.object({
 function getUserInformation(token: string) {
   const claims = decodeJwt(token);
   return ClaimSchema.parse(claims);
+}
+
+function retrieveTokenFromHeader(headers: IncomingHttpHeaders) {
+  const userAccessToken = headers.authorization?.replace("Bearer ", "");
+  if (!userAccessToken) {
+    throw new Error("Failed to retrieve token");
+  }
+  return userAccessToken;
+}
+
+async function isUserLoggedIn(req: Request) {
+  const userAccessToken = retrieveTokenFromHeader(req.headers);
+  return !!userAccessToken && (await userAccessTokenIsValid(userAccessToken));
 }
 
 export async function redirectIfUnauthorized(req: Request, res: ExpressResponse, next: NextFunction) {
@@ -32,21 +45,8 @@ export async function respondUnauthorizedIfNotLoggedIn(req: Request, res: Expres
   }
 }
 
-export function retrieveToken(headers: IncomingHttpHeaders) {
-  const userAccessToken = headers.authorization?.replace("Bearer ", "");
-  if (!userAccessToken) {
-    throw new Error("Failed to retrieve token");
-  }
-  return userAccessToken;
-}
-
-export async function isUserLoggedIn(req: Request) {
-  const userAccessToken = retrieveToken(req.headers);
-  return !!userAccessToken && (await tokenIsValid(userAccessToken));
-}
-
 export async function fetchUserData(req: Request, res: ExpressResponse) {
-  const userAccessToken = retrieveToken(req.headers);
+  const userAccessToken = retrieveTokenFromHeader(req.headers);
   const userInformation = getUserInformation(userAccessToken);
   const adGroups = await getUserAccesses(userAccessToken);
 
@@ -58,7 +58,7 @@ export async function fetchUserData(req: Request, res: ExpressResponse) {
 }
 
 export const setOnBehalfOfToken = (scope: string) => async (req: Request, res: ExpressResponse, next: NextFunction) => {
-  const accessToken = retrieveToken(req.headers);
+  const accessToken = retrieveTokenFromHeader(req.headers);
 
   if (!accessToken) {
     res.status(500).send("Cannot request the OBO token as the access token does not exist");

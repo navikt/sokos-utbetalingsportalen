@@ -10,19 +10,19 @@ const AUTH_URL = {
 } as const satisfies Dictionary;
 
 const SOKOS_MIKROFRONTEND_TEMPLATE_URL = {
-  local: "http://localhost:5173/sokos-mikrofrontend-template/bundle.js",
+  local: "http://localhost:5173/microfrontend/bundle.js",
   development: "https://okonomiportalen.intern.dev.nav.no/sokos-mikrofrontend-template/bundle.js",
   production: "https://okonomiportalen.intern.nav.no/sokos-mikrofrontend-template/bundle.js",
 } as const satisfies Dictionary;
 
 const SØK_POSTERINGER_URL = {
-  local: "http://localhost:5173/utbetaling-frontend-poc/bundle.js",
+  local: "http://localhost:5173/microfrontend/bundle.js",
   development: "https://okonomiportalen.intern.dev.nav.no/utbetalinger-frontend-poc/bundle.js",
   production: "https://okonomiportalen.intern.nav.no/utbetaling-frontend-poc/bundle.js",
 } as const satisfies Dictionary;
 
 const SKATTEKORT_URL = {
-  local: "http://localhost:5173/sokos-op-skattekort/bundle.js",
+  local: "http://localhost:5173/microfrontend/bundle.js",
   development: "https://okonomiportalen.intern.dev.nav.no/sokos-op-skattekort/bundle.js",
   production: "https://okonomiportalen.intern.nav.no/sokos-op-skattekort/bundle.js",
 } as const satisfies Dictionary;

@@ -15,9 +15,9 @@ async function initializeRemoteJWKSet() {
   remoteJWKSet = createRemoteJWKSet(new URL(Config.AZURE_OPENID_CONFIG_JWKS_URI));
 }
 
-export async function tokenIsValid(brukerensAccessToken: string) {
+export async function userAccessTokenIsValid(userAccessToken: string) {
   try {
-    const verification = await jwtVerify(brukerensAccessToken, remoteJWKSet, {
+    const verification = await jwtVerify(userAccessToken, remoteJWKSet, {
       audience: Config.AZURE_APP_CLIENT_ID,
       issuer: azureAdIssuer.metadata.issuer,
     });

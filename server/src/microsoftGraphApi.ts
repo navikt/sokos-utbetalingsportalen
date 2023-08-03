@@ -39,18 +39,13 @@ async function getUserADGroups(accessToken: string) {
 export async function getUserAccesses(accessToken: string) {
   try {
     const adGroupsMemberOf = await getUserADGroups(accessToken);
-    return filterADGroups(adGroupsMemberOf);
+    const filteredAdGroups = Object.entries(Config)
+      .filter(([key]) => key.endsWith(READ_SUFFIX))
+      .map(([, value]) => value);
+    return filteredAdGroups.filter((adGroup) => adGroupsMemberOf.includes(adGroup));
   } catch (error) {
     const errorMessage = "Failed to check user accesses: ";
     logger.error(errorMessage + error);
     throw new Error(errorMessage);
   }
-}
-
-function filterADGroups(adGroupsMemberOf: string[]) {
-  const allAdGroups: string[] = Object.entries(Config)
-    .filter(([key]) => key.endsWith(READ_SUFFIX))
-    .map(([, value]) => value);
-
-  return adGroupsMemberOf.filter((adGroup) => allAdGroups.includes(adGroup));
 }

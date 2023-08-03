@@ -1,36 +1,14 @@
-import sokosmikrofrontendtemplate from "./bundle/sokos-mikrofrontend-template";
-import utbetalingfrontendpoc from "./bundle/utbetaling-frontend-poc";
-import sokosopskattekort from "./bundle/sokos-op-skattekort.js";
+import microfrontend from "./bundle/microfrontend.js";
 
 export default [
   {
-    url: "/sokos-mikrofrontend-template/bundle.js",
+    url: "/microfrontend/bundle.js",
     method: "get",
     rawResponse: async (_req, res) => {
       res.setHeader("Content-Type", "text/javascript");
       res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5173");
       res.statusCode = 200;
-      res.end(sokosmikrofrontendtemplate);
-    },
-  },
-  {
-    url: "/utbetaling-frontend-poc/bundle.js",
-    method: "get",
-    rawResponse: async (_req, res) => {
-      res.setHeader("Content-Type", "text/javascript");
-      res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5173");
-      res.statusCode = 200;
-      res.end(utbetalingfrontendpoc);
-    },
-  },
-  {
-    url: "/sokos-op-skattekort/bundle.js",
-    method: "get",
-    rawResponse: async (_req, res) => {
-      res.setHeader("Content-Type", "text/javascript");
-      res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5173");
-      res.statusCode = 200;
-      res.end(sokosopskattekort);
+      res.end(microfrontend);
     },
   },
 ];
