@@ -1,14 +1,23 @@
 import { MenuHamburgerIcon } from "@navikt/aksel-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../authentication/authentication";
-import { AzureAdGroupName } from "../../authentication/azureAdGroups";
+import { AzureAdGroupName, AzureAdGroupNameId, AzureAdGroupNames } from "../../authentication/azureAdGroups";
 import { ROUTE_PATH } from "../../models/RoutePath";
 import styles from "./SideBar.module.css";
+import { getAzureAdGroups } from "../../authentication/authentication";
 
 const SideBar = () => {
-  const hasAccess = useAuth();
+  const [groups, setGroups] = useState<Array<string>>([]);
   const [showSideBar, setShowSideBar] = useState(true);
+
+  useEffect(() => {
+    getAzureAdGroups()
+      .then((adGroups) => setGroups(adGroups))
+      .catch((error) => {
+        throw new Error("Failed to load Azure AD groups:", error);
+      });
+  }, []);
+  const hasAccess = (group: AzureAdGroupNames) => groups.some((id) => id === AzureAdGroupNameId[group]);
 
   return (
     <>

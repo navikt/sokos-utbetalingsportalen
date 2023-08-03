@@ -1,5 +1,5 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
-import { authenticationLoader, checkAccessToMicrofrontend } from "./authentication/authentication";
+import { authenticationLoader, checkRouteAccess } from "./authentication/authentication";
 import { AzureAdGroupName } from "./authentication/azureAdGroups";
 import Layout from "./components/layout/Layout";
 import { ROUTE_PATH } from "./models/RoutePath";
@@ -19,23 +19,23 @@ const App = () => {
               <Route
                 path={ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE}
                 element={<Mikrofrontend url={sokosMikrofrontendTemplateUrl} includeGjelderId />}
-                loader={checkAccessToMicrofrontend(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ)}
+                loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ)}
               />
               <Route
                 path={ROUTE_PATH.UTBETALINGER_FRONTEND_POC}
                 element={<Mikrofrontend url={utbetalingFrontendPocUrl} />}
-                loader={checkAccessToMicrofrontend(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ)}
+                loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ)}
               />
               <Route
                 path={ROUTE_PATH.SOKOS_OP_SKATTEKORT}
                 element={<Mikrofrontend url={skattekortUrl} />}
-                loader={checkAccessToMicrofrontend(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ)}
+                loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ)}
               />
               <Route path="/forbidden" element={<NoAccess />} />
             </Route>
             <Route path="*" element={<NotFound />} />
-          </>
-        )
+          </>,
+        ),
       )}
     />
   );
