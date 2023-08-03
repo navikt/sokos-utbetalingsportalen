@@ -1,7 +1,7 @@
 import { authUrl } from "../urls";
 import { AzureAdGroupNameId, AzureAdGroupNames } from "./azureAdGroups";
 import { redirect } from "react-router-dom";
-import { fetcher } from "../api/api";
+import { fetcher } from "../utils/apiClient";
 import { UserData } from "../models/UserData";
 
 export const authenticationLoader = async () => {
