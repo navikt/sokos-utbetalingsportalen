@@ -1,6 +1,6 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
-import { authenticationLoader, checkRouteAccess } from "./authentication/authentication";
-import { AzureAdGroupName } from "./authentication/azureAdGroups";
+import { authenticationLoader, checkRouteAccess } from "./auth/authentication";
+import { AzureAdGroupName } from "./auth/azureAdGroups";
 import Layout from "./components/layout/Layout";
 import { ROUTE_PATH } from "./models/RoutePath";
 import Feilside, { NoAccess, NotFound } from "./pages/Feilside";

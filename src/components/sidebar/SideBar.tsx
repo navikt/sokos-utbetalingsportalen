@@ -1,10 +1,10 @@
 import { MenuHamburgerIcon } from "@navikt/aksel-icons";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { AzureAdGroupName, AzureAdGroupNameId, AzureAdGroupNames } from "../../authentication/azureAdGroups";
+import { AzureAdGroupName, AzureAdGroupNameId, AzureAdGroupNames } from "../../auth/azureAdGroups";
 import { ROUTE_PATH } from "../../models/RoutePath";
 import styles from "./SideBar.module.css";
-import { getAzureAdGroups } from "../../authentication/authentication";
+import { getAzureAdGroups } from "../../auth/authentication";
 
 const SideBar = () => {
   const [groups, setGroups] = useState<Array<string>>([]);

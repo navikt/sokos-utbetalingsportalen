@@ -1,6 +1,6 @@
 # Guide for å hekte på en mikrofrontend
 
-1. Legg inn mikrofrontend under [urls.tsx](src/urls.tsx)
+1. Legg inn mikrofrontend under [urls.ts](src/urls.tsx)
    Under `local` må det foreligge en bundle.js fil som skal ligge under [bundle](mock/bundle).
    Dette er for å sørge for at `sokos-op-fasade` har en container å rende en dummy bundle.js fil.
    Du kan kopiere fra en av de som allerede ligger der og endre på linje 1, 449 og 463. Linje 1 og 463 må hete det samme og under linje 1
