@@ -36,6 +36,7 @@ spec:
     outbound:
       rules:
         - application: sokos-mikrofrontend-api
+        - application: sokos-postering-api
       external:
         - host: sokos-skattekort-person.dev-fss-pub.nais.io
   ingresses:
@@ -52,12 +53,19 @@ spec:
   # Mikrofrontend-template
   - name: AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ
     value: 1b717a23-d376-471c-9fc6-356299fadc2b
+  # Backends
   - name: SOKOS_MIKROFRONTEND_API
     value: http://sokos-mikrofrontend-api
   - name: SOKOS_MIKROFRONTEND_API_SCOPE
     value: api://dev-gcp.okonomi.sokos-mikrofrontend-api/.default
   - name: SOKOS_MIKROFRONTEND_PROXY
     value: "/mikrofrontend-api"
+  - name: SOKOS_POSTERING_API
+    value: http://sokos-postering-api
+  - name: SOKOS_POSTERING_API_SCOPE
+    value: api://dev-gcp.okonomi.sokos-postering-api/.default
+  - name: SOKOS_POSTERING_PROXY
+    value: "/postering-api"
 
   # Utbetalinger
   - name: AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ
