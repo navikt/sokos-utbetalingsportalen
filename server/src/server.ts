@@ -50,6 +50,8 @@ const startServer = () => {
     Config.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
   );
 
+  routeProxyWithOboToken(Config.SOKOS_POSTERING_PROXY, Config.SOKOS_POSTERING_API, Config.SOKOS_POSTERING_API_SCOPE);
+
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
 
   server.get(["/", "/*"], redirectIfUnauthorized, (_req: Request, res: Response) =>
