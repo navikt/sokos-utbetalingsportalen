@@ -23,6 +23,11 @@ const ConfigSchema = z.object({
   SOKOS_SKATTEKORT_PERSON_API: z.string(),
   SOKOS_SKATTEKORT_PERSON_API_SCOPE: z.string(),
   SOKOS_SKATTEKORT_PROXY: z.string(),
+
+  // utbetalinger-frontend-poc
+  SOKOS_POSTERING_API: z.string(),
+  SOKOS_POSTERING_API_SCOPE: z.string(),
+  SOKOS_POSTERING_PROXY: z.string(),
 });
 
 type Config = z.infer<typeof ConfigSchema>;

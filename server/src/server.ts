@@ -38,17 +38,22 @@ const startServer = () => {
 
   server.get("/bruker", respondUnauthorizedIfNotLoggedIn, fetchUserData);
 
+  // sokos-mikrofrontend-template
   routeProxyWithOboToken(
     Config.SOKOS_MIKROFRONTEND_PROXY,
     Config.SOKOS_MIKROFRONTEND_API,
     Config.SOKOS_MIKROFRONTEND_API_SCOPE,
   );
 
+  // sokos-op-skattekort
   routeProxyWithOboToken(
     Config.SOKOS_SKATTEKORT_PROXY,
     Config.SOKOS_SKATTEKORT_PERSON_API,
     Config.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
   );
+
+  // utbetalinger-frontend-poc
+  routeProxyWithOboToken(Config.SOKOS_POSTERING_PROXY, Config.SOKOS_POSTERING_API, Config.SOKOS_POSTERING_API_SCOPE);
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
 
