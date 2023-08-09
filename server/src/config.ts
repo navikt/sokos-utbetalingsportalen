@@ -28,6 +28,9 @@ const ConfigSchema = z.object({
 
   // utbetalinger-frontend-poc
   AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ: z.string(),
+  SOKOS_POSTERING_API: z.string(),
+  SOKOS_POSTERING_API_SCOPE: z.string(),
+  SOKOS_POSTERING_PROXY: z.string(),
 });
 
 type Config = z.infer<typeof ConfigSchema>;
