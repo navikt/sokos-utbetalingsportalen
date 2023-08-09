@@ -25,6 +25,9 @@ spec:
       claims:
         groups:
           - id: "0155880b-f708-4f61-ade8-00931fe41b89" # 0000-GA-SOKOS-CHAPPAI
+          - id: "1b717a23-d376-471c-9fc6-356299fadc2b" # 0000-GA-SOKOS-MF-Mikrofrontend-READ
+          - id: "a13b4176-e328-4e1c-b181-ff676a7146b1" # 0000-GA-SOKOS-MF-Skattekort-READ
+          - id: "b01fb216-fcb3-4ede-b7da-71fffe859763" # 0000-GA-SOKOS-MF-Utbetalinger-READ
         extra:
           - "NAVident"
     sidecar:
@@ -50,8 +53,6 @@ spec:
   env:
 
   # Mikrofrontend-template
-  - name: AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ
-    value: 1b717a23-d376-471c-9fc6-356299fadc2b
   - name: SOKOS_MIKROFRONTEND_API
     value: http://sokos-mikrofrontend-api
   - name: SOKOS_MIKROFRONTEND_API_SCOPE
@@ -59,13 +60,7 @@ spec:
   - name: SOKOS_MIKROFRONTEND_PROXY
     value: "/mikrofrontend-api"
 
-  # Utbetalinger
-  - name: AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ
-    value: b01fb216-fcb3-4ede-b7da-71fffe859763
-
   # Skattekort
-  - name: AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ
-    value: a13b4176-e328-4e1c-b181-ff676a7146b1
   - name: SOKOS_SKATTEKORT_PERSON_API
     value: https://sokos-skattekort-person.dev-fss-pub.nais.io
   - name: SOKOS_SKATTEKORT_PERSON_API_SCOPE

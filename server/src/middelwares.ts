@@ -4,11 +4,11 @@ import { NextFunction, Request, Response as ExpressResponse } from "express";
 import { userAccessTokenIsValid } from "./azureAd";
 import { decodeJwt } from "jose";
 import { getOnBehalfOfToken } from "./onBehalfOfToken";
-import { getUserAccesses } from "./microsoftGraphApi";
 
 const ClaimSchema = z.object({
   NAVident: z.string(),
   name: z.string(),
+  groups: z.array(z.string()),
 });
 
 function getUserInformation(token: string) {
@@ -48,12 +48,11 @@ export async function respondUnauthorizedIfNotLoggedIn(req: Request, res: Expres
 export async function fetchUserData(req: Request, res: ExpressResponse) {
   const userAccessToken = retrieveTokenFromHeader(req.headers);
   const userInformation = getUserInformation(userAccessToken);
-  const adGroups = await getUserAccesses(userAccessToken);
 
   res.status(200).json({
     name: userInformation.name,
     navIdent: userInformation.NAVident,
-    adGroups: adGroups,
+    adGroups: userInformation.groups,
   });
 }
 

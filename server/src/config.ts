@@ -15,19 +15,14 @@ const ConfigSchema = z.object({
   AZURE_OPENID_CONFIG_TOKEN_ENDPOINT: z.string(),
 
   // sokos-mikrofrontend-template
-  AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ: z.string(),
   SOKOS_MIKROFRONTEND_API: z.string(),
   SOKOS_MIKROFRONTEND_API_SCOPE: z.string(),
   SOKOS_MIKROFRONTEND_PROXY: z.string(),
 
   // sokos-op-skattekort
-  AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ: z.string(),
   SOKOS_SKATTEKORT_PERSON_API: z.string(),
   SOKOS_SKATTEKORT_PERSON_API_SCOPE: z.string(),
   SOKOS_SKATTEKORT_PROXY: z.string(),
-
-  // utbetalinger-frontend-poc
-  AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ: z.string(),
 });
 
 type Config = z.infer<typeof ConfigSchema>;
