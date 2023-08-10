@@ -20,18 +20,14 @@ const tokenCache: Record<Scope, Record<AccessToken, CachedOboToken>> = {};
 
 export async function getOnBehalfOfToken(accessToken: string, scope: string) {
   const cachedOboToken = tokenCache[scope]?.[accessToken];
-  console.log("printer ut cachedOboToken", cachedOboToken);
 
   if (cachedOboToken && oboTokenIsValid(cachedOboToken)) {
-    console.log("er inne i if");
     return cachedOboToken.token;
   } else {
-    console.log("er inne i else");
     const newOboToken = await fetchNewOnBehalfOfToken(accessToken, scope);
     const expires = Date.now() + newOboToken.expires_in * 1000;
 
     if (!tokenCache[scope]) {
-      console.log("er inne i tokenCache[scope]");
       tokenCache[scope] = {};
     }
     tokenCache[scope][accessToken] = {
