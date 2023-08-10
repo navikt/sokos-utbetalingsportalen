@@ -15,11 +15,9 @@ const SERVER_PORT = 8080;
 const BASE_PATH = "/okonomiportalen";
 const BUILD_PATH = path.resolve(__dirname, "../dist");
 server.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      "script-src": ["'self'", "https://www.nav.no"],
-      "connect-src": ["'self'", "https://telemetry.ekstern.dev.nav.no"],
-    },
+  helmet({
+    contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false,
   }),
 );
 
