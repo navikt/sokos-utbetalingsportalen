@@ -18,6 +18,7 @@ server.use(
   helmet.contentSecurityPolicy({
     directives: {
       "script-src": ["'self'", "https://www.nav.no"],
+      "connect-src": ["'self'", "https://telemetry.ekstern.dev.nav.no"],
     },
   }),
 );
