@@ -4,7 +4,6 @@ import expressStaticGzip from "express-static-gzip";
 import RateLimit from "express-rate-limit";
 import { routeProxyWithOboToken } from "./proxy";
 import Config from "./config";
-import helmet from "helmet";
 import { azureUserInfo, enforceAzureADMiddleware } from "./middelwares";
 import { logger } from "./logger";
 import { initializeAzureAd } from "./azureAd";
