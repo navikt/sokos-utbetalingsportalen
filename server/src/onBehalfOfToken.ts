@@ -27,8 +27,7 @@ export async function getOnBehalfOfToken(accessToken: string, scope: string) {
     return cachedOboToken.token;
   } else {
     console.log("er inne i else");
-    const tokenSet = await fetchNewOnBehalfOfToken(accessToken, scope);
-    const newOboToken = OboTokenSchema.parse(tokenSet);
+    const newOboToken = await fetchNewOnBehalfOfToken(accessToken, scope);
     const expires = Date.now() + (newOboToken.expires_in ?? 0) * 1000;
 
     if (!tokenCache[scope]) {
@@ -74,7 +73,7 @@ async function fetchNewOnBehalfOfToken(accessToken: string, scope: string) {
   return await _client
     .grant(grantBody)
     .then((tokenSet: TokenSet) => {
-      return tokenSet;
+      return OboTokenSchema.parse(tokenSet);
     })
     .catch((err) => {
       switch (err.constructor) {
