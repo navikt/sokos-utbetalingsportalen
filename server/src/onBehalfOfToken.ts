@@ -28,13 +28,12 @@ export async function getOnBehalfOfToken(accessToken: string, scope: string) {
   } else {
     console.log("er inne i else");
     const newOboToken = await fetchNewOnBehalfOfToken(accessToken, scope);
-    const expires = Date.now() + (newOboToken.expires_in ?? 0) * 1000;
+    const expires = Date.now() + newOboToken.expires_in * 1000;
 
     if (!tokenCache[scope]) {
       console.log("er inne i tokenCache[scope]");
       tokenCache[scope] = {};
     }
-
     tokenCache[scope][accessToken] = {
       token: newOboToken,
       expires,
