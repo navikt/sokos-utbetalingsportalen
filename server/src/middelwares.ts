@@ -44,7 +44,7 @@ export async function azureUserInfo(req: Request, res: Response) {
   try {
     const JWTVerifyResult = await validateToken(token);
     res.json({
-      navIdent: JWTVerifyResult.payload.navIdent,
+      navIdent: JWTVerifyResult.payload.NAVident,
       name: JWTVerifyResult.payload.name,
       groups: JWTVerifyResult.payload.groups,
     });
