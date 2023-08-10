@@ -46,7 +46,7 @@ const startServer = () => {
   server.use(`*`, enforceAzureADMiddleware);
 
   // Azure AD user info
-  server.get("/internal/userinfo", azureUserInfo);
+  server.get("/userinfo", azureUserInfo);
 
   // sokos-mikrofrontend-template
   routeProxyWithOboToken(
