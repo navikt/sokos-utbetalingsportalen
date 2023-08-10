@@ -15,7 +15,9 @@ const BASE_PATH = "/okonomiportalen";
 const BUILD_PATH = path.resolve(__dirname, "../dist");
 
 const startServer = () => {
+  server.use(express.urlencoded({ extended: true }));
   server.use(express.json());
+  server.disable("x-powered-by");
 
   server.use(
     BASE_PATH,
