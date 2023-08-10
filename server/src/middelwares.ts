@@ -46,7 +46,7 @@ export async function azureUserInfo(req: Request, res: Response) {
     res.json({
       navIdent: JWTVerifyResult.payload.NAVident,
       name: JWTVerifyResult.payload.name,
-      groups: JWTVerifyResult.payload.groups,
+      adGroups: JWTVerifyResult.payload.groups,
     });
   } catch (e) {
     logger.error("AzureUserInfo", e);
