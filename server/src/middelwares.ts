@@ -32,7 +32,7 @@ export async function enforceAzureADMiddleware(req: Request, res: Response, next
 }
 
 export function retrieveTokenFromHeader(headers: IncomingHttpHeaders) {
-  const userAccessToken = headers.authorization?.replace("Bearer ", "");
+  const userAccessToken = headers.authorization?.split(" ")[1];
   if (!userAccessToken) {
     throw new Error("Failed to retrieve token");
   }

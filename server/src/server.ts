@@ -30,12 +30,15 @@ const startServer = () => {
     }),
   );
 
+  // Health checks
   server.get([`${BASE_PATH}/internal/isAlive`, `${BASE_PATH}/internal/isReady`], (_req: Request, res: Response) =>
     res.sendStatus(200),
   );
 
+  // Enforce Azure AD authentication
   server.use(`*`, enforceAzureADMiddleware);
 
+  // Azure AD user info
   server.get("/internal/userinfo", azureUserInfo);
 
   // sokos-mikrofrontend-template
