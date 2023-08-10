@@ -2,7 +2,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import { authenticationLoader, checkRouteAccess } from "./auth/authentication";
 import { AzureAdGroupName } from "./auth/azureAdGroups";
 import Layout from "./components/layout/Layout";
-import { ROUTE_PATH } from "./models/RoutePath";
+import { ROUTE_PATH } from "./models/routePath";
 import Feilside, { NoAccess, NotFound } from "./pages/Feilside";
 import Information from "./pages/Information";
 import Mikrofrontend from "./Mikrofrontend";

@@ -3,7 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import useStore, { selectGjelderID, selectSetGjelderID } from "../../store/store";
 import nav from "../../../assets/images/Hvit.png";
 import { Label, TextField } from "@navikt/ds-react";
-import { UserData } from "../../models/UserData";
+import { UserData } from "../../models/userData";
 
 const TopBar = () => {
   const setGjelderId = useStore(selectSetGjelderID);

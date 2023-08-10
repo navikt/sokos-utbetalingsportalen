@@ -1,8 +1,9 @@
 import { NextFunction, Request, RequestHandler, Response } from "express";
 import { server } from "./server";
-import { respondUnauthorizedIfNotLoggedIn, setOnBehalfOfToken } from "./middelwares";
+import { enforceAzureADMiddleware } from "./middelwares";
 import { createProxyMiddleware, fixRequestBody } from "http-proxy-middleware";
 import { logger } from "./logger";
+import { setOnBehalfOfToken } from "./onBehalfOfToken";
 
 export const setupRouteProxy = (fromPath: string, toTarget: string) => {
   return createProxyMiddleware({
@@ -25,7 +26,7 @@ export const routeProxyWithOboToken = (
 ) => {
   server.use(
     path,
-    respondUnauthorizedIfNotLoggedIn,
+    // enforceAzureADMiddleware,
     customMiddleware ? customMiddleware : emptyMiddleware,
     setOnBehalfOfToken(apiScope),
     setupRouteProxy(path, apiUrl),
