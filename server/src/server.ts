@@ -14,12 +14,6 @@ export const server = express();
 const SERVER_PORT = 8080;
 const BASE_PATH = "/okonomiportalen";
 const BUILD_PATH = path.resolve(__dirname, "../dist");
-server.use(
-  helmet({
-    contentSecurityPolicy: false,
-    crossOriginEmbedderPolicy: false,
-  }),
-);
 
 const startServer = () => {
   server.use(express.json());
