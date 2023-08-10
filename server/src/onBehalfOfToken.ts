@@ -44,7 +44,7 @@ export async function getOnBehalfOfToken(accessToken: string, scope: string) {
 }
 
 async function client() {
-  const _jwk = Config.AZURE_OPENID_CONFIG_JWKS_URI;
+  const _jwk = Config.AZURE_APP_JWK;
   const _issuer = await Issuer.discover(Config.AZURE_APP_WELL_KNOWN_URL);
   _client = new _issuer.Client(
     {

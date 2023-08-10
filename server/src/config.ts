@@ -12,6 +12,7 @@ const ConfigSchema = z.object({
   AZURE_APP_CLIENT_ID: z.string(),
   AZURE_APP_CLIENT_SECRET: z.string(),
   AZURE_OPENID_CONFIG_JWKS_URI: z.string(),
+  AZURE_APP_JWK: z.string(),
   AZURE_OPENID_CONFIG_TOKEN_ENDPOINT: z.string(),
 
   // sokos-mikrofrontend-template
