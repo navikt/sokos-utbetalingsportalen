@@ -6,6 +6,8 @@ import { routeProxyWithOboToken } from "./proxy";
 import Config from "./config";
 import helmet from "helmet";
 import { azureUserInfo, enforceAzureADMiddleware } from "./middelwares";
+import { logger } from "./logger";
+import { initializeAzureAd } from "./azureAd";
 
 export const server = express();
 
@@ -65,4 +67,6 @@ const startServer = () => {
   server.listen(SERVER_PORT, () => console.log(`Server listening on port ${SERVER_PORT}`));
 };
 
-startServer();
+initializeAzureAd()
+  .then(() => startServer())
+  .catch((e) => logger.error("Failed to start server", e.message));
