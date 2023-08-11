@@ -13,7 +13,13 @@ const SERVER_PORT = 8080;
 const BASE_PATH = "/okonomiportalen";
 const BUILD_PATH = path.resolve(__dirname, "../dist");
 
-server.use(helmet());
+server.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'", "https://www.nav.no"],
+    },
+  }),
+);
 
 const startServer = () => {
   server.use(express.urlencoded({ extended: true }));
