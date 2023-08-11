@@ -13,12 +13,7 @@ const SERVER_PORT = 8080;
 const BASE_PATH = "/okonomiportalen";
 const BUILD_PATH = path.resolve(__dirname, "../dist");
 
-server.use(
-  helmet({
-    contentSecurityPolicy: false,
-    crossOriginEmbedderPolicy: false,
-  }),
-);
+server.use(helmet());
 
 const startServer = () => {
   server.use(express.urlencoded({ extended: true }));

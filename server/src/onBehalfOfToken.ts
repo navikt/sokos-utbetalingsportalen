@@ -76,7 +76,6 @@ async function fetchNewOnBehalfOfToken(accessToken: string, scope: string) {
 }
 
 function oboTokenIsValid(token: CachedOboToken) {
-  console.log("sjekker om obo er valid");
   return token.expires >= Date.now() - 5000;
 }
 

@@ -2,6 +2,13 @@ import { NextFunction, Request, Response } from "express";
 import { validateToken } from "./azureAd";
 import { logger } from "./logger";
 import { IncomingHttpHeaders } from "http";
+import { z } from "zod";
+
+const ClaimSchema = z.object({
+  name: z.string(),
+  NAVident: z.string(),
+  groups: z.array(z.string()),
+});
 
 async function validateAuthorization(authorization: string) {
   try {
@@ -43,10 +50,11 @@ export async function azureUserInfo(req: Request, res: Response) {
   const token = retrieveTokenFromHeader(req.headers);
   try {
     const JWTVerifyResult = await validateToken(token);
+    const parsedClaimResult = ClaimSchema.parse(JWTVerifyResult.payload);
     res.json({
-      navIdent: JWTVerifyResult.payload.NAVident,
-      name: JWTVerifyResult.payload.name,
-      adGroups: JWTVerifyResult.payload.groups,
+      navIdent: parsedClaimResult.NAVident,
+      name: parsedClaimResult.name,
+      adGroups: parsedClaimResult.groups,
     });
   } catch (e) {
     logger.error("AzureUserInfo", e);
