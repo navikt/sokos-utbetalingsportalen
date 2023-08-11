@@ -21,11 +21,3 @@ export async function validateToken(token: string | Uint8Array) {
     issuer: (await issuer()).metadata.issuer,
   });
 }
-
-export async function initializeAzureAd() {
-  await issuer()
-    .then(jwks)
-    .catch((e) => {
-      throw new Error(`Failed to initialize Azure AD: ${e}`);
-    });
-}

@@ -20,6 +20,9 @@ dependencies:
   express-static-gzip:
     specifier: 2.1.7
     version: 2.1.7
+  helmet:
+    specifier: ^7.0.0
+    version: 7.0.0
   http-proxy-middleware:
     specifier: ^3.0.0-beta.1
     version: 3.0.0-beta.1
@@ -641,6 +644,11 @@ packages:
     engines: {node: '>= 0.4.0'}
     dependencies:
       function-bind: 1.1.1
+    dev: false
+
+  /helmet@7.0.0:
+    resolution: {integrity: sha512-MsIgYmdBh460ZZ8cJC81q4XJknjG567wzEmv46WOBblDb6TUd3z8/GhgmsM9pn8g2B80tAJ4m5/d3Bi1KrSUBQ==}
+    engines: {node: '>=16.0.0'}
     dev: false
 
   /http-errors@2.0.0:

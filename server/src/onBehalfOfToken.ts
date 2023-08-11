@@ -106,21 +106,20 @@ export const setOnBehalfOfToken = (scope: string) => async (req: Request, res: E
 
   if (!accessToken) {
     res.status(500).send("Cannot request the OBO token as the access token does not exist");
-  } else {
-    try {
-      const token = await getOnBehalfOfToken(accessToken, scope);
-      req.headers.authorization = `Bearer ${token.access_token}`;
-      next();
-    } catch (e) {
-      const respons = e as Response;
+  }
 
-      // 400 Bad request under OBO-veksling betyr at bruker
-      // ikke tilhører gruppene som kreves for å kalle appen.
-      if (respons.status === 400) {
-        res.status(403).send(`User does not have access to scope ${scope}`);
-      } else {
-        res.status(respons.status).send(respons.statusText);
-      }
+  try {
+    const token = await getOnBehalfOfToken(accessToken, scope);
+    req.headers.authorization = `Bearer ${token.access_token}`;
+    next();
+  } catch (e) {
+    const respons = e as Response;
+
+    // A 400 Bad Request during OBO exchange means that the user does not belong to the groups required to invoke the app.
+    if (respons.status === 400) {
+      res.status(403).send(`User does not have access to scope ${scope}`);
+    } else {
+      res.status(respons.status).send(respons.statusText);
     }
   }
 };

@@ -5,8 +5,7 @@ import RateLimit from "express-rate-limit";
 import { routeProxyWithOboToken } from "./proxy";
 import Config from "./config";
 import { azureUserInfo, enforceAzureADMiddleware } from "./middelwares";
-import { logger } from "./logger";
-import { initializeAzureAd } from "./azureAd";
+import helmet from "helmet";
 
 export const server = express();
 
@@ -14,10 +13,16 @@ const SERVER_PORT = 8080;
 const BASE_PATH = "/okonomiportalen";
 const BUILD_PATH = path.resolve(__dirname, "../dist");
 
+server.use(
+  helmet({
+    contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false,
+  }),
+);
+
 const startServer = () => {
   server.use(express.urlencoded({ extended: true }));
   server.use(express.json());
-  server.disable("x-powered-by");
 
   server.use(
     BASE_PATH,
@@ -67,6 +72,4 @@ const startServer = () => {
   server.listen(SERVER_PORT, () => console.log(`Server listening on port ${SERVER_PORT}`));
 };
 
-initializeAzureAd()
-  .then(() => startServer())
-  .catch((e) => logger.error("Failed to start server", e.message));
+startServer();
