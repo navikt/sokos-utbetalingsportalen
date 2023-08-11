@@ -1,8 +1,7 @@
-import { NextFunction, Request, RequestHandler, Response } from "express";
 import { server } from "./server";
-import { respondUnauthorizedIfNotLoggedIn, setOnBehalfOfToken } from "./middelwares";
 import { createProxyMiddleware, fixRequestBody } from "http-proxy-middleware";
 import { logger } from "./logger";
+import { setOnBehalfOfToken } from "./onBehalfOfToken";
 
 export const setupRouteProxy = (fromPath: string, toTarget: string) => {
   return createProxyMiddleware({
@@ -17,21 +16,6 @@ export const setupRouteProxy = (fromPath: string, toTarget: string) => {
   });
 };
 
-export const routeProxyWithOboToken = (
-  path: string,
-  apiUrl: string,
-  apiScope: string,
-  customMiddleware?: RequestHandler,
-) => {
-  server.use(
-    path,
-    respondUnauthorizedIfNotLoggedIn,
-    customMiddleware ? customMiddleware : emptyMiddleware,
-    setOnBehalfOfToken(apiScope),
-    setupRouteProxy(path, apiUrl),
-  );
-};
-
-export const emptyMiddleware: RequestHandler = (_: Request, __: Response, next: NextFunction) => {
-  next();
+export const routeProxyWithOboToken = (path: string, apiUrl: string, apiScope: string) => {
+  server.use(path, setOnBehalfOfToken(apiScope), setupRouteProxy(path, apiUrl));
 };

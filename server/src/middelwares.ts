@@ -1,81 +1,63 @@
-import { z } from "zod";
+import { NextFunction, Request, Response } from "express";
+import { validateToken } from "./azureAd";
+import { logger } from "./logger";
 import { IncomingHttpHeaders } from "http";
-import { NextFunction, Request, Response as ExpressResponse } from "express";
-import { userAccessTokenIsValid } from "./azureAd";
-import { decodeJwt } from "jose";
-import { getOnBehalfOfToken } from "./onBehalfOfToken";
+import { z } from "zod";
 
 const ClaimSchema = z.object({
-  NAVident: z.string(),
   name: z.string(),
+  NAVident: z.string(),
   groups: z.array(z.string()),
 });
 
-function getUserInformation(token: string) {
-  const claims = decodeJwt(token);
-  return ClaimSchema.parse(claims);
+async function validateAuthorization(authorization: string) {
+  try {
+    const token = authorization.split(" ")[1];
+    const JWTVerifyResult = await validateToken(token);
+    return !!JWTVerifyResult?.payload;
+  } catch (e) {
+    logger.error("Azure AD error", e);
+    return false;
+  }
 }
 
-function retrieveTokenFromHeader(headers: IncomingHttpHeaders) {
-  const userAccessToken = headers.authorization?.replace("Bearer ", "");
+export async function enforceAzureADMiddleware(req: Request, res: Response, next: NextFunction) {
+  const loginPath = `/oauth2/login?redirect=${req.originalUrl}`;
+  const { authorization } = req.headers;
+
+  // Not logged in - log in with wonderwall
+  if (!authorization) {
+    res.redirect(loginPath);
+  } else {
+    // Validate token and continue to app
+    if (await validateAuthorization(authorization)) {
+      next();
+    } else {
+      res.redirect(loginPath);
+    }
+  }
+}
+
+export function retrieveTokenFromHeader(headers: IncomingHttpHeaders) {
+  const userAccessToken = headers.authorization?.split(" ")[1];
   if (!userAccessToken) {
     throw new Error("Failed to retrieve token");
   }
   return userAccessToken;
 }
 
-async function isUserLoggedIn(req: Request) {
-  const userAccessToken = retrieveTokenFromHeader(req.headers);
-  return !!userAccessToken && (await userAccessTokenIsValid(userAccessToken));
-}
-
-export async function redirectIfUnauthorized(req: Request, res: ExpressResponse, next: NextFunction) {
-  if (await isUserLoggedIn(req)) {
-    next();
-  } else {
-    res.redirect(`/oauth2/login?redirect=${req.originalUrl}`);
+export async function azureUserInfo(req: Request, res: Response) {
+  const token = retrieveTokenFromHeader(req.headers);
+  try {
+    const JWTVerifyResult = await validateToken(token);
+    const parsedClaimResult = ClaimSchema.parse(JWTVerifyResult.payload);
+    res.json({
+      navIdent: parsedClaimResult.NAVident,
+      name: parsedClaimResult.name,
+      adGroups: parsedClaimResult.groups,
+    });
+  } catch (e) {
+    logger.error("AzureUserInfo", e);
+    res.sendStatus(500);
   }
 }
-
-export async function respondUnauthorizedIfNotLoggedIn(req: Request, res: ExpressResponse, next: NextFunction) {
-  if (await isUserLoggedIn(req)) {
-    next();
-  } else {
-    res.status(401).send("User dont have a valid session");
-  }
-}
-
-export async function fetchUserData(req: Request, res: ExpressResponse) {
-  const userAccessToken = retrieveTokenFromHeader(req.headers);
-  const userInformation = getUserInformation(userAccessToken);
-
-  res.status(200).json({
-    name: userInformation.name,
-    navIdent: userInformation.NAVident,
-    adGroups: userInformation.groups,
-  });
-}
-
-export const setOnBehalfOfToken = (scope: string) => async (req: Request, res: ExpressResponse, next: NextFunction) => {
-  const accessToken = retrieveTokenFromHeader(req.headers);
-
-  if (!accessToken) {
-    res.status(500).send("Cannot request the OBO token as the access token does not exist");
-  } else {
-    try {
-      const token = await getOnBehalfOfToken(accessToken, scope);
-      req.headers.authorization = `Bearer ${token.access_token}`;
-      next();
-    } catch (e) {
-      const respons = e as Response;
-
-      // 400 Bad request under OBO-veksling betyr at bruker
-      // ikke tilhører gruppene som kreves for å kalle appen.
-      if (respons.status === 400) {
-        res.status(403).send(`User does not have access to scope ${scope}`);
-      } else {
-        res.status(respons.status).send(respons.statusText);
-      }
-    }
-  }
-};

@@ -2,7 +2,10 @@ import { logger } from "./logger";
 import Config from "./config";
 import { z } from "zod";
 import { Client, errors, Issuer, TokenSet } from "openid-client";
+import { NextFunction, Request, Response as ExpressResponse } from "express";
+import { retrieveTokenFromHeader } from "./middelwares";
 
+let _issuer: Issuer<Client>;
 let _client: Client;
 
 const OboTokenSchema = z.object({
@@ -18,37 +21,25 @@ type AccessToken = string;
 
 const tokenCache: Record<Scope, Record<AccessToken, CachedOboToken>> = {};
 
-export async function getOnBehalfOfToken(accessToken: string, scope: string) {
-  const cachedOboToken = tokenCache[scope]?.[accessToken];
+async function issuer() {
+  _issuer = await Issuer.discover(Config.AZURE_APP_WELL_KNOWN_URL);
+  return _issuer;
+}
 
-  if (cachedOboToken && oboTokenIsValid(cachedOboToken)) {
-    return cachedOboToken.token;
-  } else {
-    const newOboToken = await fetchNewOnBehalfOfToken(accessToken, scope);
-    const expires = Date.now() + newOboToken.expires_in * 1000;
-
-    if (!tokenCache[scope]) {
-      tokenCache[scope] = {};
-    }
-    tokenCache[scope][accessToken] = {
-      token: newOboToken,
-      expires,
-    };
-
-    return newOboToken;
-  }
+function jwk() {
+  return JSON.parse(Config.AZURE_APP_JWK);
 }
 
 async function client() {
-  const _jwk = Config.AZURE_APP_JWK;
-  const _issuer = await Issuer.discover(Config.AZURE_APP_WELL_KNOWN_URL);
+  const _jwk = jwk();
+  const _issuer = await issuer();
   _client = new _issuer.Client(
     {
       client_id: Config.AZURE_APP_CLIENT_ID,
       client_secret: Config.AZURE_APP_CLIENT_SECRET,
       token_endpoint_auth_method: "client_secret_post",
     },
-    { keys: [JSON.parse(_jwk)] },
+    { keys: [_jwk] },
   );
   return _client;
 }
@@ -62,8 +53,6 @@ async function fetchNewOnBehalfOfToken(accessToken: string, scope: string) {
     requested_token_use: "on_behalf_of",
     scope,
   };
-
-  const url = Config.AZURE_OPENID_CONFIG_TOKEN_ENDPOINT;
 
   return await _client
     .grant(grantBody)
@@ -87,6 +76,49 @@ async function fetchNewOnBehalfOfToken(accessToken: string, scope: string) {
 }
 
 function oboTokenIsValid(token: CachedOboToken) {
-  console.log("sjekker om obo er valid");
   return token.expires >= Date.now() - 5000;
 }
+
+export async function getOnBehalfOfToken(accessToken: string, scope: string) {
+  const cachedOboToken = tokenCache[scope]?.[accessToken];
+
+  if (cachedOboToken && oboTokenIsValid(cachedOboToken)) {
+    return cachedOboToken.token;
+  } else {
+    const newOboToken = await fetchNewOnBehalfOfToken(accessToken, scope);
+    const expires = Date.now() + newOboToken.expires_in * 1000;
+
+    if (!tokenCache[scope]) {
+      tokenCache[scope] = {};
+    }
+    tokenCache[scope][accessToken] = {
+      token: newOboToken,
+      expires,
+    };
+
+    return newOboToken;
+  }
+}
+
+export const setOnBehalfOfToken = (scope: string) => async (req: Request, res: ExpressResponse, next: NextFunction) => {
+  const accessToken = retrieveTokenFromHeader(req.headers);
+
+  if (!accessToken) {
+    res.status(500).send("Cannot request the OBO token as the access token does not exist");
+  }
+
+  try {
+    const token = await getOnBehalfOfToken(accessToken, scope);
+    req.headers.authorization = `Bearer ${token.access_token}`;
+    next();
+  } catch (e) {
+    const respons = e as Response;
+
+    // A 400 Bad Request during OBO exchange means that the user does not belong to the groups required to invoke the app.
+    if (respons.status === 400) {
+      res.status(403).send(`User does not have access to scope ${scope}`);
+    } else {
+      res.status(respons.status).send(respons.statusText);
+    }
+  }
+};
