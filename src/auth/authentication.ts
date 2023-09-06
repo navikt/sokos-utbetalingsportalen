@@ -1,12 +1,10 @@
-import { authUrl } from "../urls";
 import { AzureAdGroupNameId, AzureAdGroupNames } from "./azureAdGroups";
 import { redirect } from "react-router-dom";
-import { fetcher } from "../utils/apiClient";
-import { UserData } from "../models/userData";
+import RestService from "../services/rest-service";
 
 export const authenticationLoader = async () => {
   try {
-    return await fetcher<UserData>({ path: authUrl });
+    return RestService.fetchLoggedInUser();
   } catch (error) {
     throw new Error("Fetch request failed");
   }

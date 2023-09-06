@@ -1,20 +1,33 @@
 import { getEnvironment } from "./environment";
-import { initializeFaro } from "@grafana/faro-web-sdk";
+import { getWebInstrumentations, initializeFaro } from "@grafana/faro-web-sdk";
 
-type GrafanaFaroUrl = "https://telemetry.nav.no/collect" | "https://telemetry.ekstern.dev.nav.no/collect";
+type TelemetryCollectorURL =
+  | "https://telemetry.nav.no/collect"
+  | "https://telemetry.ekstern.dev.nav.no/collect"
+  | "http://localhost:12347";
 
-function getMetricsUrl(): GrafanaFaroUrl {
-  return getEnvironment() === "production"
-    ? "https://telemetry.nav.no/collect"
-    : "https://telemetry.ekstern.dev.nav.no/collect";
-}
+const getTelemetryCollectorURL = (): TelemetryCollectorURL => {
+  if (getEnvironment() === "production") {
+    return "https://telemetry.nav.no/collect";
+  }
+
+  if (getEnvironment() === "development") {
+    return "https://telemetry.ekstern.dev.nav.no/collect";
+  }
+
+  return "http://localhost:12347";
+};
 
 export function initGrafanaFaro() {
-  getMetricsUrl();
   initializeFaro({
-    url: getMetricsUrl(),
+    url: getTelemetryCollectorURL(),
     app: {
       name: "sokos-op-fasade",
     },
+    instrumentations: [
+      ...getWebInstrumentations({
+        captureConsole: false,
+      }),
+    ],
   });
 }

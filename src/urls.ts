@@ -1,4 +1,3 @@
-import { ROUTE_PATH } from "./models/routePath";
 import { getEnvironment } from "./utils/environment";
 import { SERVER_PATH } from "./models/serverPath";
 
