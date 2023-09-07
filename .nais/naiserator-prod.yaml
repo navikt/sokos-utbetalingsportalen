@@ -20,8 +20,10 @@ spec:
   azure:
     application:
       enabled: true
-      allowAllUsers: true
       claims:
+        groups:
+          - id: "0155880b-f708-4f61-ade8-00931fe41b89" # 0000-GA-SOKOS-OP-FASADE
+          - id: "a13b4176-e328-4e1c-b181-ff676a7146b1" # 0000-GA-SOKOS-MF-Skattekort-READ
         extra:
           - "NAVident"
     sidecar:
@@ -29,6 +31,10 @@ spec:
       autoLogin: true
       autoLoginIgnorePaths:
         - /internal/*
+  accessPolicy:
+    outbound:
+      external:
+        - host: sokos-skattekort-person.prod-fss-pub.nais.io
   ingresses:
     - "https://okonomiportalen.intern.nav.no"
   resources:
@@ -39,9 +45,11 @@ spec:
       cpu: "50m"
       memory: 256Mi
   env:
-  - name: SOKOS_MIKROFRONTEND_API
-    value: http://sokos-mikrofrontend-api
-  - name: SOKOS_MIKROFRONTEND_API_SCOPE
-    value: api://dev-gcp.okonomi.sokos-mikrofrontend-api/.default
-  - name: SOKOS_MIKROFRONTEND_PATH
-    value: "/mikrofrontend-api"
+
+    # Skattekort
+    - name: SOKOS_SKATTEKORT_PERSON_API
+      value: https://sokos-skattekort-person.prod-fss-pub.nais.io
+    - name: SOKOS_SKATTEKORT_PERSON_API_SCOPE
+      value: api://prod-fss.okonomi.sokos-skattekort-person/.default
+    - name: SOKOS_SKATTEKORT_PROXY
+      value: "/skattekort-api"
