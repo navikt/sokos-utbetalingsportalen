@@ -92,17 +92,17 @@ jobs:
           RESOURCE: .nais/naiserator-dev.yaml
           PRINT_PAYLOAD: true
 
-  #  deploy-prod:
-  #    name: Deploy to prod
-  #    needs: deploy-dev
-  #    if: github.ref == 'refs/heads/master'
-  #    runs-on: ubuntu-latest
-  #    steps:
-  #      - uses: actions/checkout@v4
-  #      - uses: nais/deploy/actions/deploy@v1
-  #        env:
-  #          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-  #          CLUSTER: prod-gcp
-  #          IMAGE: ${{ needs.build.outputs.image }}
-  #          RESOURCE: .nais/naiserator-prod.yaml
-  #          PRINT_PAYLOAD: true
+  deploy-prod:
+    name: Deploy to prod
+    needs: deploy-dev
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: prod-gcp
+          IMAGE: ${{ needs.build.outputs.image }}
+          RESOURCE: .nais/naiserator-prod.yaml
+          PRINT_PAYLOAD: true

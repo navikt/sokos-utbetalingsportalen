@@ -28,14 +28,14 @@ jobs:
           CLUSTER: dev-gcp
           RESOURCE: .nais/alerts-dev.yaml
 
-#  deploy-prod:
-#    name: Deploy alerts to prod
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v4
-#      - name: Deploy to prod
-#        uses: nais/deploy/actions/deploy@v1
-#        env:
-#          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-#          CLUSTER: prod-gcp
-#          RESOURCE: .nais/alerts-prod.yaml
+  deploy-prod:
+    name: Deploy alerts to prod
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to prod
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: prod-gcp
+          RESOURCE: .nais/alerts-prod.yaml
