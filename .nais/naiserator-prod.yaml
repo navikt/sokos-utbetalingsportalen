@@ -22,8 +22,8 @@ spec:
       enabled: true
       claims:
         groups:
-          - id: "0155880b-f708-4f61-ade8-00931fe41b89" # 0000-GA-SOKOS-OP-FASADE
-          - id: "a13b4176-e328-4e1c-b181-ff676a7146b1" # 0000-GA-SOKOS-MF-Skattekort-READ
+          - id: "5b9de9d1-8ef7-4f93-a96b-6ccea210e1cf" # 0000-GA-SOKOS-OP-FASADE
+          - id: "6c93762e-ea37-4043-919f-3a758a136943" # 0000-GA-SOKOS-MF-Skattekort-READ
         extra:
           - "NAVident"
     sidecar:
