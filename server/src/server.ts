@@ -8,6 +8,7 @@ import { azureUserInfo, enforceAzureADMiddleware } from "./middelwares";
 import helmet from "helmet";
 
 export const server = express();
+const isDev = process.env.NODE_ENV === "development";
 
 const SERVER_PORT = 8080;
 const BASE_PATH = "/okonomiportalen";
@@ -57,15 +58,17 @@ const startServer = () => {
     Config.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
   );
 
-  // sokos-mikrofrontend-template
-  routeProxyWithOboToken(
-    Config.SOKOS_MIKROFRONTEND_API,
-    Config.SOKOS_MIKROFRONTEND_API_SCOPE,
-    Config.SOKOS_MIKROFRONTEND_PROXY,
-  );
+  if (isDev) {
+    // sokos-mikrofrontend-template
+    routeProxyWithOboToken(
+      Config.SOKOS_MIKROFRONTEND_API,
+      Config.SOKOS_MIKROFRONTEND_API_SCOPE,
+      Config.SOKOS_MIKROFRONTEND_PROXY,
+    );
 
-  // sokos-postering-frontend
-  routeProxyWithOboToken(Config.SOKOS_POSTERING_PROXY, Config.SOKOS_POSTERING_API, Config.SOKOS_POSTERING_API_SCOPE);
+    // sokos-postering-frontend
+    routeProxyWithOboToken(Config.SOKOS_POSTERING_PROXY, Config.SOKOS_POSTERING_API, Config.SOKOS_POSTERING_API_SCOPE);
+  }
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
 
