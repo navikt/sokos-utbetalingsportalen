@@ -50,7 +50,7 @@ const startServer = () => {
   // Azure AD user info
   server.get("/userinfo", azureUserInfo);
 
-  if (Config.MILJO === "dev-gcp") {
+  if (Config.NAIS_CLUSTER_NAME === "dev-gcp") {
     // sokos-mikrofrontend-template
     routeProxyWithOboToken(
       Config.SOKOS_MIKROFRONTEND_PROXY,
