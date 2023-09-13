@@ -15,20 +15,20 @@ const ConfigSchema = z.object({
   AZURE_APP_JWK: z.string(),
   AZURE_OPENID_CONFIG_TOKEN_ENDPOINT: z.string(),
 
-  // sokos-mikrofrontend-template
-  SOKOS_MIKROFRONTEND_API: z.string(),
-  SOKOS_MIKROFRONTEND_API_SCOPE: z.string(),
-  SOKOS_MIKROFRONTEND_PROXY: z.string(),
-
   // sokos-op-skattekort
   SOKOS_SKATTEKORT_PERSON_API: z.string(),
   SOKOS_SKATTEKORT_PERSON_API_SCOPE: z.string(),
   SOKOS_SKATTEKORT_PROXY: z.string(),
 
   // utbetalinger-frontend-poc
-  SOKOS_POSTERING_API: z.string(),
-  SOKOS_POSTERING_API_SCOPE: z.string(),
-  SOKOS_POSTERING_PROXY: z.string(),
+  SOKOS_POSTERING_API: z.string().optional(),
+  SOKOS_POSTERING_API_SCOPE: z.string().optional(),
+  SOKOS_POSTERING_PROXY: z.string().optional(),
+
+  // sokos-mikrofrontend-template
+  SOKOS_MIKROFRONTEND_API: z.string().optional(),
+  SOKOS_MIKROFRONTEND_API_SCOPE: z.string().optional(),
+  SOKOS_MIKROFRONTEND_PROXY: z.string().optional(),
 });
 
 type Config = z.infer<typeof ConfigSchema>;

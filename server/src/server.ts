@@ -50,13 +50,6 @@ const startServer = () => {
   // Azure AD user info
   server.get("/userinfo", azureUserInfo);
 
-  // sokos-mikrofrontend-template
-  routeProxyWithOboToken(
-    Config.SOKOS_MIKROFRONTEND_PROXY,
-    Config.SOKOS_MIKROFRONTEND_API,
-    Config.SOKOS_MIKROFRONTEND_API_SCOPE,
-  );
-
   // sokos-op-skattekort
   routeProxyWithOboToken(
     Config.SOKOS_SKATTEKORT_PROXY,
@@ -64,8 +57,19 @@ const startServer = () => {
     Config.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
   );
 
-  // utbetalinger-frontend-poc
-  routeProxyWithOboToken(Config.SOKOS_POSTERING_PROXY, Config.SOKOS_POSTERING_API, Config.SOKOS_POSTERING_API_SCOPE);
+  // sokos-mikrofrontend-template
+  if (Config.SOKOS_MIKROFRONTEND_API && Config.SOKOS_MIKROFRONTEND_API_SCOPE && Config.SOKOS_MIKROFRONTEND_PROXY) {
+    routeProxyWithOboToken(
+      Config.SOKOS_MIKROFRONTEND_API,
+      Config.SOKOS_MIKROFRONTEND_API_SCOPE,
+      Config.SOKOS_MIKROFRONTEND_PROXY,
+    );
+  }
+
+  // sokos-postering-frontend
+  if (Config.SOKOS_POSTERING_API && Config.SOKOS_POSTERING_API_SCOPE && Config.SOKOS_POSTERING_PROXY) {
+    routeProxyWithOboToken(Config.SOKOS_POSTERING_PROXY, Config.SOKOS_POSTERING_API, Config.SOKOS_POSTERING_API_SCOPE);
+  }
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
 
