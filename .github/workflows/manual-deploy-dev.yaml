@@ -51,7 +51,7 @@ jobs:
         run: cd server && pnpm run build
 
       - name: Build docker image
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       - name: Push docker image to Google Artifact Registry
         uses: nais/docker-build-push@v0
