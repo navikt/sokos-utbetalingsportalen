@@ -21,14 +21,14 @@ const ConfigSchema = z.object({
   SOKOS_SKATTEKORT_PROXY: z.string(),
 
   // utbetalinger-frontend-poc
-  SOKOS_POSTERING_API: z.string().optional(),
-  SOKOS_POSTERING_API_SCOPE: z.string().optional(),
-  SOKOS_POSTERING_PROXY: z.string().optional(),
+  SOKOS_POSTERING_API: z.string().default(""),
+  SOKOS_POSTERING_API_SCOPE: z.string().default(""),
+  SOKOS_POSTERING_PROXY: z.string().default(""),
 
   // sokos-mikrofrontend-template
-  SOKOS_MIKROFRONTEND_API: z.string().optional(),
-  SOKOS_MIKROFRONTEND_API_SCOPE: z.string().optional(),
-  SOKOS_MIKROFRONTEND_PROXY: z.string().optional(),
+  SOKOS_MIKROFRONTEND_API: z.string().default(""),
+  SOKOS_MIKROFRONTEND_API_SCOPE: z.string().default(""),
+  SOKOS_MIKROFRONTEND_PROXY: z.string().default(""),
 });
 
 type Config = z.infer<typeof ConfigSchema>;

@@ -58,18 +58,14 @@ const startServer = () => {
   );
 
   // sokos-mikrofrontend-template
-  if (Config.SOKOS_MIKROFRONTEND_API && Config.SOKOS_MIKROFRONTEND_API_SCOPE && Config.SOKOS_MIKROFRONTEND_PROXY) {
-    routeProxyWithOboToken(
-      Config.SOKOS_MIKROFRONTEND_API,
-      Config.SOKOS_MIKROFRONTEND_API_SCOPE,
-      Config.SOKOS_MIKROFRONTEND_PROXY,
-    );
-  }
+  routeProxyWithOboToken(
+    Config.SOKOS_MIKROFRONTEND_API,
+    Config.SOKOS_MIKROFRONTEND_API_SCOPE,
+    Config.SOKOS_MIKROFRONTEND_PROXY,
+  );
 
   // sokos-postering-frontend
-  if (Config.SOKOS_POSTERING_API && Config.SOKOS_POSTERING_API_SCOPE && Config.SOKOS_POSTERING_PROXY) {
-    routeProxyWithOboToken(Config.SOKOS_POSTERING_PROXY, Config.SOKOS_POSTERING_API, Config.SOKOS_POSTERING_API_SCOPE);
-  }
+  routeProxyWithOboToken(Config.SOKOS_POSTERING_PROXY, Config.SOKOS_POSTERING_API, Config.SOKOS_POSTERING_API_SCOPE);
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
 
