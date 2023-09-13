@@ -58,6 +58,8 @@ const startServer = () => {
     Config.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
   );
 
+  console.log("isDev ::::: ", isDev);
+
   if (isDev) {
     // sokos-mikrofrontend-template
     routeProxyWithOboToken(
