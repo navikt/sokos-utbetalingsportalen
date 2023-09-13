@@ -94,7 +94,7 @@ jobs:
 
   deploy-prod:
     name: Deploy to prod
-    needs: deploy-dev
+    needs: [ build, deploy-dev ]
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
