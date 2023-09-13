@@ -50,14 +50,12 @@ const startServer = () => {
   // Azure AD user info
   server.get("/userinfo", azureUserInfo);
 
-  console.log("DU ER I ::", Config.MILJO);
-
   if (Config.MILJO === "dev-gcp") {
     // sokos-mikrofrontend-template
     routeProxyWithOboToken(
+      Config.SOKOS_MIKROFRONTEND_PROXY,
       Config.SOKOS_MIKROFRONTEND_API,
       Config.SOKOS_MIKROFRONTEND_API_SCOPE,
-      Config.SOKOS_MIKROFRONTEND_PROXY,
     );
 
     // sokos-postering-frontend
