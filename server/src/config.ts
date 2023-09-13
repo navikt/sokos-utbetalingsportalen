@@ -6,6 +6,7 @@ dotenv.config();
 const ConfigSchema = z.object({
   // NAIS env
   NAIS_APP_NAME: z.string(),
+  MILJO: z.string(),
 
   // AzureAD env
   AZURE_APP_WELL_KNOWN_URL: z.string(),

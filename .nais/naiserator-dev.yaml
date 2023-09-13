@@ -53,6 +53,9 @@ spec:
       memory: 256Mi
   env:
 
+  - name: MILJO
+    value: dev-gcp
+
   # Mikrofrontend-template
   - name: SOKOS_MIKROFRONTEND_API
     value: http://sokos-mikrofrontend-api

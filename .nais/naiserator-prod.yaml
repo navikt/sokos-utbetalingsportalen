@@ -46,6 +46,9 @@ spec:
       memory: 256Mi
   env:
 
+    - name: MILJO
+      value: prod-gcp
+
     # Skattekort
     - name: SOKOS_SKATTEKORT_PERSON_API
       value: https://sokos-skattekort-person.prod-fss-pub.nais.io
