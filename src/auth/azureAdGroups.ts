@@ -17,7 +17,7 @@ const AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ = {
 const AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ = {
   local: "a13b4176-e328-4e1c-b181-ff676a7146b1",
   development: "a13b4176-e328-4e1c-b181-ff676a7146b1",
-  production: "",
+  production: "6c93762e-ea37-4043-919f-3a758a136943",
 } as const satisfies Dictionary;
 
 export const AzureAdGroupName = {
