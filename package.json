@@ -15,18 +15,18 @@
   "license": "MIT",
   "dependencies": {
     "@grafana/faro-web-sdk": "^1.2.0",
-    "@navikt/aksel-icons": "^5.4.1",
-    "@navikt/ds-css": "^5.4.1",
-    "@navikt/ds-react": "^5.4.1",
+    "@navikt/aksel-icons": "^5.5.0",
+    "@navikt/ds-css": "^5.5.0",
+    "@navikt/ds-react": "^5.5.0",
     "axios": "^1.5.0",
     "react-error-boundary": "^4.0.11",
-    "react-router-dom": "^6.15.0",
+    "react-router-dom": "^6.16.0",
     "swr": "^2.2.2",
     "zustand": "^4.4.1"
   },
   "devDependencies": {
     "@eik/rollup-plugin": "^4.0.51",
-    "@navikt/aksel-stylelint": "^5.4.1",
+    "@navikt/aksel-stylelint": "^5.5.0",
     "@rollup/plugin-terser": "^0.4.3",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
@@ -46,7 +46,7 @@
     "stylelint": "^15.10.3",
     "tailwindcss": "^3.3.3",
     "vite": "^4.4.9",
-    "vite-plugin-mock": "^2.9.8"
+    "vite-plugin-mock": "^3.0.0"
   },
   "eslintConfig": {
     "extends": [
