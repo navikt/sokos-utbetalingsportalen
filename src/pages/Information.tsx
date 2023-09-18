@@ -1,5 +1,4 @@
-import { Heading, BodyLong } from "@navikt/ds-react";
-import styles from "./Information.module.css";
+import { Heading } from "@navikt/ds-react";
 
 const Information = () => {
   return (
