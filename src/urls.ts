@@ -29,5 +29,5 @@ const SKATTEKORT_URL = {
 
 export const authUrl = AUTH_URL[getEnvironment()];
 export const sokosMikrofrontendTemplateUrl = SOKOS_MIKROFRONTEND_TEMPLATE_URL[getEnvironment()];
-export const utbetalingFrontendPocUrl = SØK_POSTERINGER_URL[getEnvironment()];
+export const sokPosteringerUrl = SØK_POSTERINGER_URL[getEnvironment()];
 export const skattekortUrl = SKATTEKORT_URL[getEnvironment()];
