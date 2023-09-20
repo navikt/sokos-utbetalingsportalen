@@ -17,8 +17,8 @@ const SOKOS_MIKROFRONTEND_TEMPLATE_URL = {
 
 const SØK_POSTERINGER_URL = {
   local: "http://localhost:5173/microfrontend/bundle.js",
-  development: "https://okonomiportalen.intern.dev.nav.no/sokos-mf-postering-sok/bundle.js",
-  production: "https://okonomiportalen.intern.nav.no/sokos-mf-postering-sok/bundle.js",
+  development: "https://okonomiportalen.intern.dev.nav.no/sokos-op-postering-sok/bundle.js",
+  production: "https://okonomiportalen.intern.nav.no/sokos-op-postering-sok/bundle.js",
 } as const satisfies Dictionary;
 
 const SKATTEKORT_URL = {
