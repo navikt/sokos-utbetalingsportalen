@@ -21,7 +21,7 @@ const ConfigSchema = z.object({
   SOKOS_SKATTEKORT_PERSON_API_SCOPE: z.string(),
   SOKOS_SKATTEKORT_PROXY: z.string(),
 
-  // utbetalinger-frontend-poc
+  // sokos-mf-postering-sok
   SOKOS_POSTERING_API: z.string().default(""),
   SOKOS_POSTERING_API_SCOPE: z.string().default(""),
   SOKOS_POSTERING_PROXY: z.string().default(""),
