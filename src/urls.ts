@@ -17,8 +17,8 @@ const SOKOS_MIKROFRONTEND_TEMPLATE_URL = {
 
 const SØK_POSTERINGER_URL = {
   local: "http://localhost:5173/microfrontend/bundle.js",
-  development: "https://okonomiportalen.intern.dev.nav.no/utbetalinger-frontend-poc/bundle.js",
-  production: "https://okonomiportalen.intern.nav.no/utbetaling-frontend-poc/bundle.js",
+  development: "https://okonomiportalen.intern.dev.nav.no/sokos-op-postering-sok/bundle.js",
+  production: "https://okonomiportalen.intern.nav.no/sokos-op-postering-sok/bundle.js",
 } as const satisfies Dictionary;
 
 const SKATTEKORT_URL = {
@@ -29,5 +29,5 @@ const SKATTEKORT_URL = {
 
 export const authUrl = AUTH_URL[getEnvironment()];
 export const sokosMikrofrontendTemplateUrl = SOKOS_MIKROFRONTEND_TEMPLATE_URL[getEnvironment()];
-export const utbetalingFrontendPocUrl = SØK_POSTERINGER_URL[getEnvironment()];
+export const sokPosteringerUrl = SØK_POSTERINGER_URL[getEnvironment()];
 export const skattekortUrl = SKATTEKORT_URL[getEnvironment()];

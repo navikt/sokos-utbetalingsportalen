@@ -6,7 +6,7 @@ import { ROUTE_PATH } from "./models/routePath";
 import Feilside, { NoAccess, NotFound } from "./pages/Feilside";
 import Information from "./pages/Information";
 import Mikrofrontend from "./Mikrofrontend";
-import { skattekortUrl, sokosMikrofrontendTemplateUrl, utbetalingFrontendPocUrl } from "./urls";
+import { skattekortUrl, sokosMikrofrontendTemplateUrl, sokPosteringerUrl } from "./urls";
 
 const App = () => {
   return (
@@ -22,8 +22,8 @@ const App = () => {
                 loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ)}
               />
               <Route
-                path={ROUTE_PATH.UTBETALINGER_FRONTEND_POC}
-                element={<Mikrofrontend url={utbetalingFrontendPocUrl} />}
+                path={ROUTE_PATH.SOKOS_OP_POSTERING_SOK}
+                element={<Mikrofrontend url={sokPosteringerUrl} />}
                 loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ)}
               />
               <Route

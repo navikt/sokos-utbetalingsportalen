@@ -38,7 +38,7 @@ const SideBar = () => {
             </Link>
           )}
           {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ) && (
-            <Link className={styles.link} to={ROUTE_PATH.UTBETALINGER_FRONTEND_POC}>
+            <Link className={styles.link} to={ROUTE_PATH.SOKOS_OP_POSTERING_SOK}>
               Søk Posteringer
             </Link>
           )}
