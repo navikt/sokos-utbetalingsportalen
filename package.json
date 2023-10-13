@@ -15,9 +15,9 @@
   "license": "MIT",
   "dependencies": {
     "@grafana/faro-web-sdk": "^1.2.1",
-    "@navikt/aksel-icons": "^5.6.5",
-    "@navikt/ds-css": "^5.6.5",
-    "@navikt/ds-react": "^5.6.5",
+    "@navikt/aksel-icons": "^5.7.0",
+    "@navikt/ds-css": "^5.7.0",
+    "@navikt/ds-react": "^5.7.0",
     "axios": "^1.5.1",
     "react-error-boundary": "^4.0.11",
     "react-router-dom": "^6.16.0",
@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@eik/rollup-plugin": "^4.0.54",
-    "@navikt/aksel-stylelint": "^5.6.5",
+    "@navikt/aksel-stylelint": "^5.7.0",
     "@rollup/plugin-terser": "^0.4.4",
     "@types/react": "^18.2.28",
     "@types/react-dom": "^18.2.13",
