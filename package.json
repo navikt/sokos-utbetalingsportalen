@@ -29,7 +29,7 @@
     "@navikt/aksel-stylelint": "^5.6.5",
     "@rollup/plugin-terser": "^0.4.4",
     "@types/react": "^18.2.28",
-    "@types/react-dom": "^18.2.13",
+    "@types/react-dom": "^18.2.14",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@vitejs/plugin-react": "^4.1.0",
     "autoprefixer": "^10.4.16",
