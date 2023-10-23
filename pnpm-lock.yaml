@@ -30,8 +30,8 @@ dependencies:
     specifier: ^2.2.4
     version: 2.2.4(react@18.2.0)
   zustand:
-    specifier: ^4.4.3
-    version: 4.4.3(@types/react@18.2.29)(react@18.2.0)
+    specifier: ^4.4.4
+    version: 4.4.4(@types/react@18.2.29)(react@18.2.0)
 
 devDependencies:
   '@eik/rollup-plugin':
@@ -1832,11 +1832,6 @@ packages:
       delayed-stream: 1.0.0
     dev: false
 
-  /commander@11.0.0:
-    resolution: {integrity: sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==}
-    engines: {node: '>=16'}
-    dev: true
-
   /commander@11.1.0:
     resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
     engines: {node: '>=16'}
@@ -3530,7 +3525,7 @@ packages:
     resolution: {integrity: sha512-eQsKcWzIaZzEZ07NuEyO4Nw65g0hdWAyurVol1IPl1gahRwY+svqzfgfey8U8dahLwG44d6/RwEzuK52rSa/JQ==}
     hasBin: true
     dependencies:
-      commander: 11.0.0
+      commander: 11.1.0
     dev: true
 
   /ms@2.0.0:
@@ -4925,8 +4920,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zustand@4.4.3(@types/react@18.2.29)(react@18.2.0):
-    resolution: {integrity: sha512-oRy+X3ZazZvLfmv6viIaQmtLOMeij1noakIsK/Y47PWYhT8glfXzQ4j0YcP5i0P0qI1A4rIB//SGROGyZhx91A==}
+  /zustand@4.4.4(@types/react@18.2.29)(react@18.2.0):
+    resolution: {integrity: sha512-5UTUIAiHMNf5+mFp7/AnzJXS7+XxktULFN0+D1sCiZWyX7ZG+AQpqs2qpYrynRij4QvoDdCD+U+bmg/cG3Ucxw==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
       '@types/react': '>=16.8'
