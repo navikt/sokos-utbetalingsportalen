@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@grafana/faro-web-sdk':
-    specifier: ^1.2.1
-    version: 1.2.1
+    specifier: ^1.2.2
+    version: 1.2.2
   '@navikt/aksel-icons':
     specifier: ^5.7.3
     version: 5.7.3
@@ -714,8 +714,8 @@ packages:
     resolution: {integrity: sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==}
     dev: false
 
-  /@grafana/faro-core@1.2.1:
-    resolution: {integrity: sha512-gI8CpyhAKRsMbPHom3sAa0qCgiQAXZrlv43Tv2q30PgMgNsV4iWI6UKHN/7NPJyvUFd+h0B/plukYDGZxO1kew==}
+  /@grafana/faro-core@1.2.2:
+    resolution: {integrity: sha512-ExI3dvPEdxnc2tEvhCsUBGeVExwESS4Gd6T04+PfTIKYqxf8R0SSqgJ1VJncA1FmOHvebqaghQ5rDmLv20o8XQ==}
     dependencies:
       '@opentelemetry/api': 1.4.1
       '@opentelemetry/api-metrics': 0.33.0
@@ -723,10 +723,10 @@ packages:
       murmurhash-js: 1.0.0
     dev: false
 
-  /@grafana/faro-web-sdk@1.2.1:
-    resolution: {integrity: sha512-86Bk3IjVNdV/WufkdPJVUvjx7PYKjPV5n2Szpn+dOewZqEDd1lIqhyFYqVVM9kdjT+ARbSzY5BZvb+r0Kh8tuQ==}
+  /@grafana/faro-web-sdk@1.2.2:
+    resolution: {integrity: sha512-0fnvPbfX6sgl3K2eiaQX9d/hTEoNA9kw5yVcznZgRVMfz/xBdSDwXEp680YVgcGWF9IQQEAHeFezKA5mNNZbIw==}
     dependencies:
-      '@grafana/faro-core': 1.2.1
+      '@grafana/faro-core': 1.2.2
       ua-parser-js: 1.0.35
       web-vitals: 3.4.0
     dev: false
@@ -1831,11 +1831,6 @@ packages:
     dependencies:
       delayed-stream: 1.0.0
     dev: false
-
-  /commander@11.0.0:
-    resolution: {integrity: sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==}
-    engines: {node: '>=16'}
-    dev: true
 
   /commander@11.1.0:
     resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
@@ -3530,7 +3525,7 @@ packages:
     resolution: {integrity: sha512-eQsKcWzIaZzEZ07NuEyO4Nw65g0hdWAyurVol1IPl1gahRwY+svqzfgfey8U8dahLwG44d6/RwEzuK52rSa/JQ==}
     hasBin: true
     dependencies:
-      commander: 11.0.0
+      commander: 11.1.0
     dev: true
 
   /ms@2.0.0:
