@@ -3,7 +3,10 @@ updates:
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      interval: daily
+      interval: weekly
+      day: "monday"
+      time: "09:00"
+      timezone: "Europe/Oslo"
     ignore:
       - dependency-name: "vite-plugin-mock"
         update-types: ["version-update:semver-major"]
@@ -15,7 +18,10 @@ updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: daily
+      interval: weekly
+      day: "monday"
+      time: "09:00"
+      timezone: "Europe/Oslo"
     groups:
       github:
         patterns:
