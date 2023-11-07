@@ -24,7 +24,7 @@ const App = () => {
               <Route
                 path={ROUTE_PATH.SOKOS_OP_POSTERING_SOK}
                 element={<Mikrofrontend url={sokPosteringerUrl} />}
-                loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALINGER_READ)}
+                loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_POSTERINGSOK_READ)}
               />
               <Route
                 path={ROUTE_PATH.SOKOS_OP_SKATTEKORT}
