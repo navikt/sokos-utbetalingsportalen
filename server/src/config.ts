@@ -22,9 +22,9 @@ const ConfigSchema = z.object({
   SOKOS_SKATTEKORT_PROXY: z.string(),
 
   // sokos-op-postering-sok
-  SOKOS_POSTERING_API: z.string().default(""),
-  SOKOS_POSTERING_API_SCOPE: z.string().default(""),
-  SOKOS_POSTERING_PROXY: z.string().default(""),
+  SOKOS_POSTERING_API: z.string(),
+  SOKOS_POSTERING_API_SCOPE: z.string(),
+  SOKOS_POSTERING_PROXY: z.string(),
 
   // sokos-mikrofrontend-template
   SOKOS_MIKROFRONTEND_API: z.string().default(""),
