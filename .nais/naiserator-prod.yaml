@@ -24,7 +24,7 @@ spec:
         groups:
           - id: "5b9de9d1-8ef7-4f93-a96b-6ccea210e1cf" # 0000-GA-SOKOS-OP-FASADE
           - id: "6c93762e-ea37-4043-919f-3a758a136943" # 0000-GA-SOKOS-MF-Skattekort-READ
-          - id: "må byttes ut" # 0000-GA-SOKOS-MF-PosteringSok-READ   TODO
+          - id: "25723642-e1da-4d15-87ce-8c4d2b87e33a" # 0000-GA-SOKOS-MF-PosteringSok-READ
         extra:
           - "NAVident"
     sidecar:
