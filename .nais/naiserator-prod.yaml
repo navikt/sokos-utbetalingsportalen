@@ -24,6 +24,7 @@ spec:
         groups:
           - id: "5b9de9d1-8ef7-4f93-a96b-6ccea210e1cf" # 0000-GA-SOKOS-OP-FASADE
           - id: "6c93762e-ea37-4043-919f-3a758a136943" # 0000-GA-SOKOS-MF-Skattekort-READ
+          - id: "25723642-e1da-4d15-87ce-8c4d2b87e33a" # 0000-GA-SOKOS-MF-PosteringSok-READ
         extra:
           - "NAVident"
     sidecar:
@@ -33,6 +34,8 @@ spec:
         - /internal/*
   accessPolicy:
     outbound:
+      rules:
+        - application: sokos-postering-api
       external:
         - host: sokos-skattekort-person.prod-fss-pub.nais.io
   ingresses:
@@ -45,6 +48,14 @@ spec:
       cpu: "50m"
       memory: 256Mi
   env:
+
+    # sokos-postering-api
+    - name: SOKOS_POSTERING_API
+      value: http://sokos-postering-api
+    - name: SOKOS_POSTERING_API_SCOPE
+      value: api://prod-gcp.okonomi.sokos-postering-api/.default
+    - name: SOKOS_POSTERING_PROXY
+      value: "/postering-api"
 
     # Skattekort
     - name: SOKOS_SKATTEKORT_PERSON_API
