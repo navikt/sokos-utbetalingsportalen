@@ -16,7 +16,7 @@ const AD_GRUPPE_SOKOS_MF_POSTERINGSOK_READ = {
 
 const AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ = {
   local: "a13b4176-e328-4e1c-b181-ff676a7146b1",
-  development: "559ba83c-d9dc-46b2-88ad-f4a43cb9db08",
+  development: "1d1af049-4539-4988-a1db-b5bf3066322c",
   production: "6c93762e-ea37-4043-919f-3a758a136943",
 } as const satisfies Dictionary;
 
