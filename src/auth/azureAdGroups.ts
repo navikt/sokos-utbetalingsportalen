@@ -23,7 +23,7 @@ const AD_GRUPPE_SOKOS_MF_POSTERINGSOK_READ_TMP = {
 const AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ = {
   local: "a13b4176-e328-4e1c-b181-ff676a7146b1",
   development: "a13b4176-e328-4e1c-b181-ff676a7146b1",
-  production: "6c93762e-ea37-4043-919f-3a758a136943",
+  production: "ed831b6d-4994-4ea0-937c-2b903ffba5c1",
 } as const satisfies Dictionary;
 
 export const AzureAdGroupName = {
