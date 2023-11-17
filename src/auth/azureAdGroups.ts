@@ -10,7 +10,7 @@ const AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ = {
 
 const AD_GRUPPE_SOKOS_MF_POSTERINGSOK_READ = {
   local: "b01fb216-fcb3-4ede-b7da-71fffe859763",
-  development: "b01fb216-fcb3-4ede-b7da-71fffe859763",
+  development: "e0023d91-26bc-4d5d-95ba-3148b6123afc",
   production: "25723642-e1da-4d15-87ce-8c4d2b87e33a",
 } as const satisfies Dictionary;
 
