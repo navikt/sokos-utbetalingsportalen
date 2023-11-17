@@ -37,8 +37,7 @@ const SideBar = () => {
               Mikrofrontend
             </Link>
           )}
-          {(hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_POSTERINGSOK_READ) ||
-            hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_POSTERINGSOK_READ_TMP)) && (
+          {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_POSTERINGSOK_READ) && (
             <Link className={styles.link} to={ROUTE_PATH.SOKOS_OP_POSTERING_SOK}>
               Søk Posteringer
             </Link>
