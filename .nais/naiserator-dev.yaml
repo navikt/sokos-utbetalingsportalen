@@ -25,7 +25,7 @@ spec:
       claims:
         groups:
           - id: "1b717a23-d376-471c-9fc6-356299fadc2b" # 0000-GA-SOKOS-MF-Mikrofrontend-READ
-          - id: "1d1af049-4539-4988-a1db-b5bf3066322c" # 0000-GA-SOKOS-MF-Skattekort-READ
+          - id: "a13b4176-e328-4e1c-b181-ff676a7146b1" # 0000-GA-SOKOS-MF-Skattekort-READ
           - id: "e0023d91-26bc-4d5d-95ba-3148b6123afc" # 0000-GA-SOKOS-MF-PosteringSok-READ
         extra:
           - "NAVident"
