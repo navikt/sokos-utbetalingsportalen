@@ -26,7 +26,7 @@ spec:
         groups:
           - id: "1b717a23-d376-471c-9fc6-356299fadc2b" # 0000-GA-SOKOS-MF-Mikrofrontend-READ
           - id: "a13b4176-e328-4e1c-b181-ff676a7146b1" # 0000-GA-SOKOS-MF-Skattekort-READ
-          - id: "301f8689-c70d-4135-820a-4d031b6c5ff7" # 0000-GA-SOKOS-MF-PosteringSok-READ
+          - id: "b01fb216-fcb3-4ede-b7da-71fffe859763" # 0000-GA-SOKOS-MF-PosteringSok-READ
         extra:
           - "NAVident"
     sidecar:
