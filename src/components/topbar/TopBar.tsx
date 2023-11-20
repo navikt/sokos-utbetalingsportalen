@@ -6,13 +6,13 @@ import { Label, TextField } from "@navikt/ds-react";
 import { UserData } from "../../models/userData";
 
 const TopBar = () => {
-  const setGjelderId = useStore(selectSetGjelderID);
+  // const setGjelderId = useStore(selectSetGjelderID);
   const userInfo = useLoaderData() as UserData;
-  const gjelderId = useStore(selectGjelderID);
+  // const gjelderId = useStore(selectGjelderID);
 
-  const handleGjelderIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setGjelderId(event.target.value);
-  };
+  // const handleGjelderIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setGjelderId(event.target.value);
+  // };
 
   return (
     <Header>
@@ -22,12 +22,12 @@ const TopBar = () => {
       <Header.Title as={Link} to={"/"}>
         Økonomiportalen
       </Header.Title>
-      <div id="gjelder-id" className="w-fit flex justify-end items-stretch space-x-7 p-2">
-        <div id="gjelder-id-tekst" className="flex justify-center items-center">
-          <Label>GjelderID: </Label>
-        </div>
-        <TextField label="" hideLabel size="small" onBlur={handleGjelderIdChange} />
-      </div>
+      {/*<div id="gjelder-id" className="w-fit flex justify-end items-stretch space-x-7 p-2">*/}
+      {/*  <div id="gjelder-id-tekst" className="flex justify-center items-center">*/}
+      {/*    <Label>GjelderID: </Label>*/}
+      {/*  </div>*/}
+      {/*  <TextField label="" hideLabel size="small" onBlur={handleGjelderIdChange} />*/}
+      {/*</div>*/}
       <Dropdown>
         <Header.UserButton
           as={Dropdown.Toggle}
