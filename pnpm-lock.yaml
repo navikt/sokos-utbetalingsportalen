@@ -35,8 +35,8 @@ dependencies:
 
 devDependencies:
   '@eik/rollup-plugin':
-    specifier: ^4.0.58
-    version: 4.0.58
+    specifier: ^4.0.59
+    version: 4.0.59
   '@navikt/aksel-stylelint':
     specifier: ^5.10.1
     version: 5.10.1
@@ -399,12 +399,12 @@ packages:
       - encoding
     dev: true
 
-  /@eik/rollup-plugin@4.0.58:
-    resolution: {integrity: sha512-NZWsZDdi1w/FABNKQ+tsUGeFNG5ZnwWTSI4BXMbt1QDred319efiRjMCdjeMW3Z99EWXWVNv7q+iD4Gz0LvEwg==}
+  /@eik/rollup-plugin@4.0.59:
+    resolution: {integrity: sha512-J6P16bSajQQHCW1EMgFML6bDZqHemoW5bfdCmoxK6hiebhpamj3qxMQt1KI08ZF0rhda+aTlL0boYWsZWvAb0A==}
     dependencies:
       '@eik/common': 3.0.1
       rollup-plugin-import-map: 3.0.0
-      undici: 5.27.2
+      undici: 5.28.0
     transitivePeerDependencies:
       - encoding
     dev: true
@@ -4758,8 +4758,8 @@ packages:
       which-boxed-primitive: 1.0.2
     dev: true
 
-  /undici@5.27.2:
-    resolution: {integrity: sha512-iS857PdOEy/y3wlM3yRp+6SNQQ6xU0mmZcwRSriqk+et/cwWAtwmIGf6WkoDN2EK/AMdCO/dfXzIwi+rFMrjjQ==}
+  /undici@5.28.0:
+    resolution: {integrity: sha512-gM12DkXhlAc5+/TPe60iy9P6ETgVfqTuRJ6aQ4w8RYu0MqKuXhaq3/b86GfzDQnNA3NUO6aUNdvevrKH59D0Nw==}
     engines: {node: '>=14.0'}
     dependencies:
       '@fastify/busboy': 2.0.0
