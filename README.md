@@ -1,7 +1,7 @@
 # sokos-op-fasade
 
 Hovedcontainer som setter sammen mikrofrontends.
-For å hekte på en mikrofrontend sjekk dokumentasjonen [her](dokumentasjon/mikrofrontend.md)
+For å hekte på en mikrofrontend ta kontakt med `#team-mob`
 
 # Innholdsoversikt
 
@@ -43,14 +43,19 @@ Okonomiportalen er arbeidsflaten for okonomi medarbeidere i Økonomi linjen i NA
 Distribusjon av tjenesten er gjort med bruk av Github Actions.
 [sokos-op-fasade CI / CD](https://github.com/navikt/sokos-op-fasade/actions)
 
-Push/merge til master branch vil teste, bygge og deploye til dev- og prod miljø.
+Push/merge til main branch vil teste, bygge og deploye til dev- og prod miljø.
 Det foreligger også mulighet for manuell deploy til dev.
 
-# 7. Autentiseringg
+# 7. Autentisering
+
+Applikasjonen bruker SSO -(Single Sign On) løsningen gjennom [Wonderwall](https://docs.nais.io/addons/wonderwall/?h=wonder).
+Det benyttes også [OBO- On-Behalf-Of](https://docs.nais.io/security/auth/azure-ad/usage/?h=behal#oauth-20-on-behalf-of-grant) for å gjøre kall til API bak mikrofrontendene.
 
 # 6. Drift og støtte
 
 ### Logging
+
+Logging går til [Grafana for frontend](https://grafana.nav.cloud.nais.io/d/6uYofme4z/sokos-op-fasade?orgId=1)
 
 ### Alarmer
 
@@ -58,7 +63,7 @@ Vi bruker [nais-alerts](https://doc.nais.io/observability/alerts) for å sette o
 
 ### Grafana
 
-- [appavn](url)
+- [sokos-op-fasade](https://grafana.nav.cloud.nais.io/d/6uYofme4z/sokos-op-fasade?orgId=1)
 
 # 7. Henvendelser og tilgang
 
