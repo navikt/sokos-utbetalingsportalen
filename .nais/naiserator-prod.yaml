@@ -1,7 +1,7 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: sokos-op-fasade
+  name: sokos-up-container
   namespace: okonomi
   labels:
     team: okonomi
@@ -9,10 +9,10 @@ spec:
   image: {{ image }}
   port: 8080
   liveness:
-    path: /okonomiportalen/internal/isAlive
+    path: /utbetalingsportalen/internal/isAlive
     initialDelay: 10
   readiness:
-    path: /okonomiportalen/internal/isReady
+    path: /utbetalingsportalen/internal/isReady
     initialDelay: 10
   replicas:
     min: 1
@@ -38,7 +38,7 @@ spec:
       external:
         - host: sokos-skattekort-person.prod-fss-pub.nais.io
   ingresses:
-    - "https://okonomiportalen.intern.nav.no"
+    - "https://utbetalingsportalen.intern.nav.no"
   resources:
     limits:
       cpu: "3"

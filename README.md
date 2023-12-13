@@ -1,4 +1,4 @@
-# sokos-op-fasade
+# sokos-up-container
 
 Hovedcontainer som setter sammen mikrofrontends.
 For å hekte på en mikrofrontend ta kontakt med `#team-mob`
@@ -17,7 +17,7 @@ For å hekte på en mikrofrontend ta kontakt med `#team-mob`
 
 # 1. Funksjonelle Krav
 
-Okonomiportalen er arbeidsflaten for okonomi medarbeidere i Økonomi linjen i NAV.
+Utbetalingsportalen er arbeidsflaten for okonomi medarbeidere i Økonomi linjen i NAV.
 
 # 2. Utviklingsmiljø
 
@@ -41,7 +41,7 @@ Okonomiportalen er arbeidsflaten for okonomi medarbeidere i Økonomi linjen i NA
 # 4. Deployment
 
 Distribusjon av tjenesten er gjort med bruk av Github Actions.
-[sokos-op-fasade CI / CD](https://github.com/navikt/sokos-op-fasade/actions)
+[sokos-up-container CI / CD](https://github.com/navikt/sokos-up-container/actions)
 
 Push/merge til main branch vil teste, bygge og deploye til dev- og prod miljø.
 Det foreligger også mulighet for manuell deploy til dev.
@@ -55,7 +55,7 @@ Det benyttes også [OBO- On-Behalf-Of](https://docs.nais.io/security/auth/azure-
 
 ### Logging
 
-Logging går til [Grafana for frontend](https://grafana.nav.cloud.nais.io/d/6uYofme4z/sokos-op-fasade?orgId=1)
+Logging går til [Grafana for frontend](https://grafana.nav.cloud.nais.io/d/6uYofme4z/sokos-up-container?orgId=1)
 
 ### Alarmer
 
@@ -63,7 +63,7 @@ Vi bruker [nais-alerts](https://doc.nais.io/observability/alerts) for å sette o
 
 ### Grafana
 
-- [sokos-op-fasade](https://grafana.nav.cloud.nais.io/d/6uYofme4z/sokos-op-fasade?orgId=1)
+- [sokos-up-container](https://grafana.nav.cloud.nais.io/d/6uYofme4z/sokos-up-container?orgId=1)
 
 # 7. Henvendelser og tilgang
 
