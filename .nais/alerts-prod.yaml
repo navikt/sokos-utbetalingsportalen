@@ -1,16 +1,16 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: sokos-op-fasade
+  name: sokos-up-container
   namespace: okonomi
   labels:
     team: okonomi
 spec:
   groups:
-    - name: sokos-op-fasade-alerts
+    - name: sokos-up-container-alerts
       rules:
         - alert: Applikasjon nede
-          expr: kube_deployment_status_replicas_available{deployment="sokos-op-fasade"} == 0
+          expr: kube_deployment_status_replicas_available{deployment="sokos-up-container"} == 0
           for: 2m
           annotations:
             action: "Sjek hvorfor applikasjonen er nede"
@@ -18,11 +18,11 @@ spec:
           labels:
             namespace: okonomi
             severity: danger
-            sokos_op_fasade_type: sokos-op-fasade
+            sokos_up_container_type: sokos-up-container
             alert_type: custom
 
         - alert: Applikasjonen har restartet flere ganger de siste 5 minuttene!
-          expr: sum(increase(kube_pod_container_status_restarts_total{container=~"sokos-op-fasade"}[5m])) by (container) > 2
+          expr: sum(increase(kube_pod_container_status_restarts_total{container=~"sokos-up-container"}[5m])) by (container) > 2
           for: 2m
           annotations:
             action: "Sjekk hvorfor applikasjonen ikke klarer å restarte"
@@ -30,7 +30,7 @@ spec:
           labels:
             namespace: okonomi
             severity: danger
-            sokos_op_fasade_type: sokos-op-fasade
+            sokos_up_container_type: sokos-up-container
             alert_type: custom
 
 ---
@@ -38,13 +38,13 @@ spec:
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
-  name: sokos-op-fasade-slack
+  name: sokos-up-container-slack
   namespace: okonomi
   labels:
-    alertmanagerConfig: sokos-op-fasade-slack
+    alertmanagerConfig: sokos-up-container-slack
 spec:
   receivers:
-    - name: sokos-op-fasade-receiver
+    - name: sokos-up-container-receiver
       slackConfigs:
         - apiURL:
             key: apiUrl
@@ -69,10 +69,10 @@ spec:
     groupBy:
       - alertname
     matchers:
-      - name: "sokos_op_fasade_type"
+      - name: "sokos_up_container_type"
         matchType: "="
-        value: "sokos-op-fasade"
+        value: "sokos-up-container"
     groupInterval: 10s
     groupWait: 5s
-    receiver: sokos-op-fasade-receiver
+    receiver: sokos-up-container-receiver
     repeatInterval: 2m

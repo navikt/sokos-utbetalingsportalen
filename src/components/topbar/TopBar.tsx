@@ -20,7 +20,7 @@ const TopBar = () => {
         <img src={nav} alt="logo" />
       </div>
       <Header.Title as={Link} to={"/"}>
-        Økonomiportalen
+        Utbetalingsportalen
       </Header.Title>
       {/*<div id="gjelder-id" className="w-fit flex justify-end items-stretch space-x-7 p-2">*/}
       {/*  <div id="gjelder-id-tekst" className="flex justify-center items-center">*/}

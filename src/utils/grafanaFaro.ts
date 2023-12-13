@@ -22,7 +22,7 @@ export function initGrafanaFaro() {
   initializeFaro({
     url: getTelemetryCollectorURL(),
     app: {
-      name: "sokos-op-fasade",
+      name: "sokos-up-container",
     },
     instrumentations: [
       ...getWebInstrumentations({

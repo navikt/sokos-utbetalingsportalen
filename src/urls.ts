@@ -11,20 +11,20 @@ const AUTH_URL = {
 
 const SOKOS_MIKROFRONTEND_TEMPLATE_URL = {
   local: "http://localhost:5173/microfrontend/bundle.js",
-  development: "https://okonomiportalen.intern.dev.nav.no/sokos-mikrofrontend-template/bundle.js",
-  production: "https://okonomiportalen.intern.nav.no/sokos-mikrofrontend-template/bundle.js",
+  development: "https://utbetalingsportalen.intern.dev.nav.no/sokos-mikrofrontend-template/bundle.js",
+  production: "https://utbetalingsportalen.intern.nav.no/sokos-mikrofrontend-template/bundle.js",
 } as const satisfies Dictionary;
 
 const SØK_POSTERINGER_URL = {
   local: "http://localhost:5173/microfrontend/bundle.js",
-  development: "https://okonomiportalen.intern.dev.nav.no/sokos-op-postering-sok/bundle.js",
-  production: "https://okonomiportalen.intern.nav.no/sokos-op-postering-sok/bundle.js",
+  development: "https://utbetalingsportalen.intern.dev.nav.no/sokos-op-postering-sok/bundle.js",
+  production: "https://utbetalingsportalen.intern.nav.no/sokos-op-postering-sok/bundle.js",
 } as const satisfies Dictionary;
 
 const SKATTEKORT_URL = {
   local: "http://localhost:5173/microfrontend/bundle.js",
-  development: "https://okonomiportalen.intern.dev.nav.no/sokos-op-skattekort/bundle.js",
-  production: "https://okonomiportalen.intern.nav.no/sokos-op-skattekort/bundle.js",
+  development: "https://utbetalingsportalen.intern.dev.nav.no/sokos-op-skattekort/bundle.js",
+  production: "https://utbetalingsportalen.intern.nav.no/sokos-op-skattekort/bundle.js",
 } as const satisfies Dictionary;
 
 export const authUrl = AUTH_URL[getEnvironment()];

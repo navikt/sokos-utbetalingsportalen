@@ -10,7 +10,7 @@ import helmet from "helmet";
 export const server = express();
 
 const SERVER_PORT = 8080;
-const BASE_PATH = "/okonomiportalen";
+const BASE_PATH = "/utbetalingsportalen";
 const BUILD_PATH = path.resolve(__dirname, "../dist");
 
 server.use(
