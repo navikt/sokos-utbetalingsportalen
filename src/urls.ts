@@ -23,8 +23,8 @@ const SØK_POSTERINGER_URL = {
 
 const SKATTEKORT_URL = {
   local: "http://localhost:5173/microfrontend/bundle.js",
-  development: "https://utbetalingsportalen.intern.dev.nav.no/sokos-op-skattekort/bundle.js",
-  production: "https://utbetalingsportalen.intern.nav.no/sokos-op-skattekort/bundle.js",
+  development: "https://utbetalingsportalen.intern.dev.nav.no/sokos-up-skattekort/bundle.js",
+  production: "https://utbetalingsportalen.intern.nav.no/sokos-up-skattekort/bundle.js",
 } as const satisfies Dictionary;
 
 export const authUrl = AUTH_URL[getEnvironment()];
