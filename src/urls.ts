@@ -15,19 +15,19 @@ const SOKOS_MIKROFRONTEND_TEMPLATE_URL = {
   production: "https://utbetalingsportalen.intern.nav.no/sokos-mikrofrontend-template/bundle.js",
 } as const satisfies Dictionary;
 
-const SØK_POSTERINGER_URL = {
+const SOKOS_UP_ORS_URL = {
   local: "http://localhost:5173/microfrontend/bundle.js",
-  development: "https://utbetalingsportalen.intern.dev.nav.no/sokos-op-postering-sok/bundle.js",
-  production: "https://utbetalingsportalen.intern.nav.no/sokos-op-postering-sok/bundle.js",
+  development: "https://utbetalingsportalen.intern.dev.nav.no/sokos-up-ors/bundle.js",
+  production: "https://utbetalingsportalen.intern.nav.no/sokos-up-ors/bundle.js",
 } as const satisfies Dictionary;
 
-const SKATTEKORT_URL = {
+const SOKOS_UP_SKATTEKORT_URL = {
   local: "http://localhost:5173/microfrontend/bundle.js",
   development: "https://utbetalingsportalen.intern.dev.nav.no/sokos-up-skattekort/bundle.js",
   production: "https://utbetalingsportalen.intern.nav.no/sokos-up-skattekort/bundle.js",
 } as const satisfies Dictionary;
 
-export const authUrl = AUTH_URL[getEnvironment()];
-export const sokosMikrofrontendTemplateUrl = SOKOS_MIKROFRONTEND_TEMPLATE_URL[getEnvironment()];
-export const sokPosteringerUrl = SØK_POSTERINGER_URL[getEnvironment()];
-export const skattekortUrl = SKATTEKORT_URL[getEnvironment()];
+export const authURL = AUTH_URL[getEnvironment()];
+export const sokosMikrofrontendTemplateURL = SOKOS_MIKROFRONTEND_TEMPLATE_URL[getEnvironment()];
+export const sokosUpOrsURL = SOKOS_UP_ORS_URL[getEnvironment()];
+export const sokosUpSkattekortURL = SOKOS_UP_SKATTEKORT_URL[getEnvironment()];

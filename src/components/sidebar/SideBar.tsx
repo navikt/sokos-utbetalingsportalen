@@ -37,13 +37,13 @@ const SideBar = () => {
               Mikrofrontend
             </Link>
           )}
-          {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_POSTERINGSOK_READ) && (
-            <Link className={styles.link} to={ROUTE_PATH.SOKOS_OP_POSTERING_SOK}>
-              Søk Posteringer
+          {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ) && (
+            <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_ORS}>
+              Oppslag Reskontro Stønad
             </Link>
           )}
           {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ) && (
-            <Link className={styles.link} to={ROUTE_PATH.SOKOS_OP_SKATTEKORT}>
+            <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_SKATTEKORT}>
               Skattekort
             </Link>
           )}

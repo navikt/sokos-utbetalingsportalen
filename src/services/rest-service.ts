@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ApiError, HttpStatusCodeError } from "../types/errors";
 import { UserData } from "../models/userData";
-import { authUrl } from "../urls";
+import { authURL } from "../urls";
 
 const api = axios.create({
   timeout: 30000,
@@ -35,7 +35,7 @@ api.interceptors.response.use(
 );
 
 const fetchLoggedInUser = async () => {
-  const response = await api.get<UserData>(`${authUrl}`);
+  const response = await api.get<UserData>(`${authURL}`);
   return response.data;
 };
 
