@@ -15,6 +15,10 @@ on:
       - '.github/workflows/deploy.yaml'
       - '.github/dependabot.yaml'
 
+permissions:
+  contents: "write"
+  id-token: "write"
+
 jobs:
   deploy-dev:
     name: Deploy alerts to dev
@@ -22,9 +26,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Deploy to dev
-        uses: nais/deploy/actions/deploy@v1
+        uses: nais/deploy/actions/deploy@v2
         env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
           RESOURCE: .nais/alerts-dev.yaml
 
@@ -34,8 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Deploy to prod
-        uses: nais/deploy/actions/deploy@v1
+        uses: nais/deploy/actions/deploy@v2
         env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: prod-gcp
           RESOURCE: .nais/alerts-prod.yaml

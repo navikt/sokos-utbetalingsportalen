@@ -5,11 +5,12 @@ on:
 env:
   TZ: Europe/Oslo
 
+permissions:
+  contents: "write"
+  id-token: "write"
+
 jobs:
   build:
-    permissions:
-      contents: "read"
-      id-token: "write"
     name: Build/test & push image
     runs-on: ubuntu-latest
     steps:
@@ -70,9 +71,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: nais/deploy/actions/deploy@v1
+      - uses: nais/deploy/actions/deploy@v2
         env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
-          IMAGE: ${{ needs.build.outputs.image }}
           RESOURCE: .nais/naiserator-dev.yaml
+          IMAGE: ${{ needs.build.outputs.image }}
+          PRINT_PAYLOAD: true
