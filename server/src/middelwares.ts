@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { validateToken } from "./azureAd";
-import { logger } from "./logger";
+import { auditLog, logger, secureLog } from "./logger";
 import { IncomingHttpHeaders } from "http";
 import { z } from "zod";
 
@@ -51,6 +51,15 @@ export async function azureUserInfo(req: Request, res: Response) {
   try {
     const JWTVerifyResult = await validateToken(token);
     const parsedClaimResult = ClaimSchema.parse(JWTVerifyResult.payload);
+    secureLog.info(
+      "Saksbehandler (" +
+        parsedClaimResult.name +
+        ") med ident (" +
+        parsedClaimResult.NAVident +
+        ") har logget inn med følgende tilgang til grupper (" +
+        parsedClaimResult.groups +
+        ")",
+    );
     res.json({
       navIdent: parsedClaimResult.NAVident,
       name: parsedClaimResult.name,
