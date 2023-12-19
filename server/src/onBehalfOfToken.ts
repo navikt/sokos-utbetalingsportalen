@@ -118,6 +118,7 @@ export const setOnBehalfOfToken = (scope: string) => async (req: Request, res: E
     if (respons.status === 400) {
       res.status(403).send(`User does not have access to scope ${scope}`);
     } else {
+      console.log("Error from OBO token exchange", respons);
       res.status(respons.status).send(respons.statusText);
     }
   }
