@@ -1,8 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { validateToken } from "./azureAd";
-import { auditLog, logger, secureLog } from "./logger";
+import { logger, secureLog } from "./logger";
 import { IncomingHttpHeaders } from "http";
 import { z } from "zod";
+import { log } from "console";
 
 const ClaimSchema = z.object({
   name: z.string(),
@@ -16,7 +17,7 @@ async function validateAuthorization(authorization: string) {
     const JWTVerifyResult = await validateToken(token);
     return !!JWTVerifyResult?.payload;
   } catch (e) {
-    logger.error("Azure AD error", e);
+    logger.error("Validate authorization middelware failed", e);
     return false;
   }
 }
@@ -41,6 +42,7 @@ export async function enforceAzureADMiddleware(req: Request, res: Response, next
 export function retrieveTokenFromHeader(headers: IncomingHttpHeaders) {
   const userAccessToken = headers.authorization?.split(" ")[1];
   if (!userAccessToken) {
+    logger.error("Failed to retrieve token from header");
     throw new Error("Failed to retrieve token");
   }
   return userAccessToken;
@@ -66,7 +68,7 @@ export async function azureUserInfo(req: Request, res: Response) {
       adGroups: parsedClaimResult.groups,
     });
   } catch (e) {
-    logger.error("AzureUserInfo", e);
+    logger.error("Failed to retrieve user info", e);
     res.sendStatus(500);
   }
 }
