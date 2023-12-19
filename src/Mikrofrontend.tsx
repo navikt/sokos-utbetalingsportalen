@@ -23,7 +23,7 @@ const Mikrofrontend: React.FC<MikrofrontendProps> = ({ url, includeGjelderId = f
 
   return (
     <React.Suspense fallback={<ContentLoader />}>
-      <ErrorBoundary fallbackRender={() => <FeilMelding />}>
+      <ErrorBoundary FallbackComponent={FeilMelding}>
         <MikrofrontendBundle gjelderId={includeGjelderId ? gjelderId : null} />
       </ErrorBoundary>
     </React.Suspense>
