@@ -7,9 +7,6 @@ updates:
       day: "monday"
       time: "09:00"
       timezone: "Europe/Oslo"
-    ignore:
-      - dependency-name: "vite-plugin-mock"
-        update-types: ["version-update:semver-major"]
     groups:
       npm:
         patterns:
