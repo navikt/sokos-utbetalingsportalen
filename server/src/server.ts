@@ -1,11 +1,11 @@
 import express, { Request, Response } from "express";
-import path from "path";
-import expressStaticGzip from "express-static-gzip";
 import RateLimit from "express-rate-limit";
-import { routeProxyWithOboToken } from "./proxy";
+import expressStaticGzip from "express-static-gzip";
+import helmet from "helmet";
+import path from "path";
 import Config from "./config";
 import { azureUserInfo, enforceAzureADMiddleware } from "./middelwares";
-import helmet from "helmet";
+import { routeProxyWithOboToken } from "./proxy";
 
 export const server = express();
 

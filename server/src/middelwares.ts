@@ -3,7 +3,6 @@ import { validateToken } from "./azureAd";
 import { logger, secureLog } from "./logger";
 import { IncomingHttpHeaders } from "http";
 import { z } from "zod";
-import { log } from "console";
 
 const ClaimSchema = z.object({
   name: z.string(),
