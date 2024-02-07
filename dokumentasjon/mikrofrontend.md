@@ -2,7 +2,7 @@
 
 1. Legg inn mikrofrontend under [urls.ts](src/urls.tsx)
    Under `local` må det foreligge en bundle.js fil som skal ligge under [bundle](mock/bundle).
-   Dette er for å sørge for at `sokos-up-container` har en container å rende en dummy bundle.js fil.
+   Dette er for å sørge for at `sokos-utbetalingsportalen` har en container å rende en dummy bundle.js fil.
    Du kan kopiere fra en av de som allerede ligger der og endre på linje 1, 449 og 463. Linje 1 og 463 må hete det samme og under linje 1
 
 ```
@@ -55,4 +55,4 @@ Skal tjenesten snakke med en i `fss` cluster så må du følgende [hvordan å n�
 Env variablene hentes fra [config.ts](server/src/config.ts) som henter alle `env` variablene fra naiserator filen som du har lagt inn under pkt. 8.
 NB! Tre env variabler som MÅ være med er følgende: PROXY , API, OG API_SCOPE må være lagt inn.
 
-🎉 Nå er `sokos-up-container` klar til å kunne rendre mikfrofrontend i NAIS og rute rest kallene til riktig api.
+🎉 Nå er `sokos-utbetalingsportalen` klar til å kunne rendre mikfrofrontend i NAIS og rute rest kallene til riktig api.
