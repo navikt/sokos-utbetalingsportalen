@@ -1,16 +1,16 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: sokos-up-container
+  name: sokos-utbetalingsportalen
   namespace: okonomi
   labels:
     team: okonomi
 spec:
   groups:
-    - name: sokos-up-container-alerts
+    - name: sokos-utbetalingsportalen-alerts
       rules:
         - alert: Applikasjon nede
-          expr: kube_deployment_status_replicas_available{deployment="sokos-up-container"} == 0
+          expr: kube_deployment_status_replicas_available{deployment="sokos-utbetalingsportalen"} == 0
           for: 2m
           annotations:
             action: "Sjek hvorfor applikasjonen er nede"
@@ -18,11 +18,11 @@ spec:
           labels:
             namespace: okonomi
             severity: danger
-            sokos_up_container_type: sokos-up-container
+            sokos_utbetalingsportalen_type: sokos-utbetalingsportalen
             alert_type: custom
 
         - alert: Applikasjonen har restartet flere ganger de siste 5 minuttene!
-          expr: sum(increase(kube_pod_container_status_restarts_total{container=~"sokos-up-container"}[5m])) by (container) > 2
+          expr: sum(increase(kube_pod_container_status_restarts_total{container=~"sokos-utbetalingsportalen"}[5m])) by (container) > 2
           for: 2m
           annotations:
             action: "Sjekk hvorfor applikasjonen ikke klarer å restarte"
@@ -30,7 +30,7 @@ spec:
           labels:
             namespace: okonomi
             severity: danger
-            sokos_up_container_type: sokos-up-container
+            sokos_utbetalingsportalen_type: sokos-utbetalingsportalen
             alert_type: custom
 
 
@@ -39,13 +39,13 @@ spec:
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
-  name: sokos-up-container-slack
+  name: sokos-utbetalingsportalen-slack
   namespace: okonomi
   labels:
-    alertmanagerConfig: sokos-up-container-slack
+    alertmanagerConfig: sokos-utbetalingsportalen-slack
 spec:
   receivers:
-    - name: sokos-up-container-receiver
+    - name: sokos-utbetalingsportalen-receiver
       slackConfigs:
         - apiURL:
             key: apiUrl
@@ -70,10 +70,10 @@ spec:
     groupBy:
       - alertname
     matchers:
-      - name: "sokos_up_container_type"
+      - name: "sokos_utbetalingsportalen_type"
         matchType: "="
-        value: "sokos-up-container"
+        value: "sokos-utbetalingsportalen"
     groupInterval: 10s
     groupWait: 5s
-    receiver: sokos-up-container-receiver
+    receiver: sokos-utbetalingsportalen-receiver
     repeatInterval: 2m

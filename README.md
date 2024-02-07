@@ -1,4 +1,4 @@
-# sokos-up-container
+# sokos-utbetalingsportalen
 
 Hovedcontainer som setter sammen mikrofrontends.
 For å hekte på en mikrofrontend ta kontakt med `#team-mob`
@@ -41,7 +41,7 @@ Utbetalingsportalen er arbeidsflaten for okonomi medarbeidere i Økonomi linjen 
 # 4. Deployment
 
 Distribusjon av tjenesten er gjort med bruk av Github Actions.
-[sokos-up-container CI / CD](https://github.com/navikt/sokos-up-container/actions)
+[sokos-utbetalingsportalen CI / CD](https://github.com/navikt/sokos-utbetalingsportalen/actions)
 
 Push/merge til main branch vil teste, bygge og deploye til dev- og prod miljø.
 Det foreligger også mulighet for manuell deploy til dev.
@@ -55,7 +55,7 @@ Det benyttes også [OBO- On-Behalf-Of](https://docs.nais.io/security/auth/azure-
 
 ### Logging
 
-Logging går til [Grafana for frontend](https://grafana.nav.cloud.nais.io/d/6uYofme4z/sokos-up-container?orgId=1)
+Logging går til [Grafana for frontend](https://grafana.nav.cloud.nais.io/d/6uYofme4z/sokos-utbetalingsportalen?orgId=1)
 
 ### Alarmer
 
@@ -63,7 +63,7 @@ Vi bruker [nais-alerts](https://doc.nais.io/observability/alerts) for å sette o
 
 ### Grafana
 
-- [sokos-up-container](https://grafana.nav.cloud.nais.io/d/6uYofme4z/sokos-up-container?orgId=1)
+- [sokos-utbetalingsportalen](https://grafana.nav.cloud.nais.io/d/6uYofme4z/sokos-utbetalingsportalen?orgId=1)
 
 # 7. Henvendelser og tilgang
 
