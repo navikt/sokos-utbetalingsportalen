@@ -66,6 +66,12 @@ const startServer = () => {
     Config.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
   );
 
+  routeProxyWithOboToken(
+    Config.SOKOS_NAV_OPPDRAG_PROXY,
+    Config.SOKOS_NAV_OPPDRAG_API,
+    Config.SOKOS_NAV_OPPDRAG_API_SCOPE,
+  );
+
   // sokos-postering-frontend
   routeProxyWithOboToken(Config.SOKOS_POSTERING_PROXY, Config.SOKOS_POSTERING_API, Config.SOKOS_POSTERING_API_SCOPE);
 

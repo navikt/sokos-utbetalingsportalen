@@ -27,7 +27,14 @@ const SOKOS_UP_SKATTEKORT_URL = {
   production: "https://utbetalingsportalen.intern.nav.no/sokos-up-skattekort/bundle.js",
 } as const satisfies Dictionary;
 
+const SOKOS_UP_OPPDRAGSINFO_URL = {
+  local: "http://localhost:5173/microfrontend/bundle.js",
+  development: "https://utbetalingsportalen.intern.dev.nav.no/sokos-up-oppdragsinfo/bundle.js",
+  production: "https://utbetalingsportalen.intern.nav.no/sokos-up-oppdragsinfo/bundle.js",
+} as const satisfies Dictionary;
+
 export const authURL = AUTH_URL[getEnvironment()];
 export const sokosMikrofrontendTemplateURL = SOKOS_MIKROFRONTEND_TEMPLATE_URL[getEnvironment()];
 export const sokosUpOrsURL = SOKOS_UP_ORS_URL[getEnvironment()];
 export const sokosUpSkattekortURL = SOKOS_UP_SKATTEKORT_URL[getEnvironment()];
+export const sokosUpOppdragsinfoURL = SOKOS_UP_OPPDRAGSINFO_URL[getEnvironment()];
