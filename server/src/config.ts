@@ -32,9 +32,9 @@ const ConfigSchema = z.object({
   SOKOS_MIKROFRONTEND_PROXY: z.string().default(""),
 
   // sokos-up-krp-api
-  SOKOS_UP_KRP_API: z.string(),
-  SOKOS_UP_KRP_API_SCOPE: z.string(),
-  SOKOS_UP_KRP_API_PROXY: z.string(),
+  SOKOS_UP_KRP_API: z.string().default(""),
+  SOKOS_UP_KRP_API_SCOPE: z.string().default(""),
+  SOKOS_UP_KRP_API_PROXY: z.string().default(""),
 });
 
 type Config = z.infer<typeof ConfigSchema>;
