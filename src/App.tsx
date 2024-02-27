@@ -6,7 +6,7 @@ import { ROUTE_PATH } from "./models/routePath";
 import Feilside, { NoAccess, NotFound } from "./pages/Feilside";
 import Information from "./pages/Information";
 import Mikrofrontend from "./Mikrofrontend";
-import { sokosUpSkattekortURL, sokosMikrofrontendTemplateURL, sokosUpOrsURL } from "./urls";
+import { sokosUpSkattekortURL, sokosMikrofrontendTemplateURL, sokosUpOrsURL, sokosUpOppdragsinfoURL } from "./urls";
 
 const App = () => {
   return (
@@ -30,6 +30,11 @@ const App = () => {
                 path={ROUTE_PATH.SOKOS_UP_SKATTEKORT}
                 element={<Mikrofrontend url={sokosUpSkattekortURL} />}
                 loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ)}
+              />
+              <Route
+                path={ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO}
+                element={<Mikrofrontend url={sokosUpOppdragsinfoURL} includeGjelderId />}
+                loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ)}
               />
               <Route path="/forbidden" element={<NoAccess />} />
             </Route>

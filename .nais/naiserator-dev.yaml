@@ -27,6 +27,7 @@ spec:
           - id: "1b717a23-d376-471c-9fc6-356299fadc2b" # 0000-GA-SOKOS-MF-Mikrofrontend-READ
           - id: "a13b4176-e328-4e1c-b181-ff676a7146b1" # 0000-GA-SOKOS-MF-Skattekort-READ
           - id: "b01fb216-fcb3-4ede-b7da-71fffe859763" # 0000-GA-SOKOS-MF-ORS-READ
+          - id: "e0023d91-26bc-4d5d-95ba-3148b6123afc" # 0000-GA-SOKOS-MF-OppdragsInfo-READ
         extra:
           - "NAVident"
     sidecar:
@@ -39,6 +40,7 @@ spec:
       rules:
         - application: sokos-mikrofrontend-api
         - application: sokos-postering-api
+        - application: sokos-nav-oppdrag-api
         - application: sokos-up-krp-api
       external:
         - host: sokos-skattekort-person.dev-fss-pub.nais.io
@@ -77,7 +79,15 @@ spec:
   - name: SOKOS_SKATTEKORT_PROXY
     value: "/skattekort-api"
 
-    # sokos-up-krp-api
+  # sokos-nav-oppdrag
+  - name: SOKOS_NAV_OPPDRAG_API
+    value: https://sokos-nav-oppdrag.dev-fss-pub.nais.io
+  - name: SOKOS_NAV_OPPDRAG_API_SCOPE
+    value: api://dev-fss.okonomi.sokos-nav-oppdrag/.default
+  - name: SOKOS_NAV_OPPDRAG_PROXY
+    value: "/nav-oppdrag-api"
+
+  # sokos-up-krp-api
   - name: SOKOS_UP_KRP_API
     value: http://sokos-up-krp-api
   - name: SOKOS_UP_KRP_API_SCOPE
