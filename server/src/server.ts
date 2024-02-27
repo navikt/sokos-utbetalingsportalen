@@ -57,15 +57,18 @@ const startServer = () => {
       Config.SOKOS_MIKROFRONTEND_API,
       Config.SOKOS_MIKROFRONTEND_API_SCOPE,
     );
+    // sokos-up-krp-api
+    routeProxyWithOboToken(Config.SOKOS_UP_KRP_API_PROXY, Config.SOKOS_UP_KRP_API, Config.SOKOS_UP_KRP_API_SCOPE);
   }
 
-  // sokos-op-skattekort
+  // sokos-up-skattekort
   routeProxyWithOboToken(
     Config.SOKOS_SKATTEKORT_PROXY,
     Config.SOKOS_SKATTEKORT_PERSON_API,
     Config.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
   );
 
+  // sokos-up-oppdragsinfo
   routeProxyWithOboToken(
     Config.SOKOS_NAV_OPPDRAG_PROXY,
     Config.SOKOS_NAV_OPPDRAG_API,
@@ -73,6 +76,7 @@ const startServer = () => {
   );
 
   // sokos-postering-frontend
+  // sokos-postering-api
   routeProxyWithOboToken(Config.SOKOS_POSTERING_PROXY, Config.SOKOS_POSTERING_API, Config.SOKOS_POSTERING_API_SCOPE);
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));

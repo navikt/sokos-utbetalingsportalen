@@ -41,6 +41,7 @@ spec:
         - application: sokos-mikrofrontend-api
         - application: sokos-postering-api
         - application: sokos-nav-oppdrag-api
+        - application: sokos-up-krp-api
       external:
         - host: sokos-skattekort-person.dev-fss-pub.nais.io
   ingresses:
@@ -85,3 +86,11 @@ spec:
     value: api://dev-fss.okonomi.sokos-nav-oppdrag/.default
   - name: SOKOS_NAV_OPPDRAG_PROXY
     value: "/nav-oppdrag-api"
+
+  # sokos-up-krp-api
+  - name: SOKOS_UP_KRP_API
+    value: http://sokos-up-krp-api
+  - name: SOKOS_UP_KRP_API_SCOPE
+    value: api://dev-gcp.okonomi.sokos-up-krp-api/.default
+  - name: SOKOS_UP_KRP_API_PROXY
+    value: "/up-krp-api"
