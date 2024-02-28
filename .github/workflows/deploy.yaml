@@ -12,6 +12,9 @@ on:
       - '.github/workflows/build-pr.yaml'
       - '.github/workflows/manual-deploy-dev.yaml'
       - '.github/workflows/security.yaml'
+      - '.github/workflows/alerts.yaml'
+      - '.nais/alerts-dev.yaml'
+      - '.nais/alerts-prod.yaml'
       - '.github/dependabot.yaml'
 
 env:
