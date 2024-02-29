@@ -7,4 +7,4 @@ COPY server/node_modules server/
 
 WORKDIR /usr/src/app/server
 
-CMD ["node", "server.js"]
+CMD ["server.js"]
