@@ -1,15 +1,10 @@
-FROM node:lts-alpine@sha256:2ffec31a58e85fbcd575c544a3584f6f4d128779e6b856153a04366b8dd01bb0
-RUN apk add --no-cache bash
-RUN npm i -g pnpm
-ENV NODE_ENV production
+FROM gcr.io/distroless/nodejs20-debian12@sha256:04350092341fdc31bd1c9c7cac4f50f9194652f3afd8d4a442428b102c9d66c2
 
-WORKDIR usr/src/app
+WORKDIR /usr/src/app
 COPY dist dist/
-COPY server/package.json server/
-COPY server/pnpm-lock.yaml server/
 COPY server/build server/
+COPY server/node_modules server/node_modules/
 
-WORKDIR server
-RUN pnpm install
+WORKDIR /usr/src/app/server
 
-CMD ["node", "server.js"]
+CMD ["server.js"]
