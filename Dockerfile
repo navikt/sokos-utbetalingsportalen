@@ -5,6 +5,6 @@ COPY dist/ build/
 COPY server/build server/build/
 COPY server/node_modules server/node_modules/
 
-WORKDIR /usr/src/app/server
+WORKDIR /usr/src/app/server/build
 
 CMD ["server.js"]
