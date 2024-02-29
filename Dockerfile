@@ -2,9 +2,9 @@ FROM gcr.io/distroless/nodejs20-debian12@sha256:04350092341fdc31bd1c9c7cac4f50f9
 
 WORKDIR /usr/src/app
 COPY dist dist/
-COPY server/build server/build/
-COPY server/node_modules server/node_modules/
+COPY server/build server/
+COPY server/node_modules server/
 
-WORKDIR /usr/src/app/server/build
+WORKDIR /usr/src/app/server
 
 CMD ["server.js"]
