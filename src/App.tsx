@@ -6,7 +6,13 @@ import { ROUTE_PATH } from "./models/routePath";
 import Feilside, { NoAccess, NotFound } from "./pages/Feilside";
 import Information from "./pages/Information";
 import Mikrofrontend from "./Mikrofrontend";
-import { sokosUpSkattekortURL, sokosMikrofrontendTemplateURL, sokosUpOrsURL, sokosUpOppdragsinfoURL } from "./urls";
+import {
+  sokosUpSkattekortURL,
+  sokosMikrofrontendTemplateURL,
+  sokosUpOrsURL,
+  sokosUpOppdragsinfoURL,
+  sokosUpKrpURL,
+} from "./urls";
 
 const App = () => {
   return (
@@ -20,6 +26,11 @@ const App = () => {
                 path={ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE}
                 element={<Mikrofrontend url={sokosMikrofrontendTemplateURL} includeGjelderId />}
                 loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ)}
+              />
+              <Route
+                path={ROUTE_PATH.SOKOS_UP_KRP}
+                element={<Mikrofrontend url={sokosUpKrpURL} />}
+                loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ)}
               />
               <Route
                 path={ROUTE_PATH.SOKOS_UP_ORS}
