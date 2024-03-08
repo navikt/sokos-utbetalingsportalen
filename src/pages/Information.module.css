@@ -1,0 +1,7 @@
+.heading {
+  @apply text-center;
+}
+
+.container {
+  @apply mx-28;
+}

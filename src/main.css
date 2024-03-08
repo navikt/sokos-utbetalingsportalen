@@ -9,7 +9,7 @@ body {
 }
 
 body {
-  background-color: var(--a-bg-default);
+  background-color: var(--a-gray-100);
 }
 
 .page-wrapper {
