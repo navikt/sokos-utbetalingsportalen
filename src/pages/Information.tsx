@@ -5,6 +5,7 @@ import pengesekk from "../../assets/images/pengesekk.svg";
 import styles from "./Information.module.css";
 import { ChevronRightIcon } from "@navikt/aksel-icons";
 import { ROUTE_PATH } from "../models/routePath";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 const Information = () => {
   const userInfo = useLoaderData() as UserData;
@@ -51,7 +52,7 @@ const Information = () => {
           Apper
         </Heading>
         <div className={styles.apper}>
-          <Link variant="neutral" href="#" underline={false}>
+          <Link as={ReactRouterLink} to={ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO} variant="neutral" underline={false}>
             <Box background="surface-alt-2-subtle" padding="6" shadow="medium" borderRadius="xlarge">
               <div className={styles.apperContent}>
                 <BodyShort weight="semibold">Oppdragsinfo</BodyShort>
@@ -59,7 +60,7 @@ const Information = () => {
               </div>
             </Box>
           </Link>
-          <Link variant="neutral" href="#" underline={false}>
+          <Link as={ReactRouterLink} to={ROUTE_PATH.SOKOS_UP_ORS} variant="neutral" underline={false}>
             <Box background="surface-alt-2-subtle" padding="6" shadow="medium" borderRadius="xlarge">
               <div className={styles.apperContent}>
                 <BodyShort weight="semibold">Oppslag i Reskontro Stønad</BodyShort>
@@ -67,7 +68,7 @@ const Information = () => {
               </div>
             </Box>
           </Link>
-          <Link variant="neutral" href="#" underline={false}>
+          <Link as={ReactRouterLink} to={ROUTE_PATH.SOKOS_UP_KRP} variant="neutral" href="#" underline={false}>
             <Box background="surface-alt-2-subtle" padding="6" shadow="medium" borderRadius="xlarge">
               <div className={styles.apperContent}>
                 <BodyShort weight="semibold">Kontoregister person kontosøk</BodyShort>
@@ -75,7 +76,7 @@ const Information = () => {
               </div>
             </Box>
           </Link>
-          <Link variant="neutral" href="#" underline={false}>
+          <Link as={ReactRouterLink} to={ROUTE_PATH.SOKOS_UP_SKATTEKORT} variant="neutral" href="#" underline={false}>
             <Box background="surface-alt-2-subtle" padding="6" shadow="medium" borderRadius="xlarge">
               <div className={styles.apperContent}>
                 <BodyShort weight="semibold">Skattekort</BodyShort>
