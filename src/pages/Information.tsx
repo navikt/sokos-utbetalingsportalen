@@ -25,13 +25,13 @@ const Information = () => {
 
   return (
     <>
-      <div className={styles.heading}>
-        <Heading level="1" size="large" spacing>
-          God dag, {userInfo.name}!
-        </Heading>
-      </div>
       <div className={styles.container}>
         <div className={styles.guidepanel}>
+          <div className={styles.heading}>
+            <Heading level="1" size="large" spacing>
+              God dag, {userInfo.name}!
+            </Heading>
+          </div>
           <GuidePanel poster illustration={<img src={pengesekk} alt="pengesekk" />}>
             <Heading level="2" size="small" spacing>
               Informasjon om utbetalingsportalen

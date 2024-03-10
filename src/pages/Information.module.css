@@ -10,12 +10,21 @@
   @apply pb-10;
 }
 
+/* @media screen and (min-width: 1200px) {
+  .guidepanel {
+    @apply max-w-screen-xl;
+  }
+  .container {
+    @apply justify-center;
+  }
+} */
+
 .apper {
-  @apply flex flex-wrap justify-between gap-3;
+  @apply flex flex-wrap justify-start gap-12;
 }
 
 .apperContent {
-  @apply flex justify-between items-center w-64 h-6;
+  @apply flex items-center w-64 h-6;
 }
 
 .disabled {
