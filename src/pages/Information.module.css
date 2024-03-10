@@ -15,5 +15,9 @@
 }
 
 .apperContent {
-  @apply flex justify-between items-center;
+  @apply flex justify-between items-center w-64 h-6;
+}
+
+.disabled {
+  @apply opacity-40;
 }
