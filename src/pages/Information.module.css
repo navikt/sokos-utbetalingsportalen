@@ -17,7 +17,7 @@
 }
 
 .apper {
-  @apply flex flex-wrap justify-start gap-12;
+  @apply flex flex-wrap justify-start gap-6;
 }
 
 .apperContent {
