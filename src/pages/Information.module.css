@@ -1,0 +1,29 @@
+.heading {
+  @apply text-center;
+}
+
+.container {
+  @apply mx-28;
+}
+
+.guidepanel {
+  @apply pb-10;
+}
+
+@media screen and (min-width: 1600px) {
+  .container {
+    @apply max-w-screen-2xl;
+  }
+}
+
+.apper {
+  @apply flex flex-wrap justify-start gap-12;
+}
+
+.apperContent {
+  @apply flex justify-between items-center w-64 h-6;
+}
+
+.disabled {
+  @apply opacity-40;
+}

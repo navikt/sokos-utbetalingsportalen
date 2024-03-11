@@ -21,7 +21,7 @@ const App = () => {
         createRoutesFromElements(
           <>
             <Route path="/" element={<Layout />} loader={authenticationLoader} errorElement={<Feilside />}>
-              <Route path="/" element={<Information />} />
+              <Route path="/" element={<Information />} loader={authenticationLoader} />
               <Route
                 path={ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE}
                 element={<Mikrofrontend url={sokosMikrofrontendTemplateURL} includeGjelderId />}
