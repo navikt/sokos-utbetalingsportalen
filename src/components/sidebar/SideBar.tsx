@@ -39,7 +39,7 @@ const SideBar = () => {
           )}
           {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ) && (
             <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_KRP}>
-              Kontoregister person
+              Kontoregister person kontosøk
             </Link>
           )}
           {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ) && (
