@@ -21,7 +21,7 @@
 }
 
 .apperContent {
-  @apply flex items-center w-64 h-6;
+  @apply flex justify-between items-center w-64 h-6;
 }
 
 .disabled {
