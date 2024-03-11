@@ -48,16 +48,6 @@ const Information = () => {
                   </Link>
                 </BodyShort>
               </List.Item>
-              <List.Item>
-                <BodyShort>
-                  <Link
-                    href="https://navno.sharepoint.com/sites/POutbetaling/_layouts/15/Doc.aspx?sourcedoc=%7B90953D22-FE5D-4818-A341-2FC88D4E2705%7D&file=Tilgangsbestilling%20i%20ny%20utbetalingsportal.docx&action=default&mobileredirect=true&DefaultItemOpen=1"
-                    target="_blank"
-                  >
-                    Tilgangsbestilling
-                  </Link>
-                </BodyShort>
-              </List.Item>
             </List>
           </GuidePanel>
         </div>
