@@ -5,3 +5,7 @@
 .link:hover {
   text-decoration: underline;
 }
+
+.sidebar {
+  transition: transform 0.3s ease-in-out;
+}
