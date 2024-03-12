@@ -7,5 +7,18 @@
 }
 
 .sidebar {
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+.rotate {
+  animation: rotate 0.3s linear;
 }

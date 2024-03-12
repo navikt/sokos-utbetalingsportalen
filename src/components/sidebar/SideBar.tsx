@@ -28,13 +28,12 @@ const SideBar = () => {
       >
         <div className="p-3 flex justify-end text-white">
           <button className="cursor-pointer flex flex-row items-center" onClick={() => setShowSideBar(!showSideBar)}>
-            Lukk <XMarkIcon className="w-6 h-6" />
+            Lukk <XMarkIcon className="w-6 h-6 ml-2" />
           </button>
         </div>
         <ul className="px-6 top-1.5 flex flex-col space-y-2 text-white">
           <Link className={`flex flex-row items-center ${styles.link}`} to={ROUTE_PATH.SOKOS_UP_HOME}>
-            {" "}
-            <HouseIcon className="h-6 w-6" />
+            <HouseIcon className="h-6 w-6 mr-2" />
             Hjem
           </Link>
           <div className="border-b border-gray-600 my-2" />
