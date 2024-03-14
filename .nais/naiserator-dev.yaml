@@ -40,7 +40,7 @@ spec:
     outbound:
       rules:
         - application: sokos-mikrofrontend-api
-        - application: sokos-postering-api
+        - application: sokos-up-ors-api
         - application: sokos-nav-oppdrag-api
         - application: sokos-up-krp-api
       external:
@@ -64,13 +64,13 @@ spec:
   - name: SOKOS_MIKROFRONTEND_PROXY
     value: "/mikrofrontend-api"
 
-  # sokos-postering-api
-  - name: SOKOS_POSTERING_API
-    value: http://sokos-postering-api
-  - name: SOKOS_POSTERING_API_SCOPE
-    value: api://dev-gcp.okonomi.sokos-postering-api/.default
-  - name: SOKOS_POSTERING_PROXY
-    value: "/postering-api"
+  # sokos-up-ors-api
+  - name: SOKOS_UP_ORS_API
+    value: http://sokos-up-ors-api
+  - name: SOKOS_UP_ORS_API_SCOPE
+    value: api://dev-gcp.okonomi.sokos-up-ors-api/.default
+  - name: SOKOS_UP_ORS_API_PROXY
+    value: "/up-ors-api"
 
   # Skattekort
   - name: SOKOS_SKATTEKORT_PERSON_API
