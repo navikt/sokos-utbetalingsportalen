@@ -22,8 +22,8 @@ const SideBar = () => {
   return (
     <>
       <div
-        className={`${styles.sidebar} bg-neutral-800 h-screen max-w-screen-sm min-w-72 overflow-hidden top-12 left-0 flex-col ${
-          showSideBar ? "translate-x-0 min-w-fit w-100" : "-translate-x-full w-0"
+        className={`transition-all duration-500 ease-in-out bg-neutral-800 h-screen overflow-hidden top-12 left-0 flex-col ${
+          showSideBar ? "translate-x-0 w-72 min-w-72 " : "-translate-x-full w-0"
         }`}
       >
         <div className="p-3 flex justify-end text-white">
