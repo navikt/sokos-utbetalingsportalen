@@ -5,10 +5,24 @@ import { AzureAdGroupName, AzureAdGroupNameId, AzureAdGroupNames } from "../../a
 import { ROUTE_PATH } from "../../models/routePath";
 import styles from "./SideBar.module.css";
 import { getAzureAdGroups } from "../../auth/authentication";
+import { Button } from "@navikt/ds-react";
 
 const SideBar = () => {
   const [groups, setGroups] = useState<Array<string>>([]);
   const [showSideBar, setShowSideBar] = useState(true);
+  const [buttonVisible, setButtonVisible] = useState(false);
+
+  useEffect(() => {
+    if (!showSideBar) {
+      const timer = setTimeout(() => {
+        setButtonVisible(true);
+      }, 500); // timeout for å få en bedre overgang
+
+      return () => clearTimeout(timer);
+    } else {
+      setButtonVisible(false);
+    }
+  }, [showSideBar]);
 
   useEffect(() => {
     getAzureAdGroups()
@@ -28,7 +42,7 @@ const SideBar = () => {
       >
         <div className="p-3 flex justify-end text-white">
           <button className="cursor-pointer flex flex-row items-center" onClick={() => setShowSideBar(!showSideBar)}>
-            Lukk <XMarkIcon className="w-6 h-6 ml-2" />
+            Lukk <XMarkIcon className="w-6 h-6 ml-1" />
           </button>
         </div>
         <ul className="px-6 top-1.5 flex flex-col space-y-2 text-white">
@@ -79,17 +93,13 @@ const SideBar = () => {
           )}
         </ul>
       </div>
-      {!showSideBar && (
-        <svg
+      {buttonVisible && (
+        <Button
+          className="bg-neutral-800 rounded-none w-20 left-0 fixed h-screen top-0 z-10"
           onClick={() => setShowSideBar(!showSideBar)}
-          className="fixed z-30 flex items-center cursor-pointer left-2 top-10"
-          fill="#2563EB"
-          viewBox="0 0 100 70"
-          width="100"
-          height="100"
-        >
-          <MenuHamburgerIcon fontSize="1.5rem" />
-        </svg>
+          variant="primary-neutral"
+          icon={<MenuHamburgerIcon className="w-6 h-6" />}
+        ></Button>
       )}
     </>
   );
