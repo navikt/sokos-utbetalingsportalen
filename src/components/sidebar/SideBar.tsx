@@ -101,10 +101,10 @@ const SideBar = () => {
       </div>
       {buttonVisible && (
         <Button
-          className="bg-neutral-800 rounded-none w-20 left-0 fixed h-screen top-0 z-10"
+          className="bg-neutral-800 rounded-none w-20 left-0 fixed h-screen top-0 z-10 flex flex-col justify-start items-center"
           onClick={() => setShowSideBar(!showSideBar)}
           variant="primary-neutral"
-          icon={<MenuHamburgerIcon className="w-6 h-6" />}
+          icon={<MenuHamburgerIcon className="w-8 h-8 mt-12" />}
         ></Button>
       )}
     </>
