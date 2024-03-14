@@ -9,7 +9,7 @@ import { Button } from "@navikt/ds-react";
 
 const SideBar = () => {
   const [groups, setGroups] = useState<Array<string>>([]);
-  const [showSideBar, setShowSideBar] = useState(true);
+  const [showSideBar, setShowSideBar] = useState(false);
 
   useEffect(() => {
     getAzureAdGroups()
