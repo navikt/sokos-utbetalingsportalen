@@ -34,7 +34,7 @@ spec:
   accessPolicy:
     outbound:
       rules:
-        - application: sokos-postering-api
+        - application: sokos-up-ors-api
       external:
         - host: sokos-skattekort-person.prod-fss-pub.nais.io
   ingresses:
@@ -48,13 +48,13 @@ spec:
       memory: 256Mi
   env:
 
-    # sokos-postering-api
-    - name: SOKOS_POSTERING_API
-      value: http://sokos-postering-api
-    - name: SOKOS_POSTERING_API_SCOPE
-      value: api://prod-gcp.okonomi.sokos-postering-api/.default
-    - name: SOKOS_POSTERING_PROXY
-      value: "/postering-api"
+    # sokos-up-ors-api
+    - name: SOKOS_UP_ORS_API
+      value: http://sokos-up-ors-api
+    - name: SOKOS_UP_ORS_API_SCOPE
+      value: api://prod-gcp.okonomi.sokos-up-ors-api/.default
+    - name: SOKOS_UP_ORS_API_PROXY
+      value: "/up-ors-api"
 
     # Skattekort
     - name: SOKOS_SKATTEKORT_PERSON_API
