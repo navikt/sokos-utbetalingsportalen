@@ -23,7 +23,7 @@ const SideBar = () => {
     <>
       <div
         className={`transition-all duration-500 ease-in-out bg-neutral-800 h-screen overflow-hidden top-12 left-0 flex-col ${
-          showSideBar ? "translate-x-0 w-72 min-w-72 " : "-translate-x-full w-0"
+          showSideBar ? "translate-x-0 w-64 min-w-64" : "-translate-x-full w-0 min-w-0"
         }`}
       >
         <div className="p-3 flex justify-end text-white">
