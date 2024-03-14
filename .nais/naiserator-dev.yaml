@@ -70,7 +70,7 @@ spec:
   - name: SOKOS_UP_ORS_API_SCOPE
     value: api://dev-gcp.okonomi.sokos-up-ors-api/.default
   - name: SOKOS_UP_ORS_API_PROXY
-    value: "/sokos-up-ors-api"
+    value: "/up-ors-api"
 
   # Skattekort
   - name: SOKOS_SKATTEKORT_PERSON_API
