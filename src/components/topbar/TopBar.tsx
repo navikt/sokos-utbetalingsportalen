@@ -16,7 +16,7 @@ const TopBar = () => {
 
   return (
     <Header>
-      <div className="w-16 p-1 ml-3 z-40">
+      <div className="w-16 p-1 ml-3">
         <img src={nav} alt="logo" />
       </div>
       <Header.Title as={Link} to={"/"} className="border-none">

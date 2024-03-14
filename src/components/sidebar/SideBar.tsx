@@ -10,19 +10,6 @@ import { Button } from "@navikt/ds-react";
 const SideBar = () => {
   const [groups, setGroups] = useState<Array<string>>([]);
   const [showSideBar, setShowSideBar] = useState(true);
-  const [buttonVisible, setButtonVisible] = useState(false);
-
-  useEffect(() => {
-    if (!showSideBar) {
-      const timer = setTimeout(() => {
-        setButtonVisible(true);
-      }, 500); // timeout for å få en bedre overgang
-
-      return () => clearTimeout(timer);
-    } else {
-      setButtonVisible(false);
-    }
-  }, [showSideBar]);
 
   useEffect(() => {
     getAzureAdGroups()
@@ -99,13 +86,15 @@ const SideBar = () => {
           )}
         </ul>
       </div>
-      {buttonVisible && (
-        <Button
-          className="bg-neutral-800 rounded-none w-20 left-0 fixed h-screen top-0 z-10 flex flex-col justify-start items-center"
-          onClick={() => setShowSideBar(!showSideBar)}
-          variant="primary-neutral"
-          icon={<MenuHamburgerIcon className="w-8 h-8 mt-12" />}
-        ></Button>
+      {!showSideBar && (
+        <div className="bg-neutral-800 w-20 left-0 h-screen flex flex-col justify-start items-center">
+          <Button
+            className="cursor-pointer bg-neutral-800"
+            onClick={() => setShowSideBar(!showSideBar)}
+            variant="primary-neutral"
+            icon={<MenuHamburgerIcon className="w-8 h-8" />}
+          ></Button>
+        </div>
       )}
     </>
   );
