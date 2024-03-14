@@ -76,7 +76,7 @@ const startServer = () => {
   );
 
   // sokos-postering-frontend
-  // sokos-postering-api
+  // sokos-up-ors-api
   routeProxyWithOboToken(Config.SOKOS_POSTERING_PROXY, Config.SOKOS_POSTERING_API, Config.SOKOS_POSTERING_API_SCOPE);
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
