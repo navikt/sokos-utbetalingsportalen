@@ -65,12 +65,12 @@ spec:
     value: "/mikrofrontend-api"
 
   # sokos-up-ors-api
-  - name: SOKOS_POSTERING_API
+  - name: SOKOS_UP_ORS_API
     value: http://sokos-up-ors-api
-  - name: SOKOS_POSTERING_API_SCOPE
+  - name: SOKOS_UP_ORS_API_SCOPE
     value: api://dev-gcp.okonomi.sokos-up-ors-api/.default
-  - name: SOKOS_POSTERING_PROXY
-    value: "/postering-api"
+  - name: SOKOS_UP_ORS_API_PROXY
+    value: "/sokos-up-ors-api"
 
   # Skattekort
   - name: SOKOS_SKATTEKORT_PERSON_API
