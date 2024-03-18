@@ -5,3 +5,12 @@
 .link:hover {
   text-decoration: underline;
 }
+
+.sidebar {
+  transition: all 0.4s ease-in-out;
+  width: 4rem;
+}
+
+.sidebar.open {
+  width: 18rem;
+}

@@ -19,7 +19,7 @@ const TopBar = () => {
       <div className="w-16 p-1 ml-3">
         <img src={nav} alt="logo" />
       </div>
-      <Header.Title as={Link} to={"/"}>
+      <Header.Title as={Link} to={"/"} className="border-none">
         Utbetalingsportalen
       </Header.Title>
       {/*<div id="gjelder-id" className="w-fit flex justify-end items-stretch space-x-7 p-2">*/}

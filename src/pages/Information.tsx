@@ -72,6 +72,7 @@ const Information = () => {
                 shadow="medium"
                 borderRadius="xlarge"
                 className={styles.disabled}
+                aria-disabled
               >
                 <div className={styles.apperContent}>
                   <BodyShort weight="semibold">Kontoregister person kontosøk</BodyShort>
@@ -81,13 +82,7 @@ const Information = () => {
             </Tooltip>
           )}
           {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ) ? (
-            <Link
-              as={ReactRouterLink}
-              to={ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO}
-              variant="neutral"
-              underline={false}
-              aria-disabled
-            >
+            <Link as={ReactRouterLink} to={ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO} variant="neutral" underline={false}>
               <Box background="surface-alt-2-subtle" padding="6" shadow="medium" borderRadius="xlarge">
                 <div className={styles.apperContent}>
                   <BodyShort weight="semibold">Oppdragsinfo</BodyShort>
@@ -103,6 +98,7 @@ const Information = () => {
                 shadow="medium"
                 borderRadius="xlarge"
                 className={styles.disabled}
+                aria-disabled
               >
                 <div className={styles.apperContent}>
                   <BodyShort weight="semibold">Oppdragsinfo</BodyShort>
@@ -129,6 +125,7 @@ const Information = () => {
                 shadow="medium"
                 borderRadius="xlarge"
                 className={styles.disabled}
+                aria-disabled
               >
                 <div className={styles.apperContent}>
                   <BodyShort weight="semibold">Oppslag i Reskontro Stønad</BodyShort>
@@ -155,6 +152,7 @@ const Information = () => {
                 shadow="medium"
                 borderRadius="xlarge"
                 className={styles.disabled}
+                aria-disabled
               >
                 <div className={styles.apperContent}>
                   <BodyShort weight="semibold">Skattekort</BodyShort>

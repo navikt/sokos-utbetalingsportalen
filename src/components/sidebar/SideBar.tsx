@@ -1,14 +1,15 @@
-import { MenuHamburgerIcon } from "@navikt/aksel-icons";
+import { MenuHamburgerIcon, HouseIcon, XMarkIcon } from "@navikt/aksel-icons";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AzureAdGroupName, AzureAdGroupNameId, AzureAdGroupNames } from "../../auth/azureAdGroups";
 import { ROUTE_PATH } from "../../models/routePath";
 import styles from "./SideBar.module.css";
 import { getAzureAdGroups } from "../../auth/authentication";
+import { Button } from "@navikt/ds-react";
 
 const SideBar = () => {
   const [groups, setGroups] = useState<Array<string>>([]);
-  const [showSideBar, setShowSideBar] = useState(true);
+  const [showSideBar, setShowSideBar] = useState(false);
 
   useEffect(() => {
     getAzureAdGroups()
@@ -21,55 +22,78 @@ const SideBar = () => {
 
   return (
     <>
-      <div
-        className={`bg-neutral-800 h-screen overflow-hidden top-12 left-0 flex-col ${
-          showSideBar ? "min-w-fit w-100" : "w-0"
-        }`}
-      >
-        <div className="p-3 flex justify-end text-white">
-          <button className="cursor-pointer" onClick={() => setShowSideBar(!showSideBar)}>
-            X
-          </button>
-        </div>
-        <ul className="px-10 top-1.5 flex flex-col text-white">
-          {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ) && (
-            <Link className={styles.link} to={ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE}>
-              Mikrofrontend
-            </Link>
-          )}
-          {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ) && (
-            <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_KRP}>
-              Kontoregister person kontosøk
-            </Link>
-          )}
-          {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ) && (
-            <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_ORS}>
-              Oppslag Reskontro Stønad
-            </Link>
-          )}
-          {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ) && (
-            <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_SKATTEKORT}>
-              Skattekort
-            </Link>
-          )}
-          {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ) && (
-            <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO}>
-              Oppdragsinfo
-            </Link>
-          )}
-        </ul>
-      </div>
-      {!showSideBar && (
-        <svg
-          onClick={() => setShowSideBar(!showSideBar)}
-          className="fixed z-30 flex items-center cursor-pointer left-2 top-10"
-          fill="#2563EB"
-          viewBox="0 0 100 70"
-          width="100"
-          height="100"
+      {showSideBar ? (
+        <div
+          className={`${styles.sidebar} ${styles.open} bg-neutral-800 h-screen overflow-hidden top-12 left-0 flex-col`}
         >
-          <MenuHamburgerIcon fontSize="1.5rem" />
-        </svg>
+          <div className="p-3 flex justify-end text-white">
+            <Button
+              className="cursor-pointer flex flex-row items-center bg-neutral-800"
+              onClick={() => setShowSideBar(!showSideBar)}
+              icon={<XMarkIcon />}
+              iconPosition="right"
+              variant="primary-neutral"
+            >
+              Lukk
+            </Button>
+          </div>
+          <ul className="px-6 top-1.5 flex flex-col space-y-2 text-white">
+            <Link className={`flex flex-row items-center ${styles.link}`} to={ROUTE_PATH.SOKOS_UP_HOME}>
+              <HouseIcon className="h-6 w-6 mr-2 mb-1" />
+              Hjem
+            </Link>
+            <div className="border-b border-gray-600 my-2" />
+            {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ) && (
+              <>
+                <Link className={styles.link} to={ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE}>
+                  Mikrofrontend
+                </Link>
+                <div className="border-b border-gray-600 my-2" />
+              </>
+            )}
+            {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ) && (
+              <>
+                <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_KRP}>
+                  Kontoregister person kontosøk
+                </Link>
+                <div className="border-b border-gray-600 my-2" />
+              </>
+            )}
+            {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ) && (
+              <>
+                <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_ORS}>
+                  Oppslag Reskontro Stønad
+                </Link>
+                <div className="border-b border-gray-600 my-2" />
+              </>
+            )}
+            {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ) && (
+              <>
+                <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_SKATTEKORT}>
+                  Skattekort
+                </Link>
+                <div className="border-b border-gray-600 my-2" />
+              </>
+            )}
+            {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ) && (
+              <>
+                <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO}>
+                  Oppdragsinfo
+                </Link>
+                <div className="border-b border-gray-600 my-2" />
+              </>
+            )}
+          </ul>
+        </div>
+      ) : (
+        <div className={`${styles.sidebar} bg-neutral-800 left-0 h-screen flex flex-col justify-start items-center`}>
+          <Button
+            className="cursor-pointer mt-2 bg-neutral-800"
+            onClick={() => setShowSideBar(!showSideBar)}
+            variant="primary-neutral"
+            icon={<MenuHamburgerIcon className="w-8 h-8" />}
+          ></Button>
+        </div>
       )}
     </>
   );
