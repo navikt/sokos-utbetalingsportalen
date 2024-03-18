@@ -17,7 +17,7 @@
 }
 
 .apper {
-  @apply flex flex-wrap justify-start gap-6;
+  @apply flex flex-wrap justify-self-stretch gap-6;
 }
 
 .card {
@@ -25,7 +25,7 @@
 }
 
 .apperContent {
-  @apply flex justify-between items-center max-w-full h-6;
+  @apply flex justify-between items-center w-56 h-6;
 }
 
 .disabled {
