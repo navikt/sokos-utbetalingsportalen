@@ -23,7 +23,7 @@ const App = () => {
             <Route path="/" element={<Layout />} loader={authenticationLoader} errorElement={<Feilside />}>
               <Route path="/" element={<Information />} loader={authenticationLoader} />
               <Route
-                path={ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE}
+                path={`${ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE}/*`}
                 element={<Mikrofrontend url={sokosMikrofrontendTemplateURL} includeGjelderId />}
                 loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ)}
               />
