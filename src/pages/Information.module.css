@@ -3,7 +3,7 @@
 }
 
 .container {
-  @apply mx-28;
+  @apply mx-0 sm:mx-8 md:mx-12 lg:mx-16 xl:mx-20 2xl:mx-28;
 }
 
 .guidepanel {
@@ -20,8 +20,12 @@
   @apply flex flex-wrap justify-start gap-6;
 }
 
+.card {
+  @apply flex-grow w-full;
+}
+
 .apperContent {
-  @apply flex justify-between items-center w-64 h-6;
+  @apply flex justify-between items-center max-w-full h-6;
 }
 
 .disabled {
