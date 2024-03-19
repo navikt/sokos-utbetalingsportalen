@@ -15,7 +15,7 @@ const TopBar = () => {
   // };
 
   return (
-    <Header className="flex min-w-full">
+    <Header>
       <div className="w-16 p-1 ml-3">
         <img src={nav} alt="logo" />
       </div>

@@ -9,3 +9,8 @@
 .main {
   width: 100%;
 }
+
+.topbar {
+  display: flex;
+  min-width: 100vw;
+}
