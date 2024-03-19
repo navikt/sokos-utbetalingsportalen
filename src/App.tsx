@@ -43,7 +43,7 @@ const App = () => {
                 loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ)}
               />
               <Route
-                path={ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO}
+                path={`${ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO}/*`}
                 element={<Mikrofrontend url={sokosUpOppdragsinfoURL} includeGjelderId />}
                 loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ)}
               />
