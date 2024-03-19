@@ -6,9 +6,7 @@ import { Outlet } from "react-router-dom";
 const Layout = () => {
   return (
     <>
-      <div className={styles.topbar}>
-        <TopBar />
-      </div>
+      <TopBar />
       <div className="flex w-screen">
         <SideBar />
         <div className={"w-screen"}>
