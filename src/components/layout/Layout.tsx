@@ -7,7 +7,7 @@ const Layout = () => {
   return (
     <>
       <TopBar />
-      <div className="flex w-screen min-h-screen">
+      <div className="flex w-screen">
         <SideBar />
         <div className={"w-screen"}>
           <div className={styles.layout}>

@@ -9,7 +9,6 @@
 .sidebar {
   transition: all 0.4s ease-in-out;
   width: 4rem;
-  min-height: 100vh;
 }
 
 .sidebar.open {
