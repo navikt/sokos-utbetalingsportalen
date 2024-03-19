@@ -15,7 +15,7 @@ const TopBar = () => {
   // };
 
   return (
-    <Header>
+    <Header className="min-w-full">
       <div className="w-16 p-1 ml-3">
         <img src={nav} alt="logo" />
       </div>
