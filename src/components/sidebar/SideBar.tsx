@@ -24,7 +24,7 @@ const SideBar = () => {
     <>
       {showSideBar ? (
         <div
-          className={`${styles.sidebar} ${styles.open} bg-neutral-800 h-screen overflow-hidden top-12 left-0 flex-col`}
+          className={`${styles.sidebar} ${styles.open} bg-neutral-800 min-h-screen overflow-hidden top-12 left-0 flex-col`}
         >
           <div className="p-3 flex justify-end text-white">
             <Button
@@ -86,7 +86,9 @@ const SideBar = () => {
           </ul>
         </div>
       ) : (
-        <div className={`${styles.sidebar} bg-neutral-800 left-0 h-screen flex flex-col justify-start items-center`}>
+        <div
+          className={`${styles.sidebar} bg-neutral-800 left-0 min-h-screen flex flex-col justify-start items-center`}
+        >
           <Button
             className="cursor-pointer mt-2 bg-neutral-800"
             onClick={() => setShowSideBar(!showSideBar)}
