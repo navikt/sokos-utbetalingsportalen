@@ -40,7 +40,7 @@ const Information = () => {
               Utbetalingsportalen er en ny platform som på sikt skal overta funksjoner fra Økonomiportalen og Abetal i
               en ny og forbedret versjon.
             </BodyLong>
-            <List as="ul" size="small">
+            {/* <List as="ul" size="small">
               <List.Item>
                 <BodyShort>
                   <Link href="https://navno.sharepoint.com/sites/POutbetaling" target="_blank">
@@ -48,7 +48,7 @@ const Information = () => {
                   </Link>
                 </BodyShort>
               </List.Item>
-            </List>
+            </List> */}
           </GuidePanel>
         </div>
         <Heading level="3" size="medium" spacing>
