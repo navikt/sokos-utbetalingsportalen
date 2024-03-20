@@ -24,6 +24,7 @@ spec:
         groups:
           - id: "6c93762e-ea37-4043-919f-3a758a136943" # 0000-GA-SOKOS-MF-Skattekort-READ
           - id: "25723642-e1da-4d15-87ce-8c4d2b87e33a" # 0000-GA-SOKOS-MF-PosteringSok-READ
+          - id: "51a3c165-6c98-4fd7-9c96-a7333a80564e" # 0000-GA-SOKOS-MF-KRP-READ
         extra:
           - "NAVident"
     sidecar:

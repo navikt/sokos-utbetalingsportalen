@@ -11,7 +11,7 @@ const AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ = {
 const AD_GRUPPE_SOKOS_MF_KRP_READ = {
   local: "98146b9a-1891-44e3-9b61-92130c2fcd8b",
   development: "98146b9a-1891-44e3-9b61-92130c2fcd8b",
-  production: "",
+  production: "51a3c165-6c98-4fd7-9c96-a7333a80564e",
 } as const satisfies Dictionary;
 
 const AD_GRUPPE_SOKOS_MF_ORS_READ = {
