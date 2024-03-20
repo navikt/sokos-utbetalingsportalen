@@ -57,6 +57,14 @@ spec:
     - name: SOKOS_UP_ORS_API_PROXY
       value: "/up-ors-api"
 
+    # sokos-up-krp-api
+    - name: SOKOS_UP_KRP_API
+      value: http://sokos-up-krp-api
+    - name: SOKOS_UP_KRP_API_SCOPE
+      value: api://prod-gcp.okonomi.sokos-up-krp-api/.default
+    - name: SOKOS_UP_KRP_API_PROXY
+      value: "/up-krp-api"
+
     # Skattekort
     - name: SOKOS_SKATTEKORT_PERSON_API
       value: https://sokos-skattekort-person.prod-fss-pub.nais.io
