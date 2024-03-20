@@ -26,6 +26,11 @@ const ConfigSchema = z.object({
   SOKOS_UP_ORS_API_SCOPE: z.string(),
   SOKOS_UP_ORS_API_PROXY: z.string(),
 
+  // sokos-up-krp-api
+  SOKOS_UP_KRP_API: z.string(),
+  SOKOS_UP_KRP_API_SCOPE: z.string(),
+  SOKOS_UP_KRP_API_PROXY: z.string(),
+
   // sokos-mikrofrontend-template
   SOKOS_MIKROFRONTEND_API: z.string().default(""),
   SOKOS_MIKROFRONTEND_API_SCOPE: z.string().default(""),
@@ -36,10 +41,6 @@ const ConfigSchema = z.object({
   SOKOS_NAV_OPPDRAG_API_SCOPE: z.string().default(""),
   SOKOS_NAV_OPPDRAG_PROXY: z.string().default(""),
 
-  // sokos-up-krp-api
-  SOKOS_UP_KRP_API: z.string().default(""),
-  SOKOS_UP_KRP_API_SCOPE: z.string().default(""),
-  SOKOS_UP_KRP_API_PROXY: z.string().default(""),
 });
 
 type Config = z.infer<typeof ConfigSchema>;
