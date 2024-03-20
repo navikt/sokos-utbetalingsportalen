@@ -57,8 +57,6 @@ const startServer = () => {
       Config.SOKOS_MIKROFRONTEND_API,
       Config.SOKOS_MIKROFRONTEND_API_SCOPE,
     );
-    // sokos-up-krp-api
-    routeProxyWithOboToken(Config.SOKOS_UP_KRP_API_PROXY, Config.SOKOS_UP_KRP_API, Config.SOKOS_UP_KRP_API_SCOPE);
 
     // sokos-up-oppdragsinfo
     routeProxyWithOboToken(
@@ -77,6 +75,10 @@ const startServer = () => {
 
   // sokos-up-ors-api
   routeProxyWithOboToken(Config.SOKOS_UP_ORS_API_PROXY, Config.SOKOS_UP_ORS_API, Config.SOKOS_UP_ORS_API_SCOPE);
+
+  // sokos-up-krp-api
+  routeProxyWithOboToken(Config.SOKOS_UP_KRP_API_PROXY, Config.SOKOS_UP_KRP_API, Config.SOKOS_UP_KRP_API_SCOPE);
+
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
 
