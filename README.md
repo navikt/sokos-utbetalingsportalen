@@ -1,8 +1,5 @@
 # sokos-utbetalingsportalen
 
-Hovedcontainer som setter sammen mikrofrontends.
-For å hekte på en mikrofrontend ta kontakt med `#team-mob`
-
 # Innholdsoversikt
 
 - [1. Funksjonelle krav](#1-funksjonelle-krav)
@@ -17,14 +14,14 @@ For å hekte på en mikrofrontend ta kontakt med `#team-mob`
 
 # 1. Funksjonelle Krav
 
-Utbetalingsportalen er arbeidsflaten for okonomi medarbeidere i Økonomi linjen i NAV.
+Utbetalingsportalen er en intern arbeidsflate for okonomi medarbeidere i Økonomi linjen i NAV.
 
 # 2. Utviklingsmiljø
 
 ### Forutsetninger
 
-- Node.js
-- pnpm `npm install -g pnpm`
+- [Node.js](https://nodejs.org/en)
+- [pnpm](https://pnpm.io/) `npm install -g pnpm`
 
 ### Bygge prosjekt
 
@@ -49,7 +46,7 @@ Det foreligger også mulighet for manuell deploy til dev.
 # 7. Autentisering
 
 Applikasjonen bruker SSO -(Single Sign On) løsningen gjennom [Wonderwall](https://docs.nais.io/addons/wonderwall/?h=wonder).
-Det benyttes også [OBO- On-Behalf-Of](https://docs.nais.io/security/auth/azure-ad/usage/?h=behal#oauth-20-on-behalf-of-grant) for å gjøre kall til API bak mikrofrontendene.
+Det benyttes også [OBO- On-Behalf-Of](https://docs.nais.io/security/auth/azure-ad/usage/?h=behal#oauth-20-on-behalf-of-grant) for å gjøre kall til APIene bak mikrofrontendene.
 
 # 6. Drift og støtte
 
@@ -65,7 +62,7 @@ Vi bruker [nais-alerts](https://doc.nais.io/observability/alerts) for å sette o
 
 - [sokos-utbetalingsportalen](https://grafana.nav.cloud.nais.io/d/6uYofme4z/sokos-utbetalingsportalen?orgId=1)
 
-# 7. Henvendelser og tilgang
+# 7. Henvendelser
 
 Spørsmål knyttet til koden eller prosjektet kan stilles som issues her på Github.
 Interne henvendelser kan sendes via Slack i kanalen #po-utbetaling
