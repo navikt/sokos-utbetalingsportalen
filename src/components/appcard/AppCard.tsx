@@ -12,35 +12,31 @@ interface AppCardProps {
 }
 
 const AppCard: React.FC<AppCardProps> = ({ hasAccess, route, title, description }) => {
+
+  const content = <div>
+    <div className={styles.appcard__title}>
+      <Heading level="3" size="xsmall">
+        {title}
+      </Heading>
+      <div className={styles.appcard__right}>
+        <ChevronRightIcon />
+      </div>
+    </div>
+    <div className={styles.appcard__description}>{description}</div>
+  </div>;
+
+
   if (hasAccess) {
     return (
       <ReactRouterLink className={styles.appcard} to={route}>
-        <div className={styles.appcard__title}>
-          <Heading level="3" size="xsmall">
-            {title}
-          </Heading>
-          <div className={styles.appcard__right}>
-            <ChevronRightIcon />
-          </div>
-        </div>
-        <div className={styles.appcard__description}>{description}</div>
+        {content}
       </ReactRouterLink>
     );
   } else {
     return (
       <span className={`${styles.appcard} ${styles.disabled}`}>
         <Tooltip content="Du har ikke tilgang til denne appen">
-          <div>
-            <div className={styles.appcard__title}>
-              <Heading level="3" size="xsmall">
-                {title}
-              </Heading>
-              <div className={styles.appcard__right}>
-                <ChevronRightIcon />
-              </div>
-            </div>
-            <div className={styles.appcard__description}>{description}</div>
-          </div>
+          {content}
         </Tooltip>
       </span>
     );

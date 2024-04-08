@@ -8,8 +8,7 @@
     "build": "vite build --base=/utbetalingsportalen/ --outDir dist",
     "build:gh-pages": "vite build --mode=dev-ekstern --base=/sokos-utbetalingsportalen/",
     "preview": "vite preview",
-    "prepare": "husky install",
-    "lint": "eslint --fix --ext .ts,.tsx ."
+    "prepare": "husky install"
   },
   "author": "navikt",
   "license": "MIT",
@@ -30,13 +29,8 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@types/react": "^18.2.78",
     "@types/react-dom": "^18.2.25",
-    "@typescript-eslint/eslint-plugin": "^7.6.0",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
-    "eslint": "^9.0.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
-    "eslint-plugin-react": "^7.34.1",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "postcss": "^8.4.38",
@@ -47,12 +41,6 @@
     "tailwindcss": "^3.4.3",
     "vite": "^5.2.8",
     "vite-plugin-mock": "^3.0.1"
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:jsx-a11y/recommended",
-      "plugin:@typescript-eslint/recommended"
-    ]
   },
   "stylelint": {
     "extends": [

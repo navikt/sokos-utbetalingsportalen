@@ -1,11 +1,7 @@
 .layout {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 2rem 2rem 0 2rem;
+  @apply flex flex-col justify-center align-middle mx-8 mt-8
 }
 
-.main {
-  width: 100%;
+.layout__main {
+  @apply w-full
 }

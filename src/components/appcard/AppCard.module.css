@@ -12,7 +12,7 @@
 
 .appcard:hover {
   .appcard__right {
-    @apply right-2 transition-all ease-in;
+    @apply right-2 transition-all ease-in duration-200;
   }
   @apply underline bg-[--a-surface-alt-1-subtle] transition-all ease-in-out duration-1000;
 }
