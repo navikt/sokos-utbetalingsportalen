@@ -1,0 +1,11 @@
+.card {
+  @apply flex-grow w-full;
+}
+
+.apperContent {
+  @apply flex justify-between items-center w-56 h-6;
+}
+
+.disabled {
+  @apply opacity-40;
+}
