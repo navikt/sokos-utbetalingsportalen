@@ -26,7 +26,7 @@ const SideBar = () => {
         <div
           className={`${styles.sidebar} ${styles.open} bg-neutral-800 min-h-screen overflow-hidden top-12 left-0 flex-col`}
         >
-          <div className="p-3 flex justify-end text-white">
+          <div className="flex justify-end text-white">
             <Button
               className="cursor-pointer flex flex-row items-center bg-neutral-800"
               onClick={() => setShowSideBar(!showSideBar)}
@@ -37,18 +37,16 @@ const SideBar = () => {
               Lukk
             </Button>
           </div>
-          <ul className="px-6 top-1.5 flex flex-col space-y-2 text-white">
+          <ul className="top-1.5 flex flex-col text-white">
             <Link className={`flex flex-row items-center ${styles.link}`} to={ROUTE_PATH.SOKOS_UP_HOME}>
               <HouseIcon className="h-6 w-6 mr-2 mb-1 min-w-6" />
               Hjem
             </Link>
-            <div className="border-b border-gray-600 my-2" />
             {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ) && (
               <>
                 <Link className={styles.link} to={ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE}>
                   Mikrofrontend
                 </Link>
-                <div className="border-b border-gray-600 my-2" />
               </>
             )}
             {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ) && (
@@ -56,7 +54,6 @@ const SideBar = () => {
                 <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_KRP}>
                   Kontoregister person kontosøk
                 </Link>
-                <div className="border-b border-gray-600 my-2" />
               </>
             )}
             {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ) && (
@@ -64,7 +61,6 @@ const SideBar = () => {
                 <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_ORS}>
                   Oppslag Reskontro Stønad
                 </Link>
-                <div className="border-b border-gray-600 my-2" />
               </>
             )}
             {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ) && (
@@ -72,7 +68,6 @@ const SideBar = () => {
                 <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_SKATTEKORT}>
                   Skattekort
                 </Link>
-                <div className="border-b border-gray-600 my-2" />
               </>
             )}
             {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ) && (
@@ -80,7 +75,6 @@ const SideBar = () => {
                 <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO}>
                   Oppdragsinfo
                 </Link>
-                <div className="border-b border-gray-600 my-2" />
               </>
             )}
           </ul>

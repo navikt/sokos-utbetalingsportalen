@@ -1,8 +1,9 @@
 .link {
   color: white;
   white-space: nowrap;
-  padding: 0.5rem 0.25rem;
+  padding: 0.5rem 2rem;
   border-radius: 0.25rem;
+  margin: 0px 8px;
 }
 
 .link:hover {
