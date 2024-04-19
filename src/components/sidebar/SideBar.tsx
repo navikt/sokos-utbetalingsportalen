@@ -1,6 +1,6 @@
 import { MenuHamburgerIcon, HouseIcon, XMarkIcon } from "@navikt/aksel-icons";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "./SideBarLink";
 import { AzureAdGroupName, AzureAdGroupNameId, AzureAdGroupNames } from "../../auth/azureAdGroups";
 import { ROUTE_PATH } from "../../models/routePath";
 import styles from "./SideBar.module.css";
