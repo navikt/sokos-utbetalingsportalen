@@ -23,22 +23,3 @@
 .sidebar.open {
   width: 24rem;
 }
-
-.textContainer {
-  width: 100%;
-}
-
-@media (min-width: 1000px) {
-  .textContainer {
-    width: 14rem;
-  }
-}
-
-@media (min-width: 2300px) {
-  .textContainer {
-    width: 16rem;
-  }
-  .sidebar.open {
-    width: 18rem;
-  }
-}
