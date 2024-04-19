@@ -26,17 +26,7 @@ const SideBar = () => {
         <div
           className={`${styles.sidebar} ${styles.open} bg-neutral-800 min-h-screen overflow-hidden top-12 left-0 flex-col`}
         >
-          <div className="p-3 flex justify-end text-white">
-            <Button
-              className="cursor-pointer flex flex-row items-center bg-neutral-800"
-              onClick={() => setShowSideBar(!showSideBar)}
-              icon={<XMarkIcon />}
-              iconPosition="right"
-              variant="primary-neutral"
-            >
-              Lukk
-            </Button>
-          </div>
+          <div className={styles.textContainer}>
           <ul className="px-6 top-1.5 flex flex-col space-y-2 text-white">
             <Link className={`flex flex-row items-center ${styles.link}`} to={ROUTE_PATH.SOKOS_UP_HOME}>
               <HouseIcon className="h-6 w-6 mr-2 mb-1 min-w-6" />

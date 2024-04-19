@@ -24,6 +24,7 @@ spec:
         groups:
           - id: "6c93762e-ea37-4043-919f-3a758a136943" # 0000-GA-SOKOS-MF-Skattekort-READ
           - id: "25723642-e1da-4d15-87ce-8c4d2b87e33a" # 0000-GA-SOKOS-MF-PosteringSok-READ
+          - id: "bb9c7baf-768b-4e84-816c-f10d0a6c7d25" # 0000-GA-SOKOS-MF-KRP-READ
         extra:
           - "NAVident"
     sidecar:
@@ -35,6 +36,7 @@ spec:
     outbound:
       rules:
         - application: sokos-up-ors-api
+        - application: sokos-up-krp-api
       external:
         - host: sokos-skattekort-person.prod-fss-pub.nais.io
   ingresses:
@@ -55,6 +57,14 @@ spec:
       value: api://prod-gcp.okonomi.sokos-up-ors-api/.default
     - name: SOKOS_UP_ORS_API_PROXY
       value: "/up-ors-api"
+
+    # sokos-up-krp-api
+    - name: SOKOS_UP_KRP_API
+      value: http://sokos-up-krp-api
+    - name: SOKOS_UP_KRP_API_SCOPE
+      value: api://prod-gcp.okonomi.sokos-up-krp-api/.default
+    - name: SOKOS_UP_KRP_API_PROXY
+      value: "/up-krp-api"
 
     # Skattekort
     - name: SOKOS_SKATTEKORT_PERSON_API
