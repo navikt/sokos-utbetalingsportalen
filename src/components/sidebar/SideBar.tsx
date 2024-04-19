@@ -1,6 +1,6 @@
 import { MenuHamburgerIcon, HouseIcon, XMarkIcon } from "@navikt/aksel-icons";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "./SideBarLink";
 import { AzureAdGroupName, AzureAdGroupNameId, AzureAdGroupNames } from "../../auth/azureAdGroups";
 import { ROUTE_PATH } from "../../models/routePath";
 import styles from "./SideBar.module.css";
@@ -9,7 +9,7 @@ import { Button } from "@navikt/ds-react";
 
 const SideBar = () => {
   const [groups, setGroups] = useState<Array<string>>([]);
-  const [showSideBar, setShowSideBar] = useState(false);
+  const [showSideBar, setShowSideBar] = useState(true);
 
   useEffect(() => {
     getAzureAdGroups()
@@ -39,7 +39,7 @@ const SideBar = () => {
           </div>
           <ul className="px-6 top-1.5 flex flex-col space-y-2 text-white">
             <Link className={`flex flex-row items-center ${styles.link}`} to={ROUTE_PATH.SOKOS_UP_HOME}>
-              <HouseIcon className="h-6 w-6 mr-2 mb-1" />
+              <HouseIcon className="h-6 w-6 mr-2 mb-1 min-w-6" />
               Hjem
             </Link>
             <div className="border-b border-gray-600 my-2" />

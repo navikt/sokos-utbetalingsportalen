@@ -1,9 +1,17 @@
 .link {
   color: white;
+  white-space: nowrap;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
 }
 
 .link:hover {
   text-decoration: underline;
+}
+
+.link.active {
+  background-color: var(--a-purple-400);
+  pointer-events: none;
 }
 
 .sidebar {
@@ -12,5 +20,5 @@
 }
 
 .sidebar.open {
-  width: 18rem;
+  width: 28rem;
 }
