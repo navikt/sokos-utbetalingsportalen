@@ -1,14 +1,13 @@
-import { BodyLong, BodyShort, Box, GuidePanel, Heading, Link, List, Tooltip } from "@navikt/ds-react";
+import { BodyLong, GuidePanel, Heading } from "@navikt/ds-react";
 import { useLoaderData } from "react-router-dom";
 import { UserData } from "../models/userData";
 import pengesekk from "../../assets/images/pengesekk.svg";
 import styles from "./Information.module.css";
-import { ChevronRightIcon } from "@navikt/aksel-icons";
 import { ROUTE_PATH } from "../models/routePath";
-import { Link as ReactRouterLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAzureAdGroups } from "../auth/authentication";
 import { AzureAdGroupNameId, AzureAdGroupNames, AzureAdGroupName } from "../auth/azureAdGroups";
+import AppCard from "../components/appcard/AppCard";
 
 const Information = () => {
   const userInfo = useLoaderData() as UserData;
@@ -40,127 +39,36 @@ const Information = () => {
               Utbetalingsportalen er en ny platform som på sikt skal overta funksjoner fra Økonomiportalen og Abetal i
               en ny og forbedret versjon.
             </BodyLong>
-            {/* <List as="ul" size="small">
-              <List.Item>
-                <BodyShort>
-                  <Link href="https://navno.sharepoint.com/sites/POutbetaling" target="_blank">
-                    Les mer på Navet
-                  </Link>
-                </BodyShort>
-              </List.Item>
-            </List> */}
           </GuidePanel>
         </div>
-        <Heading level="3" size="medium" spacing>
-          Apper
-        </Heading>
-        <div className={styles.apper}>
-          {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ) ? (
-            <Link as={ReactRouterLink} to={ROUTE_PATH.SOKOS_UP_KRP} variant="neutral" href="#" underline={false}>
-              <Box background="surface-alt-2-subtle" padding="6" shadow="medium" borderRadius="xlarge">
-                <div className={styles.apperContent}>
-                  <BodyShort weight="semibold">Kontoregister person kontosøk</BodyShort>
-                  <ChevronRightIcon />
-                </div>
-              </Box>
-            </Link>
-          ) : (
-            <Tooltip content="Du har ikke tilgang til denne appen">
-              <Box
-                background="surface-alt-2-subtle"
-                padding="6"
-                shadow="medium"
-                borderRadius="xlarge"
-                className={styles.disabled}
-                aria-disabled
-              >
-                <div className={styles.apperContent}>
-                  <BodyShort weight="semibold">Kontoregister person kontosøk</BodyShort>
-                  <ChevronRightIcon />
-                </div>
-              </Box>
-            </Tooltip>
-          )}
-          {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ) ? (
-            <Link as={ReactRouterLink} to={ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO} variant="neutral" underline={false}>
-              <Box background="surface-alt-2-subtle" padding="6" shadow="medium" borderRadius="xlarge">
-                <div className={styles.apperContent}>
-                  <BodyShort weight="semibold">Oppdragsinfo</BodyShort>
-                  <ChevronRightIcon />
-                </div>
-              </Box>
-            </Link>
-          ) : (
-            <Tooltip content="Du har ikke tilgang til denne appen">
-              <Box
-                background="surface-alt-2-subtle"
-                padding="6"
-                shadow="medium"
-                borderRadius="xlarge"
-                className={styles.disabled}
-                aria-disabled
-              >
-                <div className={styles.apperContent}>
-                  <BodyShort weight="semibold">Oppdragsinfo</BodyShort>
-                  <ChevronRightIcon />
-                </div>
-              </Box>
-            </Tooltip>
-          )}
+        <div className={styles.apperContainer}>
+          <Heading level="3" size="medium" spacing className="justify-start">
+            Apper
+          </Heading>
+          <div className={styles.apper}>
+            <AppCard
+              hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ)}
+              route={ROUTE_PATH.SOKOS_UP_KRP}
+              title="Kontoregister person kontosøk"
+            />
 
-          {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ) ? (
-            <Link as={ReactRouterLink} to={ROUTE_PATH.SOKOS_UP_ORS} variant="neutral" underline={false}>
-              <Box background="surface-alt-2-subtle" padding="6" shadow="medium" borderRadius="xlarge">
-                <div className={styles.apperContent}>
-                  <BodyShort weight="semibold">Oppslag i Reskontro Stønad</BodyShort>
-                  <ChevronRightIcon />
-                </div>
-              </Box>
-            </Link>
-          ) : (
-            <Tooltip content="Du har ikke tilgang til denne appen">
-              <Box
-                background="surface-alt-2-subtle"
-                padding="6"
-                shadow="medium"
-                borderRadius="xlarge"
-                className={styles.disabled}
-                aria-disabled
-              >
-                <div className={styles.apperContent}>
-                  <BodyShort weight="semibold">Oppslag i Reskontro Stønad</BodyShort>
-                  <ChevronRightIcon />
-                </div>
-              </Box>
-            </Tooltip>
-          )}
+            <AppCard
+              hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ)}
+              route={ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO}
+              title="Oppdragsinfo"
+            />
+            <AppCard
+              hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ)}
+              route={ROUTE_PATH.SOKOS_UP_ORS}
+              title="Oppslag i Reskontro Stønad"
+            />
 
-          {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ) ? (
-            <Link as={ReactRouterLink} to={ROUTE_PATH.SOKOS_UP_SKATTEKORT} variant="neutral" href="#" underline={false}>
-              <Box background="surface-alt-2-subtle" padding="6" shadow="medium" borderRadius="xlarge">
-                <div className={styles.apperContent}>
-                  <BodyShort weight="semibold">Skattekort</BodyShort>
-                  <ChevronRightIcon />
-                </div>
-              </Box>
-            </Link>
-          ) : (
-            <Tooltip content="Du har ikke tilgang til denne appen">
-              <Box
-                background="surface-alt-2-subtle"
-                padding="6"
-                shadow="medium"
-                borderRadius="xlarge"
-                className={styles.disabled}
-                aria-disabled
-              >
-                <div className={styles.apperContent}>
-                  <BodyShort weight="semibold">Skattekort</BodyShort>
-                  <ChevronRightIcon />
-                </div>
-              </Box>
-            </Tooltip>
-          )}
+            <AppCard
+              hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ)}
+              route={ROUTE_PATH.SOKOS_UP_SKATTEKORT}
+              title="Skattekort"
+            />
+          </div>
         </div>
       </div>
     </>
