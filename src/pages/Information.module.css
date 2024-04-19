@@ -1,0 +1,33 @@
+.heading {
+  @apply text-center;
+}
+
+.container {
+  @apply mx-0 sm:mx-8 md:mx-12 lg:mx-16 xl:mx-20 2xl:mx-28;
+}
+
+.guidepanel {
+  @apply pb-10;
+}
+
+@media screen and (min-width: 1600px) {
+  .container {
+    @apply max-w-screen-2xl;
+  }
+}
+
+.apper {
+  @apply flex flex-wrap justify-self-stretch gap-6;
+}
+
+.card {
+  @apply flex-grow w-full;
+}
+
+.apperContent {
+  @apply flex justify-between items-center w-56 h-6;
+}
+
+.disabled {
+  @apply opacity-40;
+}
