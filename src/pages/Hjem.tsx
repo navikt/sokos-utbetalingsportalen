@@ -2,7 +2,7 @@ import { BodyLong, GuidePanel, Heading } from "@navikt/ds-react";
 import { useLoaderData } from "react-router-dom";
 import { UserData } from "../models/userData";
 import pengesekk from "../../assets/images/pengesekk.svg";
-import styles from "./Information.module.css";
+import styles from "./Hjem.module.css";
 import { ROUTE_PATH } from "../models/routePath";
 import { useEffect, useState } from "react";
 import { getAzureAdGroups } from "../auth/authentication";
@@ -41,34 +41,32 @@ const Information = () => {
             </BodyLong>
           </GuidePanel>
         </div>
-        <div className={styles.apperContainer}>
-          <Heading level="3" size="medium" spacing className="justify-start">
-            Apper
-          </Heading>
-          <div className={styles.apper}>
-            <AppCard
-              hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ)}
-              route={ROUTE_PATH.SOKOS_UP_KRP}
-              title="Kontoregister person kontosøk"
-            />
+        <Heading level="3" size="medium" spacing className="justify-start">
+          Apper
+        </Heading>
+        <div className={styles.apper}>
+          <AppCard
+            hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ)}
+            route={ROUTE_PATH.SOKOS_UP_KRP}
+            title="Kontoregister person kontosøk"
+          />
 
-            <AppCard
-              hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ)}
-              route={ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO}
-              title="Oppdragsinfo"
-            />
-            <AppCard
-              hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ)}
-              route={ROUTE_PATH.SOKOS_UP_ORS}
-              title="Oppslag i Reskontro Stønad"
-            />
+          <AppCard
+            hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ)}
+            route={ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO}
+            title="Oppdragsinfo"
+          />
+          <AppCard
+            hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ)}
+            route={ROUTE_PATH.SOKOS_UP_ORS}
+            title="Oppslag i Reskontro Stønad"
+          />
 
-            <AppCard
-              hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ)}
-              route={ROUTE_PATH.SOKOS_UP_SKATTEKORT}
-              title="Skattekort"
-            />
-          </div>
+          <AppCard
+            hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ)}
+            route={ROUTE_PATH.SOKOS_UP_SKATTEKORT}
+            title="Skattekort"
+          />
         </div>
       </div>
     </>
