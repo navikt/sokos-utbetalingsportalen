@@ -8,45 +8,38 @@
     "build": "vite build --base=/utbetalingsportalen/ --outDir dist",
     "build:gh-pages": "vite build --mode=dev-ekstern --base=/sokos-utbetalingsportalen/",
     "preview": "vite preview",
-    "prepare": "husky install",
-    "lint": "eslint --fix --ext .ts,.tsx ."
+    "prepare": "husky ."
   },
   "author": "navikt",
   "license": "MIT",
   "dependencies": {
-    "@grafana/faro-web-sdk": "^1.5.1",
-    "@navikt/aksel-icons": "^6.5.0",
-    "@navikt/ds-css": "^6.5.0",
-    "@navikt/ds-react": "^6.5.0",
+    "@grafana/faro-web-sdk": "^1.6.0",
+    "@navikt/aksel-icons": "^6.6.1",
+    "@navikt/ds-css": "^6.6.1",
+    "@navikt/ds-react": "^6.6.1",
     "axios": "^1.6.8",
     "react-error-boundary": "^4.0.13",
-    "react-router-dom": "^6.22.3",
-    "swr": "^2.2.5",
-    "zustand": "^4.5.2"
+    "react-router-dom": "^6.23.0",
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@eik/rollup-plugin": "^4.0.63",
-    "@navikt/aksel-stylelint": "^6.5.0",
+    "@navikt/aksel-stylelint": "^6.6.1",
     "@rollup/plugin-terser": "^0.4.4",
-    "@types/react": "^18.2.78",
+    "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
-    "@typescript-eslint/eslint-plugin": "^7.6.0",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
-    "eslint": "^9.0.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
-    "eslint-plugin-react": "^7.34.1",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "stylelint": "^16.3.1",
+    "stylelint": "^16.4.0",
     "tailwindcss": "^3.4.3",
-    "vite": "^5.2.8",
-    "vite-plugin-mock": "^3.0.1"
+    "vite": "^5.2.10",
+    "vite-plugin-mock": "^3.0.2"
   },
   "eslintConfig": {
     "extends": [
