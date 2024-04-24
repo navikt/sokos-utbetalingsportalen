@@ -16,7 +16,7 @@ const BUILD_PATH = path.resolve(__dirname, "../dist");
 server.use(
   helmet.contentSecurityPolicy({
     directives: {
-      "script-src": ["'self'", "https://www.nav.no"],
+      "script-src": ["'self'", "https://www.nav.no", "https://cdn.nav.no/okonomi"],
       "connect-src": ["'self'", "https://telemetry.ekstern.dev.nav.no", "https://telemetry.nav.no/collect"],
     },
   }),
@@ -78,7 +78,6 @@ const startServer = () => {
 
   // sokos-up-krp-api
   routeProxyWithOboToken(Config.SOKOS_UP_KRP_API_PROXY, Config.SOKOS_UP_KRP_API, Config.SOKOS_UP_KRP_API_SCOPE);
-
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
 
