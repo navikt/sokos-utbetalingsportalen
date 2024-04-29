@@ -1,5 +1,5 @@
 .appcard__box {
-  @apply bg-[--a-surface-alt-2-subtle] p-6 shadow-lg shadow-neutral-200 rounded-lg w-full;
+  @apply bg-[--a-surface-alt-2-subtle] p-6 shadow-lg shadow-neutral-200 rounded-lg w-full text-black;
 }
 
 .appcard__title {
@@ -12,8 +12,4 @@
 
 .disabled {
   @apply opacity-40;
-}
-
-.active {
-  @apply bg-[--a-primary] text-white;
 }
