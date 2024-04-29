@@ -24,9 +24,9 @@ const Information = () => {
 
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.guidepanel}>
-          <div className={styles.heading}>
+      <div className={styles.hjem}>
+        <div className={styles.hjem__guidepanel}>
+          <div className={styles.hjem__heading}>
             <Heading level="1" size="large" spacing>
               God dag, {userInfo.name}!
             </Heading>
@@ -44,7 +44,7 @@ const Information = () => {
         <Heading level="3" size="medium" spacing className="justify-start">
           Apper
         </Heading>
-        <div className={styles.apper}>
+        <div className={styles.hjem__apper}>
           <AppCard
             hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ)}
             route={ROUTE_PATH.SOKOS_UP_KRP}

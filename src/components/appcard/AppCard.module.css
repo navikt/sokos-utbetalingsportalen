@@ -1,13 +1,17 @@
-.appcard__box {
-  @apply bg-[--a-surface-alt-2-subtle] p-6 shadow-lg shadow-neutral-200 rounded-lg w-full text-black;
+.appcard {
+  @apply relative p-4 bg-[--a-surface-alt-2-subtle] shadow-lg shadow-neutral-200 rounded-lg text-black h-full;
 }
 
 .appcard__title {
-  @apply flex flex-row justify-between items-center whitespace-nowrap;
+  @apply whitespace-nowrap;
+}
+
+.appcard__right {
+  @apply absolute right-3 top-8;
 }
 
 .appcard__description {
-  @apply text-gray-700 text-base;
+  @apply text-gray-700 text-base mr-5;
 }
 
 .disabled {
