@@ -1,0 +1,26 @@
+.appcard {
+  @apply relative p-4 bg-[--a-surface-alt-2-subtle] shadow-lg shadow-neutral-200 rounded-lg text-black h-full ease-in-out duration-1000;
+}
+
+.appcard__title {
+  @apply whitespace-nowrap;
+}
+
+.appcard__right {
+  @apply absolute right-3 top-8 transition-all ease-out;
+}
+
+.appcard:hover {
+  .appcard__right {
+    @apply right-2 transition-all ease-in;
+  }
+  @apply underline bg-[--a-surface-alt-1-subtle] transition-all ease-in-out duration-1000;
+}
+
+.appcard__description {
+  @apply text-gray-700 text-base mr-5;
+}
+
+.disabled {
+  @apply opacity-40;
+}

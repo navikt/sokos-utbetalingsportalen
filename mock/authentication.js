@@ -5,7 +5,7 @@ export default [
     status: 200,
     response: () => {
       return {
-        name: "Ola Nordmann",
+        name: "Ola Mohammad",
         navIdent: "x123456",
         adGroups: [
           "1b717a23-d376-471c-9fc6-356299fadc2b",
