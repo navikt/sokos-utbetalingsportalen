@@ -1,9 +1,19 @@
 .link {
   color: white;
+  white-space: nowrap;
+  padding: 0.5rem 2rem;
+  border-radius: 0.25rem;
+  margin: 0px 8px;
 }
 
 .link:hover {
   text-decoration: underline;
+}
+
+.link.active {
+  background-color: var(--a-purple-400);
+  text-decoration: underline;
+  pointer-events: none;
 }
 
 .sidebar {
@@ -12,24 +22,5 @@
 }
 
 .sidebar.open {
-  width: 16rem;
-}
-
-.textContainer {
-  width: 100%;
-}
-
-@media (min-width: 1000px) {
-  .textContainer {
-    width: 14rem;
-  }
-}
-
-@media (min-width: 2300px) {
-  .textContainer {
-    width: 16rem;
-  }
-  .sidebar.open {
-    width: 18rem;
-  }
+  width: 24rem;
 }
