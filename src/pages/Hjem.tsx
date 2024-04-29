@@ -49,23 +49,27 @@ const Information = () => {
             hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ)}
             route={ROUTE_PATH.SOKOS_UP_KRP}
             title="Kontoregister person kontosøk"
+            description="Søk etter personer og konti"
           />
 
           <AppCard
             hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ)}
             route={ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO}
             title="Oppdragsinfo"
+            description="Søk etter oppdrag i Oppdragssystemet"
           />
           <AppCard
             hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ)}
             route={ROUTE_PATH.SOKOS_UP_ORS}
             title="Oppslag i Reskontro Stønad"
+            description="Søk etter posteringer fra Abetal og UR"
           />
 
           <AppCard
             hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ)}
             route={ROUTE_PATH.SOKOS_UP_SKATTEKORT}
             title="Skattekort"
+            description="Søk etter skattekort for personer i OS-Eskatt"
           />
         </div>
       </div>

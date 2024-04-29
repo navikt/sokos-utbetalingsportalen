@@ -1,11 +1,19 @@
-/* .card {
-  @apply flex-grow w-full;
-} */
+.appcard__box {
+  @apply bg-[--a-surface-alt-2-subtle] p-6 shadow-lg shadow-neutral-200 rounded-lg w-full;
+}
 
-.apperContent {
-  @apply flex flex-grow justify-between items-center max-w-64 w-56 max-h-6;
+.appcard__title {
+  @apply flex flex-row justify-between items-center whitespace-nowrap;
+}
+
+.appcard__description {
+  @apply text-gray-700 text-base;
 }
 
 .disabled {
   @apply opacity-40;
+}
+
+.active {
+  @apply bg-[--a-primary] text-white;
 }

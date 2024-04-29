@@ -3,7 +3,7 @@
 }
 
 .container {
-  @apply mx-0 sm:mx-8 md:mx-12 lg:mx-16 xl:mx-20 2xl:mx-28;
+  @apply m-auto;
 }
 
 .guidepanel {
@@ -17,5 +17,5 @@
 }
 
 .apper {
-  @apply grid grid-cols-1 gap-8 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1;
+  @apply grid grid-cols-1 gap-8 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1;
 }
