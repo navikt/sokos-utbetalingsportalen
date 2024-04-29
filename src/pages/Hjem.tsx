@@ -1,4 +1,4 @@
-import { BodyLong, GuidePanel, Heading } from "@navikt/ds-react";
+import { BodyLong, GuidePanel, Heading, Switch } from "@navikt/ds-react";
 import { useLoaderData } from "react-router-dom";
 import { UserData } from "../models/userData";
 import pengesekk from "../../assets/images/pengesekk.svg";
@@ -6,12 +6,13 @@ import styles from "./Hjem.module.css";
 import { ROUTE_PATH } from "../models/routePath";
 import { useEffect, useState } from "react";
 import { getAzureAdGroups } from "../auth/authentication";
-import { AzureAdGroupNameId, AzureAdGroupNames, AzureAdGroupName } from "../auth/azureAdGroups";
+import { AzureAdGroupName, AzureAdGroupNameId, AzureAdGroupNames } from "../auth/azureAdGroups";
 import AppCard from "../components/appcard/AppCard";
 
 const Information = () => {
   const userInfo = useLoaderData() as UserData;
   const [groups, setGroups] = useState<Array<string>>([]);
+  const [showUnauthorized, setShowUnauthorized] = useState<string>("");
 
   useEffect(() => {
     getAzureAdGroups()
@@ -21,6 +22,35 @@ const Information = () => {
       });
   }, []);
   const hasAccess = (group: AzureAdGroupNames) => groups.some((id) => id === AzureAdGroupNameId[group]);
+
+  const apps = [
+    {
+      group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ,
+      route: ROUTE_PATH.SOKOS_UP_KRP,
+      title: "Kontoregister person kontosøk",
+      description: "Søk etter personer og konti",
+    },
+    {
+      group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ,
+      route: ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO,
+      title: "Oppdragsinfo",
+      description: "Søk etter oppdrag i Oppdragssystemet",
+    },
+    {
+      group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ,
+      route: ROUTE_PATH.SOKOS_UP_ORS,
+      title: "Oppslag i Reskontro Stønad",
+      description: "Søk etter posteringer fra Abetal og UR",
+    },
+    {
+      group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ,
+      route: ROUTE_PATH.SOKOS_UP_SKATTEKORT,
+      title: "Skattekort",
+      description: "Søk etter skattekort for personer i OS-Eskatt",
+    },
+  ]
+    .filter((f) => hasAccess(f.group) || showUnauthorized)
+    .map((f) => <AppCard hasAccess={hasAccess(f.group)} route={f.route} title={f.title} description={f.description} />);
 
   return (
     <>
@@ -44,34 +74,14 @@ const Information = () => {
         <Heading level="3" size="medium" spacing className="justify-start">
           Apper
         </Heading>
-        <div className={styles.hjem__apper}>
-          <AppCard
-            hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ)}
-            route={ROUTE_PATH.SOKOS_UP_KRP}
-            title="Kontoregister person kontosøk"
-            description="Søk etter personer og konti"
-          />
-
-          <AppCard
-            hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ)}
-            route={ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO}
-            title="Oppdragsinfo"
-            description="Søk etter oppdrag i Oppdragssystemet"
-          />
-          <AppCard
-            hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ)}
-            route={ROUTE_PATH.SOKOS_UP_ORS}
-            title="Oppslag i Reskontro Stønad"
-            description="Søk etter posteringer fra Abetal og UR"
-          />
-
-          <AppCard
-            hasAccess={hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ)}
-            route={ROUTE_PATH.SOKOS_UP_SKATTEKORT}
-            title="Skattekort"
-            description="Søk etter skattekort for personer i OS-Eskatt"
-          />
-        </div>
+        <Switch
+          value="vis"
+          checked={showUnauthorized === "vis"}
+          onChange={(e) => setShowUnauthorized((x) => (x ? "" : e.target.value))}
+        >
+          Vis alle
+        </Switch>
+        <div className={styles.hjem__apper}>{apps}</div>
       </div>
     </>
   );
