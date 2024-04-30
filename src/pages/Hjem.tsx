@@ -9,7 +9,7 @@ import { getAzureAdGroups } from "../auth/authentication";
 import { AzureAdGroupName, AzureAdGroupNameId, AzureAdGroupNames } from "../auth/azureAdGroups";
 import AppCard from "../components/appcard/AppCard";
 
-const Information = () => {
+const Hjem = () => {
   const userInfo = useLoaderData() as UserData;
   const [groups, setGroups] = useState<Array<string>>([]);
   const [showUnauthorized, setShowUnauthorized] = useState<string>("");
@@ -87,4 +87,4 @@ const Information = () => {
   );
 };
 
-export default Information;
+export default Hjem;

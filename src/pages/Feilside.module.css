@@ -1,23 +1,15 @@
 .error-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
+  @apply flex flex-col align-middle mt-12;
 }
 
 .error-icon {
-  font-size: 50px;
-  color: red;
+  @apply size-12 text-[--a-surface-danger];
 }
 
 .error-heading {
-  font-size: 30px;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  @apply mt-4 mb-2 size-4;
 }
 
 .error-message {
-  font-size: 20px;
-  color: gray;
-  text-align: center;
+  @apply size-4 text-[--a-surface-neutral] text-center;
 }

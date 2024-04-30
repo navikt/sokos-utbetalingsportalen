@@ -4,7 +4,7 @@ import { AzureAdGroupName } from "./auth/azureAdGroups";
 import Layout from "./components/layout/Layout";
 import { ROUTE_PATH } from "./models/routePath";
 import Feilside, { NoAccess, NotFound } from "./pages/Feilside";
-import Information from "./pages/Hjem";
+import Hjem from "./pages/Hjem";
 import Mikrofrontend from "./Mikrofrontend";
 import {
   sokosUpSkattekortURL,
@@ -21,10 +21,10 @@ const App = () => {
         createRoutesFromElements(
           <>
             <Route path="/" element={<Layout />} loader={authenticationLoader} errorElement={<Feilside />}>
-              <Route path="/" element={<Information />} loader={authenticationLoader} />
+              <Route path="/" element={<Hjem />} loader={authenticationLoader} />
               <Route
                 path={ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE}
-                element={<Mikrofrontend url={sokosMikrofrontendTemplateURL} includeGjelderId />}
+                element={<Mikrofrontend url={sokosMikrofrontendTemplateURL} />}
                 loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ)}
               />
               <Route
@@ -44,7 +44,7 @@ const App = () => {
               />
               <Route
                 path={`${ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO}/*`}
-                element={<Mikrofrontend url={sokosUpOppdragsinfoURL} includeGjelderId />}
+                element={<Mikrofrontend url={sokosUpOppdragsinfoURL} />}
                 loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ)}
               />
               <Route path="/forbidden" element={<NoAccess />} />

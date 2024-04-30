@@ -1,0 +1,11 @@
+.topbar {
+  @apply w-16 p-1 ml-3;
+}
+
+.topbar__link {
+  @apply border-none;
+}
+
+.topbar__userbutton {
+  @apply ml-auto;
+}
