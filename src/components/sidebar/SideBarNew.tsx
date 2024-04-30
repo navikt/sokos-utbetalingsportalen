@@ -13,7 +13,11 @@ const SideBarNew = () => {
   const hasAccess = RestService.useFetchHasAccess();
 
   if (!showSideBar) {
-    return <ClosedSideBar setShowSideBar={setShowSideBar} />;
+    return (
+      <div className="bg-neutral-800 h-screen transition-all ease-in-out duration-500 w-12">
+        <ClosedSideBar setShowSideBar={setShowSideBar} />
+      </div>
+    );
   }
 
   const lenker = Apper.filter((side) => hasAccess(side.group)).map((side) => (
@@ -25,7 +29,7 @@ const SideBarNew = () => {
 
   return (
     <>
-      <div className="flex flex-col w-80 bg-neutral-800 h-screen transition-all ease-in-out duration-500">
+      <div className="w-80 bg-neutral-800 h-screen transition-all ease-in-out duration-500">
         <CloseSideBarButton setShowSideBar={setShowSideBar} />
 
         <ul className="flex flex-col">
