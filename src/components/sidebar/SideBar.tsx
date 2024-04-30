@@ -14,10 +14,8 @@ const SideBar = () => {
   return (
     <>
       {showSideBar ? (
-        <div
-          className={`${styles.sidebar} ${styles.open} bg-neutral-800 min-h-screen overflow-hidden top-12 left-0 flex-col`}
-        >
-          <div className="flex justify-end text-white">
+        <div className={`${styles.sidebar} ${styles.open}`}>
+          <div className={styles.sidebar__closebar}>
             <Button
               className="cursor-pointer flex flex-row items-center bg-neutral-800"
               onClick={() => setShowSideBar(!showSideBar)}
@@ -28,9 +26,9 @@ const SideBar = () => {
               Lukk
             </Button>
           </div>
-          <ul className="top-1.5 flex flex-col text-white">
-            <Link className={`flex flex-row items-center ${styles.sidebar__link}`} to={ROUTE_PATH.SOKOS_UP_HOME}>
-              <HouseIcon className="h-6 w-6 mr-2 mb-1 min-w-6" />
+          <ul className={styles.sidebar__ul}>
+            <Link className={styles.sidebar__ullink} to={ROUTE_PATH.SOKOS_UP_HOME}>
+              <HouseIcon className={styles.sidebar__house} />
               Hjem
             </Link>
             {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ) && (
@@ -71,11 +69,9 @@ const SideBar = () => {
           </ul>
         </div>
       ) : (
-        <div
-          className={`${styles.sidebar} bg-neutral-800 left-0 min-h-screen flex flex-col justify-start items-center`}
-        >
+        <div className={`${styles.sidebar} ${styles.closed}`}>
           <Button
-            className="cursor-pointer mt-2 bg-neutral-800"
+            className={"cursor-pointer mt-2"}
             onClick={() => setShowSideBar(!showSideBar)}
             variant="primary-neutral"
             icon={<MenuHamburgerIcon className="w-8 h-8" />}
