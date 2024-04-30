@@ -1,24 +1,15 @@
 import { HouseIcon, MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "./SideBarLink";
-import { AzureAdGroupName, AzureAdGroupNameId, AzureAdGroupNames } from "../../auth/azureAdGroups";
+import { AzureAdGroupName } from "../../auth/azureAdGroups";
 import { ROUTE_PATH } from "../../models/routePath";
 import styles from "./SideBar.module.css";
-import { getAzureAdGroups } from "../../auth/authentication";
 import { Button } from "@navikt/ds-react";
+import RestService from "../../services/rest-service";
 
 const SideBar = () => {
-  const [groups, setGroups] = useState<Array<string>>([]);
   const [showSideBar, setShowSideBar] = useState(true);
-
-  useEffect(() => {
-    getAzureAdGroups()
-      .then((adGroups) => setGroups(adGroups))
-      .catch((error) => {
-        throw new Error("Failed to load Azure AD groups:", error);
-      });
-  }, []);
-  const hasAccess = (group: AzureAdGroupNames) => groups.some((id) => id === AzureAdGroupNameId[group]);
+  const hasAccess = RestService.useFetchHasAccess();
 
   return (
     <>
@@ -38,41 +29,41 @@ const SideBar = () => {
             </Button>
           </div>
           <ul className="top-1.5 flex flex-col text-white">
-            <Link className={`flex flex-row items-center ${styles.link}`} to={ROUTE_PATH.SOKOS_UP_HOME}>
+            <Link className={`flex flex-row items-center ${styles.sidebar__link}`} to={ROUTE_PATH.SOKOS_UP_HOME}>
               <HouseIcon className="h-6 w-6 mr-2 mb-1 min-w-6" />
               Hjem
             </Link>
             {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ) && (
               <>
-                <Link className={styles.link} to={ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE}>
+                <Link className={styles.sidebar__link} to={ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE}>
                   Mikrofrontend
                 </Link>
               </>
             )}
             {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ) && (
               <>
-                <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_KRP}>
+                <Link className={styles.sidebar__link} to={ROUTE_PATH.SOKOS_UP_KRP}>
                   Kontoregister person kontosøk
                 </Link>
               </>
             )}
             {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ) && (
               <>
-                <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_ORS}>
+                <Link className={styles.sidebar__link} to={ROUTE_PATH.SOKOS_UP_ORS}>
                   Oppslag Reskontro Stønad
                 </Link>
               </>
             )}
             {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ) && (
               <>
-                <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_SKATTEKORT}>
+                <Link className={styles.sidebar__link} to={ROUTE_PATH.SOKOS_UP_SKATTEKORT}>
                   Skattekort
                 </Link>
               </>
             )}
             {hasAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ) && (
               <>
-                <Link className={styles.link} to={ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO}>
+                <Link className={styles.sidebar__link} to={ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO}>
                   Oppdragsinfo
                 </Link>
               </>
