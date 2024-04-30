@@ -1,13 +1,13 @@
 import { BodyLong, GuidePanel, Heading, Switch } from "@navikt/ds-react";
-import { useLoaderData } from "react-router-dom";
-import { UserData } from "../models/userData";
-import pengesekk from "../../assets/images/pengesekk.svg";
-import styles from "./Hjem.module.css";
-import { ROUTE_PATH } from "../models/routePath";
 import { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
+import pengesekk from "../../assets/images/pengesekk.svg";
 import { getAzureAdGroups } from "../auth/authentication";
-import { AzureAdGroupName, AzureAdGroupNameId, AzureAdGroupNames } from "../auth/azureAdGroups";
+import { AzureAdGroupNameId, AzureAdGroupNames } from "../auth/azureAdGroups";
 import AppCard from "../components/appcard/AppCard";
+import { Apper } from "../models/apper";
+import { UserData } from "../models/userData";
+import styles from "./Hjem.module.css";
 
 const Hjem = () => {
   const userInfo = useLoaderData() as UserData;
@@ -23,34 +23,15 @@ const Hjem = () => {
   }, []);
   const hasAccess = (group: AzureAdGroupNames) => groups.some((id) => id === AzureAdGroupNameId[group]);
 
-  const apps = [
-    {
-      group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ,
-      route: ROUTE_PATH.SOKOS_UP_KRP,
-      title: "Kontoregister person kontosøk",
-      description: "Søk etter personer og konti",
-    },
-    {
-      group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ,
-      route: ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO,
-      title: "Oppdragsinfo",
-      description: "Søk etter oppdrag i Oppdragssystemet",
-    },
-    {
-      group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ,
-      route: ROUTE_PATH.SOKOS_UP_ORS,
-      title: "Oppslag i Reskontro Stønad",
-      description: "Søk etter posteringer fra Abetal og UR",
-    },
-    {
-      group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ,
-      route: ROUTE_PATH.SOKOS_UP_SKATTEKORT,
-      title: "Skattekort",
-      description: "Søk etter skattekort for personer i OS-Eskatt",
-    },
-  ]
-    .filter((f) => hasAccess(f.group) || showUnauthorized)
-    .map((f) => <AppCard hasAccess={hasAccess(f.group)} route={f.route} title={f.title} description={f.description} />);
+  const appCards = Apper.filter((app) => hasAccess(app.group) || showUnauthorized).map((app) => (
+    <AppCard
+      key={app.app}
+      hasAccess={hasAccess(app.group)}
+      route={app.route}
+      title={app.title}
+      description={app.description}
+    />
+  ));
 
   return (
     <>
@@ -81,7 +62,7 @@ const Hjem = () => {
         >
           Vis alle
         </Switch>
-        <div className={styles.hjem__apper}>{apps}</div>
+        <div className={styles.hjem__apper}>{appCards}</div>
       </div>
     </>
   );

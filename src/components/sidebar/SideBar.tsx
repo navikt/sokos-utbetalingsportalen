@@ -15,16 +15,17 @@ const SideBar = () => {
     <>
       {showSideBar ? (
         <div className={`${styles.sidebar} ${styles.open}`}>
-          <div className={styles.sidebar__closebar}>
-            <Button
-              className="cursor-pointer flex flex-row items-center bg-neutral-800"
-              onClick={() => setShowSideBar(!showSideBar)}
-              icon={<XMarkIcon />}
-              iconPosition="right"
-              variant="primary-neutral"
-            >
-              Lukk
-            </Button>
+          <div className={styles.sidebar__openbar}>
+            <div className={styles.sidebar__openbar__button}>
+              <Button
+                onClick={() => setShowSideBar(!showSideBar)}
+                icon={<XMarkIcon />}
+                iconPosition="right"
+                variant="tertiary-neutral"
+              >
+                Lukk
+              </Button>
+            </div>
           </div>
           <ul className={styles.sidebar__ul}>
             <Link className={styles.sidebar__ullink} to={ROUTE_PATH.SOKOS_UP_HOME}>
@@ -70,12 +71,13 @@ const SideBar = () => {
         </div>
       ) : (
         <div className={`${styles.sidebar} ${styles.closed}`}>
-          <Button
-            className={"cursor-pointer mt-2"}
-            onClick={() => setShowSideBar(!showSideBar)}
-            variant="primary-neutral"
-            icon={<MenuHamburgerIcon className="w-8 h-8" />}
-          ></Button>
+          <div className={styles.sidebar__closedbar__button}>
+            <Button
+              onClick={() => setShowSideBar(!showSideBar)}
+              variant="tertiary-neutral"
+              icon={<MenuHamburgerIcon />}
+            ></Button>
+          </div>
         </div>
       )}
     </>

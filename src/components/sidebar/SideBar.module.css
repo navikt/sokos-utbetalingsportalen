@@ -22,8 +22,16 @@
   @apply bg-[--a-purple-400] underline pointer-events-none;
 }
 
-.sidebar__closebar {
+.sidebar__openbar {
   @apply flex justify-end text-white;
+}
+
+.sidebar__openbar__button {
+  @apply cursor-pointer flex flex-row items-center;
+}
+
+.sidebar__closedbar__button {
+  @apply cursor-pointer;
 }
 
 .sidebar__ul {
