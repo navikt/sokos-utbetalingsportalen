@@ -2,7 +2,7 @@ import { Dropdown, InternalHeader as Header } from "@navikt/ds-react";
 import { Link, useLoaderData } from "react-router-dom";
 import nav from "../../../assets/images/Hvit.png";
 import { UserData } from "../../models/userData";
-import styles from "TopBar.module.css";
+import styles from "./TopBar.module.css";
 
 const TopBar = () => {
   const userInfo = useLoaderData() as UserData;
