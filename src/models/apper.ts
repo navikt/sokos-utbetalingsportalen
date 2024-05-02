@@ -1,7 +1,5 @@
-import { ExoticComponent, ReactNode } from "react";
 import { AzureAdGroupName, AzureAdGroupNames } from "../auth/azureAdGroups";
 import { ROUTE_PATH } from "./routePath";
-import { BulletListIcon, NewspaperIcon, TableIcon } from "@navikt/aksel-icons";
 
 export type AppNavn = "KRP" | "OPPDRAGSINFO" | "ORS" | "SKATTEKORT";
 
@@ -11,9 +9,6 @@ export type App = {
   description: string;
   group: AzureAdGroupNames;
   route: string;
-  ikonet: React.ForwardRefExoticComponent<
-    React.SVGProps<SVGSVGElement> & SVGRProps & React.RefAttributes<SVGSVGElement>
-  >;
 };
 
 export const Apper: Array<App> = [
@@ -23,7 +18,6 @@ export const Apper: Array<App> = [
     description: "Søk etter personer og konti",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ,
     route: ROUTE_PATH.SOKOS_UP_KRP,
-    ikonet: BulletListIcon,
   },
   {
     app: "OPPDRAGSINFO",
@@ -31,7 +25,6 @@ export const Apper: Array<App> = [
     description: "Søk etter oppdrag i Oppdragssystemet",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ,
     route: ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO,
-    ikonet: NewspaperIcon,
   },
   {
     app: "ORS",
@@ -39,7 +32,6 @@ export const Apper: Array<App> = [
     description: "Søk etter posteringer fra Abetal og UR",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ,
     route: ROUTE_PATH.SOKOS_UP_ORS,
-    ikonet: TableIcon,
   },
   {
     app: "SKATTEKORT",
@@ -47,6 +39,5 @@ export const Apper: Array<App> = [
     description: "Søk etter skattekort for personer i OS-Eskatt",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ,
     route: ROUTE_PATH.SOKOS_UP_SKATTEKORT,
-    ikonet: BulletListIcon,
   },
 ];

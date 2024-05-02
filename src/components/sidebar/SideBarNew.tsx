@@ -22,7 +22,6 @@ const SideBarNew = () => {
 
   const lenker = Apper.filter((side) => hasAccess(side.group)).map((side) => (
     <SideBarLink to={side.route} key={side.app}>
-      {<side.ikonet className={ikonStil} />}
       {side.title}
     </SideBarLink>
   ));
