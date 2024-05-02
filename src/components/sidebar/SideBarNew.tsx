@@ -14,7 +14,7 @@ const SideBarNew = () => {
 
   if (!showSideBar) {
     return (
-      <div className="bg-neutral-800 h-screen transition-all ease-in-out duration-500 w-12">
+      <div className="bg-neutral-800 h-screen transition-all ease-in-out duration-500 w-12 min-w-12">
         <ClosedSideBar setShowSideBar={setShowSideBar} />
       </div>
     );
@@ -29,10 +29,10 @@ const SideBarNew = () => {
 
   return (
     <>
-      <div className="w-80 bg-neutral-800 h-screen transition-all ease-in-out duration-500">
+      <div className="w-80 bg-neutral-800 h-screen transition-all ease-in-out duration-500 overflow-hidden min-w-80">
         <CloseSideBarButton setShowSideBar={setShowSideBar} />
 
-        <ul className="flex flex-col">
+        <ul className="flex flex-col min-w-80">
           <SideBarLink to={ROUTE_PATH.SOKOS_UP_HOME}>
             <HouseIcon className={ikonStil} />
             Hjem
