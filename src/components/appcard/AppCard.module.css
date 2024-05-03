@@ -1,5 +1,5 @@
 .appcard {
-  @apply relative p-4 bg-[--a-surface-alt-2-subtle] shadow-lg shadow-neutral-200 rounded-lg text-black h-full ease-in-out duration-1000;
+  @apply relative p-4 bg-[--a-surface-alt-2-subtle] shadow-lg shadow-neutral-200 rounded-lg text-black h-full;
 }
 
 .appcard__title {
@@ -12,9 +12,9 @@
 
 .appcard:hover {
   .appcard__right {
-    @apply right-2 transition-all ease-in duration-200;
+    @apply right-2 transition-all duration-200;
   }
-  @apply underline bg-[--a-surface-alt-1-subtle] transition-all ease-in-out duration-1000;
+  @apply underline bg-[--a-surface-alt-1-subtle];
 }
 
 .appcard__description {

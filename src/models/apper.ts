@@ -1,5 +1,7 @@
 import { AzureAdGroupName, AzureAdGroupNames } from "../auth/azureAdGroups";
+import RestService from "../services/rest-service";
 import { ROUTE_PATH } from "./routePath";
+const hasAccess = RestService.useFetchHasAccess();
 
 export type AppNavn = "KRP" | "OPPDRAGSINFO" | "ORS" | "SKATTEKORT";
 
@@ -13,18 +15,18 @@ export type App = {
 
 export const Apper: Array<App> = [
   {
-    app: "KRP",
-    title: "Kontoregister person kontosøk",
-    description: "Søk etter personer og konti",
-    group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ,
-    route: ROUTE_PATH.SOKOS_UP_KRP,
-  },
-  {
     app: "OPPDRAGSINFO",
     title: "Oppdragsinfo",
     description: "Søk etter oppdrag i Oppdragssystemet",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ,
     route: ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO,
+  },
+  {
+    app: "KRP",
+    title: "Kontoregister person kontosøk",
+    description: "Søk etter personer og konti",
+    group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ,
+    route: ROUTE_PATH.SOKOS_UP_KRP,
   },
   {
     app: "ORS",
@@ -41,3 +43,6 @@ export const Apper: Array<App> = [
     route: ROUTE_PATH.SOKOS_UP_SKATTEKORT,
   },
 ];
+
+export const tilgang = Apper.filter((app) => hasAccess(app.group));
+export const alle = [...tilgang, ...Apper.filter((app) => !hasAccess(app.group))];

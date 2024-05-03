@@ -1,0 +1,11 @@
+.sidebar {
+  @apply bg-neutral-800 h-screen transition-all ease-in-out duration-500 overflow-hidden w-80 min-w-80;
+}
+
+.sidebar.closed {
+  @apply w-12 min-w-12;
+}
+
+.sidebar__links {
+  @apply flex flex-col min-w-80;
+}
