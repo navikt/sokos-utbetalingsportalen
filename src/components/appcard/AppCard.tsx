@@ -12,19 +12,19 @@ interface AppCardProps {
 }
 
 const AppCard: React.FC<AppCardProps> = ({ hasAccess, route, title, description }) => {
-
-  const content = <div>
-    <div className={styles.appcard__title}>
-      <Heading level="3" size="xsmall">
-        {title}
-      </Heading>
-      <div className={styles.appcard__right}>
-        <ChevronRightIcon />
+  const content = (
+    <div>
+      <div className={styles.appcard__title}>
+        <Heading level="3" size="xsmall">
+          {title}
+        </Heading>
+        <div className={styles.appcard__arrow}>
+          <ChevronRightIcon />
+        </div>
       </div>
+      <div className={styles.appcard__description}>{description}</div>
     </div>
-    <div className={styles.appcard__description}>{description}</div>
-  </div>;
-
+  );
 
   if (hasAccess) {
     return (
@@ -35,9 +35,7 @@ const AppCard: React.FC<AppCardProps> = ({ hasAccess, route, title, description 
   } else {
     return (
       <span className={`${styles.appcard} ${styles.disabled}`}>
-        <Tooltip content="Du har ikke tilgang til denne appen">
-          {content}
-        </Tooltip>
+        <Tooltip content="Du har ikke tilgang til denne appen">{content}</Tooltip>
       </span>
     );
   }

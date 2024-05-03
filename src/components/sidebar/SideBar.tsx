@@ -1,18 +1,15 @@
 import { HouseIcon } from "@navikt/aksel-icons";
 import { useState } from "react";
-import { Apper } from "../../models/apper";
 import { ROUTE_PATH } from "../../models/routePath";
-import RestService from "../../services/rest-service";
 import CloseSideBarButton from "./CloseSideBarButton";
 import ClosedSideBar from "./ClosedSideBar";
 import SideBarLink from "./SideBarLink";
-import { ikonStil } from "../../utils/ikonStil";
 import styles from "./SideBar.module.css";
+import useApper from "../../hooks/useApper";
 
 const SideBar = () => {
   const [showSideBar, setShowSideBar] = useState(true);
-  const hasAccess = RestService.useFetchHasAccess();
-
+  const { apperMedTilgang } = useApper();
   if (!showSideBar) {
     return (
       <div className={`${styles.closed} ${styles.sidebar}`}>
@@ -21,11 +18,13 @@ const SideBar = () => {
     );
   }
 
-  const lenker = Apper.filter((side) => hasAccess(side.group)).map((side) => (
+  const lenker = apperMedTilgang.map((side) => (
     <SideBarLink to={side.route} key={side.app}>
       {side.title}
     </SideBarLink>
   ));
+
+  const ikonStil = "w-6 h-6 pb-[2px]";
 
   return (
     <>
@@ -37,7 +36,6 @@ const SideBar = () => {
             <HouseIcon className={ikonStil} />
             Hjem
           </SideBarLink>
-
           {lenker}
         </ul>
       </div>

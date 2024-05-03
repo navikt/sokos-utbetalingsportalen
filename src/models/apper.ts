@@ -1,9 +1,7 @@
 import { AzureAdGroupName, AzureAdGroupNames } from "../auth/azureAdGroups";
-import RestService from "../services/rest-service";
 import { ROUTE_PATH } from "./routePath";
-const hasAccess = RestService.useFetchHasAccess();
 
-export type AppNavn = "KRP" | "OPPDRAGSINFO" | "ORS" | "SKATTEKORT";
+export type AppNavn = "KRP" | "OPPDRAGSINFO" | "ORS" | "SKATTEKORT" | "MIKROFRONTEND";
 
 export type App = {
   app: AppNavn;
@@ -42,7 +40,11 @@ export const Apper: Array<App> = [
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ,
     route: ROUTE_PATH.SOKOS_UP_SKATTEKORT,
   },
+  {
+    app: "MIKROFRONTEND",
+    title: "Grensesnittmal",
+    description: "Dette er en blank mal for et grensesnitt",
+    group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ,
+    route: ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE,
+  },
 ];
-
-export const tilgang = Apper.filter((app) => hasAccess(app.group));
-export const alle = [...tilgang, ...Apper.filter((app) => !hasAccess(app.group))];

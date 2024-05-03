@@ -3,7 +3,7 @@ import { authenticationLoader, checkRouteAccess } from "./auth/authentication";
 import { AzureAdGroupName } from "./auth/azureAdGroups";
 import Utbetalingsportalen from "./components/layout/Utbetalingsportalen";
 import { ROUTE_PATH } from "./models/routePath";
-import Feilside, { NoAccess, NotFound } from "./pages/Feilside";
+import Feilside from "./pages/Feilside";
 import Hjem from "./pages/Hjem";
 import Mikrofrontend from "./Mikrofrontend";
 import {
@@ -47,9 +47,9 @@ const App = () => {
                 element={<Mikrofrontend url={sokosUpOppdragsinfoURL} />}
                 loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ)}
               />
-              <Route path="/forbidden" element={<NoAccess />} />
+              <Route path="/forbidden" element={<Feilside />} />
             </Route>
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<Feilside />} />
           </>,
         ),
       )}

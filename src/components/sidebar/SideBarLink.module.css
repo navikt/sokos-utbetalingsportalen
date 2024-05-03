@@ -1,0 +1,11 @@
+.sidebarlink {
+  @apply mx-2 py-2 px-8 rounded whitespace-nowrap text-[--a-surface-default];
+}
+
+.sidebarlink.active {
+  @apply bg-[--a-purple-400] underline pointer-events-none transition-all duration-200;
+}
+
+.sidebarlink__child {
+  @apply flex flex-row gap-1;
+}

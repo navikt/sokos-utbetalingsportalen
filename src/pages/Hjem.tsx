@@ -1,32 +1,21 @@
 import { BodyLong, GuidePanel, Heading, Switch } from "@navikt/ds-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import pengesekk from "../../assets/images/pengesekk.svg";
-import { getAzureAdGroups } from "../auth/authentication";
-import { AzureAdGroupNameId, AzureAdGroupNames } from "../auth/azureAdGroups";
 import AppCard from "../components/appcard/AppCard";
-import { Apper } from "../models/apper";
 import { UserData } from "../models/userData";
 import styles from "./Hjem.module.css";
+import useApper from "../hooks/useApper";
 
 const Hjem = () => {
   const userInfo = useLoaderData() as UserData;
-  const [groups, setGroups] = useState<Array<string>>([]);
   const [showUnauthorized, setShowUnauthorized] = useState<string>("");
+  const { apperMedTilgang, alleApper } = useApper();
 
-  useEffect(() => {
-    getAzureAdGroups()
-      .then((adGroups) => setGroups(adGroups))
-      .catch((error) => {
-        throw new Error("Failed to load Azure AD groups:", error);
-      });
-  }, []);
-  const hasAccess = (group: AzureAdGroupNames) => groups.some((id) => id === AzureAdGroupNameId[group]);
-
-  const appCards = Apper.filter((app) => hasAccess(app.group) || showUnauthorized).map((app) => (
+  const appCards = (showUnauthorized ? alleApper : apperMedTilgang).map((app) => (
     <AppCard
       key={app.app}
-      hasAccess={hasAccess(app.group)}
+      hasAccess={apperMedTilgang.includes(app)}
       route={app.route}
       title={app.title}
       description={app.description}
