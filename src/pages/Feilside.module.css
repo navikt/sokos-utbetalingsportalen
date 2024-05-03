@@ -1,15 +1,15 @@
-.error-container {
+.feilside {
   @apply flex flex-col align-middle mt-12;
 }
 
-.error-icon {
+.feilside__ikon {
   @apply size-12 text-[--a-surface-danger];
 }
 
-.error-heading {
+.feilside__tittel {
   @apply mt-4 mb-2 size-4;
 }
 
-.error-message {
+.feilside__melding {
   @apply size-4 text-[--a-surface-neutral] text-center;
 }

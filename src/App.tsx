@@ -1,18 +1,18 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import { authenticationLoader, checkRouteAccess } from "./auth/authentication";
 import { AzureAdGroupName } from "./auth/azureAdGroups";
-import Utbetalingsportalen from "./components/layout/Utbetalingsportalen";
 import { ROUTE_PATH } from "./models/routePath";
-import Feilside from "./pages/Feilside";
-import Hjem from "./pages/Hjem";
+import Feilside, { NoAccess, NotFound } from "./pages/Feilside";
 import Mikrofrontend from "./Mikrofrontend";
 import {
-  sokosUpSkattekortURL,
   sokosMikrofrontendTemplateURL,
-  sokosUpOrsURL,
-  sokosUpOppdragsinfoURL,
   sokosUpKrpURL,
+  sokosUpOppdragsinfoURL,
+  sokosUpOrsURL,
+  sokosUpSkattekortURL,
 } from "./urls";
+import Utbetalingsportalen from "./components/layout/Utbetalingsportalen";
+import Hjem from "./pages/Hjem";
 
 const App = () => {
   return (
@@ -47,9 +47,9 @@ const App = () => {
                 element={<Mikrofrontend url={sokosUpOppdragsinfoURL} />}
                 loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ)}
               />
-              <Route path="/forbidden" element={<Feilside />} />
+              <Route path="/forbidden" element={<NoAccess />} />
             </Route>
-            <Route path="*" element={<Feilside />} />
+            <Route path="*" element={<NotFound />} />
           </>,
         ),
       )}
