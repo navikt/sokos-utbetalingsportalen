@@ -52,7 +52,7 @@ const Hjem = () => {
             </BodyLong>
           </GuidePanel>
         </div>
-        <Heading level="3" size="medium" spacing className="justify-start">
+        <Heading level="3" size="medium" spacing>
           Apper
         </Heading>
         <Switch

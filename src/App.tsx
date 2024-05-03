@@ -1,7 +1,7 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import { authenticationLoader, checkRouteAccess } from "./auth/authentication";
 import { AzureAdGroupName } from "./auth/azureAdGroups";
-import Layout from "./components/layout/Layout";
+import Utbetalingsportalen from "./components/layout/Utbetalingsportalen";
 import { ROUTE_PATH } from "./models/routePath";
 import Feilside, { NoAccess, NotFound } from "./pages/Feilside";
 import Hjem from "./pages/Hjem";
@@ -20,7 +20,7 @@ const App = () => {
       router={createBrowserRouter(
         createRoutesFromElements(
           <>
-            <Route path="/" element={<Layout />} loader={authenticationLoader} errorElement={<Feilside />}>
+            <Route path="/" element={<Utbetalingsportalen />} loader={authenticationLoader} errorElement={<Feilside />}>
               <Route path="/" element={<Hjem />} loader={authenticationLoader} />
               <Route
                 path={ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE}

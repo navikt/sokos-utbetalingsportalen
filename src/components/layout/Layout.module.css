@@ -1,7 +1,0 @@
-.layout {
-  @apply flex flex-col justify-center align-middle mx-8 mt-8
-}
-
-.layout__main {
-  @apply w-full
-}

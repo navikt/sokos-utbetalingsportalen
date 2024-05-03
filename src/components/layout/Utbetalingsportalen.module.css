@@ -1,0 +1,7 @@
+.utbetalingsportalen__body {
+  @apply flex w-screen;
+}
+
+.utbetalingsportalen__outlet {
+  @apply m-8 w-screen;
+}
