@@ -1,20 +1,21 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import { authenticationLoader, checkRouteAccess } from "./auth/authentication";
-import { AzureAdGroupName } from "./auth/azureAdGroups";
-import { ROUTE_PATH } from "./models/routePath";
 import Feilside, { NoAccess, NotFound } from "./pages/Feilside";
 import Mikrofrontend from "./Mikrofrontend";
-import {
-  sokosMikrofrontendTemplateURL,
-  sokosUpKrpURL,
-  sokosUpOppdragsinfoURL,
-  sokosUpOrsURL,
-  sokosUpSkattekortURL,
-} from "./urls";
 import Utbetalingsportalen from "./components/layout/Utbetalingsportalen";
 import Hjem from "./pages/Hjem";
+import { Apper } from "./models/apper";
 
 const App = () => {
+  const routes = Apper.map((app) => (
+    <Route
+      key={app.title}
+      path={`${app.route}/*`}
+      element={<Mikrofrontend url={app.url} />}
+      loader={checkRouteAccess(app.group)}
+    />
+  ));
+
   return (
     <RouterProvider
       router={createBrowserRouter(
@@ -22,31 +23,7 @@ const App = () => {
           <>
             <Route path="/" element={<Utbetalingsportalen />} loader={authenticationLoader} errorElement={<Feilside />}>
               <Route path="/" element={<Hjem />} loader={authenticationLoader} />
-              <Route
-                path={ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE}
-                element={<Mikrofrontend url={sokosMikrofrontendTemplateURL} />}
-                loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ)}
-              />
-              <Route
-                path={ROUTE_PATH.SOKOS_UP_KRP}
-                element={<Mikrofrontend url={sokosUpKrpURL} />}
-                loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ)}
-              />
-              <Route
-                path={ROUTE_PATH.SOKOS_UP_ORS}
-                element={<Mikrofrontend url={sokosUpOrsURL} />}
-                loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ)}
-              />
-              <Route
-                path={ROUTE_PATH.SOKOS_UP_SKATTEKORT}
-                element={<Mikrofrontend url={sokosUpSkattekortURL} />}
-                loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ)}
-              />
-              <Route
-                path={`${ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO}/*`}
-                element={<Mikrofrontend url={sokosUpOppdragsinfoURL} />}
-                loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ)}
-              />
+              {routes}
               <Route path="/forbidden" element={<NoAccess />} />
               <Route path="*" element={<NotFound />} />
             </Route>

@@ -1,14 +1,20 @@
 import { AzureAdGroupName, AzureAdGroupNames } from "../auth/azureAdGroups";
 import { ROUTE_PATH } from "./routePath";
-
-export type AppNavn = "KRP" | "OPPDRAGSINFO" | "ORS" | "SKATTEKORT" | "MIKROFRONTEND";
+import {
+  sokosMikrofrontendTemplateURL,
+  sokosUpKrpURL,
+  sokosUpOppdragsinfoURL,
+  sokosUpOrsURL,
+  sokosUpSkattekortURL,
+} from "../urls";
 
 export type App = {
-  app: AppNavn;
+  app: string;
   title: string;
   description: string;
   group: AzureAdGroupNames;
   route: string;
+  url: string;
 };
 
 export const Apper: Array<App> = [
@@ -18,6 +24,7 @@ export const Apper: Array<App> = [
     description: "Søk etter oppdrag i Oppdragssystemet",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ,
     route: ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO,
+    url: sokosUpOppdragsinfoURL,
   },
   {
     app: "KRP",
@@ -25,6 +32,7 @@ export const Apper: Array<App> = [
     description: "Søk etter personer og konti",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ,
     route: ROUTE_PATH.SOKOS_UP_KRP,
+    url: sokosUpKrpURL,
   },
   {
     app: "ORS",
@@ -32,6 +40,7 @@ export const Apper: Array<App> = [
     description: "Søk etter posteringer fra Abetal og UR",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ,
     route: ROUTE_PATH.SOKOS_UP_ORS,
+    url: sokosUpOrsURL,
   },
   {
     app: "SKATTEKORT",
@@ -39,6 +48,7 @@ export const Apper: Array<App> = [
     description: "Søk etter skattekort for personer i OS-Eskatt",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ,
     route: ROUTE_PATH.SOKOS_UP_SKATTEKORT,
+    url: sokosUpSkattekortURL,
   },
   {
     app: "MIKROFRONTEND",
@@ -46,5 +56,6 @@ export const Apper: Array<App> = [
     description: "Dette er en blank mal for et grensesnitt",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ,
     route: ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE,
+    url: sokosMikrofrontendTemplateURL,
   },
 ];
