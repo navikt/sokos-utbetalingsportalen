@@ -1,4 +1,3 @@
 .feilmelding {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  @apply my-8
 }

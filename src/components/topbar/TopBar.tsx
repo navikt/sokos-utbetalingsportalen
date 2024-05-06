@@ -1,40 +1,23 @@
 import { Dropdown, InternalHeader as Header } from "@navikt/ds-react";
 import { Link, useLoaderData } from "react-router-dom";
-import useStore, { selectGjelderID, selectSetGjelderID } from "../../store/store";
 import nav from "../../../assets/images/Hvit.png";
-import { Label, TextField } from "@navikt/ds-react";
 import { UserData } from "../../models/userData";
+import styles from "./TopBar.module.css";
 
 const TopBar = () => {
-  // const setGjelderId = useStore(selectSetGjelderID);
   const userInfo = useLoaderData() as UserData;
-  // const gjelderId = useStore(selectGjelderID);
-
-  // const handleGjelderIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setGjelderId(event.target.value);
-  // };
-
   return (
     <Header>
-      <div className="w-16 p-1 ml-3">
+      <div className={styles.topbar}>
         <img src={nav} alt="logo" />
       </div>
       <Header.Title as={Link} to={"/"} className="border-none">
         Utbetalingsportalen
       </Header.Title>
-      {/*<div id="gjelder-id" className="w-fit flex justify-end items-stretch space-x-7 p-2">*/}
-      {/*  <div id="gjelder-id-tekst" className="flex justify-center items-center">*/}
-      {/*    <Label>GjelderID: </Label>*/}
-      {/*  </div>*/}
-      {/*  <TextField label="" hideLabel size="small" onBlur={handleGjelderIdChange} />*/}
-      {/*</div>*/}
       <Dropdown>
-        <Header.UserButton
-          as={Dropdown.Toggle}
-          name={userInfo.name}
-          description={userInfo.navIdent}
-          className="ml-auto"
-        />
+        <div className={styles.topbar__userbutton}>
+          <Header.UserButton as={Dropdown.Toggle} name={userInfo.name} description={userInfo.navIdent} />
+        </div>
         <Dropdown.Menu>
           <Dropdown.Menu.List>
             <Dropdown.Menu.List.Item>Min profil</Dropdown.Menu.List.Item>

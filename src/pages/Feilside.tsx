@@ -1,26 +1,23 @@
-import styles from "./Feilside.module.css";
 import { ChatExclamationmarkIcon } from "@navikt/aksel-icons";
-import { Link } from "react-router-dom";
+import { Link as ReactRouterLink } from "react-router-dom";
+import { BodyShort, Heading, Link } from "@navikt/ds-react";
 
 export type FeilsideProps = {
   tittel?: string;
   melding?: string;
 };
-const Feilside = (props: FeilsideProps) => {
-  const { tittel = "Feil", melding = "En feil har skjedd!" } = props;
-  return (
-    <div className={styles["error-container"]}>
-      <ChatExclamationmarkIcon title="a11y-title" fontSize="6rem" />
-      <h2 className={styles["error-heading"]}>{tittel}</h2>
-      <div className={styles["error-message"]}>{melding}</div>
-      <p>
-        <Link to={".."} relative={"path"}>
-          Gå tilbake
-        </Link>
-      </p>
-    </div>
-  );
-};
+const Feilside = ({ tittel = "Feil", melding = "En feil har skjedd!" }: FeilsideProps) => (
+  <>
+    <ChatExclamationmarkIcon title="a11y-title" fontSize="6rem" />
+    <Heading level="1" size={"medium"}>
+      {tittel}
+    </Heading>
+    <BodyShort>{melding}</BodyShort>
+    <Link as={ReactRouterLink} to={".."} relative={"path"}>
+      Tilbake til startsiden
+    </Link>
+  </>
+);
 export default Feilside;
 
 export const NoAccess = () => <Feilside tittel={"Mangler tilgang"} melding={"Du har ikke tilgang til denne siden!"} />;

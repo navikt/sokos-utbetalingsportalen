@@ -1,10 +1,10 @@
 import { PropsWithChildren } from "react";
 import { NavLink } from "react-router-dom";
-import styles from "./SideBar.module.css";
+import styles from "./SideBarLink.module.css";
 
-const SideBarLink = (props: PropsWithChildren & { to: string; className: string }) => (
-  <NavLink className={({ isActive }) => `${props.className} ${isActive ? styles.active : styles.link}`} to={props.to}>
-    {props.children}
+const SideBarLink = ({ children, to }: PropsWithChildren & { to: string }) => (
+  <NavLink className={({ isActive }) => `${styles.sidebarlink} ${isActive ? styles.active : ""}`} to={to}>
+    <div className={styles.sidebarlink__child}>{children}</div>
   </NavLink>
 );
 

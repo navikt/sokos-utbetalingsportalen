@@ -6,7 +6,7 @@ import { initGrafanaFaro } from "./utils/grafanaFaro";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
-initGrafanaFaro();
+if (window.location.hostname !== "localhost") initGrafanaFaro();
 
 root.render(
   <React.StrictMode>

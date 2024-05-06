@@ -1,26 +1,11 @@
-.link {
-  color: white;
-  white-space: nowrap;
-  padding: 0.5rem 2rem;
-  border-radius: 0.25rem;
-  margin: 0px 8px;
-}
-
-.link:hover {
-  text-decoration: underline;
-}
-
-.link.active {
-  background-color: var(--a-purple-400);
-  text-decoration: underline;
-  pointer-events: none;
-}
-
 .sidebar {
-  transition: all 0.4s ease-in-out;
-  width: 4rem;
+  @apply bg-neutral-800 h-screen transition-all ease-in-out duration-500 overflow-hidden w-80 min-w-80;
 }
 
-.sidebar.open {
-  width: 24rem;
+.sidebar.closed {
+  @apply w-12 min-w-12;
+}
+
+.sidebar__links {
+  @apply flex flex-col min-w-80;
 }
