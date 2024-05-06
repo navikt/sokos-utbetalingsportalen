@@ -1,9 +1,13 @@
 .sidebarlink {
-  @apply mx-2 py-2 px-8 rounded whitespace-nowrap text-[--a-surface-default];
+  @apply mx-2 py-2 px-8 rounded whitespace-nowrap text-[--a-surface-default] underline;
+}
+
+.sidebarlink:hover {
+  @apply no-underline;
 }
 
 .sidebarlink.active {
-  @apply bg-[--a-purple-400] underline pointer-events-none transition-all duration-200;
+  @apply bg-[--a-purple-400] no-underline pointer-events-none transition-all duration-200;
 }
 
 .sidebarlink__child {

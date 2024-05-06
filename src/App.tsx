@@ -48,8 +48,8 @@ const App = () => {
                 loader={checkRouteAccess(AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ)}
               />
               <Route path="/forbidden" element={<NoAccess />} />
+              <Route path="*" element={<NotFound />} />
             </Route>
-            <Route path="*" element={<NotFound />} />
           </>,
         ),
       )}

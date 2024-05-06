@@ -20,6 +20,6 @@ export const getAzureAdGroups = async () => {
 
 export const checkRouteAccess = (groupName: AzureAdGroupNames) => async () => {
   const adGroups = await getAzureAdGroups();
-  if (adGroups.some((id) => id === AzureAdGroupNameId[groupName])) return true;
-  redirect("/forbidden");
+  if (adGroups.some((id) => id === AzureAdGroupNameId[groupName])) return null;
+  return redirect("/forbidden");
 };
