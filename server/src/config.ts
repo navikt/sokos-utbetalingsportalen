@@ -37,10 +37,9 @@ const ConfigSchema = z.object({
   SOKOS_MIKROFRONTEND_PROXY: z.string().default(""),
 
   // sokos-nav-oppdrag
-  SOKOS_NAV_OPPDRAG_API: z.string().default(""),
-  SOKOS_NAV_OPPDRAG_API_SCOPE: z.string().default(""),
-  SOKOS_NAV_OPPDRAG_PROXY: z.string().default(""),
-
+  SOKOS_OPPDRAG_API: z.string().default(""),
+  SOKOS_OPPDRAG_API_SCOPE: z.string().default(""),
+  SOKOS_OPPDRAG_PROXY: z.string().default(""),
 });
 
 type Config = z.infer<typeof ConfigSchema>;
