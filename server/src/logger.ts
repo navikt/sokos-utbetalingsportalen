@@ -9,12 +9,13 @@ export const logger = winston.createLogger({
     timestamp({
       format: "YYYY-MM-DD HH:mm:ss",
     }),
-    json()
+    json(),
   ),
   transports: [new winston.transports.Console()],
 });
 
-const secureLogPath = () => (fs.existsSync("/secure-logs/") ? "/secure-logs/secure.log" : "./secure.log");
+const secureLogPath = () =>
+  fs.existsSync("/secure-logs/") ? "/secure-logs/secure.log" : "./secure.log";
 
 export const secureLog = winston.createLogger({
   format: winston.format.json(),

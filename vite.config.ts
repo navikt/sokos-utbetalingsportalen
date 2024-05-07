@@ -5,7 +5,8 @@ import { ConfigEnv } from "vite";
 import terser from "@rollup/plugin-terser";
 
 const reactUrl = "https://www.nav.no/tms-min-side-assets/react/18/esm/index.js";
-const reactDomUrl = "https://www.nav.no/tms-min-side-assets/react-dom/18/esm/index.js";
+const reactDomUrl =
+  "https://www.nav.no/tms-min-side-assets/react-dom/18/esm/index.js";
 
 export default ({ command }: ConfigEnv) => ({
   plugins: [

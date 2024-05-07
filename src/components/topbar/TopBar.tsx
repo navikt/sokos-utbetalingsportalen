@@ -16,7 +16,11 @@ const TopBar = () => {
       </Header.Title>
       <Dropdown>
         <div className={styles.topbar__userbutton}>
-          <Header.UserButton as={Dropdown.Toggle} name={userInfo.name} description={userInfo.navIdent} />
+          <Header.UserButton
+            as={Dropdown.Toggle}
+            name={userInfo.name}
+            description={userInfo.navIdent}
+          />
         </div>
         <Dropdown.Menu>
           <Dropdown.Menu.List>

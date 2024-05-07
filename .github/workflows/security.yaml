@@ -6,7 +6,7 @@ on:
     types:
       - completed
   schedule:
-    - cron: '0 6 * * *'
+    - cron: "0 6 * * *"
 
 env:
   LATEST_IMAGE: ${{ github.event.repository.name }}:latest
@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'javascript' ]
+        language: ["javascript"]
     steps:
       - uses: actions/checkout@v4
       - uses: github/codeql-action/init@v3
@@ -49,11 +49,11 @@ jobs:
         with:
           image-ref: ${{ steps.login.outputs.registry }}/${{ env.LATEST_IMAGE }}
           ignore-unfixed: true
-          format: 'sarif'
-          output: 'trivy-results.sarif'
+          format: "sarif"
+          output: "trivy-results.sarif"
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
         if: always()
         with:
-          sarif_file: 'trivy-results.sarif'
+          sarif_file: "trivy-results.sarif"

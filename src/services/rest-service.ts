@@ -6,7 +6,11 @@ import { authURL } from "../urls";
 const api = axios.create({
   timeout: 30000,
   withCredentials: true,
-  headers: { Pragma: "no-cache", "Cache-Control": "no-cache", "Content-Type": "application/json" },
+  headers: {
+    Pragma: "no-cache",
+    "Cache-Control": "no-cache",
+    "Content-Type": "application/json",
+  },
   validateStatus: (status) => status < 400,
 });
 

@@ -36,6 +36,7 @@
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "postcss": "^8.4.38",
+    "prettier": "3.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "stylelint": "^16.3.1",
@@ -51,7 +52,7 @@
     ]
   },
   "lint-staged": {
-    "*.{ts,tsx,css,md,html,json}": []
+    "**/*": "prettier --write --ignore-unknown"
   },
   "engines": {
     "node": ">=20.11.0",

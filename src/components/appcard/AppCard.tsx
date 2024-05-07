@@ -11,7 +11,12 @@ interface AppCardProps {
   description: string;
 }
 
-const AppCard: React.FC<AppCardProps> = ({ hasAccess, route, title, description }) => {
+const AppCard: React.FC<AppCardProps> = ({
+  hasAccess,
+  route,
+  title,
+  description,
+}) => {
   const content = (
     <div>
       <div className={styles.appcard__title}>
@@ -35,7 +40,9 @@ const AppCard: React.FC<AppCardProps> = ({ hasAccess, route, title, description 
   } else {
     return (
       <span className={`${styles.appcard} ${styles.disabled}`}>
-        <Tooltip content="Du har ikke tilgang til denne appen">{content}</Tooltip>
+        <Tooltip content="Du har ikke tilgang til denne appen">
+          {content}
+        </Tooltip>
       </span>
     );
   }

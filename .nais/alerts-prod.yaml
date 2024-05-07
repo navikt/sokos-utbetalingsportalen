@@ -34,7 +34,6 @@ spec:
             alert_type: custom
 
 ---
-
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
@@ -49,9 +48,9 @@ spec:
         - apiURL:
             key: apiUrl
             name: slack-webhook
-          channel: '#team-mob-alerts-prod'
-          iconEmoji: ':alert:'
-          username: 'Alert prod-gcp'
+          channel: "#team-mob-alerts-prod"
+          iconEmoji: ":alert:"
+          username: "Alert prod-gcp"
           sendResolved: true
           title: |-
             [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }}

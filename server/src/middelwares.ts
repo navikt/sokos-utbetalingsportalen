@@ -21,7 +21,11 @@ async function validateAuthorization(authorization: string) {
   }
 }
 
-export async function enforceAzureADMiddleware(req: Request, res: Response, next: NextFunction) {
+export async function enforceAzureADMiddleware(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   const loginPath = `/oauth2/login?redirect=${req.originalUrl}`;
   const { authorization } = req.headers;
 

@@ -1,4 +1,9 @@
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 import { authenticationLoader, checkRouteAccess } from "./auth/authentication";
 import Feilside, { NoAccess, NotFound } from "./pages/Feilside";
 import Mikrofrontend from "./Mikrofrontend";
@@ -21,8 +26,17 @@ const App = () => {
       router={createBrowserRouter(
         createRoutesFromElements(
           <>
-            <Route path="/" element={<Utbetalingsportalen />} loader={authenticationLoader} errorElement={<Feilside />}>
-              <Route path="/" element={<Hjem />} loader={authenticationLoader} />
+            <Route
+              path="/"
+              element={<Utbetalingsportalen />}
+              loader={authenticationLoader}
+              errorElement={<Feilside />}
+            >
+              <Route
+                path="/"
+                element={<Hjem />}
+                loader={authenticationLoader}
+              />
               {routes}
               <Route path="/forbidden" element={<NoAccess />} />
               <Route path="*" element={<NotFound />} />

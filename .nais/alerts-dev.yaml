@@ -33,9 +33,7 @@ spec:
             sokos_utbetalingsportalen_type: sokos-utbetalingsportalen
             alert_type: custom
 
-
 ---
-
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
@@ -50,9 +48,9 @@ spec:
         - apiURL:
             key: apiUrl
             name: slack-webhook
-          channel: '#team-mob-alerts-dev'
-          iconEmoji: ':alert:'
-          username: 'Alert dev-gcp'
+          channel: "#team-mob-alerts-dev"
+          iconEmoji: ":alert:"
+          username: "Alert dev-gcp"
           sendResolved: true
           title: |-
             [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }}
