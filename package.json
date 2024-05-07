@@ -25,20 +25,23 @@
   },
   "devDependencies": {
     "@eik/rollup-plugin": "^4.0.63",
+    "@eslint/js": "^9.2.0",
     "@navikt/aksel-stylelint": "^6.5.0",
     "@rollup/plugin-terser": "^0.4.4",
     "@types/react": "^18.2.78",
     "@types/react-dom": "^18.2.25",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
+    "eslint": "^9.2.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "postcss": "^8.4.38",
-    "prettier": "^3.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "stylelint": "^16.3.1",
     "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.8.0",
     "vite": "^5.2.8",
     "vite-plugin-mock": "^3.0.1"
   },
@@ -47,13 +50,8 @@
       "@navikt/aksel-stylelint/recommended"
     ]
   },
-  "prettier": {
-    "printWidth": 120
-  },
   "lint-staged": {
-    "*.{ts,tsx,css,md,html,json}": [
-      "prettier --cache --write"
-    ]
+    "*.{ts,tsx,css,md,html,json}": []
   },
   "engines": {
     "node": ">=20.11.0",
