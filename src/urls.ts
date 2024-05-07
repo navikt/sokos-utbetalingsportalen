@@ -1,5 +1,5 @@
-import { getEnvironment } from "./utils/environment";
 import { SERVER_PATH } from "./models/serverPath";
+import { getEnvironment } from "./utils/environment";
 
 type Dictionary = Record<string, string>;
 

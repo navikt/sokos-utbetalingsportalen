@@ -1,8 +1,8 @@
-import { logger } from "./logger";
-import Config from "./config";
+import { Response as ExpressResponse, NextFunction, Request } from "express";
+import { Client, Issuer, TokenSet, errors } from "openid-client";
 import { z } from "zod";
-import { Client, errors, Issuer, TokenSet } from "openid-client";
-import { NextFunction, Request, Response as ExpressResponse } from "express";
+import Config from "./config";
+import { logger } from "./logger";
 import { retrieveTokenFromHeader } from "./middelwares";
 
 let _issuer: Issuer<Client>;

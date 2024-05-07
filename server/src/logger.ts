@@ -2,6 +2,7 @@ import fs from "fs";
 import winston, { format } from "winston";
 import winstonSyslog from "winston-syslog";
 import Config from "./config";
+
 const { timestamp, json } = format;
 
 export const logger = winston.createLogger({

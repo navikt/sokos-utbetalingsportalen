@@ -1,15 +1,15 @@
 import {
-  createBrowserRouter,
-  createRoutesFromElements,
   Route,
   RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
 } from "react-router-dom";
-import { authenticationLoader, checkRouteAccess } from "./auth/authentication";
-import Feilside, { NoAccess, NotFound } from "./pages/Feilside";
 import Mikrofrontend from "./Mikrofrontend";
+import { authenticationLoader, checkRouteAccess } from "./auth/authentication";
 import Utbetalingsportalen from "./components/layout/Utbetalingsportalen";
-import Hjem from "./pages/Hjem";
 import { Apper } from "./models/apper";
+import Feilside, { NoAccess, NotFound } from "./pages/Feilside";
+import Hjem from "./pages/Hjem";
 
 const App = () => {
   const routes = Apper.map((app) => (

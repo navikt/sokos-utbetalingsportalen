@@ -1,7 +1,7 @@
 import React from "react";
-import { Heading, Tooltip } from "@navikt/ds-react";
-import { ChevronRightIcon } from "@navikt/aksel-icons";
 import { Link as ReactRouterLink } from "react-router-dom";
+import { ChevronRightIcon } from "@navikt/aksel-icons";
+import { Heading, Tooltip } from "@navikt/ds-react";
 import styles from "./AppCard.module.css";
 
 interface AppCardProps {

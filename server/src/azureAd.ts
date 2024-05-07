@@ -1,11 +1,11 @@
-import { Client, Issuer } from "openid-client";
 import {
-  JWSHeaderParameters,
-  jwtVerify,
-  createRemoteJWKSet,
   FlattenedJWSInput,
+  JWSHeaderParameters,
+  createRemoteJWKSet,
+  jwtVerify,
 } from "jose";
 import { GetKeyFunction } from "jose/dist/types/types";
+import { Client, Issuer } from "openid-client";
 import Config from "./config";
 
 let _issuer: Issuer<Client>;

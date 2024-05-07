@@ -1,11 +1,11 @@
-import { BodyLong, GuidePanel, Heading, Switch } from "@navikt/ds-react";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { BodyLong, GuidePanel, Heading, Switch } from "@navikt/ds-react";
 import pengesekk from "../../assets/images/pengesekk.svg";
 import AppCard from "../components/appcard/AppCard";
+import useApper from "../hooks/useApper";
 import { UserData } from "../models/userData";
 import styles from "./Hjem.module.css";
-import useApper from "../hooks/useApper";
 
 const Hjem = () => {
   const userInfo = useLoaderData() as UserData;

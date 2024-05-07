@@ -1,8 +1,8 @@
 import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { useLocation } from "react-router-dom";
 import FeilMelding from "./components/feilmelding/Feilmelding";
 import ContentLoader from "./components/loader/ContentLoader";
-import { useLocation } from "react-router-dom";
 
 type MikrofrontendProps = {
   url: string;

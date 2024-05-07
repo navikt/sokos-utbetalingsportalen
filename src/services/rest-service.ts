@@ -1,6 +1,6 @@
 import axios from "axios";
-import { ApiError, HttpStatusCodeError } from "../types/errors";
 import { UserData } from "../models/userData";
+import { ApiError, HttpStatusCodeError } from "../types/errors";
 import { authURL } from "../urls";
 
 const api = axios.create({

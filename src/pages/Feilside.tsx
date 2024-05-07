@@ -1,5 +1,5 @@
-import { ChatExclamationmarkIcon } from "@navikt/aksel-icons";
 import { Link as ReactRouterLink } from "react-router-dom";
+import { ChatExclamationmarkIcon } from "@navikt/aksel-icons";
 import { BodyShort, Heading, Link } from "@navikt/ds-react";
 
 export type FeilsideProps = {
