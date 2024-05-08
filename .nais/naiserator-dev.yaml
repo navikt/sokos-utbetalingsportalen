@@ -79,13 +79,13 @@ spec:
     - name: SOKOS_SKATTEKORT_PROXY
       value: "/skattekort-api"
 
-  # sokos-nav-oppdrag
-  - name: SOKOS_OPPDRAG_API
-    value: https://sokos-oppdrag.dev-fss-pub.nais.io
-  - name: SOKOS_OPPDRAG_API_SCOPE
-    value: api://dev-fss.okonomi.sokos-oppdrag/.default
-  - name: SOKOS_OPPDRAG_PROXY
-    value: "/oppdrag-api"
+    # sokos-nav-oppdrag
+    - name: SOKOS_OPPDRAG_API
+      value: https://sokos-oppdrag.dev-fss-pub.nais.io
+    - name: SOKOS_OPPDRAG_API_SCOPE
+      value: api://dev-fss.okonomi.sokos-oppdrag/.default
+    - name: SOKOS_OPPDRAG_PROXY
+      value: "/oppdrag-api"
 
     # sokos-up-krp-api
     - name: SOKOS_UP_KRP_API
