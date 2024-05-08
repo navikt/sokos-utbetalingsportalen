@@ -1,7 +1,7 @@
 import React from "react";
-import { Heading, Tooltip } from "@navikt/ds-react";
-import { ChevronRightIcon } from "@navikt/aksel-icons";
 import { Link as ReactRouterLink } from "react-router-dom";
+import { ChevronRightIcon } from "@navikt/aksel-icons";
+import { Heading, Tooltip } from "@navikt/ds-react";
 import styles from "./AppCard.module.css";
 
 interface AppCardProps {
@@ -11,7 +11,12 @@ interface AppCardProps {
   description: string;
 }
 
-const AppCard: React.FC<AppCardProps> = ({ hasAccess, route, title, description }) => {
+const AppCard: React.FC<AppCardProps> = ({
+  hasAccess,
+  route,
+  title,
+  description,
+}) => {
   const content = (
     <div>
       <div className={styles.appcard__title}>
@@ -35,7 +40,9 @@ const AppCard: React.FC<AppCardProps> = ({ hasAccess, route, title, description 
   } else {
     return (
       <span className={`${styles.appcard} ${styles.disabled}`}>
-        <Tooltip content="Du har ikke tilgang til denne appen">{content}</Tooltip>
+        <Tooltip content="Du har ikke tilgang til denne appen">
+          {content}
+        </Tooltip>
       </span>
     );
   }

@@ -1,13 +1,20 @@
-import { Client, Issuer } from "openid-client";
-import { JWSHeaderParameters, jwtVerify, createRemoteJWKSet, FlattenedJWSInput } from "jose";
+import {
+  FlattenedJWSInput,
+  JWSHeaderParameters,
+  createRemoteJWKSet,
+  jwtVerify,
+} from "jose";
 import { GetKeyFunction } from "jose/dist/types/types";
+import { Client, Issuer } from "openid-client";
 import Config from "./config";
 
 let _issuer: Issuer<Client>;
 let _remoteJWKSet: GetKeyFunction<JWSHeaderParameters, FlattenedJWSInput>;
 
 async function jwks() {
-  _remoteJWKSet = createRemoteJWKSet(new URL(Config.AZURE_OPENID_CONFIG_JWKS_URI));
+  _remoteJWKSet = createRemoteJWKSet(
+    new URL(Config.AZURE_OPENID_CONFIG_JWKS_URI),
+  );
   return _remoteJWKSet;
 }
 

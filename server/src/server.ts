@@ -17,7 +17,11 @@ server.use(
   helmet.contentSecurityPolicy({
     directives: {
       "script-src": ["'self'", "https://www.nav.no"],
-      "connect-src": ["'self'", "https://telemetry.ekstern.dev.nav.no", "https://telemetry.nav.no/collect"],
+      "connect-src": [
+        "'self'",
+        "https://telemetry.ekstern.dev.nav.no",
+        "https://telemetry.nav.no/collect",
+      ],
     },
   }),
 );
@@ -40,8 +44,9 @@ const startServer = () => {
   );
 
   // Health checks
-  server.get([`${BASE_PATH}/internal/isAlive`, `${BASE_PATH}/internal/isReady`], (_req: Request, res: Response) =>
-    res.sendStatus(200),
+  server.get(
+    [`${BASE_PATH}/internal/isAlive`, `${BASE_PATH}/internal/isReady`],
+    (_req: Request, res: Response) => res.sendStatus(200),
   );
 
   // Enforce Azure AD authentication
@@ -59,7 +64,11 @@ const startServer = () => {
     );
 
     // sokos-up-oppdragsinfo
-    routeProxyWithOboToken(Config.SOKOS_OPPDRAG_PROXY, Config.SOKOS_OPPDRAG_API, Config.SOKOS_OPPDRAG_API_SCOPE);
+    routeProxyWithOboToken(
+      Config.SOKOS_OPPDRAG_PROXY,
+      Config.SOKOS_OPPDRAG_API,
+      Config.SOKOS_OPPDRAG_API_SCOPE,
+    );
   }
 
   // sokos-up-skattekort
@@ -70,16 +79,28 @@ const startServer = () => {
   );
 
   // sokos-up-ors-api
-  routeProxyWithOboToken(Config.SOKOS_UP_ORS_API_PROXY, Config.SOKOS_UP_ORS_API, Config.SOKOS_UP_ORS_API_SCOPE);
+  routeProxyWithOboToken(
+    Config.SOKOS_UP_ORS_API_PROXY,
+    Config.SOKOS_UP_ORS_API,
+    Config.SOKOS_UP_ORS_API_SCOPE,
+  );
 
   // sokos-up-krp-api
-  routeProxyWithOboToken(Config.SOKOS_UP_KRP_API_PROXY, Config.SOKOS_UP_KRP_API, Config.SOKOS_UP_KRP_API_SCOPE);
+  routeProxyWithOboToken(
+    Config.SOKOS_UP_KRP_API_PROXY,
+    Config.SOKOS_UP_KRP_API,
+    Config.SOKOS_UP_KRP_API_SCOPE,
+  );
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
 
-  server.get(["/", "/*"], (_req: Request, res: Response) => res.sendFile(`${BUILD_PATH}/index.html`));
+  server.get(["/", "/*"], (_req: Request, res: Response) =>
+    res.sendFile(`${BUILD_PATH}/index.html`),
+  );
 
-  server.listen(SERVER_PORT, () => console.log(`Server listening on port ${SERVER_PORT}`));
+  server.listen(SERVER_PORT, () =>
+    console.log(`Server listening on port ${SERVER_PORT}`),
+  );
 };
 
 startServer();

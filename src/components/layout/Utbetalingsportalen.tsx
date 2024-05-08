@@ -1,7 +1,7 @@
-import styles from "./Utbetalingsportalen.module.css";
-import TopBar from "../topbar/TopBar";
 import { Outlet } from "react-router-dom";
 import SideBar from "../sidebar/SideBar";
+import TopBar from "../topbar/TopBar";
+import styles from "./Utbetalingsportalen.module.css";
 
 const Utbetalingsportalen = () => (
   <>

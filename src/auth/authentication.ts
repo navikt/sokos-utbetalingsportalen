@@ -1,6 +1,6 @@
-import { AzureAdGroupNameId, AzureAdGroupNames } from "./azureAdGroups";
 import { redirect } from "react-router-dom";
 import RestService from "../services/rest-service";
+import { AzureAdGroupNameId, AzureAdGroupNames } from "./azureAdGroups";
 
 export const authenticationLoader = async () => {
   try {

@@ -1,26 +1,28 @@
-import { BodyLong, GuidePanel, Heading, Switch } from "@navikt/ds-react";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { BodyLong, GuidePanel, Heading, Switch } from "@navikt/ds-react";
 import pengesekk from "../../assets/images/pengesekk.svg";
 import AppCard from "../components/appcard/AppCard";
+import useApper from "../hooks/useApper";
 import { UserData } from "../models/userData";
 import styles from "./Hjem.module.css";
-import useApper from "../hooks/useApper";
 
 const Hjem = () => {
   const userInfo = useLoaderData() as UserData;
   const [showUnauthorized, setShowUnauthorized] = useState<string>("");
   const { apperMedTilgang, alleApper } = useApper();
 
-  const appCards = (showUnauthorized ? alleApper : apperMedTilgang).map((app) => (
-    <AppCard
-      key={app.app}
-      hasAccess={apperMedTilgang.includes(app)}
-      route={app.route}
-      title={app.title}
-      description={app.description}
-    />
-  ));
+  const appCards = (showUnauthorized ? alleApper : apperMedTilgang).map(
+    (app) => (
+      <AppCard
+        key={app.app}
+        hasAccess={apperMedTilgang.includes(app)}
+        route={app.route}
+        title={app.title}
+        description={app.description}
+      />
+    ),
+  );
 
   return (
     <>
@@ -31,13 +33,17 @@ const Hjem = () => {
               God dag, {userInfo.name}!
             </Heading>
           </div>
-          <GuidePanel poster illustration={<img src={pengesekk} alt="pengesekk" />}>
+          <GuidePanel
+            poster
+            illustration={<img src={pengesekk} alt="pengesekk" />}
+          >
             <Heading level="2" size="small" spacing>
               Informasjon om utbetalingsportalen
             </Heading>
             <BodyLong spacing>
-              Utbetalingsportalen er en ny platform som på sikt skal overta funksjoner fra Økonomiportalen og Abetal i
-              en ny og forbedret versjon.
+              Utbetalingsportalen er en ny platform som på sikt skal overta
+              funksjoner fra Økonomiportalen og Abetal i en ny og forbedret
+              versjon.
             </BodyLong>
           </GuidePanel>
         </div>
@@ -47,7 +53,9 @@ const Hjem = () => {
         <Switch
           value="vis"
           checked={showUnauthorized === "vis"}
-          onChange={(e) => setShowUnauthorized((x) => (x ? "" : e.target.value))}
+          onChange={(e) =>
+            setShowUnauthorized((x) => (x ? "" : e.target.value))
+          }
         >
           Vis alle
         </Switch>

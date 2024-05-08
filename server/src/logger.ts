@@ -2,6 +2,7 @@ import fs from "fs";
 import winston, { format } from "winston";
 import winstonSyslog from "winston-syslog";
 import Config from "./config";
+
 const { timestamp, json } = format;
 
 export const logger = winston.createLogger({
@@ -9,12 +10,13 @@ export const logger = winston.createLogger({
     timestamp({
       format: "YYYY-MM-DD HH:mm:ss",
     }),
-    json()
+    json(),
   ),
   transports: [new winston.transports.Console()],
 });
 
-const secureLogPath = () => (fs.existsSync("/secure-logs/") ? "/secure-logs/secure.log" : "./secure.log");
+const secureLogPath = () =>
+  fs.existsSync("/secure-logs/") ? "/secure-logs/secure.log" : "./secure.log";
 
 export const secureLog = winston.createLogger({
   format: winston.format.json(),

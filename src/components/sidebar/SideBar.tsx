@@ -1,11 +1,11 @@
-import { HouseIcon } from "@navikt/aksel-icons";
 import { useState } from "react";
+import { HouseIcon } from "@navikt/aksel-icons";
+import useApper from "../../hooks/useApper";
 import { ROUTE_PATH } from "../../models/routePath";
 import CloseSideBarButton from "./CloseSideBarButton";
 import ClosedSideBar from "./ClosedSideBar";
-import SideBarLink from "./SideBarLink";
 import styles from "./SideBar.module.css";
-import useApper from "../../hooks/useApper";
+import SideBarLink from "./SideBarLink";
 
 const SideBar = () => {
   const [showSideBar, setShowSideBar] = useState(true);

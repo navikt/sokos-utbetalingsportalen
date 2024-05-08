@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import { validateToken } from "./azureAd";
-import { logger, secureLog } from "./logger";
 import { IncomingHttpHeaders } from "http";
 import { z } from "zod";
+import { validateToken } from "./azureAd";
+import { logger, secureLog } from "./logger";
 
 const ClaimSchema = z.object({
   name: z.string(),
@@ -21,7 +21,11 @@ async function validateAuthorization(authorization: string) {
   }
 }
 
-export async function enforceAzureADMiddleware(req: Request, res: Response, next: NextFunction) {
+export async function enforceAzureADMiddleware(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   const loginPath = `/oauth2/login?redirect=${req.originalUrl}`;
   const { authorization } = req.headers;
 

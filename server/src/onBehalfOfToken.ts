@@ -1,8 +1,8 @@
-import { logger } from "./logger";
-import Config from "./config";
+import { Response as ExpressResponse, NextFunction, Request } from "express";
+import { Client, Issuer, TokenSet, errors } from "openid-client";
 import { z } from "zod";
-import { Client, errors, Issuer, TokenSet } from "openid-client";
-import { NextFunction, Request, Response as ExpressResponse } from "express";
+import Config from "./config";
+import { logger } from "./logger";
 import { retrieveTokenFromHeader } from "./middelwares";
 
 let _issuer: Issuer<Client>;
@@ -63,11 +63,15 @@ async function fetchNewOnBehalfOfToken(accessToken: string, scope: string) {
       switch (err.constructor) {
         case errors.OPError:
         case errors.RPError:
-          logger.error(`Failed to retrieve on behalf of token for scope "${scope}", got error:`, {
-            openIdClientError: err,
-            httpStatusFromAzure: err.response.statusCode + " " + err.response.statusMessage,
-            azureBody: err.response.azureBody,
-          });
+          logger.error(
+            `Failed to retrieve on behalf of token for scope "${scope}", got error:`,
+            {
+              openIdClientError: err,
+              httpStatusFromAzure:
+                err.response.statusCode + " " + err.response.statusMessage,
+              azureBody: err.response.azureBody,
+            },
+          );
           break;
       }
       logger.error("Unknown error from openid-client", { error: err });
@@ -100,26 +104,32 @@ export async function getOnBehalfOfToken(accessToken: string, scope: string) {
   }
 }
 
-export const setOnBehalfOfToken = (scope: string) => async (req: Request, res: ExpressResponse, next: NextFunction) => {
-  const accessToken = retrieveTokenFromHeader(req.headers);
+export const setOnBehalfOfToken =
+  (scope: string) =>
+  async (req: Request, res: ExpressResponse, next: NextFunction) => {
+    const accessToken = retrieveTokenFromHeader(req.headers);
 
-  if (!accessToken) {
-    res.status(500).send("Cannot request the OBO token as the access token does not exist");
-  }
-
-  try {
-    const token = await getOnBehalfOfToken(accessToken, scope);
-    req.headers.authorization = `Bearer ${token.access_token}`;
-    next();
-  } catch (e) {
-    const respons = e as Response;
-
-    // A 400 Bad Request during OBO exchange means that the user does not belong to the groups required to invoke the app.
-    if (respons.status === 400) {
-      res.status(403).send(`User does not have access to scope ${scope}`);
-    } else {
-      logger.error("OBO token exchange error", e);
-      res.status(500).send("OBO token exchange error");
+    if (!accessToken) {
+      res
+        .status(500)
+        .send(
+          "Cannot request the OBO token as the access token does not exist",
+        );
     }
-  }
-};
+
+    try {
+      const token = await getOnBehalfOfToken(accessToken, scope);
+      req.headers.authorization = `Bearer ${token.access_token}`;
+      next();
+    } catch (e) {
+      const respons = e as Response;
+
+      // A 400 Bad Request during OBO exchange means that the user does not belong to the groups required to invoke the app.
+      if (respons.status === 400) {
+        res.status(403).send(`User does not have access to scope ${scope}`);
+      } else {
+        logger.error("OBO token exchange error", e);
+        res.status(500).send("OBO token exchange error");
+      }
+    }
+  };

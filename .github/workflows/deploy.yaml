@@ -5,17 +5,17 @@ on:
     branches:
       - main
     paths-ignore:
-      - '**.md'
-      - 'LICENCE'
-      - 'CODEOWNERS'
-      - '.gitignore'
-      - '.github/workflows/build-pr.yaml'
-      - '.github/workflows/manual-deploy-dev.yaml'
-      - '.github/workflows/security.yaml'
-      - '.github/workflows/alerts.yaml'
-      - '.nais/alerts-dev.yaml'
-      - '.nais/alerts-prod.yaml'
-      - '.github/dependabot.yaml'
+      - "**.md"
+      - "LICENCE"
+      - "CODEOWNERS"
+      - ".gitignore"
+      - ".github/workflows/build-pr.yaml"
+      - ".github/workflows/manual-deploy-dev.yaml"
+      - ".github/workflows/security.yaml"
+      - ".github/workflows/alerts.yaml"
+      - ".nais/alerts-dev.yaml"
+      - ".nais/alerts-prod.yaml"
+      - ".github/dependabot.yaml"
 
 env:
   TZ: Europe/Oslo
@@ -32,7 +32,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
       - uses: pnpm/action-setup@v3
         id: pnpm-install
         with:
@@ -97,7 +97,7 @@ jobs:
 
   deploy-prod:
     name: Deploy to prod
-    needs: [ build, deploy-dev ]
+    needs: [build, deploy-dev]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:

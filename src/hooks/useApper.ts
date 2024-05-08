@@ -13,9 +13,13 @@ const useApper = () => {
       });
   }, []);
 
-  const hasAccess = (group: AzureAdGroupNames) => groups.some((id) => id === AzureAdGroupNameId[group]);
+  const hasAccess = (group: AzureAdGroupNames) =>
+    groups.some((id) => id === AzureAdGroupNameId[group]);
   const apperMedTilgang = Apper.filter((app) => hasAccess(app.group));
-  const alleApper = [...apperMedTilgang, ...Apper.filter((app) => !hasAccess(app.group))];
+  const alleApper = [
+    ...apperMedTilgang,
+    ...Apper.filter((app) => !hasAccess(app.group)),
+  ];
 
   return { apperMedTilgang, alleApper };
 };

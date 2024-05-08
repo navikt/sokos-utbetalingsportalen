@@ -1,11 +1,12 @@
 import importMapPlugin from "@eik/rollup-plugin";
-import react from "@vitejs/plugin-react";
-import { viteMockServe } from "vite-plugin-mock";
-import { ConfigEnv } from "vite";
 import terser from "@rollup/plugin-terser";
+import react from "@vitejs/plugin-react";
+import { ConfigEnv } from "vite";
+import { viteMockServe } from "vite-plugin-mock";
 
 const reactUrl = "https://www.nav.no/tms-min-side-assets/react/18/esm/index.js";
-const reactDomUrl = "https://www.nav.no/tms-min-side-assets/react-dom/18/esm/index.js";
+const reactDomUrl =
+  "https://www.nav.no/tms-min-side-assets/react-dom/18/esm/index.js";
 
 export default ({ command }: ConfigEnv) => ({
   plugins: [

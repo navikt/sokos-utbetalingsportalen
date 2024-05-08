@@ -1,5 +1,4 @@
 import { AzureAdGroupName, AzureAdGroupNames } from "../auth/azureAdGroups";
-import { ROUTE_PATH } from "./routePath";
 import {
   sokosMikrofrontendTemplateURL,
   sokosUpKrpURL,
@@ -7,6 +6,7 @@ import {
   sokosUpOrsURL,
   sokosUpSkattekortURL,
 } from "../urls";
+import { ROUTE_PATH } from "./routePath";
 
 export type App = {
   app: string;

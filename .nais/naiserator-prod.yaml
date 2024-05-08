@@ -49,7 +49,6 @@ spec:
       cpu: "50m"
       memory: 256Mi
   env:
-
     # sokos-up-ors-api
     - name: SOKOS_UP_ORS_API
       value: http://sokos-up-ors-api

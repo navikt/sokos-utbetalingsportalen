@@ -55,30 +55,29 @@ spec:
       cpu: "50m"
       memory: 256Mi
   env:
+    # Mikrofrontend-template
+    - name: SOKOS_MIKROFRONTEND_API
+      value: http://sokos-mikrofrontend-api
+    - name: SOKOS_MIKROFRONTEND_API_SCOPE
+      value: api://dev-gcp.okonomi.sokos-mikrofrontend-api/.default
+    - name: SOKOS_MIKROFRONTEND_PROXY
+      value: "/mikrofrontend-api"
 
-  # Mikrofrontend-template
-  - name: SOKOS_MIKROFRONTEND_API
-    value: http://sokos-mikrofrontend-api
-  - name: SOKOS_MIKROFRONTEND_API_SCOPE
-    value: api://dev-gcp.okonomi.sokos-mikrofrontend-api/.default
-  - name: SOKOS_MIKROFRONTEND_PROXY
-    value: "/mikrofrontend-api"
+    # sokos-up-ors-api
+    - name: SOKOS_UP_ORS_API
+      value: http://sokos-up-ors-api
+    - name: SOKOS_UP_ORS_API_SCOPE
+      value: api://dev-gcp.okonomi.sokos-up-ors-api/.default
+    - name: SOKOS_UP_ORS_API_PROXY
+      value: "/up-ors-api"
 
-  # sokos-up-ors-api
-  - name: SOKOS_UP_ORS_API
-    value: http://sokos-up-ors-api
-  - name: SOKOS_UP_ORS_API_SCOPE
-    value: api://dev-gcp.okonomi.sokos-up-ors-api/.default
-  - name: SOKOS_UP_ORS_API_PROXY
-    value: "/up-ors-api"
-
-  # Skattekort
-  - name: SOKOS_SKATTEKORT_PERSON_API
-    value: https://sokos-skattekort-person.dev-fss-pub.nais.io
-  - name: SOKOS_SKATTEKORT_PERSON_API_SCOPE
-    value: api://dev-fss.okonomi.sokos-skattekort-person/.default
-  - name: SOKOS_SKATTEKORT_PROXY
-    value: "/skattekort-api"
+    # Skattekort
+    - name: SOKOS_SKATTEKORT_PERSON_API
+      value: https://sokos-skattekort-person.dev-fss-pub.nais.io
+    - name: SOKOS_SKATTEKORT_PERSON_API_SCOPE
+      value: api://dev-fss.okonomi.sokos-skattekort-person/.default
+    - name: SOKOS_SKATTEKORT_PROXY
+      value: "/skattekort-api"
 
   # sokos-nav-oppdrag
   - name: SOKOS_OPPDRAG_API
@@ -88,10 +87,10 @@ spec:
   - name: SOKOS_OPPDRAG_PROXY
     value: "/oppdrag-api"
 
-  # sokos-up-krp-api
-  - name: SOKOS_UP_KRP_API
-    value: http://sokos-up-krp-api
-  - name: SOKOS_UP_KRP_API_SCOPE
-    value: api://dev-gcp.okonomi.sokos-up-krp-api/.default
-  - name: SOKOS_UP_KRP_API_PROXY
-    value: "/up-krp-api"
+    # sokos-up-krp-api
+    - name: SOKOS_UP_KRP_API
+      value: http://sokos-up-krp-api
+    - name: SOKOS_UP_KRP_API_SCOPE
+      value: api://dev-gcp.okonomi.sokos-up-krp-api/.default
+    - name: SOKOS_UP_KRP_API_PROXY
+      value: "/up-krp-api"
