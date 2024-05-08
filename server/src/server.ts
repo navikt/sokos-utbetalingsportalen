@@ -64,7 +64,11 @@ const startServer = () => {
     );
 
     // sokos-up-oppdragsinfo
-    routeProxyWithOboToken(Config.SOKOS_OPPDRAG_PROXY, Config.SOKOS_OPPDRAG_API, Config.SOKOS_OPPDRAG_API_SCOPE);
+    routeProxyWithOboToken(
+      Config.SOKOS_OPPDRAG_PROXY,
+      Config.SOKOS_OPPDRAG_API,
+      Config.SOKOS_OPPDRAG_API_SCOPE,
+    );
   }
 
   // sokos-up-skattekort
@@ -82,8 +86,11 @@ const startServer = () => {
   );
 
   // sokos-up-krp-api
-  routeProxyWithOboToken(Config.SOKOS_UP_KRP_API_PROXY, Config.SOKOS_UP_KRP_API, Config.SOKOS_UP_KRP_API_SCOPE);
-
+  routeProxyWithOboToken(
+    Config.SOKOS_UP_KRP_API_PROXY,
+    Config.SOKOS_UP_KRP_API,
+    Config.SOKOS_UP_KRP_API_SCOPE,
+  );
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
 
