@@ -2,5 +2,7 @@
 build
 coverage
 node_modules
+**/github*.yml
+**/github*.yaml
 **/nais*.yaml
 **/nais*.yml
