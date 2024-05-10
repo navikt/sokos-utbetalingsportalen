@@ -11,5 +11,5 @@
 }
 
 .hjem__apper {
-  @apply grid grid-cols-1 gap-3 4kol:grid-cols-4 3kol:grid-cols-3 2kol:grid-cols-2 1kol:grid-cols-1;
+  @apply grid grid-cols-1 gap-3 1kol:grid-cols-1 2kol:grid-cols-2 3kol:grid-cols-3 4kol:grid-cols-4;
 }

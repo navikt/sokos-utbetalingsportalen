@@ -31,9 +31,6 @@ importers:
       swr:
         specifier: ^2.2.5
         version: 2.2.5(react@18.2.0)
-      zustand:
-        specifier: ^4.5.2
-        version: 4.5.2(@types/react@18.2.78)(react@18.2.0)
     devDependencies:
       "@eik/rollup-plugin":
         specifier: ^4.0.63
@@ -50,6 +47,9 @@ importers:
       "@trivago/prettier-plugin-sort-imports":
         specifier: ^4.3.0
         version: 4.3.0(prettier@3.2.5)
+      "@types/eslint-config-prettier":
+        specifier: ^6.11.3
+        version: 6.11.3
       "@types/react":
         specifier: ^18.2.78
         version: 18.2.78
@@ -80,6 +80,9 @@ importers:
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
+      prettier-plugin-tailwindcss:
+        specifier: ^0.5.14
+        version: 0.5.14(@trivago/prettier-plugin-sort-imports@4.3.0(prettier@3.2.5))(prettier@3.2.5)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -89,9 +92,9 @@ importers:
       stylelint:
         specifier: ^16.3.1
         version: 16.3.1(typescript@5.4.5)
-      stylelint-config-recommended:
-        specifier: ^14.0.0
-        version: 14.0.0(stylelint@16.3.1(typescript@5.4.5))
+      stylelint-config-standard:
+        specifier: ^36.0.0
+        version: 36.0.0(stylelint@16.3.1(typescript@5.4.5))
       tailwindcss:
         specifier: ^3.4.3
         version: 3.4.3
@@ -1070,6 +1073,12 @@ packages:
     resolution:
       {
         integrity: sha512-ojlGK1Hsfce93J0+kn3H5R73elidKUaZonirN33GSmgTUMpzI/MIFfSpF3haANe3G1bEBS9/9/QEqwTzwqFsKw==,
+      }
+
+  "@types/eslint-config-prettier@6.11.3":
+    resolution:
+      {
+        integrity: sha512-3wXCiM8croUnhg9LdtZUJQwNcQYGWxxdOWDjPe1ykCqJFPVpzAKfs/2dgSoCtAvdPeaponcWPI7mPcGGp9dkKQ==,
       }
 
   "@types/estree@1.0.5":
@@ -2911,6 +2920,61 @@ packages:
       }
     engines: { node: ">= 0.8.0" }
 
+  prettier-plugin-tailwindcss@0.5.14:
+    resolution:
+      {
+        integrity: sha512-Puaz+wPUAhFp8Lo9HuciYKM2Y2XExESjeT+9NQoVFXZsPPnc9VYss2SpxdQ6vbatmt8/4+SN0oe0I1cPDABg9Q==,
+      }
+    engines: { node: ">=14.21.3" }
+    peerDependencies:
+      "@ianvs/prettier-plugin-sort-imports": "*"
+      "@prettier/plugin-pug": "*"
+      "@shopify/prettier-plugin-liquid": "*"
+      "@trivago/prettier-plugin-sort-imports": "*"
+      "@zackad/prettier-plugin-twig-melody": "*"
+      prettier: ^3.0
+      prettier-plugin-astro: "*"
+      prettier-plugin-css-order: "*"
+      prettier-plugin-import-sort: "*"
+      prettier-plugin-jsdoc: "*"
+      prettier-plugin-marko: "*"
+      prettier-plugin-organize-attributes: "*"
+      prettier-plugin-organize-imports: "*"
+      prettier-plugin-sort-imports: "*"
+      prettier-plugin-style-order: "*"
+      prettier-plugin-svelte: "*"
+    peerDependenciesMeta:
+      "@ianvs/prettier-plugin-sort-imports":
+        optional: true
+      "@prettier/plugin-pug":
+        optional: true
+      "@shopify/prettier-plugin-liquid":
+        optional: true
+      "@trivago/prettier-plugin-sort-imports":
+        optional: true
+      "@zackad/prettier-plugin-twig-melody":
+        optional: true
+      prettier-plugin-astro:
+        optional: true
+      prettier-plugin-css-order:
+        optional: true
+      prettier-plugin-import-sort:
+        optional: true
+      prettier-plugin-jsdoc:
+        optional: true
+      prettier-plugin-marko:
+        optional: true
+      prettier-plugin-organize-attributes:
+        optional: true
+      prettier-plugin-organize-imports:
+        optional: true
+      prettier-plugin-sort-imports:
+        optional: true
+      prettier-plugin-style-order:
+        optional: true
+      prettier-plugin-svelte:
+        optional: true
+
   prettier@3.2.5:
     resolution:
       {
@@ -3281,6 +3345,15 @@ packages:
     engines: { node: ">=18.12.0" }
     peerDependencies:
       stylelint: ^16.0.0
+
+  stylelint-config-standard@36.0.0:
+    resolution:
+      {
+        integrity: sha512-3Kjyq4d62bYFp/Aq8PMKDwlgUyPU4nacXsjDLWJdNPRUgpuxALu1KnlAHIj36cdtxViVhXexZij65yM0uNIHug==,
+      }
+    engines: { node: ">=18.12.0" }
+    peerDependencies:
+      stylelint: ^16.1.0
 
   stylelint@16.3.1:
     resolution:
@@ -3669,24 +3742,6 @@ packages:
         integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==,
       }
     engines: { node: ">=10" }
-
-  zustand@4.5.2:
-    resolution:
-      {
-        integrity: sha512-2cN1tPkDVkwCy5ickKrI7vijSjPksFRfqS6237NzT0vqSsztTNnQdHw9mmN7uBdk3gceVXU0a+21jFzFzAc9+g==,
-      }
-    engines: { node: ">=12.7.0" }
-    peerDependencies:
-      "@types/react": ">=16.8"
-      immer: ">=9.0.6"
-      react: ">=16.8"
-    peerDependenciesMeta:
-      "@types/react":
-        optional: true
-      immer:
-        optional: true
-      react:
-        optional: true
 
 snapshots:
   "@alloc/quick-lru@5.2.0": {}
@@ -4258,6 +4313,8 @@ snapshots:
   "@types/babel__traverse@7.20.2":
     dependencies:
       "@babel/types": 7.23.5
+
+  "@types/eslint-config-prettier@6.11.3": {}
 
   "@types/estree@1.0.5": {}
 
@@ -5273,6 +5330,12 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
+  prettier-plugin-tailwindcss@0.5.14(@trivago/prettier-plugin-sort-imports@4.3.0(prettier@3.2.5))(prettier@3.2.5):
+    dependencies:
+      prettier: 3.2.5
+    optionalDependencies:
+      "@trivago/prettier-plugin-sort-imports": 4.3.0(prettier@3.2.5)
+
   prettier@3.2.5: {}
 
   proxy-from-env@1.1.0: {}
@@ -5471,6 +5534,11 @@ snapshots:
   stylelint-config-recommended@14.0.0(stylelint@16.3.1(typescript@5.4.5)):
     dependencies:
       stylelint: 16.3.1(typescript@5.4.5)
+
+  stylelint-config-standard@36.0.0(stylelint@16.3.1(typescript@5.4.5)):
+    dependencies:
+      stylelint: 16.3.1(typescript@5.4.5)
+      stylelint-config-recommended: 14.0.0(stylelint@16.3.1(typescript@5.4.5))
 
   stylelint@16.3.1(typescript@5.4.5):
     dependencies:
@@ -5745,10 +5813,3 @@ snapshots:
   yaml@2.4.1: {}
 
   yocto-queue@0.1.0: {}
-
-  zustand@4.5.2(@types/react@18.2.78)(react@18.2.0):
-    dependencies:
-      use-sync-external-store: 1.2.0(react@18.2.0)
-    optionalDependencies:
-      "@types/react": 18.2.78
-      react: 18.2.0
