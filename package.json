@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build --base=/utbetalingsportalen/ --outDir dist",
-    "build:gh-pages": "vite build --mode=dev-ekstern --base=/sokos-utbetalingsportalen/",
     "preview": "vite preview",
     "prepare": "husky"
   },
