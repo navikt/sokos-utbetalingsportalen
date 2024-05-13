@@ -1,6 +1,10 @@
 # Ignore artifacts:
-build
-coverage
-node_modules
+dist
+dokumentasjon
+mock
+server/build
+**/node_modules
+**/github*.yml
+**/github*.yaml
 **/nais*.yaml
 **/nais*.yml
