@@ -15,6 +15,7 @@ export type App = {
   group: AzureAdGroupNames;
   route: string;
   url: string;
+  onlyForDevelopment?: boolean;
 };
 
 export const Apper: Array<App> = [
@@ -57,5 +58,6 @@ export const Apper: Array<App> = [
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ,
     route: ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE,
     url: sokosMikrofrontendTemplateURL,
+    onlyForDevelopment: true,
   },
 ];
