@@ -89,12 +89,10 @@
     "importOrderSortSpecifiers": true
   },
   "lint-staged": {
-    "*.js": "eslint",
-    "*.jsx": "eslint",
     "*.ts": "eslint",
     "*.tsx": "eslint",
     "*.css": "stylelint",
-    "*": "prettier --write --ignore-unknown"
+    "*": "prettier --write"
   },
   "engines": {
     "node": ">=20.11.0",
