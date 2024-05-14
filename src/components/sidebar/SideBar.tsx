@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { HouseIcon } from "@navikt/aksel-icons";
-import useApper from "../../hooks/useApper";
+import useApps from "../../hooks/useApps";
 import { ROUTE_PATH } from "../../models/routePath";
 import CloseSideBarButton from "./CloseSideBarButton";
 import ClosedSideBar from "./ClosedSideBar";
@@ -9,7 +9,7 @@ import SideBarLink from "./SideBarLink";
 
 const SideBar = () => {
   const [showSideBar, setShowSideBar] = useState(true);
-  const { apperMedTilgang } = useApper();
+  const { authorizedApps } = useApps();
   if (!showSideBar) {
     return (
       <div className={`${styles.closed} ${styles.sidebar}`}>
@@ -18,7 +18,7 @@ const SideBar = () => {
     );
   }
 
-  const lenker = apperMedTilgang.map((side) => (
+  const lenker = authorizedApps.map((side) => (
     <SideBarLink to={side.route} key={side.app}>
       {side.title}
     </SideBarLink>

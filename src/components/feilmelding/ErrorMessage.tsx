@@ -1,9 +1,9 @@
 import { Alert } from "@navikt/ds-react";
-import styles from "./Feilmelding.module.css";
+import styles from "./ErrorMessage.module.css";
 
-const FeilMelding = (props: { error: Error }) => (
+const ErrorMessage = (props: { error: Error }) => (
   <>
-    <Alert variant="error" className={styles.feilmelding}>
+    <Alert variant="error" className={styles.errormessage}>
       {props.error.message
         ? "En feil har skjedd, meld inn sak i Porten"
         : "Noe gikk galt, prøv igjen. Hvis problemet vedvarer, meld inn sak i Porten"}
@@ -11,4 +11,4 @@ const FeilMelding = (props: { error: Error }) => (
   </>
 );
 
-export default FeilMelding;
+export default ErrorMessage;

@@ -5,7 +5,7 @@ import { AzureAdGroupNameId, AzureAdGroupNames } from "./azureAdGroups";
 export const authenticationLoader = async () => {
   try {
     return RestService.fetchLoggedInUser();
-  } catch (error) {
+  } catch (_) {
     throw new Error("Fetch request failed");
   }
 };

@@ -1,11 +1,11 @@
 import { XMarkIcon } from "@navikt/aksel-icons";
 import { Button } from "@navikt/ds-react";
 
-const CloseSideBarButton = ({
-  setShowSideBar,
-}: {
+type CloseSideBarButtonProps = {
   setShowSideBar: (b: boolean) => void;
-}) => (
+};
+
+const CloseSideBarButton = ({ setShowSideBar }: CloseSideBarButtonProps) => (
   <div className="flex flex-row bg-neutral-800 justify-end">
     <Button
       className="bg-neutral-800 w-28"
