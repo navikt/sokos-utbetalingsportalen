@@ -3,26 +3,24 @@ import { useLoaderData } from "react-router-dom";
 import { BodyLong, GuidePanel, Heading, Switch } from "@navikt/ds-react";
 import pengesekk from "../../assets/images/pengesekk.svg";
 import AppCard from "../components/appcard/AppCard";
-import useApper from "../hooks/useApper";
+import useApps from "../hooks/useApps";
 import { UserData } from "../models/userData";
 import styles from "./Hjem.module.css";
 
 const Hjem = () => {
   const userInfo = useLoaderData() as UserData;
   const [showUnauthorized, setShowUnauthorized] = useState<string>("");
-  const { apperMedTilgang, alleApper } = useApper();
+  const { authorizedApps, allApps } = useApps();
 
-  const appCards = (showUnauthorized ? alleApper : apperMedTilgang).map(
-    (app) => (
-      <AppCard
-        key={app.app}
-        hasAccess={apperMedTilgang.includes(app)}
-        route={app.route}
-        title={app.title}
-        description={app.description}
-      />
-    ),
-  );
+  const appCards = (showUnauthorized ? allApps : authorizedApps).map((app) => (
+    <AppCard
+      key={app.app}
+      hasAccess={authorizedApps.includes(app)}
+      route={app.route}
+      title={app.title}
+      description={app.description}
+    />
+  ));
 
   return (
     <>
@@ -51,15 +49,15 @@ const Hjem = () => {
           Apper
         </Heading>
         <Switch
-          value="vis"
-          checked={showUnauthorized === "vis"}
+          value="show"
+          checked={showUnauthorized === "show"}
           onChange={(e) =>
             setShowUnauthorized((x) => (x ? "" : e.target.value))
           }
         >
           Vis alle
         </Switch>
-        <div className={styles.hjem__apper}>{appCards}</div>
+        <div className={styles.hjem__apps}>{appCards}</div>
       </div>
     </>
   );

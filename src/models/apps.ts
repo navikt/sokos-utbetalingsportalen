@@ -18,7 +18,7 @@ export type App = {
   onlyForDevelopment?: boolean;
 };
 
-export const Apper: Array<App> = [
+export const Apps: Array<App> = [
   {
     app: "OPPDRAGSINFO",
     title: "Oppdragsinfo",

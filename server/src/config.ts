@@ -54,6 +54,6 @@ const getConfig = (): Config => {
   return result.data;
 };
 
-const Config = getConfig();
+const Configuration = getConfig();
 
-export default Config;
+export default Configuration;

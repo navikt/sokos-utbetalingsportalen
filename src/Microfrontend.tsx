@@ -1,27 +1,27 @@
 import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useLocation } from "react-router-dom";
-import FeilMelding from "./components/feilmelding/Feilmelding";
+import ErrorMessage from "./components/errormessage/ErrorMessage";
 import ContentLoader from "./components/loader/ContentLoader";
 
-type MikrofrontendProps = {
+type MicrofrontendProps = {
   url: string;
 };
 
-const createMikrofrontendBundle = (url: string) => {
+const createMicrofrontendBundle = (url: string) => {
   return React.lazy(() => import(/* @vite-ignore */ url));
 };
 
-const Mikrofrontend: React.FC<MikrofrontendProps> = ({ url }) => {
-  const MikrofrontendBundle = createMikrofrontendBundle(url);
+const Microfrontend: React.FC<MicrofrontendProps> = ({ url }) => {
+  const MicrofrontendBundle = createMicrofrontendBundle(url);
   const location = useLocation();
   return (
     <React.Suspense fallback={<ContentLoader />}>
-      <ErrorBoundary FallbackComponent={FeilMelding} key={location.pathname}>
-        <MikrofrontendBundle />
+      <ErrorBoundary FallbackComponent={ErrorMessage} key={location.pathname}>
+        <MicrofrontendBundle />
       </ErrorBoundary>
     </React.Suspense>
   );
 };
 
-export default Mikrofrontend;
+export default Microfrontend;

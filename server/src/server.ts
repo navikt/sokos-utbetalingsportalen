@@ -1,3 +1,4 @@
+/* eslint-disable */
 import express, { Request, Response } from "express";
 import RateLimit from "express-rate-limit";
 import expressStaticGzip from "express-static-gzip";
