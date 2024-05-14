@@ -1,7 +1,7 @@
 import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useLocation } from "react-router-dom";
-import ErrorMessage from "./components/feilmelding/ErrorMessage";
+import ErrorMessage from "./components/errormessage/ErrorMessage";
 import ContentLoader from "./components/loader/ContentLoader";
 
 type MicrofrontendProps = {

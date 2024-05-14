@@ -18,13 +18,13 @@ const SideBar = () => {
     );
   }
 
-  const lenker = authorizedApps.map((side) => (
-    <SideBarLink to={side.route} key={side.app}>
-      {side.title}
+  const links = authorizedApps.map((page) => (
+    <SideBarLink to={page.route} key={page.app}>
+      {page.title}
     </SideBarLink>
   ));
 
-  const ikonStil = "w-6 h-6 pb-[2px]";
+  const iconStyle = "w-6 h-6 pb-[2px]";
 
   return (
     <>
@@ -33,10 +33,10 @@ const SideBar = () => {
 
         <ul className={styles.sidebar__links}>
           <SideBarLink to={ROUTE_PATH.SOKOS_UP_HOME}>
-            <HouseIcon className={ikonStil} />
+            <HouseIcon className={iconStyle} />
             Hjem
           </SideBarLink>
-          {lenker}
+          {links}
         </ul>
       </div>
     </>
