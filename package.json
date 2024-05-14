@@ -1,7 +1,7 @@
 {
   "name": "sokos-utbetalingsportalen",
   "version": "1.0.0",
-  "description": "Utbetalingsportalen",
+  "description": "Utbetalingsportalen container",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -34,6 +34,8 @@
     "autoprefixer": "^10.4.19",
     "eslint": "^9.2.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
     "globals": "^15.2.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
@@ -92,7 +94,7 @@
     "*.ts": "eslint",
     "*.tsx": "eslint",
     "*.css": "stylelint",
-    "*": "prettier --write"
+    "*": "prettier --write --ignore-unknown"
   },
   "engines": {
     "node": ">=20.11.0",

@@ -1,7 +1,7 @@
 {
-  "name": "sokos-utbetalingsportalen",
+  "name": "sokos-utbetalingsportal-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend for Utbetalingsportalen",
   "main": "src/server.ts",
   "scripts": {
     "dev": "nodemon src/server.ts",
@@ -33,7 +33,7 @@
     "typescript": "^5.3.3"
   },
   "engines": {
-    "node": ">=18.15.0",
-    "pnpm": ">=8"
+    "node": ">=20.11.0",
+    "pnpm": ">=9"
   }
 }

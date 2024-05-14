@@ -9,5 +9,5 @@
     "skipLibCheck": true,
     "typeRoots": ["src/config.ts", "../node_modules/@types"]
   },
-  "include": ["./"]
+  "include": ["./src"]
 }
