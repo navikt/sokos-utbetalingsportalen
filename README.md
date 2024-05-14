@@ -1,22 +1,23 @@
-# sokos-utbetalingsportalen
+# Utbetalingsportalen
 
-# Innholdsoversikt
+## Innholdsoversikt
 
 - [1. Funksjonelle krav](#1-funksjonelle-krav)
 - [2. Utviklingsmiljø](#2-utviklingsmiljø)
 - [3. Programvarearkitektur](#3-programvarearkitektur)
-- [4. Deployment](#4-deployment)
-- [5. Autentisering](#5-autentisering)
-- [6. Drift og støtte](#6-drift-og-støtte)
-- [7. Henvendelser](#7-henvendelser)
+- [4. Legg til en mikrofrontend](#4-legg-til-en-mikrofrontend)
+- [5. Deployment](#5-deployment)
+- [6. Autentisering](#6-autentisering)
+- [7. Drift og støtte](#7-drift-og-støtte)
+- [8. Henvendelser](#8-henvendelser)
 
 ---
 
-# 1. Funksjonelle Krav
+## 1. Funksjonelle Krav
 
-Utbetalingsportalen er en intern arbeidsflate for okonomi medarbeidere i Økonomi linjen i NAV.
+Utbetalingsportalen er en intern arbeidsflate for Økonomi-medarbeidere i Økonomi linjen i NAV.
 
-# 2. Utviklingsmiljø
+## 2. Utviklingsmiljø
 
 ### Forutsetninger
 
@@ -31,11 +32,15 @@ Utbetalingsportalen er en intern arbeidsflate for okonomi medarbeidere i Økonom
 
 - `pnpm run dev`
 
-# 3. Programvarearkitektur
+## 3. Programvarearkitektur
 
 [System diagram](dokumentasjon/system-diagram.md)
 
-# 4. Deployment
+### 4. Legg til en mikrofrontend
+
+[Guide](dokumentasjon/mikrofrontend.md)
+
+## 5. Deployment
 
 Distribusjon av tjenesten er gjort med bruk av Github Actions.
 [sokos-utbetalingsportalen CI / CD](https://github.com/navikt/sokos-utbetalingsportalen/actions)
@@ -43,12 +48,12 @@ Distribusjon av tjenesten er gjort med bruk av Github Actions.
 Push/merge til main branch vil teste, bygge og deploye til dev- og prod miljø.
 Det foreligger også mulighet for manuell deploy til dev.
 
-# 7. Autentisering
+## 6. Autentisering
 
 Applikasjonen bruker SSO -(Single Sign On) løsningen gjennom [Wonderwall](https://docs.nais.io/addons/wonderwall/?h=wonder).
 Det benyttes også [OBO- On-Behalf-Of](https://docs.nais.io/security/auth/azure-ad/usage/?h=behal#oauth-20-on-behalf-of-grant) for å gjøre kall til APIene bak mikrofrontendene.
 
-# 6. Drift og støtte
+## 7. Drift og støtte
 
 ### Logging
 
@@ -62,7 +67,7 @@ Vi bruker [nais-alerts](https://doc.nais.io/observability/alerts) for å sette o
 
 - [sokos-utbetalingsportalen](https://grafana.nav.cloud.nais.io/d/6uYofme4z/sokos-utbetalingsportalen?orgId=1)
 
-# 7. Henvendelser
+## 8. Henvendelser
 
 Spørsmål knyttet til koden eller prosjektet kan stilles som issues her på Github.
 Interne henvendelser kan sendes via Slack i kanalen #po-utbetaling
