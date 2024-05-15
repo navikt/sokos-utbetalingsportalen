@@ -57,14 +57,14 @@ const startServer = () => {
   server.get("/userinfo", azureUserInfo);
 
   if (Config.NAIS_CLUSTER_NAME === "dev-gcp") {
-    // sokos-mikrofrontend-template
+    // sokos-mikrofrontend-api
     routeProxyWithOboToken(
       Config.SOKOS_MIKROFRONTEND_PROXY,
       Config.SOKOS_MIKROFRONTEND_API,
       Config.SOKOS_MIKROFRONTEND_API_SCOPE,
     );
 
-    // sokos-up-oppdragsinfo
+    // sokos-oppdrag
     routeProxyWithOboToken(
       Config.SOKOS_OPPDRAG_PROXY,
       Config.SOKOS_OPPDRAG_API,
@@ -72,7 +72,7 @@ const startServer = () => {
     );
   }
 
-  // sokos-up-skattekort
+  // sokos-skattekort-person
   routeProxyWithOboToken(
     Config.SOKOS_SKATTEKORT_PROXY,
     Config.SOKOS_SKATTEKORT_PERSON_API,
