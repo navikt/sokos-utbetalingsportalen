@@ -1,5 +1,5 @@
 const isProduction = window.location.href.includes("nav.no");
-const isDevelopment = window.location.href.includes("dev.nav.no");
+const isDevelopment = /.*\.dev\.nav\.no/.test(window.location.href);
 
 type Environment = "production" | "development" | "local";
 

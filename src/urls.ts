@@ -9,14 +9,15 @@ const AUTH_URL = {
   production: SERVER_PATH.USER_INFO,
 } as const satisfies Dictionary;
 
-const appBundleUrl = (appName: string) =>
-  "https://" + window.location.hostname + "/" + appName + "/bundle.js";
-
+/*
 const SOKOS_MIKROFRONTEND_TEMPLATE_URL = {
   local: "http://localhost:5173/microfrontend/bundle.js",
-  development: appBundleUrl("sokos-mikrofrontend-template"),
-  production: appBundleUrl("sokos-mikrofrontend-template"),
+  development:
+    "https://utbetalingsportalen.intern.dev.nav.no/sokos-mikrofrontend-template/bundle.js",
+  production:
+    "https://utbetalingsportalen.intern.nav.no/sokos-mikrofrontend-template/bundle.js",
 } as const satisfies Dictionary;
+*/
 
 const SOKOS_UP_KRP_URL = {
   local: "http://localhost:5173/microfrontend/bundle.js",
@@ -50,9 +51,13 @@ const SOKOS_UP_OPPDRAGSINFO_URL = {
     "https://utbetalingsportalen.intern.nav.no/sokos-up-oppdragsinfo/bundle.js",
 } as const satisfies Dictionary;
 
+const url = (appRepoName: string) =>
+  "https://" + window.location.hostname + "/" + appRepoName + "/bundle.js";
+
 export const authURL = AUTH_URL[getEnvironment()];
-export const sokosMikrofrontendTemplateURL =
-  SOKOS_MIKROFRONTEND_TEMPLATE_URL[getEnvironment()];
+export const sokosMikrofrontendTemplateURL = url(
+  "sokos-mikrofrontend-template",
+);
 export const sokosUpKrpURL = SOKOS_UP_KRP_URL[getEnvironment()];
 export const sokosUpOrsURL = SOKOS_UP_ORS_URL[getEnvironment()];
 export const sokosUpSkattekortURL = SOKOS_UP_SKATTEKORT_URL[getEnvironment()];
