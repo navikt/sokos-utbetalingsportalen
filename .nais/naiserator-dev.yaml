@@ -47,6 +47,7 @@ spec:
         - host: sokos-skattekort-person.dev-fss-pub.nais.io
   ingresses:
     - "https://utbetalingsportalen.intern.dev.nav.no"
+    - "https://utbetalingsportalen.ansatt.dev.nav.no"
   resources:
     limits:
       cpu: "3"
