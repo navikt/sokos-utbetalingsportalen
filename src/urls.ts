@@ -12,7 +12,7 @@ const AUTH_URL = {
 const SOKOS_MIKROFRONTEND_TEMPLATE_URL = {
   local: "http://localhost:5173/microfrontend/bundle.js",
   development:
-    "https://utbetalingsportalen.intern.dev.nav.no/sokos-mikrofrontend-template/bundle.js",
+    "https://utbetalingsportalen.ansatt.dev.nav.no/sokos-mikrofrontend-template/bundle.js",
   production:
     "https://utbetalingsportalen.intern.nav.no/sokos-mikrofrontend-template/bundle.js",
 } as const satisfies Dictionary;
