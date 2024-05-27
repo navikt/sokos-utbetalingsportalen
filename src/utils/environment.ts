@@ -8,7 +8,7 @@ const isDevelopment =
 type Environment = "nais" | "local";
 
 export const getEnvironment = (): Environment => {
-  if (isProduction && isDevelopment) {
+  if (isProduction || isDevelopment) {
     return "nais";
   }
   return "local";
