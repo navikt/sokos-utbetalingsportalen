@@ -5,11 +5,14 @@ const isDevelopment =
   window.location.href.includes("intern.dev.nav.no") ||
   window.location.href.includes("ansatt.dev.nav.no");
 
-type Environment = "nais" | "local";
+type Environment = "production" | "development" | "local";
 
 export const getEnvironment = (): Environment => {
-  if (isProduction || isDevelopment) {
-    return "nais";
+  if (isProduction) {
+    return "production";
+  }
+  if (isDevelopment) {
+    return "development";
   }
   return "local";
 };
