@@ -6,11 +6,11 @@ const ErrorMessage = (props: { error: Error }) => (
     <Alert variant="error" className={styles.errormessage}>
       {props.error.message ? (
         <>
-          <BodyShort size="medium" spacing>
+          <BodyShort size="large" weight="semibold" spacing>
             En feil har skjedd, meld inn sak i Porten
           </BodyShort>
           <BodyShort size="medium" spacing>
-            Feilmelding: {props.error.message}
+            Feilmelding: <i>{props.error.message}</i>
             {props.error.cause ? (
               <>
                 <br />
