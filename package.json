@@ -12,7 +12,7 @@
   "author": "navikt",
   "license": "MIT",
   "dependencies": {
-    "@grafana/faro-web-sdk": "^1.7.2",
+    "@grafana/faro-web-sdk": "^1.7.3",
     "@navikt/aksel-icons": "^6.7.1",
     "@navikt/ds-css": "^6.7.1",
     "@navikt/ds-react": "^6.7.1",
@@ -41,7 +41,7 @@
     "lint-staged": "^15.2.2",
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.14",
+    "prettier-plugin-tailwindcss": "^0.6.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "stylelint": "^16.5.0",
