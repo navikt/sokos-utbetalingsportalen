@@ -1,5 +1,5 @@
-.topbar {
-  @apply ml-3 w-16 min-w-full p-1;
+.topbar__logo {
+  @apply ml-3 w-16 p-1;
 }
 
 .topbar__link {
