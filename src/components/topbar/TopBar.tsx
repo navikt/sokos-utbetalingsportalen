@@ -1,5 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
-import { Dropdown, InternalHeader as Header } from "@navikt/ds-react";
+import { Dropdown, InternalHeader } from "@navikt/ds-react";
 import nav from "../../../assets/images/Hvit.png";
 import { UserData } from "../../models/userData";
 import styles from "./TopBar.module.css";
@@ -7,16 +7,16 @@ import styles from "./TopBar.module.css";
 const TopBar = () => {
   const userInfo = useLoaderData() as UserData;
   return (
-    <Header>
-      <div className={styles.topbar}>
+    <InternalHeader>
+      <div className={styles.topbar__logo}>
         <img src={nav} alt="logo" />
       </div>
-      <Header.Title as={Link} to={"/"} className="border-none">
+      <InternalHeader.Title as={Link} to={"/"} className="border-none">
         Utbetalingsportalen
-      </Header.Title>
+      </InternalHeader.Title>
       <Dropdown>
         <div className={styles.topbar__userbutton}>
-          <Header.UserButton
+          <InternalHeader.UserButton
             as={Dropdown.Toggle}
             name={userInfo.name}
             description={userInfo.navIdent}
@@ -28,7 +28,7 @@ const TopBar = () => {
           </Dropdown.Menu.List>
         </Dropdown.Menu>
       </Dropdown>
-    </Header>
+    </InternalHeader>
   );
 };
 
