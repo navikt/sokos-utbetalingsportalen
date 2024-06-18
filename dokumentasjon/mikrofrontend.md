@@ -6,7 +6,7 @@
 
 3. Legg inn path til applikasjonen din under [routePath.ts](/src/models/routePath.ts)
 
-4. Legg inn den nye appen i [apper.ts](/src/models/apps.ts)
+4. Legg inn den nye appen i [apps.ts](/src/models/apps.ts)
 
 5. I [naiserator-dev.yaml](../.nais/naiserator-dev.yaml) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs.
    Se f.eks hvilken `env` variabler de andre har lagt inn.
