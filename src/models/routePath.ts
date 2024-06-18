@@ -1,4 +1,5 @@
 export const ROUTE_PATH = {
+  SOKOS_UP_ATTESTASJON: "/attestasjon",
   SOKOS_MIKROFRONTEND_TEMPLATE: "/mikrofrontend",
   SOKOS_UP_ORS: "/ors",
   SOKOS_UP_SKATTEKORT: "/skattekort",
