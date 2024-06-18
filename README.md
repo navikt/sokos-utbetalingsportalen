@@ -57,15 +57,14 @@ Det benyttes også [OBO- On-Behalf-Of](https://docs.nais.io/security/auth/azure-
 
 ### Logging
 
-Logging går til [Grafana for frontend](https://grafana.nav.cloud.nais.io/d/6uYofme4z/sokos-utbetalingsportalen?orgId=1)
+#### Grafana
+
+- [sokos-utbetalingsportalen](https://grafana.nav.cloud.nais.io/d/6uYofme4z/sokos-utbetalingsportalen?orgId=1)
 
 ### Alarmer
 
 Vi bruker [nais-alerts](https://doc.nais.io/observability/alerts) for å sette opp alarmer. Disse finner man konfigurert i [.nais mappen](.nais).
 
-### Grafana
-
-- [sokos-utbetalingsportalen](https://grafana.nav.cloud.nais.io/d/6uYofme4z/sokos-utbetalingsportalen?orgId=1)
 
 ## 8. Henvendelser
 
