@@ -20,7 +20,7 @@
            - application: sokos-mikrofrontend-api
    ```
 
-   Skal tjenesten snakke med en i `fss` cluster så må du gjøre [følgende](https://docs.nais.io/explanation/migrating-to-gcp/?h=premise#how-do-i-reach-an-application-found-on-premises-from-my-application-in-gcp)
+   Skal tjenesten snakke med en i `fss` cluster så må du gjøre [følgende](https://docs.nais.io/workloads/explanations/migrating-to-gcp/#how-do-i-reach-an-application-found-on-premises-from-my-application-in-gcp)
 
 6. Env variablene som er lagt inn i naiserator-filene skal defineres i [config.ts](/server/src/config.ts)
    _NB! Tre env variabler som MÅ være med er følgende: PROXY , API, OG API_SCOPE må være lagt inn._
