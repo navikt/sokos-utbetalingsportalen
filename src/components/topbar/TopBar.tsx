@@ -1,5 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
-import { Dropdown, InternalHeader } from "@navikt/ds-react";
+import { InternalHeader, Spacer } from "@navikt/ds-react";
 import nav from "../../../assets/images/Hvit.png";
 import { UserData } from "../../models/userData";
 import styles from "./TopBar.module.css";
@@ -14,20 +14,11 @@ const TopBar = () => {
       <InternalHeader.Title as={Link} to={"/"} className="border-none">
         Utbetalingsportalen
       </InternalHeader.Title>
-      <Dropdown>
-        <div className={styles.topbar__userbutton}>
-          <InternalHeader.UserButton
-            as={Dropdown.Toggle}
-            name={userInfo.name}
-            description={userInfo.navIdent}
-          />
-        </div>
-        <Dropdown.Menu>
-          <Dropdown.Menu.List>
-            <Dropdown.Menu.List.Item>Min profil</Dropdown.Menu.List.Item>
-          </Dropdown.Menu.List>
-        </Dropdown.Menu>
-      </Dropdown>
+      <Spacer />
+      <InternalHeader.User
+        name={userInfo.name}
+        description={userInfo.navIdent}
+      />
     </InternalHeader>
   );
 };
