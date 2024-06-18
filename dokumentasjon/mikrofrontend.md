@@ -28,11 +28,11 @@
 7. Under [server.ts](../server/src/server.ts) må du legge inn proxy til tjenesten mikfrofrontend skal snakke med.
 
    ```typescript
-     proxyWithOboToken(
-       Configuration.SOKOS_MIKROFRONTEND_PROXY,
-       Configuration.SOKOS_MIKROFRONTEND_API,
-       Configuration.SOKOS_MIKROFRONTEND_API_SCOPE
-     );
+     routeProxyWithOboToken(
+      Config.SOKOS_MIKROFRONTEND_PROXY,
+      Config.SOKOS_MIKROFRONTEND_API,
+      Config.SOKOS_MIKROFRONTEND_API_SCOPE,
+    );
    ```
 
    🎉 Nå er `sokos-utbetalingsportalen` klar til å kunne rendre mikrofrontend og rute rest kallene til riktig api.
