@@ -76,4 +76,5 @@ jobs:
           CLUSTER: dev-gcp
           RESOURCE: .nais/naiserator-dev.yaml
           IMAGE: ${{ needs.build.outputs.image }}
+          TIMEOUT: 10m
           PRINT_PAYLOAD: true

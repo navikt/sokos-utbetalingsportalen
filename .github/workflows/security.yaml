@@ -1,10 +1,6 @@
 name: Sikkerhet
 
 on:
-  workflow_run:
-    workflows: ["Deploy application"]
-    types:
-      - completed
   schedule:
     - cron: "0 6 * * 1"
 
