@@ -26,7 +26,7 @@ const ConfigSchema = z.object({
   SOKOS_UP_ORS_API_SCOPE: z.string(),
   SOKOS_UP_ORS_API_PROXY: z.string(),
 
-  // sokos-up-krp-api
+  // sokos-up-kontoregister-api
   SOKOS_UP_KRP_API: z.string(),
   SOKOS_UP_KRP_API_SCOPE: z.string(),
   SOKOS_UP_KRP_API_PROXY: z.string(),
