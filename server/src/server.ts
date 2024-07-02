@@ -86,7 +86,7 @@ const startServer = () => {
     Config.SOKOS_UP_ORS_API_SCOPE,
   );
 
-  // sokos-up-krp-api
+  // sokos-up-kontoregister-api
   routeProxyWithOboToken(
     Config.SOKOS_UP_KRP_API_PROXY,
     Config.SOKOS_UP_KRP_API,
