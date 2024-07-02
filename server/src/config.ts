@@ -26,10 +26,10 @@ const ConfigSchema = z.object({
   SOKOS_UP_ORS_API_SCOPE: z.string(),
   SOKOS_UP_ORS_API_PROXY: z.string(),
 
-  // sokos-up-krp-api
-  SOKOS_UP_KRP_API: z.string(),
-  SOKOS_UP_KRP_API_SCOPE: z.string(),
-  SOKOS_UP_KRP_API_PROXY: z.string(),
+  // sokos-up-kontoregister-api
+  SOKOS_UP_KONTOREGISTER_API: z.string(),
+  SOKOS_UP_KONTOREGISTER_API_SCOPE: z.string(),
+  SOKOS_UP_KONTOREGISTER_API_PROXY: z.string(),
 
   // sokos-mikrofrontend-template
   SOKOS_MIKROFRONTEND_API: z.string().default(""),
