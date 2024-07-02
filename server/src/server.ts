@@ -88,9 +88,9 @@ const startServer = () => {
 
   // sokos-up-kontoregister-api
   routeProxyWithOboToken(
-    Config.SOKOS_UP_KRP_API_PROXY,
-    Config.SOKOS_UP_KRP_API,
-    Config.SOKOS_UP_KRP_API_SCOPE,
+    Config.SOKOS_UP_KONTOREGISTER_API_PROXY,
+    Config.SOKOS_UP_KONTOREGISTER_API,
+    Config.SOKOS_UP_KONTOREGISTER_API_SCOPE,
   );
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
