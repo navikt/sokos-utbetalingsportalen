@@ -24,10 +24,10 @@ const SOKOS_MIKROFRONTEND_TEMPLATE_URL = {
   production: url("sokos-mikrofrontend-template"),
 } as const satisfies Dictionary;
 
-const SOKOS_UP_KRP_URL = {
+const SOKOS_UP_KONTOREGISTER_URL = {
   local: "http://localhost:5173/microfrontend/bundle.js",
-  development: url("sokos-up-krp"),
-  production: url("sokos-up-krp"),
+  development: url("sokos-up-kontoregister"),
+  production: url("sokos-up-kontoregister"),
 } as const satisfies Dictionary;
 
 const SOKOS_UP_ORS_URL = {
@@ -52,7 +52,7 @@ export const authURL = AUTH_URL[getEnvironment()];
 export const sokosUpAttestasjonURL = SOKOS_UP_ATTESTASJON_URL[getEnvironment()];
 export const sokosMikrofrontendTemplateURL =
   SOKOS_MIKROFRONTEND_TEMPLATE_URL[getEnvironment()];
-export const sokosUpKrpURL = SOKOS_UP_KRP_URL[getEnvironment()];
+export const sokosUpKrpURL = SOKOS_UP_KONTOREGISTER_URL[getEnvironment()];
 export const sokosUpOrsURL = SOKOS_UP_ORS_URL[getEnvironment()];
 export const sokosUpSkattekortURL = SOKOS_UP_SKATTEKORT_URL[getEnvironment()];
 export const sokosUpOppdragsinfoURL =
