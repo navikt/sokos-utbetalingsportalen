@@ -63,7 +63,7 @@ spec:
     - name: SOKOS_KONTOREGISTER_API_SCOPE
       value: api://prod-gcp.okonomi.sokos-up-kontoregister-api/.default
     - name: SOKOS_KONTOREGISTER_API_PROXY
-      value: "/up-kontoregister-api"
+      value: "/up-krp-api"
 
     # Skattekort
     - name: SOKOS_SKATTEKORT_PERSON_API
