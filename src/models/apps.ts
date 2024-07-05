@@ -21,14 +21,6 @@ export type App = {
 
 export const Apps: Array<App> = [
   {
-    app: "OPPDRAGSINFO",
-    title: "Oppdragsinfo",
-    description: "Søk etter oppdrag i Oppdragssystemet",
-    group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ,
-    route: ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO,
-    url: sokosUpOppdragsinfoURL,
-  },
-  {
     app: "ATTESTASJON",
     title: "Attestasjon",
     description: "Attestering av oppdrag",
@@ -37,12 +29,29 @@ export const Apps: Array<App> = [
     url: sokosUpAttestasjonURL,
   },
   {
+    app: "MIKROFRONTEND",
+    title: "Grensesnittmal",
+    description: "Dette er en blank mal for et grensesnitt",
+    group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ,
+    route: ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE,
+    url: sokosMikrofrontendTemplateURL,
+    onlyForDevelopment: true,
+  },
+  {
     app: "KRP",
     title: "Kontoregister person kontosøk",
     description: "Søk etter personer og konti",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ,
     route: ROUTE_PATH.SOKOS_UP_KRP,
     url: sokosUpKrpURL,
+  },
+  {
+    app: "OPPDRAGSINFO",
+    title: "Oppdragsinfo",
+    description: "Søk etter oppdrag i Oppdragssystemet",
+    group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ,
+    route: ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO,
+    url: sokosUpOppdragsinfoURL,
   },
   {
     app: "ORS",
@@ -59,14 +68,5 @@ export const Apps: Array<App> = [
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ,
     route: ROUTE_PATH.SOKOS_UP_SKATTEKORT,
     url: sokosUpSkattekortURL,
-  },
-  {
-    app: "MIKROFRONTEND",
-    title: "Grensesnittmal",
-    description: "Dette er en blank mal for et grensesnitt",
-    group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ,
-    route: ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE,
-    url: sokosMikrofrontendTemplateURL,
-    onlyForDevelopment: true,
   },
 ];
