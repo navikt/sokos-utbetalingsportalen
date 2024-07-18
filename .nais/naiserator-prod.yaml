@@ -43,11 +43,10 @@ spec:
     - "https://utbetalingsportalen.intern.nav.no"
   resources:
     limits:
-      cpu: "3"
-      memory: 768Mi
+      memory: 1024Mi
     requests:
-      cpu: "50m"
-      memory: 256Mi
+      cpu: 500m
+      memory: 1024Mi
   env:
     # sokos-up-ors-api
     - name: SOKOS_UP_ORS_API

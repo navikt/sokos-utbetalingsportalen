@@ -51,11 +51,10 @@ spec:
     - "https://utbetalingsportalen.ansatt.dev.nav.no"
   resources:
     limits:
-      cpu: "3"
-      memory: 768Mi
+      memory: 1024Mi
     requests:
-      cpu: "50m"
-      memory: 256Mi
+      cpu: 500m
+      memory: 1024Mi
   env:
     # Mikrofrontend-template
     - name: SOKOS_MIKROFRONTEND_API
