@@ -3,17 +3,9 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - "**.md"
-      - "LICENCE"
-      - "Dockerfile"
-      - "CODEOWNERS"
-      - ".gitignore"
-      - ".github/workflows/build-pr.yaml"
-      - ".github/workflows/manual-deploy-dev.yaml"
-      - ".github/workflows/security.yaml"
-      - ".github/workflows/deploy.yaml"
-      - ".github/dependabot.yaml"
+    paths:
+      - ".nais/alerts-dev.yaml"
+      - ".nais/alerts-prod.yaml"
 
 permissions:
   contents: "write"
