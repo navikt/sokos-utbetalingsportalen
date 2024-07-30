@@ -97,7 +97,7 @@
     "*": "prettier --write --ignore-unknown"
   },
   "engines": {
-    "node": ">=20.11.0",
-    "pnpm": ">=8"
+    "node": ">=20.16.0",
+    "pnpm": ">=9.6.0"
   }
 }
