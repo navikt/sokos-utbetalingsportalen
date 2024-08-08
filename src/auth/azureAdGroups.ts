@@ -27,9 +27,9 @@ const AD_GRUPPE_SOKOS_MF_ORS_READ = {
 } as const satisfies Dictionary;
 
 const AD_GRUPPE_SOKOS_MF_RESENDING_BANK_READ = {
-  local: "587455a0-6a89-4127-a32e-2c07dc0c367c",
-  development: "587455a0-6a89-4127-a32e-2c07dc0c367c",
-  production: "25723642-e1da-4d15-87ce-8c4d2b87e33a", // TODO Må opprette gruppe i prod og legge inn her
+  local: "391bec9e-e71e-42cb-a030-56c394dd13fd",
+  development: "391bec9e-e71e-42cb-a030-56c394dd13fd",
+  production: "", // TODO Må opprette gruppe i prod og legge inn her
 } as const satisfies Dictionary;
 
 const AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ = {
