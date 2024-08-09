@@ -26,5 +26,13 @@ export default tseslint.config(
       "no-console": "error",
       "no-duplicate-imports": "error",
     },
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
+  },
+  {
+    ignores: ["dist/", "server/build/"],
   },
 );
