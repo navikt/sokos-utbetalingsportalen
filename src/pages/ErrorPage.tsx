@@ -16,7 +16,7 @@ const ErrorPage = ({
       {title}
     </Heading>
     <BodyShort>{message}</BodyShort>
-    <Link as={ReactRouterLink} to={".."} relative={"path"}>
+    <Link as={ReactRouterLink} to={"/"} relative={"path"}>
       Tilbake til startsiden
     </Link>
   </>
