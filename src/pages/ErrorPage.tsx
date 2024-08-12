@@ -1,4 +1,3 @@
-import { Link as ReactRouterLink } from "react-router-dom";
 import { ChatExclamationmarkIcon } from "@navikt/aksel-icons";
 import { BodyShort, Heading, Link } from "@navikt/ds-react";
 
@@ -16,7 +15,7 @@ const ErrorPage = ({
       {title}
     </Heading>
     <BodyShort>{message}</BodyShort>
-    <Link as={ReactRouterLink} to={".."} relative={"path"}>
+    <Link href="/" variant="action">
       Tilbake til startsiden
     </Link>
   </>
