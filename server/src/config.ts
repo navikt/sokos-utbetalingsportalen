@@ -40,6 +40,11 @@ const ConfigSchema = z.object({
   SOKOS_OPPDRAG_API: z.string().default(""),
   SOKOS_OPPDRAG_API_SCOPE: z.string().default(""),
   SOKOS_OPPDRAG_PROXY: z.string().default(""),
+
+  // sokos-ur-iso
+  SOKOS_UR_ISO: z.string().default(""),
+  SOKOS_UR_ISO_SCOPE: z.string().default(""),
+  SOKOS_UR_ISO_PROXY: z.string().default(""),
 });
 
 type Config = z.infer<typeof ConfigSchema>;

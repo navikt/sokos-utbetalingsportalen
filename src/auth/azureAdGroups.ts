@@ -29,7 +29,7 @@ const AD_GRUPPE_SOKOS_MF_ORS_READ = {
 const AD_GRUPPE_SOKOS_MF_RESENDING_BANK_READ = {
   local: "391bec9e-e71e-42cb-a030-56c394dd13fd",
   development: "391bec9e-e71e-42cb-a030-56c394dd13fd",
-  production: "", // TODO Må opprette gruppe i prod og legge inn her
+  production: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 } as const satisfies Dictionary;
 
 const AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ = {

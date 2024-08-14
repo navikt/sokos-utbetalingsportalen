@@ -49,7 +49,7 @@ const SOKOS_UP_OPPDRAGSINFO_URL = {
 } as const satisfies Dictionary;
 
 const SOKOS_UP_RESENDING_BANK_URL = {
-  local: "http://localhost:5174/sokos-up-resending-bank/bundle.js",
+  local: "http://localhost:5173/microfrontend/bundle.js",
   development: url("sokos-up-resending-bank"),
   production: url("sokos-up-resending-bank"),
 } as const satisfies Dictionary;
