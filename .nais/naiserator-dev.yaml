@@ -101,7 +101,7 @@ spec:
 
     # sokos-ur-iso
     - name: SOKOS_UR_ISO
-      value: https://sokos-ur-iso.intern.dev.nav.no
+      value: https://sokos-ur-iso.dev-fss-pub.nais.io
     - name: SOKOS_UR_ISO_SCOPE
       value: api://dev-fss.okonomi.sokos-ur-iso/.default
     - name: SOKOS_UR_ISO_PROXY
