@@ -6,5 +6,5 @@ export const ROUTE_PATH = {
   SOKOS_UP_OPPDRAGSINFO: "/oppdragsinfo",
   SOKOS_UP_KRP: "/krp",
   SOKOS_UP_HOME: "/",
-  SOKOS_UP_RESENDING_BANK: "/sokos-up-resending-bank",
+  SOKOS_UP_RESENDING_BANK: "/resending-bank",
 } as const;
