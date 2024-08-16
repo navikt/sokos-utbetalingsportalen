@@ -40,8 +40,8 @@ export const Apps: Array<App> = [
   },
   {
     app: "RESENDING_BANK",
-    title: "Resending bank",
-    description: "Arbeidsflate for resending av meldinger til bank",
+    title: "Resending til bank",
+    description: "Resending av meldinger til bank",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_RESENDING_BANK_READ,
     route: ROUTE_PATH.SOKOS_UP_RESENDING_BANK,
     url: sokosUpResendingBankURL,
