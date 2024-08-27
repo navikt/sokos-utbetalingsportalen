@@ -46,6 +46,7 @@ spec:
         - application: sokos-up-kontoregister-api
       external:
         - host: sokos-skattekort-person.dev-fss-pub.nais.io
+        - host: sokos-oppdrag.dev-fss-pub.nais.io
   ingresses:
     - "https://utbetalingsportalen.intern.dev.nav.no"
     - "https://utbetalingsportalen.ansatt.dev.nav.no"
