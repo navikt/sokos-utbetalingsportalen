@@ -1,5 +1,6 @@
 import { ChatExclamationmarkIcon } from "@navikt/aksel-icons";
 import { BodyShort, Heading, Link } from "@navikt/ds-react";
+import styles from "./ErrorPage.module.css";
 
 export type ErrorPageProps = {
   title?: string;
@@ -9,7 +10,7 @@ const ErrorPage = ({
   title = "Feil",
   message = "En feil har skjedd!",
 }: ErrorPageProps) => (
-  <>
+  <div className={styles.errorPage}>
     <ChatExclamationmarkIcon title="a11y-title" fontSize="6rem" />
     <Heading level="1" size={"medium"}>
       {title}
@@ -18,7 +19,7 @@ const ErrorPage = ({
     <Link href="/" variant="action">
       Tilbake til startsiden
     </Link>
-  </>
+  </div>
 );
 export default ErrorPage;
 
