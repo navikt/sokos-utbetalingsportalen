@@ -7,7 +7,7 @@ const isDevelopment =
 
 type Environment = "production" | "development" | "local";
 
-export const getEnvironment = (): Environment => {
+export function getEnvironment(): Environment {
   if (isProduction) {
     return "production";
   }
@@ -15,4 +15,4 @@ export const getEnvironment = (): Environment => {
     return "development";
   }
   return "local";
-};
+}

@@ -1,26 +1,27 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
 import { BodyLong, GuidePanel, Heading, Switch } from "@navikt/ds-react";
 import pengesekk from "../../assets/images/pengesekk.svg";
 import AppCard from "../components/appcard/AppCard";
+import { useAuthContext } from "../components/auth/AuthProvider";
 import useApps from "../hooks/useApps";
-import { UserData } from "../models/userData";
 import styles from "./Hjem.module.css";
 
-const Hjem = () => {
-  const userInfo = useLoaderData() as UserData;
+export default function Home() {
+  const authContext = useAuthContext();
   const [showUnauthorized, setShowUnauthorized] = useState<string>("");
   const { authorizedApps, allApps } = useApps();
 
-  const appCards = (showUnauthorized ? allApps : authorizedApps).map((app) => (
-    <AppCard
-      key={app.app}
-      hasAccess={authorizedApps.includes(app)}
-      route={app.route}
-      title={app.title}
-      description={app.description}
-    />
-  ));
+  function appCards() {
+    return (showUnauthorized ? allApps : authorizedApps).map((app) => (
+      <AppCard
+        key={app.app}
+        hasAccess={authorizedApps.includes(app)}
+        route={app.route}
+        title={app.title}
+        description={app.description}
+      />
+    ));
+  }
 
   return (
     <>
@@ -28,7 +29,7 @@ const Hjem = () => {
         <div className={styles.hjem__guidepanel}>
           <div className={styles.hjem__heading}>
             <Heading level="1" size="large" spacing>
-              God dag, {userInfo.name}!
+              God dag, {authContext.userData.name}
             </Heading>
           </div>
           <GuidePanel
@@ -57,10 +58,8 @@ const Hjem = () => {
         >
           Vis alle
         </Switch>
-        <div className={styles.hjem__apps}>{appCards}</div>
+        <div className={styles.hjem__apps}>{appCards()}</div>
       </div>
     </>
   );
-};
-
-export default Hjem;
+}
