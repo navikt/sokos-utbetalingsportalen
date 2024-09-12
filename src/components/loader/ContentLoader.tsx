@@ -3,7 +3,7 @@ import styles from "./ContentLoader.module.css";
 
 const ContentLoader = () => (
   <div className={styles.contentloader}>
-    <Loader transparent title="Laster inn..." size="2xlarge" />
+    <Loader variant="interaction" title="Laster inn side.." size="2xlarge" />
   </div>
 );
 
