@@ -96,3 +96,7 @@ spec:
       value: api://dev-gcp.okonomi.sokos-up-kontoregister-api/.default
     - name: SOKOS_KONTOREGISTER_API_PROXY
       value: "/up-krp-api"
+
+    # sokos-up-kontoregister-api org
+    - name: SOKOS_KONTOREGISTER_KRO_API_PROXY
+      value: "/up-kro-api"

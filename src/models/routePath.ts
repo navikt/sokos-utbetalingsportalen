@@ -5,5 +5,6 @@ export const ROUTE_PATH = {
   SOKOS_UP_SKATTEKORT: "/skattekort",
   SOKOS_UP_OPPDRAGSINFO: "/oppdragsinfo",
   SOKOS_UP_KRP: "/krp",
+  SOKOS_UP_KRO: "/kro",
   SOKOS_UP_HOME: "/",
 } as const;
