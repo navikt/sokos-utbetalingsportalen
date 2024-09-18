@@ -11,29 +11,24 @@ interface AppCardProps {
   description: string;
 }
 
-const AppCard: React.FC<AppCardProps> = ({
-  hasAccess,
-  route,
-  title,
-  description,
-}) => {
+export default function AppCard(props: AppCardProps) {
   const content = (
     <div>
       <div className={styles.appcard__title}>
         <Heading level="3" size="xsmall">
-          {title}
+          {props.title}
         </Heading>
         <div className={styles.appcard__arrow}>
           <ChevronRightIcon />
         </div>
       </div>
-      <div className={styles.appcard__description}>{description}</div>
+      <div className={styles.appcard__description}>{props.description}</div>
     </div>
   );
 
-  if (hasAccess) {
+  if (props.hasAccess) {
     return (
-      <ReactRouterLink className={styles.appcard} to={route}>
+      <ReactRouterLink className={styles.appcard} to={props.route}>
         {content}
       </ReactRouterLink>
     );
@@ -46,6 +41,4 @@ const AppCard: React.FC<AppCardProps> = ({
       </span>
     );
   }
-};
-
-export default AppCard;
+}
