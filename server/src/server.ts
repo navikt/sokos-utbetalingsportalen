@@ -92,11 +92,6 @@ const startServer = () => {
     Config.SOKOS_KONTOREGISTER_API,
     Config.SOKOS_KONTOREGISTER_API_SCOPE,
   );
-  routeProxyWithOboToken(
-    Config.SOKOS_KONTOREGISTER_KRO_API_PROXY,
-    Config.SOKOS_KONTOREGISTER_API,
-    Config.SOKOS_KONTOREGISTER_API_SCOPE,
-  );
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
 
