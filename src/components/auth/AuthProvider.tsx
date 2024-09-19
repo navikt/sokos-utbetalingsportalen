@@ -1,4 +1,4 @@
-import {
+import React, {
   PropsWithChildren,
   createContext,
   useContext,
@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import { redirect, useLocation } from "react-router-dom";
+import { Loader } from "@navikt/ds-react";
 import {
   AzureAdGroupNameId,
   AzureAdGroupNames,
@@ -13,7 +14,6 @@ import {
 import { UserData } from "../../models/userData";
 import { ApiError } from "../../types/errors";
 import { authURL } from "../../urls";
-import ContentLoader from "../loader/ContentLoader";
 
 interface AuthContextType {
   userData: UserData;
@@ -53,7 +53,11 @@ export function AuthProvider(props: PropsWithChildren) {
   }
 
   if (!isAuthenticated) {
-    return <ContentLoader />;
+    return (
+      <div className="w-full text-center py-16 opacity-15">
+        <Loader size="2xlarge" title="Venter..." transparent />
+      </div>
+    );
   }
 
   return (
