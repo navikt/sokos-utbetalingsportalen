@@ -1,3 +1,4 @@
+import { createNanoEvents } from "nanoevents";
 import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useLocation } from "react-router-dom";
@@ -8,6 +9,8 @@ import {
 } from "./components/auth/AuthProvider";
 import ErrorMessage from "./components/error/ErrorMessage";
 import ContentLoader from "./components/loader/ContentLoader";
+
+const emitter = createNanoEvents();
 
 type MicrofrontendType = {
   url: string;
@@ -28,7 +31,7 @@ export default function Microfrontend(props: MicrofrontendType) {
   return (
     <React.Suspense fallback={<ContentLoader />}>
       <ErrorBoundary FallbackComponent={ErrorMessage} key={location.pathname}>
-        <MicrofrontendBundle />
+        <MicrofrontendBundle emitter={emitter} />
       </ErrorBoundary>
     </React.Suspense>
   );
