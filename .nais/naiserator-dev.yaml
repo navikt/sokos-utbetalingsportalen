@@ -30,6 +30,7 @@ spec:
           - id: "98146b9a-1891-44e3-9b61-92130c2fcd8b" # 0000-GA-SOKOS-MF-KRP-READ
           - id: "e0023d91-26bc-4d5d-95ba-3148b6123afc" # 0000-GA-SOKOS-MF-OppdragsInfo-READ
           - id: "0de8d01f-8ad0-4391-841c-55392956bc17" # 0000-GA-SOKOS-MF-Attestasjon-READ
+          - id: "391bec9e-e71e-42cb-a030-56c394dd13fd" # 0000-GA-SOKOS-MF-Resending-Bank-READ
           - id: "bdcedce3-dab5-4b68-b1d3-8625cd0d3b55" # 0000-GA-SOKOS-MF-KRO-READ
         extra:
           - "NAVident"
@@ -45,6 +46,7 @@ spec:
         - application: sokos-up-ors-api
         - application: sokos-oppdrag
         - application: sokos-up-kontoregister-api
+        - application: sokos-ur-iso
       external:
         - host: sokos-skattekort-person.dev-fss-pub.nais.io
         - host: sokos-oppdrag.dev-fss-pub.nais.io
@@ -97,3 +99,11 @@ spec:
       value: api://dev-gcp.okonomi.sokos-up-kontoregister-api/.default
     - name: SOKOS_KONTOREGISTER_API_PROXY
       value: "/up-kr-api"
+
+    # sokos-ur-iso
+    - name: SOKOS_UR_ISO
+      value: https://sokos-ur-iso.dev-fss-pub.nais.io
+    - name: SOKOS_UR_ISO_SCOPE
+      value: api://dev-fss.okonomi.sokos-ur-iso/.default
+    - name: SOKOS_UR_ISO_PROXY
+      value: "/sokos-ur-iso"

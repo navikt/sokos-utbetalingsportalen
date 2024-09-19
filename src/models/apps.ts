@@ -6,6 +6,7 @@ import {
   sokosUpKrpURL,
   sokosUpOppdragsinfoURL,
   sokosUpOrsURL,
+  sokosUpResendingBankURL,
   sokosUpSkattekortURL,
 } from "../urls";
 import { ROUTE_PATH } from "./routePath";
@@ -37,6 +38,14 @@ export const Apps: Array<App> = [
     route: ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE,
     url: sokosMikrofrontendTemplateURL,
     onlyForDevelopment: true,
+  },
+  {
+    app: "RESENDING_BANK",
+    title: "Resending til bank",
+    description: "Resending av meldinger til bank",
+    group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_RESENDING_BANK_READ,
+    route: ROUTE_PATH.SOKOS_UP_RESENDING_BANK,
+    url: sokosUpResendingBankURL,
   },
   {
     app: "KRP",
