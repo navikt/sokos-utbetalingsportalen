@@ -2,6 +2,7 @@ import { AzureAdGroupName, AzureAdGroupNames } from "../auth/azureAdGroups";
 import {
   sokosMikrofrontendTemplateURL,
   sokosUpAttestasjonURL,
+  sokosUpKroURL,
   sokosUpKrpURL,
   sokosUpOppdragsinfoURL,
   sokosUpOrsURL,
@@ -44,6 +45,14 @@ export const Apps: Array<App> = [
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ,
     route: ROUTE_PATH.SOKOS_UP_KRP,
     url: sokosUpKrpURL,
+  },
+  {
+    app: "KRO",
+    title: "Kontoregister organisasjon",
+    description: "Søk etter kontonummer til organisasjoner",
+    group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRO_READ,
+    route: ROUTE_PATH.SOKOS_UP_KRO,
+    url: sokosUpKroURL,
   },
   {
     app: "OPPDRAGSINFO",
