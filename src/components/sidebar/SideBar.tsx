@@ -7,7 +7,7 @@ import styles from "./SideBar.module.css";
 import SideBarLink from "./SideBarLink";
 
 export default function SideBar() {
-  const [showSideBar, setShowSideBar] = useState(false);
+  const [showSideBar, setShowSideBar] = useState(true);
   const { authorizedApps } = useApps();
   if (!showSideBar) {
     return (
