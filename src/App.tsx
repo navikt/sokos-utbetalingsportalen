@@ -1,51 +1,39 @@
-import {
-  Route,
-  RouterProvider,
-  createBrowserRouter,
-  createRoutesFromElements,
-} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Microfrontend from "./Microfrontend";
-import { authenticationLoader, checkRouteAccess } from "./auth/authentication";
+import ErrorBoundary from "./components/ErrorBoundary";
+import { AuthProvider } from "./components/auth/AuthProvider";
 import Utbetalingsportalen from "./components/layout/Utbetalingsportalen";
 import { Apps } from "./models/apps";
 import ErrorPage, { NoAccess, NotFound } from "./pages/ErrorPage";
-import Hjem from "./pages/Hjem";
+import Home from "./pages/Home";
 
-const App = () => {
-  const routes = Apps.map((app) => (
-    <Route
-      key={app.title}
-      path={`${app.route}/*`}
-      element={<Microfrontend url={app.url} />}
-      loader={checkRouteAccess(app.group)}
-    />
-  ));
+export default function App() {
+  function microfrontendRoutes() {
+    return Apps.map((app) => (
+      <Route
+        key={app.title}
+        path={`${app.route}/*`}
+        element={<Microfrontend url={app.url} adGroup={app.group} />}
+      />
+    ));
+  }
 
   return (
-    <RouterProvider
-      router={createBrowserRouter(
-        createRoutesFromElements(
-          <>
-            <Route
-              path="/"
-              element={<Utbetalingsportalen />}
-              loader={authenticationLoader}
-              errorElement={<ErrorPage />}
-            >
-              <Route
-                path="/"
-                element={<Hjem />}
-                loader={authenticationLoader}
-              />
-              {routes}
-              <Route path="/forbidden" element={<NoAccess />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-          </>,
-        ),
-      )}
-    />
+    <ErrorBoundary>
+      <AuthProvider>
+        <Routes>
+          <Route
+            path="/"
+            element={<Utbetalingsportalen />}
+            errorElement={<ErrorPage />}
+          >
+            <Route path="/" element={<Home />} />
+            {microfrontendRoutes()}
+            <Route path="/forbidden" element={<NoAccess />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
+    </ErrorBoundary>
   );
-};
-
-export default App;
+}

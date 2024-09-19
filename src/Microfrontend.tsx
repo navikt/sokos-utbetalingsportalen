@@ -1,20 +1,30 @@
 import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useLocation } from "react-router-dom";
-import ErrorMessage from "./components/errormessage/ErrorMessage";
+import { AzureAdGroupNames } from "./auth/azureAdGroups";
+import {
+  checkRouteAccess,
+  useAuthContext,
+} from "./components/auth/AuthProvider";
+import ErrorMessage from "./components/error/ErrorMessage";
 import ContentLoader from "./components/loader/ContentLoader";
 
-type MicrofrontendProps = {
+type MicrofrontendType = {
   url: string;
+  adGroup: AzureAdGroupNames;
 };
 
-const createMicrofrontendBundle = (url: string) => {
+function createMicrofrontendBundle(url: string) {
   return React.lazy(() => import(/* @vite-ignore */ url));
-};
+}
 
-const Microfrontend: React.FC<MicrofrontendProps> = ({ url }) => {
-  const MicrofrontendBundle = createMicrofrontendBundle(url);
+export default function Microfrontend(props: MicrofrontendType) {
+  const authContext = useAuthContext();
+
+  checkRouteAccess(authContext.userData, props.adGroup);
+  const MicrofrontendBundle = createMicrofrontendBundle(props.url);
   const location = useLocation();
+
   return (
     <React.Suspense fallback={<ContentLoader />}>
       <ErrorBoundary FallbackComponent={ErrorMessage} key={location.pathname}>
@@ -22,6 +32,4 @@ const Microfrontend: React.FC<MicrofrontendProps> = ({ url }) => {
       </ErrorBoundary>
     </React.Suspense>
   );
-};
-
-export default Microfrontend;
+}

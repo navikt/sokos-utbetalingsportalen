@@ -1,11 +1,11 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { InternalHeader, Spacer } from "@navikt/ds-react";
 import nav from "../../../assets/images/Hvit.png";
-import { UserData } from "../../models/userData";
+import { useAuthContext } from "../auth/AuthProvider";
 import styles from "./TopBar.module.css";
 
-const TopBar = () => {
-  const userInfo = useLoaderData() as UserData;
+export default function TopBar() {
+  const authContext = useAuthContext();
   return (
     <InternalHeader>
       <div className={styles.topbar__logo}>
@@ -16,11 +16,9 @@ const TopBar = () => {
       </InternalHeader.Title>
       <Spacer />
       <InternalHeader.User
-        name={userInfo.name}
-        description={userInfo.navIdent}
+        name={authContext.userData.name}
+        description={authContext.userData.navIdent}
       />
     </InternalHeader>
   );
-};
-
-export default TopBar;
+}
