@@ -20,6 +20,12 @@ const AD_GRUPPE_SOKOS_MF_KRP_READ = {
   production: "bb9c7baf-768b-4e84-816c-f10d0a6c7d25",
 } as const satisfies Dictionary;
 
+const AD_GRUPPE_SOKOS_MF_KRO_READ = {
+  local: "bdcedce3-dab5-4b68-b1d3-8625cd0d3b55",
+  development: "bdcedce3-dab5-4b68-b1d3-8625cd0d3b55",
+  production: "TODO",
+} as const satisfies Dictionary;
+
 const AD_GRUPPE_SOKOS_MF_ORS_READ = {
   local: "b01fb216-fcb3-4ede-b7da-71fffe859763",
   development: "b01fb216-fcb3-4ede-b7da-71fffe859763",
@@ -49,6 +55,7 @@ export const AzureAdGroupName = {
   AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ:
     "AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ",
   AD_GRUPPE_SOKOS_MF_KRP_READ: "AD_GRUPPE_SOKOS_MF_KRP_READ",
+  AD_GRUPPE_SOKOS_MF_KRO_READ: "AD_GRUPPE_SOKOS_MF_KRO_READ",
   AD_GRUPPE_SOKOS_MF_ORS_READ: "AD_GRUPPE_SOKOS_MF_ORS_READ",
   AD_GRUPPE_SOKOS_MF_RESENDING_BANK_READ:
     "AD_GRUPPE_SOKOS_MF_RESENDING_BANK_READ",
@@ -64,6 +71,7 @@ export const AzureAdGroupNameId = {
   AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ:
     AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ[getEnvironment()],
   AD_GRUPPE_SOKOS_MF_KRP_READ: AD_GRUPPE_SOKOS_MF_KRP_READ[getEnvironment()],
+  AD_GRUPPE_SOKOS_MF_KRO_READ: AD_GRUPPE_SOKOS_MF_KRO_READ[getEnvironment()],
   AD_GRUPPE_SOKOS_MF_ORS_READ: AD_GRUPPE_SOKOS_MF_ORS_READ[getEnvironment()],
   AD_GRUPPE_SOKOS_MF_RESENDING_BANK_READ:
     AD_GRUPPE_SOKOS_MF_RESENDING_BANK_READ[getEnvironment()],

@@ -24,28 +24,33 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider(props: PropsWithChildren) {
   const [userData, setUserData] = useState<UserData>();
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Track loading state
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
   const location = useLocation();
 
   async function authenticateUser() {
     try {
       const response = await fetch(authURL);
-      return await response.json();
-    } catch (error) {
-      throw new ApiError("Internal server error, " + error);
-    } finally {
+      const data = await response.json();
+      if (data.error) {
+        setError(new ApiError("Failed to fetch user data", data.error));
+      }
+      setUserData(data);
       setIsAuthenticated(true);
+    } catch (error) {
+      setError(new ApiError("Internal server error, " + error));
     }
   }
 
   useEffect(() => {
-    authenticateUser().then((response) => {
-      if (response.error) {
-        throw new ApiError("Failed to fetch user data", response.error);
-      }
-      setUserData(response);
+    authenticateUser().catch((error) => {
+      setError(error);
     });
   }, [location]);
+
+  if (error) {
+    throw error;
+  }
 
   if (!isAuthenticated) {
     return <ContentLoader />;
