@@ -4,7 +4,7 @@ import pengesekk from "../../assets/images/pengesekk.svg";
 import AppCard from "../components/appcard/AppCard";
 import { useAuthContext } from "../components/auth/AuthProvider";
 import useApps from "../hooks/useApps";
-import styles from "./Hjem.module.css";
+import styles from "./Home.module.css";
 
 export default function Home() {
   const authContext = useAuthContext();
@@ -25,9 +25,9 @@ export default function Home() {
 
   return (
     <>
-      <div className={styles.hjem}>
-        <div className={styles.hjem__guidepanel}>
-          <div className={styles.hjem__heading}>
+      <div className={styles.home}>
+        <div className={styles.home__guidepanel}>
+          <div className={styles.home__heading}>
             <Heading level="1" size="large" spacing>
               God dag, {authContext.userData.name}
             </Heading>
@@ -58,7 +58,7 @@ export default function Home() {
         >
           Vis alle
         </Switch>
-        <div className={styles.hjem__apps}>{appCards()}</div>
+        <div className={styles.home__apps}>{appCards()}</div>
       </div>
     </>
   );
