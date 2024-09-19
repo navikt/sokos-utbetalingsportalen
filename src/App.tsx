@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Microfrontend from "./Microfrontend";
-import { ErrorBoundary } from "./components/ErrorBoundary";
+import ErrorBoundary from "./components/ErrorBoundary";
 import { AuthProvider } from "./components/auth/AuthProvider";
 import Utbetalingsportalen from "./components/layout/Utbetalingsportalen";
 import { Apps } from "./models/apps";
