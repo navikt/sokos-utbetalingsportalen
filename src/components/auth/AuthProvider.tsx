@@ -13,6 +13,7 @@ import {
 import { UserData } from "../../models/userData";
 import { ApiError } from "../../types/errors";
 import { authURL } from "../../urls";
+import { sendUserDataEvent } from "../../utils/userEvent";
 import ContentLoader from "../loader/ContentLoader";
 
 interface AuthContextType {
@@ -37,6 +38,7 @@ export function AuthProvider(props: PropsWithChildren) {
       }
       setUserData(data);
       setIsAuthenticated(true);
+      sendUserDataEvent("userData", data);
     } catch (error) {
       setError(new ApiError("Internal server error, " + error));
     }
