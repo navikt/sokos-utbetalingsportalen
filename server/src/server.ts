@@ -11,7 +11,6 @@ import { routeProxyWithOboToken } from "./proxy";
 export const server = express();
 
 const SERVER_PORT = 8080;
-const BASE_PATH = "/utbetalingsportalen";
 const BUILD_PATH = path.resolve(__dirname, "../dist");
 
 server.use(
@@ -32,7 +31,6 @@ const startServer = () => {
   server.use(express.json());
 
   server.use(
-    BASE_PATH,
     expressStaticGzip(BUILD_PATH, {
       index: false,
       enableBrotli: true,
@@ -46,7 +44,7 @@ const startServer = () => {
 
   // Health checks
   server.get(
-    [`${BASE_PATH}/internal/isAlive`, `${BASE_PATH}/internal/isReady`],
+    ["/internal/isAlive", "/internal/isReady"],
     (_req: Request, res: Response) => res.sendStatus(200),
   );
 
