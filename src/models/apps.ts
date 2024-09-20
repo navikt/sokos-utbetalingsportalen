@@ -49,7 +49,7 @@ export const Apps: Array<App> = [
   },
   {
     app: "KRP",
-    title: "Kontoregister person kontosøk",
+    title: "Kontoregister person",
     description: "Søk etter personer og konti",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ,
     route: ROUTE_PATH.SOKOS_UP_KRP,
