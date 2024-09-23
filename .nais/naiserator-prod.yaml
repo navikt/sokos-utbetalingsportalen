@@ -9,10 +9,10 @@ spec:
   image: "{{{ image }}}"
   port: 8080
   liveness:
-    path: /utbetalingsportalen/internal/isAlive
+    path: /internal/isAlive
     initialDelay: 10
   readiness:
-    path: /utbetalingsportalen/internal/isReady
+    path: /internal/isReady
     initialDelay: 10
   replicas:
     min: 1
