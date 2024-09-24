@@ -46,10 +46,10 @@ spec:
         - application: sokos-up-ors-api
         - application: sokos-oppdrag
         - application: sokos-up-kontoregister-api
-        - application: sokos-ur-iso
       external:
         - host: sokos-skattekort-person.dev-fss-pub.nais.io
         - host: sokos-oppdrag.dev-fss-pub.nais.io
+        - host: sokos-ur-iso.dev-fss-pub.nais.io
   ingresses:
     - "https://utbetalingsportalen.intern.dev.nav.no"
     - "https://utbetalingsportalen.ansatt.dev.nav.no"
