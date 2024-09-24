@@ -32,6 +32,7 @@ spec:
           - id: "0de8d01f-8ad0-4391-841c-55392956bc17" # 0000-GA-SOKOS-MF-Attestasjon-READ
           - id: "391bec9e-e71e-42cb-a030-56c394dd13fd" # 0000-GA-SOKOS-MF-Resending-Bank-READ
           - id: "bdcedce3-dab5-4b68-b1d3-8625cd0d3b55" # 0000-GA-SOKOS-MF-KRO-READ
+          - id: "fc58f7f5-2e9a-497c-a121-e476a91330b5" # 0000-GA-SOKOS-MF-UTBETALING-READ
         extra:
           - "NAVident"
     sidecar:
