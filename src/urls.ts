@@ -60,6 +60,12 @@ const SOKOS_UP_RESENDING_BANK_URL = {
   production: url("sokos-up-resending-bank"),
 } as const satisfies Dictionary;
 
+const SOKOS_UP_UTBETALING_URL = {
+  local: "http://localhost:5173/microfrontend/bundle.js",
+  development: url("sokos-up-utbetaling"),
+  production: url("sokos-up-utbetaling"),
+} as const satisfies Dictionary;
+
 export const authURL = AUTH_URL[getEnvironment()];
 export const sokosUpAttestasjonURL = SOKOS_UP_ATTESTASJON_URL[getEnvironment()];
 export const sokosMikrofrontendTemplateURL =
@@ -72,3 +78,4 @@ export const sokosUpOppdragsinfoURL =
   SOKOS_UP_OPPDRAGSINFO_URL[getEnvironment()];
 export const sokosUpResendingBankURL =
   SOKOS_UP_RESENDING_BANK_URL[getEnvironment()];
+export const sokosUpUtbetalingURL = SOKOS_UP_UTBETALING_URL[getEnvironment()];

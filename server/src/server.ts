@@ -75,6 +75,13 @@ const startServer = () => {
       Config.SOKOS_UR_ISO,
       Config.SOKOS_UR_ISO_SCOPE,
     );
+
+    // sokos-utbetaling-api
+    routeProxyWithOboToken(
+      Config.SOKOS_UTBETALING_API,
+      Config.SOKOS_UTBETALING_API_SCOPE,
+      Config.SOKOS_UTBETALING_API_PROXY,
+    );
   }
 
   // sokos-skattekort-person
