@@ -56,6 +56,12 @@ const AD_GRUPPE_SOKOS_MF_UTBETALING_READ = {
   production: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 } as const satisfies Dictionary;
 
+const AD_GRUPPE_SOKOS_MF_BUNTKONTROLL_READ = {
+  local: "3bc37bf2-8e76-407c-ad4a-d2c79edc241e",
+  development: "3bc37bf2-8e76-407c-ad4a-d2c79edc241e",
+  production: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+} as const satisfies Dictionary;
+
 export const AzureAdGroupName = {
   AD_GRUPPE_SOKOS_MF_ATTESTASJON_READ: "AD_GRUPPE_SOKOS_MF_ATTESTASJON_READ",
   AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ:
@@ -68,6 +74,7 @@ export const AzureAdGroupName = {
   AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ: "AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ",
   AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ: "AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ",
   AD_GRUPPE_SOKOS_MF_UTBETALING_READ: "AD_GRUPPE_SOKOS_MF_UTBETALING_READ",
+  AD_GRUPPE_SOKOS_MF_BUNTKONTROLL_READ: "AD_GRUPPE_SOKOS_MF_BUNTKONTROLL_READ",
 } as const satisfies Dictionary;
 
 export type AzureAdGroupNames = keyof typeof AzureAdGroupName;
@@ -88,4 +95,6 @@ export const AzureAdGroupNameId = {
     AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ[getEnvironment()],
   AD_GRUPPE_SOKOS_MF_UTBETALING_READ:
     AD_GRUPPE_SOKOS_MF_UTBETALING_READ[getEnvironment()],
+  AD_GRUPPE_SOKOS_MF_BUNTKONTROLL_READ:
+    AD_GRUPPE_SOKOS_MF_BUNTKONTROLL_READ[getEnvironment()],
 } as const satisfies Dictionary;

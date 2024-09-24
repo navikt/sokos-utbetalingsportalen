@@ -2,6 +2,7 @@ import { AzureAdGroupName, AzureAdGroupNames } from "../auth/azureAdGroups";
 import {
   sokosMikrofrontendTemplateURL,
   sokosUpAttestasjonURL,
+  sokosUpBuntkontrollURL,
   sokosUpKroURL,
   sokosUpKrpURL,
   sokosUpOppdragsinfoURL,
@@ -95,5 +96,13 @@ export const Apps: Array<App> = [
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALING_READ,
     route: ROUTE_PATH.SOKOS_UP_UTBETALING,
     url: sokosUpUtbetalingURL,
+  },
+  {
+    app: "BUNTKONTROLL",
+    title: "Buntkontroll",
+    description: "Oversikt over bunter sendt til bank",
+    group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_BUNTKONTROLL_READ,
+    route: ROUTE_PATH.SOKOS_UP_BUNTKONTROLL,
+    url: sokosUpBuntkontrollURL,
   },
 ];
