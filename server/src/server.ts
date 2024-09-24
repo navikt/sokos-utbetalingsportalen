@@ -75,6 +75,13 @@ const startServer = () => {
       Config.SOKOS_UR_ISO,
       Config.SOKOS_UR_ISO_SCOPE,
     );
+
+    // sokos-utbetaling-api
+    routeProxyWithOboToken(
+      Config.SOKOS_UTBETALING_API,
+      Config.SOKOS_UTBETALING_API_SCOPE,
+      Config.SOKOS_UTBETALING_API_PROXY,
+    );
   }
 
   // sokos-skattekort-person
@@ -96,13 +103,6 @@ const startServer = () => {
     Config.SOKOS_KONTOREGISTER_API_PROXY,
     Config.SOKOS_KONTOREGISTER_API,
     Config.SOKOS_KONTOREGISTER_API_SCOPE,
-  );
-
-  // sokos-utbetaling-api
-  routeProxyWithOboToken(
-    Config.SOKOS_UTBETALING_API,
-    Config.SOKOS_UTBETALING_API_SCOPE,
-    Config.SOKOS_UTBETALING_API_PROXY,
   );
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
