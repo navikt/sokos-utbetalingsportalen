@@ -50,6 +50,7 @@ spec:
         - host: sokos-skattekort-person.dev-fss-pub.nais.io
         - host: sokos-oppdrag.dev-fss-pub.nais.io
         - host: sokos-ur-iso.dev-fss-pub.nais.io
+        - host: sokos-utbetaling-api.dev-fss-pub.nais.io
   ingresses:
     - "https://utbetalingsportalen.intern.dev.nav.no"
     - "https://utbetalingsportalen.ansatt.dev.nav.no"
@@ -107,3 +108,11 @@ spec:
       value: api://dev-fss.okonomi.sokos-ur-iso/.default
     - name: SOKOS_UR_ISO_PROXY
       value: "/sokos-ur-iso"
+
+    # sokos-utbetaling-api
+    - name: SOKOS_UTBETALING_API
+      value: https://sokos-utbetaling-api.dev-fss-pub.nais.io
+    - name: SOKOS_UTBETALING_API_SCOPE
+      value: api://dev-fss.okonomi.sokos-utbetaling-api/.default
+    - name: SOKOS_UTBETALING_API_PROXY
+      value: "/sokos-utbetaling-api"

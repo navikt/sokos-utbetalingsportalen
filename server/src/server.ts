@@ -98,6 +98,13 @@ const startServer = () => {
     Config.SOKOS_KONTOREGISTER_API_SCOPE,
   );
 
+  // sokos-utbetaling-api
+  routeProxyWithOboToken(
+    Config.SOKOS_UTBETALING_API,
+    Config.SOKOS_UTBETALING_API_SCOPE,
+    Config.SOKOS_UTBETALING_API_PROXY,
+  );
+
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
 
   server.get(["/", "/*"], (_req: Request, res: Response) =>

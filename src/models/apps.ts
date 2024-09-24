@@ -8,6 +8,7 @@ import {
   sokosUpOrsURL,
   sokosUpResendingBankURL,
   sokosUpSkattekortURL,
+  sokosUpUtbetalingURL,
 } from "../urls";
 import { ROUTE_PATH } from "./routePath";
 
@@ -86,5 +87,13 @@ export const Apps: Array<App> = [
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ,
     route: ROUTE_PATH.SOKOS_UP_SKATTEKORT,
     url: sokosUpSkattekortURL,
+  },
+  {
+    app: "UTBETALING",
+    title: "Utbetaling",
+    description: "Søk etter utbetalinger",
+    group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALING_READ,
+    route: ROUTE_PATH.SOKOS_UP_UTBETALING,
+    url: sokosUpUtbetalingURL,
   },
 ];

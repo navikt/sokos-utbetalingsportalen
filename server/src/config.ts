@@ -45,6 +45,11 @@ const ConfigSchema = z.object({
   SOKOS_UR_ISO: z.string().default(""),
   SOKOS_UR_ISO_SCOPE: z.string().default(""),
   SOKOS_UR_ISO_PROXY: z.string().default(""),
+
+  // sokos-utbetaling-api
+  SOKOS_UTBETALING_API: z.string().default(""),
+  SOKOS_UTBETALING_API_SCOPE: z.string().default(""),
+  SOKOS_UTBETALING_API_PROXY: z.string().default(""),
 });
 
 type Config = z.infer<typeof ConfigSchema>;

@@ -8,6 +8,7 @@ export const ROUTE_PATH = {
   SOKOS_UP_KRP: "/kontoregister-person",
   SOKOS_UP_RESENDING_BANK: "/resending-bank",
   SOKOS_UP_KRO: "/kontoregister-organisasjon",
+  SOKOS_UP_UTBETALING: "/utbetaling",
 } as const;
 
 /**
