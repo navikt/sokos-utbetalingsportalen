@@ -16,10 +16,16 @@ export const setupRouteProxy = (fromPath: string, toTarget: string) => {
   });
 };
 
-export const routeProxyWithOboToken = (
-  path: string,
-  apiUrl: string,
-  apiScope: string,
-) => {
+type RouteProxyWithOboTokenParams = {
+  path: string;
+  apiUrl: string;
+  apiScope: string;
+};
+
+export const routeProxyWithOboToken = ({
+  path,
+  apiUrl,
+  apiScope,
+}: RouteProxyWithOboTokenParams) => {
   server.use(path, setOnBehalfOfToken(apiScope), setupRouteProxy(path, apiUrl));
 };
