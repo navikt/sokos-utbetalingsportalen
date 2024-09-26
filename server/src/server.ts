@@ -56,54 +56,53 @@ const startServer = () => {
 
   if (Config.NAIS_CLUSTER_NAME === "dev-gcp") {
     // sokos-mikrofrontend-api
-    routeProxyWithOboToken(
-      Config.SOKOS_MIKROFRONTEND_PROXY,
-      Config.SOKOS_MIKROFRONTEND_API,
-      Config.SOKOS_MIKROFRONTEND_API_SCOPE,
-    );
+    routeProxyWithOboToken({
+      path: Config.SOKOS_MIKROFRONTEND_PROXY,
+      apiUrl: Config.SOKOS_MIKROFRONTEND_API,
+      apiScope: Config.SOKOS_MIKROFRONTEND_API_SCOPE,
+    });
 
     // sokos-oppdrag
-    routeProxyWithOboToken(
-      Config.SOKOS_OPPDRAG_PROXY,
-      Config.SOKOS_OPPDRAG_API,
-      Config.SOKOS_OPPDRAG_API_SCOPE,
-    );
+    routeProxyWithOboToken({
+      path: Config.SOKOS_OPPDRAG_PROXY,
+      apiUrl: Config.SOKOS_OPPDRAG_API,
+      apiScope: Config.SOKOS_OPPDRAG_API_SCOPE,
+    });
 
     // sokos-ur-iso
-    routeProxyWithOboToken(
-      Config.SOKOS_UR_ISO_PROXY,
-      Config.SOKOS_UR_ISO,
-      Config.SOKOS_UR_ISO_SCOPE,
-    );
+    routeProxyWithOboToken({
+      path: Config.SOKOS_UR_ISO_PROXY,
+      apiUrl: Config.SOKOS_UR_ISO,
+      apiScope: Config.SOKOS_UR_ISO_SCOPE,
+    });
 
     // sokos-utbetaling-api
-    routeProxyWithOboToken(
-      Config.SOKOS_UTBETALING_API,
-      Config.SOKOS_UTBETALING_API_SCOPE,
-      Config.SOKOS_UTBETALING_API_PROXY,
-    );
+    routeProxyWithOboToken({
+      path: Config.SOKOS_UTBETALING_API_PROXY,
+      apiUrl: Config.SOKOS_UTBETALING_API,
+      apiScope: Config.SOKOS_UTBETALING_API_SCOPE,
+    });
   }
-
   // sokos-skattekort-person
-  routeProxyWithOboToken(
-    Config.SOKOS_SKATTEKORT_PROXY,
-    Config.SOKOS_SKATTEKORT_PERSON_API,
-    Config.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
-  );
+  routeProxyWithOboToken({
+    path: Config.SOKOS_SKATTEKORT_PROXY,
+    apiUrl: Config.SOKOS_SKATTEKORT_PERSON_API,
+    apiScope: Config.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
+  });
 
   // sokos-up-ors-api
-  routeProxyWithOboToken(
-    Config.SOKOS_UP_ORS_API_PROXY,
-    Config.SOKOS_UP_ORS_API,
-    Config.SOKOS_UP_ORS_API_SCOPE,
-  );
+  routeProxyWithOboToken({
+    path: Config.SOKOS_UP_ORS_API_PROXY,
+    apiUrl: Config.SOKOS_UP_ORS_API,
+    apiScope: Config.SOKOS_UP_ORS_API_SCOPE,
+  });
 
   // sokos-up-kontoregister-api
-  routeProxyWithOboToken(
-    Config.SOKOS_KONTOREGISTER_API_PROXY,
-    Config.SOKOS_KONTOREGISTER_API,
-    Config.SOKOS_KONTOREGISTER_API_SCOPE,
-  );
+  routeProxyWithOboToken({
+    path: Config.SOKOS_KONTOREGISTER_API_PROXY,
+    apiUrl: Config.SOKOS_KONTOREGISTER_API,
+    apiScope: Config.SOKOS_KONTOREGISTER_API_SCOPE,
+  });
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
 
