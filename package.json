@@ -15,6 +15,7 @@
   "author": "navikt",
   "license": "MIT",
   "dependencies": {
+    "@grafana/faro-react": "^1.10.1",
     "@grafana/faro-web-sdk": "^1.9.0",
     "@navikt/aksel-icons": "^6.15.0",
     "@navikt/ds-css": "^6.15.0",

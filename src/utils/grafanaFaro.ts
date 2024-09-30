@@ -1,3 +1,4 @@
+import { faro } from "@grafana/faro-react";
 import { getWebInstrumentations, initializeFaro } from "@grafana/faro-web-sdk";
 import { getEnvironment } from "./environment";
 
@@ -30,4 +31,10 @@ export function initGrafanaFaro() {
       }),
     ],
   });
+}
+
+export function logFaroError(error: Error) {
+  if (getEnvironment() != "local") {
+    faro.api.pushError(error);
+  }
 }
