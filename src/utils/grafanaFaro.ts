@@ -1,5 +1,8 @@
-import { faro } from "@grafana/faro-react";
-import { getWebInstrumentations, initializeFaro } from "@grafana/faro-web-sdk";
+import {
+  faro,
+  getWebInstrumentations,
+  initializeFaro,
+} from "@grafana/faro-web-sdk";
 import { getEnvironment } from "./environment";
 
 type TelemetryCollectorURL =
