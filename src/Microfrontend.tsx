@@ -28,7 +28,9 @@ export default function Microfrontend(props: MicrofrontendType) {
   return (
     <React.Suspense fallback={<ContentLoader />}>
       <ErrorBoundary FallbackComponent={ErrorMessage} key={location.pathname}>
-        <MicrofrontendBundle />
+        <div id="main-content">
+          <MicrofrontendBundle />
+        </div>
       </ErrorBoundary>
     </React.Suspense>
   );

@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 import SideBar from "../sidebar/SideBar";
 import TopBar from "../topbar/TopBar";
-import styles from "./Utbetalingsportalen.module.css";
+import styles from "./Layout.module.css";
 
-export default function Utbetalingsportalen() {
+export default function Layout() {
   return (
     <>
       <TopBar />

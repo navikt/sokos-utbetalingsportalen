@@ -16,7 +16,7 @@ export default function SideBar() {
           className="bg-neutral-800"
           onClick={() => setShowSideBar(true)}
           variant="primary-neutral"
-          icon={<MenuHamburgerIcon />}
+          icon={<MenuHamburgerIcon title="Åpne meny" />}
         />
       </div>
     );
@@ -33,28 +33,26 @@ export default function SideBar() {
   const iconStyle = "w-6 h-6 pb-[2px]";
 
   return (
-    <>
-      <div className={styles.sidebar}>
-        <div className={styles.closebutton}>
-          <Button
-            className="bg-neutral-800 w-28"
-            onClick={() => setShowSideBar(false)}
-            icon={<XMarkIcon />}
-            iconPosition="right"
-            variant="primary-neutral"
-          >
-            Lukk
-          </Button>
-        </div>
-
-        <ul className={styles.sidebar__links}>
-          <SideBarLink to={ROUTE_PATH.SOKOS_UP_HOME}>
-            <HouseIcon className={iconStyle} />
-            Hjem
-          </SideBarLink>
-          {getMicrofrontendLinks()}
-        </ul>
+    <div className={styles.sidebar} role="navigation">
+      <div className={styles.closebutton}>
+        <Button
+          className="bg-neutral-800 w-28"
+          onClick={() => setShowSideBar(false)}
+          icon={<XMarkIcon title="Lukk meny" />}
+          iconPosition="right"
+          variant="primary-neutral"
+        >
+          Lukk
+        </Button>
       </div>
-    </>
+
+      <ul className={styles.sidebar__links}>
+        <SideBarLink to={ROUTE_PATH.SOKOS_UP_HOME}>
+          <HouseIcon className={iconStyle} />
+          Hjem
+        </SideBarLink>
+        {getMicrofrontendLinks()}
+      </ul>
+    </div>
   );
 }
