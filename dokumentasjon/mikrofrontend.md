@@ -4,9 +4,9 @@
 
 2. Legg inn urler for alle miljøer mikrofrontenden skal kunne brukes under [urls.ts](/src/urls.ts)
 
-3. Legg inn path til applikasjonen din under [routePath.ts](/src/models/routePath.ts)
+3. Legg inn path til applikasjonen din under [routes.ts](/src/routes/routes.ts)
 
-4. Legg inn den nye appen i [apps.ts](/src/models/apps.ts)
+4. Legg inn den nye appen i [MicrofrontendApps.ts](/src/MicrofrontendApp.ts)
 
 5. I [naiserator-dev.yaml](../.nais/naiserator-dev.yaml) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs.
    Se f.eks hvilken `env` variabler de andre har lagt inn.
@@ -29,9 +29,9 @@
 
    ```typescript
      routeProxyWithOboToken(
-      Config.SOKOS_MIKROFRONTEND_PROXY,
-      Config.SOKOS_MIKROFRONTEND_API,
-      Config.SOKOS_MIKROFRONTEND_API_SCOPE,
+      path: Config.SOKOS_MIKROFRONTEND_PROXY,
+      apiUrl: Config.SOKOS_MIKROFRONTEND_API,
+      apiScope: Config.SOKOS_MIKROFRONTEND_API_SCOPE,
     );
    ```
 
