@@ -1,4 +1,4 @@
-import { SERVER_PATH } from "./models/serverPath";
+import { SERVER_ROUTES } from "./routes/serverRoutes";
 import { getEnvironment } from "./utils/environment";
 
 type Dictionary = Record<string, string>;
@@ -8,8 +8,8 @@ const url = (appName: string) =>
 
 const AUTH_URL = {
   local: "http://localhost:5173/mock/auth",
-  development: SERVER_PATH.USER_INFO,
-  production: SERVER_PATH.USER_INFO,
+  development: SERVER_ROUTES.USER_INFO,
+  production: SERVER_ROUTES.USER_INFO,
 } as const satisfies Dictionary;
 
 const SOKOS_UP_ATTESTASJON_URL = {

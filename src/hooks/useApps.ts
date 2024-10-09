@@ -1,6 +1,6 @@
+import { Apps, MicrofrontendApp } from "../MicrofrontendApp";
 import { AzureAdGroupNameId, AzureAdGroupNames } from "../auth/azureAdGroups";
 import { useAuthContext } from "../components/auth/AuthProvider";
-import { App, Apps } from "../models/apps";
 import { getEnvironment } from "../utils/environment";
 
 export default function useApps() {
@@ -19,7 +19,7 @@ export default function useApps() {
     );
   }
 
-  function hideApp(app: App) {
+  function hideApp(app: MicrofrontendApp) {
     return app.onlyForDevelopment && getEnvironment() === "local";
   }
 

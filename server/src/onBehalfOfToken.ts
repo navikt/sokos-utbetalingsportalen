@@ -3,7 +3,7 @@ import { Client, Issuer, TokenSet, errors } from "openid-client";
 import { z } from "zod";
 import Config from "./config";
 import { logger } from "./logger";
-import { retrieveTokenFromHeader } from "./middelwares";
+import { retrieveTokenFromHeader } from "./middlewares";
 
 let _issuer: Issuer<Client>;
 let _client: Client;

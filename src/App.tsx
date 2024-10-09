@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import Microfrontend from "./Microfrontend";
+import { Apps } from "./MicrofrontendApp";
 import { AuthProvider } from "./components/auth/AuthProvider";
 import ErrorBoundary from "./components/error/ErrorBoundary";
 import Utbetalingsportalen from "./components/layout/Utbetalingsportalen";
-import { Apps } from "./models/apps";
 import ErrorPage, { NoAccess, NotFound } from "./pages/ErrorPage";
 import Home from "./pages/Home";
 

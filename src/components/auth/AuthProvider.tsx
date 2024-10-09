@@ -1,4 +1,4 @@
-import React, {
+import {
   PropsWithChildren,
   createContext,
   useContext,
@@ -7,13 +7,13 @@ import React, {
 } from "react";
 import { redirect, useLocation } from "react-router-dom";
 import { Loader } from "@navikt/ds-react";
+import { authURL } from "../../Urls";
 import {
   AzureAdGroupNameId,
   AzureAdGroupNames,
 } from "../../auth/azureAdGroups";
-import { UserData } from "../../models/userData";
-import { ApiError } from "../../types/errors";
-import { authURL } from "../../urls";
+import { ApiError } from "../../types/ApiError";
+import { UserData } from "../../types/UserData";
 
 interface AuthContextType {
   userData: UserData;
