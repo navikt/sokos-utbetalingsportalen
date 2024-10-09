@@ -1,3 +1,5 @@
+import { AzureAdGroupName, AzureAdGroupNames } from "./auth/azureAdGroups";
+import { ROUTES } from "./routes/routes";
 import {
   sokosMikrofrontendTemplateURL,
   sokosUpAttestasjonURL,
@@ -9,9 +11,7 @@ import {
   sokosUpResendingBankURL,
   sokosUpSkattekortURL,
   sokosUpUtbetalingURL,
-} from "./Urls";
-import { AzureAdGroupName, AzureAdGroupNames } from "./auth/azureAdGroups";
-import { ROUTES } from "./routes/routes";
+} from "./urls";
 
 export type MicrofrontendApp = {
   app: string;
