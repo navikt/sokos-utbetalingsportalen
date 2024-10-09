@@ -1,4 +1,3 @@
-import React from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { ChevronRightIcon } from "@navikt/aksel-icons";
 import { Heading, Tooltip } from "@navikt/ds-react";

@@ -5,7 +5,7 @@ import expressStaticGzip from "express-static-gzip";
 import helmet from "helmet";
 import path from "path";
 import Config from "./config";
-import { azureUserInfo, enforceAzureADMiddleware } from "./middelwares";
+import { azureUserInfo, enforceAzureADMiddleware } from "./middlewares";
 import { routeProxyWithOboToken } from "./proxy";
 
 export const server = express();

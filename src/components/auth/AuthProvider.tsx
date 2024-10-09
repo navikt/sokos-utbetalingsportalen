@@ -1,4 +1,4 @@
-import React, {
+import {
   PropsWithChildren,
   createContext,
   useContext,
@@ -11,8 +11,8 @@ import {
   AzureAdGroupNameId,
   AzureAdGroupNames,
 } from "../../auth/azureAdGroups";
-import { UserData } from "../../models/userData";
-import { ApiError } from "../../types/errors";
+import { ApiError } from "../../types/ApiError";
+import { UserData } from "../../types/UserData";
 import { authURL } from "../../urls";
 
 interface AuthContextType {
