@@ -7,13 +7,13 @@ import {
 } from "react";
 import { redirect, useLocation } from "react-router-dom";
 import { Loader } from "@navikt/ds-react";
-import { authURL } from "../../Urls";
 import {
   AzureAdGroupNameId,
   AzureAdGroupNames,
 } from "../../auth/azureAdGroups";
 import { ApiError } from "../../types/ApiError";
 import { UserData } from "../../types/UserData";
+import { authURL } from "../../urls";
 
 interface AuthContextType {
   userData: UserData;
