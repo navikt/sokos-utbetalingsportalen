@@ -3,7 +3,7 @@ import Microfrontend from "./Microfrontend";
 import { Apps } from "./MicrofrontendApp";
 import { AuthProvider } from "./components/auth/AuthProvider";
 import ErrorBoundary from "./components/error/ErrorBoundary";
-import Utbetalingsportalen from "./components/layout/Utbetalingsportalen";
+import Layout from "./components/layout/Layout";
 import ErrorPage, { NoAccess, NotFound } from "./pages/ErrorPage";
 import Home from "./pages/Home";
 
@@ -22,11 +22,7 @@ export default function App() {
     <ErrorBoundary>
       <AuthProvider>
         <Routes>
-          <Route
-            path="/"
-            element={<Utbetalingsportalen />}
-            errorElement={<ErrorPage />}
-          >
+          <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
             <Route path="/" element={<Home />} />
             {microfrontendRoutes()}
             <Route path="/forbidden" element={<NoAccess />} />

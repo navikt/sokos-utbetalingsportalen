@@ -9,11 +9,14 @@ export default function TopBar() {
   return (
     <InternalHeader>
       <div className={styles.topbar__logo}>
-        <img src={nav} alt="logo" />
+        <img src={nav} alt="NAV logo" />
       </div>
       <InternalHeader.Title as={Link} to={"/"} className="border-none">
         Utbetalingsportalen
       </InternalHeader.Title>
+      <a href="#main-content" className="sr-only">
+        Hopp til hovedinnhold
+      </a>
       <Spacer />
       <InternalHeader.User
         name={authContext.userData.name}
