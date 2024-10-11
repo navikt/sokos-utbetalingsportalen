@@ -2,7 +2,7 @@ import { useState } from "react";
 import { HouseIcon, MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
 import { Button } from "@navikt/ds-react";
 import useApps from "../../hooks/useApps";
-import { ROUTE_PATH } from "../../models/routePath";
+import { ROUTES } from "../../routes/routes";
 import styles from "./SideBar.module.css";
 import SideBarLink from "./SideBarLink";
 
@@ -47,7 +47,7 @@ export default function SideBar() {
       </div>
 
       <ul className={styles.sidebar__links}>
-        <SideBarLink to={ROUTE_PATH.SOKOS_UP_HOME}>
+        <SideBarLink to={ROUTES.SOKOS_UP_HOME}>
           <HouseIcon className={iconStyle} title="Hus ikon" />
           Hjem
         </SideBarLink>

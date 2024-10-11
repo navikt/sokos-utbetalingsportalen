@@ -1,5 +1,6 @@
 import React, { ErrorInfo } from "react";
 import ErrorPage from "../../pages/ErrorPage";
+import { logFaroError } from "../../utils/grafanaFaro";
 
 interface Props {
   children: React.ReactNode;
@@ -22,6 +23,7 @@ class ErrorBoundary extends React.Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    logFaroError(error);
     this.setState({ hasError: true, error, errorInfo });
   }
 

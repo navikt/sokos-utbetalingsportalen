@@ -1,4 +1,5 @@
-import { AzureAdGroupName, AzureAdGroupNames } from "../auth/azureAdGroups";
+import { AzureAdGroupName, AzureAdGroupNames } from "./auth/azureAdGroups";
+import { ROUTES } from "./routes/routes";
 import {
   sokosMikrofrontendTemplateURL,
   sokosUpAttestasjonURL,
@@ -10,10 +11,9 @@ import {
   sokosUpResendingBankURL,
   sokosUpSkattekortURL,
   sokosUpUtbetalingURL,
-} from "../urls";
-import { ROUTE_PATH } from "./routePath";
+} from "./urls";
 
-export type App = {
+export type MicrofrontendApp = {
   app: string;
   title: string;
   description: string;
@@ -23,13 +23,13 @@ export type App = {
   onlyForDevelopment?: boolean;
 };
 
-export const Apps: Array<App> = [
+export const Apps: Array<MicrofrontendApp> = [
   {
     app: "ATTESTASJON",
     title: "Attestasjon",
     description: "Attestering av oppdrag",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ATTESTASJON_READ,
-    route: ROUTE_PATH.SOKOS_UP_ATTESTASJON,
+    route: ROUTES.SOKOS_UP_ATTESTASJON,
     url: sokosUpAttestasjonURL,
   },
   {
@@ -37,7 +37,7 @@ export const Apps: Array<App> = [
     title: "Grensesnittmal",
     description: "Dette er en blank mal for et grensesnitt",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ,
-    route: ROUTE_PATH.SOKOS_MIKROFRONTEND_TEMPLATE,
+    route: ROUTES.SOKOS_MIKROFRONTEND_TEMPLATE,
     url: sokosMikrofrontendTemplateURL,
     onlyForDevelopment: true,
   },
@@ -46,7 +46,7 @@ export const Apps: Array<App> = [
     title: "Resending til bank",
     description: "Resending av meldinger til bank",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_RESENDING_BANK_READ,
-    route: ROUTE_PATH.SOKOS_UP_RESENDING_BANK,
+    route: ROUTES.SOKOS_UP_RESENDING_BANK,
     url: sokosUpResendingBankURL,
   },
   {
@@ -54,7 +54,7 @@ export const Apps: Array<App> = [
     title: "Kontoregister person",
     description: "Søk etter personer og konti",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ,
-    route: ROUTE_PATH.SOKOS_UP_KRP,
+    route: ROUTES.SOKOS_UP_KRP,
     url: sokosUpKrpURL,
   },
   {
@@ -62,7 +62,7 @@ export const Apps: Array<App> = [
     title: "Kontoregister organisasjon",
     description: "Søk etter kontonummer til organisasjoner",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRO_READ,
-    route: ROUTE_PATH.SOKOS_UP_KRO,
+    route: ROUTES.SOKOS_UP_KRO,
     url: sokosUpKroURL,
   },
   {
@@ -70,7 +70,7 @@ export const Apps: Array<App> = [
     title: "Oppdragsinfo",
     description: "Søk etter oppdrag i Oppdragssystemet",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ,
-    route: ROUTE_PATH.SOKOS_UP_OPPDRAGSINFO,
+    route: ROUTES.SOKOS_UP_OPPDRAGSINFO,
     url: sokosUpOppdragsinfoURL,
   },
   {
@@ -78,7 +78,7 @@ export const Apps: Array<App> = [
     title: "Oppslag i Reskontro Stønad",
     description: "Søk etter posteringer fra Abetal og UR",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ,
-    route: ROUTE_PATH.SOKOS_UP_ORS,
+    route: ROUTES.SOKOS_UP_ORS,
     url: sokosUpOrsURL,
   },
   {
@@ -86,7 +86,7 @@ export const Apps: Array<App> = [
     title: "Skattekort",
     description: "Søk etter skattekort for personer i OS-Eskatt",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ,
-    route: ROUTE_PATH.SOKOS_UP_SKATTEKORT,
+    route: ROUTES.SOKOS_UP_SKATTEKORT,
     url: sokosUpSkattekortURL,
   },
   {
@@ -94,7 +94,7 @@ export const Apps: Array<App> = [
     title: "Utbetaling",
     description: "Søk etter utbetalinger",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALING_READ,
-    route: ROUTE_PATH.SOKOS_UP_UTBETALING,
+    route: ROUTES.SOKOS_UP_UTBETALING,
     url: sokosUpUtbetalingURL,
   },
   {
@@ -102,7 +102,7 @@ export const Apps: Array<App> = [
     title: "Buntkontroll",
     description: "Oversikt over bunter sendt til bank",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_BUNTKONTROLL_READ,
-    route: ROUTE_PATH.SOKOS_UP_BUNTKONTROLL,
+    route: ROUTES.SOKOS_UP_BUNTKONTROLL,
     url: sokosUpBuntkontrollURL,
   },
 ];

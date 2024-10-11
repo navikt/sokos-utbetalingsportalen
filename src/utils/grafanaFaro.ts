@@ -1,4 +1,8 @@
-import { getWebInstrumentations, initializeFaro } from "@grafana/faro-web-sdk";
+import {
+  faro,
+  getWebInstrumentations,
+  initializeFaro,
+} from "@grafana/faro-web-sdk";
 import { getEnvironment } from "./environment";
 
 type TelemetryCollectorURL =
@@ -30,4 +34,10 @@ export function initGrafanaFaro() {
       }),
     ],
   });
+}
+
+export function logFaroError(error: Error) {
+  if (getEnvironment() != "local") {
+    faro.api.pushError(error);
+  }
 }
