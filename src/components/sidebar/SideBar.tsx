@@ -11,12 +11,12 @@ export default function SideBar() {
   const { authorizedApps } = useApps();
   if (!showSideBar) {
     return (
-      <div className={`${styles.closed} ${styles.sidebar}`}>
+      <div className={`${styles.closed} ${styles.sidebar}`} role="navigation">
         <Button
           className="bg-neutral-800"
           onClick={() => setShowSideBar(true)}
           variant="primary-neutral"
-          icon={<MenuHamburgerIcon title="Åpne meny" />}
+          icon={<MenuHamburgerIcon title="Hamburgermeny ikon" />}
         />
       </div>
     );
@@ -38,7 +38,7 @@ export default function SideBar() {
         <Button
           className="bg-neutral-800 w-28"
           onClick={() => setShowSideBar(false)}
-          icon={<XMarkIcon title="Lukk meny" />}
+          icon={<XMarkIcon title="X mark ikon" />}
           iconPosition="right"
           variant="primary-neutral"
         >
@@ -48,7 +48,7 @@ export default function SideBar() {
 
       <ul className={styles.sidebar__links}>
         <SideBarLink to={ROUTE_PATH.SOKOS_UP_HOME}>
-          <HouseIcon className={iconStyle} />
+          <HouseIcon className={iconStyle} title="Hus ikon" />
           Hjem
         </SideBarLink>
         {getMicrofrontendLinks()}

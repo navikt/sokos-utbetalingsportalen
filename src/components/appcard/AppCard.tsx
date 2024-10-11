@@ -19,7 +19,7 @@ export default function AppCard(props: AppCardProps) {
           {props.title}
         </Heading>
         <div className={styles.appcard__arrow}>
-          <ChevronRightIcon />
+          <ChevronRightIcon title="Chevron ikon" />
         </div>
       </div>
       <div className={styles.appcard__description}>{props.description}</div>

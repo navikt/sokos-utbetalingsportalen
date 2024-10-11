@@ -24,7 +24,7 @@ export default function Home() {
   }
 
   return (
-    <div id="main-content">
+    <main id="main-content">
       <div className={styles.home}>
         <div className={styles.home__guidepanel}>
           <div className={styles.home__heading}>
@@ -60,6 +60,6 @@ export default function Home() {
         </Switch>
         <div className={styles.home__apps}>{appCards()}</div>
       </div>
-    </div>
+    </main>
   );
 }
