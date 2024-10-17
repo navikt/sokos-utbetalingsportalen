@@ -44,7 +44,6 @@ spec:
   accessPolicy:
     outbound:
       rules:
-        - application: sokos-mikrofrontend-api
         - application: sokos-up-ors-api
         - application: sokos-oppdrag
         - application: sokos-up-kontoregister-api
@@ -63,14 +62,6 @@ spec:
       cpu: 500m
       memory: 1024Mi
   env:
-    # Mikrofrontend-template
-    - name: SOKOS_MIKROFRONTEND_API
-      value: http://sokos-mikrofrontend-api
-    - name: SOKOS_MIKROFRONTEND_API_SCOPE
-      value: api://dev-gcp.okonomi.sokos-mikrofrontend-api/.default
-    - name: SOKOS_MIKROFRONTEND_PROXY
-      value: "/mikrofrontend-api"
-
     # sokos-up-ors-api
     - name: SOKOS_UP_ORS_API
       value: http://sokos-up-ors-api
