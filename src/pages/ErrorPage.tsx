@@ -13,7 +13,10 @@ export default function ErrorPage({
 }: ErrorPageType) {
   return (
     <div className={styles.errorPage}>
-      <ChatExclamationmarkIcon title="a11y-title" fontSize="6rem" />
+      <ChatExclamationmarkIcon
+        title="Chat exclamationmark ikon"
+        fontSize="6rem"
+      />
       <Heading level="1" size={"medium"}>
         {title}
       </Heading>

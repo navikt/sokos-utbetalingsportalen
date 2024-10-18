@@ -29,7 +29,7 @@ const AD_GRUPPE_SOKOS_MF_KRP_READ = {
 const AD_GRUPPE_SOKOS_MF_KRO_READ = {
   local: "bdcedce3-dab5-4b68-b1d3-8625cd0d3b55",
   development: "bdcedce3-dab5-4b68-b1d3-8625cd0d3b55",
-  production: "TODO",
+  production: "e1635067-dfc9-4fb8-8405-d50e9672cf5c",
 } as const satisfies Dictionary;
 
 const AD_GRUPPE_SOKOS_MF_ORS_READ = {

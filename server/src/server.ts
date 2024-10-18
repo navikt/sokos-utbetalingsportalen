@@ -55,13 +55,6 @@ const startServer = () => {
   server.get("/userinfo", azureUserInfo);
 
   if (Config.NAIS_CLUSTER_NAME === "dev-gcp") {
-    // sokos-mikrofrontend-api
-    routeProxyWithOboToken({
-      path: Config.SOKOS_MIKROFRONTEND_PROXY,
-      apiUrl: Config.SOKOS_MIKROFRONTEND_API,
-      apiScope: Config.SOKOS_MIKROFRONTEND_API_SCOPE,
-    });
-
     // sokos-oppdrag
     routeProxyWithOboToken({
       path: Config.SOKOS_OPPDRAG_PROXY,

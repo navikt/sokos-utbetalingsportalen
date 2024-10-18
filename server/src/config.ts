@@ -31,11 +31,6 @@ const ConfigSchema = z.object({
   SOKOS_KONTOREGISTER_API_SCOPE: z.string(),
   SOKOS_KONTOREGISTER_API_PROXY: z.string(),
 
-  // sokos-mikrofrontend-template
-  SOKOS_MIKROFRONTEND_API: z.string().default(""),
-  SOKOS_MIKROFRONTEND_API_SCOPE: z.string().default(""),
-  SOKOS_MIKROFRONTEND_PROXY: z.string().default(""),
-
   // sokos-nav-oppdrag
   SOKOS_OPPDRAG_API: z.string().default(""),
   SOKOS_OPPDRAG_API_SCOPE: z.string().default(""),
