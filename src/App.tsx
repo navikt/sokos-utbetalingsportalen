@@ -9,7 +9,7 @@ import Home from "./pages/Home";
 
 export default function App() {
   function microfrontendRoutes() {
-    return Apps.map((app) => (
+    return Apps.sort((a, b) => a.title.localeCompare(b.title)).map((app) => (
       <Route
         key={app.title}
         path={`${app.route}/*`}
