@@ -2,6 +2,12 @@ import { getEnvironment } from "../utils/environment";
 
 type Dictionary = Record<string, string>;
 
+const AD_GRUPPE_SOKOS_MF_VENTEREGISTER_READ = {
+  local: "48a80bbb-be45-4ef6-aab8-21604f057f47",
+  development: "48a80bbb-be45-4ef6-aab8-21604f057f47",
+  production: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+} as const satisfies Dictionary;
+
 const AD_GRUPPE_SOKOS_MF_ATTESTASJON_READ = {
   local: "0de8d01f-8ad0-4391-841c-55392956bc17",
   development: "0de8d01f-8ad0-4391-841c-55392956bc17",
@@ -63,6 +69,8 @@ const AD_GRUPPE_SOKOS_MF_BUNTKONTROLL_READ = {
 } as const satisfies Dictionary;
 
 export const AzureAdGroupName = {
+  AD_GRUPPE_SOKOS_MF_VENTEREGISTER_READ:
+    "AD_GRUPPE_SOKOS_MF_VENTEREGISTER_READ",
   AD_GRUPPE_SOKOS_MF_ATTESTASJON_READ: "AD_GRUPPE_SOKOS_MF_ATTESTASJON_READ",
   AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ:
     "AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ",
@@ -80,6 +88,8 @@ export const AzureAdGroupName = {
 export type AzureAdGroupNames = keyof typeof AzureAdGroupName;
 
 export const AzureAdGroupNameId = {
+  AD_GRUPPE_SOKOS_MF_VENTEREGISTER_READ:
+    AD_GRUPPE_SOKOS_MF_VENTEREGISTER_READ[getEnvironment()],
   AD_GRUPPE_SOKOS_MF_ATTESTASJON_READ:
     AD_GRUPPE_SOKOS_MF_ATTESTASJON_READ[getEnvironment()],
   AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ:
