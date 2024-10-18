@@ -1,5 +1,6 @@
 export const ROUTES = {
   SOKOS_UP_HOME: "/",
+  SOKOS_UP_VENTEREGISTER: "/venteregister",
   SOKOS_UP_ATTESTASJON: "/attestasjon",
   SOKOS_MIKROFRONTEND_TEMPLATE: "/mikrofrontend",
   SOKOS_UP_ORS: "/oppslag-reskontro-stønad",

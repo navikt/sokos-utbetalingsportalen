@@ -12,6 +12,12 @@ const AUTH_URL = {
   production: SERVER_ROUTES.USER_INFO,
 } as const satisfies Dictionary;
 
+const SOKOS_UP_VENTEREGISTER_URL = {
+  local: "http://localhost:5173/microfrontend/bundle.js",
+  development: url("sokos-up-venteregister"),
+  production: url("sokos-up-venteregister"),
+} as const satisfies Dictionary;
+
 const SOKOS_UP_ATTESTASJON_URL = {
   local: "http://localhost:5173/microfrontend/bundle.js",
   development: url("sokos-up-attestasjon"),
@@ -73,6 +79,8 @@ const SOKOS_UP_BUNTKONTROLL_URL = {
 } as const satisfies Dictionary;
 
 export const authURL = AUTH_URL[getEnvironment()];
+export const sokosUpVenteregisterURL =
+  SOKOS_UP_VENTEREGISTER_URL[getEnvironment()];
 export const sokosUpAttestasjonURL = SOKOS_UP_ATTESTASJON_URL[getEnvironment()];
 export const sokosMikrofrontendTemplateURL =
   SOKOS_MIKROFRONTEND_TEMPLATE_URL[getEnvironment()];

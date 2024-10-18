@@ -11,6 +11,7 @@ import {
   sokosUpResendingBankURL,
   sokosUpSkattekortURL,
   sokosUpUtbetalingURL,
+  sokosUpVenteregisterURL,
 } from "./urls";
 
 export type MicrofrontendApp = {
@@ -24,6 +25,14 @@ export type MicrofrontendApp = {
 };
 
 export const Apps: Array<MicrofrontendApp> = [
+  {
+    app: "VENTEREGISTER",
+    title: "Venteregister",
+    description: "Venteregister for oppdrag",
+    group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_VENTEREGISTER_READ,
+    route: ROUTES.SOKOS_UP_VENTEREGISTER,
+    url: sokosUpVenteregisterURL,
+  },
   {
     app: "ATTESTASJON",
     title: "Attestasjon",
