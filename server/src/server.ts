@@ -86,6 +86,13 @@ const startServer = () => {
     apiScope: Config.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
   });
 
+  // sokos-spk-mottak
+  routeProxyWithOboToken({
+    path: Config.SOKOS_SPK_MOTTAK_PROXY,
+    apiUrl: Config.SOKOS_SPK_MOTTAK_API,
+    apiScope: Config.SOKOS_SPK_MOTTAK_API_SCOPE,
+  });
+
   // sokos-up-ors-api
   routeProxyWithOboToken({
     path: Config.SOKOS_UP_ORS_API_PROXY,

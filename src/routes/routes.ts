@@ -5,6 +5,7 @@ export const ROUTES = {
   SOKOS_MIKROFRONTEND_TEMPLATE: "/mikrofrontend",
   SOKOS_UP_ORS: "/oppslag-reskontro-stønad",
   SOKOS_UP_SKATTEKORT: "/skattekort",
+  SOKOS_UP_SPK: "/spk",
   SOKOS_UP_OPPDRAGSINFO: "/oppdragsinfo",
   SOKOS_UP_KRP: "/kontoregister-person",
   SOKOS_UP_RESENDING_BANK: "/resending-bank",
