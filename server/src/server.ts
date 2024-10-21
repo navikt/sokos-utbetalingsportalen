@@ -43,10 +43,13 @@ const startServer = () => {
   );
 
   // Health checks
-  server.get(
-    ["/internal/isAlive", "/internal/isReady"],
-    (_req: Request, res: Response) => res.sendStatus(200),
-  );
+  server.get("/internal/isAlive", (_req: Request, res: Response) => {
+    res.sendStatus(200);
+  });
+
+  server.get("/internal/isReady", (_req: Request, res: Response) => {
+    res.sendStatus(200);
+  });
 
   // Enforce Azure AD authentication
   server.use(`*`, enforceAzureADMiddleware);
