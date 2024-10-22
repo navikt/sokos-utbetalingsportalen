@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { redirect } from "react-router-dom";
 import { AuthContext } from "../components/auth/AuthProvider";
 import { ApiError } from "../types/ApiError";
 import { UserData } from "../types/UserData";
@@ -20,6 +19,5 @@ export function checkRouteAccess(
   groupName: AzureAdGroupNames,
 ) {
   const adGroups = userData.adGroups;
-  if (adGroups?.some((id) => id === AzureAdGroupNameId[groupName])) return null;
-  return redirect("/forbidden");
+  return adGroups?.some((id) => id === AzureAdGroupNameId[groupName]);
 }
