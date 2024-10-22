@@ -1,16 +1,6 @@
-import {
-  PropsWithChildren,
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import { redirect, useLocation } from "react-router-dom";
+import { PropsWithChildren, createContext, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Loader } from "@navikt/ds-react";
-import {
-  AzureAdGroupNameId,
-  AzureAdGroupNames,
-} from "../../auth/azureAdGroups";
 import { ApiError } from "../../types/ApiError";
 import { UserData } from "../../types/UserData";
 import { authURL } from "../../urls";
@@ -20,7 +10,9 @@ interface AuthContextType {
   isAuthenticated: boolean;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType | undefined>(
+  undefined,
+);
 
 export function AuthProvider(props: PropsWithChildren) {
   const [userData, setUserData] = useState<UserData>();
@@ -65,23 +57,4 @@ export function AuthProvider(props: PropsWithChildren) {
       {props.children}
     </AuthContext.Provider>
   );
-}
-
-export function useAuthContext() {
-  const context = useContext(AuthContext);
-
-  if (!context) {
-    throw new ApiError("Authontext must be used within a AuthProvider");
-  }
-
-  return context;
-}
-
-export function checkRouteAccess(
-  userData: UserData,
-  groupName: AzureAdGroupNames,
-) {
-  const adGroups = userData.adGroups;
-  if (adGroups?.some((id) => id === AzureAdGroupNameId[groupName])) return null;
-  return redirect("/forbidden");
 }

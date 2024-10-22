@@ -1,7 +1,7 @@
-.utbetalingsportalen__body {
+.utbetalingsportalen-body {
   @apply flex w-screen;
 }
 
-.utbetalingsportalen__outlet {
+.utbetalingsportalen-outlet {
   @apply m-8 w-screen;
 }

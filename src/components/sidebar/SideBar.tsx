@@ -33,8 +33,8 @@ export default function SideBar() {
   const iconStyle = "w-6 h-6 pb-[2px]";
 
   return (
-    <div className={styles.sidebar} role="navigation">
-      <div className={styles.closebutton}>
+    <div className={styles["sidebar"]} role="navigation">
+      <div className={styles["closebutton"]}>
         <Button
           className="bg-neutral-800 w-28"
           onClick={() => setShowSideBar(false)}
@@ -46,7 +46,7 @@ export default function SideBar() {
         </Button>
       </div>
 
-      <ul className={styles.sidebar__links}>
+      <ul className={styles["sidebar-links"]}>
         <SideBarLink to={ROUTES.SOKOS_UP_HOME}>
           <HouseIcon className={iconStyle} title="Hus ikon" />
           Hjem

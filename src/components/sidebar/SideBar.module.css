@@ -6,7 +6,7 @@
   @apply w-12 min-w-12;
 }
 
-.sidebar__links {
+.sidebar-links {
   @apply flex min-w-80 flex-col;
 }
 

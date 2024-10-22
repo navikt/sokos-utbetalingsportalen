@@ -2,10 +2,7 @@ import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useLocation } from "react-router-dom";
 import { AzureAdGroupNames } from "./auth/azureAdGroups";
-import {
-  checkRouteAccess,
-  useAuthContext,
-} from "./components/auth/AuthProvider";
+import { checkRouteAccess, useAuthContext } from "./auth/userAuth";
 import ErrorMessage from "./components/error/ErrorMessage";
 import ContentLoader from "./components/loader/ContentLoader";
 

@@ -1,6 +1,6 @@
 import { Apps, MicrofrontendApp } from "../MicrofrontendApp";
 import { AzureAdGroupNameId, AzureAdGroupNames } from "../auth/azureAdGroups";
-import { useAuthContext } from "../components/auth/AuthProvider";
+import { useAuthContext } from "../auth/userAuth";
 import { getEnvironment } from "../utils/environment";
 
 export default function useApps() {
