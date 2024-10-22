@@ -21,7 +21,6 @@ export default function Microfrontend(props: MicrofrontendType) {
   const location = useLocation();
 
   if (!checkRouteAccess(authContext.userData, props.adGroup)) {
-    // Instead of rendering NoAccess directly, you could redirect
     return <NoAccess />;
   }
 
