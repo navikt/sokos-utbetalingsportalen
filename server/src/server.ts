@@ -78,19 +78,19 @@ const startServer = () => {
       apiUrl: Config.SOKOS_UTBETALING_API,
       apiScope: Config.SOKOS_UTBETALING_API_SCOPE,
     });
+
+    // sokos-spk-mottak
+    routeProxyWithOboToken({
+      path: Config.SOKOS_SPK_MOTTAK_PROXY,
+      apiUrl: Config.SOKOS_SPK_MOTTAK_API,
+      apiScope: Config.SOKOS_SPK_MOTTAK_API_SCOPE,
+    });
   }
   // sokos-skattekort-person
   routeProxyWithOboToken({
     path: Config.SOKOS_SKATTEKORT_PROXY,
     apiUrl: Config.SOKOS_SKATTEKORT_PERSON_API,
     apiScope: Config.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
-  });
-
-  // sokos-spk-mottak
-  routeProxyWithOboToken({
-    path: Config.SOKOS_SPK_MOTTAK_PROXY,
-    apiUrl: Config.SOKOS_SPK_MOTTAK_API,
-    apiScope: Config.SOKOS_SPK_MOTTAK_API_SCOPE,
   });
 
   // sokos-up-ors-api
