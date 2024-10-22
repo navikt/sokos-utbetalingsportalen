@@ -4,7 +4,7 @@ import { Apps } from "./MicrofrontendApp";
 import { AuthProvider } from "./components/auth/AuthProvider";
 import ErrorBoundary from "./components/error/ErrorBoundary";
 import Layout from "./components/layout/Layout";
-import ErrorPage, { NoAccess, NotFound } from "./pages/ErrorPage";
+import ErrorPage, { NotFound } from "./pages/ErrorPage";
 import Home from "./pages/Home";
 
 export default function App() {
@@ -25,7 +25,6 @@ export default function App() {
           <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
             <Route path="/" element={<Home />} />
             {microfrontendRoutes()}
-            <Route path="/forbidden" element={<NoAccess />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

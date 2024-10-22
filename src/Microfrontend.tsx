@@ -1,10 +1,11 @@
 import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { redirect, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { AzureAdGroupNames } from "./auth/azureAdGroups";
 import { checkRouteAccess, useAuthContext } from "./auth/userAuth";
 import ErrorMessage from "./components/error/ErrorMessage";
 import ContentLoader from "./components/loader/ContentLoader";
+import { NoAccess } from "./pages/ErrorPage";
 
 type MicrofrontendType = {
   url: string;
@@ -19,12 +20,9 @@ export default function Microfrontend(props: MicrofrontendType) {
   const authContext = useAuthContext();
   const location = useLocation();
 
-  // eslint-disable-next-line no-console
-  console.log(checkRouteAccess(authContext.userData, props.adGroup));
-
   if (!checkRouteAccess(authContext.userData, props.adGroup)) {
-    redirect("/forbidden");
-    return;
+    // Instead of rendering NoAccess directly, you could redirect
+    return <NoAccess />;
   }
 
   const MicrofrontendBundle = createMicrofrontendBundle(props.url);
