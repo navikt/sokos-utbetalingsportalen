@@ -45,14 +45,14 @@ const AD_GRUPPE_SOKOS_MF_RESENDING_BANK_READ = {
 } as const satisfies Dictionary;
 
 const AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ = {
-  local: "0e58dc41-7c57-4b79-a8c7-d0caec129e53",
-  development: "0e58dc41-7c57-4b79-a8c7-d0caec129e53",
-  production: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  local: "a13b4176-e328-4e1c-b181-ff676a7146b1",
+  development: "a13b4176-e328-4e1c-b181-ff676a7146b1",
+  production: "6c93762e-ea37-4043-919f-3a758a136943",
 } as const satisfies Dictionary;
 
 const AD_GRUPPE_SOKOS_MF_SPK_MOTTAK = {
-  local: "0de8d01f-8ad0-4391-841c-55392956bc17",
-  development: "0de8d01f-8ad0-4391-841c-55392956bc17",
+  local: "0e58dc41-7c57-4b79-a8c7-d0caec129e53",
+  development: "0e58dc41-7c57-4b79-a8c7-d0caec129e53",
   production: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 } as const satisfies Dictionary;
 

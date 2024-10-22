@@ -21,7 +21,7 @@ const ConfigSchema = z.object({
   SOKOS_SKATTEKORT_PERSON_API_SCOPE: z.string(),
   SOKOS_SKATTEKORT_PROXY: z.string(),
 
-  // sokos-spk-mottal
+  // sokos-spk-mottak
   SOKOS_SPK_MOTTAK_API: z.string(),
   SOKOS_SPK_MOTTAK_API_SCOPE: z.string(),
   SOKOS_SPK_MOTTAK_PROXY: z.string(),
