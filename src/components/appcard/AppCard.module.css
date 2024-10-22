@@ -1,24 +1,25 @@
 .appcard {
-  @apply relative p-4 bg-[--a-surface-alt-2-subtle] shadow-lg shadow-neutral-200 rounded-lg text-black h-full;
+  @apply relative h-full rounded-lg bg-[--a-surface-alt-2-subtle] p-4 text-black shadow-lg shadow-neutral-200;
 }
 
-.appcard__title {
+.appcard-title {
   @apply whitespace-nowrap;
 }
 
-.appcard__arrow {
+.appcard-arrow {
   @apply absolute right-3 top-8 transition-all ease-out;
 }
 
-.appcard__description {
-  @apply text-gray-700 text-base mr-5;
+.appcard-description {
+  @apply mr-5 text-base text-gray-700;
 }
 
 .appcard:hover {
-  .appcard__arrow {
+  .appcard-arrow {
     @apply right-2 transition-all duration-200;
   }
-  @apply underline bg-[--a-surface-alt-1-subtle];
+
+  @apply bg-[--a-surface-alt-1-subtle] underline;
 }
 
 .appcard.disabled {

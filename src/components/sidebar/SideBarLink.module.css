@@ -1,5 +1,5 @@
 .sidebarlink {
-  @apply mx-2 py-2 px-8 rounded whitespace-nowrap text-[--a-surface-default] underline;
+  @apply mx-2 whitespace-nowrap rounded px-8 py-2 text-[--a-surface-default] underline;
 }
 
 .sidebarlink:hover {
@@ -7,9 +7,9 @@
 }
 
 .sidebarlink.active {
-  @apply bg-[--a-purple-400] no-underline pointer-events-none transition-all duration-200;
+  @apply pointer-events-none bg-[--a-purple-400] no-underline transition-all duration-200;
 }
 
-.sidebarlink__child {
+.sidebarlink-child {
   @apply flex flex-row gap-1;
 }

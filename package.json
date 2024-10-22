@@ -9,34 +9,37 @@
     "build": "tsc && vite build --base=/ --outDir dist",
     "test": "vitest",
     "lint": "eslint",
+    "stylelint": "stylelint '**/*.css'",
     "preview": "vite preview",
     "prepare": "husky"
   },
   "author": "navikt",
   "license": "MIT",
   "dependencies": {
-    "@grafana/faro-web-sdk": "^1.10.2",
-    "@navikt/aksel-icons": "^7.2.1",
-    "@navikt/ds-css": "^7.2.1",
-    "@navikt/ds-react": "^7.2.1",
-    "react-error-boundary": "^4.1.1",
-    "react-router-dom": "^6.27.0"
+    "@grafana/faro-web-sdk": "^1.11.0",
+    "@navikt/aksel-icons": "^7.3.1",
+    "@navikt/ds-css": "^7.3.1",
+    "@navikt/ds-react": "^7.3.1",
+    "react-error-boundary": "^4.1.2",
+    "react-router-dom": "^6.27.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@eik/rollup-plugin": "^4.0.64",
-    "@eslint/js": "^9.12.0",
-    "@navikt/aksel-stylelint": "^7.2.1",
+    "@eslint/js": "^9.13.0",
+    "@navikt/aksel-stylelint": "^7.3.1",
     "@rollup/plugin-terser": "^0.4.4",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "@types/eslint-config-prettier": "^6.11.3",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.2",
+    "@vitejs/plugin-react": "^4.3.3",
     "autoprefixer": "^10.4.20",
-    "eslint": "^9.12.0",
+    "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-jsx-a11y": "^6.10.0",
-    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-jsx-a11y": "^6.10.1",
+    "eslint-plugin-react": "^7.37.1",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.13",
     "globals": "^15.11.0",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
@@ -49,18 +52,15 @@
     "stylelint-config-standard": "^36.0.1",
     "tailwindcss": "^3.4.14",
     "typescript": "^5.6.3",
-    "typescript-eslint": "^8.9.0",
-    "vite": "5.4.6",
+    "typescript-eslint": "^8.11.0",
+    "vite": "5.4.9",
     "vite-plugin-mock": "^3.0.2"
   },
   "stylelint": {
     "extends": [
-      "stylelint-config-standard",
-      "@navikt/aksel-stylelint/recommended"
+      "stylelint-config-standard"
     ],
-    "rules": {
-      "selector-class-pattern": null
-    }
+    "ignoreFiles": "dist/**/*"
   },
   "prettier": {
     "plugins": [
@@ -94,11 +94,11 @@
   "lint-staged": {
     "*.ts": "eslint",
     "*.tsx": "eslint",
-    "*.css": "stylelint",
+    "*.css": "stylelint --fix",
     "*": "prettier --write --ignore-unknown"
   },
   "engines": {
-    "node": ">=20.16.0",
-    "pnpm": ">=9.6.0"
+    "node": ">=20.18.0",
+    "pnpm": ">=9.12.2"
   }
 }

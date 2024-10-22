@@ -1,38 +1,45 @@
 import eslint from "@eslint/js";
-import eslintConfigPrettier from "eslint-config-prettier";
-import jsxA11y from "eslint-plugin-jsx-a11y";
-import reactHooks from "eslint-plugin-react-hooks";
+import configPrettier from "eslint-config-prettier";
+import pluginJsxA11y from "eslint-plugin-jsx-a11y";
+import pluginReact from "eslint-plugin-react";
+import pluginReactHooks from "eslint-plugin-react-hooks";
+import pluginReactRefresh from "eslint-plugin-react-refresh";
 import globals from "globals";
-import tsEslint from "typescript-eslint";
+import tseslint from "typescript-eslint";
 
-export default tsEslint.config(
+export default tseslint.config(
   eslint.configs.recommended,
-  ...tsEslint.configs.recommended,
-  eslintConfigPrettier,
+  ...tseslint.configs.recommended,
+  pluginReact.configs.flat.recommended,
+  pluginJsxA11y.flatConfigs.recommended,
+  configPrettier,
   {
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-    },
-    plugins: {
-      "jsx-a11y": jsxA11y,
-      "react-hooks": reactHooks,
-    },
-    rules: {
-      ...jsxA11y.configs.recommended.rules,
-      ...reactHooks.configs.recommended.rules,
-      "no-console": "error",
-      "no-duplicate-imports": "error",
-    },
     settings: {
       react: {
         version: "detect",
       },
     },
+    languageOptions: {
+      globals: { ...globals.browser, ...globals.node },
+    },
   },
   {
     ignores: ["dist/", "server/build/"],
+  },
+  {
+    plugins: {
+      "react-hooks": pluginReactHooks,
+      "react-refresh": pluginReactRefresh,
+    },
+    rules: {
+      ...pluginReactHooks.configs.recommended.rules,
+      "react-refresh/only-export-components": [
+        "warn",
+        { allowConstantExport: true },
+      ],
+      "no-console": "error",
+      "no-duplicate-imports": "error",
+      "react/react-in-jsx-scope": "off",
+    },
   },
 );

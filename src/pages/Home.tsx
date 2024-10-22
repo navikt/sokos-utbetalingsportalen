@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { BodyLong, GuidePanel, Heading, Switch } from "@navikt/ds-react";
 import pengesekk from "../../assets/images/pengesekk.svg";
+import { useAuthContext } from "../auth/userAuth";
 import AppCard from "../components/appcard/AppCard";
-import { useAuthContext } from "../components/auth/AuthProvider";
 import useApps from "../hooks/useApps";
 import styles from "./Home.module.css";
 
@@ -25,9 +25,9 @@ export default function Home() {
 
   return (
     <main id="main-content">
-      <div className={styles.home}>
-        <div className={styles.home__guidepanel}>
-          <div className={styles.home__heading}>
+      <div className={styles["home"]}>
+        <div className={styles["home-guidepanel"]}>
+          <div className={styles["home-heading"]}>
             <Heading level="1" size="large" spacing>
               God dag, {authContext.userData.name}
             </Heading>
@@ -58,7 +58,7 @@ export default function Home() {
         >
           Vis alle
         </Switch>
-        <div className={styles.home__apps}>{appCards()}</div>
+        <div className={styles["home-apps"]}>{appCards()}</div>
       </div>
     </main>
   );
