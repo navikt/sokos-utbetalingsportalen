@@ -19,8 +19,5 @@ export function checkRouteAccess(
   groupName: AzureAdGroupNames,
 ) {
   const adGroups = userData.adGroups;
-  // eslint-disable-next-line no-console
-  adGroups?.some((id) => console.log(id));
-
   return adGroups?.some((id) => id === AzureAdGroupNameId[groupName]);
 }
