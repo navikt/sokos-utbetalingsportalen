@@ -81,7 +81,7 @@ spec:
       value: "/skattekort-api"
 
     # SPK-Mottak
-    - name: SOKOS_SPK_MOTTAK
+    - name: SOKOS_SPK_MOTTAK_API
       value: https://sokos-spk-mottak.dev-fss-pub.nais.io
     - name: SOKOS_SPK_MOTTAK_API_SCOPE
       value: api://dev-fss.okonomi.sokos-spk-mottak/.default
