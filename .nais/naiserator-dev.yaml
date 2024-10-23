@@ -47,7 +47,6 @@ spec:
     outbound:
       rules:
         - application: sokos-up-ors-api
-        - application: sokos-oppdrag
         - application: sokos-up-kontoregister-api
       external:
         - host: sokos-skattekort-person.dev-fss-pub.nais.io
