@@ -9,11 +9,11 @@ export default function SideBarLink({
   return (
     <NavLink
       className={({ isActive }) =>
-        `${styles.sidebarlink} ${isActive ? styles.active : ""}`
+        `${styles["sidebarlink"]} ${isActive ? styles["active"] : ""}`
       }
       to={to}
     >
-      <div className={styles.sidebarlink__child}>{children}</div>
+      <div className={styles["sidebarlink-child"]}>{children}</div>
     </NavLink>
   );
 }

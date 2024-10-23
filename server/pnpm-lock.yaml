@@ -32,7 +32,7 @@ importers:
         specifier: ^5.9.4
         version: 5.9.4
       openid-client:
-        specifier: ^5.6.5
+        specifier: ^5.7.0
         version: 5.7.0
       winston:
         specifier: 3.15.0

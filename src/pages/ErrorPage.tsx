@@ -12,7 +12,7 @@ export default function ErrorPage({
   message = "En feil har skjedd!",
 }: ErrorPageType) {
   return (
-    <div className={styles.errorPage}>
+    <div className={styles["error-page"]}>
       <ChatExclamationmarkIcon
         title="Chat exclamationmark ikon"
         fontSize="6rem"

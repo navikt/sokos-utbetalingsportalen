@@ -18,7 +18,7 @@ async function jwks() {
   return _remoteJWKSet;
 }
 
-async function issuer() {
+export async function issuer() {
   _issuer = await Issuer.discover(Config.AZURE_APP_WELL_KNOWN_URL);
   return _issuer;
 }

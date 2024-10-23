@@ -1,4 +1,3 @@
-/* eslint-disable */
 import express, { Request, Response } from "express";
 import RateLimit from "express-rate-limit";
 import expressStaticGzip from "express-static-gzip";
@@ -114,6 +113,7 @@ const startServer = () => {
   );
 
   server.listen(SERVER_PORT, () =>
+    // eslint-disable-next-line no-console
     console.log(`Server listening on port ${SERVER_PORT}`),
   );
 };

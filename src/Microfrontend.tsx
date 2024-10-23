@@ -2,12 +2,10 @@ import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useLocation } from "react-router-dom";
 import { AzureAdGroupNames } from "./auth/azureAdGroups";
-import {
-  checkRouteAccess,
-  useAuthContext,
-} from "./components/auth/AuthProvider";
+import { checkRouteAccess, useAuthContext } from "./auth/userAuth";
 import ErrorMessage from "./components/error/ErrorMessage";
 import ContentLoader from "./components/loader/ContentLoader";
+import { NoAccess } from "./pages/ErrorPage";
 
 type MicrofrontendType = {
   url: string;
@@ -20,10 +18,13 @@ function createMicrofrontendBundle(url: string) {
 
 export default function Microfrontend(props: MicrofrontendType) {
   const authContext = useAuthContext();
-
-  checkRouteAccess(authContext.userData, props.adGroup);
-  const MicrofrontendBundle = createMicrofrontendBundle(props.url);
   const location = useLocation();
+
+  if (!checkRouteAccess(authContext.userData, props.adGroup)) {
+    return <NoAccess />;
+  }
+
+  const MicrofrontendBundle = createMicrofrontendBundle(props.url);
 
   return (
     <React.Suspense fallback={<ContentLoader />}>

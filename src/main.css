@@ -1,7 +1,7 @@
-@import "tailwindcss/base";
-@import "@navikt/ds-css";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import url("tailwindcss/base");
+@import url("@navikt/ds-css");
+@import url("tailwindcss/components");
+@import url("tailwindcss/utilities");
 
 html,
 body {

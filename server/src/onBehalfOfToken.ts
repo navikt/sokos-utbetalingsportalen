@@ -1,11 +1,11 @@
 import { Response as ExpressResponse, NextFunction, Request } from "express";
-import { Client, Issuer, TokenSet, errors } from "openid-client";
+import { Client, TokenSet, errors } from "openid-client";
 import { z } from "zod";
+import { issuer } from "./azureAd";
 import Config from "./config";
 import { logger } from "./logger";
 import { retrieveTokenFromHeader } from "./middlewares";
 
-let _issuer: Issuer<Client>;
 let _client: Client;
 
 const OboTokenSchema = z.object({
@@ -20,11 +20,6 @@ type Scope = string;
 type AccessToken = string;
 
 const tokenCache: Record<Scope, Record<AccessToken, CachedOboToken>> = {};
-
-async function issuer() {
-  _issuer = await Issuer.discover(Config.AZURE_APP_WELL_KNOWN_URL);
-  return _issuer;
-}
 
 function jwk() {
   return JSON.parse(Config.AZURE_APP_JWK);
@@ -83,7 +78,7 @@ function oboTokenIsValid(token: CachedOboToken) {
   return token.expires >= Date.now() - 5000;
 }
 
-export async function getOnBehalfOfToken(accessToken: string, scope: string) {
+async function getOnBehalfOfToken(accessToken: string, scope: string) {
   const cachedOboToken = tokenCache[scope]?.[accessToken];
 
   if (cachedOboToken && oboTokenIsValid(cachedOboToken)) {
@@ -104,9 +99,8 @@ export async function getOnBehalfOfToken(accessToken: string, scope: string) {
   }
 }
 
-export const setOnBehalfOfToken =
-  (scope: string) =>
-  async (req: Request, res: ExpressResponse, next: NextFunction) => {
+export function setOnBehalfOfToken(scope: string) {
+  return async (req: Request, res: ExpressResponse, next: NextFunction) => {
     const accessToken = retrieveTokenFromHeader(req.headers);
 
     if (!accessToken) {
@@ -133,3 +127,4 @@ export const setOnBehalfOfToken =
       }
     }
   };
+}
