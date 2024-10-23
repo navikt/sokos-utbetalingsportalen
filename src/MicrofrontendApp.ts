@@ -102,8 +102,8 @@ export const Apps: Array<MicrofrontendApp> = [
   {
     app: "SPK",
     title: "SPK Mottak",
-    description: "Dashboard for å trigge batch jobber",
-    group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SPK_MOTTAK,
+    description: "Dashboard for å trigge jobber",
+    group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SPK_MOTTAK_READ,
     route: ROUTES.SOKOS_UP_SPK,
     url: sokosUpSpkMottakURL,
   },
