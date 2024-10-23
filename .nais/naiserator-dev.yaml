@@ -54,6 +54,7 @@ spec:
         - host: sokos-oppdrag.dev-fss-pub.nais.io
         - host: sokos-ur-iso.dev-fss-pub.nais.io
         - host: sokos-utbetaling-api.dev-fss-pub.nais.io
+        - host: sokos-spk-mottak.dev-fss-pub.nais.io
   ingresses:
     - "https://utbetalingsportalen.intern.dev.nav.no"
     - "https://utbetalingsportalen.ansatt.dev.nav.no"
