@@ -1,4 +1,4 @@
-name: Sikkerhet
+name: Security
 
 on:
   schedule:
