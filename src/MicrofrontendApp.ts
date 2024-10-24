@@ -101,7 +101,7 @@ export const Apps: Array<MicrofrontendApp> = [
   },
   {
     app: "SPK",
-    title: "SPK Mottak",
+    title: "sokos-spk-mottak",
     description: "Dashboard for å trigge jobber",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SPK_MOTTAK_READ,
     route: ROUTES.SOKOS_UP_SPK,
