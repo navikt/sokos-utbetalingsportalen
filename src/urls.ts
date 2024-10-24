@@ -54,6 +54,12 @@ const SOKOS_UP_SKATTEKORT_URL = {
   production: url("sokos-up-skattekort"),
 } as const satisfies Dictionary;
 
+const SOKOS_UP_SPK_MOTTAK_URL = {
+  local: "http://localhost:5173/microfrontend/bundle.js",
+  development: url("sokos-up-spk-mottak"),
+  production: url("sokos-up-spk-mottak"),
+} as const satisfies Dictionary;
+
 const SOKOS_UP_OPPDRAGSINFO_URL = {
   local: "http://localhost:5173/microfrontend/bundle.js",
   development: url("sokos-up-oppdragsinfo"),
@@ -88,6 +94,7 @@ export const sokosUpKrpURL = SOKOS_UP_KRP_URL[getEnvironment()];
 export const sokosUpKroURL = SOKOS_UP_KRO_URL[getEnvironment()];
 export const sokosUpOrsURL = SOKOS_UP_ORS_URL[getEnvironment()];
 export const sokosUpSkattekortURL = SOKOS_UP_SKATTEKORT_URL[getEnvironment()];
+export const sokosUpSpkMottakURL = SOKOS_UP_SPK_MOTTAK_URL[getEnvironment()];
 export const sokosUpOppdragsinfoURL =
   SOKOS_UP_OPPDRAGSINFO_URL[getEnvironment()];
 export const sokosUpResendingBankURL =

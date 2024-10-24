@@ -10,6 +10,7 @@ import {
   sokosUpOrsURL,
   sokosUpResendingBankURL,
   sokosUpSkattekortURL,
+  sokosUpSpkMottakURL,
   sokosUpUtbetalingURL,
   sokosUpVenteregisterURL,
 } from "./urls";
@@ -97,6 +98,14 @@ export const Apps: Array<MicrofrontendApp> = [
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ,
     route: ROUTES.SOKOS_UP_SKATTEKORT,
     url: sokosUpSkattekortURL,
+  },
+  {
+    app: "SPK",
+    title: "SPK Mottak",
+    description: "Dashboard for å trigge jobber",
+    group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SPK_MOTTAK_READ,
+    route: ROUTES.SOKOS_UP_SPK,
+    url: sokosUpSpkMottakURL,
   },
   {
     app: "UTBETALING",

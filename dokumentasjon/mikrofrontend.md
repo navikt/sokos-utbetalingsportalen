@@ -25,7 +25,7 @@
 6. Env variablene som er lagt inn i naiserator-filene skal defineres i [config.ts](/server/src/config.ts)
    _NB! Tre env variabler som MÅ være med er følgende: PROXY , API, OG API_SCOPE må være lagt inn._
 
-7. Under [server.ts](../server/src/server.ts) må du legge inn proxy til tjenesten mikfrofrontend skal snakke med.
+7. Under [server.ts](../server/src/server.ts) må du legge inn proxy til tjenesten mikrofrontend skal snakke med.
 
    ```typescript
      routeProxyWithOboToken(
