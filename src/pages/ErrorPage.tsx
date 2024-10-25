@@ -9,7 +9,7 @@ export type ErrorPageType = {
 
 export default function ErrorPage({
   title = "Feil",
-  message = "En feil har skjedd!",
+  message = "En feil har skjedd! Prøv logg inn på nytt.",
 }: ErrorPageType) {
   return (
     <div className={styles["error-page"]}>
