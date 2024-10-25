@@ -21,13 +21,13 @@ export default function App() {
   return (
     <ErrorBoundary>
       <AuthProvider>
-        <Routes>
-          <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
-            <Route path="/" element={<Home />} />
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} errorElement={<ErrorPage />} />
             {microfrontendRoutes()}
             <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
+          </Routes>
+        </Layout>
       </AuthProvider>
     </ErrorBoundary>
   );
