@@ -6,6 +6,7 @@ on:
 
 env:
   LATEST_IMAGE: ${{ github.event.repository.name }}:latest
+  TRIVY_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-db
 
 jobs:
   vulnerability-analyze:
