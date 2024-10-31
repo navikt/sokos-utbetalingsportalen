@@ -13,10 +13,12 @@ export default function App() {
 
   useEffect(() => {
     const currentRoute = decodeURIComponent(location.pathname);
+    const appTitle =
+      Apps.find((app) => currentRoute.includes(app.route))?.title || "";
     const title =
       currentRoute === "/"
         ? "Utbetalingsportalen"
-        : Apps.find((app) => currentRoute.includes(app.route))?.title || "";
+        : `${appTitle} | Utbetalingsportalen`;
 
     document.title = title;
   }, [location]);
