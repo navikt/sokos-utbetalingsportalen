@@ -1,4 +1,5 @@
-import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Microfrontend from "./Microfrontend";
 import { Apps } from "./MicrofrontendApp";
 import { AuthProvider } from "./components/auth/AuthProvider";
@@ -8,6 +9,18 @@ import ErrorPage, { NotFound } from "./pages/ErrorPage";
 import Home from "./pages/Home";
 
 export default function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const currentRoute = decodeURIComponent(location.pathname);
+    const title =
+      currentRoute === "/"
+        ? "Utbetalingsportalen"
+        : Apps.find((app) => currentRoute.includes(app.route))?.title || "";
+
+    document.title = title;
+  }, [location]);
+
   function microfrontendRoutes() {
     return Apps.sort((a, b) => a.title.localeCompare(b.title)).map((app) => (
       <Route
