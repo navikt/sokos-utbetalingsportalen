@@ -9,7 +9,7 @@ type LayoutProps = {
 };
 
 export default function Layout({ children }: LayoutProps) {
-  const [environment, setEnvironment] = useState<string>("");
+  const [environment, setEnvironment] = useState<string | null>(null);
 
   useEffect(() => {
     const environment = getEnvironment();
