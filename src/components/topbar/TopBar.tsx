@@ -7,7 +7,7 @@ import styles from "./TopBar.module.css";
 export default function TopBar() {
   const authContext = useAuthContext();
   return (
-    <InternalHeader className="w-screen">
+    <InternalHeader>
       <div className={styles["topbar-logo"]}>
         <img src={nav} alt="NAV logo" />
       </div>

@@ -1,7 +1,3 @@
-.utbetalingsportalen-topbar {
-  @apply w-screen;
-}
-
 .utbetalingsportalen-body {
   @apply flex w-screen;
 }

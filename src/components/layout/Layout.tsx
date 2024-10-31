@@ -18,9 +18,7 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <>
-      <div className={styles["utbetalingsportalen-topbar"]}>
-        <TopBar />
-      </div>
+      <TopBar />
       <div className={styles["utbetalingsportalen-body"]}>
         <SideBar />
         <div className={styles["utbetalingsportalen-outlet"]}>
