@@ -12,7 +12,7 @@ export default function App() {
   const location = useLocation();
 
   useEffect(() => {
-    const currentRoute = decodeURIComponent(location.pathname);
+    const currentRoute = location.pathname;
     const appTitle =
       Apps.find((app) => currentRoute.includes(app.route))?.title || "";
     const title =

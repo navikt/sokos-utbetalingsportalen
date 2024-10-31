@@ -3,7 +3,7 @@ export const ROUTES = {
   SOKOS_UP_VENTEREGISTER: "/venteregister",
   SOKOS_UP_ATTESTASJON: "/attestasjon",
   SOKOS_MIKROFRONTEND_TEMPLATE: "/mikrofrontend",
-  SOKOS_UP_ORS: "/oppslag-reskontro-stønad",
+  SOKOS_UP_ORS: "/oppslag-reskontro-stoenad",
   SOKOS_UP_SKATTEKORT: "/skattekort",
   SOKOS_UP_SPK: "/spk",
   SOKOS_UP_OPPDRAGSINFO: "/oppdragsinfo",
@@ -18,4 +18,5 @@ export const ROUTES = {
  * Forkortelser i URL er ikke en god idé. Det er bedre å bruke hele ord.
  * Bruk små bokstaver i URL.
  * Bruke bindestrek i URL for å skille på ord.
+ * Ikke bruk Æ Ø Å. Skriv heller: Æ = AE, Ø = OE, Å = AA.
  **/
