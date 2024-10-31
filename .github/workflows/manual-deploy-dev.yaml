@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
 env:
   TZ: Europe/Oslo
-  VITE_NAIS_CLUSTER_NAME: dev-gcp
 
 permissions:
   contents: "write"
