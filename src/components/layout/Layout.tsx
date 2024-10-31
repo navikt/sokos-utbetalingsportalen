@@ -5,7 +5,7 @@ import TopBar from "../topbar/TopBar";
 import styles from "./Layout.module.css";
 
 type LayoutProps = {
-  children: ReactNode; // Define the type for children
+  children: ReactNode;
 };
 
 export default function Layout({ children }: LayoutProps) {
@@ -18,7 +18,9 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <>
-      <TopBar />
+      <div className={styles["utbetalingsportalen-topbar"]}>
+        <TopBar />
+      </div>
       <div className={styles["utbetalingsportalen-body"]}>
         <SideBar />
         <div className={styles["utbetalingsportalen-outlet"]}>
