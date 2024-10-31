@@ -6,7 +6,6 @@ import styles from "./TopBar.module.css";
 
 export default function TopBar() {
   const authContext = useAuthContext();
-
   return (
     <InternalHeader>
       <div className={styles["topbar-logo"]}>
