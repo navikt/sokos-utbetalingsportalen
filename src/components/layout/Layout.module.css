@@ -3,5 +3,13 @@
 }
 
 .utbetalingsportalen-outlet {
-  @apply m-8 w-screen;
+  @apply w-screen;
+}
+
+.utbetalingsportalen-banner {
+  @apply bg-green-400 p-1 text-center text-black;
+}
+
+.utbetalingsportalen-content {
+  @apply m-8;
 }
