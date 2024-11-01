@@ -1,18 +1,10 @@
-import { PropsWithChildren, createContext, useEffect, useState } from "react";
+import { PropsWithChildren, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Loader } from "@navikt/ds-react";
 import { ApiError } from "../../types/ApiError";
 import { UserData } from "../../types/UserData";
 import { authURL } from "../../urls";
-
-interface AuthContextType {
-  userData: UserData;
-  isAuthenticated: boolean;
-}
-
-export const AuthContext = createContext<AuthContextType | undefined>(
-  undefined,
-);
+import { AuthContext } from "./AuthContext";
 
 export function AuthProvider(props: PropsWithChildren) {
   const [userData, setUserData] = useState<UserData>();
