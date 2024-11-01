@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "../components/auth/AuthProvider";
+import { AuthContext } from "../components/auth/AuthContext";
 import { ApiError } from "../types/ApiError";
 import { UserData } from "../types/UserData";
 import { AzureAdGroupNameId, AzureAdGroupNames } from "./azureAdGroups";

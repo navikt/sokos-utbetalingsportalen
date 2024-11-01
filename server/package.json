@@ -17,7 +17,7 @@
     "express-static-gzip": "2.1.8",
     "helmet": "^8.0.0",
     "http-proxy-middleware": "^3.0.3",
-    "jose": "^5.9.4",
+    "jose": "^5.9.6",
     "openid-client": "^5.7.0",
     "winston": "3.15.0",
     "winston-syslog": "^2.7.1",
@@ -26,14 +26,14 @@
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
-    "@types/node": "^22.7.7",
+    "@types/node": "^22.8.6",
     "@types/winston-syslog": "^2.4.3",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   },
   "engines": {
-    "node": ">=20.16.0",
-    "pnpm": ">=9.6.0"
+    "node": ">=22.11.0",
+    "pnpm": ">=9.12.3"
   }
 }
