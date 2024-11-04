@@ -3,10 +3,11 @@ name: Security
 on:
   schedule:
     - cron: "0 6 * * 1"
+  workflow_dispatch:
 
 env:
   LATEST_IMAGE: ${{ github.event.repository.name }}:latest
-  TRIVY_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-db
+  TRIVY_DB_REPOSITORY: "public.ecr.aws/aquasecurity/trivy-db"
 
 jobs:
   vulnerability-analyze:
@@ -15,7 +16,7 @@ jobs:
       id-token: write
       security-events: write
     name: Security analyze
-    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'schedule'
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -48,6 +49,7 @@ jobs:
           ignore-unfixed: true
           format: "sarif"
           output: "trivy-results.sarif"
+          severity: "HIGH,CRITICAL"
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
