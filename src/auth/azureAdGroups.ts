@@ -41,7 +41,7 @@ const AD_GRUPPE_SOKOS_MF_ORS_READ = {
 const AD_GRUPPE_SOKOS_MF_RESENDING_BANK_READ = {
   local: "391bec9e-e71e-42cb-a030-56c394dd13fd",
   development: "391bec9e-e71e-42cb-a030-56c394dd13fd",
-  production: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  production: "de776092-a8ed-46a2-be5e-ec2eae4dcf2b",
 } as const satisfies Dictionary;
 
 const AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ = {
@@ -71,7 +71,7 @@ const AD_GRUPPE_SOKOS_MF_UTBETALING_READ = {
 const AD_GRUPPE_SOKOS_MF_BUNTKONTROLL_READ = {
   local: "3bc37bf2-8e76-407c-ad4a-d2c79edc241e",
   development: "3bc37bf2-8e76-407c-ad4a-d2c79edc241e",
-  production: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  production: "08723132-a7ba-40eb-a6f4-0a9247f230d2",
 } as const satisfies Dictionary;
 
 export const AzureAdGroupName = {

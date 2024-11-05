@@ -26,6 +26,8 @@ spec:
           - id: "25723642-e1da-4d15-87ce-8c4d2b87e33a" # 0000-GA-SOKOS-MF-PosteringSok-READ
           - id: "bb9c7baf-768b-4e84-816c-f10d0a6c7d25" # 0000-GA-SOKOS-MF-KRP-READ
           - id: "e1635067-dfc9-4fb8-8405-d50e9672cf5c" # 0000-GA-SOKOS-MF-KRO-READ
+          - id: "de776092-a8ed-46a2-be5e-ec2eae4dcf2b" # 0000-GA-SOKOS-MF-RESENDING-BANK-READ
+          - id: "08723132-a7ba-40eb-a6f4-0a9247f230d2" # 0000-GA-SOKOS-MF-BUNTKONTROLL-READ
         extra:
           - "NAVident"
     sidecar:
@@ -40,6 +42,7 @@ spec:
         - application: sokos-up-kontoregister-api
       external:
         - host: sokos-skattekort-person.prod-fss-pub.nais.io
+        - host: sokos-ur-iso.prod-fss-pub.nais.io
   ingresses:
     - "https://utbetalingsportalen.intern.nav.no"
   resources:
@@ -72,3 +75,11 @@ spec:
       value: api://prod-fss.okonomi.sokos-skattekort-person/.default
     - name: SOKOS_SKATTEKORT_PROXY
       value: "/skattekort-api"
+
+    # sokos-ur-iso
+    - name: SOKOS_UR_ISO
+      value: https://sokos-ur-iso.prod-fss-pub.nais.io
+    - name: SOKOS_UR_ISO_SCOPE
+      value: api://prod-fss.okonomi.sokos-ur-iso/.default
+    - name: SOKOS_UR_ISO_PROXY
+      value: "/sokos-ur-iso"

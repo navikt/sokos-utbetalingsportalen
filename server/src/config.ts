@@ -42,9 +42,9 @@ const ConfigSchema = z.object({
   SOKOS_OPPDRAG_PROXY: z.string().default(""),
 
   // sokos-ur-iso
-  SOKOS_UR_ISO: z.string().default(""),
-  SOKOS_UR_ISO_SCOPE: z.string().default(""),
-  SOKOS_UR_ISO_PROXY: z.string().default(""),
+  SOKOS_UR_ISO: z.string(),
+  SOKOS_UR_ISO_SCOPE: z.string(),
+  SOKOS_UR_ISO_PROXY: z.string(),
 
   // sokos-utbetaling-api
   SOKOS_UTBETALING_API: z.string().default(""),
