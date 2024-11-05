@@ -64,13 +64,6 @@ const startServer = () => {
       apiScope: Config.SOKOS_OPPDRAG_API_SCOPE,
     });
 
-    // sokos-ur-iso
-    routeProxyWithOboToken({
-      path: Config.SOKOS_UR_ISO_PROXY,
-      apiUrl: Config.SOKOS_UR_ISO,
-      apiScope: Config.SOKOS_UR_ISO_SCOPE,
-    });
-
     // sokos-utbetaling-api
     routeProxyWithOboToken({
       path: Config.SOKOS_UTBETALING_API_PROXY,
@@ -104,6 +97,13 @@ const startServer = () => {
     path: Config.SOKOS_KONTOREGISTER_API_PROXY,
     apiUrl: Config.SOKOS_KONTOREGISTER_API,
     apiScope: Config.SOKOS_KONTOREGISTER_API_SCOPE,
+  });
+
+  // sokos-ur-iso
+  routeProxyWithOboToken({
+    path: Config.SOKOS_UR_ISO_PROXY,
+    apiUrl: Config.SOKOS_UR_ISO,
+    apiScope: Config.SOKOS_UR_ISO_SCOPE,
   });
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));
