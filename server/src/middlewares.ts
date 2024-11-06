@@ -56,14 +56,9 @@ export async function azureUserInfo(req: Request, res: Response) {
   try {
     const JWTVerifyResult = await validateToken(token);
     const parsedClaimResult = ClaimSchema.parse(JWTVerifyResult.payload);
+    const referer = req.get("Referer");
     secureLog.info(
-      "Saksbehandler (" +
-        parsedClaimResult.name +
-        ") med ident (" +
-        parsedClaimResult.NAVident +
-        ") har logget inn med følgende tilgang til grupper (" +
-        parsedClaimResult.groups +
-        ")",
+      `Saksbehandler (${parsedClaimResult.name}) med ident (${parsedClaimResult.NAVident}) aksesserer URL (${referer})`,
     );
     res.json({
       navIdent: parsedClaimResult.NAVident,
