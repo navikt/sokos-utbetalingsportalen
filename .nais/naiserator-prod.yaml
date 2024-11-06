@@ -17,6 +17,12 @@ spec:
   replicas:
     min: 1
     max: 2
+  secureLogs:
+    enabled: true
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: nodejs
   azure:
     application:
       enabled: true
