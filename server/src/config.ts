@@ -16,7 +16,7 @@ const ConfigSchema = z.object({
   AZURE_APP_JWK: z.string(),
   AZURE_OPENID_CONFIG_TOKEN_ENDPOINT: z.string(),
 
-  // sokos-op-skattekort
+  // sokos-up-skattekort
   SOKOS_SKATTEKORT_PERSON_API: z.string(),
   SOKOS_SKATTEKORT_PERSON_API_SCOPE: z.string(),
   SOKOS_SKATTEKORT_PROXY: z.string(),
@@ -36,7 +36,7 @@ const ConfigSchema = z.object({
   SOKOS_KONTOREGISTER_API_SCOPE: z.string(),
   SOKOS_KONTOREGISTER_API_PROXY: z.string(),
 
-  // sokos-nav-oppdrag
+  // sokos-oppdrag
   SOKOS_OPPDRAG_API: z.string().default(""),
   SOKOS_OPPDRAG_API_SCOPE: z.string().default(""),
   SOKOS_OPPDRAG_PROXY: z.string().default(""),
