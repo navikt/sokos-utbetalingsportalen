@@ -78,6 +78,7 @@ const startServer = () => {
       apiScope: Config.SOKOS_SPK_MOTTAK_API_SCOPE,
     });
   }
+
   // sokos-skattekort-person
   routeProxyWithOboToken({
     path: Config.SOKOS_SKATTEKORT_PROXY,
