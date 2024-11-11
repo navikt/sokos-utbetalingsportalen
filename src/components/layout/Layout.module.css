@@ -3,11 +3,11 @@
 }
 
 .layout-content {
-  @apply flex w-full;
+  @apply w-full;
 }
 
 .layout-banner {
-  @apply flex w-full bg-green-400 p-1 text-center text-black;
+  @apply w-full bg-green-400 p-1 text-center text-black;
 }
 
 .layout-mikrofrontender {
