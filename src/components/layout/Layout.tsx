@@ -19,17 +19,15 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <TopBar />
-      <div className={styles["utbetalingsportalen-body"]}>
+      <div className={styles["layout-body"]}>
         <SideBar />
-        <div className={styles["utbetalingsportalen-outlet"]}>
+        <div className={styles["layout-outlet"]}>
           {environment === "development" && (
-            <div className={styles["utbetalingsportalen-banner"]}>
+            <div className={styles["layout-banner"]}>
               <span>TEST</span>
             </div>
           )}
-          <div className={styles["utbetalingsportalen-content"]}>
-            {children}
-          </div>
+          <div className={styles["layout-content"]}>{children}</div>
         </div>
       </div>
     </>

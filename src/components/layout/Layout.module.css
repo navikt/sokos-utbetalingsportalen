@@ -1,15 +1,17 @@
-.utbetalingsportalen-body {
-  @apply flex w-screen;
+.layout-body {
+  display: flex;
+  width: 100%;
+  margin-top: 45px;
 }
 
-.utbetalingsportalen-outlet {
-  @apply w-screen;
+.layout-outlet {
+  width: 100%;
 }
 
-.utbetalingsportalen-banner {
+.layout-banner {
   @apply bg-green-400 p-1 text-center text-black;
 }
 
-.utbetalingsportalen-content {
+.layout-content {
   @apply m-8;
 }
