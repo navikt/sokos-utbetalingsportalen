@@ -21,13 +21,13 @@ export default function Layout({ children }: LayoutProps) {
       <TopBar />
       <div className={styles["layout-body"]}>
         <SideBar />
-        <div className={styles["layout-outlet"]}>
+        <div className={styles["layout-content"]}>
           {environment === "development" && (
             <div className={styles["layout-banner"]}>
               <span>TEST</span>
             </div>
           )}
-          <div className={styles["layout-content"]}>{children}</div>
+          <div className={styles["layout-mikrofrontender"]}>{children}</div>
         </div>
       </div>
     </>

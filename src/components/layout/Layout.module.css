@@ -2,14 +2,14 @@
   @apply mt-11 flex w-full;
 }
 
-.layout-outlet {
-  @apply w-full;
+.layout-content {
+  @apply flex w-full;
 }
 
 .layout-banner {
-  @apply w-full bg-green-400 p-1 text-center text-black;
+  @apply flex w-full bg-green-400 p-1 text-center text-black;
 }
 
-.layout-content {
+.layout-mikrofrontender {
   @apply m-8;
 }
