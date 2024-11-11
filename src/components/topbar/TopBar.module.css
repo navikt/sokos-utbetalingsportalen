@@ -3,5 +3,5 @@
 }
 
 .topbar-container {
-  @apply position-fixed z-1000 left-0 right-0 top-0 w-full;
+  @apply fixed left-0 right-0 top-0 z-[1000] w-full;
 }
