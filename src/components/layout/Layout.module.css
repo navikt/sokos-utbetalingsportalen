@@ -1,15 +1,13 @@
 .layout-body {
-  display: flex;
-  width: 100%;
-  margin-top: 45px;
+  @apply mt-11 flex w-full;
 }
 
 .layout-outlet {
-  width: 100%;
+  @apply w-full;
 }
 
 .layout-banner {
-  @apply bg-green-400 p-1 text-center text-black;
+  @apply w-full bg-green-400 p-1 text-center text-black;
 }
 
 .layout-content {
