@@ -23,15 +23,3 @@ updates:
       npm:
         patterns:
           - "*"
-
-  - package-ecosystem: github-actions
-    directory: "/"
-    schedule:
-      interval: weekly
-      day: "monday"
-      time: "09:00"
-      timezone: "Europe/Oslo"
-    groups:
-      github:
-        patterns:
-          - "*"

@@ -5,54 +5,16 @@ on:
     - cron: "0 6 * * 1"
   workflow_dispatch:
 
-env:
-  LATEST_IMAGE: ${{ github.event.repository.name }}:latest
-  TRIVY_DB_REPOSITORY: "public.ecr.aws/aquasecurity/trivy-db"
+permissions:
+  contents: read
+  id-token: write
+  security-events: write
 
 jobs:
-  vulnerability-analyze:
-    permissions:
-      contents: read
-      id-token: write
-      security-events: write
+  security-analyze:
     name: Security analyze
     if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        language: ["javascript"]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: github/codeql-action/init@v3
-        with:
-          languages: ${{ matrix.language }}
-      - uses: github/codeql-action/autobuild@v3
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
-        with:
-          category: "/language:${{matrix.language}}"
-
-      - name: Login to Google Artifact Registry
-        uses: nais/login@v0
-        id: login
-        with:
-          team: okonomi
-          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-
-      - name: Run Trivy vulnerability scanner on docker image
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: ${{ steps.login.outputs.registry }}/${{ env.LATEST_IMAGE }}
-          ignore-unfixed: true
-          format: "sarif"
-          output: "trivy-results.sarif"
-          severity: "HIGH,CRITICAL"
-
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
-        if: always()
-        with:
-          sarif_file: "trivy-results.sarif"
+    uses: navikt/moby-gha-workflows/.github/workflows/security.yaml@main
+    secrets: inherit
+    with:
+      language: "javascript"
