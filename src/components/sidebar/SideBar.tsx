@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { HouseIcon, MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
 import { Button } from "@navikt/ds-react";
 import useApps from "../../hooks/useApps";
@@ -8,16 +7,16 @@ import SideBarLink from "./SideBarLink";
 
 type SideBarProps = {
   onToggle: (isOpen: boolean) => void;
+  showSideBar?: boolean;
 };
 
-export default function SideBar({ onToggle }: SideBarProps) {
-  const [showSideBar, setShowSideBar] = useState(true);
+export default function SideBar({ onToggle, showSideBar }: SideBarProps) {
   const { authorizedApps } = useApps();
 
   const handleToggle = () => {
-    setShowSideBar(!showSideBar);
     onToggle(!showSideBar);
   };
+
   if (!showSideBar) {
     return (
       <div className={`${styles.closed} ${styles.sidebar}`} role="navigation">

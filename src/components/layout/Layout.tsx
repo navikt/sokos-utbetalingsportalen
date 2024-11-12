@@ -42,7 +42,7 @@ export default function Layout({ children }: LayoutProps) {
             </svg>
           </div>
         )}
-        <SideBar onToggle={handleSideBarToggle} />
+        <SideBar onToggle={handleSideBarToggle} showSideBar={isSidebarOpen} />
         <div
           className={`${styles["layout-content"]} ${!isSidebarOpen ? styles["content-expanded"] : ""}`}
         >
