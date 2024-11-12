@@ -10,6 +10,8 @@ type SideBarProps = {
   showSideBar?: boolean;
 };
 
+const iconStyle = "w-6 h-6 pb-[2px]";
+
 export default function SideBar({ onToggle, showSideBar }: SideBarProps) {
   const { authorizedApps } = useApps();
 
@@ -37,8 +39,6 @@ export default function SideBar({ onToggle, showSideBar }: SideBarProps) {
       </SideBarLink>
     ));
   }
-
-  const iconStyle = "w-6 h-6 pb-[2px]";
 
   return (
     <div className={styles["sidebar"]} role="navigation">

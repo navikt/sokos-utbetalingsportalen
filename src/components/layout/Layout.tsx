@@ -10,16 +10,12 @@ type LayoutProps = {
 
 export default function Layout({ children }: LayoutProps) {
   const [environment, setEnvironment] = useState<string>("");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [showSideBar, setShowSideBar] = useState(true);
 
   useEffect(() => {
     const environment = getEnvironment();
     setEnvironment(environment);
   }, []);
-
-  const handleSideBarToggle = (isOpen: boolean) => {
-    setIsSidebarOpen(isOpen);
-  };
 
   return (
     <>
@@ -42,9 +38,9 @@ export default function Layout({ children }: LayoutProps) {
             </svg>
           </div>
         )}
-        <SideBar onToggle={handleSideBarToggle} showSideBar={isSidebarOpen} />
+        <SideBar onToggle={setShowSideBar} showSideBar={showSideBar} />
         <div
-          className={`${styles["layout-content"]} ${!isSidebarOpen ? styles["content-expanded"] : ""}`}
+          className={`${styles["layout-content"]} ${!showSideBar ? styles["content-expanded"] : ""}`}
         >
           <div className={styles["layout-mikrofrontender"]}>{children}</div>
         </div>
