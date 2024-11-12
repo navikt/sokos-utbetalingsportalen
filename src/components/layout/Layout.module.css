@@ -10,8 +10,12 @@
   @apply ml-12;
 }
 
-.layout-banner {
-  @apply w-full bg-green-400 p-1 text-center text-black;
+.layout-test-banner {
+  @apply fixed right-0 top-0 z-10 mt-11 font-bold;
+}
+
+.test-ikon polygon {
+  @apply fill-green-400;
 }
 
 .layout-mikrofrontender {

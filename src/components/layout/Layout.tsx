@@ -9,7 +9,7 @@ type LayoutProps = {
 };
 
 export default function Layout({ children }: LayoutProps) {
-  const [environment, setEnvironment] = useState<string | null>(null);
+  const [environment, setEnvironment] = useState<string>("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   useEffect(() => {
@@ -25,15 +25,27 @@ export default function Layout({ children }: LayoutProps) {
     <>
       <TopBar />
       <div className={styles["layout-body"]}>
+        {environment === "development" && (
+          <div className={styles["layout-test-banner"]}>
+            <svg
+              aria-hidden="true"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              height="110"
+              width="110"
+              className={styles["test-ikon"]}
+            >
+              <polygon points="0,0 110,0 110,110"></polygon>
+              <text x="40" y="10" transform="rotate(45 20,40)">
+                TEST
+              </text>
+            </svg>
+          </div>
+        )}
         <SideBar onToggle={handleSideBarToggle} />
         <div
           className={`${styles["layout-content"]} ${!isSidebarOpen ? styles["content-expanded"] : ""}`}
         >
-          {environment === "development" && (
-            <div className={styles["layout-banner"]}>
-              <span>TEST</span>
-            </div>
-          )}
           <div className={styles["layout-mikrofrontender"]}>{children}</div>
         </div>
       </div>
