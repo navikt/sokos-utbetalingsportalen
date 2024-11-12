@@ -11,7 +11,7 @@
 }
 
 .layout-test-banner {
-  @apply fixed right-0 top-0 z-10 mt-11 font-bold;
+  @apply fixed right-0 top-0 z-[1000] mt-11 font-bold;
 }
 
 .test-ikon polygon {
