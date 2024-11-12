@@ -10,18 +10,25 @@ type LayoutProps = {
 
 export default function Layout({ children }: LayoutProps) {
   const [environment, setEnvironment] = useState<string | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   useEffect(() => {
     const environment = getEnvironment();
     setEnvironment(environment);
   }, []);
 
+  const handleSideBarToggle = (isOpen: boolean) => {
+    setIsSidebarOpen(isOpen);
+  };
+
   return (
     <>
       <TopBar />
       <div className={styles["layout-body"]}>
-        <SideBar />
-        <div className={styles["layout-content"]}>
+        <SideBar onToggle={handleSideBarToggle} />
+        <div
+          className={`${styles["layout-content"]} ${!isSidebarOpen ? styles["content-expanded"] : ""}`}
+        >
           {environment === "development" && (
             <div className={styles["layout-banner"]}>
               <span>TEST</span>

@@ -6,15 +6,24 @@ import { ROUTES } from "../../routes/routes";
 import styles from "./SideBar.module.css";
 import SideBarLink from "./SideBarLink";
 
-export default function SideBar() {
+type SideBarProps = {
+  onToggle: (isOpen: boolean) => void;
+};
+
+export default function SideBar({ onToggle }: SideBarProps) {
   const [showSideBar, setShowSideBar] = useState(true);
   const { authorizedApps } = useApps();
+
+  const handleToggle = () => {
+    setShowSideBar(!showSideBar);
+    onToggle(!showSideBar);
+  };
   if (!showSideBar) {
     return (
       <div className={`${styles.closed} ${styles.sidebar}`} role="navigation">
         <Button
           className="bg-neutral-800"
-          onClick={() => setShowSideBar(true)}
+          onClick={handleToggle}
           variant="primary-neutral"
           icon={<MenuHamburgerIcon title="Hamburgermeny ikon" />}
         />
@@ -37,8 +46,8 @@ export default function SideBar() {
       <div className={styles["closebutton"]}>
         <Button
           className="bg-neutral-800 w-28"
-          onClick={() => setShowSideBar(false)}
-          icon={<XMarkIcon title="X mark ikon" />}
+          onClick={handleToggle}
+          icon={<XMarkIcon title="Kryss" />}
           iconPosition="right"
           variant="primary-neutral"
         >
@@ -48,7 +57,7 @@ export default function SideBar() {
 
       <ul className={styles["sidebar-links"]}>
         <SideBarLink to={ROUTES.SOKOS_UP_HOME}>
-          <HouseIcon className={iconStyle} title="Hus ikon" />
+          <HouseIcon className={iconStyle} title="Hus" />
           Hjem
         </SideBarLink>
         {getMicrofrontendLinks()}

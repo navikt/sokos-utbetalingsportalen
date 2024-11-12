@@ -3,7 +3,11 @@
 }
 
 .layout-content {
-  @apply w-full;
+  @apply ml-80 w-full transition-all duration-500 ease-in-out;
+}
+
+.content-expanded {
+  @apply ml-12;
 }
 
 .layout-banner {
