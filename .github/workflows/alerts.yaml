@@ -1,4 +1,5 @@
 name: Deploy alerts
+
 on:
   push:
     branches:
@@ -13,23 +14,16 @@ permissions:
 
 jobs:
   deploy-dev:
-    name: Deploy alerts to dev
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Deploy to dev
-        uses: nais/deploy/actions/deploy@v2
-        env:
-          CLUSTER: dev-gcp
-          RESOURCE: .nais/alerts-dev.yaml
+    name: Deploy to dev-gcp
+    uses: navikt/moby-gha-workflows/.github/workflows/nais-alert-deploy.yaml@main
+    with:
+      cluster: dev-gcp
+      resource: .nais/alerts-dev.yaml
 
   deploy-prod:
-    name: Deploy alerts to prod
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Deploy to prod
-        uses: nais/deploy/actions/deploy@v2
-        env:
-          CLUSTER: prod-gcp
-          RESOURCE: .nais/alerts-prod.yaml
+    name: Deploy to prod-gcp
+    needs: deploy-dev
+    uses: navikt/moby-gha-workflows/.github/workflows/nais-alert-deploy.yaml@main
+    with:
+      cluster: prod-gcp
+      resource: .nais/alerts-prod.yaml

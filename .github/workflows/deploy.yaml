@@ -27,86 +27,23 @@ permissions:
 jobs:
   build:
     name: Build/test & push image
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-      - uses: pnpm/action-setup@v4
-        id: pnpm-install
-        with:
-          version: 9
-          run_install: false
-
-      - name: Get cache store
-        id: pnpm-cache
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v4
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-      - uses: actions/cache@v4
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('server/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Install dependencies for client
-        run: pnpm install
-
-      - name: Install dependencies for server
-        run: cd server && pnpm install
-
-      - name: Build app
-        run: pnpm run build
-
-      - name: Build server
-        run: cd server && pnpm run build
-
-      - name: Build docker image
-        uses: docker/setup-buildx-action@v3
-
-      - name: Push docker image to Google Artifact Registry
-        uses: nais/docker-build-push@v0
-        id: docker-build-push
-        with:
-          team: okonomi
-          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-          tag: latest
-    outputs:
-      image: ${{ steps.docker-build-push.outputs.image }}
+    uses: navikt/moby-gha-workflows/.github/workflows/node-build-push-image.yaml@main
+    secrets: inherit
 
   deploy-dev:
-    name: Deploy to dev
     needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: nais/deploy/actions/deploy@v2
-        env:
-          CLUSTER: dev-gcp
-          RESOURCE: .nais/naiserator-dev.yaml
-          IMAGE: ${{ needs.build.outputs.image }}
-          TIMEOUT: 10m
-          PRINT_PAYLOAD: true
+    name: Deploy to dev-gcp
+    uses: navikt/moby-gha-workflows/.github/workflows/nais-app-deploy.yaml@main
+    with:
+      cluster: dev-gcp
+      resource: .nais/naiserator-dev.yaml
+      image: ${{ needs.build.outputs.image }}
 
   deploy-prod:
-    name: Deploy to prod
     needs: [build, deploy-dev]
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: nais/deploy/actions/deploy@v2
-        env:
-          CLUSTER: prod-gcp
-          RESOURCE: .nais/naiserator-prod.yaml
-          IMAGE: ${{ needs.build.outputs.image }}
-          TIMEOUT: 10m
-          PRINT_PAYLOAD: true
+    name: Deploy to prod-gcp
+    uses: navikt/moby-gha-workflows/.github/workflows/nais-app-deploy.yaml@main
+    with:
+      cluster: prod-gcp
+      resource: .nais/naiserator-prod.yaml
+      image: ${{ needs.build.outputs.image }}
