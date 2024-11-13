@@ -1,7 +1,6 @@
 import importMapPlugin from "@eik/rollup-plugin";
 import terser from "@rollup/plugin-terser";
 import react from "@vitejs/plugin-react";
-import { viteMockServe } from "vite-plugin-mock";
 
 const reactUrl = "https://www.nav.no/tms-min-side-assets/react/18/esm/index.js";
 const reactDomUrl =
@@ -10,10 +9,6 @@ const reactDomUrl =
 export default () => ({
   plugins: [
     react(),
-    viteMockServe({
-      mockPath: "mock",
-      enable: true,
-    }),
     {
       ...importMapPlugin({
         maps: [
