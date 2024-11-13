@@ -24,7 +24,7 @@ export default tseslint.config(
     },
   },
   {
-    ignores: ["dist/", "server/build/"],
+    ignores: ["dist/", "public/", "server/build/"],
   },
   {
     plugins: {

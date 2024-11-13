@@ -5,7 +5,7 @@ import { HttpResponse, http } from "msw";
 import microfrontend from "./microfrontend";
 
 export const handlers = [
-    http.get("/mock/auth", () => {
+    http.get("/userinfo", () => {
         return HttpResponse.json(
             {
                 name: "Ola Mohammad",
@@ -24,7 +24,7 @@ export const handlers = [
         );
     }),
 
-    http.get("/microfrontend/bundle.js", () => {
+    http.get("/bundle.js", () => {
         return new HttpResponse(
             microfrontend, {
             status: 200,

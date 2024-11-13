@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "postinstall": "cd server && pnpm install",
-    "dev:mock": "vite --mode mock",
+    "dev": "vite --mode mock",
     "build": "tsc && vite build --base=/ --outDir dist",
     "test": "vitest",
     "lint": "eslint",
