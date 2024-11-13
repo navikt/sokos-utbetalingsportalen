@@ -7,21 +7,23 @@ import styles from "./TopBar.module.css";
 export default function TopBar() {
   const authContext = useAuthContext();
   return (
-    <InternalHeader>
-      <div className={styles["topbar-logo"]}>
-        <img src={nav} alt="NAV logo" />
-      </div>
-      <InternalHeader.Title as={Link} to={"/"} className="border-none">
-        Utbetalingsportalen
-      </InternalHeader.Title>
-      <a href="#main-content" className="sr-only">
-        Hopp til hovedinnhold
-      </a>
-      <Spacer />
-      <InternalHeader.User
-        name={authContext.userData.name}
-        description={authContext.userData.navIdent}
-      />
-    </InternalHeader>
+    <div className={styles["topbar-container"]}>
+      <InternalHeader>
+        <div className={styles["topbar-logo"]}>
+          <img src={nav} alt="NAV logo" />
+        </div>
+        <InternalHeader.Title as={Link} to={"/"} className="border-none">
+          Utbetalingsportalen
+        </InternalHeader.Title>
+        <a href="#main-content" className="sr-only">
+          Hopp til hovedinnhold
+        </a>
+        <Spacer />
+        <InternalHeader.User
+          name={authContext.userData.name}
+          description={authContext.userData.navIdent}
+        />
+      </InternalHeader>
+    </div>
   );
 }

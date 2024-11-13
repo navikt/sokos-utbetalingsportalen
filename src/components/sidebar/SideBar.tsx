@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { HouseIcon, MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
 import { Button } from "@navikt/ds-react";
 import useApps from "../../hooks/useApps";
@@ -6,15 +5,26 @@ import { ROUTES } from "../../routes/routes";
 import styles from "./SideBar.module.css";
 import SideBarLink from "./SideBarLink";
 
-export default function SideBar() {
-  const [showSideBar, setShowSideBar] = useState(true);
+type SideBarProps = {
+  onToggle: (isOpen: boolean) => void;
+  showSideBar?: boolean;
+};
+
+const iconStyle = "w-6 h-6 pb-[2px]";
+
+export default function SideBar({ onToggle, showSideBar }: SideBarProps) {
   const { authorizedApps } = useApps();
+
+  const handleToggle = () => {
+    onToggle(!showSideBar);
+  };
+
   if (!showSideBar) {
     return (
       <div className={`${styles.closed} ${styles.sidebar}`} role="navigation">
         <Button
           className="bg-neutral-800"
-          onClick={() => setShowSideBar(true)}
+          onClick={handleToggle}
           variant="primary-neutral"
           icon={<MenuHamburgerIcon title="Hamburgermeny ikon" />}
         />
@@ -30,15 +40,13 @@ export default function SideBar() {
     ));
   }
 
-  const iconStyle = "w-6 h-6 pb-[2px]";
-
   return (
     <div className={styles["sidebar"]} role="navigation">
       <div className={styles["closebutton"]}>
         <Button
           className="bg-neutral-800 w-28"
-          onClick={() => setShowSideBar(false)}
-          icon={<XMarkIcon title="X mark ikon" />}
+          onClick={handleToggle}
+          icon={<XMarkIcon title="Kryss" />}
           iconPosition="right"
           variant="primary-neutral"
         >
@@ -48,7 +56,7 @@ export default function SideBar() {
 
       <ul className={styles["sidebar-links"]}>
         <SideBarLink to={ROUTES.SOKOS_UP_HOME}>
-          <HouseIcon className={iconStyle} title="Hus ikon" />
+          <HouseIcon className={iconStyle} title="Hus" />
           Hjem
         </SideBarLink>
         {getMicrofrontendLinks()}

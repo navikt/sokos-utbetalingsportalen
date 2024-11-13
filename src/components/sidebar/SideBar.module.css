@@ -1,9 +1,9 @@
 .sidebar {
-  @apply min-h-screen w-80 min-w-80 overflow-hidden bg-neutral-800 transition-all duration-500 ease-in-out;
+  @apply fixed z-[1000] mt-1 h-screen min-h-screen w-80 min-w-80 overflow-hidden overflow-y-auto bg-neutral-800 transition-all duration-500 ease-in-out;
 }
 
 .sidebar.closed {
-  @apply w-12 min-w-12;
+  @apply z-[1000] w-12 min-w-12;
 }
 
 .sidebar-links {

@@ -53,10 +53,10 @@ export default function Home() {
           value="show"
           checked={showUnauthorized === "show"}
           onChange={(e) =>
-            setShowUnauthorized((x) => (x ? "" : e.target.value))
+            setShowUnauthorized((value) => (value ? "" : e.target.value))
           }
         >
-          Vis alle
+          {showUnauthorized === "" ? "Vis alle" : "Vis de jeg har tilgang til"}
         </Switch>
         <div className={styles["home-apps"]}>{appCards()}</div>
       </div>

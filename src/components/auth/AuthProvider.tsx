@@ -38,7 +38,7 @@ export function AuthProvider(props: PropsWithChildren) {
 
   if (!isAuthenticated) {
     return (
-      <div className="w-full text-center py-16 opacity-15">
+      <div className="w-full text-center py-16">
         <Loader size="2xlarge" title="Venter..." transparent />
       </div>
     );

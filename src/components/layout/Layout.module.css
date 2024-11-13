@@ -1,15 +1,23 @@
-.utbetalingsportalen-body {
-  @apply flex w-screen;
+.layout-body {
+  @apply mt-11 flex w-full;
 }
 
-.utbetalingsportalen-outlet {
-  @apply w-screen;
+.layout-content {
+  @apply ml-80 w-full transition-all duration-500 ease-in-out;
 }
 
-.utbetalingsportalen-banner {
-  @apply bg-green-400 p-1 text-center text-black;
+.content-expanded {
+  @apply ml-12;
 }
 
-.utbetalingsportalen-content {
+.layout-test-banner {
+  @apply fixed right-0 top-0 z-[1000] mt-12 font-bold;
+}
+
+.test-ikon polygon {
+  @apply fill-green-400;
+}
+
+.layout-mikrofrontender {
   @apply m-8;
 }
