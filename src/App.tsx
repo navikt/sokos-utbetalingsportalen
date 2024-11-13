@@ -7,9 +7,14 @@ import ErrorBoundary from "./components/error/ErrorBoundary";
 import Layout from "./components/layout/Layout";
 import ErrorPage, { NotFound } from "./pages/ErrorPage";
 import Home from "./pages/Home";
+import { initGrafanaFaro } from "./utils/grafanaFaro";
 
 export default function App() {
   const location = useLocation();
+
+  useEffect(() => {
+    if (import.meta.env.MODE !== "mock") initGrafanaFaro();
+  }, []);
 
   useEffect(() => {
     const currentRoute = location.pathname;
