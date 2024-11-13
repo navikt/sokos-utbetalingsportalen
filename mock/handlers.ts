@@ -1,4 +1,8 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+
 import { HttpResponse, http } from "msw";
+import microfrontend from "./microfrontend";
 
 export const handlers = [
     http.get("/mock/auth", () => {
@@ -19,4 +23,15 @@ export const handlers = [
             }, { status: 200 },
         );
     }),
+
+    http.get("/microfrontend/bundle.js", () => {
+        return new HttpResponse(
+            microfrontend, {
+            status: 200,
+            headers: {
+                "Content-Type": "text/javascript",
+            }
+        }
+        );
+    })
 ];
