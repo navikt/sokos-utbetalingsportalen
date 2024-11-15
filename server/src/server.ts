@@ -56,55 +56,22 @@ const startServer = () => {
   // Azure AD user info
   server.get("/userinfo", azureUserInfo);
 
-  if (Config.NAIS_CLUSTER_NAME === "dev-gcp") {
-    // sokos-oppdrag
-    routeProxyWithOboToken({
-      path: Config.SOKOS_OPPDRAG_PROXY,
-      apiUrl: Config.SOKOS_OPPDRAG_API,
-      apiScope: Config.SOKOS_OPPDRAG_API_SCOPE,
-    });
-
-    // sokos-utbetaling-api
-    routeProxyWithOboToken({
-      path: Config.SOKOS_UTBETALING_API_PROXY,
-      apiUrl: Config.SOKOS_UTBETALING_API,
-      apiScope: Config.SOKOS_UTBETALING_API_SCOPE,
-    });
-
-    // sokos-spk-mottak
-    routeProxyWithOboToken({
-      path: Config.SOKOS_SPK_MOTTAK_PROXY,
-      apiUrl: Config.SOKOS_SPK_MOTTAK_API,
-      apiScope: Config.SOKOS_SPK_MOTTAK_API_SCOPE,
-    });
-  }
-
-  // sokos-skattekort-person
-  routeProxyWithOboToken({
-    path: Config.SOKOS_SKATTEKORT_PROXY,
-    apiUrl: Config.SOKOS_SKATTEKORT_PERSON_API,
-    apiScope: Config.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
-  });
-
-  // sokos-up-ors-api
-  routeProxyWithOboToken({
-    path: Config.SOKOS_UP_ORS_API_PROXY,
-    apiUrl: Config.SOKOS_UP_ORS_API,
-    apiScope: Config.SOKOS_UP_ORS_API_SCOPE,
-  });
-
-  // sokos-up-kontoregister-api
-  routeProxyWithOboToken({
-    path: Config.SOKOS_KONTOREGISTER_API_PROXY,
-    apiUrl: Config.SOKOS_KONTOREGISTER_API,
-    apiScope: Config.SOKOS_KONTOREGISTER_API_SCOPE,
-  });
-
-  // sokos-ur-iso
-  routeProxyWithOboToken({
-    path: Config.SOKOS_UR_ISO_PROXY,
-    apiUrl: Config.SOKOS_UR_ISO,
-    apiScope: Config.SOKOS_UR_ISO_SCOPE,
+  Config.configItems.forEach((app) => {
+    if (Config.NAIS_CLUSTER_NAME === "dev-gcp") {
+      routeProxyWithOboToken({
+        path: app.apiProxy,
+        apiUrl: app.api,
+        apiScope: app.apiScope,
+      });
+    } else {
+      if (app.production) {
+        routeProxyWithOboToken({
+          path: app.apiProxy,
+          apiUrl: app.api,
+          apiScope: app.apiScope,
+        });
+      }
+    }
   });
 
   server.use(`/assets`, express.static(`${BUILD_PATH}/assets`));

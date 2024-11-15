@@ -3,6 +3,13 @@ import { z } from "zod";
 
 dotenv.config();
 
+const ConfigItemSchema = z.object({
+  api: z.string(),
+  apiScope: z.string(),
+  apiProxy: z.string(),
+  production: z.boolean(),
+});
+
 const ConfigSchema = z.object({
   // NAIS env
   NAIS_APP_NAME: z.string(),
@@ -16,46 +23,60 @@ const ConfigSchema = z.object({
   AZURE_APP_JWK: z.string(),
   AZURE_OPENID_CONFIG_TOKEN_ENDPOINT: z.string(),
 
-  // sokos-up-skattekort
-  SOKOS_SKATTEKORT_PERSON_API: z.string(),
-  SOKOS_SKATTEKORT_PERSON_API_SCOPE: z.string(),
-  SOKOS_SKATTEKORT_PROXY: z.string(),
-
-  // sokos-spk-mottak
-  SOKOS_SPK_MOTTAK_API: z.string().default(""),
-  SOKOS_SPK_MOTTAK_API_SCOPE: z.string().default(""),
-  SOKOS_SPK_MOTTAK_PROXY: z.string().default(""),
-
-  // sokos-up-ors-api
-  SOKOS_UP_ORS_API: z.string(),
-  SOKOS_UP_ORS_API_SCOPE: z.string(),
-  SOKOS_UP_ORS_API_PROXY: z.string(),
-
-  // sokos-up-kontoregister-api
-  SOKOS_KONTOREGISTER_API: z.string(),
-  SOKOS_KONTOREGISTER_API_SCOPE: z.string(),
-  SOKOS_KONTOREGISTER_API_PROXY: z.string(),
-
-  // sokos-oppdrag
-  SOKOS_OPPDRAG_API: z.string().default(""),
-  SOKOS_OPPDRAG_API_SCOPE: z.string().default(""),
-  SOKOS_OPPDRAG_PROXY: z.string().default(""),
-
-  // sokos-ur-iso
-  SOKOS_UR_ISO: z.string(),
-  SOKOS_UR_ISO_SCOPE: z.string(),
-  SOKOS_UR_ISO_PROXY: z.string(),
-
-  // sokos-utbetaling-api
-  SOKOS_UTBETALING_API: z.string().default(""),
-  SOKOS_UTBETALING_API_SCOPE: z.string().default(""),
-  SOKOS_UTBETALING_API_PROXY: z.string().default(""),
+  // Config items
+  configItems: z.array(ConfigItemSchema),
 });
 
 type Config = z.infer<typeof ConfigSchema>;
 
 const getConfig = (): Config => {
-  const result = ConfigSchema.safeParse(process.env);
+  const result = ConfigSchema.safeParse({
+    ...process.env,
+    configItems: [
+      {
+        api: process.env.SOKOS_SKATTEKORT_PERSON_API,
+        apiScope: process.env.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
+        apiProxy: process.env.SOKOS_SKATTEKORT_PROXY,
+        production: true,
+      },
+      {
+        api: process.env.SOKOS_SPK_MOTTAK_API,
+        apiScope: process.env.SOKOS_SPK_MOTTAK_API_SCOPE,
+        apiProxy: process.env.SOKOS_SPK_MOTTAK_PROXY,
+        production: false,
+      },
+      {
+        api: process.env.SOKOS_UP_ORS_API,
+        apiScope: process.env.SOKOS_UP_ORS_API_SCOPE,
+        apiProxy: process.env.SOKOS_UP_ORS_API_PROXY,
+        production: true,
+      },
+      {
+        api: process.env.SOKOS_KONTOREGISTER_API,
+        apiScope: process.env.SOKOS_KONTOREGISTER_API_SCOPE,
+        apiProxy: process.env.SOKOS_KONTOREGISTER_API_PROXY,
+        production: true,
+      },
+      {
+        api: process.env.SOKOS_OPPDRAG_API,
+        apiScope: process.env.SOKOS_OPPDRAG_API_SCOPE,
+        apiProxy: process.env.SOKOS_OPPDRAG_PROXY,
+        production: false,
+      },
+      {
+        api: process.env.SOKOS_UR_ISO,
+        apiScope: process.env.SOKOS_UR_ISO_SCOPE,
+        apiProxy: process.env.SOKOS_UR_ISO_PROXY,
+        production: true,
+      },
+      {
+        api: process.env.SOKOS_UTBETALING_API,
+        apiScope: process.env.SOKOS_UTBETALING_API_SCOPE,
+        apiProxy: process.env.SOKOS_UTBETALING_API_PROXY,
+        production: false,
+      },
+    ],
+  });
 
   if (!result.success) {
     throw new Error(`Server startup failed: ${result.error.message}`);
