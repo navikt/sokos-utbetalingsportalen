@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Microfrontend from "./Microfrontend";
-import { Apps } from "./MicrofrontendApp";
 import { AuthProvider } from "./components/auth/AuthProvider";
 import ErrorBoundary from "./components/error/ErrorBoundary";
 import Layout from "./components/layout/Layout";
+import { MicrofrontendConfig } from "./config/microfrontend";
 import ErrorPage, { NotFound } from "./pages/ErrorPage";
 import Home from "./pages/Home";
 import { initGrafanaFaro } from "./utils/grafanaFaro";
@@ -19,7 +19,8 @@ export default function App() {
   useEffect(() => {
     const currentRoute = location.pathname;
     const appTitle =
-      Apps.find((app) => currentRoute.includes(app.route))?.title || "";
+      MicrofrontendConfig.find((app) => currentRoute.includes(app.route))
+        ?.title || "";
     const title =
       currentRoute === "/"
         ? "Utbetalingsportalen"
@@ -29,7 +30,9 @@ export default function App() {
   }, [location]);
 
   function microfrontendRoutes() {
-    return Apps.sort((a, b) => a.title.localeCompare(b.title)).map((app) => (
+    return MicrofrontendConfig.sort((a, b) =>
+      a.title.localeCompare(b.title),
+    ).map((app) => (
       <Route
         key={app.title}
         path={`${app.route}/*`}

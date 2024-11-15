@@ -1,26 +1,31 @@
-import { Apps, MicrofrontendApp } from "../MicrofrontendApp";
-import { AzureAdGroupNameId, AzureAdGroupNames } from "../auth/azureAdGroups";
 import { useAuthContext } from "../auth/userAuth";
+import {
+  AzureAdGroupNameId,
+  MicrofrontendApp,
+  MicrofrontendConfig,
+} from "../config/microfrontend";
 import { getEnvironment } from "../utils/environment";
 
 export default function useApps() {
   const authContext = useAuthContext();
-  const authorizedApps = Apps.filter((app) => hasAccess(app.group));
+  const authorizedApps = MicrofrontendConfig.filter((app) =>
+    hasAccess(app.group),
+  );
   const allApps = [
     ...authorizedApps,
-    ...Apps.filter((app) => !hasAccess(app.group)).filter(
+    ...MicrofrontendConfig.filter((app) => !hasAccess(app.group)).filter(
       (app) => !hideApp(app),
     ),
   ];
 
-  function hasAccess(group: AzureAdGroupNames) {
+  function hasAccess(group: string) {
     return authContext.userData.adGroups.some(
-      (id) => id === AzureAdGroupNameId[group],
+      (id) => id === AzureAdGroupNameId(group),
     );
   }
 
   function hideApp(app: MicrofrontendApp) {
-    return app.onlyForDevelopment && getEnvironment() === "local";
+    return app.onlyLocalDev && getEnvironment() === "local";
   }
 
   return { authorizedApps, allApps };
