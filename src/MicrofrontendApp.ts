@@ -1,19 +1,12 @@
 import { AzureAdGroupName, AzureAdGroupNames } from "./auth/azureAdGroups";
-import { ROUTES } from "./routes/routes";
-import {
-  sokosMikrofrontendTemplateURL,
-  sokosUpAttestasjonURL,
-  sokosUpBuntkontrollURL,
-  sokosUpKroURL,
-  sokosUpKrpURL,
-  sokosUpOppdragsinfoURL,
-  sokosUpOrsURL,
-  sokosUpResendingBankURL,
-  sokosUpSkattekortURL,
-  sokosUpSpkMottakURL,
-  sokosUpUtbetalingURL,
-  sokosUpVenteregisterURL,
-} from "./urls";
+import { getEnvironment } from "./utils/environment";
+
+const url = (appName: string) => {
+  if (getEnvironment() === "local") {
+    return "/bundle.js";
+  }
+  return "https://" + window.location.hostname + "/" + appName + "/bundle.js";
+};
 
 export type MicrofrontendApp = {
   app: string;
@@ -31,24 +24,24 @@ export const Apps: Array<MicrofrontendApp> = [
     title: "Venteregister",
     description: "Venteregister for oppdrag",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_VENTEREGISTER_READ,
-    route: ROUTES.SOKOS_UP_VENTEREGISTER,
-    url: sokosUpVenteregisterURL,
+    route: "/venteregister",
+    url: url("sokos-up-venteregister"),
   },
   {
     app: "ATTESTASJON",
     title: "Attestasjon",
     description: "Attestering av oppdrag",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ATTESTASJON_READ,
-    route: ROUTES.SOKOS_UP_ATTESTASJON,
-    url: sokosUpAttestasjonURL,
+    route: "/attestasjon",
+    url: url("sokos-up-attestasjon"),
   },
   {
     app: "MIKROFRONTEND",
     title: "Grensesnittmal",
     description: "Dette er en blank mal for et grensesnitt",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_MIKROFRONTEND_READ,
-    route: ROUTES.SOKOS_MIKROFRONTEND_TEMPLATE,
-    url: sokosMikrofrontendTemplateURL,
+    route: "/mikrofrontend",
+    url: url("sokos-mikrofrontend-template"),
     onlyForDevelopment: true,
   },
   {
@@ -56,71 +49,78 @@ export const Apps: Array<MicrofrontendApp> = [
     title: "Resending til bank",
     description: "Resending av meldinger til bank",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_RESENDING_BANK_READ,
-    route: ROUTES.SOKOS_UP_RESENDING_BANK,
-    url: sokosUpResendingBankURL,
+    route: "/resending-bank",
+    url: url("sokos-up-resending-bank"),
   },
   {
     app: "KRP",
     title: "Kontoregister person",
     description: "Søk etter personer og konti",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRP_READ,
-    route: ROUTES.SOKOS_UP_KRP,
-    url: sokosUpKrpURL,
+    route: "/kontoregister-person",
+    url: url("sokos-up-krp"),
   },
   {
     app: "KRO",
     title: "Kontoregister organisasjon",
     description: "Søk etter kontonummer til organisasjoner",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_KRO_READ,
-    route: ROUTES.SOKOS_UP_KRO,
-    url: sokosUpKroURL,
+    route: "/kontoregister-organisasjon",
+    url: url("sokos-up-kro"),
   },
   {
     app: "OPPDRAGSINFO",
     title: "Oppdragsinfo",
     description: "Søk etter oppdrag i Oppdragssystemet",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_OPPDRAGSINFO_READ,
-    route: ROUTES.SOKOS_UP_OPPDRAGSINFO,
-    url: sokosUpOppdragsinfoURL,
+    route: "/oppdragsinfo",
+    url: url("sokos-up-oppdragsinfo"),
   },
   {
     app: "ORS",
     title: "Oppslag i Reskontro Stønad",
     description: "Søk etter posteringer fra Abetal og UR",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_ORS_READ,
-    route: ROUTES.SOKOS_UP_ORS,
-    url: sokosUpOrsURL,
+    route: "/oppslag-reskontro-stoenad",
+    url: url("sokos-up-ors"),
   },
   {
     app: "SKATTEKORT",
     title: "Skattekort",
     description: "Søk etter skattekort for personer i OS-Eskatt",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SKATTEKORT_READ,
-    route: ROUTES.SOKOS_UP_SKATTEKORT,
-    url: sokosUpSkattekortURL,
+    route: "/skattekort",
+    url: url("sokos-up-skattekort"),
   },
   {
-    app: "SPK",
-    title: "sokos-spk-mottak",
+    app: "SPK_MOTTAK",
+    title: "SPK mottak",
     description: "Dashboard for å trigge jobber",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_SPK_MOTTAK_READ,
-    route: ROUTES.SOKOS_UP_SPK,
-    url: sokosUpSpkMottakURL,
+    route: "/spk-mottak",
+    url: url("sokos-up-spk-mottak"),
   },
   {
     app: "UTBETALING",
     title: "Utbetaling",
     description: "Søk etter utbetalinger",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_UTBETALING_READ,
-    route: ROUTES.SOKOS_UP_UTBETALING,
-    url: sokosUpUtbetalingURL,
+    route: "/utbetaling",
+    url: url("sokos-up-utbetaling"),
   },
   {
     app: "BUNTKONTROLL",
     title: "Buntkontroll",
     description: "Oversikt over bunter sendt til bank",
     group: AzureAdGroupName.AD_GRUPPE_SOKOS_MF_BUNTKONTROLL_READ,
-    route: ROUTES.SOKOS_UP_BUNTKONTROLL,
-    url: sokosUpBuntkontrollURL,
+    route: "/buntkontroll",
+    url: url("sokos-up-buntkontroll"),
   },
 ];
+
+/**
+ * Forkortelser i URL er ikke en god idé. Det er bedre å bruke hele ord.
+ * Bruk små bokstaver i URL.
+ * Bruke bindestrek i URL for å skille på ord.
+ * Ikke bruk Æ Ø Å. Skriv heller: Æ = AE, Ø = OE, Å = AA.
+ **/

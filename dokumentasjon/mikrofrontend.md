@@ -1,17 +1,15 @@
 # Guide for å legge til en mikrofrontend
 
-1.  Legg inn Azure AD gruppene for tilgangsstyring i [azureAdGroups.ts](/src/auth/azureAdGroups.ts). AD grupper får man laget hos [Microsoft](https://mygroups.microsoft.com/). 
+1.  Legg inn Azure AD gruppene for tilgangsstyring i [azureAdGroups.ts](/src/auth/azureAdGroups.ts). AD grupper får man laget hos [Microsoft](https://mygroups.microsoft.com/).
     ID'en til gruppen ser man i url'en etter `groups/` i format tilsvarende `1b717a23-d376-471c-9fc6-356299fadc2b`.
     <br></br>
 2. Legg inn urler for alle miljøer applikasjonen skal bruke i [urls.ts](/src/urls.ts)
    <br></br>
-3. Legg inn path til applikasjonen din under [routes.ts](/src/routes/routes.ts)
+
+3. Legg inn den nye appen i [MicrofrontendApps.ts](/src/MicrofrontendApp.ts)
    <br></br>
 
-4. Legg inn den nye appen i [MicrofrontendApps.ts](/src/MicrofrontendApp.ts)
-   <br></br>
-
-5. I [naiserator-dev.yaml](../.nais/naiserator-dev.yaml) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs.
+4. I [naiserator-dev.yaml](../.nais/naiserator-dev.yaml) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs.
    Se for eksempel hvilke `env` variabler andre har lagt inn.
    Husk å legge inn under `accessPolicy` hvilken backend mikrofrontend'en skal snakke med.
     Eksempel:
@@ -39,9 +37,9 @@
               namespace: okonomi
               cluster: dev-gcp
       ```
-   
-6. Env variablene som er lagt inn i naiserator-filene skal defineres i [config.ts](/server/src/config.ts)
-   _De tre env variablene som må være med er: PROXY, API, OG API_SCOPE._ 
+
+5. Env variablene som er lagt inn i naiserator-filene skal defineres i [config.ts](/server/src/config.ts)
+   _De tre env variablene som må være med er: PROXY, API, OG API_SCOPE._
    API er den faktiske adressen til tjenesten.
    ```yaml
        - name: SOKOS_SKATTEKORT_PERSON_API
@@ -65,7 +63,7 @@
     SOKOS_SPK_MOTTAK_PROXY: z.string(),
     ````
 
-7. Under [server.ts](../server/src/server.ts) må du legge inn proxy til applikasjonen mikrofrontend'en skal snakke med.
+6. Under [server.ts](../server/src/server.ts) må du legge inn proxy til applikasjonen mikrofrontend'en skal snakke med.
 
    ```typescript
      routeProxyWithOboToken(
