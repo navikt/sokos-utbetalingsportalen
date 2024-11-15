@@ -1,6 +1,6 @@
 # Guide for å legge til en mikrofrontend
 
-1. Legg inn følgende verdier i [MicrofrontendApps.ts](/src/MicrofrontendApp.ts) :
+1. Legg inn følgende verdier i [microfrontend.ts](/src/config/microfrontend.ts) :
     ```typescript
     {
       app: "VENTEREGISTER",
@@ -27,7 +27,8 @@
           * Ikke bruk Æ Ø Å. Skriv heller: Æ = AE, Ø = OE, Å = AA.
           ```
       - **url** -> (NAIS app navn)
-   <br></br>
+
+<br></br>
 
 2. I [naiserator-dev.yaml](../.nais/naiserator-dev.yaml) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs.
    Se for eksempel hvilke `env` variabler andre har lagt inn.
@@ -58,22 +59,28 @@
               cluster: dev-gcp
       ```
 
-    Env variablene som er lagt inn i naiserator-filene skal defineres i [config.ts](/server/src/config.ts)
-   _De tre env variablene som må være med er: PROXY, API, OG API_SCOPE._
+<br></br>
+
+3. Env variablene som er lagt inn i naiserator-filene skal defineres i [config.ts](/server/src/config.ts)
 
       Formatet skal være følgende:
    ```typescript
-   SOKOS_SPK_MOTTAK_API: z.string(),
-   SOKOS_SPK_MOTTAK_API_SCOPE: z.string(),
-   SOKOS_SPK_MOTTAK_PROXY: z.string(),
+      {
+        apiUrl: process.env.SOKOS_SKATTEKORT_PERSON_API,
+        apiScope: process.env.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
+        apiProxy: process.env.SOKOS_SKATTEKORT_PROXY,
+        production: false,
+      },
    ````
+      **production** -> Denne skal være false så lenge du ikke går ut i produksjon. Når du skal ut i produksjon endre verdien til `true`
 
+      <br></br>
       API er den faktiske adressen til tjenesten.
       ```yaml
           - name: SOKOS_SKATTEKORT_PERSON_API
             value: https://sokos-skattekort-person.dev-fss-pub.nais.io
       ```
-      SCOPE brukes internt i Utbetalingsportalen for å definere path'en for å nå tjenesten.
+      SCOPE representerer en tillatelse som en gitt forbruker har tilgang til.
       ```yaml
            - name: SOKOS_SKATTEKORT_API_SCOPE
               value: "api://dev-fss.okonomi.sokos-skattekort-person/.default"
@@ -84,19 +91,5 @@
              value: "/skattekort-api"
       ```
 
-3. Under [server.ts](../server/src/server.ts) må du legge inn proxy til applikasjonen mikrofrontend'en skal snakke med.
-
-    ```typescript
-       routeProxyWithOboToken(
-       path: Config.SOKOS_MIKROFRONTEND_PROXY,
-        apiUrl: Config.SOKOS_MIKROFRONTEND_API,
-        apiScope: Config.SOKOS_MIKROFRONTEND_API_SCOPE,
-      );
-    ```
-    Skal applikasjonen kun deployes til dev så legges den inn under:
-    ```typescript
-         if (Config.NAIS_CLUSTER_NAME === "dev-gcp") {
-    ```
-
-
-   🎉 Nå er `sokos-utbetalingsportalen` klar til å kunne rendre mikrofrontend'en og rute rest kallene til riktig api.
+  <br></br>
+   ## 🎉 Nå er `sokos-utbetalingsportalen` klar til å kunne rendre mikrofrontend'en og rute rest kallene til riktig api. 🎉

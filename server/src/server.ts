@@ -56,19 +56,20 @@ const startServer = () => {
   // Azure AD user info
   server.get("/userinfo", azureUserInfo);
 
-  Config.configItems.forEach((app) => {
+  // Proxy routes
+  Config.apiConfig.forEach((app) => {
     if (Config.NAIS_CLUSTER_NAME === "dev-gcp") {
       routeProxyWithOboToken({
-        path: app.apiProxy,
-        apiUrl: app.api,
+        apiUrl: app.apiUrl,
         apiScope: app.apiScope,
+        apiProxy: app.apiProxy,
       });
     } else {
       if (app.production) {
         routeProxyWithOboToken({
-          path: app.apiProxy,
-          apiUrl: app.api,
+          apiUrl: app.apiUrl,
           apiScope: app.apiScope,
+          apiProxy: app.apiProxy,
         });
       }
     }
