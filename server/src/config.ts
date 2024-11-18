@@ -4,10 +4,10 @@ import { z } from "zod";
 dotenv.config();
 
 const ApiConfigSchema = z.object({
-  apiUrl: z.string(),
-  apiScope: z.string(),
-  apiProxy: z.string(),
-  production: z.boolean(),
+  apiUrl: z.string().default(""),
+  apiScope: z.string().default(""),
+  apiProxy: z.string().default(""),
+  production: z.boolean().default(false),
 });
 
 const ConfigSchema = z.object({
