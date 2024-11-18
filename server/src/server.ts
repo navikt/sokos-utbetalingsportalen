@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import express, { Request, Response } from "express";
 import RateLimit from "express-rate-limit";
 import expressStaticGzip from "express-static-gzip";
@@ -65,6 +66,12 @@ const startServer = () => {
         apiProxy: app.apiProxy,
       });
     } else {
+      console.log(
+        "Production cluster, proxying with OBO token:" + app.production,
+      );
+      console.log("API URL: " + app.apiUrl);
+      console.log("API Scope: " + app.apiScope);
+      console.log("API Proxy: " + app.apiProxy);
       if (app.production) {
         routeProxyWithOboToken({
           apiUrl: app.apiUrl,
