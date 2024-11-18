@@ -4,10 +4,10 @@ import { z } from "zod";
 dotenv.config();
 
 const ApiConfigSchema = z.object({
-  apiUrl: z.string().default(""),
-  apiScope: z.string().default(""),
-  apiProxy: z.string().default(""),
-  production: z.boolean().default(false),
+  apiUrl: z.string(),
+  apiScope: z.string(),
+  apiProxy: z.string(),
+  production: z.boolean(),
 });
 
 const ConfigSchema = z.object({
@@ -30,56 +30,71 @@ const ConfigSchema = z.object({
 type Config = z.infer<typeof ConfigSchema>;
 
 const getConfig = (): Config => {
+  const isProduction = process.env.NODE_ENV === "production";
+
+  const apiConfig = [
+    {
+      apiUrl: process.env.SOKOS_SKATTEKORT_PERSON_API,
+      apiScope: process.env.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
+      apiProxy: process.env.SOKOS_SKATTEKORT_PROXY,
+      production: true,
+    },
+    {
+      apiUrl: process.env.SOKOS_SPK_MOTTAK_API,
+      apiScope: process.env.SOKOS_SPK_MOTTAK_API_SCOPE,
+      apiProxy: process.env.SOKOS_SPK_MOTTAK_PROXY,
+      production: false,
+    },
+    {
+      apiUrl: process.env.SOKOS_UP_ORS_API,
+      apiScope: process.env.SOKOS_UP_ORS_API_SCOPE,
+      apiProxy: process.env.SOKOS_UP_ORS_API_PROXY,
+      production: true,
+    },
+    {
+      apiUrl: process.env.SOKOS_KONTOREGISTER_API,
+      apiScope: process.env.SOKOS_KONTOREGISTER_API_SCOPE,
+      apiProxy: process.env.SOKOS_KONTOREGISTER_API_PROXY,
+      production: true,
+    },
+    {
+      apiUrl: process.env.SOKOS_OPPDRAG_API,
+      apiScope: process.env.SOKOS_OPPDRAG_API_SCOPE,
+      apiProxy: process.env.SOKOS_OPPDRAG_PROXY,
+      production: false,
+    },
+    {
+      apiUrl: process.env.SOKOS_UR_ISO,
+      apiScope: process.env.SOKOS_UR_ISO_SCOPE,
+      apiProxy: process.env.SOKOS_UR_ISO_PROXY,
+      production: true,
+    },
+    {
+      apiUrl: process.env.SOKOS_UTBETALING_API,
+      apiScope: process.env.SOKOS_UTBETALING_API_SCOPE,
+      apiProxy: process.env.SOKOS_UTBETALING_API_PROXY,
+      production: false,
+    },
+  ];
+
+  const filteredApiConfig = isProduction
+    ? apiConfig.filter((config) => config.production)
+    : apiConfig;
+
   const result = ConfigSchema.safeParse({
     ...process.env,
-    apiConfig: [
-      {
-        apiUrl: process.env.SOKOS_SKATTEKORT_PERSON_API,
-        apiScope: process.env.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
-        apiProxy: process.env.SOKOS_SKATTEKORT_PROXY,
-        production: true,
-      },
-      {
-        apiUrl: process.env.SOKOS_SPK_MOTTAK_API,
-        apiScope: process.env.SOKOS_SPK_MOTTAK_API_SCOPE,
-        apiProxy: process.env.SOKOS_SPK_MOTTAK_PROXY,
-        production: false,
-      },
-      {
-        apiUrl: process.env.SOKOS_UP_ORS_API,
-        apiScope: process.env.SOKOS_UP_ORS_API_SCOPE,
-        apiProxy: process.env.SOKOS_UP_ORS_API_PROXY,
-        production: true,
-      },
-      {
-        apiUrl: process.env.SOKOS_KONTOREGISTER_API,
-        apiScope: process.env.SOKOS_KONTOREGISTER_API_SCOPE,
-        apiProxy: process.env.SOKOS_KONTOREGISTER_API_PROXY,
-        production: true,
-      },
-      {
-        apiUrl: process.env.SOKOS_OPPDRAG_API,
-        apiScope: process.env.SOKOS_OPPDRAG_API_SCOPE,
-        apiProxy: process.env.SOKOS_OPPDRAG_PROXY,
-        production: false,
-      },
-      {
-        apiUrl: process.env.SOKOS_UR_ISO,
-        apiScope: process.env.SOKOS_UR_ISO_SCOPE,
-        apiProxy: process.env.SOKOS_UR_ISO_PROXY,
-        production: true,
-      },
-      {
-        apiUrl: process.env.SOKOS_UTBETALING_API,
-        apiScope: process.env.SOKOS_UTBETALING_API_SCOPE,
-        apiProxy: process.env.SOKOS_UTBETALING_API_PROXY,
-        production: false,
-      },
-    ],
+    apiConfig: filteredApiConfig,
   });
 
   if (!result.success) {
-    throw new Error(`Server startup failed: ${result.error.message}`);
+    const errorMessages = result.error.errors
+      .map((err) => {
+        const propertyName = err.path.join(".");
+        return `${propertyName}: ${err.fatal}`;
+      })
+      .join("\n");
+
+    throw new Error(`Server startup failed:\n${errorMessages}`);
   }
 
   return result.data;
