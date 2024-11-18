@@ -76,7 +76,7 @@ const getConfig = (): Config => {
   ];
 
   const filteredApiConfig =
-    process.env.NODE_ENV === "production"
+    process.env.NAIS_CLUSTER_NAME === "prod-gcp"
       ? apiConfig.filter((config) => config.production)
       : apiConfig;
 
