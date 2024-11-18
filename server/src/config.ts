@@ -30,8 +30,6 @@ const ConfigSchema = z.object({
 type Config = z.infer<typeof ConfigSchema>;
 
 const getConfig = (): Config => {
-  const isProduction = process.env.NODE_ENV === "production";
-
   const apiConfig = [
     {
       apiUrl: process.env.SOKOS_SKATTEKORT_PERSON_API,
@@ -77,9 +75,10 @@ const getConfig = (): Config => {
     },
   ];
 
-  const filteredApiConfig = isProduction
-    ? apiConfig.filter((config) => config.production)
-    : apiConfig;
+  const filteredApiConfig =
+    process.env.NODE_ENV === "production"
+      ? apiConfig.filter((config) => config.production)
+      : apiConfig;
 
   const result = ConfigSchema.safeParse({
     ...process.env,
