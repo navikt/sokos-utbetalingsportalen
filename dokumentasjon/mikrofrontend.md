@@ -1,17 +1,36 @@
 # Guide for å legge til en mikrofrontend
 
-1.  Legg inn Azure AD gruppene for tilgangsstyring i [azureAdGroups.ts](/src/auth/azureAdGroups.ts). AD grupper får man laget hos [Microsoft](https://mygroups.microsoft.com/). 
-    ID'en til gruppen ser man i url'en etter `groups/` i format tilsvarende `1b717a23-d376-471c-9fc6-356299fadc2b`.
-    <br></br>
-2. Legg inn urler for alle miljøer applikasjonen skal bruke i [urls.ts](/src/urls.ts)
-   <br></br>
-3. Legg inn path til applikasjonen din under [routes.ts](/src/routes/routes.ts)
-   <br></br>
+1. Legg inn følgende verdier i [microfrontend.ts](/src/config/microfrontend.ts) :
+    ```typescript
+    {
+      app: "VENTEREGISTER",
+      title: "Venteregister",
+      description: "Venteregister for oppdrag",
+      group: adGroup({
+        adGroupDevelopment: "48a80bbb-be45-4ef6-aab8-21604f057f47",
+        adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+      }),
+      route: "/venteregister",
+      url: mikrofrontendUrl("sokos-up-venteregister"),
+    },
+    ```
+    Beskrivelse av følgende verdier:
+      - **app** (Applikasjon navn)
+      - **title** (Dette er det som vises i menyen (Sidebar))
+      - **description** (Beskrivelse av hva dette skjermbildet)
+      - **group** -> (Legg inn UUID for både dev og prod)
+      - **route** -> (Url lenke i Utbetalingsportalen)
+          ```
+          * Forkortelser i URL er ikke en god idé. Det er bedre å bruke hele ord.
+          * Bruk små bokstaver i URL.
+          * Bruke bindestrek i URL for å skille på ord.
+          * Ikke bruk Æ Ø Å. Skriv heller: Æ = AE, Ø = OE, Å = AA.
+          ```
+      - **url** -> (NAIS app navn)
 
-4. Legg inn den nye appen i [MicrofrontendApps.ts](/src/MicrofrontendApp.ts)
-   <br></br>
+<br></br>
 
-5. I [naiserator-dev.yaml](../.nais/naiserator-dev.yaml) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs.
+2. I [naiserator-dev.yaml](../.nais/naiserator-dev.yaml) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs.
    Se for eksempel hvilke `env` variabler andre har lagt inn.
    Husk å legge inn under `accessPolicy` hvilken backend mikrofrontend'en skal snakke med.
     Eksempel:
@@ -28,7 +47,7 @@
            - host: sokos-ur-iso.dev-fss-pub.nais.io
    ```
 
-   Skal mikrofrontend'en snakke med en applikasjon  i `fss` cluster så må du gjøre [følgende](https://docs.nais.io/workloads/explanations/migrating-to-gcp/#how-do-i-reach-an-application-found-on-premises-from-my-application-in-gcp). Den må da ligge under `accessPolicy external` som i eksempelet over.
+   Skal mikrofrontend'en snakke med en applikasjon  i `fss` cluster så må du gjøre [følgende](https://docs.nais.io/workloads/explanations/migrating-to-gcp/#how-do-i-reach-an-application-found-on-premises-from-my-application-in-gcp). Den må da ligge under `accessPolicy -> outbound -> external` som i eksempelet over.
    Det må også være åpnet opp for trafikk fra Utbetalingsportalen inn til applikasjonen:
 
      ```yaml
@@ -39,44 +58,38 @@
               namespace: okonomi
               cluster: dev-gcp
       ```
-   
-6. Env variablene som er lagt inn i naiserator-filene skal defineres i [config.ts](/server/src/config.ts)
-   _De tre env variablene som må være med er: PROXY, API, OG API_SCOPE._ 
-   API er den faktiske adressen til tjenesten.
-   ```yaml
-       - name: SOKOS_SKATTEKORT_PERSON_API
-         value: https://sokos-skattekort-person.dev-fss-pub.nais.io
-   ```
-   PROXY brukes internt i Utbetalingsportalen for å definere path'en for å nå tjenesten.
-   ```yaml
-        - name: SOKOS_SKATTEKORT_PROXY
-          value: "/skattekort-api"
-   ```
-   Skal du kun deploye til dev så er dette formatet ok:
+
+<br></br>
+
+3. Env variablene som er lagt inn i naiserator-filene skal defineres i [config.ts](/server/src/config.ts)
+
+      Formatet skal være følgende:
    ```typescript
-   SOKOS_SPK_MOTTAK_API: z.string().default(""),
-   SOKOS_SPK_MOTTAK_API_SCOPE: z.string().default(""),
-   SOKOS_SPK_MOTTAK_PROXY: z.string().default(""),
+      {
+        apiUrl: process.env.SOKOS_SKATTEKORT_PERSON_API,
+        apiScope: process.env.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
+        apiProxy: process.env.SOKOS_SKATTEKORT_PROXY,
+        production: false,
+      },
    ````
-   I prod så trenger vi ikke default verdien siden environment variablene da er tilstede for begge miljøene.
-   ```typescript
-    SOKOS_SPK_MOTTAK_API: z.string(),
-    SOKOS_SPK_MOTTAK_API_SCOPE: z.string(),
-    SOKOS_SPK_MOTTAK_PROXY: z.string(),
-    ````
+      **production** -> Denne skal være false så lenge du ikke går ut i produksjon. Når du skal ut i produksjon endre verdien til `true`
 
-7. Under [server.ts](../server/src/server.ts) må du legge inn proxy til applikasjonen mikrofrontend'en skal snakke med.
+      <br></br>
+      API er den faktiske adressen til tjenesten.
+      ```yaml
+          - name: SOKOS_SKATTEKORT_PERSON_API
+            value: https://sokos-skattekort-person.dev-fss-pub.nais.io
+      ```
+      SCOPE representerer en tillatelse som en gitt forbruker har tilgang til.
+      ```yaml
+           - name: SOKOS_SKATTEKORT_API_SCOPE
+              value: "api://dev-fss.okonomi.sokos-skattekort-person/.default"
+      ```
+      PROXY brukes internt i Utbetalingsportalen for å definere path'en for å nå tjenesten.
+      ```yaml
+            - name: SOKOS_SKATTEKORT_PROXY
+             value: "/skattekort-api"
+      ```
 
-   ```typescript
-     routeProxyWithOboToken(
-      path: Config.SOKOS_MIKROFRONTEND_PROXY,
-      apiUrl: Config.SOKOS_MIKROFRONTEND_API,
-      apiScope: Config.SOKOS_MIKROFRONTEND_API_SCOPE,
-    );
-   ```
-   Skal applikasjonen kun deployes til dev så legges den inn under:
-   ```typescript
-       if (Config.NAIS_CLUSTER_NAME === "dev-gcp") {
-   ```
-
-   🎉 Nå er `sokos-utbetalingsportalen` klar til å kunne rendre mikrofrontend'en og rute rest kallene til riktig api.
+  <br></br>
+   ## 🎉 Nå er `sokos-utbetalingsportalen` klar til å kunne rendre mikrofrontend'en og rute rest kallene til riktig api. 🎉

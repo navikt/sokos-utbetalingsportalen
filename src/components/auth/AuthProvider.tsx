@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import { Loader } from "@navikt/ds-react";
 import { ApiError } from "../../types/ApiError";
 import { UserData } from "../../types/UserData";
-import { authURL } from "../../urls";
 import { AuthContext } from "./AuthContext";
 
 export function AuthProvider(props: PropsWithChildren) {
@@ -14,7 +13,7 @@ export function AuthProvider(props: PropsWithChildren) {
 
   async function authenticateUser() {
     try {
-      const response = await fetch(authURL);
+      const response = await fetch("/userinfo");
       const data = await response.json();
       if (data.error) {
         setError(new ApiError("Failed to fetch user data", data.error));
