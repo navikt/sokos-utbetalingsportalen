@@ -56,7 +56,7 @@ export default function Home() {
             setShowUnauthorized((value) => (value ? "" : e.target.value))
           }
         >
-          {showUnauthorized === "" ? "Vis alle" : "Vis de jeg har tilgang til"}
+          Vis alle
         </Switch>
         <div className={styles["home-apps"]}>{appCards()}</div>
       </div>
