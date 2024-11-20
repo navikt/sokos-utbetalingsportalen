@@ -34,12 +34,18 @@ spec:
           - id: "b01fb216-fcb3-4ede-b7da-71fffe859763" # 0000-GA-SOKOS-MF-ORS-READ
           - id: "98146b9a-1891-44e3-9b61-92130c2fcd8b" # 0000-GA-SOKOS-MF-KRP-READ
           - id: "e0023d91-26bc-4d5d-95ba-3148b6123afc" # 0000-GA-SOKOS-MF-OppdragsInfo-READ
-          - id: "0de8d01f-8ad0-4391-841c-55392956bc17" # 0000-GA-SOKOS-MF-Attestasjon-READ
+          - id: "0de8d01f-8ad0-4391-841c-55392956bc17" # 0000-GA-SOKOS-MF-Attestasjon
+          - id: "ae748b4f-90d8-4635-afb6-60c24122a640" # 0000-GA-SOKOS-MF-Attestasjon-Landsdekkende-READ
+          - id: "c641ea06-9d84-4320-9f77-4df2ab8042c3" # 0000-GA-SOKOS-MF-Attestasjon-Landsdekkende-WRITE
+          - id: "5785b537-7a62-4c81-bb09-27e42e8146cd" # 0000-GA-SOKOS-MF-Attestasjon-NOP-READ
+          - id: "c67369c0-9918-4f31-a952-121fc9d6d9e3" # 0000-GA-SOKOS-MF-Attestasjon-NOP-WRITE
+          - id: "c8b782d6-12fd-4e1b-abed-04c6b09ad4e8" # 0000-GA-SOKOS-MF-Attestasjon-NOS-READ
+          - id: "b02c819d-91e5-4cac-baf5-3d2411869adf" # 0000-GA-SOKOS-MF-Attestasjon-NOS-WRITE
           - id: "391bec9e-e71e-42cb-a030-56c394dd13fd" # 0000-GA-SOKOS-MF-Resending-Bank-READ
           - id: "bdcedce3-dab5-4b68-b1d3-8625cd0d3b55" # 0000-GA-SOKOS-MF-KRO-READ
           - id: "fc58f7f5-2e9a-497c-a121-e476a91330b5" # 0000-GA-SOKOS-MF-UTBETALING-READ
           - id: "3bc37bf2-8e76-407c-ad4a-d2c79edc241e" # 0000-GA-SOKOS-MF-BUNTKONTROLL-READ
-          - id: "48a80bbb-be45-4ef6-aab8-21604f057f47" # 0000-GA-SOKOS-MF-Attestasjon-READ
+          - id: "48a80bbb-be45-4ef6-aab8-21604f057f47" # 0000-GA-SOKOS-MF-Venteregister
         extra:
           - "NAVident"
     sidecar:
