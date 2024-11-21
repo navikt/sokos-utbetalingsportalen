@@ -8,17 +8,17 @@ importers:
   .:
     dependencies:
       "@grafana/faro-web-sdk":
-        specifier: ^1.12.1
-        version: 1.12.1
+        specifier: ^1.12.2
+        version: 1.12.2
       "@navikt/aksel-icons":
-        specifier: ^7.5.1
-        version: 7.5.1
+        specifier: ^7.5.3
+        version: 7.5.3
       "@navikt/ds-css":
-        specifier: ^7.5.1
-        version: 7.5.1
+        specifier: ^7.5.3
+        version: 7.5.3
       "@navikt/ds-react":
-        specifier: ^7.5.1
-        version: 7.5.1(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^7.5.3
+        version: 7.5.3(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-error-boundary:
         specifier: ^4.1.2
         version: 4.1.2(react@18.3.1)
@@ -36,8 +36,8 @@ importers:
         specifier: ^9.15.0
         version: 9.15.0
       "@navikt/aksel-stylelint":
-        specifier: ^7.5.1
-        version: 7.5.1
+        specifier: ^7.5.3
+        version: 7.5.3
       "@rollup/plugin-terser":
         specifier: ^0.4.4
         version: 0.4.4(rollup@4.24.0)
@@ -93,8 +93,8 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       prettier-plugin-tailwindcss:
-        specifier: ^0.6.8
-        version: 0.6.8(@trivago/prettier-plugin-sort-imports@4.3.0(prettier@3.3.3))(prettier@3.3.3)
+        specifier: ^0.6.9
+        version: 0.6.9(@trivago/prettier-plugin-sort-imports@4.3.0(prettier@3.3.3))(prettier@3.3.3)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -730,16 +730,16 @@ packages:
         integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==,
       }
 
-  "@grafana/faro-core@1.12.1":
+  "@grafana/faro-core@1.12.2":
     resolution:
       {
-        integrity: sha512-5kZMwFMK+vaWXb2jIds18Fbb36hMOqYEFLkg3MrPxEqMh7uGzMpwrgftVQz0vNM9JAkg8BIO0cBJmR65ThHZXA==,
+        integrity: sha512-ddE7px/6T1NvVHDl5tpop3mBgSnSjg2XyKcI9V9xOUSQRWderMi91YRF+MXfyenYHbY5gpHXzl+eBMIXk2I17g==,
       }
 
-  "@grafana/faro-web-sdk@1.12.1":
+  "@grafana/faro-web-sdk@1.12.2":
     resolution:
       {
-        integrity: sha512-uypcWtPG1kj7ZVenl4nTF2gy7conn32MQZM2F4/S7/e2W4Y3J8Sni4RruekQCbgbfF/7LGQls4Sa+LhUXvzXwA==,
+        integrity: sha512-vrMaeyJUEkXvRsO3POQgVfHkmMjFdXGqRnPRR60WsvYh7bDzd4M5B2n44cPN7qL1+pTG70g3CcCSX6Kfr4c34Q==,
       }
 
   "@humanfs/core@0.19.1":
@@ -862,40 +862,40 @@ packages:
       }
     engines: { node: ">=18" }
 
-  "@navikt/aksel-icons@7.5.1":
+  "@navikt/aksel-icons@7.5.3":
     resolution:
       {
-        integrity: sha512-rvTBhcj9ISKGi/oXnff/3AmfYf3GW1d4mY/TB21MGBYC/DoaE23IOjnOhqlKzf40dP6W9eJLlN1AkAxNZrl4dA==,
+        integrity: sha512-N4uaddfmZMp4Xm6h/WprY+8O7io9KwDX167h+o2/97ySN0zbcPxDyskWKjwplOlZg/SjoVuY45M/xqlkUa6byg==,
       }
 
-  "@navikt/aksel-stylelint@7.5.1":
+  "@navikt/aksel-stylelint@7.5.3":
     resolution:
       {
-        integrity: sha512-V06rCc0oUOLi7iKoABlL++PqNqMZr8HUx9gq1V2Et0BZoMu3m85u5SlLYICk8ENNLws/S8cRf5QifE20hXcvyA==,
+        integrity: sha512-awbyVbMYkBQijw1DqCHg1WpkiZaZJH8ZkGfbkPDM/vC+88WadfOTzpAS+6bJmbsqZSFaPWdXkQQA+rLXw6JuEA==,
       }
 
-  "@navikt/ds-css@7.5.1":
+  "@navikt/ds-css@7.5.3":
     resolution:
       {
-        integrity: sha512-+h14RTRgtNXiGIy6v2Z1MqPMm9oF2sD63GdTbs4SdjuvvNNoIuvHs/L5jyFCaYJlmqn+j6/G7IyL+kTnjSRkDg==,
+        integrity: sha512-S1Eg1/4D8FZmEhZq6S0iCy6PvOm+a36SJ5H+d+yMatdEZmGezwy/wzAMr97uWXhmtFpCS6HOG/Ns8VNFX0hm4g==,
       }
 
-  "@navikt/ds-react@7.5.1":
+  "@navikt/ds-react@7.5.3":
     resolution:
       {
-        integrity: sha512-f4O2ZQe9q95AhNDB9KjEx8tV13J9vBUTiDTxvGT5Sovx9D+q625uvTFrRrIUi6KBADRZhm5uTRtklr+f0zBgsA==,
+        integrity: sha512-dVV4ED2nulCSpONs41Lc3RuGEuE+eg8VMNPVTuedwhwEp8HeFE4wl0ACqOgbFGlQ+xDsF11O3cqioPZBqxgAUg==,
       }
     peerDependencies:
       "@types/react": ">=17.0.30"
-      react: ">=17.0.0"
+      react: ">=17.0.0 || >19.0.0-rc"
     peerDependenciesMeta:
       "@types/react":
         optional: true
 
-  "@navikt/ds-tokens@7.5.1":
+  "@navikt/ds-tokens@7.5.3":
     resolution:
       {
-        integrity: sha512-R17/uOXqctfD+1AxfQ/EvlpbqtuM4jZFILoVkg6Q0vzYRwrEb+4h1c24dKfT6rLtvFfWNZSxdgQf73314RUP/w==,
+        integrity: sha512-iuwpmXM/cBCc9W4898nLnRV7qOuPN3f7pl3tkeirEyjBS8elIV/WEqKhQjaCkT+aVC7lEHzZ5nkC5MDQcjWicg==,
       }
 
   "@nodelib/fs.scandir@2.1.5":
@@ -3637,10 +3637,10 @@ packages:
       }
     engines: { node: ">= 0.8.0" }
 
-  prettier-plugin-tailwindcss@0.6.8:
+  prettier-plugin-tailwindcss@0.6.9:
     resolution:
       {
-        integrity: sha512-dGu3kdm7SXPkiW4nzeWKCl3uoImdd5CTZEJGxyypEPL37Wj0HT2pLqjrvSei1nTeuQfO4PUfjeW5cTUNRLZ4sA==,
+        integrity: sha512-r0i3uhaZAXYP0At5xGfJH876W3HHGHDp+LCRUJrs57PBeQ6mYHMwr25KH8NPX44F2yGTvdnH7OqCshlQx183Eg==,
       }
     engines: { node: ">=14.21.3" }
     peerDependencies:
@@ -5054,14 +5054,14 @@ snapshots:
 
   "@floating-ui/utils@0.2.8": {}
 
-  "@grafana/faro-core@1.12.1":
+  "@grafana/faro-core@1.12.2":
     dependencies:
       "@opentelemetry/api": 1.9.0
       "@opentelemetry/otlp-transformer": 0.53.0(@opentelemetry/api@1.9.0)
 
-  "@grafana/faro-web-sdk@1.12.1":
+  "@grafana/faro-web-sdk@1.12.2":
     dependencies:
-      "@grafana/faro-core": 1.12.1
+      "@grafana/faro-core": 1.12.2
       ua-parser-js: 1.0.39
       web-vitals: 4.2.3
 
@@ -5144,18 +5144,18 @@ snapshots:
       outvariant: 1.4.3
       strict-event-emitter: 0.5.1
 
-  "@navikt/aksel-icons@7.5.1": {}
+  "@navikt/aksel-icons@7.5.3": {}
 
-  "@navikt/aksel-stylelint@7.5.1": {}
+  "@navikt/aksel-stylelint@7.5.3": {}
 
-  "@navikt/ds-css@7.5.1": {}
+  "@navikt/ds-css@7.5.3": {}
 
-  "@navikt/ds-react@7.5.1(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)":
+  "@navikt/ds-react@7.5.3(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)":
     dependencies:
       "@floating-ui/react": 0.25.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       "@floating-ui/react-dom": 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      "@navikt/aksel-icons": 7.5.1
-      "@navikt/ds-tokens": 7.5.1
+      "@navikt/aksel-icons": 7.5.3
+      "@navikt/ds-tokens": 7.5.3
       clsx: 2.1.1
       date-fns: 3.6.0
       react: 18.3.1
@@ -5165,7 +5165,7 @@ snapshots:
     transitivePeerDependencies:
       - react-dom
 
-  "@navikt/ds-tokens@7.5.1": {}
+  "@navikt/ds-tokens@7.5.3": {}
 
   "@nodelib/fs.scandir@2.1.5":
     dependencies:
@@ -6798,7 +6798,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-tailwindcss@0.6.8(@trivago/prettier-plugin-sort-imports@4.3.0(prettier@3.3.3))(prettier@3.3.3):
+  prettier-plugin-tailwindcss@0.6.9(@trivago/prettier-plugin-sort-imports@4.3.0(prettier@3.3.3))(prettier@3.3.3):
     dependencies:
       prettier: 3.3.3
     optionalDependencies:
