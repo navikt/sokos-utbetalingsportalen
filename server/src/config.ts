@@ -3,7 +3,7 @@ import { z } from "zod";
 
 dotenv.config();
 
-enum Environment {
+export enum Environment {
   PROD = "prod",
   DEV = "dev",
   QX = "qx",

@@ -3,7 +3,7 @@ import RateLimit from "express-rate-limit";
 import expressStaticGzip from "express-static-gzip";
 import helmet from "helmet";
 import path from "path";
-import Config from "./config";
+import Config, { Environment } from "./config";
 import { azureUserInfo, enforceAzureADMiddleware } from "./middlewares";
 import { routeProxyWithOboToken } from "./proxy";
 
@@ -65,7 +65,7 @@ const startServer = () => {
         apiProxy: app.apiProxy,
       });
     } else {
-      if (app.production) {
+      if (app.environment.includes(Environment.PROD)) {
         routeProxyWithOboToken({
           apiUrl: app.apiUrl,
           apiScope: app.apiScope,
