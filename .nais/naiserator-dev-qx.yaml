@@ -1,0 +1,60 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: sokos-utbetalingsportalen-qx
+  namespace: okonomi
+  labels:
+    team: okonomi
+spec:
+  image: "{{{ image }}}"
+  port: 8080
+  liveness:
+    path: /internal/isAlive
+    initialDelay: 10
+  readiness:
+    path: /internal/isReady
+    initialDelay: 10
+  replicas:
+    min: 1
+    max: 2
+  secureLogs:
+    enabled: true
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: nodejs
+  azure:
+    application:
+      enabled: true
+      claims:
+        groups:
+          - id: "e0023d91-26bc-4d5d-95ba-3148b6123afc" # 0000-GA-SOKOS-MF-OppdragsInfo-READ
+        extra:
+          - "NAVident"
+    sidecar:
+      enabled: true
+      autoLogin: true
+      autoLoginIgnorePaths:
+        - /internal/*
+  accessPolicy:
+    outbound:
+      external:
+        - host: sokos-oppdrag-qx.dev-fss-pub.nais.io
+  ingresses:
+    - "https://utbetalingsportalen-qx.intern.dev.nav.no"
+    - "https://utbetalingsportalen-qx.ansatt.dev.nav.no"
+  resources:
+    limits:
+      memory: 1024Mi
+    requests:
+      cpu: 500m
+      memory: 1024Mi
+  env:
+
+    # sokos-nav-oppdrag
+    - name: SOKOS_OPPDRAG_API
+      value: https://sokos-oppdrag-qx.dev-fss-pub.nais.io
+    - name: SOKOS_OPPDRAG_API_SCOPE
+      value: api://dev-fss.okonomi.sokos-oppdrag-qx/.default
+    - name: SOKOS_OPPDRAG_PROXY
+      value: "/oppdrag-api"
