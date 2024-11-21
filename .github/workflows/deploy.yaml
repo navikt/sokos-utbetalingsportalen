@@ -39,8 +39,17 @@ jobs:
       resource: .nais/naiserator-dev.yaml
       image: ${{ needs.build.outputs.image }}
 
-  deploy-prod:
+  deploy-dev-qx:
     needs: [build, deploy-dev]
+    name: Deploy to dev-gcp-qx
+    uses: navikt/moby-gha-workflows/.github/workflows/nais-app-deploy.yaml@main
+    with:
+      cluster: dev-gcp
+      resource: .nais/naiserator-dev.yaml
+      image: ${{ needs.build.outputs.image }}
+
+  deploy-prod:
+    needs: [build, deploy-dev, deploy-dev-qx]
     name: Deploy to prod-gcp
     uses: navikt/moby-gha-workflows/.github/workflows/nais-app-deploy.yaml@main
     with:
