@@ -20,7 +20,6 @@
     "jose": "^5.9.6",
     "openid-client": "^5.7.0",
     "winston": "3.17.0",
-    "winston-syslog": "^2.7.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {
