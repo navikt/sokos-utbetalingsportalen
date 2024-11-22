@@ -5,7 +5,6 @@ dotenv.config();
 
 export enum Environment {
   PROD = "prod",
-  DEV = "dev",
   QX = "qx",
 }
 
@@ -13,7 +12,7 @@ const ApiConfigSchema = z.object({
   apiUrl: z.string(),
   apiScope: z.string(),
   apiProxy: z.string(),
-  environment: z.array(z.string()),
+  environment: z.array(z.nativeEnum(Environment)).optional(),
 });
 
 const ConfigSchema = z.object({
@@ -41,43 +40,41 @@ const getConfig = (): Config => {
       apiUrl: process.env.SOKOS_SKATTEKORT_PERSON_API,
       apiScope: process.env.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
       apiProxy: process.env.SOKOS_SKATTEKORT_PROXY,
-      environment: [Environment.DEV, Environment.PROD],
+      environment: [Environment.PROD],
     },
     {
       apiUrl: process.env.SOKOS_SPK_MOTTAK_API,
       apiScope: process.env.SOKOS_SPK_MOTTAK_API_SCOPE,
       apiProxy: process.env.SOKOS_SPK_MOTTAK_PROXY,
-      environment: [Environment.DEV],
     },
     {
       apiUrl: process.env.SOKOS_UP_ORS_API,
       apiScope: process.env.SOKOS_UP_ORS_API_SCOPE,
       apiProxy: process.env.SOKOS_UP_ORS_API_PROXY,
-      environment: [Environment.DEV, Environment.PROD],
+      environment: [Environment.PROD],
     },
     {
       apiUrl: process.env.SOKOS_KONTOREGISTER_API,
       apiScope: process.env.SOKOS_KONTOREGISTER_API_SCOPE,
       apiProxy: process.env.SOKOS_KONTOREGISTER_API_PROXY,
-      environment: [Environment.DEV, Environment.PROD],
+      environment: [Environment.PROD],
     },
     {
       apiUrl: process.env.SOKOS_OPPDRAG_API,
       apiScope: process.env.SOKOS_OPPDRAG_API_SCOPE,
       apiProxy: process.env.SOKOS_OPPDRAG_PROXY,
-      environment: [Environment.DEV, Environment.QX],
+      environment: [Environment.QX],
     },
     {
       apiUrl: process.env.SOKOS_UR_ISO,
       apiScope: process.env.SOKOS_UR_ISO_SCOPE,
       apiProxy: process.env.SOKOS_UR_ISO_PROXY,
-      environment: [Environment.DEV, Environment.PROD],
+      environment: [Environment.PROD],
     },
     {
       apiUrl: process.env.SOKOS_UTBETALING_API,
       apiScope: process.env.SOKOS_UTBETALING_API_SCOPE,
       apiProxy: process.env.SOKOS_UTBETALING_API_PROXY,
-      environment: [Environment.DEV],
     },
   ];
 
@@ -85,16 +82,14 @@ const getConfig = (): Config => {
 
   if (process.env.NAIS_CLUSTER_NAME === "prod-gcp") {
     filteredApiConfig = apiConfig.filter((config) =>
-      config.environment.includes(Environment.PROD),
+      (config.environment ?? []).includes(Environment.PROD),
     );
   } else if (process.env.NAIS_APP_NAME === "sokos-utbetalingsportalen-qx") {
     filteredApiConfig = apiConfig.filter((config) =>
-      config.environment.includes(Environment.QX),
+      (config.environment ?? []).includes(Environment.QX),
     );
   } else {
-    filteredApiConfig = apiConfig.filter((config) =>
-      config.environment.includes(Environment.DEV),
-    );
+    filteredApiConfig = apiConfig;
   }
 
   const result = ConfigSchema.safeParse({
