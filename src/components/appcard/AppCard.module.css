@@ -1,5 +1,5 @@
 .appcard {
-  @apply relative h-full rounded-lg bg-[--a-surface-alt-2-subtle] p-4 text-black shadow-lg shadow-neutral-200;
+  @apply relative h-full rounded-lg bg-[--a-surface-alt-2-subtle] p-4 text-black shadow-lg;
 }
 
 .appcard-title {

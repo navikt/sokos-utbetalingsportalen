@@ -1,4 +1,6 @@
-import { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
+import Snowfall from "react-snowfall";
+import { Switch } from "@navikt/ds-react";
 import {
   getApplicationEnvrionment,
   getEnvironment,
@@ -44,12 +46,21 @@ export default function Layout({ children }: LayoutProps) {
     applicationEnvironment: "",
   });
   const [showSideBar, setShowSideBar] = useState(true);
+  const [showSnowfall, setShowSnowfall] = useState(true);
 
   useEffect(() => {
     const applicationEnvironment = getApplicationEnvrionment();
     const environment = getEnvironment();
     setState({ environment, applicationEnvironment });
   }, []);
+
+  useEffect(() => {
+    if (showSnowfall) {
+      document.body.classList.add("snowfall-background");
+    } else {
+      document.body.classList.remove("snowfall-background");
+    }
+  }, [showSnowfall]);
 
   return (
     <>
@@ -60,6 +71,24 @@ export default function Layout({ children }: LayoutProps) {
         <div
           className={`${styles["layout-content"]} ${!showSideBar ? styles["content-expanded"] : ""}`}
         >
+          <div className="flex items-center pl-5 pt-1">
+            <Switch
+              checked={showSnowfall}
+              onChange={(e) => setShowSnowfall(e.target.checked)}
+            >
+              Julestemning
+            </Switch>
+            {showSnowfall && (
+              <Snowfall
+                color={"white"}
+                style={{
+                  position: "fixed",
+                  width: "100vw",
+                  height: "100vh",
+                }}
+              />
+            )}
+          </div>
           <div className={styles["layout-mikrofrontender"]}>{children}</div>
         </div>
       </div>

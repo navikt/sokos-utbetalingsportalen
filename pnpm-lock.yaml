@@ -25,6 +25,9 @@ importers:
       react-router-dom:
         specifier: ^6.28.0
         version: 6.28.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-snowfall:
+        specifier: ^2.2.0
+        version: 2.2.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -3772,6 +3775,12 @@ packages:
     peerDependencies:
       react: ">=16.13.1"
 
+  react-fast-compare@3.2.2:
+    resolution:
+      {
+        integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==,
+      }
+
   react-is@16.13.1:
     resolution:
       {
@@ -3803,6 +3812,15 @@ packages:
     engines: { node: ">=14.0.0" }
     peerDependencies:
       react: ">=16.8"
+
+  react-snowfall@2.2.0:
+    resolution:
+      {
+        integrity: sha512-dRk7vEHq/ZUOG+JHk2k/hH3HmliOWGXr4rKRDeW4mjWuHeI1r5h0Lc1r2jnTtUS1im702d6tCmNGymlNTdhXYg==,
+      }
+    peerDependencies:
+      react: "^16.8 ||\_17.x || 18.x"
+      react-dom: ^16.8 || 17.x || 18.x
 
   react@18.3.1:
     resolution:
@@ -6857,6 +6875,8 @@ snapshots:
       "@babel/runtime": 7.25.7
       react: 18.3.1
 
+  react-fast-compare@3.2.2: {}
+
   react-is@16.13.1: {}
 
   react-refresh@0.14.2: {}
@@ -6872,6 +6892,12 @@ snapshots:
     dependencies:
       "@remix-run/router": 1.21.0
       react: 18.3.1
+
+  react-snowfall@2.2.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-fast-compare: 3.2.2
 
   react@18.3.1:
     dependencies:

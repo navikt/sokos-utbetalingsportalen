@@ -12,6 +12,10 @@ body {
   background-color: var(--a-gray-100);
 }
 
+body.snowfall-background {
+  background-color: var(--a-deepblue-200);
+}
+
 .page-wrapper {
   height: auto;
   min-height: 70%;
