@@ -46,7 +46,7 @@ export default function Layout({ children }: LayoutProps) {
     applicationEnvironment: "",
   });
   const [showSideBar, setShowSideBar] = useState(true);
-  const [showSnowfall, setShowSnowfall] = useState(true);
+  const [showSnowfall, setShowSnowfall] = useState(false);
 
   useEffect(() => {
     const applicationEnvironment = getApplicationEnvrionment();
