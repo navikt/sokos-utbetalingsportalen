@@ -16,3 +16,12 @@ export function getEnvironment(): Environment {
   }
   return "local";
 }
+
+type ApplicationEnvironment = "Q1" | "QX";
+
+export function getApplicationEnvrionment(): ApplicationEnvironment {
+  if (window.location.href.includes("qx")) {
+    return "QX";
+  }
+  return "Q1";
+}

@@ -1,5 +1,8 @@
 import { ReactNode, useEffect, useState } from "react";
-import { getEnvironment } from "../../utils/environment";
+import {
+  getApplicationEnvrionment,
+  getEnvironment,
+} from "../../utils/environment";
 import SideBar from "../sidebar/SideBar";
 import TopBar from "../topbar/TopBar";
 import styles from "./Layout.module.css";
@@ -8,36 +11,51 @@ type LayoutProps = {
   children: ReactNode;
 };
 
+type EnvironmentState = {
+  environment: string;
+  applicationEnvironment: string;
+};
+
+const EnvironmentBanner = ({
+  environment,
+  applicationEnvironment,
+}: EnvironmentState) =>
+  environment === "development" && (
+    <div className={styles["layout-test-banner"]}>
+      <svg
+        aria-hidden="true"
+        role="img"
+        xmlns="http://www.w3.org/2000/svg"
+        height="110"
+        width="110"
+        className={styles["test-ikon"]}
+      >
+        <polygon points="0,0 110,0 110,110"></polygon>
+        <text x="25" y="10" transform="rotate(45 20,40)">
+          TEST {applicationEnvironment}
+        </text>
+      </svg>
+    </div>
+  );
+
 export default function Layout({ children }: LayoutProps) {
-  const [environment, setEnvironment] = useState<string>("");
+  const [state, setState] = useState<EnvironmentState>({
+    environment: "",
+    applicationEnvironment: "",
+  });
   const [showSideBar, setShowSideBar] = useState(true);
 
   useEffect(() => {
+    const applicationEnvironment = getApplicationEnvrionment();
     const environment = getEnvironment();
-    setEnvironment(environment);
+    setState({ environment, applicationEnvironment });
   }, []);
 
   return (
     <>
       <TopBar />
       <div className={styles["layout-body"]}>
-        {environment === "development" && (
-          <div className={styles["layout-test-banner"]}>
-            <svg
-              aria-hidden="true"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              height="110"
-              width="110"
-              className={styles["test-ikon"]}
-            >
-              <polygon points="0,0 110,0 110,110"></polygon>
-              <text x="40" y="10" transform="rotate(45 20,40)">
-                TEST
-              </text>
-            </svg>
-          </div>
-        )}
+        <EnvironmentBanner {...state} />
         <SideBar onToggle={setShowSideBar} showSideBar={showSideBar} />
         <div
           className={`${styles["layout-content"]} ${!showSideBar ? styles["content-expanded"] : ""}`}
