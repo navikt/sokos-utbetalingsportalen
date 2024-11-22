@@ -69,10 +69,10 @@
         apiUrl: process.env.SOKOS_SKATTEKORT_PERSON_API,
         apiScope: process.env.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
         apiProxy: process.env.SOKOS_SKATTEKORT_PROXY,
-        production: false,
+        environment: [Environment.DEV, Environment.PROD],
       },
    ````
-      **production** -> Denne skal være false så lenge du ikke går ut i produksjon. Når du skal ut i produksjon endre verdien til `true`
+      **environment** -> Her setter du hvilken miljøer som frontend er tilgjengelig i. Skal du tilgjengeliggjøre frontend i prod må du sette `environment: [Environment.DEV, Environment.PROD],` og eventuelt flere miljøer i samme array.
 
       <br></br>
       API er den faktiske adressen til tjenesten.

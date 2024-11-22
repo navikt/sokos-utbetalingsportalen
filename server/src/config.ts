@@ -13,7 +13,7 @@ const ApiConfigSchema = z.object({
   apiUrl: z.string(),
   apiScope: z.string(),
   apiProxy: z.string(),
-  environment: z.array(z.string()),
+  environment: z.array(z.nativeEnum(Environment)),
 });
 
 const ConfigSchema = z.object({
@@ -92,9 +92,7 @@ const getConfig = (): Config => {
       config.environment.includes(Environment.QX),
     );
   } else {
-    filteredApiConfig = apiConfig.filter((config) =>
-      config.environment.includes(Environment.DEV),
-    );
+    filteredApiConfig = apiConfig;
   }
 
   const result = ConfigSchema.safeParse({
