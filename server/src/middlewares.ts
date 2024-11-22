@@ -51,14 +51,13 @@ export function retrieveTokenFromHeader(headers: IncomingHttpHeaders) {
   return userAccessToken;
 }
 
-export async function azureUserInfo(req: Request, res: Response) {
+export async function userInfo(req: Request, res: Response) {
   const token = retrieveTokenFromHeader(req.headers);
   try {
     const JWTVerifyResult = await validateToken(token);
     const parsedClaimResult = ClaimSchema.parse(JWTVerifyResult.payload);
-    const referer = req.get("Referer");
     secureLog.info(
-      `Saksbehandler (${parsedClaimResult.name}) med ident (${parsedClaimResult.NAVident}) aksesserer URL (${referer})`,
+      `Saksbehandler (${parsedClaimResult.name}) med ident (${parsedClaimResult.NAVident}) aksesserer URL (${req.get("Referer")})`,
     );
     res.json({
       navIdent: parsedClaimResult.NAVident,
