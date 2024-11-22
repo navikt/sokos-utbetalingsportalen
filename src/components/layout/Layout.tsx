@@ -20,7 +20,7 @@ const EnvironmentBanner = ({
   environment,
   applicationEnvironment,
 }: EnvironmentState) =>
-  environment === "local" && (
+  environment === "development" && (
     <div className={styles["layout-test-banner"]}>
       <svg
         aria-hidden="true"
