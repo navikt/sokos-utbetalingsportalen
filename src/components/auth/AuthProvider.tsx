@@ -1,5 +1,5 @@
 import { PropsWithChildren, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import { Loader } from "@navikt/ds-react";
 import { ApiError } from "../../types/ApiError";
 import { UserData } from "../../types/UserData";

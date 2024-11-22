@@ -105,3 +105,4 @@ build
 
 server/secure.log
 server/build
+.tool-versions

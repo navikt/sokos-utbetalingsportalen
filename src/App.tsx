@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router";
 import Microfrontend from "./Microfrontend";
 import { AuthProvider } from "./components/auth/AuthProvider";
 import ErrorBoundary from "./components/error/ErrorBoundary";
@@ -33,11 +33,13 @@ export default function App() {
     return MicrofrontendConfig.sort((a, b) =>
       a.title.localeCompare(b.title),
     ).map((app) => (
-      <Route
-        key={app.title}
-        path={`${app.route}/*`}
-        element={<Microfrontend url={app.url} adGroup={app.group} />}
-      />
+      <Route key={app.title} path={app.route}>
+        <Route
+          path={"*"}
+          element={<Microfrontend url={app.url} adGroup={app.group} />}
+        />
+        ;
+      </Route>
     ));
   }
 
