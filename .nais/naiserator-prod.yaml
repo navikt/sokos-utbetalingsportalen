@@ -51,6 +51,7 @@ spec:
         - host: sokos-ur-iso.prod-fss-pub.nais.io
   ingresses:
     - "https://utbetalingsportalen.intern.nav.no"
+    - "https://utbetalingsportalen.ansatt.nav.no"
   resources:
     limits:
       memory: 1024Mi
