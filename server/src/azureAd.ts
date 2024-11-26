@@ -5,7 +5,7 @@ import {
   jwtVerify,
 } from "jose";
 import { GetKeyFunction } from "jose/dist/types/types";
-import openIdClient from "openid-client";
+import * as openIdClient from "openid-client";
 import Configuration from "./config";
 
 let _remoteJWKSet: GetKeyFunction<JWSHeaderParameters, FlattenedJWSInput>;
