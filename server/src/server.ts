@@ -3,7 +3,7 @@ import RateLimit from "express-rate-limit";
 import expressStaticGzip from "express-static-gzip";
 import helmet from "helmet";
 import path from "path";
-import Config, { Environment } from "./config";
+import Configuration, { Environment } from "./config";
 import { azureUserInfo, enforceAzureADMiddleware } from "./middlewares";
 import { routeProxyWithOboToken } from "./proxy";
 
@@ -57,8 +57,8 @@ const startServer = () => {
   server.get("/userinfo", azureUserInfo);
 
   // Proxy routes
-  Config.apiConfig.forEach((app) => {
-    if (Config.NAIS_CLUSTER_NAME === "dev-gcp") {
+  Configuration.apiConfig.forEach((app) => {
+    if (Configuration.NAIS_CLUSTER_NAME === "dev-gcp") {
       routeProxyWithOboToken({
         apiUrl: app.apiUrl,
         apiScope: app.apiScope,
