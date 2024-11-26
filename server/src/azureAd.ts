@@ -23,7 +23,14 @@ function getAzureAdOptions() {
   };
 }
 
-async function getConfig(): Promise<openIdClient.Configuration> {
+async function jwks() {
+  _remoteJWKSet = createRemoteJWKSet(
+    new URL(Configuration.AZURE_OPENID_CONFIG_JWKS_URI),
+  );
+  return _remoteJWKSet;
+}
+
+export async function getConfig(): Promise<openIdClient.Configuration> {
   if (_config) {
     return _config;
   }
@@ -35,13 +42,6 @@ async function getConfig(): Promise<openIdClient.Configuration> {
     clientSecret,
   );
   return _config;
-}
-
-async function jwks() {
-  _remoteJWKSet = createRemoteJWKSet(
-    new URL(Configuration.AZURE_OPENID_CONFIG_JWKS_URI),
-  );
-  return _remoteJWKSet;
 }
 
 export async function validateToken(token: string | Uint8Array) {
