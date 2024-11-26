@@ -1,12 +1,10 @@
 import { Response as ExpressResponse, NextFunction, Request } from "express";
-import { Client, TokenSet, errors } from "openid-client";
+import * as openIdClient from "openid-client";
+import { TokenEndpointResponse } from "openid-client";
 import { z } from "zod";
-import { issuer } from "./azureAd";
-import Config from "./config";
+import { getConfig } from "./azureAd";
 import { logger } from "./logger";
 import { retrieveTokenFromHeader } from "./middlewares";
-
-let _client: Client;
 
 const OboTokenSchema = z.object({
   access_token: z.string(),
@@ -21,58 +19,48 @@ type AccessToken = string;
 
 const tokenCache: Record<Scope, Record<AccessToken, CachedOboToken>> = {};
 
-function jwk() {
-  return JSON.parse(Config.AZURE_APP_JWK);
+interface ExchangeToken {
+  (token: string, targetApp: string): Promise<TokenEndpointResponse>;
 }
 
-async function client() {
-  const _jwk = jwk();
-  const _issuer = await issuer();
-  _client = new _issuer.Client(
-    {
-      client_id: Config.AZURE_APP_CLIENT_ID,
-      client_secret: Config.AZURE_APP_CLIENT_SECRET,
-      token_endpoint_auth_method: "client_secret_post",
-    },
-    { keys: [_jwk] },
-  );
-  return _client;
+interface OboAuth {
+  getOboToken: ExchangeToken;
 }
 
-async function fetchNewOnBehalfOfToken(accessToken: string, scope: string) {
-  const _client = await client();
-
-  const grantBody = {
-    grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
-    assertion: accessToken,
-    requested_token_use: "on_behalf_of",
-    scope,
-  };
-
-  return await _client
-    .grant(grantBody)
-    .then((tokenSet: TokenSet) => {
-      return OboTokenSchema.parse(tokenSet);
-    })
-    .catch((err) => {
-      switch (err.constructor) {
-        case errors.OPError:
-        case errors.RPError:
-          logger.error(
-            `Failed to retrieve on behalf of token for scope "${scope}", got error:`,
-            {
-              openIdClientError: err,
-              httpStatusFromAzure:
-                err.response.statusCode + " " + err.response.statusMessage,
-              azureBody: err.response.azureBody,
-            },
-          );
-          break;
+async function createOboTokenDings(): Promise<OboAuth> {
+  return {
+    async getOboToken(accessToken, scope) {
+      try {
+        const config = await getConfig();
+        return await openIdClient.genericGrantRequest(
+          config,
+          "urn:ietf:params:oauth:grant-type:jwt-bearer",
+          {
+            requested_token_use: "on_behalf_of",
+            client_assertion_type:
+              "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+            scope,
+            assertion: accessToken,
+            subject_token_type: "urn:ietf:params:oauth:token-type:jwt",
+            subject_token: accessToken,
+            audience: scope,
+          },
+        );
+      } catch (err) {
+        logger.error(`Feil ved generering av OBO-token: ${err}`);
+        return Promise.reject(err);
       }
-      logger.error("Unknown error from openid-client", { error: err });
-      throw err;
-    });
+    },
+  };
 }
+
+let _oboTokenDings: OboAuth | undefined;
+const getOboTokenDings = async (): Promise<OboAuth> => {
+  if (!_oboTokenDings) {
+    _oboTokenDings = await createOboTokenDings();
+  }
+  return _oboTokenDings;
+};
 
 function oboTokenIsValid(token: CachedOboToken) {
   return token.expires >= Date.now() - 5000;
@@ -84,20 +72,28 @@ async function getOnBehalfOfToken(accessToken: string, scope: string) {
   if (cachedOboToken && oboTokenIsValid(cachedOboToken)) {
     return cachedOboToken.token;
   } else {
-    const newOboToken = await fetchNewOnBehalfOfToken(accessToken, scope);
-    const expires = Date.now() + newOboToken.expires_in * 1000;
+    const newOboToken = await (
+      await getOboTokenDings()
+    ).getOboToken(accessToken, scope);
+    const expires = Date.now() + newOboToken.expires_in! * 1000;
 
     if (!tokenCache[scope]) {
       tokenCache[scope] = {};
     }
+
     tokenCache[scope][accessToken] = {
-      token: newOboToken,
+      token: OboTokenSchema.parse(newOboToken),
       expires,
     };
 
     return newOboToken;
   }
 }
+
+export const getTokenFromRequest = (req: Request) => {
+  const bearerToken = req.headers["authorization"];
+  return bearerToken?.replace("Bearer ", "");
+};
 
 export function setOnBehalfOfToken(scope: string) {
   return async (req: Request, res: ExpressResponse, next: NextFunction) => {

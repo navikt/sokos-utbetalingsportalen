@@ -5,26 +5,48 @@ import {
   jwtVerify,
 } from "jose";
 import { GetKeyFunction } from "jose/dist/types/types";
-import { Client, Issuer } from "openid-client";
-import Config from "./config";
+import * as openIdClient from "openid-client";
+import Configuration from "./config";
 
-let _issuer: Issuer<Client>;
 let _remoteJWKSet: GetKeyFunction<JWSHeaderParameters, FlattenedJWSInput>;
+
+const getAzureAdOptions = () => {
+  const clientId = Configuration.AZURE_APP_CLIENT_ID;
+  const discoveryUrl = Configuration.AZURE_APP_WELL_KNOWN_URL;
+  const clientSecret = Configuration.AZURE_APP_CLIENT_SECRET;
+
+  return {
+    clientId,
+    discoveryUrl,
+    clientSecret,
+  };
+};
+
+let _config: openIdClient.Configuration | null = null;
+
+export async function getConfig(): Promise<openIdClient.Configuration> {
+  if (_config) {
+    return _config;
+  }
+
+  const { clientId, discoveryUrl, clientSecret } = getAzureAdOptions();
+  _config = await openIdClient.discovery(
+    new URL(discoveryUrl),
+    clientId,
+    clientSecret,
+  );
+  return _config;
+}
 
 async function jwks() {
   _remoteJWKSet = createRemoteJWKSet(
-    new URL(Config.AZURE_OPENID_CONFIG_JWKS_URI),
+    new URL(Configuration.AZURE_OPENID_CONFIG_JWKS_URI),
   );
   return _remoteJWKSet;
 }
 
-export async function issuer() {
-  _issuer = await Issuer.discover(Config.AZURE_APP_WELL_KNOWN_URL);
-  return _issuer;
-}
-
 export async function validateToken(token: string | Uint8Array) {
   return jwtVerify(token, await jwks(), {
-    issuer: (await issuer()).metadata.issuer,
+    issuer: (await getConfig()).serverMetadata().issuer,
   });
 }
