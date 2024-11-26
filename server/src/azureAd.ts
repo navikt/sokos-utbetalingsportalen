@@ -5,12 +5,13 @@ import {
   jwtVerify,
 } from "jose";
 import { GetKeyFunction } from "jose/dist/types/types";
-import * as openIdClient from "openid-client";
+import openIdClient from "openid-client";
 import Configuration from "./config";
 
 let _remoteJWKSet: GetKeyFunction<JWSHeaderParameters, FlattenedJWSInput>;
+let _config: openIdClient.Configuration | null = null;
 
-const getAzureAdOptions = () => {
+function getAzureAdOptions() {
   const clientId = Configuration.AZURE_APP_CLIENT_ID;
   const discoveryUrl = Configuration.AZURE_APP_WELL_KNOWN_URL;
   const clientSecret = Configuration.AZURE_APP_CLIENT_SECRET;
@@ -20,11 +21,9 @@ const getAzureAdOptions = () => {
     discoveryUrl,
     clientSecret,
   };
-};
+}
 
-let _config: openIdClient.Configuration | null = null;
-
-export async function getConfig(): Promise<openIdClient.Configuration> {
+async function getConfig(): Promise<openIdClient.Configuration> {
   if (_config) {
     return _config;
   }
