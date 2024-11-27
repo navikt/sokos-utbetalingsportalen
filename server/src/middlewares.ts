@@ -1,13 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { z } from "zod";
 import * as oasis from "@navikt/oasis";
 import { logger, secureLog } from "./logger";
-
-const ClaimSchema = z.object({
-  name: z.string(),
-  NAVident: z.string(),
-  groups: z.array(z.string()),
-});
 
 export async function enforceAzureADMiddleware(
   req: Request,
@@ -44,15 +37,13 @@ export async function userInfo(req: Request, res: Response) {
       logger.error("Invalid token", validation.error);
       throw validation.error;
     }
-    const parsedClaimResult = ClaimSchema.parse(validation.payload);
-    const referer = req.get("Referer");
     secureLog.info(
-      `Saksbehandler (${parsedClaimResult.name}) med ident (${parsedClaimResult.NAVident}) aksesserer URL (${referer})`,
+      `Saksbehandler (${validation.payload.name}) med ident (${validation.payload.NAVident}) aksesserer URL (${req.get("Referer")})`,
     );
     res.json({
-      navIdent: parsedClaimResult.NAVident,
-      name: parsedClaimResult.name,
-      adGroups: parsedClaimResult.groups,
+      navIdent: validation.payload.NAVident,
+      name: validation.payload.name,
+      adGroups: validation.payload.groups,
     });
   } catch (e) {
     logger.error("Failed to retrieve user info", e);
