@@ -15,17 +15,14 @@ export async function enforceAzureADMiddleware(
   next: NextFunction,
 ) {
   const loginPath = `/oauth2/login?redirect=${req.originalUrl}`;
-  const { authorization } = req.headers;
-
-  // eslint-disable-next-line no-console
-  console.log("authorization", authorization);
+  const token = oasis.getToken(req);
 
   // Not logged in - log in with wonderwall
-  if (!authorization) {
+  if (!token) {
     res.redirect(loginPath);
   } else {
     // Validate token and continue to app
-    if (await oasis.validateAzureToken(authorization)) {
+    if (await oasis.validateAzureToken(token)) {
       next();
     } else {
       res.redirect(loginPath);
@@ -47,9 +44,7 @@ export async function userInfo(req: Request, res: Response) {
       logger.error("Invalid token", validation.error);
       throw validation.error;
     }
-    // eslint-disable-next-line no-console
-    console.log("validation", validation);
-    const parsedClaimResult = ClaimSchema.parse(token);
+    const parsedClaimResult = ClaimSchema.parse(validation.payload);
     const referer = req.get("Referer");
     secureLog.info(
       `Saksbehandler (${parsedClaimResult.name}) med ident (${parsedClaimResult.NAVident}) aksesserer URL (${referer})`,
