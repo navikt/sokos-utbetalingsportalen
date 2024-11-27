@@ -21,8 +21,12 @@ async function requestOboToken(
     throw validation.error;
   }
 
+  // eslint-disable-next-line no-console
+  console.log("audience", audience);
   const obo = await oasis.requestOboToken(token, audience);
   if (!obo.ok) {
+    // eslint-disable-next-line no-console
+    console.log("Feiler her pga obo token veksling");
     res.status(500).send("Failed to get OBO token");
     logger.error("Failed to get OBO token", obo.error);
     throw obo.error;
