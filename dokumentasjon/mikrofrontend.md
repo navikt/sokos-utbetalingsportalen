@@ -67,7 +67,7 @@
    ```typescript
       {
         apiUrl: process.env.SOKOS_SKATTEKORT_PERSON_API,
-        apiScope: process.env.SOKOS_SKATTEKORT_PERSON_API_SCOPE,
+        apiAudience: process.env.SOKOS_SKATTEKORT_PERSON_API_AUDIENCE,
         apiProxy: process.env.SOKOS_SKATTEKORT_PROXY,
         environment: [Environment.DEV, Environment.PROD],
       },
@@ -82,7 +82,7 @@
       ```
       SCOPE representerer en tillatelse som en gitt forbruker har tilgang til.
       ```yaml
-           - name: SOKOS_SKATTEKORT_API_SCOPE
+           - name: SOKOS_SKATTEKORT_API_AUDIENCE
               value: "api://dev-fss.okonomi.sokos-skattekort-person/.default"
       ```
       PROXY brukes internt i Utbetalingsportalen for å definere path'en for å nå tjenesten.

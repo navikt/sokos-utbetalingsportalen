@@ -10,6 +10,7 @@
   "author": "navikt",
   "license": "MIT",
   "dependencies": {
+    "@navikt/oasis": "^3.4.0",
     "cors": "2.8.5",
     "dotenv": "^16.4.5",
     "express": "4.21.1",
@@ -17,19 +18,17 @@
     "express-static-gzip": "2.2.0",
     "helmet": "^8.0.0",
     "http-proxy-middleware": "^3.0.3",
-    "jose": "^5.9.6",
-    "openid-client": "^5.7.0",
     "winston": "3.17.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
-    "@types/node": "^22.9.1",
+    "@types/node": "^22.10.0",
     "@types/winston-syslog": "^2.4.3",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.3"
+    "typescript": "^5.7.2"
   },
   "engines": {
     "node": ">=22.11.0",

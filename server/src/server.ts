@@ -3,8 +3,8 @@ import RateLimit from "express-rate-limit";
 import expressStaticGzip from "express-static-gzip";
 import helmet from "helmet";
 import path from "path";
-import Config, { Environment } from "./config";
-import { azureUserInfo, enforceAzureADMiddleware } from "./middlewares";
+import Configuration, { Environment } from "./config";
+import { enforceAzureADMiddleware, userInfo } from "./middlewares";
 import { routeProxyWithOboToken } from "./proxy";
 
 export const server = express();
@@ -54,21 +54,21 @@ const startServer = () => {
   server.use(`*`, enforceAzureADMiddleware);
 
   // Azure AD user info
-  server.get("/userinfo", azureUserInfo);
+  server.get("/userinfo", userInfo);
 
   // Proxy routes
-  Config.apiConfig.forEach((app) => {
-    if (Config.NAIS_CLUSTER_NAME === "dev-gcp") {
+  Configuration.apiConfig.forEach((app) => {
+    if (Configuration.NAIS_CLUSTER_NAME === "dev-gcp") {
       routeProxyWithOboToken({
         apiUrl: app.apiUrl,
-        apiScope: app.apiScope,
+        apiAudience: app.apiAudience,
         apiProxy: app.apiProxy,
       });
     } else {
       if (app.environment.includes(Environment.PROD)) {
         routeProxyWithOboToken({
           apiUrl: app.apiUrl,
-          apiScope: app.apiScope,
+          apiAudience: app.apiAudience,
           apiProxy: app.apiProxy,
         });
       }

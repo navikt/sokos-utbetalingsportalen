@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { IncomingHttpHeaders } from "http";
 import { z } from "zod";
-import { validateToken } from "./azureAd";
+import * as oasis from "@navikt/oasis";
 import { logger, secureLog } from "./logger";
 
 const ClaimSchema = z.object({
@@ -10,31 +9,20 @@ const ClaimSchema = z.object({
   groups: z.array(z.string()),
 });
 
-async function validateAuthorization(authorization: string) {
-  try {
-    const token = authorization.split(" ")[1];
-    const JWTVerifyResult = await validateToken(token);
-    return !!JWTVerifyResult?.payload;
-  } catch (e) {
-    logger.error("Validate authorization middelware failed", e);
-    return false;
-  }
-}
-
 export async function enforceAzureADMiddleware(
   req: Request,
   res: Response,
   next: NextFunction,
 ) {
   const loginPath = `/oauth2/login?redirect=${req.originalUrl}`;
-  const { authorization } = req.headers;
+  const token = oasis.getToken(req);
 
   // Not logged in - log in with wonderwall
-  if (!authorization) {
+  if (!token) {
     res.redirect(loginPath);
   } else {
     // Validate token and continue to app
-    if (await validateAuthorization(authorization)) {
+    if (await oasis.validateAzureToken(token)) {
       next();
     } else {
       res.redirect(loginPath);
@@ -42,20 +30,21 @@ export async function enforceAzureADMiddleware(
   }
 }
 
-export function retrieveTokenFromHeader(headers: IncomingHttpHeaders) {
-  const userAccessToken = headers.authorization?.split(" ")[1];
-  if (!userAccessToken) {
-    logger.error("Failed to retrieve token from header");
-    throw new Error("Failed to retrieve token");
+export async function userInfo(req: Request, res: Response) {
+  const token = oasis.getToken(req);
+  if (!token) {
+    res.status(401).send("Missing token");
+    logger.error("Missing token in req");
+    throw Error("Missing token in req");
   }
-  return userAccessToken;
-}
-
-export async function azureUserInfo(req: Request, res: Response) {
-  const token = retrieveTokenFromHeader(req.headers);
   try {
-    const JWTVerifyResult = await validateToken(token);
-    const parsedClaimResult = ClaimSchema.parse(JWTVerifyResult.payload);
+    const validation = await oasis.validateAzureToken(token);
+    if (!validation.ok) {
+      res.status(401).send("Invalid token");
+      logger.error("Invalid token", validation.error);
+      throw validation.error;
+    }
+    const parsedClaimResult = ClaimSchema.parse(validation.payload);
     const referer = req.get("Referer");
     secureLog.info(
       `Saksbehandler (${parsedClaimResult.name}) med ident (${parsedClaimResult.NAVident}) aksesserer URL (${referer})`,
