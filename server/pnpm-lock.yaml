@@ -8,8 +8,8 @@ importers:
   .:
     dependencies:
       "@navikt/oasis":
-        specifier: ^3.5.0
-        version: 3.5.0
+        specifier: ^3.5.1
+        version: 3.5.1
       cors:
         specifier: 2.8.5
         version: 2.8.5
@@ -110,11 +110,11 @@ packages:
         integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==,
       }
 
-  "@navikt/oasis@3.5.0":
+  "@navikt/oasis@3.5.1":
     resolution:
       {
-        integrity: sha512-8Je29jjFpdWm3dPYGrnqTZBqiZVr7XRM+p3dWLy8AzORb+Gt82g3GZzsJxQ9va144KLpurDKUregHuA8TVe1BQ==,
-        tarball: https://npm.pkg.github.com/download/@navikt/oasis/3.5.0/8113a369b510973eaa6ae03d8ccc3d08ee50970c,
+        integrity: sha512-Ho8iCv715x37jXPTFatxPSzthqZj4pTE4hYLd90jbiqmMiLpOEBxjhxsG4OrhqZDjSQfldr1kKAItNYwKShy6w==,
+        tarball: https://npm.pkg.github.com/download/@navikt/oasis/3.5.1/957d99cefdaacc9684e14ab30a5788501a23b8a0,
       }
 
   "@opentelemetry/api@1.9.0":
@@ -1386,7 +1386,7 @@ snapshots:
       "@jridgewell/resolve-uri": 3.1.1
       "@jridgewell/sourcemap-codec": 1.4.15
 
-  "@navikt/oasis@3.5.0":
+  "@navikt/oasis@3.5.1":
     dependencies:
       jose: 5.9.6
       openid-client: 5.7.1
