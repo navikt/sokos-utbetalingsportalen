@@ -3,6 +3,7 @@ import RateLimit from "express-rate-limit";
 import expressStaticGzip from "express-static-gzip";
 import helmet from "helmet";
 import path from "path";
+import { register } from "prom-client";
 import Configuration, { Environment } from "./config";
 import { enforceAzureADMiddleware, userInfo } from "./middlewares";
 import { routeProxyWithOboToken } from "./proxy";
@@ -48,6 +49,12 @@ const startServer = () => {
 
   server.get("/internal/isReady", (_req: Request, res: Response) => {
     res.sendStatus(200);
+  });
+
+  // Metrics
+  server.get("/internal/metrics", async (_req: Request, res: Response) => {
+    res.setHeader("Content-Type", register.contentType);
+    res.send(await register.metrics());
   });
 
   // Enforce Azure AD authentication
