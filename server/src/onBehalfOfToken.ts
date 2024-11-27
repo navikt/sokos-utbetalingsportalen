@@ -1,27 +1,27 @@
 import { Response as ExpressResponse, NextFunction, Request } from "express";
-import * as oasis from "@navikt/oasis";
+import { getToken, requestOboToken, validateAzureToken } from "@navikt/oasis";
 import { logger } from "./logger";
 
-async function requestOboToken(
+async function oboTokenExchange(
   audience: string,
   req: Request,
   res: ExpressResponse,
 ) {
-  const token = oasis.getToken(req);
+  const token = getToken(req);
   if (!token) {
     res.status(401).send("Missing token");
     logger.error("Missing token in req");
     throw Error("Missing token in req");
   }
 
-  const validation = await oasis.validateToken(token);
+  const validation = await validateAzureToken(token);
   if (!validation.ok) {
     res.status(401).send("Invalid token");
     logger.error("Invalid token", validation.error);
     throw validation.error;
   }
 
-  const obo = await oasis.requestOboToken(token, audience);
+  const obo = await requestOboToken(token, audience);
   if (!obo.ok) {
     res.status(500).send("Failed to get OBO token");
     logger.error("Failed to get OBO token", obo.error);
@@ -34,7 +34,7 @@ async function requestOboToken(
 export function setOnBehalfOfToken(apiAudience: string) {
   return async (req: Request, res: ExpressResponse, next: NextFunction) => {
     try {
-      const accessToken = await requestOboToken(apiAudience, req, res);
+      const accessToken = await oboTokenExchange(apiAudience, req, res);
       req.headers.authorization = `Bearer ${accessToken}`;
       next();
     } catch (e) {

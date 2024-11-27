@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import * as oasis from "@navikt/oasis";
+import { getToken, validateAzureToken } from "@navikt/oasis";
 import { logger, secureLog } from "./logger";
 
 export async function enforceAzureADMiddleware(
@@ -8,14 +8,14 @@ export async function enforceAzureADMiddleware(
   next: NextFunction,
 ) {
   const loginPath = `/oauth2/login?redirect=${req.originalUrl}`;
-  const token = oasis.getToken(req);
+  const token = getToken(req);
 
   // Not logged in - log in with wonderwall
   if (!token) {
     res.redirect(loginPath);
   } else {
     // Validate token and continue to app
-    if (await oasis.validateAzureToken(token)) {
+    if (await validateAzureToken(token)) {
       next();
     } else {
       res.redirect(loginPath);
@@ -24,14 +24,14 @@ export async function enforceAzureADMiddleware(
 }
 
 export async function userInfo(req: Request, res: Response) {
-  const token = oasis.getToken(req);
+  const token = getToken(req);
   if (!token) {
     res.status(401).send("Missing token");
     logger.error("Missing token in req");
     throw Error("Missing token in req");
   }
   try {
-    const validation = await oasis.validateAzureToken(token);
+    const validation = await validateAzureToken(token);
     if (!validation.ok) {
       res.status(401).send("Invalid token");
       logger.error("Invalid token", validation.error);

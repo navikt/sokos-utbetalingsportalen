@@ -1,5 +1,6 @@
 import { createProxyMiddleware, fixRequestBody } from "http-proxy-middleware";
-import { logger } from "./logger";
+import { getToken, validateAzureToken } from "@navikt/oasis";
+import { logger, secureLog } from "./logger";
 import { setOnBehalfOfToken } from "./onBehalfOfToken";
 import { server } from "./server";
 
@@ -11,7 +12,21 @@ export const setupRouteProxy = (fromPath: string, toTarget: string) => {
     pathRewrite: (path) => path.replace(fromPath, ""),
     logger,
     on: {
-      proxyReq: fixRequestBody,
+      proxyReq: async (proxyReq, req) => {
+        fixRequestBody(proxyReq, req);
+        const token = getToken(req);
+        if (token) {
+          const validation = await validateAzureToken(token);
+          if (validation.ok) {
+            secureLog.info(
+              `${req.method} request to ${toTarget}${req.url} made by:`,
+              {
+                user: validation.payload.NAVident,
+              },
+            );
+          }
+        }
+      },
     },
   });
 };
