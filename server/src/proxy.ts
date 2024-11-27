@@ -19,17 +19,17 @@ export const setupRouteProxy = (fromPath: string, toTarget: string) => {
 type RouteProxyWithOboTokenParams = {
   apiProxy: string;
   apiUrl: string;
-  apiScope: string;
+  apiAudience: string;
 };
 
 export const routeProxyWithOboToken = ({
   apiProxy,
   apiUrl,
-  apiScope,
+  apiAudience,
 }: RouteProxyWithOboTokenParams) => {
   server.use(
     apiProxy,
-    setOnBehalfOfToken(apiScope),
+    setOnBehalfOfToken(apiAudience),
     setupRouteProxy(apiProxy, apiUrl),
   );
 };

@@ -12,7 +12,7 @@ permissions:
 jobs:
   build:
     name: Build/test & push image
-    uses: navikt/moby-gha-workflows/.github/workflows/node-build-push-image.yaml@main
+    uses: navikt/moby-gha-workflows/.github/workflows/node-build-push-image.yaml@legge_til_navikt_npm_registery
     secrets: inherit
     with:
       image-tag: snapshot

@@ -4,7 +4,7 @@ import expressStaticGzip from "express-static-gzip";
 import helmet from "helmet";
 import path from "path";
 import Configuration, { Environment } from "./config";
-import { azureUserInfo, enforceAzureADMiddleware } from "./middlewares";
+import { enforceAzureADMiddleware, userInfo } from "./middlewares";
 import { routeProxyWithOboToken } from "./proxy";
 
 export const server = express();
@@ -54,21 +54,21 @@ const startServer = () => {
   server.use(`*`, enforceAzureADMiddleware);
 
   // Azure AD user info
-  server.get("/userinfo", azureUserInfo);
+  server.get("/userinfo", userInfo);
 
   // Proxy routes
   Configuration.apiConfig.forEach((app) => {
     if (Configuration.NAIS_CLUSTER_NAME === "dev-gcp") {
       routeProxyWithOboToken({
         apiUrl: app.apiUrl,
-        apiScope: app.apiScope,
+        apiAudience: app.apiAudience,
         apiProxy: app.apiProxy,
       });
     } else {
       if (app.environment.includes(Environment.PROD)) {
         routeProxyWithOboToken({
           apiUrl: app.apiUrl,
-          apiScope: app.apiScope,
+          apiAudience: app.apiAudience,
           apiProxy: app.apiProxy,
         });
       }

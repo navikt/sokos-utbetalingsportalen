@@ -72,24 +72,24 @@ spec:
     # sokos-up-ors-api
     - name: SOKOS_UP_ORS_API
       value: http://sokos-up-ors-api
-    - name: SOKOS_UP_ORS_API_SCOPE
-      value: api://dev-gcp.okonomi.sokos-up-ors-api/.default
+    - name: SOKOS_UP_ORS_API_AUDIENCE
+      value: dev-gcp:okonomi:sokos-up-ors-api
     - name: SOKOS_UP_ORS_API_PROXY
       value: "/up-ors-api"
 
     # Skattekort
     - name: SOKOS_SKATTEKORT_PERSON_API
       value: https://sokos-skattekort-person.dev-fss-pub.nais.io
-    - name: SOKOS_SKATTEKORT_PERSON_API_SCOPE
-      value: api://dev-fss.okonomi.sokos-skattekort-person/.default
+    - name: SOKOS_SKATTEKORT_PERSON_API_AUDIENCE
+      value: dev-fss:okonomi:sokos-skattekort-person
     - name: SOKOS_SKATTEKORT_PROXY
       value: "/skattekort-api"
 
     # SPK-Mottak
     - name: SOKOS_SPK_MOTTAK_API
       value: https://sokos-spk-mottak.dev-fss-pub.nais.io
-    - name: SOKOS_SPK_MOTTAK_API_SCOPE
-      value: api://dev-fss.okonomi.sokos-spk-mottak/.default
+    - name: SOKOS_SPK_MOTTAK_API_AUDIENCE
+      value: dev-fss:okonomi:sokos-spk-mottak
     - name: SOKOS_SPK_MOTTAK_PROXY
       value: "/spk-mottak-api"
 
@@ -97,31 +97,31 @@ spec:
     # sokos-nav-oppdrag
     - name: SOKOS_OPPDRAG_API
       value: https://sokos-oppdrag.dev-fss-pub.nais.io
-    - name: SOKOS_OPPDRAG_API_SCOPE
-      value: api://dev-fss.okonomi.sokos-oppdrag/.default
+    - name: SOKOS_OPPDRAG_API_AUDIENCE
+      value: dev-fss:okonomi:sokos-oppdrag
     - name: SOKOS_OPPDRAG_PROXY
       value: "/oppdrag-api"
 
     # sokos-up-kontoregister-api
     - name: SOKOS_KONTOREGISTER_API
       value: http://sokos-up-kontoregister-api
-    - name: SOKOS_KONTOREGISTER_API_SCOPE
-      value: api://dev-gcp.okonomi.sokos-up-kontoregister-api/.default
+    - name: SOKOS_KONTOREGISTER_API_AUDIENCE
+      value: dev-gcp:okonomi:sokos-up-kontoregister-api
     - name: SOKOS_KONTOREGISTER_API_PROXY
       value: "/up-kr-api"
 
     # sokos-ur-iso
     - name: SOKOS_UR_ISO
       value: https://sokos-ur-iso.dev-fss-pub.nais.io
-    - name: SOKOS_UR_ISO_SCOPE
-      value: api://dev-fss.okonomi.sokos-ur-iso/.default
+    - name: SOKOS_UR_ISO_AUDIENCE
+      value: dev-fss:okonomi:sokos-ur-iso
     - name: SOKOS_UR_ISO_PROXY
       value: "/sokos-ur-iso"
 
     # sokos-utbetaling-api
     - name: SOKOS_UTBETALING_API
       value: https://sokos-utbetaling-api.dev-fss-pub.nais.io
-    - name: SOKOS_UTBETALING_API_SCOPE
-      value: api://dev-fss.okonomi.sokos-utbetaling-api/.default
+    - name: SOKOS_UTBETALING_API_AUDIENCE
+      value: dev-fss:okonomi:sokos-utbetaling-api
     - name: SOKOS_UTBETALING_API_PROXY
       value: "/sokos-utbetaling-api"
