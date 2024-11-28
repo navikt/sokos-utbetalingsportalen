@@ -41,8 +41,14 @@ export const requestSecurelogInfo = async (
     return next();
   }
   const token = getToken(req);
+
+  // eslint-disable-next-line no-console
+  console.log(token);
   if (token) {
     const validation = await validateAzureToken(token);
+
+    // eslint-disable-next-line no-console
+    console.log(validation);
     if (validation.ok) {
       secureLog.info(
         `${req.method} request to ${req.originalUrl} made by: ${validation.payload.NAVident}`,
