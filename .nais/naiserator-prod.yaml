@@ -18,7 +18,7 @@ spec:
     enabled: true
     path: "/internal/metrics"
   replicas:
-    min: 1
+    min: 2
     max: 2
   secureLogs:
     enabled: true
