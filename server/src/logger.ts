@@ -1,5 +1,7 @@
+import { NextFunction, Request, Response } from "express";
 import fs from "fs";
 import winston, { format } from "winston";
+import { getToken, validateAzureToken } from "@navikt/oasis";
 
 const { timestamp, json } = format;
 
@@ -25,3 +27,28 @@ export const secureLog = winston.createLogger({
     }),
   ],
 });
+
+export const requestLogger = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const token = getToken(req);
+  if (token) {
+    const validation = await validateAzureToken(token);
+    if (validation.ok) {
+      logger.info(`${req.method} request to ${req.originalUrl}`);
+      secureLog.info(`${req.method} request to ${req.originalUrl} made by:`, {
+        user: validation.payload.NAVident,
+        headers: req.headers,
+      });
+    } else {
+      logger.warn(`Invalid token for request to ${req.originalUrl}`);
+      secureLog.warn(`Invalid token for request to ${req.originalUrl}`);
+    }
+  } else {
+    logger.warn(`No token found for request to ${req.originalUrl}`);
+    secureLog.warn(`No token found for request to ${req.originalUrl}`);
+  }
+  next();
+};
