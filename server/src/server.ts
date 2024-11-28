@@ -11,9 +11,6 @@ import { routeProxyWithOboToken } from "./proxy";
 
 export const server = express();
 
-// Logging middleware
-server.use(requestSecurelogInfo);
-
 const SERVER_PORT = 8080;
 const BUILD_PATH = path.resolve(__dirname, "../dist");
 
@@ -45,6 +42,9 @@ const startServer = () => {
       max: 100,
     }),
   );
+
+  // Logging middleware
+  server.use(requestSecurelogInfo);
 
   // Health checks
   server.get("/internal/isAlive", (_req: Request, res: Response) => {

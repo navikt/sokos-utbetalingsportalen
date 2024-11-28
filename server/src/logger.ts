@@ -40,23 +40,19 @@ export const requestSecurelogInfo = async (
   ) {
     return next();
   }
+
   const token = getToken(req);
-
-  // eslint-disable-next-line no-console
-  console.log(token);
-  if (token) {
-    const validation = await validateAzureToken(token);
-
-    // eslint-disable-next-line no-console
-    console.log(validation);
-    if (validation.ok) {
-      secureLog.info(
-        `${req.method} request to ${req.originalUrl} made by: ${validation.payload.NAVident}`,
-      );
-    }
-  } else {
+  if (!token) {
     logger.warn(`Invalid token for request to ${req.originalUrl}`);
-    secureLog.warn(`Invalid token for request to ${req.originalUrl}`);
+    return next();
   }
+
+  const validation = await validateAzureToken(token);
+  if (validation.ok) {
+    secureLog.info(
+      `${req.method} request to ${req.originalUrl} made by: ${validation.payload.NAVident}`,
+    );
+  }
+
   next();
 };
