@@ -5,6 +5,7 @@ import helmet from "helmet";
 import path from "path";
 import { register } from "prom-client";
 import Configuration, { Environment } from "./config";
+import { requestSecurelogInfo } from "./logger";
 import { enforceAzureADMiddleware, userInfo } from "./middlewares";
 import { routeProxyWithOboToken } from "./proxy";
 
@@ -41,6 +42,9 @@ const startServer = () => {
       max: 100,
     }),
   );
+
+  // Logging middleware
+  server.use(requestSecurelogInfo);
 
   // Health checks
   server.get("/internal/isAlive", (_req: Request, res: Response) => {
