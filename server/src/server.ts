@@ -5,14 +5,14 @@ import helmet from "helmet";
 import path from "path";
 import { register } from "prom-client";
 import Configuration, { Environment } from "./config";
-import { requestLogger } from "./logger";
+import { requestSecurelogInfo } from "./logger";
 import { enforceAzureADMiddleware, userInfo } from "./middlewares";
 import { routeProxyWithOboToken } from "./proxy";
 
 export const server = express();
 
 // Logging middleware
-server.use(requestLogger);
+server.use(requestSecurelogInfo);
 
 const SERVER_PORT = 8080;
 const BUILD_PATH = path.resolve(__dirname, "../dist");

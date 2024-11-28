@@ -1,4 +1,5 @@
 import { createProxyMiddleware, fixRequestBody } from "http-proxy-middleware";
+import { logger } from "./logger";
 import { setOnBehalfOfToken } from "./onBehalfOfToken";
 import { server } from "./server";
 
@@ -8,6 +9,7 @@ export const setupRouteProxy = (fromPath: string, toTarget: string) => {
     changeOrigin: true,
     secure: true,
     pathRewrite: (path) => path.replace(fromPath, ""),
+    logger,
     on: {
       proxyReq: fixRequestBody,
     },

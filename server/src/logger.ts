@@ -28,32 +28,29 @@ export const secureLog = winston.createLogger({
   ],
 });
 
-export const requestLogger = async (
+export const requestSecurelogInfo = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
-  // Skip logging for endpoints starting with /internal
-  if (req.originalUrl.startsWith("/internal")) {
+  // Skip logging for endpoints starting with /internal or /assets
+  if (
+    req.originalUrl.startsWith("/internal") ||
+    req.originalUrl.startsWith("/assets")
+  ) {
     return next();
   }
-
   const token = getToken(req);
   if (token) {
     const validation = await validateAzureToken(token);
     if (validation.ok) {
-      logger.info(`${req.method} request to ${req.originalUrl}`);
-      secureLog.info(`${req.method} request to ${req.originalUrl} made by:`, {
-        user: validation.payload.NAVident,
-        headers: req.headers,
-      });
-    } else {
-      logger.warn(`Invalid token for request to ${req.originalUrl}`);
-      secureLog.warn(`Invalid token for request to ${req.originalUrl}`);
+      secureLog.info(
+        `${req.method} request to ${req.originalUrl} made by: ${validation.payload.NAVident}`,
+      );
     }
   } else {
-    logger.warn(`No token found for request to ${req.originalUrl}`);
-    secureLog.warn(`No token found for request to ${req.originalUrl}`);
+    logger.warn(`Invalid token for request to ${req.originalUrl}`);
+    secureLog.warn(`Invalid token for request to ${req.originalUrl}`);
   }
   next();
 };
