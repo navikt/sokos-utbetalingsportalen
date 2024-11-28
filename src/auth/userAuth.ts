@@ -1,14 +1,16 @@
 import { useContext } from "react";
 import { AuthContext } from "../components/auth/AuthContext";
 import { AzureAdGroupNameId } from "../config/microfrontend";
-import { ApiError } from "../types/ApiError";
 import { UserData } from "../types/UserData";
+import { logFaroError } from "../utils/grafanaFaro";
 
 export function useAuthContext() {
   const context = useContext(AuthContext);
 
   if (!context) {
-    throw new ApiError("User context must be defined");
+    const error = new Error("User context must be defined");
+    logFaroError(error);
+    throw error;
   }
 
   return context;
