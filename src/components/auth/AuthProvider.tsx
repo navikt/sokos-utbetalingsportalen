@@ -1,8 +1,9 @@
 import { PropsWithChildren, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Loader } from "@navikt/ds-react";
-import { ApiError } from "../../types/ApiError";
 import { UserData } from "../../types/UserData";
+import { UserDataSchema } from "../../types/schema/UserDataSchema";
+import { logFaroError } from "../../utils/grafanaFaro";
 import { AuthContext } from "./AuthContext";
 
 export function AuthProvider(props: PropsWithChildren) {
@@ -14,24 +15,33 @@ export function AuthProvider(props: PropsWithChildren) {
   async function authenticateUser() {
     try {
       const response = await fetch("/userinfo");
-      const data = await response.json();
-      if (data.error) {
-        setError(new ApiError("Failed to fetch user data", data.error));
+      if (!response.ok) {
+        const error = new Error(
+          `Failed to fetch user from server: ${response.statusText}}`,
+        );
+        setError(error);
       }
-      setUserData(data);
+      const parseResult = UserDataSchema.safeParse(await response.json());
+      if (!parseResult.success) {
+        const error = new Error(
+          `Failed to parse user data: ${parseResult.error}`,
+        );
+        setError(error);
+      }
+      setUserData(parseResult.data);
       setIsAuthenticated(true);
-    } catch (error) {
-      setError(new ApiError("Internal server error, " + error));
+    } catch (err) {
+      const error = new Error(`Failed to authenticate user, ${err}`);
+      setError(error);
     }
   }
 
   useEffect(() => {
-    authenticateUser().catch((error) => {
-      setError(error);
-    });
+    authenticateUser();
   }, [location]);
 
   if (error) {
+    logFaroError(error);
     throw error;
   }
 
