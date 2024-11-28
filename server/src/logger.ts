@@ -33,6 +33,11 @@ export const requestLogger = async (
   res: Response,
   next: NextFunction,
 ) => {
+  // Skip logging for endpoints starting with /internal
+  if (req.originalUrl.startsWith("/internal")) {
+    return next();
+  }
+
   const token = getToken(req);
   if (token) {
     const validation = await validateAzureToken(token);
