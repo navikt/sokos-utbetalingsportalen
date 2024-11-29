@@ -11,14 +11,14 @@ importers:
         specifier: ^1.12.2
         version: 1.12.2
       "@navikt/aksel-icons":
-        specifier: ^7.5.3
-        version: 7.5.3
+        specifier: ^7.6.0
+        version: 7.6.0
       "@navikt/ds-css":
-        specifier: ^7.5.3
-        version: 7.5.3
+        specifier: ^7.6.0
+        version: 7.6.0
       "@navikt/ds-react":
-        specifier: ^7.5.3
-        version: 7.5.3(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^7.6.0
+        version: 7.6.0(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-error-boundary:
         specifier: ^4.1.2
         version: 4.1.2(react@18.3.1)
@@ -36,8 +36,8 @@ importers:
         specifier: ^9.15.0
         version: 9.15.0
       "@navikt/aksel-stylelint":
-        specifier: ^7.5.3
-        version: 7.5.3
+        specifier: ^7.6.0
+        version: 7.6.0
       "@rollup/plugin-terser":
         specifier: ^0.4.4
         version: 0.4.4(rollup@4.24.0)
@@ -102,11 +102,11 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       stylelint:
-        specifier: ^16.10.0
-        version: 16.10.0(typescript@5.7.2)
+        specifier: ^16.11.0
+        version: 16.11.0(typescript@5.7.2)
       stylelint-config-standard:
         specifier: ^36.0.1
-        version: 36.0.1(stylelint@16.10.0(typescript@5.7.2))
+        version: 36.0.1(stylelint@16.11.0(typescript@5.7.2))
       tailwindcss:
         specifier: ^3.4.15
         version: 3.4.15
@@ -399,40 +399,40 @@ packages:
         integrity: sha512-dvMHbL464C0zI+Yqxbz6kZ5TOEp7GLW+pry/RWndAR8MJQAXZ2rPmIs8tziTZjeIyhSNZgZbCePtfSbdWqStJw==,
       }
 
-  "@csstools/css-parser-algorithms@3.0.2":
+  "@csstools/css-parser-algorithms@3.0.4":
     resolution:
       {
-        integrity: sha512-6tC/MnlEvs5suR4Ahef4YlBccJDHZuxGsAlxXmybWjZ5jPxlzLSMlRZ9mVHSRvlD+CmtE7+hJ+UQbfXrws/rUQ==,
+        integrity: sha512-Up7rBoV77rv29d3uKHUIVubz1BTcgyUK72IvCQAbfbMv584xHcGKCKbWh7i8hPrRJ7qU4Y8IO3IY9m+iTB7P3A==,
       }
     engines: { node: ">=18" }
     peerDependencies:
-      "@csstools/css-tokenizer": ^3.0.2
+      "@csstools/css-tokenizer": ^3.0.3
 
-  "@csstools/css-tokenizer@3.0.2":
+  "@csstools/css-tokenizer@3.0.3":
     resolution:
       {
-        integrity: sha512-IuTRcD53WHsXPCZ6W7ubfGqReTJ9Ra0yRRFmXYP/Re8hFYYfoIYIK4080X5luslVLWimhIeFq0hj09urVMQzTw==,
+        integrity: sha512-UJnjoFsmxfKUdNYdWgOB0mWUypuLvAfQPH1+pyvRJs6euowbFkFC6P13w1l8mJyi3vxYMxc9kld5jZEGRQs6bw==,
       }
     engines: { node: ">=18" }
 
-  "@csstools/media-query-list-parser@3.0.1":
+  "@csstools/media-query-list-parser@4.0.2":
     resolution:
       {
-        integrity: sha512-HNo8gGD02kHmcbX6PvCoUuOQvn4szyB9ca63vZHKX5A81QytgDG4oxG4IaEfHTlEZSZ6MjPEMWIVU+zF2PZcgw==,
-      }
-    engines: { node: ">=18" }
-    peerDependencies:
-      "@csstools/css-parser-algorithms": ^3.0.1
-      "@csstools/css-tokenizer": ^3.0.1
-
-  "@csstools/selector-specificity@4.0.0":
-    resolution:
-      {
-        integrity: sha512-189nelqtPd8++phaHNwYovKZI0FOzH1vQEE3QhHHkNIGrg5fSs9CbYP3RvfEH5geztnIA9Jwq91wyOIwAW5JIQ==,
+        integrity: sha512-EUos465uvVvMJehckATTlNqGj4UJWkTmdWuDMjqvSUkjGpmOyFZBVwb4knxCm/k2GMTXY+c/5RkdndzFYWeX5A==,
       }
     engines: { node: ">=18" }
     peerDependencies:
-      postcss-selector-parser: ^6.1.0
+      "@csstools/css-parser-algorithms": ^3.0.4
+      "@csstools/css-tokenizer": ^3.0.3
+
+  "@csstools/selector-specificity@5.0.0":
+    resolution:
+      {
+        integrity: sha512-PCqQV3c4CoVm3kdPhyeZ07VmBRdH2EpMFA/pd9OASpOEC3aXNGoqPDAZ80D0cLpMBxnmk0+yNhGsEx31hq7Gtw==,
+      }
+    engines: { node: ">=18" }
+    peerDependencies:
+      postcss-selector-parser: ^7.0.0
 
   "@dual-bundle/import-meta-resolve@4.1.0":
     resolution:
@@ -907,40 +907,42 @@ packages:
       }
     engines: { node: ">=18" }
 
-  "@navikt/aksel-icons@7.5.3":
+  "@navikt/aksel-icons@7.6.0":
     resolution:
       {
-        integrity: sha512-N4uaddfmZMp4Xm6h/WprY+8O7io9KwDX167h+o2/97ySN0zbcPxDyskWKjwplOlZg/SjoVuY45M/xqlkUa6byg==,
+        integrity: sha512-EHma8qQx136cBJeT3uxnMm/7I9LYwXhdbu+uVS21C0qO/UeUQzy0+e3e1q3CxwIV6A7QSkVlgqhDmlymZ7vF9g==,
+        tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/7.6.0/e55f0293cfbf140fa3a4d9722a7eb1865253ec04,
       }
 
-  "@navikt/aksel-stylelint@7.5.3":
+  "@navikt/aksel-stylelint@7.6.0":
     resolution:
       {
-        integrity: sha512-awbyVbMYkBQijw1DqCHg1WpkiZaZJH8ZkGfbkPDM/vC+88WadfOTzpAS+6bJmbsqZSFaPWdXkQQA+rLXw6JuEA==,
+        integrity: sha512-z/mGdkZl2ghEoxDMMvsLBYwicj3fjIfNMLqcsC23J/r1efY+XHOhwXwG/yzOzbC1R7XnA767+JyqQF0diwqg3Q==,
+        tarball: https://npm.pkg.github.com/download/@navikt/aksel-stylelint/7.6.0/2f4a49db07f380ba515c929b2c5a738e7374d2fc,
       }
 
-  "@navikt/ds-css@7.5.3":
+  "@navikt/ds-css@7.6.0":
     resolution:
       {
-        integrity: sha512-S1Eg1/4D8FZmEhZq6S0iCy6PvOm+a36SJ5H+d+yMatdEZmGezwy/wzAMr97uWXhmtFpCS6HOG/Ns8VNFX0hm4g==,
+        integrity: sha512-bT7INZIpskL6yoMITbbCxejgQPpw4YGQT+1HzxKd5LPQ6PolICvfSobNMMLtpJ1q/g1F4ULDeBn1u08vuc5JLA==,
+        tarball: https://npm.pkg.github.com/download/@navikt/ds-css/7.6.0/dce0c20349b06d964f44335f7f2f6f605ccacbaa,
       }
 
-  "@navikt/ds-react@7.5.3":
+  "@navikt/ds-react@7.6.0":
     resolution:
       {
-        integrity: sha512-dVV4ED2nulCSpONs41Lc3RuGEuE+eg8VMNPVTuedwhwEp8HeFE4wl0ACqOgbFGlQ+xDsF11O3cqioPZBqxgAUg==,
+        integrity: sha512-fh7WjNP5Rk8G7HScy03ge71ooeRXryYUvz0puEH5LkVVOz0EzQwDmXMj9PdnQId64PCQwmjZZHehnHim0fWD3A==,
+        tarball: https://npm.pkg.github.com/download/@navikt/ds-react/7.6.0/affcdb539be6ae0510dc2b4e3cfd667a6edee95a,
       }
     peerDependencies:
       "@types/react": ">=17.0.30"
       react: ">=17.0.0 || >19.0.0-rc"
-    peerDependenciesMeta:
-      "@types/react":
-        optional: true
 
-  "@navikt/ds-tokens@7.5.3":
+  "@navikt/ds-tokens@7.6.0":
     resolution:
       {
-        integrity: sha512-iuwpmXM/cBCc9W4898nLnRV7qOuPN3f7pl3tkeirEyjBS8elIV/WEqKhQjaCkT+aVC7lEHzZ5nkC5MDQcjWicg==,
+        integrity: sha512-4V86JnYzwPmiLtvQKJHODKO+lzT1DFWzdCkxu9W5OXCtYxgpMGSiZnAdq949FCFVergYMvhTi2kGiN5XgXIovw==,
+        tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/7.6.0/d543e0c2eca1dc09d53c6d7c070f98bfec9f4a1f,
       }
 
   "@nodelib/fs.scandir@2.1.5":
@@ -1941,10 +1943,10 @@ packages:
       }
     engines: { node: ">=12 || >=16" }
 
-  css-tree@3.0.0:
+  css-tree@3.0.1:
     resolution:
       {
-        integrity: sha512-o88DVQ6GzsABn1+6+zo2ct801dBO5OASVyxbbvA2W20ue2puSh/VOuqUj90eUeMSX/xqGqBmOKiRQN7tJOuBXw==,
+        integrity: sha512-8Fxxv+tGhORlshCdCwnNJytvlvq46sOLSYEx2ZIGurahWvMucSRnyjPA3AmrMq4VPRYbHVpWj5VkiVasrM2H4Q==,
       }
     engines: { node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0 }
 
@@ -3089,10 +3091,10 @@ packages:
       }
     engines: { node: ">=0.10.0" }
 
-  known-css-properties@0.34.0:
+  known-css-properties@0.35.0:
     resolution:
       {
-        integrity: sha512-tBECoUqNFbyAY4RrbqsBQqDFpGXAEbdD5QKr8kACx3+rnArmuuR22nKQWKazvp07N9yjTyDZaw/20UIH8tL9DQ==,
+        integrity: sha512-a/RAk2BfKk+WFGhhOCAYqSiFLc34k8Mt/6NWRI4joER0EYUzXIcFivjjnoD3+XU1DggLn/tZc3DOAgke7l8a4A==,
       }
 
   language-subtag-registry@0.3.23:
@@ -3213,10 +3215,10 @@ packages:
         integrity: sha512-APMBEanjybaPzUrfqU0IMU5I0AswKMH7k8OTLs0vvV4KZpExkTkY87nR/zpbuTPj+gARop7aGUbl11pnDfW6xg==,
       }
 
-  mdn-data@2.10.0:
+  mdn-data@2.12.1:
     resolution:
       {
-        integrity: sha512-qq7C3EtK3yJXMwz1zAab65pjl+UhohqMOctTgcqjLOWABqmwj+me02LSsCuEUxnst9X1lCBpoE0WArGKgdGDzw==,
+        integrity: sha512-rsfnCbOHjqrhWxwt5/wtSLzpoKTzW7OXdT5lLOIH1OTYhWu9rRJveGq0sKvDZODABH7RX+uoR+DYcpFnq4Tf6Q==,
       }
 
   meow@13.2.0:
@@ -3659,6 +3661,13 @@ packages:
     resolution:
       {
         integrity: sha512-Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg==,
+      }
+    engines: { node: ">=4" }
+
+  postcss-selector-parser@7.0.0:
+    resolution:
+      {
+        integrity: sha512-9RbEr1Y7FFfptd/1eEdntyjMwLeghW1bHX9GWjXo19vx4ytPQhANltvVxDggzJl7mnWM+dX28kb6cyS/4iQjlQ==,
       }
     engines: { node: ">=4" }
 
@@ -4254,10 +4263,10 @@ packages:
     peerDependencies:
       stylelint: ^16.1.0
 
-  stylelint@16.10.0:
+  stylelint@16.11.0:
     resolution:
       {
-        integrity: sha512-z/8X2rZ52dt2c0stVwI9QL2AFJhLhbPkyfpDFcizs200V/g7v+UYY6SNcB9hKOLcDDX/yGLDsY/pX08sLkz9xQ==,
+        integrity: sha512-zrl4IrKmjJQ+h9FoMp69UMCq5SxeHk0URhxUBj4d3ISzo/DplOFBJZc7t7Dr6otB+1bfbbKNLOmCDpzKSlW+Nw==,
       }
     engines: { node: ">=18.12.0" }
     hasBin: true
@@ -4956,20 +4965,20 @@ snapshots:
       "@types/tough-cookie": 4.0.5
       tough-cookie: 4.1.4
 
-  "@csstools/css-parser-algorithms@3.0.2(@csstools/css-tokenizer@3.0.2)":
+  "@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3)":
     dependencies:
-      "@csstools/css-tokenizer": 3.0.2
+      "@csstools/css-tokenizer": 3.0.3
 
-  "@csstools/css-tokenizer@3.0.2": {}
+  "@csstools/css-tokenizer@3.0.3": {}
 
-  "@csstools/media-query-list-parser@3.0.1(@csstools/css-parser-algorithms@3.0.2(@csstools/css-tokenizer@3.0.2))(@csstools/css-tokenizer@3.0.2)":
+  "@csstools/media-query-list-parser@4.0.2(@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3))(@csstools/css-tokenizer@3.0.3)":
     dependencies:
-      "@csstools/css-parser-algorithms": 3.0.2(@csstools/css-tokenizer@3.0.2)
-      "@csstools/css-tokenizer": 3.0.2
+      "@csstools/css-parser-algorithms": 3.0.4(@csstools/css-tokenizer@3.0.3)
+      "@csstools/css-tokenizer": 3.0.3
 
-  "@csstools/selector-specificity@4.0.0(postcss-selector-parser@6.1.2)":
+  "@csstools/selector-specificity@5.0.0(postcss-selector-parser@7.0.0)":
     dependencies:
-      postcss-selector-parser: 6.1.2
+      postcss-selector-parser: 7.0.0
 
   "@dual-bundle/import-meta-resolve@4.1.0": {}
 
@@ -5224,28 +5233,27 @@ snapshots:
       outvariant: 1.4.3
       strict-event-emitter: 0.5.1
 
-  "@navikt/aksel-icons@7.5.3": {}
+  "@navikt/aksel-icons@7.6.0": {}
 
-  "@navikt/aksel-stylelint@7.5.3": {}
+  "@navikt/aksel-stylelint@7.6.0": {}
 
-  "@navikt/ds-css@7.5.3": {}
+  "@navikt/ds-css@7.6.0": {}
 
-  "@navikt/ds-react@7.5.3(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)":
+  "@navikt/ds-react@7.6.0(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)":
     dependencies:
       "@floating-ui/react": 0.25.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       "@floating-ui/react-dom": 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      "@navikt/aksel-icons": 7.5.3
-      "@navikt/ds-tokens": 7.5.3
+      "@navikt/aksel-icons": 7.6.0
+      "@navikt/ds-tokens": 7.6.0
+      "@types/react": 18.3.12
       clsx: 2.1.1
       date-fns: 3.6.0
       react: 18.3.1
       react-day-picker: 8.10.1(date-fns@3.6.0)(react@18.3.1)
-    optionalDependencies:
-      "@types/react": 18.3.12
     transitivePeerDependencies:
       - react-dom
 
-  "@navikt/ds-tokens@7.5.3": {}
+  "@navikt/ds-tokens@7.6.0": {}
 
   "@nodelib/fs.scandir@2.1.5":
     dependencies:
@@ -5835,9 +5843,9 @@ snapshots:
 
   css-functions-list@3.2.3: {}
 
-  css-tree@3.0.0:
+  css-tree@3.0.1:
     dependencies:
-      mdn-data: 2.10.0
+      mdn-data: 2.12.1
       source-map-js: 1.2.1
 
   cssesc@3.0.0: {}
@@ -6562,7 +6570,7 @@ snapshots:
 
   kind-of@6.0.3: {}
 
-  known-css-properties@0.34.0: {}
+  known-css-properties@0.35.0: {}
 
   language-subtag-registry@0.3.23: {}
 
@@ -6637,7 +6645,7 @@ snapshots:
 
   mathml-tag-names@2.1.3: {}
 
-  mdn-data@2.10.0: {}
+  mdn-data@2.12.1: {}
 
   meow@13.2.0: {}
 
@@ -6800,7 +6808,7 @@ snapshots:
 
   parse-json@5.2.0:
     dependencies:
-      "@babel/code-frame": 7.25.7
+      "@babel/code-frame": 7.26.2
       error-ex: 1.3.2
       json-parse-even-better-errors: 2.3.1
       lines-and-columns: 1.2.4
@@ -6865,6 +6873,11 @@ snapshots:
       postcss: 8.4.49
 
   postcss-selector-parser@6.1.2:
+    dependencies:
+      cssesc: 3.0.0
+      util-deprecate: 1.0.2
+
+  postcss-selector-parser@7.0.0:
     dependencies:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
@@ -7214,27 +7227,27 @@ snapshots:
 
   strip-json-comments@3.1.1: {}
 
-  stylelint-config-recommended@14.0.1(stylelint@16.10.0(typescript@5.7.2)):
+  stylelint-config-recommended@14.0.1(stylelint@16.11.0(typescript@5.7.2)):
     dependencies:
-      stylelint: 16.10.0(typescript@5.7.2)
+      stylelint: 16.11.0(typescript@5.7.2)
 
-  stylelint-config-standard@36.0.1(stylelint@16.10.0(typescript@5.7.2)):
+  stylelint-config-standard@36.0.1(stylelint@16.11.0(typescript@5.7.2)):
     dependencies:
-      stylelint: 16.10.0(typescript@5.7.2)
-      stylelint-config-recommended: 14.0.1(stylelint@16.10.0(typescript@5.7.2))
+      stylelint: 16.11.0(typescript@5.7.2)
+      stylelint-config-recommended: 14.0.1(stylelint@16.11.0(typescript@5.7.2))
 
-  stylelint@16.10.0(typescript@5.7.2):
+  stylelint@16.11.0(typescript@5.7.2):
     dependencies:
-      "@csstools/css-parser-algorithms": 3.0.2(@csstools/css-tokenizer@3.0.2)
-      "@csstools/css-tokenizer": 3.0.2
-      "@csstools/media-query-list-parser": 3.0.1(@csstools/css-parser-algorithms@3.0.2(@csstools/css-tokenizer@3.0.2))(@csstools/css-tokenizer@3.0.2)
-      "@csstools/selector-specificity": 4.0.0(postcss-selector-parser@6.1.2)
+      "@csstools/css-parser-algorithms": 3.0.4(@csstools/css-tokenizer@3.0.3)
+      "@csstools/css-tokenizer": 3.0.3
+      "@csstools/media-query-list-parser": 4.0.2(@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3))(@csstools/css-tokenizer@3.0.3)
+      "@csstools/selector-specificity": 5.0.0(postcss-selector-parser@7.0.0)
       "@dual-bundle/import-meta-resolve": 4.1.0
       balanced-match: 2.0.0
       colord: 2.9.3
       cosmiconfig: 9.0.0(typescript@5.7.2)
       css-functions-list: 3.2.3
-      css-tree: 3.0.0
+      css-tree: 3.0.1
       debug: 4.3.7
       fast-glob: 3.3.2
       fastest-levenshtein: 1.0.16
@@ -7246,7 +7259,7 @@ snapshots:
       ignore: 6.0.2
       imurmurhash: 0.1.4
       is-plain-object: 5.0.0
-      known-css-properties: 0.34.0
+      known-css-properties: 0.35.0
       mathml-tag-names: 2.1.3
       meow: 13.2.0
       micromatch: 4.0.8
@@ -7255,7 +7268,7 @@ snapshots:
       postcss: 8.4.49
       postcss-resolve-nested-selector: 0.1.6
       postcss-safe-parser: 7.0.1(postcss@8.4.49)
-      postcss-selector-parser: 6.1.2
+      postcss-selector-parser: 7.0.0
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
       string-width: 4.2.3
