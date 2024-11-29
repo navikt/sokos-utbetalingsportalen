@@ -82,7 +82,7 @@ export const MicrofrontendConfig: Array<MicrofrontendApp> = [
   {
     app: "KRP",
     title: "Kontoregister person",
-    description: "Søk etter personer og konti",
+    description: "Oppslag og registrering av konti til personer",
     group: adGroup({
       adGroupDevelopment: "98146b9a-1891-44e3-9b61-92130c2fcd8b",
       adGroupProduction: "bb9c7baf-768b-4e84-816c-f10d0a6c7d25",
@@ -93,7 +93,7 @@ export const MicrofrontendConfig: Array<MicrofrontendApp> = [
   {
     app: "KRO",
     title: "Kontoregister organisasjon",
-    description: "Søk etter kontonummer til organisasjoner",
+    description: "Oppslag og registrering av konti til organisasjoner",
     group: adGroup({
       adGroupDevelopment: "bdcedce3-dab5-4b68-b1d3-8625cd0d3b55",
       adGroupProduction: "e1635067-dfc9-4fb8-8405-d50e9672cf5c",
