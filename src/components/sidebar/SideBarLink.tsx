@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 import styles from "./SideBarLink.module.css";
 
 export default function SideBarLink({

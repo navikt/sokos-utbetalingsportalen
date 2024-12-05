@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { InternalHeader, Spacer } from "@navikt/ds-react";
 import nav from "../../../assets/images/Hvit.png";
 import julelogo from "../../../assets/images/julelogo-liten.png";
