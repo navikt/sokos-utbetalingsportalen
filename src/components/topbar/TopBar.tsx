@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { InternalHeader, Spacer } from "@navikt/ds-react";
 import nav from "../../../assets/images/Hvit.png";
-import julelogo from "../../../assets/images/julelogo-utbetalingsportalen.png";
+import julelogo from "../../../assets/images/julelogo-liten.png";
 import { useAuthContext } from "../../auth/userAuth";
 import styles from "./TopBar.module.css";
 
