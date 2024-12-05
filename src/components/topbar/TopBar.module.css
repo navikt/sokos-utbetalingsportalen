@@ -5,3 +5,7 @@
 .topbar-container {
   @apply fixed left-0 right-0 top-0 z-[1000] w-full;
 }
+
+.julelogo {
+  @apply mb-2 h-6 w-64;
+}
