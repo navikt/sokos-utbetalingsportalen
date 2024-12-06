@@ -106,3 +106,4 @@ build
 server/secure.log
 server/build
 .npmrc
+.tool-versions
