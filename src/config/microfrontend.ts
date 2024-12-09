@@ -150,7 +150,7 @@ export const MicrofrontendConfig: Array<MicrofrontendApp> = [
     title: "Utbetaling",
     description: "Søk etter utbetalinger",
     group: adGroup({
-      adGroupDevelopment: "fc58f7f5-2e9a-497c-a121-e476a91330b5",
+      adGroupDevelopment: "138d21fb-4e96-46d6-91e4-e3926aa349e5",
       adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
     }),
     route: "/utbetaling",
