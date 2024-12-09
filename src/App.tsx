@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router";
 import Microfrontend from "./Microfrontend";
 import { AuthProvider } from "./components/auth/AuthProvider";
 import ErrorBoundary from "./components/error/ErrorBoundary";
 import Layout from "./components/layout/Layout";
-import { MicrofrontendConfig } from "./config/microfrontend";
+import { MicrofrontendApp, MicrofrontendConfig } from "./config/microfrontend";
 import ErrorPage, { NotFound } from "./pages/ErrorPage";
 import Home from "./pages/Home";
 import { initGrafanaFaro } from "./utils/grafanaFaro";
@@ -29,15 +29,32 @@ export default function App() {
     document.title = title;
   }, [location]);
 
+  function TheMicrofrontend(app: MicrofrontendApp) {
+    return (
+      <Microfrontend
+        key={`Microfrontend ${app.title}`}
+        url={app.url}
+        adGroup={app.group}
+      />
+    );
+  }
+
   function microfrontendRoutes() {
     return MicrofrontendConfig.sort((a, b) =>
       a.title.localeCompare(b.title),
     ).map((app) => (
-      <Route
-        key={app.title}
-        path={`${app.route}/*`}
-        element={<Microfrontend url={app.url} adGroup={app.group} />}
-      />
+      <Route key={app.title} path={app.route}>
+        <Route
+          index
+          key={`${app.title}index`}
+          element={TheMicrofrontend(app)}
+        />
+        <Route
+          path={"*"}
+          key={`${app.title}`}
+          element={TheMicrofrontend(app)}
+        />
+      </Route>
     ));
   }
 

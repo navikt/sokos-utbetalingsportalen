@@ -1,4 +1,4 @@
-import { Link as ReactRouterLink } from "react-router-dom";
+import { Link as ReactRouterLink } from "react-router";
 import { ChevronRightIcon } from "@navikt/aksel-icons";
 import { Heading, Tooltip } from "@navikt/ds-react";
 import styles from "./AppCard.module.css";
