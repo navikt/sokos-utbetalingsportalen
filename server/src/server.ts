@@ -17,12 +17,11 @@ const BUILD_PATH = path.resolve(__dirname, "../dist");
 server.use(
   helmet.contentSecurityPolicy({
     directives: {
-      "script-src": ["'self'", "https://www.nav.no"],
+      "script-src": ["'self'", "https://www.nav.no", "https://cdn.nav.no"],
       "connect-src": [
         "'self'",
         "https://telemetry.ekstern.dev.nav.no",
         "https://telemetry.nav.no/collect",
-        "https://cdn.nav.no/team-researchops/sporing/sporing.js",
       ],
     },
   }),
