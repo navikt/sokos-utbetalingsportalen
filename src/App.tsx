@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { Route, Routes, useLocation } from "react-router";
 import Microfrontend from "./Microfrontend";
 import { AuthProvider } from "./components/auth/AuthProvider";
@@ -59,16 +60,26 @@ export default function App() {
   }
 
   return (
-    <ErrorBoundary>
-      <AuthProvider>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} errorElement={<ErrorPage />} />
-            {microfrontendRoutes()}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Layout>
-      </AuthProvider>
-    </ErrorBoundary>
+    <>
+      <Helmet>
+        <script
+          defer
+          src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
+          data-host-url="https://umami.nav.no"
+          data-website-id="e174f8d8-4082-4cb0-8280-b992d0a47901"
+        ></script>
+      </Helmet>
+      <ErrorBoundary>
+        <AuthProvider>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Home />} errorElement={<ErrorPage />} />
+              {microfrontendRoutes()}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Layout>
+        </AuthProvider>
+      </ErrorBoundary>
+    </>
   );
 }

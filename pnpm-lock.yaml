@@ -50,6 +50,9 @@ importers:
       "@types/react-dom":
         specifier: ^18.3.1
         version: 18.3.1
+      "@types/react-helmet":
+        specifier: ^6.1.11
+        version: 6.1.11
       "@vitejs/plugin-react":
         specifier: ^4.3.4
         version: 4.3.4(vite@6.0.2(@types/node@22.7.6)(jiti@1.21.6)(terser@5.36.0)(yaml@2.6.0))
@@ -101,6 +104,9 @@ importers:
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+      react-helmet:
+        specifier: ^6.1.0
+        version: 6.1.0(react@18.3.1)
       stylelint:
         specifier: ^16.11.0
         version: 16.11.0(typescript@5.7.2)
@@ -1339,6 +1345,12 @@ packages:
     resolution:
       {
         integrity: sha512-qW1Mfv8taImTthu4KoXgDfLuk4bydU6Q/TkADnDWWHwi4NX4BR+LWfTp2sVmTqRrsHvyDDTelgelxJ+SsejKKQ==,
+      }
+
+  "@types/react-helmet@6.1.11":
+    resolution:
+      {
+        integrity: sha512-0QcdGLddTERotCXo3VFlUSWO3ztraw8nZ6e3zJSgG7apwV5xt+pJUS8ewPBqT4NYB1optGLprNQzFleIY84u/g==,
       }
 
   "@types/react@18.3.12":
@@ -3829,6 +3841,20 @@ packages:
     peerDependencies:
       react: ">=16.13.1"
 
+  react-fast-compare@3.2.2:
+    resolution:
+      {
+        integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==,
+      }
+
+  react-helmet@6.1.0:
+    resolution:
+      {
+        integrity: sha512-4uMzEY9nlDlgxr61NL3XbKRy1hEkXmKNXhjbAIOVw5vcFrsdYbH2FEwcNyWvWinl103nXgzYNlns9ca+8kFiWw==,
+      }
+    peerDependencies:
+      react: ">=16.3.0"
+
   react-is@16.13.1:
     resolution:
       {
@@ -3854,6 +3880,14 @@ packages:
     peerDependenciesMeta:
       react-dom:
         optional: true
+
+  react-side-effect@2.1.2:
+    resolution:
+      {
+        integrity: sha512-PVjOcvVOyIILrYoyGEpDN3vmYNLdy1CajSFNt4TDsVQC5KpTijDvWVoR+/7Rz2xT978D8/ZtFceXxzsPwZEDvw==,
+      }
+    peerDependencies:
+      react: ^16.3.0 || ^17.0.0 || ^18.0.0
 
   react@18.3.1:
     resolution:
@@ -5467,6 +5501,10 @@ snapshots:
     dependencies:
       "@types/react": 18.3.12
 
+  "@types/react-helmet@6.1.11":
+    dependencies:
+      "@types/react": 18.3.12
+
   "@types/react@18.3.12":
     dependencies:
       "@types/prop-types": 15.7.13
@@ -6961,6 +6999,16 @@ snapshots:
       "@babel/runtime": 7.25.7
       react: 18.3.1
 
+  react-fast-compare@3.2.2: {}
+
+  react-helmet@6.1.0(react@18.3.1):
+    dependencies:
+      object-assign: 4.1.1
+      prop-types: 15.8.1
+      react: 18.3.1
+      react-fast-compare: 3.2.2
+      react-side-effect: 2.1.2(react@18.3.1)
+
   react-is@16.13.1: {}
 
   react-refresh@0.14.2: {}
@@ -6974,6 +7022,10 @@ snapshots:
       turbo-stream: 2.4.0
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
+
+  react-side-effect@2.1.2(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   react@18.3.1:
     dependencies:
