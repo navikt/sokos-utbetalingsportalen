@@ -24,7 +24,7 @@ export default function Home() {
   }
 
   return (
-    <main id="main-content">
+    <main id="main-content" role="main">
       <div className={styles["home"]}>
         <div className={styles["home-guidepanel"]}>
           <div className={styles["home-heading"]}>
