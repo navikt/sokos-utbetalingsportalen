@@ -22,6 +22,7 @@ server.use(
         "'self'",
         "https://telemetry.ekstern.dev.nav.no",
         "https://telemetry.nav.no/collect",
+        "https://umami.nav.no",
       ],
     },
   }),

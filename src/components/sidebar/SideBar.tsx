@@ -15,9 +15,6 @@ export default function SideBar({ onToggle, showSideBar }: SideBarProps) {
   const { authorizedApps } = useApps();
 
   const handleToggle = () => {
-    const button = document.getElementById("lukk-sidebar");
-    // @ts-expect-error button is not null
-    button.onclick = () => umami.trackEvent("lukk sidebar");
     onToggle(!showSideBar);
   };
 
@@ -46,7 +43,6 @@ export default function SideBar({ onToggle, showSideBar }: SideBarProps) {
     <div className={styles["sidebar"]} role="navigation">
       <div className={styles["closebutton"]}>
         <Button
-          id="lukk-sidebar"
           data-umami-event={"lukk sidebar"}
           className="bg-neutral-800 w-28"
           onClick={handleToggle}
