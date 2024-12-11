@@ -33,9 +33,11 @@ export default function SideBar({ onToggle, showSideBar }: SideBarProps) {
 
   function getMicrofrontendLinks() {
     return authorizedApps.map((page) => (
-      <SideBarLink to={page.route} key={page.app}>
-        {page.title}
-      </SideBarLink>
+      <li key={page.app} className={styles["sidebar-links"]}>
+        <SideBarLink to={page.route} key={page.app}>
+          {page.title}
+        </SideBarLink>
+      </li>
     ));
   }
 
@@ -54,11 +56,13 @@ export default function SideBar({ onToggle, showSideBar }: SideBarProps) {
         </Button>
       </div>
 
-      <ul className={styles["sidebar-links"]}>
-        <SideBarLink to={"/"}>
-          <HouseIcon className={iconStyle} title="Hus" />
-          Hjem
-        </SideBarLink>
+      <ul>
+        <li className={styles["sidebar-links"]}>
+          <SideBarLink to={"/"}>
+            <HouseIcon className={iconStyle} title="Hus" />
+            Hjem
+          </SideBarLink>
+        </li>
         {getMicrofrontendLinks()}
       </ul>
     </div>
