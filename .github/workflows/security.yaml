@@ -14,7 +14,7 @@ jobs:
   security-analyze:
     name: Security analyze
     if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    uses: navikt/moby-gha-workflows/.github/workflows/security.yaml@main
+    uses: navikt/monster-gha-workflows/.github/workflows/security.yaml@main
     secrets: inherit
     with:
       language: "javascript"

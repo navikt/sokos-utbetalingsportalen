@@ -15,7 +15,7 @@ permissions:
 jobs:
   deploy-dev:
     name: Deploy to dev-gcp
-    uses: navikt/moby-gha-workflows/.github/workflows/nais-alert-deploy.yaml@main
+    uses: navikt/monster-gha-workflows/.github/workflows/nais-alert-deploy.yaml@main
     with:
       cluster: dev-gcp
       resource: .nais/alerts-dev.yaml
@@ -23,7 +23,7 @@ jobs:
   deploy-prod:
     name: Deploy to prod-gcp
     needs: deploy-dev
-    uses: navikt/moby-gha-workflows/.github/workflows/nais-alert-deploy.yaml@main
+    uses: navikt/monster-gha-workflows/.github/workflows/nais-alert-deploy.yaml@main
     with:
       cluster: prod-gcp
       resource: .nais/alerts-prod.yaml

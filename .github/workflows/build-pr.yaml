@@ -7,5 +7,5 @@ jobs:
   build-pr:
     name: Build and test
     if: "!contains(github.event.pull_request.changed_files, 'LICENSE') && !contains(github.event.pull_request.changed_files, 'CODEOWNERS') && !contains(github.event.pull_request.changed_files, '.gitignore') && !contains(github.event.pull_request.changed_files, '.nais/**') && !contains(github.event.pull_request.changed_files, '.github/workflows/deploy.yaml') && !contains(github.event.pull_request.changed_files, '.github/workflows/manual-deploy-dev.yaml') && !contains(github.event.pull_request.changed_files, '.github/workflows/security.yaml') && !contains(github.event.pull_request.changed_files, '.github/workflows/alerts.yaml')"
-    uses: navikt/moby-gha-workflows/.github/workflows/node-build-pr.yaml@main
+    uses: navikt/monster-gha-workflows/.github/workflows/node-build-pr.yaml@main
     secrets: inherit

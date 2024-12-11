@@ -9,4 +9,4 @@ on:
 jobs:
   build-pr:
     name: Playwright test
-    uses: navikt/moby-gha-workflows/.github/workflows/playwright.yaml@main
+    uses: navikt/monster-gha-workflows/.github/workflows/playwright.yaml@main
