@@ -9,4 +9,11 @@ on:
 jobs:
   build-pr:
     name: Playwright test
+    if: >
+      !contains(github.event.pull_request.changed_files, '.nais/**') &&
+      !contains(github.event.pull_request.changed_files, '.github/dependabot.yml') &&
+      !contains(github.event.pull_request.changed_files, '.github/workflows/deploy.yaml') &&
+      !contains(github.event.pull_request.changed_files, '.github/workflows/manual-deploy-dev.yaml') &&
+      !contains(github.event.pull_request.changed_files, '.github/workflows/build-pr.yaml') &&
+      !contains(github.event.pull_request.changed_files, '.github/workflows/security.yaml')
     uses: navikt/monster-gha-workflows/.github/workflows/playwright.yaml@main

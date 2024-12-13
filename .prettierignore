@@ -1,10 +1,9 @@
 # Ignore artifacts:
 dist
 dokumentasjon
-mock
 server/build
 **/node_modules
-**/github*.yml
 **/github*.yaml
 **/nais*.yaml
-**/nais*.yml
+playwright-report
+test-results
