@@ -3,17 +3,35 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - "**.md"
+      - "LICENCE"
+      - "CODEOWNERS"
+      - ".gitignore"
+      - ".nais/**"
+      - ".github/workflows/deploy.yaml"
+      - ".github/workflows/build-pr.yaml"
+      - ".github/workflows/manual-deploy-dev.yaml"
+      - ".github/workflows/security.yaml"
+      - ".github/workflows/alerts.yaml"
+      - ".github/dependabot.yaml"
+
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - "**.md"
+      - "LICENCE"
+      - "CODEOWNERS"
+      - ".gitignore"
+      - ".nais/**"
+      - ".github/workflows/deploy.yaml"
+      - ".github/workflows/build-pr.yaml"
+      - ".github/workflows/manual-deploy-dev.yaml"
+      - ".github/workflows/security.yaml"
+      - ".github/workflows/alerts.yaml"
+      - ".github/dependabot.yaml"
 jobs:
-  build-pr:
+  playwright-test:
     name: Playwright test
-    if: >
-      !contains(github.event.pull_request.changed_files, '.nais/**') &&
-      !contains(github.event.pull_request.changed_files, '.github/dependabot.yml') &&
-      !contains(github.event.pull_request.changed_files, '.github/workflows/deploy.yaml') &&
-      !contains(github.event.pull_request.changed_files, '.github/workflows/manual-deploy-dev.yaml') &&
-      !contains(github.event.pull_request.changed_files, '.github/workflows/build-pr.yaml') &&
-      !contains(github.event.pull_request.changed_files, '.github/workflows/security.yaml')
     uses: navikt/monster-gha-workflows/.github/workflows/playwright.yaml@main
