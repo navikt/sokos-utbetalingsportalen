@@ -1,5 +1,10 @@
 # Utbetalingsportalen
 
+(Kort beskrivelse)
+
+[Q1-miljl](https://utbetalingsportalen.intern.dev.nav.no)
+[Qx-miljø](https://utbetalingsportalen-qx.intern.dev.nav.no)
+
 ## Innholdsoversikt
 
 - [1. Funksjonelle krav](#1-funksjonelle-krav)
@@ -31,7 +36,7 @@ Utbetalingsportalen er en intern arbeidsflate for Økonomi-medarbeidere i Økono
 
 ### Lokal utvikling
 
-- `pnpm run dev`
+- `pnpm run dev` Bruker [Mock Service Worker](https://mswjs.io/)
 
 ## 3. Programvarearkitektur
 
@@ -70,7 +75,6 @@ Det benyttes også [OBO- On-Behalf-Of](https://docs.nais.io/security/auth/azure-
 ### Alarmer
 
 Vi bruker [nais-alerts](https://doc.nais.io/observability/alerts) for å sette opp alarmer. Disse finner man konfigurert i [.nais mappen](.nais).
-
 
 ## 9. Henvendelser
 
