@@ -3,8 +3,8 @@
 Container for å sette sammen ulike mikrofrontend som utgjør interne arbeidsflaten i nav som benyttes av økonomimedarbeidere, Nav Kontaktsenter m.fl.
 Arbeidsflatene som tilbys gir mulighet til å se og/eller behandle saker som gjelder utbetaling av ytelser i Nav.
 
-[Q1-miljl](https://utbetalingsportalen.intern.dev.nav.no)
-[Qx-miljø](https://utbetalingsportalen-qx.intern.dev.nav.no)
+- [Utbetalingsportalen Q1-miljlø](https://utbetalingsportalen.intern.dev.nav.no)
+- [Utbetalingsportalen QX-miljø](https://utbetalingsportalen-qx.intern.dev.nav.no)
 
 ## Innholdsoversikt
 
