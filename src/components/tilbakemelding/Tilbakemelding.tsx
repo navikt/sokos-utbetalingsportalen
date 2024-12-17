@@ -12,7 +12,7 @@ export default function Tilbakemelding() {
   return (
     <div className="py-12">
       <Button
-        icon={<EnvelopeClosedIcon />}
+        icon={<EnvelopeClosedIcon title={"Tilbakemelding"} />}
         iconPosition="right"
         onClick={() => ref.current?.showModal()}
       >
