@@ -4,6 +4,7 @@ import {
   getEnvironment,
 } from "../../utils/environment";
 import SideBar from "../sidebar/SideBar";
+import Tilbakemelding from "../tilbakemelding/Tilbakemelding";
 import TopBar from "../topbar/TopBar";
 import styles from "./Layout.module.css";
 
@@ -60,6 +61,9 @@ export default function Layout({ children }: LayoutProps) {
         <div
           className={`${styles["layout-content"]} ${!showSideBar ? styles["content-expanded"] : ""}`}
         >
+          <div className={styles["layout-tilbakemelding"]}>
+            <Tilbakemelding />
+          </div>
           <div className={styles["layout-mikrofrontender"]}>{children}</div>
         </div>
       </div>
