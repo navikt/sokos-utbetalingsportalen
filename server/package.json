@@ -14,7 +14,7 @@
     "cors": "2.8.5",
     "dotenv": "^16.4.7",
     "express": "4.21.2",
-    "express-rate-limit": "^7.4.1",
+    "express-rate-limit": "^7.5.0",
     "express-static-gzip": "2.2.0",
     "helmet": "^8.0.0",
     "http-proxy-middleware": "^3.0.3",
@@ -27,12 +27,12 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.2",
     "@types/winston-syslog": "^2.4.3",
-    "nodemon": "^3.1.7",
+    "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   },
   "engines": {
-    "node": ">=22.11.0",
-    "pnpm": ">=9.4.0"
+    "node": ">=22.12.0",
+    "pnpm": ">=9.15"
   }
 }
