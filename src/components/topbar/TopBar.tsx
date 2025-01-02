@@ -1,7 +1,6 @@
 import { Link } from "react-router";
 import { InternalHeader, Spacer } from "@navikt/ds-react";
 import nav from "../../../assets/images/Hvit.png";
-import julelogo from "../../../assets/images/julelogo-liten.png";
 import { useAuthContext } from "../../auth/userAuth";
 import styles from "./TopBar.module.css";
 
@@ -14,7 +13,7 @@ export default function TopBar() {
           <img src={nav} alt="NAV logo" />
         </div>
         <InternalHeader.Title as={Link} to={"/"} className="border-none">
-          <img src={julelogo} alt="Julelogo" className={styles.julelogo} />
+          Utbetalingsportalen
         </InternalHeader.Title>
         <a href="#main-content" className="sr-only">
           Hopp til hovedinnhold
