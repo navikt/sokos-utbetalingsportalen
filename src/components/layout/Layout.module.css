@@ -23,5 +23,5 @@
 }
 
 .layout-tilbakemelding {
-  @apply fixed bottom-0 right-0 z-[1000] m-8;
+  @apply fixed bottom-0 right-0 p-10;
 }

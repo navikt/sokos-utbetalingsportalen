@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { EnvelopeClosedIcon } from "@navikt/aksel-icons";
 import { Button, Modal, Select, TextField } from "@navikt/ds-react";
 import {
@@ -6,18 +6,33 @@ import {
   MicrofrontendConfig,
 } from "../../config/microfrontend";
 
-export default function Tilbakemelding() {
+type Props = {
+  showTilbakemelding: boolean;
+  setShowTilbakemelding: (show: boolean) => void;
+};
+
+export default function Tilbakemelding(props: Props) {
   const ref = useRef<HTMLDialogElement>(null);
+  const [feedback, setFeedback] = useState<string>("");
+  const [app, setApp] = useState<string>("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // eslint-disable-next-line no-console
+    console.log("Tilbakemelding sendt", { feedback, app });
+    alert("Tilbakemelding sendt: " + feedback + " " + app);
+    ref.current?.close();
+    props.setShowTilbakemelding(false);
+  };
 
   return (
-    <div className="py-12">
+    <div>
       <Button
+        className="rounded-3xl"
         icon={<EnvelopeClosedIcon title={"Tilbakemelding"} />}
         iconPosition="right"
         onClick={() => ref.current?.showModal()}
-      >
-        Tilbakemelding?
-      </Button>
+      ></Button>
 
       <Modal
         ref={ref}
@@ -25,10 +40,18 @@ export default function Tilbakemelding() {
         width={400}
       >
         <Modal.Body>
-          <form method="dialog" id="skjema" onSubmit={() => alert("onSubmit")}>
+          <form method="dialog" id="skjema" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-5">
-              <TextField label="Har du noen tilbakemeldinger?" />
-              <Select label={"Hvilken applikasjon gjelder det?"}>
+              <TextField
+                label="Har du noen tilbakemeldinger?"
+                value={feedback}
+                onChange={(e) => setFeedback(e.target.value)}
+              />
+              <Select
+                label={"Hvilken applikasjon gjelder det?"}
+                value={app}
+                onChange={(e) => setApp(e.target.value)}
+              >
                 <option key={""} value={""}>
                   - Velg applikasjon -
                 </option>
