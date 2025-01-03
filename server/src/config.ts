@@ -39,7 +39,7 @@ const getConfig = (): Config => {
       apiUrl: process.env.SOKOS_SPK_MOTTAK_API,
       apiAudience: process.env.SOKOS_SPK_MOTTAK_API_AUDIENCE,
       apiProxy: process.env.SOKOS_SPK_MOTTAK_PROXY,
-      environment: [Environment.DEV],
+      environment: [Environment.DEV, Environment.QX],
     },
     {
       apiUrl: process.env.SOKOS_UP_ORS_API,
