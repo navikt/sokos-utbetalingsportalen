@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Button, Modal, Select, TextField } from "@navikt/ds-react";
+import { Alert, Button, Modal, Select, TextField } from "@navikt/ds-react";
 import {
   MicrofrontendApp,
   MicrofrontendConfig,
@@ -22,14 +22,15 @@ export default function Tilbakemelding(props: Props) {
     feedback: "",
     app: "",
   });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // eslint-disable-next-line no-console
-    console.log("Tilbakemelding sendt", feedbackData);
-    alert("Tilbakemelding sendt: " + JSON.stringify(feedbackData));
-    ref.current?.close();
-    props.setShowTilbakemelding(false);
+    setSubmitted(true);
+    setTimeout(() => {
+      ref.current?.close();
+      props.setShowTilbakemelding(false);
+    }, 3000);
   };
 
   const handleChange = (
@@ -57,42 +58,48 @@ export default function Tilbakemelding(props: Props) {
         width={600}
       >
         <Modal.Body>
-          <form method="dialog" id="skjema" onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-5">
-              <TextField
-                label="Har du noen tilbakemeldinger?"
-                name="feedback"
-                value={feedbackData.feedback}
-                onChange={handleChange}
-              />
-              <Select
-                label={"Hvilken applikasjon gjelder det?"}
-                name="app"
-                value={feedbackData.app}
-                onChange={handleChange}
-              >
-                <option key={""} value={""}>
-                  - Velg applikasjon -
-                </option>
-                {MicrofrontendConfig.map((app: MicrofrontendApp) => (
-                  <option key={app.app} value={app.app}>
-                    {app.title}
+          {submitted ? (
+            <Alert variant="success">Takk for din tilbakemelding!</Alert>
+          ) : (
+            <form method="dialog" id="skjema" onSubmit={handleSubmit}>
+              <div className="flex flex-col gap-5">
+                <TextField
+                  label="Har du noen tilbakemeldinger?"
+                  name="feedback"
+                  value={feedbackData.feedback}
+                  onChange={handleChange}
+                />
+                <Select
+                  label={"Hvilken applikasjon gjelder det?"}
+                  name="app"
+                  value={feedbackData.app}
+                  onChange={handleChange}
+                >
+                  <option key={""} value={""}>
+                    - Velg applikasjon -
                   </option>
-                ))}
-              </Select>
-            </div>
-          </form>
+                  {MicrofrontendConfig.map((app: MicrofrontendApp) => (
+                    <option key={app.app} value={app.app}>
+                      {app.title}
+                    </option>
+                  ))}
+                </Select>
+              </div>
+            </form>
+          )}
         </Modal.Body>
-        <Modal.Footer>
-          <Button form="skjema">Send</Button>
-          <Button
-            type="button"
-            variant="secondary"
-            onClick={() => ref.current?.close()}
-          >
-            Avbryt
-          </Button>
-        </Modal.Footer>
+        {!submitted && (
+          <Modal.Footer>
+            <Button form="skjema">Send</Button>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => ref.current?.close()}
+            >
+              Avbryt
+            </Button>
+          </Modal.Footer>
+        )}
       </Modal>
     </div>
   );
