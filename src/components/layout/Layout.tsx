@@ -4,6 +4,7 @@ import {
   getEnvironment,
 } from "../../utils/environment";
 import SideBar from "../sidebar/SideBar";
+import Tilbakemelding from "../tilbakemelding/Tilbakemelding";
 import TopBar from "../topbar/TopBar";
 import styles from "./Layout.module.css";
 
@@ -44,11 +45,29 @@ export default function Layout({ children }: LayoutProps) {
     applicationEnvironment: "",
   });
   const [showSideBar, setShowSideBar] = useState(true);
+  const [showTilbakemelding, setShowTilbakemelding] = useState(false);
 
   useEffect(() => {
     const applicationEnvironment = getApplicationEnvrionment();
     const environment = getEnvironment();
     setState({ environment, applicationEnvironment });
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerHeight >= 800 || window.innerWidth >= 2050) {
+        setShowTilbakemelding(true);
+      } else {
+        setShowTilbakemelding(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
@@ -63,6 +82,14 @@ export default function Layout({ children }: LayoutProps) {
           <div className={styles["layout-mikrofrontender"]}>{children}</div>
         </div>
       </div>
+      {showTilbakemelding && (
+        <div className={styles["layout-tilbakemelding"]}>
+          <Tilbakemelding
+            showTilbakemelding={showTilbakemelding}
+            setShowTilbakemelding={setShowTilbakemelding}
+          />
+        </div>
+      )}
     </>
   );
 }
