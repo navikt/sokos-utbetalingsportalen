@@ -1,4 +1,5 @@
 import { ReactNode, useEffect, useState } from "react";
+import useWindowSize from "../../hooks/useWindowSize";
 import {
   getApplicationEnvrionment,
   getEnvironment,
@@ -46,28 +47,12 @@ export default function Layout({ children }: LayoutProps) {
   });
   const [showSideBar, setShowSideBar] = useState(true);
   const [showTilbakemelding, setShowTilbakemelding] = useState(false);
+  const size = useWindowSize();
 
   useEffect(() => {
     const applicationEnvironment = getApplicationEnvrionment();
     const environment = getEnvironment();
     setState({ environment, applicationEnvironment });
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerHeight >= 800 || window.innerWidth >= 2050) {
-        setShowTilbakemelding(true);
-      } else {
-        setShowTilbakemelding(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
   }, []);
 
   return (
@@ -82,7 +67,7 @@ export default function Layout({ children }: LayoutProps) {
           <div className={styles["layout-mikrofrontender"]}>{children}</div>
         </div>
       </div>
-      {showTilbakemelding && (
+      {(size.width >= 2100 || size.height >= 900) && (
         <div className={styles["layout-tilbakemelding"]}>
           <Tilbakemelding
             showTilbakemelding={showTilbakemelding}
