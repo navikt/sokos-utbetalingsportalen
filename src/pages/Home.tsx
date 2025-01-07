@@ -52,6 +52,7 @@ export default function Home() {
         <Switch
           value="show"
           checked={showUnauthorized === "show"}
+          data-umami-event={"vis alle apper toggled"}
           onChange={(e) =>
             setShowUnauthorized((value) => (value ? "" : e.target.value))
           }
