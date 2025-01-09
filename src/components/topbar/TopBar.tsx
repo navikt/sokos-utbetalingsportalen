@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { InternalHeader, Spacer } from "@navikt/ds-react";
 import nav from "../../../assets/images/Hvit.png";
 import { useAuthContext } from "../../auth/userAuth";
+import DropdownBar from "./DropdownBar";
 import styles from "./TopBar.module.css";
 
 export default function TopBar() {
@@ -19,6 +20,7 @@ export default function TopBar() {
           Hopp til hovedinnhold
         </a>
         <Spacer />
+        <DropdownBar />
         <InternalHeader.User
           name={authContext.userData.name}
           description={authContext.userData.navIdent}
