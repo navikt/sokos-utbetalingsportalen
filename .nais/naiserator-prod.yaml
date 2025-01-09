@@ -31,6 +31,7 @@ spec:
       enabled: true
       claims:
         groups:
+          - id: "f49b797d-600d-46da-8061-7746e48d1aca" # 0000-GA-SOKOS-MF-SPK-MOTTAK-ADMIN
           - id: "6c93762e-ea37-4043-919f-3a758a136943" # 0000-GA-SOKOS-MF-Skattekort-READ
           - id: "25723642-e1da-4d15-87ce-8c4d2b87e33a" # 0000-GA-SOKOS-MF-PosteringSok-READ
           - id: "bb9c7baf-768b-4e84-816c-f10d0a6c7d25" # 0000-GA-SOKOS-MF-KRP-READ
@@ -52,6 +53,7 @@ spec:
       external:
         - host: sokos-skattekort-person.prod-fss-pub.nais.io
         - host: sokos-ur-iso.prod-fss-pub.nais.io
+        - host: sokos-spk-mottak.prod-fss-pub.nais.io
   ingresses:
     - "https://utbetalingsportalen.intern.nav.no"
     - "https://utbetalingsportalen.ansatt.nav.no"
@@ -93,3 +95,11 @@ spec:
       value: api://prod-fss.okonomi.sokos-ur-iso/.default
     - name: SOKOS_UR_ISO_PROXY
       value: "/sokos-ur-iso"
+
+    # SPK-Mottak
+    - name: SOKOS_SPK_MOTTAK_API
+      value: https://sokos-spk-mottak.prod-fss-pub.nais.io
+    - name: SOKOS_SPK_MOTTAK_API_AUDIENCE
+      value: api://prod-fss.okonomi.sokos-spk-mottak/.default
+    - name: SOKOS_SPK_MOTTAK_PROXY
+      value: "/spk-mottak-api"
