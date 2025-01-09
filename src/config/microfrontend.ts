@@ -140,7 +140,7 @@ export const MicrofrontendConfig: Array<MicrofrontendApp> = [
     description: "Dashboard for å trigge jobber",
     group: adGroup({
       adGroupDevelopment: "0e58dc41-7c57-4b79-a8c7-d0caec129e53",
-      adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      adGroupProduction: "f49b797d-600d-46da-8061-7746e48d1aca",
     }),
     route: "/spk-mottak",
     url: mikrofrontendUrl("sokos-up-spk-mottak"),
