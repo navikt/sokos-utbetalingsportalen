@@ -23,6 +23,7 @@ export default function SideBar({ onToggle, showSideBar }: SideBarProps) {
       <div className={`${styles.closed} ${styles.sidebar}`} role="navigation">
         <Button
           className="bg-neutral-800"
+          data-umami-event={"åpne sidebar"}
           onClick={handleToggle}
           variant="primary-neutral"
           icon={<MenuHamburgerIcon title="Hamburgermeny ikon" />}
