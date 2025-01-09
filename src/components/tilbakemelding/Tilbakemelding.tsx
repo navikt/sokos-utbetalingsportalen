@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
+import { EnvelopeClosedIcon } from "@navikt/aksel-icons";
 import { Alert, Button, Modal, Select, TextField } from "@navikt/ds-react";
 import {
   MicrofrontendApp,
   MicrofrontendConfig,
 } from "../../config/microfrontend";
-import styles from "./Tilbakemelding.module.css";
 
 type Props = {
   showTilbakemelding: boolean;
@@ -45,12 +45,14 @@ export default function Tilbakemelding(props: Props) {
 
   return (
     <div>
-      <button
-        className={styles.button}
+      <Button
+        icon={<EnvelopeClosedIcon />}
+        className="rounded-3xl"
+        variant="secondary"
         onClick={() => ref.current?.showModal()}
       >
-        Tilbakemelding?
-      </button>
+        Tilbakemelding
+      </Button>
 
       <Modal
         ref={ref}
