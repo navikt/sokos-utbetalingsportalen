@@ -11,6 +11,7 @@ export default function DropdownBar() {
         as="a"
         target="_blank"
         href={page.route}
+        data-umami-event={page.title + " åpnet fra App switcher"}
         key={page.title + "dropdown"}
       >
         <div aria-hidden>{page.title}</div>
@@ -20,7 +21,10 @@ export default function DropdownBar() {
 
   return (
     <Dropdown>
-      <InternalHeader.Button as={Dropdown.Toggle}>
+      <InternalHeader.Button
+        as={Dropdown.Toggle}
+        data-umami-event={"App switcher åpnet"}
+      >
         <MenuGridIcon style={{ fontSize: "1.5rem" }} title="Arbeidsflater" />
       </InternalHeader.Button>
       <Dropdown.Menu>

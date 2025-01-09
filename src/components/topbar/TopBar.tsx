@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { InternalHeader, Spacer } from "@navikt/ds-react";
 import nav from "../../../assets/images/Hvit.png";
 import { useAuthContext } from "../../auth/userAuth";
-import DropdownBar from "../sidebar/DropdownBar";
+import DropdownBar from "./DropdownBar";
 import styles from "./TopBar.module.css";
 
 export default function TopBar() {
