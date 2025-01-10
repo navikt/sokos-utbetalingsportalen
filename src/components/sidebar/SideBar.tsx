@@ -1,6 +1,7 @@
 import { HouseIcon, MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
 import { Button } from "@navikt/ds-react";
 import useApps from "../../hooks/useApps";
+import { EVENT_NAME } from "../../umami/EventLogging";
 import styles from "./SideBar.module.css";
 import SideBarLink from "./SideBarLink";
 
@@ -23,7 +24,7 @@ export default function SideBar({ onToggle, showSideBar }: SideBarProps) {
       <div className={`${styles.closed} ${styles.sidebar}`} role="navigation">
         <Button
           className="bg-neutral-800"
-          data-umami-event={"åpne sidebar"}
+          data-umami-event={EVENT_NAME.AAPNE_SIDEBAR}
           onClick={handleToggle}
           variant="primary-neutral"
           icon={<MenuHamburgerIcon title="Hamburgermeny ikon" />}
@@ -35,7 +36,12 @@ export default function SideBar({ onToggle, showSideBar }: SideBarProps) {
   function getMicrofrontendLinks() {
     return authorizedApps.map((page) => (
       <li key={page.app} className={styles["sidebar-links"]}>
-        <SideBarLink to={page.route} key={page.app}>
+        <SideBarLink
+          to={page.route}
+          data-umami-event={EVENT_NAME.SIDEBAR_LINK_TRYKKET}
+          data-umami-event-app={page.title}
+          key={page.app}
+        >
           {page.title}
         </SideBarLink>
       </li>
@@ -46,7 +52,7 @@ export default function SideBar({ onToggle, showSideBar }: SideBarProps) {
     <div className={styles["sidebar"]} role="navigation">
       <div className={styles["closebutton"]}>
         <Button
-          data-umami-event={"lukk sidebar"}
+          data-umami-event={EVENT_NAME.LUKK_SIDEBAR}
           className="bg-neutral-800 w-28"
           onClick={handleToggle}
           icon={<XMarkIcon title="Kryss" />}
@@ -59,7 +65,11 @@ export default function SideBar({ onToggle, showSideBar }: SideBarProps) {
 
       <ul>
         <li className={styles["sidebar-links"]}>
-          <SideBarLink to={"/"}>
+          <SideBarLink
+            to={"/"}
+            data-umami-event={EVENT_NAME.SIDEBAR_LINK_TRYKKET}
+            data-umami-event-app={"Hjem"}
+          >
             <HouseIcon className={iconStyle} title="Hus" />
             Hjem
           </SideBarLink>

@@ -1,6 +1,7 @@
 import { Link as ReactRouterLink } from "react-router";
 import { ChevronRightIcon } from "@navikt/aksel-icons";
 import { Heading, Tooltip } from "@navikt/ds-react";
+import { EVENT_NAME } from "../../umami/EventLogging";
 import styles from "./AppCard.module.css";
 
 interface AppCardProps {
@@ -27,7 +28,12 @@ export default function AppCard(props: AppCardProps) {
 
   if (props.hasAccess) {
     return (
-      <ReactRouterLink className={styles["appcard"]} to={props.route}>
+      <ReactRouterLink
+        className={styles["appcard"]}
+        data-umami-event={EVENT_NAME.APPCARD_TRYKKET}
+        data-umami-event-app={props.title}
+        to={props.route}
+      >
         {content}
       </ReactRouterLink>
     );
