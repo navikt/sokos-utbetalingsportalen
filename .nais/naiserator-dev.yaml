@@ -31,7 +31,7 @@ spec:
       enabled: true
       claims:
         groups:
-          - id: "0e58dc41-7c57-4b79-a8c7-d0caec129e53" # 0000-GA-SOKOS-MF-SPK-MOTTAK-ADMIN
+          - id: "0e58dc41-7c57-4b79-a8c7-d0caec129e53" # 0000-GA-SOKOS-MF-SPK-Mottak-ADMIN
           - id: "1b717a23-d376-471c-9fc6-356299fadc2b" # 0000-GA-SOKOS-MF-Mikrofrontend-READ
           - id: "a13b4176-e328-4e1c-b181-ff676a7146b1" # 0000-GA-SOKOS-MF-Skattekort-READ
           - id: "b01fb216-fcb3-4ede-b7da-71fffe859763" # 0000-GA-SOKOS-MF-ORS-READ
@@ -57,11 +57,10 @@ spec:
         - application: sokos-up-kontoregister-api
       external:
         - host: sokos-skattekort-person.dev-fss-pub.nais.io
+        - host: sokos-spk-mottak.dev-fss-pub.nais.io
         - host: sokos-oppdrag.dev-fss-pub.nais.io
         - host: sokos-ur-iso.dev-fss-pub.nais.io
         - host: sokos-utbetaling-api.dev-fss-pub.nais.io
-        - host: sokos-spk-mottak.dev-fss-pub.nais.io
-        - host: sokos-ur-iso.dev-fss-pub.nais.io
   ingresses:
     - "https://utbetalingsportalen.intern.dev.nav.no"
     - "https://utbetalingsportalen.ansatt.dev.nav.no"
@@ -80,7 +79,7 @@ spec:
     - name: SOKOS_UP_ORS_API_PROXY
       value: "/up-ors-api"
 
-    # Skattekort
+    # sokos-skattekort-person
     - name: SOKOS_SKATTEKORT_PERSON_API
       value: https://sokos-skattekort-person.dev-fss-pub.nais.io
     - name: SOKOS_SKATTEKORT_PERSON_API_AUDIENCE
@@ -88,7 +87,7 @@ spec:
     - name: SOKOS_SKATTEKORT_PROXY
       value: "/skattekort-api"
 
-    # SPK-Mottak
+    # sokos-spk-mottak
     - name: SOKOS_SPK_MOTTAK_API
       value: https://sokos-spk-mottak.dev-fss-pub.nais.io
     - name: SOKOS_SPK_MOTTAK_API_AUDIENCE
@@ -97,7 +96,7 @@ spec:
       value: "/spk-mottak-api"
 
 
-    # sokos-nav-oppdrag
+    # sokos-oppdrag
     - name: SOKOS_OPPDRAG_API
       value: https://sokos-oppdrag.dev-fss-pub.nais.io
     - name: SOKOS_OPPDRAG_API_AUDIENCE

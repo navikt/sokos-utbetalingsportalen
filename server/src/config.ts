@@ -57,7 +57,7 @@ const getConfig = (): Config => {
       apiUrl: process.env.SOKOS_OPPDRAG_API,
       apiAudience: process.env.SOKOS_OPPDRAG_API_AUDIENCE,
       apiProxy: process.env.SOKOS_OPPDRAG_PROXY,
-      environment: [Environment.DEV, Environment.QX],
+      environment: [Environment.DEV, Environment.QX, Environment.PROD],
     },
     {
       apiUrl: process.env.SOKOS_UR_ISO,
