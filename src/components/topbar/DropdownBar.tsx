@@ -23,10 +23,7 @@ export default function DropdownBar() {
 
   return (
     <Dropdown>
-      <InternalHeader.Button
-        as={Dropdown.Toggle}
-        data-umami-event={EVENT_NAME.AAPNE_APP_SWITCHER}
-      >
+      <InternalHeader.Button as={Dropdown.Toggle}>
         <MenuGridIcon style={{ fontSize: "1.5rem" }} title="Arbeidsflater" />
       </InternalHeader.Button>
       <Dropdown.Menu>
