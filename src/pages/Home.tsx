@@ -4,6 +4,7 @@ import pengesekk from "../../assets/images/pengesekk.svg";
 import { useAuthContext } from "../auth/userAuth";
 import AppCard from "../components/appcard/AppCard";
 import useApps from "../hooks/useApps";
+import { EVENT_NAME } from "../umami/EventLogging";
 import styles from "./Home.module.css";
 
 export default function Home() {
@@ -52,7 +53,7 @@ export default function Home() {
         <Switch
           value="show"
           checked={showUnauthorized === "show"}
-          data-umami-event={"vis alle apper toggled"}
+          data-umami-event={EVENT_NAME.VIS_ALLE_APPER}
           onChange={(e) =>
             setShowUnauthorized((value) => (value ? "" : e.target.value))
           }
