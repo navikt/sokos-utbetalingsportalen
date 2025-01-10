@@ -1,6 +1,7 @@
 import { MenuGridIcon } from "@navikt/aksel-icons";
 import { Dropdown, InternalHeader } from "@navikt/ds-react";
 import useApps from "../../hooks/useApps";
+import { EVENT_NAME } from "../../umami/EventLogging";
 
 export default function DropdownBar() {
   const { authorizedApps } = useApps();
@@ -11,7 +12,8 @@ export default function DropdownBar() {
         as="a"
         target="_blank"
         href={page.route}
-        data-umami-event={page.title + " åpnet fra App switcher"}
+        data-umami-event={EVENT_NAME.AAPNE_ARBEIDSFLATE}
+        data-umami-event-arbeidsflate={page.title}
         key={page.title + "dropdown"}
       >
         <div aria-hidden>{page.title}</div>
@@ -21,10 +23,7 @@ export default function DropdownBar() {
 
   return (
     <Dropdown>
-      <InternalHeader.Button
-        as={Dropdown.Toggle}
-        data-umami-event={"App switcher åpnet"}
-      >
+      <InternalHeader.Button as={Dropdown.Toggle}>
         <MenuGridIcon style={{ fontSize: "1.5rem" }} title="Arbeidsflater" />
       </InternalHeader.Button>
       <Dropdown.Menu>
