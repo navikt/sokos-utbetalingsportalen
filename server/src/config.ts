@@ -71,6 +71,12 @@ const getConfig = (): Config => {
       apiProxy: process.env.SOKOS_UTBETALING_API_PROXY,
       environment: [Environment.DEV],
     },
+    {
+      apiUrl: process.env.SOKOS_BETSYS_API,
+      apiAudience: process.env.SOKOS_BETSYS_API_AUDIENCE,
+      apiProxy: process.env.SOKOS_BETSYS_API_PROXY,
+      environment: [Environment.DEV],
+    },
   ];
 
   let filteredApiConfig;
