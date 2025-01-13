@@ -63,7 +63,7 @@ export const MicrofrontendConfig: Array<MicrofrontendApp> = [
     description: "Attestering av oppdrag",
     group: adGroup({
       adGroupDevelopment: "0de8d01f-8ad0-4391-841c-55392956bc17",
-      adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      adGroupProduction: "ae51bc06-2f9a-47a4-b33d-f0825ecb9985",
     }),
     route: "/attestasjon",
     url: mikrofrontendUrl("sokos-up-attestasjon"),
