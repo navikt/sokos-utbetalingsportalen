@@ -167,6 +167,17 @@ export const MicrofrontendConfig: Array<MicrofrontendApp> = [
     route: "/buntkontroll",
     url: mikrofrontendUrl("sokos-up-buntkontroll"),
   },
+  {
+    app: "MELDINGSFLYT",
+    title: "Meldingsflyt",
+    description: "Oversikt over meldinger til og fra bank",
+    group: adGroup({
+      adGroupDevelopment: "2020a765-ffae-4042-b4cc-2a5a783a3ec5",
+      adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    }),
+    route: "/meldingsflyt",
+    url: mikrofrontendUrl("sokos-up-meldingsflyt"),
+  },
 ];
 
 /**

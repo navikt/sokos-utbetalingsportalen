@@ -43,6 +43,7 @@ spec:
           - id: "138d21fb-4e96-46d6-91e4-e3926aa349e5" # 0000-GA-SOKOS-MF-UTBETALING-READ
           - id: "3bc37bf2-8e76-407c-ad4a-d2c79edc241e" # 0000-GA-SOKOS-MF-BUNTKONTROLL-READ
           - id: "48a80bbb-be45-4ef6-aab8-21604f057f47" # 0000-GA-SOKOS-MF-Venteregister
+          - id: "2020a765-ffae-4042-b4cc-2a5a783a3ec5" # 0000-CA-SOKOS-MF-MELDINGSFLYT-READ
         extra:
           - "NAVident"
     sidecar:
@@ -61,6 +62,7 @@ spec:
         - host: sokos-oppdrag.dev-fss-pub.nais.io
         - host: sokos-ur-iso.dev-fss-pub.nais.io
         - host: sokos-utbetaling-api.dev-fss-pub.nais.io
+        - host: sokos-betsys.dev-fss-pub.nais.io
   ingresses:
     - "https://utbetalingsportalen.intern.dev.nav.no"
     - "https://utbetalingsportalen.ansatt.dev.nav.no"
@@ -127,3 +129,12 @@ spec:
       value: api://dev-fss.okonomi.sokos-utbetaling-api/.default
     - name: SOKOS_UTBETALING_API_PROXY
       value: "/sokos-utbetaling-api"
+
+    # sokos-betsys-api
+    # benyttes av sokos-up-meldingsflyt skjermbildet
+    - name: SOKOS_BETSYS_API
+      value: https://sokos-betsys.dev-fss-pub.nais.io
+    - name: SOKOS_BETSYS_API_AUDIENCE
+      value: api://dev-fss.okonomi.sokos-betsys/.default
+    - name: SOKOS_BETSYS_API_PROXY
+      value: "/sokos-betsys"
