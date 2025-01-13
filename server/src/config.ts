@@ -72,9 +72,9 @@ const getConfig = (): Config => {
       environment: [Environment.DEV],
     },
     {
-      apiUrl: process.env.SOKOS_BETSYS_API,
-      apiAudience: process.env.SOKOS_BETSYS_API_AUDIENCE,
-      apiProxy: process.env.SOKOS_BETSYS_API_PROXY,
+      apiUrl: process.env.SOKOS_MELDINGSFLYT_API,
+      apiAudience: process.env.SOKOS_MELDINGSFLYT_API_AUDIENCE,
+      apiProxy: process.env.SOKOS_MELDINGSFLYT_API_PROXY,
       environment: [Environment.DEV],
     },
   ];
