@@ -63,7 +63,7 @@ spec:
         - host: sokos-utbetaling-api.dev-fss-pub.nais.io
         - host: sokos-spk-mottak.dev-fss-pub.nais.io
         - host: sokos-ur-iso.dev-fss-pub.nais.io
-        - host: sokos-betsys.dev-fss-pub.nais.io
+        - host: sokos-betsys2.dev-fss-pub.nais.io
   ingresses:
     - "https://utbetalingsportalen.intern.dev.nav.no"
     - "https://utbetalingsportalen.ansatt.dev.nav.no"
@@ -133,8 +133,8 @@ spec:
 
     # up-meldingsflyt-api
     - name: SOKOS_MELDINGSFLYT_API
-      value: https://sokos-betsys.dev-fss-pub.nais.io
+      value: https://sokos-betsys2.dev-fss-pub.nais.io
     - name: SOKOS_MELDINGSFLYT_API_AUDIENCE
-      value: api://dev-fss.okonomi.sokos-betsys/.default
+      value: api://dev-fss.okonomi.sokos-betsys2/.default
     - name: SOKOS_MELDINGSFLYT_API_PROXY
       value: "/up-meldingsflyt-api"
