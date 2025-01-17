@@ -178,6 +178,17 @@ export const MicrofrontendConfig: Array<MicrofrontendApp> = [
     route: "/meldingsflyt",
     url: mikrofrontendUrl("sokos-up-meldingsflyt"),
   },
+  {
+    app: "FASTE_DATA",
+    title: "Faste data",
+    description: "Oversikt over faste data",
+    group: adGroup({
+      adGroupDevelopment: "7e0c2ad1-d0e7-4fa8-8169-7a9d68435644",
+      adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    }),
+    route: "/fastedata",
+    url: mikrofrontendUrl("sokos-up-fastedata"),
+  },
 ];
 
 /**
