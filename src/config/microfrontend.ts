@@ -173,7 +173,7 @@ export const MicrofrontendConfig: Array<MicrofrontendApp> = [
     description: "Oversikt over meldinger til og fra bank",
     group: adGroup({
       adGroupDevelopment: "2020a765-ffae-4042-b4cc-2a5a783a3ec5",
-      adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      adGroupProduction: "ad41e055-af0c-4a26-a31c-c51d6ea236cd",
     }),
     route: "/meldingsflyt",
     url: mikrofrontendUrl("sokos-up-meldingsflyt"),

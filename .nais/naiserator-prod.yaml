@@ -38,6 +38,7 @@ spec:
           - id: "e1635067-dfc9-4fb8-8405-d50e9672cf5c" # 0000-GA-SOKOS-MF-KRO-READ
           - id: "de776092-a8ed-46a2-be5e-ec2eae4dcf2b" # 0000-GA-SOKOS-MF-RESENDING-BANK-READ
           - id: "08723132-a7ba-40eb-a6f4-0a9247f230d2" # 0000-GA-SOKOS-MF-BUNTKONTROLL-READ
+          - id: "ad41e055-af0c-4a26-a31c-c51d6ea236cd" # 0000-CA-SOKOS-MF-MELDINGSFLYT-READ
         extra:
           - "NAVident"
     sidecar:
@@ -54,6 +55,7 @@ spec:
         - host: sokos-skattekort-person.prod-fss-pub.nais.io
         - host: sokos-ur-iso.prod-fss-pub.nais.io
         - host: sokos-spk-mottak.prod-fss-pub.nais.io
+        - host: sokos-meldingingsflyt.prod-fss-pub.nais.io
   ingresses:
     - "https://utbetalingsportalen.intern.nav.no"
     - "https://utbetalingsportalen.ansatt.nav.no"
@@ -103,3 +105,11 @@ spec:
       value: api://prod-fss.okonomi.sokos-spk-mottak/.default
     - name: SOKOS_SPK_MOTTAK_PROXY
       value: "/spk-mottak-api"
+
+    # up-meldingsflyt-api
+    - name: SOKOS_MELDINGSFLYT_API
+      value: https://sokos-betsys.prod-fss-pub.nais.io
+    - name: SOKOS_MELDINGSFLYT_AUDIENCE
+      value: api://prod-fss.okonomi.sokos-betsys/.default
+    - name: SOKOS_MELDINGSFLYT_PROXY
+      value: "/up-meldingsflyt-api"
