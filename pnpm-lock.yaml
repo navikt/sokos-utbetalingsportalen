@@ -15,14 +15,14 @@ importers:
         specifier: ^1.12.2
         version: 1.12.2
       '@navikt/aksel-icons':
-        specifier: ^7.9.1
-        version: 7.9.1
+        specifier: ^7.9.2
+        version: 7.9.2
       '@navikt/ds-css':
-        specifier: ^7.9.1
-        version: 7.9.1
+        specifier: ^7.9.2
+        version: 7.9.2
       '@navikt/ds-react':
-        specifier: ^7.9.1
-        version: 7.9.1(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^7.9.2
+        version: 7.9.2(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-error-boundary:
         specifier: ^5.0.0
         version: 5.0.0(react@18.3.1)
@@ -40,8 +40,8 @@ importers:
         specifier: ^9.18.0
         version: 9.18.0
       '@navikt/aksel-stylelint':
-        specifier: ^7.9.1
-        version: 7.9.1
+        specifier: ^7.9.2
+        version: 7.9.2
       '@playwright/test':
         specifier: ^1.49.1
         version: 1.49.1
@@ -569,17 +569,17 @@ packages:
     resolution: {integrity: sha512-USvgCL/uOGFtVa6SVyRrC8kIAedzRohxIXN5LISlg5C5vLZCn7dgMFVSNhSF9cuBEFrm/O2spDWEZeMnw4ZXYg==}
     engines: {node: '>=18'}
 
-  '@navikt/aksel-icons@7.9.1':
-    resolution: {integrity: sha512-IbKrPTyu4D39BUQ/sq3DnejUnQx2tNkFxISgOpw/SvAcpNJKP6FgRyuu9c68gGwQx16qSdzQfv+uMGTC1VJVfw==}
+  '@navikt/aksel-icons@7.9.2':
+    resolution: {integrity: sha512-reWddxeyJuLYp8Kqv08KmwcONEayQXHdwrLEruCMTzYqeHTdricDN0qReJm09gC2Wlbzl2enTMzuAGEIe/dsvw==}
 
-  '@navikt/aksel-stylelint@7.9.1':
-    resolution: {integrity: sha512-d2Sj6XIkMbLsuFkkMlUhDxMgcBJNUVRGSo6aJnE37jojv6UHcHkv/9ufi49ceis/1zxDPDdDNp7Ob2yX59RQAQ==}
+  '@navikt/aksel-stylelint@7.9.2':
+    resolution: {integrity: sha512-ZEpBUErznW2tYBevl6AcSYjsMrsw1N70XB8jzmOd7oE5wdYJV0NP72sbqROMpytJAfL5Rqg0n6ES5ieudFtnww==}
 
-  '@navikt/ds-css@7.9.1':
-    resolution: {integrity: sha512-nfYTFxrm8khfY2It4qOxIMxFbNlRSg3tb+T/pwD9bO7kfTue9FoIMkONN0DNJ1DzF9mVlstUeibexWWhp/ni8g==}
+  '@navikt/ds-css@7.9.2':
+    resolution: {integrity: sha512-UXJyL8WNlfqACJLfU/MZ0Atv0eqxvECQfJW2li2zTdTHRQzHkfTMjMj3lNx4hCPo27gct33UfwAGRG1m4P9Q0w==}
 
-  '@navikt/ds-react@7.9.1':
-    resolution: {integrity: sha512-6c9t/eUKJ5MYNxFaHZpNmvS1nKZ2VXGRT8utBKbaOdbaWy5zSxgV5f6XzmW9rzFb+U26FD8eWI0862Khe8OBrQ==}
+  '@navikt/ds-react@7.9.2':
+    resolution: {integrity: sha512-MgI2W9KYxqzlJfKGeHbRCUJKyFWqw4xzp/wtM7Z210G54UhKl2Br0eg5tPYBhkoNpkh2PQoulbUPQHkdUe6hTw==}
     peerDependencies:
       '@types/react': '>=17.0.30'
       react: '>=17.0.0 || >19.0.0-rc'
@@ -587,8 +587,8 @@ packages:
       '@types/react':
         optional: true
 
-  '@navikt/ds-tokens@7.9.1':
-    resolution: {integrity: sha512-BxYWfhmuUginhMLyPTsWpmFI9cFiGN0Nik9vO4EVGGi9t5D4Tebq8PuoBQrITUROLE22KnjDJyM+8GqBWjOyEw==}
+  '@navikt/ds-tokens@7.9.2':
+    resolution: {integrity: sha512-N+x8kpRmb5sNn08ht5+jwA7Q94w0OK4PqVXeXNWojGkyt0agTfmgAIr30RL/3+A3zEzooBG/qnfKnHusz+28dg==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -3441,18 +3441,18 @@ snapshots:
       outvariant: 1.4.3
       strict-event-emitter: 0.5.1
 
-  '@navikt/aksel-icons@7.9.1': {}
+  '@navikt/aksel-icons@7.9.2': {}
 
-  '@navikt/aksel-stylelint@7.9.1': {}
+  '@navikt/aksel-stylelint@7.9.2': {}
 
-  '@navikt/ds-css@7.9.1': {}
+  '@navikt/ds-css@7.9.2': {}
 
-  '@navikt/ds-react@7.9.1(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@navikt/ds-react@7.9.2(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@floating-ui/react': 0.25.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@floating-ui/react-dom': 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@navikt/aksel-icons': 7.9.1
-      '@navikt/ds-tokens': 7.9.1
+      '@navikt/aksel-icons': 7.9.2
+      '@navikt/ds-tokens': 7.9.2
       clsx: 2.1.1
       date-fns: 3.6.0
       react: 18.3.1
@@ -3462,7 +3462,7 @@ snapshots:
     transitivePeerDependencies:
       - react-dom
 
-  '@navikt/ds-tokens@7.9.1': {}
+  '@navikt/ds-tokens@7.9.2': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
