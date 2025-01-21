@@ -43,7 +43,7 @@ export default function Layout({ children }: LayoutProps) {
     environment: "",
     applicationEnvironment: "",
   });
-  const [showSideBar, setShowSideBar] = useState(true);
+  const [showSideBar, setShowSideBar] = useState(false);
 
   useEffect(() => {
     const applicationEnvironment = getApplicationEnvrionment();
