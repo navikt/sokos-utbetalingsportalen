@@ -34,4 +34,4 @@ on:
 jobs:
   playwright-test:
     name: Playwright test
-    uses: navikt/monster-gha-workflows/.github/workflows/playwright.yaml@main
+    uses: navikt/mob-gha-workflows/.github/workflows/playwright.yaml@main
