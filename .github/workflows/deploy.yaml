@@ -10,7 +10,7 @@ on:
       - "CODEOWNERS"
       - ".gitignore"
       - ".github/workflows/build-pr.yaml"
-      - ".github/workflows/manual-deploy-dev.yaml"
+      - ".github/workflows/manual-deploy.yaml"
       - ".github/workflows/playwright.yaml"
       - ".github/workflows/security.yaml"
       - ".github/workflows/alerts.yaml"
@@ -46,7 +46,7 @@ jobs:
     uses: navikt/mob-gha-workflows/.github/workflows/nais-app-deploy.yaml@main
     with:
       cluster: dev-gcp
-      resource: .nais/naiserator-dev-qx.yaml
+      resource: .nais/naiserator-qx.yaml
       image: ${{ needs.build.outputs.image }}
 
   deploy-prod:

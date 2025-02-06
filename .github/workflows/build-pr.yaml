@@ -9,7 +9,7 @@ on:
       - ".gitignore"
       - ".nais/**"
       - ".github/workflows/deploy.yaml"
-      - ".github/workflows/manual-deploy-dev.yaml"
+      - ".github/workflows/manual-deploy.yaml"
       - ".github/workflows/playwright.yaml"
       - ".github/workflows/security.yaml"
       - ".github/workflows/alerts.yaml"
