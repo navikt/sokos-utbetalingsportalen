@@ -102,8 +102,8 @@
     "*": "prettier --write --ignore-unknown"
   },
   "engines": {
-    "node": ">=22.x",
-    "pnpm": ">=10.x"
+    "node": ">=22.12.0",
+    "pnpm": ">=9.15"
   },
   "msw": {
     "workerDirectory": [
