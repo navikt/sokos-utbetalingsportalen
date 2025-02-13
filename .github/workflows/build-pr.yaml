@@ -15,6 +15,10 @@ on:
       - ".github/workflows/alerts.yaml"
       - ".github/dependabot.yaml"
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   build-pr:
     name: Build and test
