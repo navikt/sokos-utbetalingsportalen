@@ -24,6 +24,8 @@ jobs:
     secrets: inherit
     with:
       image-tag: snapshot
+      # Kun for oasis biblioteket i 'server/package.json' mappe
+      install-navikt-npm-packages: true
 
   deploy-dev:
     needs: build
