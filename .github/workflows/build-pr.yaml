@@ -20,4 +20,4 @@ jobs:
     name: Build and test
     uses: navikt/mob-gha-workflows/.github/workflows/node-build-pr.yaml@feature/nav_npm_registry
     with:
-      node_auth_token: ${{ secrets.NPM_TOKEN }}
+      node_auth_token: ${{ needs.node_auth_token.outputs.node_auth_token }}
