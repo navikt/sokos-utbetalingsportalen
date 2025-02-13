@@ -38,7 +38,7 @@ importers:
         specifier: 3.17.0
         version: 3.17.0
       zod:
-        specifier: ^3.24.1
+        specifier: ^3.24.2
         version: 3.24.2
     devDependencies:
       "@types/cors":
@@ -48,7 +48,7 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       "@types/node":
-        specifier: ^22.10.7
+        specifier: ^22.13.2
         version: 22.13.2
       "@types/winston-syslog":
         specifier: ^2.4.3
