@@ -20,7 +20,7 @@ permissions:
 jobs:
   build:
     name: Build/test & push image
-    uses: navikt/mob-gha-workflows/.github/workflows/node-build-push-image.yaml@main
+    uses: navikt/mob-gha-workflows/.github/workflows/node-build-push-image.yaml@fikse-401
     secrets: inherit
     with:
       image-tag: snapshot
