@@ -8,7 +8,7 @@ importers:
   .:
     dependencies:
       "@navikt/oasis":
-        specifier: ^3.6.0
+        specifier: ^3.7.0
         version: 3.7.0
       cors:
         specifier: 2.8.5
