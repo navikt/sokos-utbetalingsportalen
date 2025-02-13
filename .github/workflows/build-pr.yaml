@@ -20,5 +20,3 @@ jobs:
     name: Build and test
     uses: navikt/mob-gha-workflows/.github/workflows/node-build-pr.yaml@feature/nav_npm_registry
     secrets: inherit
-    with:
-      node_auth_token: ${{ secrets.READER_TOKEN }}
