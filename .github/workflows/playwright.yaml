@@ -35,3 +35,4 @@ jobs:
   playwright-test:
     name: Playwright test
     uses: navikt/mob-gha-workflows/.github/workflows/playwright.yaml@main
+    secrets: inherit

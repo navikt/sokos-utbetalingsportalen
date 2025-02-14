@@ -22,10 +22,6 @@ jobs:
     name: Build/test & push image
     uses: navikt/mob-gha-workflows/.github/workflows/node-build-push-image.yaml@main
     secrets: inherit
-    with:
-      image-tag: snapshot
-      # Kun for oasis biblioteket i 'server/package.json' mappe
-      install-navikt-npm-packages: true
 
   deploy-dev:
     needs: build
