@@ -50,5 +50,9 @@
 }
 
 .button-color {
-  background-color: var(--a-surface-inverted);
+  background-color: var(--a-surface-inverted) !important;
+}
+
+.button-color:hover {
+  background-color: var(--a-surface-inverted-hover) !important;
 }
