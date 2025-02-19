@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { Route, Routes, useLocation } from "react-router";
+import { Route, Routes, useLocation, useNavigate } from "react-router";
 import Microfrontend from "./Microfrontend";
 import { AuthProvider } from "./components/auth/AuthProvider";
 import ErrorBoundary from "./components/error/ErrorBoundary";
@@ -12,9 +12,12 @@ import { initGrafanaFaro } from "./utils/grafanaFaro";
 
 export default function App() {
   const location = useLocation();
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (import.meta.env.MODE !== "mock") initGrafanaFaro();
+    window.onpopstate = () => {
+      navigate("/");
+    };
   }, []);
 
   useEffect(() => {
