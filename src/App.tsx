@@ -1,24 +1,23 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { Route, Routes, useLocation, useNavigate } from "react-router";
+import { Route, Routes, useLocation } from "react-router";
 import Microfrontend from "./Microfrontend";
 import { AuthProvider } from "./components/auth/AuthProvider";
 import ErrorBoundary from "./components/error/ErrorBoundary";
 import Layout from "./components/layout/Layout";
 import { MicrofrontendApp, MicrofrontendConfig } from "./config/microfrontend";
+import useBackButton from "./hooks/useBackButton";
 import ErrorPage, { NotFound } from "./pages/ErrorPage";
 import Home from "./pages/Home";
 import { initGrafanaFaro } from "./utils/grafanaFaro";
 
 export default function App() {
   const location = useLocation();
-  const navigate = useNavigate();
   useEffect(() => {
     if (import.meta.env.MODE !== "mock") initGrafanaFaro();
-    window.onpopstate = () => {
-      navigate("/");
-    };
   }, []);
+
+  useBackButton();
 
   useEffect(() => {
     const currentRoute = location.pathname;
