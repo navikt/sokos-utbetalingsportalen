@@ -6,7 +6,6 @@ import { AuthProvider } from "./components/auth/AuthProvider";
 import ErrorBoundary from "./components/error/ErrorBoundary";
 import Layout from "./components/layout/Layout";
 import { MicrofrontendApp, MicrofrontendConfig } from "./config/microfrontend";
-import useBackButton from "./hooks/useBackButton";
 import ErrorPage, { NotFound } from "./pages/ErrorPage";
 import Home from "./pages/Home";
 import { initGrafanaFaro } from "./utils/grafanaFaro";
@@ -17,7 +16,14 @@ export default function App() {
     if (import.meta.env.MODE !== "mock") initGrafanaFaro();
   }, []);
 
-  useBackButton();
+  useEffect(() => {
+    const handleEvent = () => window.location.replace(window.location.pathname);
+    window.addEventListener("popstate", handleEvent);
+
+    return () => {
+      window.removeEventListener("popstate", handleEvent);
+    };
+  }, []);
 
   useEffect(() => {
     const currentRoute = location.pathname;
