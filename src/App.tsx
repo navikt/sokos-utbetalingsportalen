@@ -12,9 +12,20 @@ import { initGrafanaFaro } from "./utils/grafanaFaro";
 
 export default function App() {
   const location = useLocation();
-
   useEffect(() => {
     if (import.meta.env.MODE !== "mock") initGrafanaFaro();
+  }, []);
+
+  // Workaround som sørger for at browseren alltid laster siden på nytt
+  // når frem- eller tilbakeknappene trykkes. ( https://jira.adeo.no/browse/TOB-4603 )
+  // Årsaken er at react router (pr v7.1.5) ellers ofte (ikke alltid) låser seg når man
+  // bruker back- og forward-knappene.
+  useEffect(() => {
+    const handleEvent = () => window.location.replace(window.location.pathname);
+    window.addEventListener("popstate", handleEvent);
+    return () => {
+      window.removeEventListener("popstate", handleEvent);
+    };
   }, []);
 
   useEffect(() => {
