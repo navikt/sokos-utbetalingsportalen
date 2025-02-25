@@ -13,7 +13,7 @@ updates:
       day: "monday"
       time: "06:00"
       timezone: "Europe/Oslo"
-    open-pull-requests-limit: 15
+    open-pull-requests-limit: 20
     groups:
       aksel:
         patterns:
@@ -35,12 +35,19 @@ updates:
 
   - package-ecosystem: "npm"
     directory: "/server"
+    registries: "*"
     schedule:
       interval: "weekly"
       day: "monday"
       time: "06:00"
       timezone: "Europe/Oslo"
     groups:
-      npm:
+      oasis:
         patterns:
-          - "*"
+          - "@navikt/oasis-*"
+      minor-and-patch:
+        update-types:
+          - "patch"
+          - "minor"
+        exclude-patterns:
+          - "@navikt/oasis-*"
