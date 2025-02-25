@@ -7,8 +7,7 @@ registries:
 updates:
   - package-ecosystem: "npm"
     directory: "/"
-    registries:
-      - npm-github
+    registries: "*"
     schedule:
       interval: "weekly"
       day: "monday"
@@ -36,8 +35,6 @@ updates:
 
   - package-ecosystem: "npm"
     directory: "/server"
-    registries:
-      - npm-github
     schedule:
       interval: "weekly"
       day: "monday"
