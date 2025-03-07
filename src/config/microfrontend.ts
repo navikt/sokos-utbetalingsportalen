@@ -151,7 +151,7 @@ export const MicrofrontendConfig: Array<MicrofrontendApp> = [
     description: "Søk etter utbetalinger",
     group: adGroup({
       adGroupDevelopment: "138d21fb-4e96-46d6-91e4-e3926aa349e5",
-      adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      adGroupProduction: "f8919276-46bf-43a2-a9cb-9a5c5f9c8e16",
     }),
     route: "/utbetaling",
     url: mikrofrontendUrl("sokos-up-utbetaling"),
