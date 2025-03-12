@@ -118,7 +118,7 @@ spec:
 
     # sokos-utbetaling-api
     - name: SOKOS_UTBETALING_API
-      value: https://sokos-utbetaling-api
+      value: http://sokos-utbetaling-api
     - name: SOKOS_UTBETALING_API_AUDIENCE
       value: api://prod-gcp.okonomi.sokos-utbetaling-api/.default
     - name: SOKOS_UTBETALING_API_PROXY
