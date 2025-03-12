@@ -9,7 +9,7 @@
   overflow: hidden;
   overflow-y: auto;
   background-color: var(--a-surface-inverted);
-  transition-property: all;
+  transition-property: width, min-width;
   transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
 }
