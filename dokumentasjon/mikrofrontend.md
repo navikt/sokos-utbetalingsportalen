@@ -77,18 +77,23 @@
       <br></br>
       API er den faktiske adressen til tjenesten.
       ```yaml
+          # eksempel for en tjeneste i fss
           - name: SOKOS_SKATTEKORT_PERSON_API
             value: https://sokos-skattekort-person.dev-fss-pub.nais.io
+
+          # eksempel for en tjeneste i gcp - http og ikke https!
+          - name: SOKOS_UTBETALING_API
+            value: http://sokos-utbetaling-api
       ```
       SCOPE representerer en tillatelse som en gitt forbruker har tilgang til.
       ```yaml
            - name: SOKOS_SKATTEKORT_API_AUDIENCE
-              value: "api://dev-fss.okonomi.sokos-skattekort-person/.default"
+             value: "api://dev-fss.okonomi.sokos-skattekort-person/.default"
       ```
       PROXY brukes internt i Utbetalingsportalen for å definere path'en for å nå tjenesten.
       ```yaml
             - name: SOKOS_SKATTEKORT_PROXY
-             value: "/skattekort-api"
+              value: "/skattekort-api"
       ```
 
   <br></br>
