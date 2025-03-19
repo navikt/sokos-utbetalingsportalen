@@ -126,7 +126,7 @@ spec:
 
     # sokos-utbetaling-api
     - name: SOKOS_UTBETALING_API
-      value: http://sokos-utbetaling-api.dev-fss-pub.nais.io
+      value: https://sokos-utbetaling-api.dev-fss-pub.nais.io
     - name: SOKOS_UTBETALING_API_AUDIENCE
       value: api://dev-fss.okonomi.sokos-utbetaling-api/.default
     - name: SOKOS_UTBETALING_API_PROXY
