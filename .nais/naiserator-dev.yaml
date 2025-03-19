@@ -57,11 +57,11 @@ spec:
       rules:
         - application: sokos-up-ors-api
         - application: sokos-up-kontoregister-api
-        - application: sokos-utbetaling-api
       external:
         - host: sokos-skattekort-person.dev-fss-pub.nais.io
         - host: sokos-oppdrag.dev-fss-pub.nais.io
         - host: sokos-ur-iso.dev-fss-pub.nais.io
+        - host: sokos-utbetaling-api.dev-fss-pub.nais.io
         - host: sokos-spk-mottak.dev-fss-pub.nais.io
         - host: sokos-ur-iso.dev-fss-pub.nais.io
         - host: sokos-betsys.dev-fss-pub.nais.io
@@ -126,9 +126,9 @@ spec:
 
     # sokos-utbetaling-api
     - name: SOKOS_UTBETALING_API
-      value: http://sokos-utbetaling-api
+      value: http://sokos-utbetaling-api.dev-fss-pub.nais.io
     - name: SOKOS_UTBETALING_API_AUDIENCE
-      value: api://dev-gcp.okonomi.sokos-utbetaling-api/.default
+      value: api://dev-fss.okonomi.sokos-utbetaling-api/.default
     - name: SOKOS_UTBETALING_API_PROXY
       value: "/sokos-utbetaling-api"
 
