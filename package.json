@@ -16,9 +16,9 @@
   "dependencies": {
     "@axe-core/playwright": "^4.10.1",
     "@grafana/faro-web-sdk": "^1.14.1",
-    "@navikt/aksel-icons": "^7.17.3",
-    "@navikt/ds-css": "^7.17.3",
-    "@navikt/ds-react": "^7.17.3",
+    "@navikt/aksel-icons": "^7.17.4",
+    "@navikt/ds-css": "^7.17.4",
+    "@navikt/ds-react": "^7.17.4",
     "react-error-boundary": "^5.0.0",
     "react-router": "^7.4.0",
     "zod": "^3.24.2"
@@ -26,7 +26,7 @@
   "devDependencies": {
     "@eik/rollup-plugin": "^4.0.65",
     "@eslint/js": "^9.23.0",
-    "@navikt/aksel-stylelint": "^7.17.3",
+    "@navikt/aksel-stylelint": "^7.17.4",
     "@playwright/test": "^1.51.1",
     "@rollup/plugin-terser": "^0.4.4",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
