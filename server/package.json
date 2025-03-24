@@ -24,8 +24,8 @@
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
-    "@types/express": "^5.0.0",
-    "@types/node": "^22.13.10",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.13.11",
     "@types/winston-syslog": "^2.4.3",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
