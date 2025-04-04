@@ -189,6 +189,17 @@ export const MicrofrontendConfig: Array<MicrofrontendApp> = [
     route: "/fastedata",
     url: mikrofrontendUrl("sokos-up-fastedata"),
   },
+  {
+    app: "YTELSESRAPPORTERING-PERSON",
+    title: "Ytelser for person",
+    description: "Rapportering av ytelser for person",
+    group: adGroup({
+      adGroupDevelopment: "df564b33-de86-44c5-9a78-ff8587fc5af1",
+      adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    }),
+    route: "/ytelsesrapportering-person",
+    url: mikrofrontendUrl("sokos-up-ytelsesrapportering-person"),
+  },
 ];
 
 /**

@@ -45,6 +45,7 @@ spec:
           - id: "48a80bbb-be45-4ef6-aab8-21604f057f47" # 0000-GA-SOKOS-MF-Venteregister
           - id: "2020a765-ffae-4042-b4cc-2a5a783a3ec5" # 0000-CA-SOKOS-MF-MELDINGSFLYT-READ
           - id: "7e0c2ad1-d0e7-4fa8-8169-7a9d68435644" # 0000-GA-SOKOS-MF-Fastedata
+          - id: "df564b33-de86-44c5-9a78-ff8587fc5af1" # 0000-CA-SOKOS-MF-YTELSESRAPPORTERING-PERSON-READ
         extra:
           - "NAVident"
     sidecar:
