@@ -129,6 +129,15 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     route: "/buntkontroll",
     naisAppName: "sokos-up-buntkontroll",
   },
+  {
+    app: "MELDINGSFLYT",
+    title: "Meldingsflyt",
+    description: "Oversikt over meldinger til og fra bank",
+    adGroupDevelopment: "2020a765-ffae-4042-b4cc-2a5a783a3ec5",
+    adGroupProduction: "ad41e055-af0c-4a26-a31c-c51d6ea236cd",
+    route: "/meldingsflyt",
+    naisAppName: "sokos-up-meldingsflyt",
+  },
 ];
 
 /**

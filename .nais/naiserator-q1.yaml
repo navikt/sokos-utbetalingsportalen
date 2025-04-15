@@ -104,8 +104,7 @@ spec:
     - name: SOKOS_SPK_MOTTAK_API_PROXY
       value: "/spk-mottak-api"
 
-
-    # sokos-nav-oppdrag
+    # sokos-oppdrag
     - name: SOKOS_OPPDRAG_API
       value: https://sokos-oppdrag.dev-fss-pub.nais.io
     - name: SOKOS_OPPDRAG_API_AUDIENCE
