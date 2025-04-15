@@ -68,7 +68,7 @@ spec:
       value: https://sokos-oppdrag-qx.dev-fss-pub.nais.io
     - name: SOKOS_OPPDRAG_API_AUDIENCE
       value: api://dev-fss.okonomi.sokos-oppdrag-qx/.default
-    - name: SOKOS_OPPDRAG_PROXY
+    - name: SOKOS_OPPDRAG_API_PROXY
       value: "/oppdrag-api"
 
     # sokos-spk-mottak

@@ -109,7 +109,7 @@ spec:
       value: https://sokos-oppdrag.dev-fss-pub.nais.io
     - name: SOKOS_OPPDRAG_API_AUDIENCE
       value: api://dev-fss.okonomi.sokos-oppdrag/.default
-    - name: SOKOS_OPPDRAG__API_PROXY
+    - name: SOKOS_OPPDRAG_API_PROXY
       value: "/oppdrag-api"
 
     # sokos-up-kontoregister-api

@@ -54,6 +54,7 @@ spec:
         - application: sokos-up-kontoregister-api
       external:
         - host: sokos-skattekort-person.prod-fss-pub.nais.io
+        - host: sokos-oppdrag.prod-fss-pub.nais.io
         - host: sokos-ur-iso.prod-fss-pub.nais.io
         - host: sokos-spk-mottak.prod-fss-pub.nais.io
         - host: sokos-meldingingsflyt.prod-fss-pub.nais.io
@@ -111,6 +112,14 @@ spec:
       value: api://prod-fss.okonomi.sokos-spk-mottak/.default
     - name: SOKOS_SPK_MOTTAK_PROXY
       value: "/spk-mottak-api"
+
+    # sokos-oppdrag
+    - name: SOKOS_OPPDRAG_API
+      value: https://sokos-oppdrag.prod-fss-pub.nais.io
+    - name: SOKOS_OPPDRAG_API_AUDIENCE
+      value: api://prod-fss.okonomi.sokos-oppdrag/.default
+    - name: SOKOS_OPPDRAG_API_PROXY
+      value: "/oppdrag-api"
 
     # up-meldingsflyt-api
     - name: SOKOS_MELDINGSFLYT_API
