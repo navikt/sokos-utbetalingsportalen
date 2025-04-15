@@ -111,6 +111,15 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     route: "/oppslag-reskontro-stoenad",
     naisAppName: "sokos-up-ors",
   },
+  {
+    app: "UTBETALING",
+    title: "Utbetaling",
+    description: "Søk etter utbetalinger",
+    adGroupDevelopment: "138d21fb-4e96-46d6-91e4-e3926aa349e5",
+    adGroupProduction: "f8919276-46bf-43a2-a9cb-9a5c5f9c8e16",
+    route: "/utbetaling",
+    naisAppName: "sokos-up-utbetaling",
+  },
 ];
 
 /**
