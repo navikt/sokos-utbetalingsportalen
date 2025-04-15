@@ -1,0 +1,39 @@
+---
+import styles from './environmentbanner.module.css';
+
+type ApplicationEnvironment = 'LOCAL' | `TEST ${string}` | null | '';
+
+function getApplicationEnvironment(): ApplicationEnvironment {
+  if (!process.env.NAIS_APP_NAME) return 'LOCAL';
+
+  if (process.env.NAIS_CLUSTER_NAME !== 'dev-gcp') return null;
+
+  const appName = process.env.NAIS_APP_NAME;
+
+  const envMatch = appName.match(/utbetalingsportalen([^-]+)$/);
+  if (envMatch?.[1]) return `TEST ${envMatch[1].toUpperCase()}`;
+  return '';
+}
+
+const environment = getApplicationEnvironment();
+---
+
+{
+  environment && (
+    <div class={styles.banner}>
+      <svg
+        aria-hidden="true"
+        role="img"
+        xmlns="http://www.w3.org/2000/svg"
+        height="110"
+        width="110"
+        class={styles.bannerIcon}
+      >
+        <polygon points="0,0 110,0 110,110" />
+        <text x="25" y="10" transform="rotate(45 20,40)">
+          {environment}
+        </text>
+      </svg>
+    </div>
+  )
+}

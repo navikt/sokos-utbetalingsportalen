@@ -1,16 +1,16 @@
 .sidebar {
   position: fixed;
   z-index: 1000;
-  margin-top: 0.3rem;
   height: 100vh;
   min-height: 100vh;
-  width: 20rem;
-  min-width: 20rem;
+  width: 18rem;
+  min-width: 18rem;
   overflow: hidden;
   overflow-y: auto;
+  margin-top: 3rem;
   background-color: var(--a-surface-inverted);
   transition-property: width, min-width;
-  transition-duration: 0.5s;
+  transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
 }
 
@@ -20,20 +20,20 @@
   min-width: 3rem;
 }
 
-.sidebar-links {
+.sidebarLinks {
   display: flex;
-  min-width: 20rem;
+  min-width: 18rem;
   flex-direction: column;
   padding-left: 0.1rem;
   padding-right: 0.1rem;
 }
 
-.sidebar-list {
+.sidebarList {
   margin: 0;
   padding: 0;
 }
 
-.closebutton {
+.closeButton {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -43,16 +43,44 @@
   padding-right: 0.5rem;
 }
 
-.icon-style {
+.iconStyle {
   width: 1.5rem;
   height: 1.5rem;
   padding-bottom: 2px;
 }
 
-.button-color {
+.buttonColor {
   background-color: var(--a-surface-inverted) !important;
 }
 
-.button-color:hover {
+.buttonColor:hover {
   background-color: var(--a-surface-inverted-hover) !important;
+}
+
+.sidebarLink {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  padding: 0.5rem 2rem;
+  color: var(--a-surface-default);
+  text-decoration: underline;
+}
+
+.sidebarLink:hover {
+  text-decoration: none;
+}
+
+.sidebarLink.active {
+  pointer-events: none;
+  background-color: var(--a-purple-400);
+  text-decoration: none;
+  transition-property: all;
+  transition-duration: 200ms;
+}
+
+.sidebarLinkChild {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
 }

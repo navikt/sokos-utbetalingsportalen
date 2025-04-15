@@ -9,14 +9,14 @@ spec:
   image: "{{{ image }}}"
   port: 8080
   liveness:
-    path: /internal/isAlive
+    path: /api/internal/isAlive
     initialDelay: 10
   readiness:
-    path: /internal/isReady
+    path: /api/internal/isReady
     initialDelay: 10
   prometheus:
     enabled: true
-    path: "/internal/metrics"
+    path: /api/internal/metrics
   replicas:
     min: 2
     max: 2
@@ -46,7 +46,7 @@ spec:
       enabled: true
       autoLogin: true
       autoLoginIgnorePaths:
-        - /internal/*
+        - /api/internal/*
   accessPolicy:
     outbound:
       rules:
@@ -68,6 +68,10 @@ spec:
       cpu: 500m
       memory: 1024Mi
   env:
+
+    - name: UTBETALINGSPORTALEN_URL
+      value: utbetalingsportalen.intern.nav.no
+
     # sokos-up-ors-api
     - name: SOKOS_UP_ORS_API
       value: http://sokos-up-ors-api

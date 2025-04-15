@@ -1,0 +1,13 @@
+.home {
+  margin: auto 2rem;
+  min-width: 380px;
+  max-width: 1600px;
+}
+
+.home-heading {
+  text-align: center;
+}
+
+.home-guidepanel {
+  padding-bottom: 2.5rem;
+}

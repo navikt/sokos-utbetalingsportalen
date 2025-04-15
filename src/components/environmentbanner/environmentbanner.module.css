@@ -1,0 +1,12 @@
+.banner {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+  margin-top: 3.1rem;
+  font-weight: bold;
+}
+
+.bannerIcon polygon {
+  fill: #4ade80;
+}

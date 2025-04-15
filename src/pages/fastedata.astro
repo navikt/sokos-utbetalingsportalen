@@ -1,0 +1,37 @@
+---
+import { getMicrofrontendConfig } from 'src/microfrontend';
+import { hasAccessToAdGroup } from 'src/utils/common';
+import {
+  fetchMicrofrontendAdGroup,
+  fetchMicrofrontendBundleUrl,
+} from 'src/utils/server/common';
+import Microfrontend from '../components/microfrontend/Microfrontend';
+import Layout from '../layouts/Layout.astro';
+import NoAccess from './NoAccess.astro';
+
+const fastedataConfig = getMicrofrontendConfig('fastedata');
+
+const hasAccess = hasAccessToAdGroup(
+  Astro.locals.userInfo.adGroups,
+  fetchMicrofrontendAdGroup({
+    adGroupDevelopment: fastedataConfig.adGroupDevelopment,
+    adGroupProduction: fastedataConfig.adGroupProduction,
+  }),
+);
+---
+
+<Layout>
+  <div>
+    {
+      hasAccess ? (
+        <Microfrontend
+          url={fetchMicrofrontendBundleUrl(fastedataConfig.naisAppName)}
+          userData={Astro.locals.userInfo}
+          client:only="react"
+        />
+      ) : (
+        <NoAccess />
+      )
+    }
+  </div>
+</Layout>

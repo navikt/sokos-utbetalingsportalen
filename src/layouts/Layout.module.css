@@ -1,0 +1,22 @@
+body {
+  background-color: var(--a-bg-subtle);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 4rem;
+}
+
+:global(body.sidebar-open) .container {
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+@media (width <=1200px) {
+  .container {
+    padding: 4rem 1.5rem 0 4rem;
+  }
+}

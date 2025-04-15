@@ -1,0 +1,42 @@
+---
+import Environmentbanner from 'src/components/environmentbanner/environmentbanner.astro';
+import SideBar from 'src/components/sidebar/sidebar.astro';
+import Header from '../components/header/header.astro';
+import styles from './Layout.module.css';
+---
+
+<!doctype html>
+<html lang="nb">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Utbetalingsportalen</title>
+    <link
+      rel="preload"
+      href="https://cdn.nav.no/aksel/@navikt/ds-css/6.16.2/index.min.css"
+      as="style"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.nav.no/aksel/@navikt/ds-css/6.16.2/index.min.css"
+    />
+    <script is:inline type="importmap">
+      {
+        "imports": {
+          "react": "https://www.nav.no/tms-min-side-assets/react/18/esm/index.js",
+          "react-dom": "https://www.nav.no/tms-min-side-assets/react-dom/18/esm/index.js"
+        }
+      }
+    </script>
+  </head>
+  <body class="main">
+    <Header />
+    <Environmentbanner />
+    <SideBar />
+    <main class={styles.container}>
+      <slot />
+    </main>
+  </body>
+</html>
