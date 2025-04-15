@@ -1,0 +1,33 @@
+name: Deploy application manual v2
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy to"
+        required: true
+        type: choice
+        options:
+          - q1
+          - qx
+env:
+  TZ: Europe/Oslo
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  build:
+    name: Build/test & push image
+    uses: navikt/mob-gha-workflows/.github/workflows/node-build-push-image-v2.yaml@main
+    secrets: inherit
+
+  deploy:
+    needs: build
+    name: Deploy to ${{ inputs.environment }}
+    uses: navikt/mob-gha-workflows/.github/workflows/nais-app-deploy.yaml@main
+    with:
+      cluster: dev-gcp
+      resource: .nais/naiserator-${{ inputs.environment }}.yaml
+      image: ${{ needs.build.outputs.image }}
