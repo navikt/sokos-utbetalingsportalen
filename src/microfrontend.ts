@@ -120,6 +120,15 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     route: "/utbetaling",
     naisAppName: "sokos-up-utbetaling",
   },
+  {
+    app: "BUNTKONTROLL",
+    title: "Buntkontroll",
+    description: "Oversikt over bunter sendt til bank",
+    adGroupDevelopment: "3bc37bf2-8e76-407c-ad4a-d2c79edc241e",
+    adGroupProduction: "08723132-a7ba-40eb-a6f4-0a9247f230d2",
+    route: "/buntkontroll",
+    naisAppName: "sokos-up-buntkontroll",
+  },
 ];
 
 /**
