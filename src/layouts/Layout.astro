@@ -1,8 +1,18 @@
 ---
-import Environmentbanner from 'src/components/environmentbanner/environmentbanner.astro';
-import SideBar from 'src/components/sidebar/sidebar.astro';
-import Header from '../components/header/header.astro';
-import styles from './Layout.module.css';
+import Environmentbanner from "src/components/environmentbanner/environmentbanner.astro";
+import SideBar from "src/components/sidebar/sidebar.astro";
+import Header from "../components/header/header.astro";
+import styles from "./Layout.module.css";
+
+export type LayoutProps = {
+  title: string;
+};
+
+const { title } = Astro.props as LayoutProps;
+
+const pageTitle = title
+  ? `Utbetalingsportalen | ${title}`
+  : "Utbetalingsportalen";
 ---
 
 <!doctype html>
@@ -12,7 +22,7 @@ import styles from './Layout.module.css';
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Utbetalingsportalen</title>
+    <title>{pageTitle}</title>
     <link
       rel="preload"
       href="https://cdn.nav.no/aksel/@navikt/ds-css/6.16.2/index.min.css"
