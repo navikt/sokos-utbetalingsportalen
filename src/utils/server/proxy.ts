@@ -12,6 +12,7 @@ function getProxyUrl(request: Request, proxyConfig: ProxyConfig): URL {
     `https://${process.env.UTBETALINGSPORTALEN_URL}${proxyConfig.apiProxy}`,
     proxyConfig.apiUrl,
   );
+  console.log(`Proxying request from ${proxyConfig.apiProxy} to ${url}`);
   return new URL(url);
 }
 
