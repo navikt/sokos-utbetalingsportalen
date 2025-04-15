@@ -31,15 +31,15 @@ spec:
       enabled: true
       claims:
         groups:
-          - id: "f49b797d-600d-46da-8061-7746e48d1aca" # 0000-GA-SOKOS-MF-SPK-MOTTAK-ADMIN
+          - id: "f49b797d-600d-46da-8061-7746e48d1aca" # 0000-GA-SOKOS-MF-SPK-Mottak-ADMIN
           - id: "6c93762e-ea37-4043-919f-3a758a136943" # 0000-GA-SOKOS-MF-Skattekort-READ
           - id: "25723642-e1da-4d15-87ce-8c4d2b87e33a" # 0000-GA-SOKOS-MF-PosteringSok-READ
           - id: "bb9c7baf-768b-4e84-816c-f10d0a6c7d25" # 0000-GA-SOKOS-MF-KRP-READ
           - id: "e1635067-dfc9-4fb8-8405-d50e9672cf5c" # 0000-GA-SOKOS-MF-KRO-READ
-          - id: "f8919276-46bf-43a2-a9cb-9a5c5f9c8e16" # 0000-GA-SOKOS-MF-UTBETALING
-          - id: "de776092-a8ed-46a2-be5e-ec2eae4dcf2b" # 0000-GA-SOKOS-MF-RESENDING-BANK-READ
-          - id: "08723132-a7ba-40eb-a6f4-0a9247f230d2" # 0000-GA-SOKOS-MF-BUNTKONTROLL-READ
-          - id: "ad41e055-af0c-4a26-a31c-c51d6ea236cd" # 0000-CA-SOKOS-MF-MELDINGSFLYT-READ
+          - id: "f8919276-46bf-43a2-a9cb-9a5c5f9c8e16" # 0000-GA-SOKOS-MF-Utbetaling
+          - id: "de776092-a8ed-46a2-be5e-ec2eae4dcf2b" # 0000-GA-SOKOS-MF-Resending-Bank-READ
+          - id: "08723132-a7ba-40eb-a6f4-0a9247f230d2" # 0000-GA-SOKOS-MF-Buntkontroll-READ
+          - id: "ad41e055-af0c-4a26-a31c-c51d6ea236cd" # 0000-CA-SOKOS-MF-Meldingsflyt-READ
         extra:
           - "NAVident"
     sidecar:
@@ -88,7 +88,7 @@ spec:
     - name: SOKOS_KONTOREGISTER_API_PROXY
       value: "/up-kr-api"
 
-    # Skattekort
+    # sokos-skattekort-person
     - name: SOKOS_SKATTEKORT_PERSON_API
       value: https://sokos-skattekort-person.prod-fss-pub.nais.io
     - name: SOKOS_SKATTEKORT_PERSON_API_AUDIENCE
@@ -104,7 +104,7 @@ spec:
     - name: SOKOS_UR_ISO_PROXY
       value: "/sokos-ur-iso"
 
-    # SPK-Mottak
+    # sokos-spk-mottak
     - name: SOKOS_SPK_MOTTAK_API
       value: https://sokos-spk-mottak.prod-fss-pub.nais.io
     - name: SOKOS_SPK_MOTTAK_API_AUDIENCE
