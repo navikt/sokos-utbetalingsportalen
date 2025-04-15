@@ -84,6 +84,15 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     route: "/kontoregister-organisasjon",
     naisAppName: "sokos-up-kro",
   },
+  {
+    app: "ORS",
+    title: "Oppslag i Reskontro Stønad",
+    description: "Søk etter posteringer fra Abetal og UR",
+    adGroupDevelopment: "b01fb216-fcb3-4ede-b7da-71fffe859763",
+    adGroupProduction: "25723642-e1da-4d15-87ce-8c4d2b87e33a",
+    route: "/oppslag-reskontro-stoenad",
+    naisAppName: "sokos-up-ors",
+  },
 ];
 
 /**
