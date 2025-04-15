@@ -75,6 +75,15 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     route: "/kontoregister-person",
     naisAppName: "sokos-up-krp",
   },
+  {
+    app: "KRO",
+    title: "Kontoregister organisasjon",
+    description: "Oppslag og registrering av konti til organisasjoner",
+    adGroupDevelopment: "bdcedce3-dab5-4b68-b1d3-8625cd0d3b55",
+    adGroupProduction: "e1635067-dfc9-4fb8-8405-d50e9672cf5c",
+    route: "/kontoregister-organisasjon",
+    naisAppName: "sokos-up-kro",
+  },
 ];
 
 /**
