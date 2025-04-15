@@ -12,6 +12,15 @@ type MicrofrontendDictionary = Record<string, MicroFrontend>;
 
 export const microfrontendConfigArray: MicroFrontend[] = [
   {
+    app: "GRENSESNITTMAL",
+    title: "Grensesnittmal",
+    description: "Dette er en blank mal for et grensesnitt",
+    adGroupDevelopment: "1b717a23-d376-471c-9fc6-356299fadc2b",
+    adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    route: "/grensesnittmal",
+    naisAppName: "sokos-mikrofrontend-template",
+  },
+  {
     app: "ATTESTASJON",
     title: "Attestasjon",
     description: "Attestering av oppdrag",
@@ -48,13 +57,13 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     naisAppName: "sokos-up-fastedata",
   },
   {
-    app: "GRENSESNITTMAL",
-    title: "Grensesnittmal",
-    description: "Dette er en blank mal for et grensesnitt",
-    adGroupDevelopment: "1b717a23-d376-471c-9fc6-356299fadc2b",
-    adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-    route: "/grensesnittmal",
-    naisAppName: "sokos-mikrofrontend-template",
+    app: "SKATTEKORT",
+    title: "Skattekort",
+    description: "Søk etter skattekort for personer i OS-Eskatt",
+    adGroupDevelopment: "a13b4176-e328-4e1c-b181-ff676a7146b1",
+    adGroupProduction: "6c93762e-ea37-4043-919f-3a758a136943",
+    route: "/skattekort",
+    naisAppName: "sokos-up-skattekort",
   },
   {
     app: "RESENDING-BANK",
