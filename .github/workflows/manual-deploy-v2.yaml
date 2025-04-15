@@ -8,7 +8,7 @@ on:
         required: true
         type: choice
         options:
-          - dev
+          - q1
           - qx
 env:
   TZ: Europe/Oslo
