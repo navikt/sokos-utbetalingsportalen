@@ -5,8 +5,16 @@ body {
 .container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding-top: 4rem;
+  align-items: flex-start;
+  padding: 4rem 2rem 2rem;
+  margin: 0 auto;
+}
+
+.container > :global(*) {
+  min-width: 800px;
+  margin: 1.5rem;
+  width: 100%;
+  max-width: 1400px;
 }
 
 :global(body.sidebar-open) .container {
@@ -17,6 +25,16 @@ body {
 
 @media (width <=1200px) {
   .container {
-    padding: 4rem 1.5rem 0 4rem;
+    padding: 4rem 1.5rem 2rem 4rem;
+  }
+
+  .container > :global(*) {
+    min-width: 600px;
+  }
+}
+
+@media (width <=768px) {
+  .container > :global(*) {
+    min-width: 300px;
   }
 }
