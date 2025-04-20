@@ -5,7 +5,7 @@ body {
 .container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 4rem 2rem 2rem;
   margin: 0 auto;
 }
@@ -36,5 +36,6 @@ body {
 @media (width <=768px) {
   .container > :global(*) {
     min-width: 300px;
+    margin: 1rem;
   }
 }
