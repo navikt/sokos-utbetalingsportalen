@@ -1,4 +1,4 @@
-import { getToken, validateToken } from "@navikt/oasis";
+import { getToken, validateAzureToken, validateToken } from "@navikt/oasis";
 import { defineMiddleware } from "astro/middleware";
 import { isLocal } from "../utils/server/urls.ts";
 import { loginUrl } from "./urls";
@@ -42,7 +42,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return context.redirect(`${loginUrl}${params}`);
   }
 
-  const validation = await validateToken(token);
+  const validation = await validateAzureToken(token);
 
   if (!validation.ok) {
     const error = new Error(
