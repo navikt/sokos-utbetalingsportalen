@@ -29,6 +29,7 @@ spec:
   azure:
     application:
       enabled: true
+      allowAllUsers: false
       claims:
         groups:
           - id: "1b717a23-d376-471c-9fc6-356299fadc2b" # 0000-GA-SOKOS-MF-Mikrofrontend-READ

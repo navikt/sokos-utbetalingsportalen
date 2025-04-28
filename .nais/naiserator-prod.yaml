@@ -29,6 +29,7 @@ spec:
   azure:
     application:
       enabled: true
+      allowAllUsers: false
       claims:
         groups:
           - id: "f49b797d-600d-46da-8061-7746e48d1aca" # 0000-GA-SOKOS-MF-SPK-Mottak-ADMIN
