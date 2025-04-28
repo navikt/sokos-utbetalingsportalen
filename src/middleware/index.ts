@@ -42,11 +42,11 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return context.redirect(`${loginUrl}${params}`);
   }
 
-  const validation = await validateAzureToken(token);
+  const validatedToken = await validateAzureToken(token);
 
-  if (!validation.ok) {
+  if (!validatedToken.ok) {
     const error = new Error(
-      `Invalid JWT token found (cause: ${validation.errorType} ${validation.error}, redirecting to login.`,
+      `Invalid JWT token found (cause: ${validatedToken.errorType} ${validatedToken.error}, redirecting to login.`,
     );
     console.error(error);
     return context.redirect(`${loginUrl}${params}`);
@@ -55,9 +55,9 @@ export const onRequest = defineMiddleware(async (context, next) => {
   context.locals.token = token;
 
   context.locals.userInfo = {
-    navIdent: validation.payload.NAVident as string,
-    name: validation.payload.name as string,
-    adGroups: validation.payload.groups as string[],
+    navIdent: validatedToken.payload.NAVident as string,
+    name: validatedToken.payload.name as string,
+    adGroups: validatedToken.payload.groups as string[],
   };
 
   return next();
