@@ -191,7 +191,7 @@ export const MicrofrontendConfig: Array<MicrofrontendApp> = [
   },
   {
     app: "YTELSESRAPPORTERING-PERSON",
-    title: "Ytelser for person",
+    title: "Rapportering av ytelser",
     description: "Rapportering av ytelser for person",
     group: adGroup({
       adGroupDevelopment: "df564b33-de86-44c5-9a78-ff8587fc5af1",
