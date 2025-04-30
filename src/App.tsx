@@ -8,10 +8,13 @@ import Layout from "./components/layout/Layout";
 import { MicrofrontendApp, MicrofrontendConfig } from "./config/microfrontend";
 import ErrorPage, { NotFound } from "./pages/ErrorPage";
 import Home from "./pages/Home";
+import { getEnvironment } from "./utils/environment";
 import { initGrafanaFaro } from "./utils/grafanaFaro";
 
 export default function App() {
   const location = useLocation();
+  const isProduction = getEnvironment() === "production";
+
   useEffect(() => {
     if (import.meta.env.MODE !== "mock") initGrafanaFaro();
   }, []);
@@ -72,14 +75,16 @@ export default function App() {
 
   return (
     <>
-      <Helmet>
-        <script
-          defer
-          src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
-          data-host-url="https://umami.nav.no"
-          data-website-id="e174f8d8-4082-4cb0-8280-b992d0a47901"
-        ></script>
-      </Helmet>
+      {!isProduction && (
+        <Helmet>
+          <script
+            defer
+            src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
+            data-host-url="https://umami.nav.no"
+            data-website-id="e174f8d8-4082-4cb0-8280-b992d0a47901"
+          ></script>
+        </Helmet>
+      )}
       <ErrorBoundary>
         <AuthProvider>
           <Layout>
