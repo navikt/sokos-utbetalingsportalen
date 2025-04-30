@@ -7,7 +7,6 @@
   min-width: 18rem;
   overflow: hidden;
   overflow-y: auto;
-  margin-top: 3rem;
   background-color: var(--a-surface-inverted);
   transition-property: width, min-width;
   transition-duration: 0.4s;

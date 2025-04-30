@@ -19,31 +19,34 @@ const greeting =
 ---
 
 <Layout title="Hjem">
-  <div class={styles["home"]}>
-    <div class={styles["home-guidepanel"]}>
-      <div class={styles["home-heading"]}>
-        <Heading level="1" size="large" spacing>
-          {greeting}, {userInfo.name}
-        </Heading>
+  <div class={styles.home}>
+    <div class={styles.homeContent}>
+      <div class={styles.homeGuidepanel}>
+        <div class={styles.homeHeading}>
+          <Heading level="1" size="large" spacing>
+            {greeting}, {userInfo.name}
+          </Heading>
+        </div>
+        <GuidePanel poster>
+          <Heading level="2" size="small" spacing>
+            Informasjon om utbetalingsportalen
+          </Heading>
+          <BodyLong spacing>
+            Utbetalingsportalen er en ny platform som på sikt skal overta
+            funksjoner fra Økonomiportalen og Abetal i en ny og forbedret
+            versjon.
+          </BodyLong>
+        </GuidePanel>
       </div>
-      <GuidePanel poster>
-        <Heading level="2" size="small" spacing>
-          Informasjon om utbetalingsportalen
-        </Heading>
-        <BodyLong spacing>
-          Utbetalingsportalen er en ny platform som på sikt skal overta
-          funksjoner fra Økonomiportalen og Abetal i en ny og forbedret versjon.
-        </BodyLong>
-      </GuidePanel>
-    </div>
-    <div>
-      <AppSwitcher
-        server:defer
-        adGroups={userInfo.adGroups}
-        client:only="react"
-      >
-        <AppSwitcherSkeleton slot="fallback" />
-      </AppSwitcher>
+      <div>
+        <AppSwitcher
+          server:defer
+          adGroups={userInfo.adGroups}
+          client:only="react"
+        >
+          <AppSwitcherSkeleton slot="fallback" />
+        </AppSwitcher>
+      </div>
     </div>
   </div>
 </Layout>

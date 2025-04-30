@@ -1,13 +1,19 @@
 .home {
-  margin: auto 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.homeContent {
   min-width: 380px;
   max-width: 1600px;
 }
 
-.home-heading {
+.homeHeading {
   text-align: center;
 }
 
-.home-guidepanel {
+.homeGuidepanel {
   padding-bottom: 2.5rem;
 }

@@ -2,12 +2,15 @@ body {
   background-color: var(--a-bg-subtle);
 }
 
+/* Skal ikke endres */
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 4rem;
+  margin: 3.1rem 4rem 4rem 7rem;
+  padding-top: 1rem;
 }
+
+/* .content {
+  padding-top: 1rem;
+} */
 
 :global(body.sidebar-open) .container {
   opacity: 0.4;
@@ -15,8 +18,8 @@ body {
   pointer-events: none;
 }
 
-@media (width <=1200px) {
+/* @media (width <=1200px) {
   .container {
     padding: 4rem 1.5rem 0 4rem;
   }
-}
+} */
