@@ -12,6 +12,7 @@ import { initGrafanaFaro } from "./utils/grafanaFaro";
 
 export default function App() {
   const location = useLocation();
+
   useEffect(() => {
     if (import.meta.env.MODE !== "mock") initGrafanaFaro();
   }, []);
@@ -74,6 +75,7 @@ export default function App() {
     <>
       <Helmet>
         <script
+          async
           defer
           src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
           data-host-url="https://umami.nav.no"
