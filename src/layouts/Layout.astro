@@ -3,6 +3,7 @@ import Environmentbanner from "src/components/environmentbanner/environmentbanne
 import SideBar from "src/components/sidebar/sidebar.astro";
 import Header from "../components/header/header.astro";
 import styles from "./Layout.module.css";
+import { ClientRouter } from "astro:transitions";
 
 export type LayoutProps = {
   title: string;
@@ -19,7 +20,7 @@ const pageTitle = title
 <html lang="nb">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta name="description" content="Utbetalingsportalen" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
@@ -46,6 +47,7 @@ const pageTitle = title
       data-host-url="https://umami.nav.no"
       data-website-id="e174f8d8-4082-4cb0-8280-b992d0a47901"
     />
+    <ClientRouter />
   </head>
   <body class="main">
     <Header />
