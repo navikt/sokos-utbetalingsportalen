@@ -8,9 +8,12 @@
 }
 
 .navLogo {
-  margin-left: 0.75rem;
-  width: 4rem;
+  margin-left: 0.5rem;
+  width: 4.5rem;
+  height: 3rem;
   padding: 0.45rem 0.25rem;
+  object-fit: contain;
+  display: block;
 }
 
 .screenreader-only {
