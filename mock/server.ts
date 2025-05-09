@@ -1,5 +1,5 @@
-import { Hono } from "hono";
 import { serve } from "@hono/node-server";
+import { Hono } from "hono";
 import { cors } from "hono/cors";
 import example from "./data/example.json";
 import microfrontend from "./microfrontend";
@@ -15,14 +15,14 @@ api.use(
   }),
 );
 
-api.get("/api/utbetalingsportalen", (c) => {
+api.get("/random", (c) => {
   return c.json(example);
 });
 
 api.get("/bundle.js", (c) => {
   return new Response(microfrontend, {
     headers: {
-      "Content-Type": "application/javascript",
+      "Content-Type": "text/javascript",
     },
   });
 });

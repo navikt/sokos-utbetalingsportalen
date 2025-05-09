@@ -7,7 +7,7 @@ type AdGroup = {
 
 export function fetchMicrofrontendBundleUrl(appName: string) {
   if (getServerSideEnvironment() === "local") {
-    return "/bundle.js";
+    return "http://localhost:3000/bundle.js";
   }
   return (
     "https://" +
