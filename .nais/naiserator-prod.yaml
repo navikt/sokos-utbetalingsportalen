@@ -95,7 +95,7 @@ spec:
       value: https://sokos-skattekort-person.prod-fss-pub.nais.io
     - name: SOKOS_SKATTEKORT_PERSON_API_AUDIENCE
       value: api://prod-fss.okonomi.sokos-skattekort-person/.default
-    - name: SOKOS_SKATTEKORT_API_PROXY
+    - name: SOKOS_SKATTEKORT_PERSON_API_PROXY
       value: "/skattekort-api"
 
     # sokos-ur-iso
