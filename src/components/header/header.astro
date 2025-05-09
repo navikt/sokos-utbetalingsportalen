@@ -1,0 +1,24 @@
+---
+import { InternalHeader, Spacer } from '@navikt/ds-react';
+import navLogo from '../../../public/images/nav-icon-hvit.png';
+import AppSwitcherHeaderSkeleton from '../skeleton/AppSwitcherHeaderSkeleton';
+import AppSwitcherHeader from './AppSwitcherHeader';
+import styles from './header.module.css';
+const userInfo = Astro.locals.userInfo;
+---
+
+<div class={styles.header}>
+  <InternalHeader>
+    <img src={navLogo.src} alt="NAV logo" class={styles.navLogo} width="72" height="48" loading="eager" />
+    <InternalHeader.Title href="/">Utbetalingsportalen</InternalHeader.Title>
+    <Spacer />
+    <AppSwitcherHeader
+      server:defer
+      adGroups={userInfo.adGroups}
+      client:only="react"
+    >
+      <AppSwitcherHeaderSkeleton slot="fallback" />
+    </AppSwitcherHeader>
+    <InternalHeader.User name={userInfo.name} description={userInfo.navIdent} />
+  </InternalHeader>
+</div>

@@ -1,36 +1,6 @@
 # Guide for å legge til en mikrofrontend
 
-1. Legg inn følgende verdier i [microfrontend.ts](/src/config/microfrontend.ts) :
-    ```typescript
-    {
-      app: "VENTEREGISTER",
-      title: "Venteregister",
-      description: "Venteregister for oppdrag",
-      group: adGroup({
-        adGroupDevelopment: "48a80bbb-be45-4ef6-aab8-21604f057f47",
-        adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-      }),
-      route: "/venteregister",
-      url: mikrofrontendUrl("sokos-up-venteregister"),
-    },
-    ```
-    Beskrivelse av følgende verdier:
-      - **app** (Applikasjon navn)
-      - **title** (Dette er det som vises i menyen (Sidebar))
-      - **description** (Beskrivelse av hva dette skjermbildet)
-      - **group** -> (Legg inn UUID for både dev og prod)
-      - **route** -> (Url lenke i Utbetalingsportalen)
-          ```
-          * Forkortelser i URL er ikke en god idé. Det er bedre å bruke hele ord.
-          * Bruk små bokstaver i URL.
-          * Bruke bindestrek i URL for å skille på ord.
-          * Ikke bruk Æ Ø Å. Skriv heller: Æ = AE, Ø = OE, Å = AA.
-          ```
-      - **url** -> (NAIS app navn)
-
-<br></br>
-
-2. I [naiserator-dev.yaml](../.nais/naiserator-dev.yaml) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs.
+1. I [naiserator-dev.yaml](../.nais/naiserator-dev.yaml) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs.
    Se for eksempel hvilke `env` variabler andre har lagt inn.
    Husk å legge inn under `accessPolicy` hvilken backend mikrofrontend'en skal snakke med.
     Eksempel:
@@ -39,12 +9,9 @@
     accessPolicy:
        outbound:
          rules:
-           - application: sokos-up-ors-api
            - application: sokos-up-kontoregister-api
          external:
-           - host: sokos-skattekort-person.dev-fss-pub.nais.io
            - host: sokos-oppdrag.dev-fss-pub.nais.io
-           - host: sokos-ur-iso.dev-fss-pub.nais.io
    ```
 
    Skal mikrofrontend'en snakke med en applikasjon  i `fss` cluster så må du gjøre [følgende](https://docs.nais.io/workloads/explanations/migrating-to-gcp/#how-do-i-reach-an-application-found-on-premises-from-my-application-in-gcp). Den må da ligge under `accessPolicy -> outbound -> external` som i eksempelet over.
@@ -59,42 +26,138 @@
               cluster: dev-gcp
       ```
 
-<br></br>
+   Legg inn riktig env variabler til backend som mikrofrontend skal snakke med:
 
-3. Env variablene som er lagt inn i naiserator-filene skal defineres i [config.ts](/server/src/config.ts)
+     ```yaml
+          # sokos-oppdrag
+          - name: SOKOS_OPPDRAG_API
+            value: https://sokos-oppdrag.dev-fss-pub.nais.io
+          - name: SOKOS_OPPDRAG_API_AUDIENCE
+            value: api://dev-fss.okonomi.sokos-oppdrag/.default
+          - name: SOKOS_OPPDRAG_API_PROXY
+            value: "/oppdrag-api"
+      ```
 
-      Formatet skal være følgende:
-   ```typescript
-      {
-        apiUrl: process.env.SOKOS_SKATTEKORT_PERSON_API,
-        apiAudience: process.env.SOKOS_SKATTEKORT_PERSON_API_AUDIENCE,
-        apiProxy: process.env.SOKOS_SKATTEKORT_PROXY,
-        environment: [Environment.DEV, Environment.PROD],
-      },
-   ````
-      **environment** -> Her setter du hvilken miljøer som frontend er tilgjengelig i. Skal du tilgjengeliggjøre frontend i prod må du sette `environment: [Environment.DEV, Environment.PROD],` og eventuelt flere miljøer i samme array.
-
-      <br></br>
-      API er den faktiske adressen til tjenesten.
+    </br></br>
+      *API er den faktiske adressen til tjenesten*
       ```yaml
           # eksempel for en tjeneste i fss
-          - name: SOKOS_SKATTEKORT_PERSON_API
+          - name: SOKOS_OPPDRAG_API
             value: https://sokos-skattekort-person.dev-fss-pub.nais.io
 
           # eksempel for en tjeneste i gcp - http og ikke https!
-          - name: SOKOS_UTBETALING_API
-            value: http://sokos-utbetaling-api
+          - name: SOKOS_OPPDRAG_API
+            value: http://sokos-oppdrag
       ```
-      SCOPE representerer en tillatelse som en gitt forbruker har tilgang til.
+      *SCOPE representerer en tillatelse som en gitt forbruker har tilgang til.*
       ```yaml
-           - name: SOKOS_SKATTEKORT_API_AUDIENCE
-             value: "api://dev-fss.okonomi.sokos-skattekort-person/.default"
+           - name: SOKOS_OPPDRAG_API_AUDIENCE
+             value: api://dev-fss.okonomi.sokos-oppdrag/.default
       ```
-      PROXY brukes internt i Utbetalingsportalen for å definere path'en for å nå tjenesten.
+      *PROXY brukes internt i Utbetalingsportalen for å definere path'en for å nå tjenesten.*
       ```yaml
-            - name: SOKOS_SKATTEKORT_PROXY
-              value: "/skattekort-api"
+            - name: SOKOS_OPPDRAG_API_PROXY
+              value: "/oppdrag-api"
       ```
+
+<br></br>
+
+2. Legg inn følgende verdier i [microfrontend.ts](/src/microfrontend.ts) :
+    ```typescript
+    {
+      app: "ATTESTASJON",
+      title: "Attestasjon",
+      description: "Attestering av oppdrag",
+      adGroupDevelopment: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      route: "/attestasjon",
+      naisAppName: "sokos-up-attestasjon",
+    },
+    ```
+    Beskrivelse av følgende verdier:
+      - **app** (Applikasjon navn)
+      - **title** (Dette er det som vises i menyen (Sidebar))
+      - **description** (Beskrivelse av hva dette skjermbildet)
+      - **adGroupDevelopment** -> (Legg inn UUID for dev)
+      - **adGroupProduction** -> (Legg inn UUID for dprodev)
+      - **route** -> (Url lenke i Utbetalingsportalen)
+          ```
+          * Forkortelser i URL er ikke en god idé. Det er bedre å bruke hele ord.
+          * Bruk små bokstaver i URL.
+          * Bruke bindestrek i URL for å skille på ord.
+          * Ikke bruk Æ Ø Å. Skriv heller: Æ = AE, Ø = OE, Å = AA.
+          ```
+      - **naisAppName** -> (NAIS app navn til mikrofrontend)
+
+<br></br>
+
+3. Lag en mappe som har samme navn som proxy routen satt i mikrofrontend. F.eks `/oppdrag-api`, da navngir du mappen `oppdrag-api` under [pages](/src/pages/).
+   Inne i den mappen lager du en fil som heter `[...proxy].ts`.
+   Variablene som er lagt inn i naiserator-filene skal defineres inne i `[...proxy].ts]` filen:
+
+   ```typescript
+    import type { APIRoute } from "astro";
+    import { routeProxyWithOboToken } from "src/utils/server/proxy";
+
+    export const ALL: APIRoute = routeProxyWithOboToken({
+      apiProxy: `${process.env.SOKOS_OPPDRAG_API_PROXY}`,
+      apiUrl: `${process.env.SOKOS_OPPDRAG_API}`,
+      audience: `${process.env.SOKOS_OPPDRAG_API_AUDIENCE}`,
+    });
+   ````
+
+4. Nå skal du legge inn følgende kode:
+
+  ```js
+    ---
+    import { getMicrofrontendConfig } from "src/microfrontend";
+    import { hasAccessToAdGroup } from "src/utils/common";
+    import {
+      fetchMicrofrontendAdGroup,
+      fetchMicrofrontendBundleUrl,
+    } from "src/utils/server/common";
+    import Microfrontend from "../../components/microfrontend/Microfrontend";
+    import Layout from "../../layouts/Layout.astro";
+    import NoAccess from "../NoAccess.astro";
+
+    const attestasjonConfig = getMicrofrontendConfig("attestasjon");
+
+    const hasAccess = hasAccessToAdGroup(
+      Astro.locals.userInfo.adGroups,
+      fetchMicrofrontendAdGroup({
+        adGroupDevelopment: attestasjonConfig.adGroupDevelopment,
+        adGroupProduction: attestasjonConfig.adGroupProduction,
+      })
+    );
+    ---
+
+    <Layout title={attestasjonConfig.title}>
+      <div>
+        {
+          hasAccess ? (
+            <Microfrontend
+              url={fetchMicrofrontendBundleUrl(attestasjonConfig.naisAppName)}
+              userData={Astro.locals.userInfo}
+              client:only="react"
+            />
+          ) : (
+            <NoAccess />
+          )
+        }
+      </div>
+    </Layout>
+  ```
+
+Har du en routing i mikrofrontend? Følg pkt. 1. </br>
+Har du ikke routing i mikrofrontend? Følg pkt. 2 </br>
+
+  1. Routing -> Lag en mappe som heter det samme som `route: "/attestasjon"` i pkt. 2. Altså [attestasjon](/src/pages/attestasjon/) under [pages](/src/pages/). Inne i mappen lager du en fil med navn `[...attestasjon].astro`. Inne i denne filen legger du inn koden ovenfor.
+  2. Ikke routing -> Lag filen `attestasjon.astro` direkte under [pages](/src/pages/). Inne i denne filen legger du inn koden ovenfor.
+  3. Endre const ->
+      ```
+      const attestasjonConfig = getMicrofrontendConfig("attestasjon");
+      ```
+      til å hente config fra [microfrontend.ts](/src/microfrontend.ts).
 
   <br></br>
    ## 🎉 Nå er `sokos-utbetalingsportalen` klar til å kunne rendre mikrofrontend'en og rute rest kallene til riktig api. 🎉

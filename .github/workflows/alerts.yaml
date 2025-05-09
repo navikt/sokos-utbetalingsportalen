@@ -9,12 +9,12 @@ on:
       - ".nais/alerts-prod.yaml"
 
 permissions:
-  contents: "write"
-  id-token: "write"
+  contents: write
+  id-token: write
 
 jobs:
-  deploy-dev:
-    name: Deploy to dev-gcp
+  deploy-q1:
+    name: Deploy to q1
     uses: navikt/mob-gha-workflows/.github/workflows/nais-alert-deploy.yaml@main
     with:
       cluster: dev-gcp
@@ -22,7 +22,7 @@ jobs:
 
   deploy-prod:
     name: Deploy to prod-gcp
-    needs: deploy-dev
+    needs: deploy-q1
     uses: navikt/mob-gha-workflows/.github/workflows/nais-alert-deploy.yaml@main
     with:
       cluster: prod-gcp
