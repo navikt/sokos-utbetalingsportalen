@@ -62,7 +62,7 @@ spec:
     - name: UTBETALINGSPORTALEN_URL
       value: utbetalingsportalen-qx.intern.dev.nav.no
     - name: UTBETALINGSPORTALEN_ENVIRONMENT
-      value: qx
+      value: QX
 
     # sokos-oppdrag
     - name: SOKOS_OPPDRAG_API

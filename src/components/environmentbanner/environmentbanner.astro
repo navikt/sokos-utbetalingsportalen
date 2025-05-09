@@ -1,18 +1,20 @@
 ---
-import styles from './environmentbanner.module.css';
+import styles from "./environmentbanner.module.css";
 
-type ApplicationEnvironment = 'LOCAL' | `TEST ${string}` | null | '';
+type ApplicationEnvironment = "LOCAL" | `TEST ${string}` | null;
 
 function getApplicationEnvironment(): ApplicationEnvironment {
-  if (!process.env.NAIS_APP_NAME) return 'LOCAL';
+  const naisClusterName = process.env.NAIS_CLUSTER_NAME;
 
-  if (process.env.NAIS_CLUSTER_NAME !== 'dev-gcp') return null;
+  if (!naisClusterName) {
+    return "LOCAL";
+  }
 
-  const appName = process.env.NAIS_APP_NAME;
+  if (naisClusterName === "dev-gcp") {
+    return `TEST ${process.env.UTBETALINGSPORTALEN_ENVIRONMENT}`;
+  }
 
-  const envMatch = appName.match(/utbetalingsportalen([^-]+)$/);
-  if (envMatch?.[1]) return `TEST ${envMatch[1].toUpperCase()}`;
-  return '';
+  return null;
 }
 
 const environment = getApplicationEnvironment();
