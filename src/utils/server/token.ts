@@ -8,7 +8,7 @@ export const getOboToken = async (
 
   if (!oboResult.ok) {
     console.error("Error getting access token: " + oboResult.error);
-    throw new Error("Request oboToken for example-api failed ");
+    throw new Error(`Request oboToken for ${audience} failed `);
   }
 
   return oboResult.token;
