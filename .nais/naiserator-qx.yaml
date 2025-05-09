@@ -1,7 +1,7 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: sokos-utbetalingsportalen
+  name: sokos-utbetalingsportalen-qx
   namespace: okonomi
   labels:
     team: okonomi
