@@ -10,6 +10,7 @@ on:
         options:
           - q1
           - qx
+          - prod
 env:
   TZ: Europe/Oslo
 
@@ -23,20 +24,11 @@ jobs:
     uses: navikt/mob-gha-workflows/.github/workflows/node-build-push-image-v2.yaml@main
     secrets: inherit
 
-  deploy-dev:
+  deploy-manual:
     needs: build
-    name: Deploy to dev-gcp
+    name: ${{ inputs.environment == 'prod' && 'Deploy to prod-gcp' || 'Deploy to dev-gcp' }}
     uses: navikt/mob-gha-workflows/.github/workflows/nais-app-deploy.yaml@main
     with:
-      cluster: dev-gcp
-      resource: .nais/naiserator-${{ inputs.environment }}.yaml
-      image: ${{ needs.build.outputs.image }}
-
-  deploy-dev-qx:
-    needs: [build, deploy-dev]
-    name: Deploy to dev-gcp-qx
-    uses: navikt/mob-gha-workflows/.github/workflows/nais-app-deploy.yaml@main
-    with:
-      cluster: dev-gcp
+      cluster: ${{ inputs.environment == 'prod' && 'prod-gcp' || 'dev-gcp' }}
       resource: .nais/naiserator-${{ inputs.environment }}.yaml
       image: ${{ needs.build.outputs.image }}
