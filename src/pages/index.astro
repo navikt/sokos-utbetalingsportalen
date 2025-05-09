@@ -1,8 +1,7 @@
 ---
-import { Heading } from "@navikt/ds-react";
 import AppSwitcherSkeleton from "src/components/skeleton/AppSwitcherSkeleton";
 import AppSwitcher from "../components/appswitcher/AppSwitcher";
-import GuidePanel from "../components/guidepanel/GuidePanel";
+import GuidePanel from "../components/welcomepanel/WelcomePanel";
 import Layout from "../layouts/Layout.astro";
 import styles from "./_index.module.css";
 
@@ -22,14 +21,7 @@ const greeting =
 <Layout title="Hjem">
   <div class={styles.home}>
     <div class={styles.homeContent}>
-      <div class={styles.homeGuidepanel}>
-        <div class={styles.homeHeading}>
-          <Heading level="1" size="large" spacing>
-            {greeting}, {userInfo.name}
-          </Heading>
-        </div>
-        <GuidePanel />
-      </div>
+      <GuidePanel greeting={greeting} name={userInfo.name} />
       <div>
         <AppSwitcher
           server:defer
