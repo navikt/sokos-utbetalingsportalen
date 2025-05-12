@@ -24,7 +24,7 @@
     "zod": "^3.24.4"
   },
   "devDependencies": {
-    "@eik/rollup-plugin": "^4.0.66",
+    "@eik/rollup-plugin": "^5.0.0",
     "@eslint/js": "^9.26.0",
     "@navikt/aksel-stylelint": "^7.21.0",
     "@playwright/test": "^1.52.0",
