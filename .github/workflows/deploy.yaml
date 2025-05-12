@@ -37,7 +37,7 @@ jobs:
     uses: navikt/mob-gha-workflows/.github/workflows/nais-app-deploy.yaml@main
     with:
       cluster: dev-gcp
-      resource: .nais/naiserator-dev.yaml
+      resource: .nais/naiserator-q1.yaml
       image: ${{ needs.build.outputs.image }}
 
   deploy-qx:
