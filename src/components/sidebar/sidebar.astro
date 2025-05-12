@@ -1,0 +1,20 @@
+---
+import SideBar from './SideBar';
+import SideBarSkeleton from '../../components/skeleton/SideBarSkeleton';
+
+const userInfo = Astro.locals.userInfo;
+---
+
+<div class="sidebar">
+  <SideBar server:defer adGroups={userInfo.adGroups} client:only="react">
+    <SideBarSkeleton slot="fallback" />
+  </SideBar>
+</div>
+
+<script>
+  document.addEventListener('sidebarStateChange', (event) => {
+    const customEvent = event as CustomEvent;
+    const isOpen = customEvent.detail.isOpen;
+    document.body.classList.toggle('sidebar-open', isOpen);
+  });
+</script>

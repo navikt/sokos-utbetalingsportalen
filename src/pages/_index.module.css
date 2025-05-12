@@ -1,0 +1,11 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.homeContent {
+  min-width: 380px;
+  max-width: 1600px;
+}
