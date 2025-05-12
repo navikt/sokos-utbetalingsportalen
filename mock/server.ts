@@ -1,7 +1,6 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import example from "./data/example.json";
 import microfrontend from "./microfrontend";
 
 const api = new Hono();
@@ -14,10 +13,6 @@ api.use(
     credentials: true,
   }),
 );
-
-api.get("/random", (c) => {
-  return c.json(example);
-});
 
 api.get("/bundle.js", (c) => {
   return new Response(microfrontend, {
