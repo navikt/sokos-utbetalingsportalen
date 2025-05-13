@@ -26,7 +26,6 @@ const hasAccess = hasAccessToAdGroup(
       hasAccess ? (
         <Microfrontend
           url={fetchMicrofrontendBundleUrl(grensesnittmalConfig.naisAppName)}
-          userData={Astro.locals.userInfo}
           client:only="react"
         />
       ) : (

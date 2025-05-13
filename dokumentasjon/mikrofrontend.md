@@ -137,7 +137,6 @@
           hasAccess ? (
             <Microfrontend
               url={fetchMicrofrontendBundleUrl(attestasjonConfig.naisAppName)}
-              userData={Astro.locals.userInfo}
               client:only="react"
             />
           ) : (
