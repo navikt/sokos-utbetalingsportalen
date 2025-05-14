@@ -1,0 +1,36 @@
+---
+import { getMicrofrontendConfig } from "src/microfrontend";
+import { hasAccessToAdGroup } from "src/utils/common";
+import {
+  fetchMicrofrontendAdGroup,
+  fetchMicrofrontendBundleUrl,
+} from "src/utils/server/common";
+import Microfrontend from "../components/microfrontend/Microfrontend";
+import Layout from "../layouts/Layout.astro";
+import NoAccess from "./NoAccess.astro";
+
+const dareConfig = getMicrofrontendConfig("dare");
+
+const hasAccess = hasAccessToAdGroup(
+  Astro.locals.userInfo.adGroups,
+  fetchMicrofrontendAdGroup({
+    adGroupDevelopment: dareConfig.adGroupDevelopment,
+    adGroupProduction: dareConfig.adGroupProduction,
+  })
+);
+---
+
+<Layout title={dareConfig.title}>
+  <div>
+    {
+      hasAccess ? (
+        <Microfrontend
+          url={fetchMicrofrontendBundleUrl(dareConfig.naisAppName)}
+          client:only="react"
+        />
+      ) : (
+        <NoAccess />
+      )
+    }
+  </div>
+</Layout>
