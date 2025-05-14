@@ -30,12 +30,12 @@ const isProduction = getServerSideEnvironment() === "production";
     <title>{pageTitle}</title>
     <link
       rel="preload"
-      href="https://cdn.nav.no/aksel/@navikt/ds-css/6.16.2/index.min.css"
+      href="https://cdn.nav.no/aksel/@navikt/ds-css/7.21.0/index.min.css"
       as="style"
     />
     <link
       rel="stylesheet"
-      href="https://cdn.nav.no/aksel/@navikt/ds-css/6.16.2/index.min.css"
+      href="https://cdn.nav.no/aksel/@navikt/ds-css/7.21.0/index.min.css"
     />
     <script is:inline type="importmap">
       {
@@ -52,7 +52,7 @@ const isProduction = getServerSideEnvironment() === "production";
             data-host-url="https://umami.nav.no"
             data-website-id={sporingskode} />}
   </head>
-  <body class="main">
+  <body>
     <Header />
     <Environmentbanner />
     <SideBar />

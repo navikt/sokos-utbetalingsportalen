@@ -1,12 +1,10 @@
 import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import type { UserData } from "../../types/UserData.ts";
 import ErrorMessage from "../error/ErrorMessage.tsx";
 import ContentLoader from "../loader/ContentLoader.tsx";
 
 type MicrofrontendType = {
   url: string;
-  userData: UserData;
 };
 
 function createMicrofrontendBundle(url: string) {
