@@ -137,3 +137,7 @@ spec:
       value: api://prod-fss.okonomi.sokos-utbetaling-api/.default
     - name: SOKOS_UTBETALING_API_PROXY
       value: "/sokos-utbetaling-api"
+
+    # umami
+    - name: UMAMI_SPORINGSKODE
+      value: "e1b661e6-a812-4433-a1e7-4648212fddfe"
