@@ -144,3 +144,7 @@ spec:
       value: api://dev-fss.okonomi.sokos-betsys/.default
     - name: SOKOS_MELDINGSFLYT_API_PROXY
       value: "/up-meldingsflyt-api"
+
+    # umami
+    - name: UMAMI_SPORINGSKODE
+      value: "e174f8d8-4082-4cb0-8280-b992d0a47901"

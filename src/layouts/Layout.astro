@@ -3,6 +3,7 @@ import Environmentbanner from "src/components/environmentbanner/environmentbanne
 import SideBar from "src/components/sidebar/sidebar.astro";
 import Header from "../components/header/header.astro";
 import styles from "./Layout.module.css";
+import { getServerSideEnvironment } from "../utils/server/environment";
 
 export type LayoutProps = {
   title: string;
@@ -11,8 +12,12 @@ export type LayoutProps = {
 const { title } = Astro.props as LayoutProps;
 
 const pageTitle = title
-  ? `Utbetalingsportalen | ${title}`
+  ? `${title} | Utbetalingsportalen`
   : "Utbetalingsportalen";
+
+const sporingskode = process.env.UMAMI_SPORINGSKODE
+
+const isProduction = getServerSideEnvironment() === "production";
 ---
 
 <!doctype html>
@@ -40,12 +45,12 @@ const pageTitle = title
         }
       }
     </script>
-    <script is:inline
-      defer
-      src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
-      data-host-url="https://umami.nav.no"
-      data-website-id="e174f8d8-4082-4cb0-8280-b992d0a47901"
-    />
+    {!isProduction && <script is:inline
+            defer
+            data-astro-rerun
+            src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
+            data-host-url="https://umami.nav.no"
+            data-website-id={sporingskode} />}
   </head>
   <body>
     <Header />
