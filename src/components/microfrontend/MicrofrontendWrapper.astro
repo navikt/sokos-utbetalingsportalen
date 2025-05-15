@@ -1,0 +1,31 @@
+---
+import { getMicrofrontendConfig } from "src/microfrontend";
+import { hasAccessToApp } from "src/utils/accessControlUtils";
+import { fetchMicrofrontendBundleUrl } from "src/utils/server/common";
+import Microfrontend from "./Microfrontend";
+import Layout from "../../layouts/Layout.astro";
+import NoAccess from "../../pages/NoAccess.astro";
+
+interface Props {
+  appName: string;
+}
+
+const { appName } = Astro.props;
+const appConfig = getMicrofrontendConfig(appName);
+const hasAccess = hasAccessToApp(Astro.locals.userInfo.adGroups, appConfig);
+---
+
+<Layout title={appConfig.title}>
+  <div>
+    {
+      hasAccess ? (
+        <Microfrontend
+          url={fetchMicrofrontendBundleUrl(appConfig.naisAppName)}
+          client:only="react"
+        />
+      ) : (
+        <NoAccess />
+      )
+    }
+  </div>
+</Layout>
