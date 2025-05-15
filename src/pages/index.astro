@@ -22,7 +22,6 @@ const greeting =
   <div class={styles.home}>
     <div class={styles.homeContent}>
       <GuidePanel greeting={greeting} name={userInfo.name} />
-      <div>
         <AppSwitcher
           server:defer
           adGroups={userInfo.adGroups}
@@ -30,7 +29,6 @@ const greeting =
         >
           <AppSwitcherSkeleton slot="fallback" />
         </AppSwitcher>
-      </div>
     </div>
   </div>
 </Layout>

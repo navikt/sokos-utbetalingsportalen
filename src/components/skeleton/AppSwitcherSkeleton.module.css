@@ -1,9 +1,8 @@
 .appCardSkeleton {
   position: relative;
   border-radius: 0.5rem;
-  padding: 0.85rem;
-  max-height: 120px;
-  width: 95%;
+  padding: 1rem;
+  width: 100%;
   box-shadow:
     0 1px 3px rgb(0 0 0 / 10%),
     0 1px 2px rgb(0 0 0 / 6%);
