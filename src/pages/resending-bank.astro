@@ -1,31 +1,24 @@
 ---
 import { getMicrofrontendConfig } from "src/microfrontend";
-import { hasAccessToAdGroup } from "src/utils/common";
+import { hasAccessToApp } from "src/utils/accessControlUtils";
 import {
-  fetchMicrofrontendAdGroup,
-  fetchMicrofrontendBundleUrl,
+fetchMicrofrontendBundleUrl
 } from "src/utils/server/common";
 import Microfrontend from "../components/microfrontend/Microfrontend";
 import Layout from "../layouts/Layout.astro";
 import NoAccess from "./NoAccess.astro";
 
-const resendingbankConfig = getMicrofrontendConfig("resending-bank");
+const appConfig = getMicrofrontendConfig("resending-bank");
 
-const hasAccess = hasAccessToAdGroup(
-  Astro.locals.userInfo.adGroups,
-  fetchMicrofrontendAdGroup({
-    adGroupDevelopment: resendingbankConfig.adGroupDevelopment,
-    adGroupProduction: resendingbankConfig.adGroupProduction,
-  })
-);
+const hasAccess = hasAccessToApp(Astro.locals.userInfo.adGroups, appConfig);
 ---
 
-<Layout title={resendingbankConfig.title}>
+<Layout title={appConfig.title}>
   <div>
     {
       hasAccess ? (
         <Microfrontend
-          url={fetchMicrofrontendBundleUrl(resendingbankConfig.naisAppName)}
+          url={fetchMicrofrontendBundleUrl(appConfig.naisAppName)}
           client:only="react"
         />
       ) : (

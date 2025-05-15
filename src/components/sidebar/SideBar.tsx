@@ -1,9 +1,8 @@
-import type { PropsWithChildren } from "react";
-import { useEffect, useState } from "react";
-import { microfrontendConfigArray as allApps } from "src/microfrontend";
-import { hasAccessToAdGroup } from "src/utils/common";
 import { HouseIcon, MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
 import { Button, Link } from "@navikt/ds-react";
+import type { PropsWithChildren } from "react";
+import { useEffect, useState } from "react";
+import { getAuthorizedApps } from "src/utils/accessControlUtils";
 import styles from "./SideBar.module.css";
 
 type SideBarProps = {
@@ -11,6 +10,7 @@ type SideBarProps = {
 };
 
 export default function SideBar({ adGroups }: SideBarProps) {
+  const authorizedApps = getAuthorizedApps(adGroups);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -19,12 +19,6 @@ export default function SideBar({ adGroups }: SideBarProps) {
     });
     document.dispatchEvent(event);
   }, [isOpen]);
-
-  const authorizedApps = allApps.filter(
-    (app) =>
-      hasAccessToAdGroup(adGroups, app.adGroupDevelopment) ||
-      hasAccessToAdGroup(adGroups, app.adGroupProduction),
-  );
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
