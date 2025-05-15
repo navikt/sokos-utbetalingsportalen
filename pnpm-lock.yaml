@@ -52,9 +52,6 @@ importers:
       react-error-boundary:
         specifier: ^6.0.0
         version: 6.0.0(react@18.3.1)
-      rollup-plugin-import-map:
-        specifier: 3.0.0
-        version: 3.0.0
       stylelint:
         specifier: ^16.19.1
         version: 16.19.1(typescript@5.8.3)
@@ -984,6 +981,9 @@ packages:
     peerDependencies:
       "@types/react": ">=17.0.30"
       react: ">=17.0.0 || >19.0.0-rc"
+    peerDependenciesMeta:
+      "@types/react":
+        optional: true
 
   "@navikt/ds-tokens@7.21.1":
     resolution:
@@ -3651,12 +3651,6 @@ packages:
         integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==,
       }
 
-  rollup-plugin-import-map@3.0.0:
-    resolution:
-      {
-        integrity: sha512-JB4WGCvTEDLU/puADvkJpqw3GqrdGs6UBR9USyYv47hkyWv0w1Nmwim4Cnq5yUZQQK1Po0gtA9s4NQblgc5i3A==,
-      }
-
   rollup@4.40.1:
     resolution:
       {
@@ -5193,11 +5187,12 @@ snapshots:
       "@floating-ui/react-dom": 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       "@navikt/aksel-icons": 7.21.1
       "@navikt/ds-tokens": 7.21.1
-      "@types/react": 18.3.21
       clsx: 2.1.1
       date-fns: 4.1.0
       react: 18.3.1
       react-day-picker: 9.6.1(react@18.3.1)
+    optionalDependencies:
+      "@types/react": 18.3.21
     transitivePeerDependencies:
       - react-dom
 
@@ -6928,8 +6923,6 @@ snapshots:
   reusify@1.0.4: {}
 
   rfdc@1.4.1: {}
-
-  rollup-plugin-import-map@3.0.0: {}
 
   rollup@4.40.1:
     dependencies:
