@@ -1,7 +1,7 @@
 import { microfrontendConfigArray as allApps } from "../microfrontend";
 import type { MicroFrontend } from "../microfrontend";
 
-export function hasAccessToAdGroup(adGroups: string[], uuid: string): boolean {
+function hasAccessToAdGroup(adGroups: string[], uuid: string): boolean {
   return adGroups.includes(uuid);
 }
 

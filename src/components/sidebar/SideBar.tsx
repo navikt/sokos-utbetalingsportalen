@@ -2,7 +2,7 @@ import { HouseIcon, MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
 import { Button, Link } from "@navikt/ds-react";
 import type { PropsWithChildren } from "react";
 import { useEffect, useState } from "react";
-import { getAuthorizedApps } from "src/utils/accessControlUtils";
+import { getAuthorizedApps } from "src/utils/accessControl";
 import styles from "./SideBar.module.css";
 
 type SideBarProps = {

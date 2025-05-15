@@ -1,10 +1,10 @@
 ---
 import { getMicrofrontendConfig } from "src/microfrontend";
-import { hasAccessToApp } from "src/utils/accessControlUtils";
-import { fetchMicrofrontendBundleUrl } from "src/utils/server/common";
-import Microfrontend from "./Microfrontend";
+import { hasAccessToApp } from "src/utils/accessControl";
+import { fetchMicrofrontendBundleUrl } from "src/utils/server/fetchBundle";
 import Layout from "../../layouts/Layout.astro";
 import NoAccess from "../../pages/NoAccess.astro";
+import Microfrontend from "./Microfrontend";
 
 interface Props {
   appName: string;
