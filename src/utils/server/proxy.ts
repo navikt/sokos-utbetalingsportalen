@@ -1,5 +1,6 @@
 import type { APIContext, APIRoute } from "astro";
 import { getOboToken } from "src/utils/server/token";
+import { logger } from "../logger";
 
 type ProxyConfig = {
   apiProxy: string;
@@ -12,7 +13,6 @@ function getProxyUrl(request: Request, proxyConfig: ProxyConfig): URL {
     `https://${process.env.UTBETALINGSPORTALEN_URL}${proxyConfig.apiProxy}`,
     proxyConfig.apiUrl,
   );
-  console.log(`Proxying request from ${proxyConfig.apiProxy} to ${url}`);
   return new URL(url);
 }
 
@@ -32,6 +32,10 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
       // @ts-expect-error
       duplex: "half",
     });
+
+    logger().info(
+      `Statuscode: [${response.status}] -> Proxy request from ${proxyConfig.apiProxy} to ${url}`,
+    );
 
     return new Response(response.body);
   };

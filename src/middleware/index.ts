@@ -28,6 +28,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
         "7e0c2ad1-d0e7-4fa8-8169-7a9d68435644", // 0000-GA-SOKOS-MF-Fastedata-READ
       ],
     };
+
     return next();
   }
 
