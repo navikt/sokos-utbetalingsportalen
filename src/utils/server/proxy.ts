@@ -1,5 +1,6 @@
 import type { APIContext, APIRoute } from "astro";
 import { getOboToken } from "src/utils/server/token";
+import { logger } from "../logger";
 
 type ProxyConfig = {
   apiProxy: string;
@@ -32,7 +33,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
       duplex: "half",
     });
 
-    console.log(
+    logger().info(
       `Statuscode: [${response.status}] -> ${proxyConfig.apiProxy}, ${url}`,
     );
 
