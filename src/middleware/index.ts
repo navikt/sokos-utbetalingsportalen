@@ -3,7 +3,6 @@ import { defineMiddleware } from "astro/middleware";
 import { isLocal } from "../utils/server/urls.ts";
 import { loginUrl } from "./urls";
 import { isInternal } from "./utils";
-import { logger } from "src/utils/logger.ts";
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const token = getToken(context.request.headers);
@@ -29,10 +28,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
         "7e0c2ad1-d0e7-4fa8-8169-7a9d68435644", // 0000-GA-SOKOS-MF-Fastedata-READ
       ],
     };
-
-    logger().info(
-      "Running in local mode. Skipping authentication and authorization.",
-    );
 
     return next();
   }
