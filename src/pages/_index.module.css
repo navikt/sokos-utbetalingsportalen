@@ -7,5 +7,6 @@
 
 .homeContent {
   min-width: 380px;
+  width: 100%;
   max-width: 1600px;
 }
