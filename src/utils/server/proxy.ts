@@ -34,7 +34,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
     });
 
     logger().info(
-      `Statuscode: [${response.status}] -> ${proxyConfig.apiProxy}, ${url}`,
+      `Statuscode: [${response.status}] -> Proxy request from ${proxyConfig.apiProxy} to ${url}`,
     );
 
     return new Response(response.body);

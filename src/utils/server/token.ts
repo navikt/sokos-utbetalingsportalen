@@ -1,4 +1,5 @@
 import { requestOboToken } from "@navikt/oasis";
+import { logger } from "../logger";
 
 export const getOboToken = async (
   token: string,
@@ -7,7 +8,9 @@ export const getOboToken = async (
   const oboResult = await requestOboToken(token, audience);
 
   if (!oboResult.ok) {
-    console.error("Error getting access token: " + oboResult.error);
+    logger().error(
+      `Error getting obo token for audience ${audience}: ${oboResult.error}`,
+    );
     throw new Error(`Request oboToken for ${audience} failed `);
   }
 
