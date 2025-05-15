@@ -1,4 +1,4 @@
-type MicroFrontend = {
+export type MicroFrontend = {
   app: string;
   title: string;
   description: string;
