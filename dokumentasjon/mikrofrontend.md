@@ -121,9 +121,10 @@ Har du ikke routing i mikrofrontend? Følg pkt. 2 </br>
 
   1. Routing -> Lag en mappe som heter det samme som `route: "/attestasjon"` i pkt. 2. Altså [attestasjon](/src/pages/attestasjon/) under [pages](/src/pages/). Inne i mappen lager du en fil med navn `[...attestasjon].astro`. Inne i denne filen legger du inn koden ovenfor.
   2. Ikke routing -> Lag filen `attestasjon.astro` direkte under [pages](/src/pages/). Inne i denne filen legger du inn koden ovenfor.
-  3. Endre const ->
+  3. Endre `attestasjon` til appnavn du skal hente config for ->
+  
       ```
-      const attestasjonConfig = getMicrofrontendConfig("attestasjon");
+      <MicrofrontendWrapper appName="attestasjon" />
       ```
       til å hente config fra [microfrontend.ts](/src/microfrontend.ts).
 
