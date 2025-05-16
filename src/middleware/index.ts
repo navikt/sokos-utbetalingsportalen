@@ -6,6 +6,7 @@ import { logger } from "src/utils/logger.ts";
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const loginPath = `/oauth2/login?redirect=${context.url}`;
+  console.log(context.url);
   const token = getToken(context.request.headers);
   const params = encodeURIComponent(context.url.search);
 
