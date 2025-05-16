@@ -11,16 +11,7 @@ interface Props {
 }
 
 const { appName } = Astro.props;
-
-if (!appName) {
-  return Astro.redirect("/404");
-}
-
 const appConfig = getMicrofrontendConfig(appName);
-
-if (!appConfig) {
-  return Astro.redirect("/404");
-}
 
 const hasAccess = hasAccessToApp(Astro.locals.userInfo.adGroups, appConfig);
 ---

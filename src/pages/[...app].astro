@@ -2,6 +2,7 @@
 import { microfrontendConfigArray } from "src/microfrontend";
 import MicrofrontendWrapper from "../components/microfrontend/MicrofrontendWrapper.astro";
 import { normalizeRoute } from "src/utils/normalizeRoute";
+import NotFound from "../pages/404.astro";
 
 // er denne true blir html generert ved byggetid
 export const prerender = false;
@@ -13,10 +14,11 @@ const matchingApp = microfrontendConfigArray.find(
 );
 
 if (!matchingApp) {
-  return Astro.redirect("/404");
+  Astro.response.status = 404;
 }
-
-const appName = matchingApp.app;
 ---
-
-<MicrofrontendWrapper appName={appName} />
+{matchingApp ? (
+  <MicrofrontendWrapper appName={matchingApp.app} />
+) : (
+  <NotFound />
+)}

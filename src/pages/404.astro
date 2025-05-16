@@ -3,6 +3,7 @@ import { BodyShort, Box, Heading, Link, List } from "@navikt/ds-react";
 import { ChatExclamationmarkIcon } from "@navikt/aksel-icons";
 import Layout from "../layouts/Layout.astro";
 import styles from "./_404.module.css";
+import GoBack from "src/components/go-back/GoBack";
 ---
 
 <Layout title="404 - Fant ikke siden">
@@ -22,7 +23,9 @@ import styles from "./_404.module.css";
       <List>
         <List.Item>Bruk gjerne søket eller menyen</List.Item>
         <List.Item>
-          <Link href="/"> Gå tilbake til forrige side </Link>
+          <GoBack fallbackUrl="/" client:load>
+            Gå tilbake til forrige side
+          </GoBack>
         </List.Item>
       </List>
     </div>
