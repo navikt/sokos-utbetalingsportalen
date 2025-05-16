@@ -8,7 +8,7 @@ export const getOboToken = async (
   const oboResult = await requestOboToken(token, audience);
 
   if (!oboResult.ok) {
-    logger().error(
+    logger.error(
       `Error getting obo token for audience ${audience}: ${oboResult.error}`,
     );
     throw new Error(`Request oboToken for ${audience} failed `);

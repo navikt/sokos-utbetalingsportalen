@@ -34,6 +34,9 @@ importers:
       astro:
         specifier: ^5.7.12
         version: 5.7.12(@types/node@22.15.17)(rollup@4.40.1)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.7.1)
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.13
       lint-staged:
         specifier: ^16.0.0
         version: 16.0.0
@@ -1877,6 +1880,12 @@ packages:
     resolution:
       {
         integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==,
+      }
+
+  dayjs@1.11.13:
+    resolution:
+      {
+        integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==,
       }
 
   debug@4.4.0:
@@ -5853,6 +5862,8 @@ snapshots:
   date-fns-jalali@4.1.0-0: {}
 
   date-fns@4.1.0: {}
+
+  dayjs@1.11.13: {}
 
   debug@4.4.0:
     dependencies:

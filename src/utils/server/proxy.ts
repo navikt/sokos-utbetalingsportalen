@@ -33,7 +33,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
       duplex: "half",
     });
 
-    logger().info(
+    logger.info(
       `Statuscode: [${response.status}] -> Proxy request from ${proxyConfig.apiProxy} to ${url}`,
     );
 
