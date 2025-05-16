@@ -1,9 +1,6 @@
 import type { APIContext, APIRoute } from "astro";
 import { getOboToken } from "src/utils/server/token";
 import { logger } from "../logger";
-import pinoHttp from "pino-http";
-
-const httpLogger = pinoHttp({ logger });
 
 type ProxyConfig = {
   apiProxy: string;
@@ -22,7 +19,15 @@ function getProxyUrl(request: Request, proxyConfig: ProxyConfig): URL {
 export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
   return async (context: APIContext) => {
     // Log incoming request
-    httpLogger(context.request as any, {} as any);
+    logger.info(
+      {
+        method: context.request.method,
+        url: context.request.url,
+        proxyFrom: proxyConfig.apiProxy,
+        proxyTo: proxyConfig.apiUrl,
+      },
+      "Proxy HTTP request",
+    );
 
     const audience = proxyConfig.audience;
     const token = await getOboToken(context.locals.token, audience);
@@ -40,13 +45,10 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
     });
 
     // Log outgoing response
-    httpLogger.logger.info(
+    logger.info(
       {
         status: response.status,
-        statusText: response.statusText,
-        url: url.href,
-        proxyFrom: proxyConfig.apiProxy,
-        proxyTo: proxyConfig.apiUrl,
+        url: response.url,
       },
       "Proxy HTTP response",
     );
