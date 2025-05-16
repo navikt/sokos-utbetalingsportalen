@@ -12,6 +12,7 @@ interface Props {
 
 const { appName } = Astro.props;
 const appConfig = getMicrofrontendConfig(appName);
+
 const hasAccess = hasAccessToApp(Astro.locals.userInfo.adGroups, appConfig);
 ---
 

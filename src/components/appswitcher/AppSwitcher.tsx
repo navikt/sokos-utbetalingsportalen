@@ -36,7 +36,9 @@ export default function AppSwitcher(props: AppSwitcherProps) {
       <Switch
         value="show"
         checked={showApps === "show"}
-        onChange={(e) => setShowApps((value) => (value ? "" : e.target.value))}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setShowApps((value: string) => (value ? "" : e.target.value))
+        }
       >
         Vis alle
       </Switch>
