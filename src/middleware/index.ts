@@ -2,7 +2,7 @@ import { getToken, validateAzureToken } from "@navikt/oasis";
 import { defineMiddleware } from "astro/middleware";
 import { isLocal } from "../utils/server/urls.ts";
 import { isInternal } from "./utils";
-import { logger } from "src/utils/logger.ts";
+import { logger, secureLogger } from "src/utils/logger.ts";
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const loginPath = `/oauth2/login?redirect=${context.url}`;
@@ -53,6 +53,16 @@ export const onRequest = defineMiddleware(async (context, next) => {
     logger.error(error);
     return context.redirect(`${loginPath}${params}`);
   }
+
+  secureLogger.info(
+    "tester logger",
+    {
+      navIdent: validatedToken.payload.NAVident,
+      name: validatedToken.payload.name,
+      groups: validatedToken.payload.groups,
+    },
+    "User authenticated",
+  );
 
   context.locals.token = token;
 
