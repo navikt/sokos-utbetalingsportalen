@@ -106,27 +106,5 @@
     });
    ````
 
-4. Nå skal du legge inn følgende kode:
 
-    ```js
-      ---
-      import MicrofrontendWrapper from "../components/microfrontend/MicrofrontendWrapper.astro";
-      ---
-
-      <MicrofrontendWrapper appName="attestasjon" />
-    ```
-
-Har du en routing i mikrofrontend? Følg pkt. 1. </br>
-Har du ikke routing i mikrofrontend? Følg pkt. 2 </br>
-
-  1. Routing -> Lag en mappe som heter det samme som `route: "/attestasjon"` i pkt. 2. Altså [attestasjon](/src/pages/attestasjon/) under [pages](/src/pages/). Inne i mappen lager du en fil med navn `[...attestasjon].astro`. Inne i denne filen legger du inn koden ovenfor.
-  2. Ikke routing -> Lag filen `attestasjon.astro` direkte under [pages](/src/pages/). Inne i denne filen legger du inn koden ovenfor.
-  3. Endre `attestasjon` til appnavn du skal hente config for ->
-  
-      ```
-      <MicrofrontendWrapper appName="attestasjon" />
-      ```
-      til å hente config fra [microfrontend.ts](/src/microfrontend.ts).
-
-  <br></br>
-   ## 🎉 Nå er `sokos-utbetalingsportalen` klar til å kunne rendre mikrofrontend'en og rute rest kallene til riktig api. 🎉
+# Nå er `Utbetalingsportalen` klar til å kunne rendre mikrofrontend'en og rute api kallene til riktig backend 🎉

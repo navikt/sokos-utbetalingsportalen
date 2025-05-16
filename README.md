@@ -22,10 +22,10 @@ Arbeidsflatene som tilbys gir mulighet til å se og/eller behandle saker som gje
 
 ## 1. Teknisk stack
 
-- [Astro](https://astro.build/) - Web framework for rask ytelse og fleksibel komponentbruk
-- [Vite](https://vite.dev/) - Bygg verktøy for frontend
-- [React](https://react.dev/) - Komponentbibliotek for interaktive UI-komponenter
-- [TypeScript](https://www.typescriptlang.org/) - For typesikker kode
+- [Astro](https://astro.build/)
+- [Vite](https://vite.dev/)
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [Aksel](https://aksel.nav.no/) - NAVs designsystem
 
 ## 2. Utviklingsmiljø
@@ -41,8 +41,8 @@ Arbeidsflatene som tilbys gir mulighet til å se og/eller behandle saker som gje
 
 ### Lokal utvikling
 
-- `pnpm run mock` - Starter mock-server for lokal utvikling
-- `pnpm run dev` - Starter Astro dev-server
+- `pnpm run mock` - Starter mock-server for lokal utvikling (Hvis du ønsker å gjøre kall til mock)
+- `pnpm run dev` - Starter Astro dev-server (Kan kjøres uten `mock`)
 - `pnpm run build` - Bygger prosjektet
 
 ## 3. Programvarearkitektur
