@@ -55,6 +55,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
           url: response.url,
           status: response.status,
           statusText: response.statusText,
+          "X-Correlation-ID": response.headers.get("X-Correlation-ID") || "",
         },
         "Proxy HTTP error",
       );
@@ -65,6 +66,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
       {
         url: response.url,
         status: response.status,
+        "X-Correlation-ID": response.headers.get("X-Correlation-ID") || "",
       },
       "Proxy HTTP response",
     );
