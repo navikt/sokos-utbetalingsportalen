@@ -1,6 +1,7 @@
 import type { APIContext, APIRoute } from "astro";
 import { getOboToken } from "src/utils/server/token";
 import { logger } from "../logger";
+import { v4 as uuidv4 } from "uuid";
 
 type ProxyConfig = {
   apiProxy: string;
@@ -32,11 +33,15 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
     const token = await getOboToken(context.locals.token, audience);
     const url = getProxyUrl(context.request, proxyConfig);
 
+    let xCorrelationId = context.request.headers.get("x-correlation-id");
+    xCorrelationId = xCorrelationId?.trim() || uuidv4();
+
     const response = await fetch(url.href, {
       method: context.request.method,
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
+        "X-Correlation-ID": xCorrelationId,
       },
       body: context.request.body,
       // @ts-expect-error

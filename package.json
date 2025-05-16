@@ -32,6 +32,7 @@
     "stylelint": "^16.19.1",
     "stylelint-config-standard": "^38.0.0",
     "swr": "2.3.3",
+    "uuid": "^11.1.0",
     "zod": "^3.24.4"
   },
   "devDependencies": {
