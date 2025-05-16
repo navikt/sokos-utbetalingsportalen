@@ -1,0 +1,22 @@
+---
+import { microfrontendConfigArray } from "src/microfrontend";
+import MicrofrontendWrapper from "../components/microfrontend/MicrofrontendWrapper.astro";
+import { normalizeRoute } from "src/utils/normalizeRoute";
+
+// er denne true blir html generert ved byggetid
+export const prerender = false;
+
+const currentPath = Astro.params.app ?? "";
+
+const matchingApp = microfrontendConfigArray.find(
+  app => app.route === normalizeRoute(currentPath)
+);
+
+if (!matchingApp) {
+  return Astro.redirect("/404");
+}
+
+const appName = matchingApp.app;
+---
+
+<MicrofrontendWrapper appName={appName} />

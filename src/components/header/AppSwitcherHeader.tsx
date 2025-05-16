@@ -1,6 +1,7 @@
 import { MenuGridIcon } from "@navikt/aksel-icons";
 import { Dropdown, InternalHeader } from "@navikt/ds-react";
 import { getAuthorizedApps } from "src/utils/accessControl";
+import { normalizeRoute } from "src/utils/normalizeRoute";
 
 type AppSwitcherHeaderProps = {
   adGroups: string[];
@@ -16,7 +17,7 @@ export default function AppSwitcherHeader(props: AppSwitcherHeaderProps) {
         <Dropdown.Menu.GroupedList.Item
           as="a"
           target="_blank"
-          href={page.route}
+          href={normalizeRoute(page.route)}
           key={page.title + "dropdown"}
         >
           <div aria-hidden>{page.title}</div>

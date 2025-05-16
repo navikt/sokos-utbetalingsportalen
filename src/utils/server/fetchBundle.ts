@@ -1,3 +1,4 @@
+import { normalizeRoute } from "../normalizeRoute";
 import { getServerSideEnvironment } from "./environment";
 
 export function fetchMicrofrontendBundleUrl(appName: string) {
@@ -7,8 +8,7 @@ export function fetchMicrofrontendBundleUrl(appName: string) {
   return (
     "https://" +
     process.env.UTBETALINGSPORTALEN_URL +
-    "/" +
-    appName +
+    normalizeRoute(appName) +
     "/bundle.js"
   );
 }

@@ -4,6 +4,7 @@ import { microfrontendConfigArray as allApps } from "src/microfrontend";
 import { getAuthorizedApps, hasAccessToApp } from "src/utils/accessControl";
 import AppCard from "./AppCard";
 import styles from "./AppSwitcher.module.css";
+import { normalizeRoute } from "src/utils/normalizeRoute";
 
 type AppSwitcherProps = {
   adGroups: string[];
@@ -21,7 +22,7 @@ export default function AppSwitcher(props: AppSwitcherProps) {
         <AppCard
           key={app.app}
           hasAccess={hasAccessToApp(props.adGroups, app)}
-          route={app.route}
+          route={normalizeRoute(app.route)}
           title={app.title}
           description={app.description}
         />
@@ -36,7 +37,9 @@ export default function AppSwitcher(props: AppSwitcherProps) {
       <Switch
         value="show"
         checked={showApps === "show"}
-        onChange={(e) => setShowApps((value) => (value ? "" : e.target.value))}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setShowApps((value: string) => (value ? "" : e.target.value))
+        }
       >
         Vis alle
       </Switch>

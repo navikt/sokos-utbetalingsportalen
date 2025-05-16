@@ -5,6 +5,7 @@ import ContentLoader from "../loader/ContentLoader.tsx";
 
 type MicrofrontendType = {
   url: string;
+  "client:only"?: string;
 };
 
 function createMicrofrontendBundle(url: string) {
