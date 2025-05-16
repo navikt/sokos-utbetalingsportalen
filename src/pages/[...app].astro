@@ -3,18 +3,20 @@ import { microfrontendConfigArray } from "src/microfrontend";
 import MicrofrontendWrapper from "../components/microfrontend/MicrofrontendWrapper.astro";
 import NotFound from "../pages/404.astro";
 
-const currentPath = Astro.params.app ?? "";
+const currentPath = Astro.params.app;
 
-const matchingApp = microfrontendConfigArray.find(
+const appConfig = microfrontendConfigArray.find(
   app => app.route === `/${currentPath}`
 );
 
-if (!matchingApp) {
+if (!appConfig) {
   Astro.response.status = 404;
 }
+
 ---
-{matchingApp ? (
-  <MicrofrontendWrapper appName={matchingApp.app} />
+
+{appConfig ? (
+  <MicrofrontendWrapper appName={appConfig.app} />
 ) : (
   <NotFound />
 )}
