@@ -18,6 +18,16 @@ function getProxyUrl(request: Request, proxyConfig: ProxyConfig): URL {
 
 export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
   return async (context: APIContext) => {
+    logger.info(
+      {
+        method: context.request.method,
+        url: context.request.url,
+        proxyFrom: proxyConfig.apiProxy,
+        proxyTo: proxyConfig.apiUrl,
+      },
+      "Proxy HTTP request",
+    );
+
     const audience = proxyConfig.audience;
     const token = await getOboToken(context.locals.token, audience);
     const url = getProxyUrl(context.request, proxyConfig);
@@ -33,8 +43,24 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
       duplex: "half",
     });
 
-    logger().info(
-      `Statuscode: [${response.status}] -> Proxy request from ${proxyConfig.apiProxy} to ${url}`,
+    if (!response.ok) {
+      logger.error(
+        {
+          url: response.url,
+          status: response.status,
+          statusText: response.statusText,
+        },
+        "Proxy HTTP error",
+      );
+      return new Response(null, { status: response.status });
+    }
+
+    logger.info(
+      {
+        url: response.url,
+        status: response.status,
+      },
+      "Proxy HTTP response",
     );
 
     return new Response(response.body);
