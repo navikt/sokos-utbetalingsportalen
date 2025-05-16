@@ -19,22 +19,23 @@ function getProxyUrl(request: Request, proxyConfig: ProxyConfig): URL {
 
 export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
   return async (context: APIContext) => {
-    logger.info(
-      {
-        method: context.request.method,
-        url: context.request.url,
-        proxyFrom: proxyConfig.apiProxy,
-        proxyTo: proxyConfig.apiUrl,
-      },
-      "Proxy HTTP request",
-    );
-
     const audience = proxyConfig.audience;
     const token = await getOboToken(context.locals.token, audience);
     const url = getProxyUrl(context.request, proxyConfig);
 
     let xCorrelationId = context.request.headers.get("x-correlation-id");
     xCorrelationId = xCorrelationId?.trim() || uuidv4();
+
+    logger.info(
+      {
+        method: context.request.method,
+        url: context.request.url,
+        proxyFrom: proxyConfig.apiProxy,
+        proxyTo: proxyConfig.apiUrl,
+        "X-Correlation-ID": xCorrelationId,
+      },
+      "Proxy HTTP request",
+    );
 
     const response = await fetch(url.href, {
       method: context.request.method,
