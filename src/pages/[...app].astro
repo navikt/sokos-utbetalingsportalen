@@ -4,9 +4,6 @@ import MicrofrontendWrapper from "../components/microfrontend/MicrofrontendWrapp
 import { normalizeRoute } from "src/utils/normalizeRoute";
 import NotFound from "../pages/404.astro";
 
-// er denne true blir html generert ved byggetid
-export const prerender = false;
-
 const currentPath = Astro.params.app ?? "";
 
 const matchingApp = microfrontendConfigArray.find(
