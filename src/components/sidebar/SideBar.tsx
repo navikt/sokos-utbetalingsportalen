@@ -4,7 +4,6 @@ import type { PropsWithChildren } from "react";
 import { useEffect, useState } from "react";
 import { getAuthorizedApps } from "src/utils/accessControl";
 import styles from "./SideBar.module.css";
-import { normalizeRoute } from "src/utils/normalizeRoute";
 
 type SideBarProps = {
   adGroups: string[];
@@ -29,13 +28,10 @@ export default function SideBar({ adGroups }: SideBarProps) {
     children,
     route,
   }: PropsWithChildren & { route: string }) => {
-    const normalizedRoute = normalizeRoute(route);
-
     const isActive =
       typeof window !== "undefined" &&
-      (window.location.pathname === normalizedRoute ||
-        (normalizedRoute !== "/" &&
-          window.location.pathname.startsWith(normalizedRoute + "/")));
+      (window.location.pathname === route ||
+        (route !== "/" && window.location.pathname.startsWith(route + "/")));
 
     return (
       <Link

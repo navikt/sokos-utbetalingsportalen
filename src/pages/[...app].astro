@@ -1,13 +1,12 @@
 ---
 import { microfrontendConfigArray } from "src/microfrontend";
 import MicrofrontendWrapper from "../components/microfrontend/MicrofrontendWrapper.astro";
-import { normalizeRoute } from "src/utils/normalizeRoute";
 import NotFound from "../pages/404.astro";
 
 const currentPath = Astro.params.app ?? "";
 
 const matchingApp = microfrontendConfigArray.find(
-  app => app.route === normalizeRoute(currentPath)
+  app => app.route === `/${currentPath}`
 );
 
 if (!matchingApp) {

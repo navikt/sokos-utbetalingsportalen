@@ -4,7 +4,6 @@ import { microfrontendConfigArray as allApps } from "src/microfrontend";
 import { getAuthorizedApps, hasAccessToApp } from "src/utils/accessControl";
 import AppCard from "./AppCard";
 import styles from "./AppSwitcher.module.css";
-import { normalizeRoute } from "src/utils/normalizeRoute";
 
 type AppSwitcherProps = {
   adGroups: string[];
@@ -22,7 +21,7 @@ export default function AppSwitcher(props: AppSwitcherProps) {
         <AppCard
           key={app.app}
           hasAccess={hasAccessToApp(props.adGroups, app)}
-          route={normalizeRoute(app.route)}
+          route={app.route}
           title={app.title}
           description={app.description}
         />

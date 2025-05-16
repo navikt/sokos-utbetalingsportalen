@@ -80,7 +80,6 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     description: "Resending av meldinger til bank",
     adGroupDevelopment: "391bec9e-e71e-42cb-a030-56c394dd13fd",
     adGroupProduction: "de776092-a8ed-46a2-be5e-ec2eae4dcf2b",
-
     route: "/resending-bank",
     naisAppName: "sokos-up-resending-bank",
   },
