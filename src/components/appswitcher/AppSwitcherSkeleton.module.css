@@ -1,4 +1,11 @@
-.appCardSkeleton {
+.appCardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1rem;
+  justify-content: center;
+}
+
+.appCardGrid__skeleton {
   position: relative;
   border-radius: 0.5rem;
   padding: 1rem;
@@ -8,13 +15,13 @@
     0 1px 2px rgb(0 0 0 / 6%);
 }
 
-.titleWrapper {
+.appCardGrid__titleWrapper {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
 }
 
-.descriptionWrapper {
+.appCardGrid__descriptionWrapper {
   padding-top: 0.1rem;
   margin-right: 1.25rem;
 }
