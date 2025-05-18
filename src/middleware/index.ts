@@ -1,15 +1,16 @@
 import { getToken, validateAzureToken } from "@navikt/oasis";
 import { defineMiddleware } from "astro/middleware";
 import { logger } from "src/utils/logger.ts";
-import { isLocal } from "../utils/server/urls.ts";
 import { isInternal } from "./utils";
+import { getServerSideEnvironment } from "src/utils/server/environment.ts";
+import { UserDataSchema } from "src/types/schema/UserDataSchema";
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const loginPath = `/oauth2/login?redirect=${context.url}`;
   const token = getToken(context.request.headers);
   const params = encodeURIComponent(context.url.search);
 
-  if (isLocal) {
+  if (getServerSideEnvironment() === "local") {
     context.locals.userInfo = {
       navIdent: "Z123456",
       name: "Ola Mohammed",
@@ -55,11 +56,16 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
   context.locals.token = token;
 
-  context.locals.userInfo = {
-    navIdent: validatedToken.payload.NAVident as string,
-    name: validatedToken.payload.name as string,
-    adGroups: validatedToken.payload.groups as string[],
-  };
+  const userInfo = UserDataSchema.safeParse(validatedToken.payload);
+  if (!userInfo.success) {
+    const error = new Error(
+      `Invalid user info found in JWT token (cause: ${userInfo.error}, redirecting to login.`,
+    );
+    logger.error(error);
+    return context.redirect(`${loginPath}${params}`);
+  }
+
+  context.locals.userInfo = UserDataSchema.parse(userInfo.data);
 
   return next();
 });
