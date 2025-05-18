@@ -35,10 +35,10 @@ export default function SideBar({ adGroups }: SideBarProps) {
 
     return (
       <Link
-        className={`${styles["sidebarLink"]} ${isActive ? styles["active"] : ""}`}
+        className={`${styles["sidebar__link"]} ${isActive ? styles["sidebar__link--active"] : ""}`}
         href={route}
       >
-        <div className={styles["sidebarLinkChild"]}>{children}</div>
+        <div className={styles["sidebar__linkChild"]}>{children}</div>
       </Link>
     );
   };
@@ -46,11 +46,11 @@ export default function SideBar({ adGroups }: SideBarProps) {
   if (!isOpen) {
     return (
       <div
-        className={`${styles["closed"]} ${styles["sidebar"]}`}
+        className={`${styles["sidebar--closed"]} ${styles["sidebar"]}`}
         role="navigation"
       >
         <Button
-          className={styles["buttonColor"]}
+          className={styles["sidebar__buttonColor"]}
           onClick={handleToggle}
           variant="primary-neutral"
           icon={<MenuHamburgerIcon title="Hamburgermeny ikon" />}
@@ -64,7 +64,7 @@ export default function SideBar({ adGroups }: SideBarProps) {
       .slice()
       .sort((a, b) => a.title.localeCompare(b.title))
       .map((page) => (
-        <li key={page.app} className={styles["sidebarLinks"]}>
+        <li key={page.app} className={styles["sidebar__links"]}>
           {renderSideBarLink({
             route: page.route,
             children: page.title,
@@ -75,9 +75,9 @@ export default function SideBar({ adGroups }: SideBarProps) {
 
   return (
     <div className={styles["sidebar"]} role="navigation">
-      <div className={styles["closeButton"]}>
+      <div className={styles["sidebar__closeButton"]}>
         <Button
-          className={styles["buttonColor"]}
+          className={styles["sidebar__buttonColor"]}
           onClick={handleToggle}
           icon={<XMarkIcon title="Kryss ikon" />}
           iconPosition="right"
@@ -87,13 +87,16 @@ export default function SideBar({ adGroups }: SideBarProps) {
         </Button>
       </div>
 
-      <ul className={styles["sidebarList"]}>
-        <li className={styles["sidebarLinks"]}>
+      <ul className={styles["sidebar__list"]}>
+        <li className={styles["sidebar__links"]}>
           {renderSideBarLink({
             route: "/",
             children: (
               <>
-                <HouseIcon className={styles["iconStyle"]} title="Hus ikon" />
+                <HouseIcon
+                  className={styles["sidebar__icon"]}
+                  title="Hus ikon"
+                />
                 Hjem
               </>
             ),

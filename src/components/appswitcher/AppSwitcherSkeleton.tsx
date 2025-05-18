@@ -13,7 +13,6 @@ export default function AppSwitcherSkeleton() {
           <div key={item} className={styles["appCardGrid__skeleton"]}>
             <div className={styles["appCardGrid__titleWrapper"]}>
               <Skeleton variant="text" width="60%" height="24px" />
-              <Skeleton variant="rectangle" width="16px" height="16px" />
             </div>
             <div className={styles["appCardGrid__descriptionWrapper"]}>
               <Skeleton variant="text" width="90%" />

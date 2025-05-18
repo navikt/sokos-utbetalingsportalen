@@ -13,13 +13,13 @@
   transition-timing-function: ease-in-out;
 }
 
-.sidebar.closed {
+.sidebar--closed {
   z-index: 1000;
   width: 3rem;
   min-width: 3rem;
 }
 
-.sidebarLinks {
+.sidebar__links {
   display: flex;
   min-width: 18rem;
   flex-direction: column;
@@ -27,12 +27,12 @@
   padding-right: 0.1rem;
 }
 
-.sidebarList {
+.sidebar__list {
   margin: 0;
   padding: 0;
 }
 
-.closeButton {
+.sidebar__closeButton {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -42,21 +42,21 @@
   padding-right: 0.5rem;
 }
 
-.iconStyle {
+.sidebar__icon {
   width: 1.5rem;
   height: 1.5rem;
   padding-bottom: 2px;
 }
 
-.buttonColor {
+.sidebar__buttonColor {
   background-color: var(--a-surface-inverted) !important;
 }
 
-.buttonColor:hover {
+.sidebar__buttonColor:hover {
   background-color: var(--a-surface-inverted-hover) !important;
 }
 
-.sidebarLink {
+.sidebar__link {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
   white-space: nowrap;
@@ -66,11 +66,11 @@
   text-decoration: underline;
 }
 
-.sidebarLink:hover {
+.sidebar__link:hover {
   text-decoration: none;
 }
 
-.sidebarLink.active {
+.sidebar__link--active {
   pointer-events: none;
   background-color: var(--a-purple-400);
   text-decoration: none;
@@ -78,7 +78,7 @@
   transition-duration: 200ms;
 }
 
-.sidebarLinkChild {
+.sidebar__linkChild {
   display: flex;
   flex-direction: row;
   gap: 0.25rem;
