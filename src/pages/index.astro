@@ -1,5 +1,5 @@
 ---
-import AppSwitcherSkeleton from "src/components/skeleton/AppSwitcherSkeleton";
+import AppSwitcherSkeleton from "src/components/appswitcher/AppSwitcherSkeleton";
 import AppSwitcher from "../components/appswitcher/AppSwitcher";
 import GuidePanel from "../components/welcomepanel/WelcomePanel";
 import Layout from "../layouts/Layout.astro";
@@ -19,8 +19,8 @@ const greeting =
 ---
 
 <Layout title="Hjem">
-  <div class={styles.home}>
-    <div class={styles.homeContent}>
+  <div class={styles["home"]}>
+    <div class={styles["home__content"]}>
       <GuidePanel greeting={greeting} name={userInfo.name} />
         <AppSwitcher
           server:defer

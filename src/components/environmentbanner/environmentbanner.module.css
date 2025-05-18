@@ -1,4 +1,4 @@
-.banner {
+.environmentbanner {
   position: fixed;
   right: 0;
   top: 0;
@@ -7,6 +7,6 @@
   font-weight: bold;
 }
 
-.bannerIcon polygon {
+.environmentbanner__icon polygon {
   fill: #4ade80;
 }

@@ -42,7 +42,7 @@ export default function AppSwitcher(props: AppSwitcherProps) {
       >
         Vis alle
       </Switch>
-      <div className={styles.homeApps}>{appCards()}</div>
+      <div className={styles["appCardGrid"]}>{appCards()}</div>
     </>
   );
 }

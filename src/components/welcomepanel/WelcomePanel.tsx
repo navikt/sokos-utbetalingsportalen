@@ -9,8 +9,8 @@ type WelcomePanelProps = {
 
 export default function GuidePanel({ name, greeting }: WelcomePanelProps) {
   return (
-    <div className={styles.welcomeGuidepanel}>
-      <div className={styles.welcomeHeading}>
+    <div className={styles["welcomeGuidepanel"]}>
+      <div className={styles["welcomeGuidepanel__heading"]}>
         <Heading level="1" size="large" spacing>
           {greeting}, {name}
         </Heading>
