@@ -3,8 +3,8 @@
   z-index: 1000;
   height: 100vh;
   min-height: 100vh;
-  width: 18rem;
-  min-width: 18rem;
+  width: 17.5rem;
+  min-width: 17.5rem;
   overflow: hidden;
   overflow-y: auto;
   background-color: var(--a-surface-inverted);
