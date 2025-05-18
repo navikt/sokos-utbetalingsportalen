@@ -29,6 +29,5 @@ jspm_packages/
 # Astro files
 .astro/
 
-# Playwright
-playwright-report/
-test-results/
+# Securelog
+secure.log
