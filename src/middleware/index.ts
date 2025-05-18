@@ -12,9 +12,9 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
   if (getServerSideEnvironment() === "local") {
     context.locals.userInfo = {
-      navIdent: "Z123456",
+      NAVident: "Z123456",
       name: "Ola Mohammed",
-      adGroups: [
+      groups: [
         "0e58dc41-7c57-4b79-a8c7-d0caec129e53", // 0000-GA-SOKOS-MF-SPK-Mottak-ADMIN
         "a13b4176-e328-4e1c-b181-ff676a7146b1", // 0000-GA-SOKOS-MF-Skattekort-READ
         "b01fb216-fcb3-4ede-b7da-71fffe859763", // 0000-GA-SOKOS-MF-ORS-READ
