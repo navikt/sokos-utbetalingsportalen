@@ -1,7 +1,7 @@
 import { HouseIcon, MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
 import { Button, Link } from "@navikt/ds-react";
 import type { PropsWithChildren } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getAuthorizedApps } from "src/utils/accessControl";
 import styles from "./SideBar.module.css";
 
@@ -12,12 +12,31 @@ type SideBarProps = {
 export default function SideBar({ adGroups }: SideBarProps) {
   const authorizedApps = getAuthorizedApps(adGroups);
   const [isOpen, setIsOpen] = useState(false);
+  const sidebarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const event = new CustomEvent("sidebarStateChange", {
       detail: { isOpen },
     });
     document.dispatchEvent(event);
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, [isOpen]);
 
   const handleToggle = () => {
@@ -43,6 +62,20 @@ export default function SideBar({ adGroups }: SideBarProps) {
     );
   };
 
+  function getMicrofrontendLinks() {
+    return authorizedApps
+      .slice()
+      .sort((a, b) => a.title.localeCompare(b.title))
+      .map((page) => (
+        <li key={page.app} className={styles["sidebar__links"]}>
+          {renderSideBarLink({
+            route: page.route,
+            children: page.title,
+          })}
+        </li>
+      ));
+  }
+
   if (!isOpen) {
     return (
       <div
@@ -59,22 +92,8 @@ export default function SideBar({ adGroups }: SideBarProps) {
     );
   }
 
-  function getMicrofrontendLinks() {
-    return authorizedApps
-      .slice()
-      .sort((a, b) => a.title.localeCompare(b.title))
-      .map((page) => (
-        <li key={page.app} className={styles["sidebar__links"]}>
-          {renderSideBarLink({
-            route: page.route,
-            children: page.title,
-          })}
-        </li>
-      ));
-  }
-
   return (
-    <div className={styles["sidebar"]} role="navigation">
+    <div className={styles["sidebar"]} role="navigation" ref={sidebarRef}>
       <div className={styles["sidebar__closeButton"]}>
         <Button
           className={styles["sidebar__buttonColor"]}
