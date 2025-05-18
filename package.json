@@ -18,7 +18,7 @@
     "@navikt/aksel-icons": "7.21.1",
     "@navikt/ds-react": "7.21.1",
     "@navikt/oasis": "^3.8.0",
-    "astro": "^5.7.12",
+    "astro": "^5.7.13",
     "dayjs": "^1.11.13",
     "pino": "^9.6.0",
     "prom-client": "^15.1.3",
