@@ -4,7 +4,6 @@ import { logger } from "src/utils/logger.ts";
 import { isInternal } from "./utils";
 import { getServerSideEnvironment } from "src/utils/server/environment.ts";
 import { UserDataSchema } from "src/types/schema/UserDataSchema";
-import { logFaroError } from "src/components/observability/Observability";
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const loginPath = `/oauth2/login?redirect=${context.url}`;
@@ -63,7 +62,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
       `Invalid user info found in JWT token (cause: ${response.error}, redirecting to login.`,
     );
     logger.error(error);
-    logFaroError(error);
     return context.redirect(`${loginPath}${params}`);
   }
 
