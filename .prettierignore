@@ -2,7 +2,6 @@
 dokumentasjon
 public
 dist
-server/build
 **/node_modules
 **/github*.yaml
 **/nais*.yaml

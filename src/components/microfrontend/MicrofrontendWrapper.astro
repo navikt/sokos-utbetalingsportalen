@@ -1,7 +1,7 @@
 ---
 import { getMicrofrontendConfig } from "src/microfrontend";
 import { hasAccessToApp } from "src/utils/accessControl";
-import { fetchMicrofrontendBundleUrl } from "src/utils/server/fetchBundle";
+import { fetchMicrofrontendBundleUrl } from "src/utils/server/fetchMicrofrontendBundleUrl";
 import Layout from "../../layouts/Layout.astro";
 import NoAccess from "../../pages/NoAccess.astro";
 import Microfrontend from "./Microfrontend";
@@ -13,7 +13,7 @@ interface Props {
 const { appName } = Astro.props;
 const appConfig = getMicrofrontendConfig(appName);
 
-const hasAccess = hasAccessToApp(Astro.locals.userInfo.adGroups, appConfig);
+const hasAccess = hasAccessToApp(Astro.locals.userInfo.groups, appConfig);
 ---
 
 <Layout title={appConfig.title}>

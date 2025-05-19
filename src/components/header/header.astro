@@ -14,11 +14,11 @@ const userInfo = Astro.locals.userInfo;
     <Spacer />
     <AppSwitcherHeader
       server:defer
-      adGroups={userInfo.adGroups}
+      adGroups={userInfo.groups}
       client:only="react"
     >
       <AppSwitcherHeaderSkeleton slot="fallback" />
     </AppSwitcherHeader>
-    <InternalHeader.User name={userInfo.name} description={userInfo.navIdent} />
+    <InternalHeader.User name={userInfo.name} description={userInfo.NAVident} />
   </InternalHeader>
 </div>

@@ -24,7 +24,7 @@ const greeting =
       <GuidePanel greeting={greeting} name={userInfo.name} />
         <AppSwitcher
           server:defer
-          adGroups={userInfo.adGroups}
+          adGroups={userInfo.groups}
           client:only="react"
         >
           <AppSwitcherSkeleton slot="fallback" />
