@@ -1,28 +1,18 @@
-import { useEffect } from "react";
 import {
-  initializeFaro,
-  getWebInstrumentations,
   faro,
+  getWebInstrumentations,
+  initializeFaro,
 } from "@grafana/faro-web-sdk";
-import {
-  getTelemetryCollectorURLClient,
-  getTelemetryCollectorURLServer,
-} from "src/utils/server/grafanaUrl";
-import { getClientSideEnvironment } from "src/utils/client/environments";
+import { useEffect } from "react";
+import { getClientSideEnvironment } from "@utils/client/environments";
+import { getTelemetryCollectorUR } from "@utils/grafanaFaro";
 
 const Observability = () => {
   useEffect(() => {
-    console.log("Initializing Grafana Faro");
-    console.log(
-      "Telemetry collector URL CLIENT: ",
-      getTelemetryCollectorURLClient(),
-    );
-    console.log(
-      "Telemetry collector URL SERVER: ",
-      getTelemetryCollectorURLServer(),
-    );
+    console.log("Grafana Faro initialized");
+    console.log("Telemetry collector URL CLIENT: ", getTelemetryCollectorUR());
     initializeFaro({
-      url: getTelemetryCollectorURLServer(),
+      url: getTelemetryCollectorUR(),
       app: {
         name: "sokos-utbetalingsportalen",
       },
