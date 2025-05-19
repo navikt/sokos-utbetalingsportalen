@@ -25,7 +25,7 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     title: "Attestasjon",
     description: "Attestering av oppdrag",
     adGroupDevelopment: "0de8d01f-8ad0-4391-841c-55392956bc17",
-    adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    adGroupProduction: "ae51bc06-2f9a-47a4-b33d-f0825ecb9985",
     route: "/attestasjon",
     naisAppName: "sokos-up-attestasjon",
   },

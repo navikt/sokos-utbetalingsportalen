@@ -56,16 +56,16 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
   context.locals.token = token;
 
-  const userInfo = UserDataSchema.safeParse(validatedToken.payload);
-  if (!userInfo.success) {
+  const response = UserDataSchema.safeParse(validatedToken.payload);
+  if (!response.success) {
     const error = new Error(
-      `Invalid user info found in JWT token (cause: ${userInfo.error}, redirecting to login.`,
+      `Invalid user info found in JWT token (cause: ${response.error}, redirecting to login.`,
     );
     logger.error(error);
     return context.redirect(`${loginPath}${params}`);
   }
 
-  context.locals.userInfo = UserDataSchema.parse(userInfo.data);
+  context.locals.userInfo = UserDataSchema.parse(response.data);
 
   return next();
 });

@@ -36,7 +36,7 @@
     "stylelint": "^16.19.1",
     "stylelint-config-standard": "^38.0.0",
     "@hono/node-server": "1.14.1",
-    "@types/node": "22.15.18",
+    "@types/node": "22.15.19",
     "@types/react": "18.3.21",
     "@types/react-dom": "18.3.7",
     "hono": "4.7.10",
