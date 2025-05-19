@@ -1,6 +1,6 @@
 import { MenuGridIcon } from "@navikt/aksel-icons";
 import { Dropdown, InternalHeader } from "@navikt/ds-react";
-import { getAuthorizedApps } from "src/utils/accessControl";
+import { getAuthorizedApps } from "@utils/accessControl";
 
 type AppSwitcherHeaderProps = {
   adGroups: string[];

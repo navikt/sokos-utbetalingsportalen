@@ -4,7 +4,16 @@
     "baseUrl": ".",
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-    "types": ["astro/client"]
+    "verbatimModuleSyntax": false,
+    "types": ["astro/client"],
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@pages/*": ["src/pages/*"],
+      "@types/*": ["src/types/*"],
+      "@schema/*": ["src/types/schema/*"],
+      "@utils/*": ["src/utils/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
