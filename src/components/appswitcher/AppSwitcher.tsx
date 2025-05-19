@@ -1,7 +1,7 @@
 import { Heading, Switch } from "@navikt/ds-react";
+import { getAuthorizedApps, hasAccessToApp } from "@utils/accessControl";
 import { useState } from "react";
 import { microfrontendConfigArray as allApps } from "src/microfrontend";
-import { getAuthorizedApps, hasAccessToApp } from "src/utils/accessControl";
 import AppCard from "./AppCard";
 import styles from "./AppSwitcher.module.css";
 

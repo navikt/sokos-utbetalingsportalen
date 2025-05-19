@@ -1,9 +1,9 @@
 import { getToken, validateAzureToken } from "@navikt/oasis";
 import { defineMiddleware } from "astro/middleware";
-import { logger } from "src/utils/logger.ts";
+import { logger } from "@utils/logger.ts";
 import { isInternal } from "./utils";
-import { getServerSideEnvironment } from "src/utils/server/environment.ts";
-import { UserDataSchema } from "src/types/schema/UserDataSchema";
+import { getServerSideEnvironment } from "@utils/server/environment.ts";
+import { UserDataSchema } from "@schema/UserDataSchema";
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const loginPath = `/oauth2/login?redirect=${context.url}`;

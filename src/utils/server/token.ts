@@ -1,5 +1,5 @@
 import { requestOboToken } from "@navikt/oasis";
-import { logger } from "../logger";
+import { logger } from "@utils/logger";
 
 export const getOboToken = async (
   token: string,
