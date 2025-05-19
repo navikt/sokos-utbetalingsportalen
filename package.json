@@ -21,17 +21,17 @@
     "@navikt/oasis": "^3.8.0",
     "astro": "^5.7.13",
     "dayjs": "^1.11.13",
-    "pino": "^9.6.0",
+    "pino": "^9.7.0",
     "prom-client": "^15.1.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-error-boundary": "^6.0.0",
     "swr": "2.3.3",
     "uuid": "^11.1.0",
-    "zod": "^3.24.4"
+    "zod": "^3.25.3"
   },
   "devDependencies": {
-    "@hono/node-server": "1.14.1",
+    "@hono/node-server": "1.14.2",
     "@navikt/aksel-stylelint": "^7.21.1",
     "@types/node": "22.15.19",
     "@types/react": "18.3.21",
