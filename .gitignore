@@ -31,3 +31,7 @@ jspm_packages/
 
 # Securelog
 secure.log
+
+# Playwright
+playwright-report/
+test-results/

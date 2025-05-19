@@ -80,6 +80,9 @@ importers:
       lint-staged:
         specifier: ^16.0.0
         version: 16.0.0
+      prettier:
+        specifier: ^3.5.3
+        version: 3.5.3
       prettier-plugin-astro:
         specifier: ^0.14.1
         version: 0.14.1
