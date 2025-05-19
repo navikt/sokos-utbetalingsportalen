@@ -1,9 +1,9 @@
 ---
-import Environmentbanner from "src/components/environmentbanner/environmentbanner.astro";
-import SideBar from "src/components/sidebar/sidebar.astro";
-import Header from "../components/header/header.astro";
+import Environmentbanner from "@components/environmentbanner/environmentbanner.astro";
+import SideBar from "@components/sidebar/sidebar.astro";
+import Header from "@components/header/header.astro";
 import styles from "./Layout.module.css";
-import { getServerSideEnvironment } from "../utils/server/environment";
+import { getServerSideEnvironment } from "@utils/server/environment";
 
 export type LayoutProps = {
   title: string;

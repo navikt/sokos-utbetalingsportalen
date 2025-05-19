@@ -1,6 +1,6 @@
 import type { APIContext, APIRoute } from "astro";
-import { getOboToken } from "src/utils/server/token";
-import { logger } from "../logger";
+import { getOboToken } from "@utils/server/token";
+import { logger } from "@utils/logger";
 import { v4 as uuidv4 } from "uuid";
 
 type ProxyConfig = {
