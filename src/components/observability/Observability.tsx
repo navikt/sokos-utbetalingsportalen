@@ -6,9 +6,12 @@ import {
 } from "@grafana/faro-web-sdk";
 import { getTelemetryCollectorURL } from "src/utils/server/grafanaUrl";
 import { getClientSideEnvironment } from "src/utils/client/environments";
+import { logger } from "@utils/logger";
 
 const Observability = () => {
   useEffect(() => {
+    logger.info("Initializing Grafana Faro");
+    logger.info("Telemetry collector URL: ", getTelemetryCollectorURL());
     initializeFaro({
       url: getTelemetryCollectorURL(),
       app: {
