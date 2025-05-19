@@ -19,8 +19,8 @@ const greeting =
         : "God kveld";
 
 const enableObservability =
-  process.env.NAIS_CLUSTER === "dev-gcp" ||
-  process.env.NAIS_CLUSTER === "prod-gcp";
+  process.env.NAIS_CLUSTER_NAME === "dev-gcp" ||
+  process.env.NAIS_CLUSTER_NAME === "prod-gcp";
 ---
 
 <Layout title="Hjem">
