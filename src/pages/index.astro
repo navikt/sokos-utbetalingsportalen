@@ -1,8 +1,8 @@
 ---
-import AppSwitcherSkeleton from "@components/appswitcher/AppSwitcherSkeleton";
 import AppSwitcher from "@components/appswitcher/AppSwitcher";
-import GuidePanel from "@components/welcomepanel/WelcomePanel";
+import AppSwitcherSkeleton from "@components/appswitcher/AppSwitcherSkeleton";
 import Observability from "@components/observability/Observability";
+import GuidePanel from "@components/welcomepanel/WelcomePanel";
 import Layout from "@layouts/Layout.astro";
 import styles from "./_index.module.css";
 
@@ -17,6 +17,10 @@ const greeting =
       : currentHour < 18
         ? "God ettermiddag"
         : "God kveld";
+
+const enableObservability =
+  process.env.NAIS_CLUSTER === "dev-gcp" ||
+  process.env.NAIS_CLUSTER === "prod-gcp";
 ---
 
 <Layout title="Hjem">
@@ -28,5 +32,5 @@ const greeting =
       </AppSwitcher>
     </div>
   </div>
-  <Observability client:only="react" />
+  {enableObservability && <Observability client:only="react" />}
 </Layout>
