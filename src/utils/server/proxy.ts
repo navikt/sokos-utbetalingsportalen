@@ -23,8 +23,8 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
     const token = await getOboToken(context.locals.token, audience);
     const url = getProxyUrl(context.request, proxyConfig);
 
-    let xCorrelationId = context.request.headers.get("x-correlation-id");
-    xCorrelationId = xCorrelationId?.trim() || uuidv4();
+    let traceId = context.request.headers.get("trace_id");
+    traceId = traceId?.trim() || uuidv4();
 
     logger.info(
       {
@@ -32,7 +32,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
         url: context.request.url,
         proxyFrom: proxyConfig.apiProxy,
         proxyTo: proxyConfig.apiUrl,
-        "X-Correlation-ID": xCorrelationId,
+        trace_id: traceId,
       },
       "Proxy HTTP request",
     );
@@ -42,7 +42,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
-        "X-Correlation-ID": xCorrelationId,
+        trace_id: traceId,
       },
       body: context.request.body,
       // @ts-expect-error
@@ -55,10 +55,11 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
           url: response.url,
           status: response.status,
           statusText: response.statusText,
-          "X-Correlation-ID": response.headers.get("X-Correlation-ID") || "",
+          trace_id: response.headers.get("trace_id") || "",
         },
         "Proxy HTTP error",
       );
+
       return new Response(response.body, {
         status: response.status,
         statusText: response.statusText,
@@ -70,7 +71,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
       {
         url: response.url,
         status: response.status,
-        "X-Correlation-ID": response.headers.get("X-Correlation-ID") || "",
+        trace_id: response.headers.get("trace_id") || "",
       },
       "Proxy HTTP response",
     );

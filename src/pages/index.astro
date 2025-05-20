@@ -16,10 +16,6 @@ const greeting =
       : currentHour < 18
         ? "God ettermiddag"
         : "God kveld";
-
-const enableObservability =
-  process.env.NAIS_CLUSTER_NAME === "dev-gcp" ||
-  process.env.NAIS_CLUSTER_NAME === "prod-gcp";
 ---
 
 <Layout title="Hjem">
