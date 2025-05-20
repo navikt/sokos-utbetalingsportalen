@@ -59,7 +59,11 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
         },
         "Proxy HTTP error",
       );
-      return new Response(null, { status: response.status });
+      return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers: response.headers,
+      });
     }
 
     logger.info(
@@ -71,6 +75,10 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
       "Proxy HTTP response",
     );
 
-    return new Response(response.body);
+    return new Response(response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers,
+    });
   };
 };
