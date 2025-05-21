@@ -35,7 +35,6 @@ spec:
           - id: "0e58dc41-7c57-4b79-a8c7-d0caec129e53" # 0000-GA-SOKOS-MF-SPK-Mottak-ADMIN
           - id: "e0023d91-26bc-4d5d-95ba-3148b6123afc" # 0000-GA-SOKOS-MF-OppdragsInfo
           - id: "0de8d01f-8ad0-4391-841c-55392956bc17" # 0000-GA-SOKOS-MF-Attestasjon
-          - id: "48a80bbb-be45-4ef6-aab8-21604f057f47" # 0000-GA-SOKOS-MF-Venteregister
         extra:
           - "NAVident"
     sidecar:
@@ -58,7 +57,7 @@ spec:
       cpu: 500m
       memory: 1024Mi
   env:
-  
+
     # sokos-utbetalingsportalen
     - name: UTBETALINGSPORTALEN_ENVIRONMENT
       value: QX
