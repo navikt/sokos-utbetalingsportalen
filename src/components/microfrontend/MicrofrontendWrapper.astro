@@ -7,27 +7,20 @@ import Microfrontend from "./Microfrontend";
 import { logger } from "@utils/logger";
 import { getServerSideEnvironment } from "@utils/server/environment";
 
-interface Props {
+type Props = {
   appName: string;
 }
 
-const { appName } = Astro.props;
-const appConfig = getMicrofrontendConfig(appName);
+const appConfig = getMicrofrontendConfig(Astro.props.appName);
 
 const hasAccess = hasAccessToApp(Astro.locals.userInfo.groups, appConfig);
 
-export function fetchMicrofrontendBundleUrl(request: Request, appName: string) {
-  const requestUrl = new URL(request.url);
-  const hostname = requestUrl.hostname;
-
+export function fetchBundle(appName: string) {
   if (getServerSideEnvironment() === "local") {
     return "http://localhost:3000/bundle.js";
   }
-  return `https://${hostname}/${appName}/bundle.js`;
+  return `https://${Astro.url.hostname}/${appName}/bundle.js`;
 }
-
-const test = Astro.request.url;
-logger.info(test);
 ---
 
 <Layout title={appConfig.title}>
@@ -35,7 +28,7 @@ logger.info(test);
     {
       hasAccess ? (
         <Microfrontend
-          url={fetchMicrofrontendBundleUrl(Astro.request, appConfig.naisAppName)}
+          url={fetchBundle(appConfig.naisAppName)}
           client:only="react"
         />
       ) : (
