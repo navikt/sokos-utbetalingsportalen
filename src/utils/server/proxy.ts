@@ -2,7 +2,6 @@ import type { APIContext, APIRoute } from "astro";
 import { getOboToken } from "@utils/server/token";
 import { logger } from "@utils/logger";
 import { v4 as uuidv4 } from "uuid";
-import { getAppHostname } from "@utils/client/appHostname";
 
 type ProxyConfig = {
   apiProxy: string;
@@ -11,8 +10,11 @@ type ProxyConfig = {
 };
 
 function getProxyUrl(request: Request, proxyConfig: ProxyConfig): URL {
+  const requestUrl = new URL(request.url);
+  const hostname = requestUrl.hostname;
+
   const url = request.url.replace(
-    `https://${getAppHostname(request)}${proxyConfig.apiProxy}`,
+    `https://${hostname}${proxyConfig.apiProxy}`,
     proxyConfig.apiUrl,
   );
   return new URL(url);
