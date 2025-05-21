@@ -77,7 +77,7 @@ spec:
   env:
 
     - name: UTBETALINGSPORTALEN_URL
-      value: utbetalingsportalen.intern.dev.nav.no
+      value: utbetalingsportalen.ansatt.dev.nav.no
     - name: UTBETALINGSPORTALEN_ENVIRONMENT
       value: Q1
 
