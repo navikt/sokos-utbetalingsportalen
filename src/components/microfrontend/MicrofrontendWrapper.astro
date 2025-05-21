@@ -4,37 +4,30 @@ import NoAccess from "@pages/NoAccess.astro";
 import { hasAccessToApp } from "@utils/accessControl";
 import { getMicrofrontendConfig } from "src/microfrontend";
 import Microfrontend from "./Microfrontend";
-import { logger } from "@utils/logger";
 import { getServerSideEnvironment } from "@utils/server/environment";
 
 type Props = {
   appName: string;
-}
+};
 
+const appHostname = Astro.url.hostname;
 const appConfig = getMicrofrontendConfig(Astro.props.appName);
+const appAccess = hasAccessToApp(Astro.locals.userInfo.groups, appConfig);
 
-const hasAccess = hasAccessToApp(Astro.locals.userInfo.groups, appConfig);
-
-export function fetchBundle(request: Request, appName: string) {
-  const requestUrl = new URL(request.url);
-  const hostname = requestUrl.hostname;
-
+export function fetchBundle(appHostname: String, appName: string) {
   if (getServerSideEnvironment() === "local") {
     return "http://localhost:3000/bundle.js";
   }
-  return `https://${hostname}/${appName}/bundle.js`;
+  return `https://${appHostname}/${appName}/bundle.js`;
 }
-
-const test = Astro.url
-logger.info(test)
 ---
 
 <Layout title={appConfig.title}>
   <div>
     {
-      hasAccess ? (
+      appAccess ? (
         <Microfrontend
-          url={fetchBundle(Astro.request, appConfig.naisAppName)}
+          url={fetchBundle(appHostname, appConfig.naisAppName)}
           client:only="react"
         />
       ) : (
