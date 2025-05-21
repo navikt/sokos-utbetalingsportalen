@@ -12,6 +12,7 @@ type ProxyConfig = {
 function getProxyUrl(request: Request, proxyConfig: ProxyConfig): URL {
   const requestUrl = new URL(request.url);
   const hostname = requestUrl.hostname;
+  console.log("Hostname:", hostname);
 
   const url = request.url.replace(
     `https://${hostname}${proxyConfig.apiProxy}`,
