@@ -10,8 +10,11 @@ type ProxyConfig = {
 };
 
 function getProxyUrl(request: Request, proxyConfig: ProxyConfig): URL {
+  const requestUrl = new URL(request.url);
+  const hostname = requestUrl.hostname;
+
   const url = request.url.replace(
-    `https://${process.env.UTBETALINGSPORTALEN_URL}${proxyConfig.apiProxy}`,
+    `https://${hostname}${proxyConfig.apiProxy}`,
     proxyConfig.apiUrl,
   );
   return new URL(url);
