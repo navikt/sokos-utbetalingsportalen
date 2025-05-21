@@ -25,7 +25,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
         "bdcedce3-dab5-4b68-b1d3-8625cd0d3b55", // 0000-GA-SOKOS-MF-KRO-READ
         "138d21fb-4e96-46d6-91e4-e3926aa349e5", // 0000-GA-SOKOS-MF-Utbetaling
         "3bc37bf2-8e76-407c-ad4a-d2c79edc241e", // 0000-GA-SOKOS-MF-Buntkontroll-READ
-        "48a80bbb-be45-4ef6-aab8-21604f057f47", // 0000-GA-SOKOS-MF-Venteregister
         "2020a765-ffae-4042-b4cc-2a5a783a3ec5", // 0000-GA-SOKOS-MF-Meldingsflyt-READ
       ],
     };
