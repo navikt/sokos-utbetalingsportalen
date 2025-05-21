@@ -1,4 +1,9 @@
+---
+import { logger } from "@utils/logger";
 import { getServerSideEnvironment } from "./environment";
+
+const test = Astro.request.url;
+logger.info("HVA FÅR JEG HER???", test);
 
 export function fetchMicrofrontendBundleUrl(appName: string) {
   if (getServerSideEnvironment() === "local") {
@@ -6,3 +11,4 @@ export function fetchMicrofrontendBundleUrl(appName: string) {
   }
   return `https://${process.env.UTBETALINGSPORTALEN_URL}/${appName}/bundle.js`;
 }
+---

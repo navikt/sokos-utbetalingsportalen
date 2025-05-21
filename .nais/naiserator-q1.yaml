@@ -76,10 +76,11 @@ spec:
       memory: 1024Mi
   env:
 
-    - name: UTBETALINGSPORTALEN_URL
-      value: utbetalingsportalen.ansatt.dev.nav.no
+    # sokos-utbetalingsportalen
     - name: UTBETALINGSPORTALEN_ENVIRONMENT
       value: Q1
+    - name: UMAMI_SPORINGSKODE
+      value: "e174f8d8-4082-4cb0-8280-b992d0a47901"
 
     # sokos-up-ors-api
     - name: SOKOS_UP_ORS_API
@@ -144,7 +145,3 @@ spec:
       value: api://dev-fss.okonomi.sokos-betsys/.default
     - name: SOKOS_MELDINGSFLYT_API_PROXY
       value: "/up-meldingsflyt-api"
-
-    # umami
-    - name: UMAMI_SPORINGSKODE
-      value: "e174f8d8-4082-4cb0-8280-b992d0a47901"
