@@ -4,7 +4,6 @@ import NoAccess from "@pages/NoAccess.astro";
 import { hasAccessToApp } from "@utils/accessControl";
 import { getMicrofrontendConfig } from "src/microfrontend";
 import Microfrontend from "./Microfrontend";
-import { fetchMicrofrontendBundleUrl } from "@utils/server/fetchMicrofrontendBundleUrl.astro";
 
 interface Props {
   appName: string;
@@ -21,7 +20,7 @@ const hasAccess = hasAccessToApp(Astro.locals.userInfo.groups, appConfig);
     {
       hasAccess ? (
         <Microfrontend
-          url={fetchMicrofrontendBundleUrl(appConfig.naisAppName)}
+          url={appConfig.bundleUrl}
           client:only="react"
         />
       ) : (
