@@ -27,7 +27,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
     const audienceService = extractAudienceService(proxyConfig.audience);
 
     return tracer.startActiveSpan(
-      `reverse-proxy-${audienceService}`,
+      `reverse-proxy[${audienceService}]`,
       async (span) => {
         try {
           const audience = proxyConfig.audience;
