@@ -2,6 +2,27 @@ import pino from "pino";
 import dayjs from "dayjs";
 import fs from "fs";
 
+// --- OpenTelemetry Setup ---
+const { NodeSDK, tracing, logs, api } = require("@opentelemetry/sdk-node");
+const { PinoInstrumentation } = require("@opentelemetry/instrumentation-pino");
+
+// Initialize OpenTelemetry SDK with Pino instrumentation
+const sdk = new NodeSDK({
+  spanProcessor: new tracing.SimpleSpanProcessor(
+    new tracing.ConsoleSpanExporter(),
+  ),
+  logRecordProcessor: new logs.SimpleLogRecordProcessor(
+    new logs.ConsoleLogRecordExporter(),
+  ),
+  instrumentations: [
+    new PinoInstrumentation({
+      // See below for Pino instrumentation options.
+    }),
+  ],
+});
+sdk.start();
+// --- End OpenTelemetry Setup ---
+
 const secureLogPath = () =>
   fs.existsSync("/secure-logs/") ? "/secure-logs/secure.log" : "./secure.log";
 
@@ -28,3 +49,6 @@ export const secureLogger = pino(
   },
   secureLogStream,
 );
+
+// Usage example:
+logger.info("Hello from OpenTelemetry-instrumented logger!");
