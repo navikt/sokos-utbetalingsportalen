@@ -24,66 +24,66 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
   return async (context: APIContext) => {
     const tracer = api.trace.getTracer("proxy");
 
-    const audience = proxyConfig.audience;
-    const token = await getOboToken(context.locals.token, audience);
-    const url = getProxyUrl(context.request, proxyConfig);
+    return tracer.startActiveSpan("proxyRequest", async (span) => {
+      try {
+        const audience = proxyConfig.audience;
+        const token = await getOboToken(context.locals.token, audience);
+        const url = getProxyUrl(context.request, proxyConfig);
 
-    tracer.startActiveSpan("proxyRequest", (span) => {
-      logger.info(
-        {
+        logger.info(
+          {
+            method: context.request.method,
+            url: context.request.url,
+            proxyFrom: proxyConfig.apiProxy,
+            proxyTo: proxyConfig.apiUrl,
+          },
+          "Proxy HTTP request",
+        );
+
+        const response = await fetch(url.href, {
           method: context.request.method,
-          url: context.request.url,
-          proxyFrom: proxyConfig.apiProxy,
-          proxyTo: proxyConfig.apiUrl,
-        },
-        "Proxy HTTP request",
-      );
-    });
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: context.request.body,
+          // @ts-expect-error
+          duplex: "half",
+        });
 
-    const response = await fetch(url.href, {
-      method: context.request.method,
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: context.request.body,
-      // @ts-expect-error
-      duplex: "half",
-    });
+        if (!response.ok) {
+          logger.error(
+            {
+              url: response.url,
+              status: response.status,
+              statusText: response.statusText,
+            },
+            "Proxy HTTP error",
+          );
 
-    if (!response.ok) {
-      tracer.startActiveSpan("proxyResponseError", (span) => {
-        logger.error(
+          return new Response(response.body, {
+            status: response.status,
+            statusText: response.statusText,
+            headers: response.headers,
+          });
+        }
+
+        logger.info(
           {
             url: response.url,
             status: response.status,
-            statusText: response.statusText,
           },
-          "Proxy HTTP error",
+          "Proxy HTTP response",
         );
-      });
 
-      return new Response(response.body, {
-        status: response.status,
-        statusText: response.statusText,
-        headers: response.headers,
-      });
-    }
-
-    tracer.startActiveSpan("proxyResponseSuccess", (span) => {
-      logger.info(
-        {
-          url: response.url,
+        return new Response(response.body, {
           status: response.status,
-        },
-        "Proxy HTTP response",
-      );
-    });
-
-    return new Response(response.body, {
-      status: response.status,
-      statusText: response.statusText,
-      headers: response.headers,
+          statusText: response.statusText,
+          headers: response.headers,
+        });
+      } finally {
+        span.end();
+      }
     });
   };
 };
