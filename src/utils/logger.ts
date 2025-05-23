@@ -3,8 +3,8 @@ import dayjs from "dayjs";
 import fs from "fs";
 
 // --- OpenTelemetry Setup ---
-const { NodeSDK, tracing, logs, api } = require("@opentelemetry/sdk-node");
-const { PinoInstrumentation } = require("@opentelemetry/instrumentation-pino");
+import { NodeSDK, tracing, logs, api } from "@opentelemetry/sdk-node";
+import { PinoInstrumentation } from "@opentelemetry/instrumentation-pino";
 
 // Initialize OpenTelemetry SDK with Pino instrumentation
 const sdk = new NodeSDK({
