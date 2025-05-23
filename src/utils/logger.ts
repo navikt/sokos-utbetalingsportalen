@@ -22,8 +22,10 @@ sdk.start();
 process.on("SIGTERM", () => {
   sdk
     .shutdown()
-    .then(() => logger.info("Tracing terminated"))
-    .catch((error) => logger.error("Error terminating tracing", error))
+    .then(() => logger.info("Opentelemetry Tracing terminated"))
+    .catch((error) =>
+      logger.error("Error terminating Opentelemetry Tracing", error),
+    )
     .finally(() => process.exit(0));
 });
 
