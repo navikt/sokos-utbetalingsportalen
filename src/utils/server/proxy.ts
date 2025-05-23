@@ -1,6 +1,7 @@
-import type { APIContext, APIRoute } from "astro";
-import { getOboToken } from "@utils/server/token";
+import { api } from "@opentelemetry/sdk-node";
 import { logger } from "@utils/logger";
+import { getOboToken } from "@utils/server/token";
+import type { APIContext, APIRoute } from "astro";
 
 type ProxyConfig = {
   apiProxy: string;
@@ -21,19 +22,23 @@ function getProxyUrl(request: Request, proxyConfig: ProxyConfig): URL {
 
 export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
   return async (context: APIContext) => {
+    const tracer = api.trace.getTracer("proxy");
+
     const audience = proxyConfig.audience;
     const token = await getOboToken(context.locals.token, audience);
     const url = getProxyUrl(context.request, proxyConfig);
 
-    logger.info(
-      {
-        method: context.request.method,
-        url: context.request.url,
-        proxyFrom: proxyConfig.apiProxy,
-        proxyTo: proxyConfig.apiUrl,
-      },
-      "Proxy HTTP request",
-    );
+    tracer.startActiveSpan("proxyRequest", (span) => {
+      logger.info(
+        {
+          method: context.request.method,
+          url: context.request.url,
+          proxyFrom: proxyConfig.apiProxy,
+          proxyTo: proxyConfig.apiUrl,
+        },
+        "Proxy HTTP request",
+      );
+    });
 
     const response = await fetch(url.href, {
       method: context.request.method,
@@ -47,14 +52,16 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
     });
 
     if (!response.ok) {
-      logger.error(
-        {
-          url: response.url,
-          status: response.status,
-          statusText: response.statusText,
-        },
-        "Proxy HTTP error",
-      );
+      tracer.startActiveSpan("proxyResponseError", (span) => {
+        logger.error(
+          {
+            url: response.url,
+            status: response.status,
+            statusText: response.statusText,
+          },
+          "Proxy HTTP error",
+        );
+      });
 
       return new Response(response.body, {
         status: response.status,
@@ -63,13 +70,15 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
       });
     }
 
-    logger.info(
-      {
-        url: response.url,
-        status: response.status,
-      },
-      "Proxy HTTP response",
-    );
+    tracer.startActiveSpan("proxyResponseSuccess", (span) => {
+      logger.info(
+        {
+          url: response.url,
+          status: response.status,
+        },
+        "Proxy HTTP response",
+      );
+    });
 
     return new Response(response.body, {
       status: response.status,
