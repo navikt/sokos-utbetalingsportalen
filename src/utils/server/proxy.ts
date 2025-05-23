@@ -30,12 +30,18 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
         const token = await getOboToken(context.locals.token, audience);
         const url = getProxyUrl(context.request, proxyConfig);
 
+        // Get trace context
+        const spanContext = span.spanContext();
+
         logger.info(
           {
             method: context.request.method,
             url: context.request.url,
             proxyFrom: proxyConfig.apiProxy,
             proxyTo: proxyConfig.apiUrl,
+            trace_id: spanContext.traceId,
+            span_id: spanContext.spanId,
+            trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
           },
           "Proxy HTTP request",
         );
@@ -57,6 +63,9 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
               url: response.url,
               status: response.status,
               statusText: response.statusText,
+              trace_id: spanContext.traceId,
+              span_id: spanContext.spanId,
+              trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
             },
             "Proxy HTTP error",
           );
@@ -72,6 +81,9 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
           {
             url: response.url,
             status: response.status,
+            trace_id: spanContext.traceId,
+            span_id: spanContext.spanId,
+            trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
           },
           "Proxy HTTP response",
         );
