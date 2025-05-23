@@ -1,7 +1,6 @@
 import type { APIContext, APIRoute } from "astro";
 import { getOboToken } from "@utils/server/token";
 import { logger } from "@utils/logger";
-import { v4 as uuidv4 } from "uuid";
 
 type ProxyConfig = {
   apiProxy: string;
@@ -26,16 +25,12 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
     const token = await getOboToken(context.locals.token, audience);
     const url = getProxyUrl(context.request, proxyConfig);
 
-    let traceId = context.request.headers.get("trace_id");
-    traceId = traceId?.trim() || uuidv4();
-
     logger.info(
       {
         method: context.request.method,
         url: context.request.url,
         proxyFrom: proxyConfig.apiProxy,
         proxyTo: proxyConfig.apiUrl,
-        trace_id: traceId,
       },
       "Proxy HTTP request",
     );
@@ -45,7 +40,6 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
-        trace_id: traceId,
       },
       body: context.request.body,
       // @ts-expect-error
@@ -58,7 +52,6 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
           url: response.url,
           status: response.status,
           statusText: response.statusText,
-          trace_id: response.headers.get("trace_id") || "",
         },
         "Proxy HTTP error",
       );
@@ -74,7 +67,6 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
       {
         url: response.url,
         status: response.status,
-        trace_id: response.headers.get("trace_id") || "",
       },
       "Proxy HTTP response",
     );
