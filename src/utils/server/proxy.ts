@@ -1,7 +1,8 @@
-import type { APIContext, APIRoute } from "astro";
-import { getOboToken } from "@utils/server/token";
+import { api } from "@opentelemetry/sdk-node";
+import { extractAudienceService } from "@utils/audience";
 import { logger } from "@utils/logger";
-import { v4 as uuidv4 } from "uuid";
+import { getOboToken } from "@utils/server/token";
+import type { APIContext, APIRoute } from "astro";
 
 type ProxyConfig = {
   apiProxy: string;
@@ -22,67 +23,85 @@ function getProxyUrl(request: Request, proxyConfig: ProxyConfig): URL {
 
 export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
   return async (context: APIContext) => {
-    const audience = proxyConfig.audience;
-    const token = await getOboToken(context.locals.token, audience);
-    const url = getProxyUrl(context.request, proxyConfig);
+    const tracer = api.trace.getTracer("proxy");
+    const audienceService = extractAudienceService(proxyConfig.audience);
 
-    let traceId = context.request.headers.get("trace_id");
-    traceId = traceId?.trim() || uuidv4();
+    return tracer.startActiveSpan(
+      `reverse-proxy[${audienceService}]`,
+      async (span) => {
+        try {
+          const audience = proxyConfig.audience;
+          const token = await getOboToken(context.locals.token, audience);
+          const url = getProxyUrl(context.request, proxyConfig);
 
-    logger.info(
-      {
-        method: context.request.method,
-        url: context.request.url,
-        proxyFrom: proxyConfig.apiProxy,
-        proxyTo: proxyConfig.apiUrl,
-        trace_id: traceId,
+          const spanContext = span.spanContext();
+
+          logger.info(
+            {
+              method: context.request.method,
+              url: context.request.url,
+              proxyFrom: proxyConfig.apiProxy,
+              proxyTo: proxyConfig.apiUrl,
+              trace_id: spanContext.traceId,
+              span_id: spanContext.spanId,
+              trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
+            },
+            "Proxy HTTP request",
+          );
+
+          const response = await fetch(url.href, {
+            method: context.request.method,
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            body: context.request.body,
+            // @ts-expect-error
+            duplex: "half",
+          });
+
+          if (!response.ok) {
+            logger.error(
+              {
+                url: response.url,
+                status: response.status,
+                statusText: response.statusText,
+                trace_id: spanContext.traceId,
+                span_id: spanContext.spanId,
+                trace_flags: spanContext.traceFlags
+                  .toString(16)
+                  .padStart(2, "0"),
+              },
+              "Proxy HTTP error",
+            );
+
+            return new Response(response.body, {
+              status: response.status,
+              statusText: response.statusText,
+              headers: response.headers,
+            });
+          }
+
+          logger.info(
+            {
+              url: response.url,
+              status: response.status,
+              trace_id: spanContext.traceId,
+              span_id: spanContext.spanId,
+              trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
+            },
+            "Proxy HTTP response",
+          );
+
+          return new Response(response.body, {
+            status: response.status,
+            statusText: response.statusText,
+            headers: response.headers,
+          });
+        } finally {
+          span.end();
+        }
       },
-      "Proxy HTTP request",
     );
-
-    const response = await fetch(url.href, {
-      method: context.request.method,
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-        trace_id: traceId,
-      },
-      body: context.request.body,
-      // @ts-expect-error
-      duplex: "half",
-    });
-
-    if (!response.ok) {
-      logger.error(
-        {
-          url: response.url,
-          status: response.status,
-          statusText: response.statusText,
-          trace_id: response.headers.get("trace_id") || "",
-        },
-        "Proxy HTTP error",
-      );
-
-      return new Response(response.body, {
-        status: response.status,
-        statusText: response.statusText,
-        headers: response.headers,
-      });
-    }
-
-    logger.info(
-      {
-        url: response.url,
-        status: response.status,
-        trace_id: response.headers.get("trace_id") || "",
-      },
-      "Proxy HTTP response",
-    );
-
-    return new Response(response.body, {
-      status: response.status,
-      statusText: response.statusText,
-      headers: response.headers,
-    });
   };
 };

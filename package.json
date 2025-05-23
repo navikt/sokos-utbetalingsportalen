@@ -19,6 +19,7 @@
     "@navikt/aksel-icons": "7.21.1",
     "@navikt/ds-react": "7.21.1",
     "@navikt/oasis": "^3.8.0",
+    "@opentelemetry/sdk-node": "^0.201.1",
     "astro": "^5.7.13",
     "dayjs": "^1.11.13",
     "pino": "^9.7.0",
@@ -27,7 +28,6 @@
     "react-dom": "18.3.1",
     "react-error-boundary": "^6.0.0",
     "swr": "2.3.3",
-    "uuid": "^11.1.0",
     "zod": "^3.25.3"
   },
   "devDependencies": {
