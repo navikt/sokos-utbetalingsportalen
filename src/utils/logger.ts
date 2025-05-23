@@ -11,15 +11,6 @@ const sdk = new NodeSDK({
   logRecordProcessor: new logs.SimpleLogRecordProcessor(
     new logs.ConsoleLogRecordExporter(),
   ),
-  instrumentations: [
-    new PinoInstrumentation({
-      logKeys: {
-        traceId: "trace_id",
-        spanId: "span_id",
-        traceFlags: "trace_flags",
-      },
-    }),
-  ],
 });
 
 sdk.start();
