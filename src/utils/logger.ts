@@ -1,4 +1,3 @@
-import { PinoInstrumentation } from "@opentelemetry/instrumentation-pino";
 import { logs, NodeSDK, tracing } from "@opentelemetry/sdk-node";
 import dayjs from "dayjs";
 import fs from "fs";
