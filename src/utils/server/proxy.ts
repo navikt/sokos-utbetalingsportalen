@@ -23,11 +23,11 @@ function getProxyUrl(request: Request, proxyConfig: ProxyConfig): URL {
 
 export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
   return async (context: APIContext) => {
-    const tracer = api.trace.getTracer("proxy");
+    const tracer = api.trace.getTracer("Reverse-Proxy");
     const audienceService = extractAudienceService(proxyConfig.audience);
 
     return tracer.startActiveSpan(
-      `reverse-proxy[${audienceService}]`,
+      `Reverse-Proxy[${audienceService}]`,
       async (span) => {
         try {
           const audience = proxyConfig.audience;
@@ -44,9 +44,9 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
               proxyTo: proxyConfig.apiUrl,
               trace_id: spanContext.traceId,
               span_id: spanContext.spanId,
-              trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
+              trace_flags: spanContext.traceFlags.toString(16),
             },
-            "Proxy HTTP request",
+            "Reverse Proxy HTTP Request",
           );
 
           const response = await fetch(url.href, {
@@ -68,11 +68,9 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
                 statusText: response.statusText,
                 trace_id: spanContext.traceId,
                 span_id: spanContext.spanId,
-                trace_flags: spanContext.traceFlags
-                  .toString(16)
-                  .padStart(2, "0"),
+                trace_flags: spanContext.traceFlags.toString(16),
               },
-              "Proxy HTTP error",
+              "Reverse Proxy HTTP Error",
             );
 
             return new Response(response.body, {
@@ -88,9 +86,9 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
               status: response.status,
               trace_id: spanContext.traceId,
               span_id: spanContext.spanId,
-              trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
+              trace_flags: spanContext.traceFlags.toString(16),
             },
-            "Proxy HTTP response",
+            "Reverse Proxy HTTP Response",
           );
 
           return new Response(response.body, {
