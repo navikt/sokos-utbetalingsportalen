@@ -44,7 +44,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
               proxyTo: proxyConfig.apiUrl,
               trace_id: spanContext.traceId,
               span_id: spanContext.spanId,
-              trace_flags: spanContext.traceFlags.toString(16),
+              trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
             },
             "Reverse Proxy HTTP Request",
           );
@@ -68,7 +68,9 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
                 statusText: response.statusText,
                 trace_id: spanContext.traceId,
                 span_id: spanContext.spanId,
-                trace_flags: spanContext.traceFlags.toString(16),
+                trace_flags: spanContext.traceFlags
+                  .toString(16)
+                  .padStart(2, "0"),
               },
               "Reverse Proxy HTTP Error",
             );
@@ -86,7 +88,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
               status: response.status,
               trace_id: spanContext.traceId,
               span_id: spanContext.spanId,
-              trace_flags: spanContext.traceFlags.toString(16),
+              trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
             },
             "Reverse Proxy HTTP Response",
           );
