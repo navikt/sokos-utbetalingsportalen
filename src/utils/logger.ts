@@ -37,7 +37,7 @@ const secureLogStream = pino.destination({
 });
 
 export const logger = pino({
-  timestamp: () => `,"@timestamp":"${pino.stdTimeFunctions.isoTime()}"`,
+  timestamp: () => `,"@timestamp":"${new Date().toISOString()}"`,
   formatters: {
     level: (label) => ({ level: label.toUpperCase() }),
   },
@@ -45,7 +45,7 @@ export const logger = pino({
 
 export const secureLogger = pino(
   {
-    timestamp: () => `,"@timestamp":"${pino.stdTimeFunctions.isoTime()}"`,
+    timestamp: () => `,"@timestamp":"${new Date().toISOString()}"`,
     formatters: {
       level: (label) => ({ level: label.toUpperCase() }),
     },
