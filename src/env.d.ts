@@ -4,9 +4,9 @@ declare namespace App {
   interface Locals {
     token: string;
     userInfo: {
-      navIdent: string;
+      NAVident: string;
       name: string;
-      adGroups: string[];
+      groups: string[];
     };
   }
 }

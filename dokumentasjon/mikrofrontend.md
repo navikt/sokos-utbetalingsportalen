@@ -108,55 +108,25 @@
 
 4. Nå skal du legge inn følgende kode:
 
-  ```js
-    ---
-    import { getMicrofrontendConfig } from "src/microfrontend";
-    import { hasAccessToAdGroup } from "src/utils/common";
-    import {
-      fetchMicrofrontendAdGroup,
-      fetchMicrofrontendBundleUrl,
-    } from "src/utils/server/common";
-    import Microfrontend from "../../components/microfrontend/Microfrontend";
-    import Layout from "../../layouts/Layout.astro";
-    import NoAccess from "../NoAccess.astro";
+    ```js
+      ---
+      import MicrofrontendWrapper from "../components/microfrontend/MicrofrontendWrapper.astro";
+      ---
 
-    const attestasjonConfig = getMicrofrontendConfig("attestasjon");
-
-    const hasAccess = hasAccessToAdGroup(
-      Astro.locals.userInfo.adGroups,
-      fetchMicrofrontendAdGroup({
-        adGroupDevelopment: attestasjonConfig.adGroupDevelopment,
-        adGroupProduction: attestasjonConfig.adGroupProduction,
-      })
-    );
-    ---
-
-    <Layout title={attestasjonConfig.title}>
-      <div>
-        {
-          hasAccess ? (
-            <Microfrontend
-              url={fetchMicrofrontendBundleUrl(attestasjonConfig.naisAppName)}
-              client:only="react"
-            />
-          ) : (
-            <NoAccess />
-          )
-        }
-      </div>
-    </Layout>
-  ```
+      <MicrofrontendWrapper appName="attestasjon" />
+    ```
 
 Har du en routing i mikrofrontend? Følg pkt. 1. </br>
 Har du ikke routing i mikrofrontend? Følg pkt. 2 </br>
 
   1. Routing -> Lag en mappe som heter det samme som `route: "/attestasjon"` i pkt. 2. Altså [attestasjon](/src/pages/attestasjon/) under [pages](/src/pages/). Inne i mappen lager du en fil med navn `[...attestasjon].astro`. Inne i denne filen legger du inn koden ovenfor.
   2. Ikke routing -> Lag filen `attestasjon.astro` direkte under [pages](/src/pages/). Inne i denne filen legger du inn koden ovenfor.
-  3. Endre const ->
+  3. Endre `attestasjon` til appnavn du skal hente config for ->
+
       ```
-      const attestasjonConfig = getMicrofrontendConfig("attestasjon");
+      <MicrofrontendWrapper appName="attestasjon" />
       ```
       til å hente config fra [microfrontend.ts](/src/microfrontend.ts).
 
-  <br></br>
-   ## 🎉 Nå er `sokos-utbetalingsportalen` klar til å kunne rendre mikrofrontend'en og rute rest kallene til riktig api. 🎉
+
+# Nå er `Utbetalingsportalen` klar til å kunne rendre mikrofrontend'en og rute api kallene til riktig backend 🎉

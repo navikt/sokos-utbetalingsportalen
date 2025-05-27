@@ -1,0 +1,38 @@
+---
+import Layout from "@layouts/Layout.astro";
+import NoAccess from "@pages/NoAccess.astro";
+import { hasAccessToApp } from "@utils/accessControl";
+import { getMicrofrontendConfig } from "src/microfrontend";
+import Microfrontend from "./Microfrontend";
+import { getServerSideEnvironment } from "@utils/server/environment";
+
+type Props = {
+  appName: string;
+};
+
+const appHostname = Astro.url.hostname;
+const appConfig = getMicrofrontendConfig(Astro.props.appName);
+const appAccess = hasAccessToApp(Astro.locals.userInfo.groups, appConfig);
+
+export function fetchBundle(appHostname: String, appName: string) {
+  if (getServerSideEnvironment() === "local") {
+    return "http://localhost:3000/bundle.js";
+  }
+  return `https://${appHostname}/${appName}/bundle.js`;
+}
+---
+
+<Layout title={appConfig.title}>
+  <div>
+    {
+      appAccess ? (
+        <Microfrontend
+          url={fetchBundle(appHostname, appConfig.naisAppName)}
+          client:only="react"
+        />
+      ) : (
+        <NoAccess />
+      )
+    }
+  </div>
+</Layout>

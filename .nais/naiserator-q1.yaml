@@ -37,13 +37,12 @@ spec:
           - id: "a13b4176-e328-4e1c-b181-ff676a7146b1" # 0000-GA-SOKOS-MF-Skattekort-READ
           - id: "b01fb216-fcb3-4ede-b7da-71fffe859763" # 0000-GA-SOKOS-MF-ORS-READ
           - id: "98146b9a-1891-44e3-9b61-92130c2fcd8b" # 0000-GA-SOKOS-MF-KRP-READ
-          - id: "e0023d91-26bc-4d5d-95ba-3148b6123afc" # 0000-GA-SOKOS-MF-OppdragsInfo-READ
+          - id: "e0023d91-26bc-4d5d-95ba-3148b6123afc" # 0000-GA-SOKOS-MF-OppdragsInfo
           - id: "0de8d01f-8ad0-4391-841c-55392956bc17" # 0000-GA-SOKOS-MF-Attestasjon
           - id: "391bec9e-e71e-42cb-a030-56c394dd13fd" # 0000-GA-SOKOS-MF-Resending-Bank-READ
           - id: "bdcedce3-dab5-4b68-b1d3-8625cd0d3b55" # 0000-GA-SOKOS-MF-KRO-READ
           - id: "138d21fb-4e96-46d6-91e4-e3926aa349e5" # 0000-GA-SOKOS-MF-Utbetaling
           - id: "3bc37bf2-8e76-407c-ad4a-d2c79edc241e" # 0000-GA-SOKOS-MF-Buntkontroll-READ
-          - id: "48a80bbb-be45-4ef6-aab8-21604f057f47" # 0000-GA-SOKOS-MF-Venteregister
           - id: "2020a765-ffae-4042-b4cc-2a5a783a3ec5" # 0000-CA-SOKOS-MF-Meldingsflyt-READ
           - id: "7e0c2ad1-d0e7-4fa8-8169-7a9d68435644" # 0000-GA-SOKOS-MF-Fastedata
           - id: "2477057d-7f80-4517-a885-20c948bf0367" # 0000-GA-SOKOS-MF-DARE-POC
@@ -77,10 +76,11 @@ spec:
       memory: 1024Mi
   env:
 
-    - name: UTBETALINGSPORTALEN_URL
-      value: utbetalingsportalen.intern.dev.nav.no
+    # sokos-utbetalingsportalen
     - name: UTBETALINGSPORTALEN_ENVIRONMENT
       value: Q1
+    - name: UMAMI_SPORINGSKODE
+      value: "e174f8d8-4082-4cb0-8280-b992d0a47901"
 
     # sokos-up-ors-api
     - name: SOKOS_UP_ORS_API
@@ -145,7 +145,3 @@ spec:
       value: api://dev-fss.okonomi.sokos-betsys/.default
     - name: SOKOS_MELDINGSFLYT_API_PROXY
       value: "/up-meldingsflyt-api"
-
-    # umami
-    - name: UMAMI_SPORINGSKODE
-      value: "e174f8d8-4082-4cb0-8280-b992d0a47901"

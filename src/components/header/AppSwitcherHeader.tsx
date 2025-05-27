@@ -1,17 +1,12 @@
-import { hasAccessToAdGroup } from "src/utils/common.ts";
 import { MenuGridIcon } from "@navikt/aksel-icons";
 import { Dropdown, InternalHeader } from "@navikt/ds-react";
-import { microfrontendConfigArray as allApps } from "../../microfrontend.ts";
+import { getAuthorizedApps } from "@utils/accessControl";
 
 type AppSwitcherHeaderProps = {
   adGroups: string[];
 };
 export default function AppSwitcherHeader(props: AppSwitcherHeaderProps) {
-  const authorizedApps = allApps.filter(
-    (app) =>
-      hasAccessToAdGroup(props.adGroups, app.adGroupDevelopment) ||
-      hasAccessToAdGroup(props.adGroups, app.adGroupProduction),
-  );
+  const authorizedApps = getAuthorizedApps(props.adGroups);
 
   function appSwitcherList() {
     return authorizedApps

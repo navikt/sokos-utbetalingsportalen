@@ -1,18 +1,20 @@
 import { getToken, validateAzureToken } from "@navikt/oasis";
 import { defineMiddleware } from "astro/middleware";
-import { isLocal } from "../utils/server/urls.ts";
-import { loginUrl } from "./urls";
+import { logger } from "@utils/logger.ts";
 import { isInternal } from "./utils";
+import { getServerSideEnvironment } from "@utils/server/environment.ts";
+import { UserDataSchema } from "@schema/UserDataSchema";
 
 export const onRequest = defineMiddleware(async (context, next) => {
+  const loginPath = `/oauth2/login?redirect=${context.url}`;
   const token = getToken(context.request.headers);
   const params = encodeURIComponent(context.url.search);
 
-  if (isLocal) {
+  if (getServerSideEnvironment() === "local") {
     context.locals.userInfo = {
-      navIdent: "Z123456",
+      NAVident: "Z123456",
       name: "Ola Mohammed",
-      adGroups: [
+      groups: [
         "0e58dc41-7c57-4b79-a8c7-d0caec129e53", // 0000-GA-SOKOS-MF-SPK-Mottak-ADMIN
         "a13b4176-e328-4e1c-b181-ff676a7146b1", // 0000-GA-SOKOS-MF-Skattekort-READ
         "b01fb216-fcb3-4ede-b7da-71fffe859763", // 0000-GA-SOKOS-MF-ORS-READ
@@ -23,12 +25,12 @@ export const onRequest = defineMiddleware(async (context, next) => {
         "bdcedce3-dab5-4b68-b1d3-8625cd0d3b55", // 0000-GA-SOKOS-MF-KRO-READ
         "138d21fb-4e96-46d6-91e4-e3926aa349e5", // 0000-GA-SOKOS-MF-Utbetaling
         "3bc37bf2-8e76-407c-ad4a-d2c79edc241e", // 0000-GA-SOKOS-MF-Buntkontroll-READ
-        "48a80bbb-be45-4ef6-aab8-21604f057f47", // 0000-GA-SOKOS-MF-Venteregister
         "2020a765-ffae-4042-b4cc-2a5a783a3ec5", // 0000-GA-SOKOS-MF-Meldingsflyt-READ
-        "7e0c2ad1-d0e7-4fa8-8169-7a9d68435644", // 0000-GA-SOKOS-MF-Fastedata-READ
+        "7e0c2ad1-d0e7-4fa8-8169-7a9d68435644", // 0000-GA-SOKOS-MF-Fastedata
         "2477057d-7f80-4517-a885-20c948bf0367", // 0000-GA-SOKOS-MF-DARE-POC
       ],
     };
+
     return next();
   }
 
@@ -37,10 +39,10 @@ export const onRequest = defineMiddleware(async (context, next) => {
   }
 
   if (!token) {
-    console.info(
+    logger.info(
       "Could not find any bearer token on the request. Redirecting to login.",
     );
-    return context.redirect(`${loginUrl}${params}`);
+    return context.redirect(loginPath);
   }
 
   const validatedToken = await validateAzureToken(token);
@@ -49,17 +51,22 @@ export const onRequest = defineMiddleware(async (context, next) => {
     const error = new Error(
       `Invalid JWT token found (cause: ${validatedToken.errorType} ${validatedToken.error}, redirecting to login.`,
     );
-    console.error(error);
-    return context.redirect(`${loginUrl}${params}`);
+    logger.error(error);
+    return context.redirect(`${loginPath}${params}`);
   }
 
   context.locals.token = token;
 
-  context.locals.userInfo = {
-    navIdent: validatedToken.payload.NAVident as string,
-    name: validatedToken.payload.name as string,
-    adGroups: validatedToken.payload.groups as string[],
-  };
+  const response = UserDataSchema.safeParse(validatedToken.payload);
+  if (!response.success) {
+    const error = new Error(
+      `Invalid user info found in JWT token (cause: ${response.error}, redirecting to login.`,
+    );
+    logger.error(error);
+    return context.redirect(`${loginPath}${params}`);
+  }
+
+  context.locals.userInfo = UserDataSchema.parse(response.data);
 
   return next();
 });

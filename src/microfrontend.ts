@@ -1,4 +1,4 @@
-type MicroFrontend = {
+export type MicroFrontend = {
   app: string;
   title: string;
   description: string;
@@ -34,7 +34,7 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     title: "Attestasjon",
     description: "Attestering av oppdrag",
     adGroupDevelopment: "0de8d01f-8ad0-4391-841c-55392956bc17",
-    adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    adGroupProduction: "ae51bc06-2f9a-47a4-b33d-f0825ecb9985",
     route: "/attestasjon",
     naisAppName: "sokos-up-attestasjon",
   },
@@ -46,15 +46,6 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
     route: "/oppdragsinfo",
     naisAppName: "sokos-up-oppdragsinfo",
-  },
-  {
-    app: "VENTEREGISTER",
-    title: "Venteregister",
-    description: "En beskrivelse",
-    adGroupDevelopment: "48a80bbb-be45-4ef6-aab8-21604f057f47",
-    adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-    route: "/venteregister",
-    naisAppName: "sokos-up-venteregister",
   },
   {
     app: "FASTEDATA",
@@ -89,7 +80,6 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     description: "Resending av meldinger til bank",
     adGroupDevelopment: "391bec9e-e71e-42cb-a030-56c394dd13fd",
     adGroupProduction: "de776092-a8ed-46a2-be5e-ec2eae4dcf2b",
-
     route: "/resending-bank",
     naisAppName: "sokos-up-resending-bank",
   },

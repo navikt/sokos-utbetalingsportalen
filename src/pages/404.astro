@@ -1,21 +1,13 @@
 ---
-import { BodyShort, Box, Heading, Link, List } from "@navikt/ds-react";
-import { ChatExclamationmarkIcon } from "@navikt/aksel-icons";
-import Layout from "../layouts/Layout.astro";
-import styles from "./_404.module.css";
-
-const { page } = Astro.props;
-
-console.log(page)
+import { BodyShort, Box, Button, Heading, List } from "@navikt/ds-react";
+import Layout from "@layouts/Layout.astro";
+import styles from "../common-styles.module.css";
+import GoBack from "@components/go-back/GoBack";
 ---
 
 <Layout title="404 - Fant ikke siden">
   <Box paddingBlock="20 16" data-aksel-template="404-v2">
     <div class={styles["error-page"]}>
-      <ChatExclamationmarkIcon
-        title="Chat exclamationmark ikon"
-        fontSize="6rem"
-      />
       <Heading level="1" size="large" spacing>
         Beklager, vi fant ikke siden
       </Heading>
@@ -24,11 +16,14 @@ console.log(page)
         lenken.
       </BodyShort>
       <List>
-        <List.Item>Bruk gjerne søket eller menyen</List.Item>
+        <List.Item>Bruk gjerne menyen</List.Item>
         <List.Item>
-          <Link href="/"> Gå tilbake til forrige side </Link>
+          <GoBack fallbackUrl="/" client:load>
+            Gå tilbake til forrige side
+          </GoBack>
         </List.Item>
       </List>
+      <Button as="a" href="/">Gå til hovedsiden</Button>
     </div>
   </Box>
 </Layout>

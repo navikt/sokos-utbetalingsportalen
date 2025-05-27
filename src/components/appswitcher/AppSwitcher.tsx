@@ -1,7 +1,7 @@
+import { Heading, Switch } from "@navikt/ds-react";
+import { getAuthorizedApps, hasAccessToApp } from "@utils/accessControl";
 import { useState } from "react";
 import { microfrontendConfigArray as allApps } from "src/microfrontend";
-import { hasAccessToAdGroup } from "src/utils/common";
-import { Heading, Switch } from "@navikt/ds-react";
 import AppCard from "./AppCard";
 import styles from "./AppSwitcher.module.css";
 
@@ -10,12 +10,7 @@ type AppSwitcherProps = {
 };
 
 export default function AppSwitcher(props: AppSwitcherProps) {
-  const authorizedApps = allApps.filter(
-    (app) =>
-      hasAccessToAdGroup(props.adGroups, app.adGroupDevelopment) ||
-      hasAccessToAdGroup(props.adGroups, app.adGroupProduction),
-  );
-
+  const authorizedApps = getAuthorizedApps(props.adGroups);
   const [showApps, setShowApps] = useState<string>("");
 
   function appCards() {
@@ -25,7 +20,7 @@ export default function AppSwitcher(props: AppSwitcherProps) {
       .map((app) => (
         <AppCard
           key={app.app}
-          hasAccess={authorizedApps.includes(app)}
+          hasAccess={hasAccessToApp(props.adGroups, app)}
           route={app.route}
           title={app.title}
           description={app.description}
@@ -41,11 +36,13 @@ export default function AppSwitcher(props: AppSwitcherProps) {
       <Switch
         value="show"
         checked={showApps === "show"}
-        onChange={(e) => setShowApps((value) => (value ? "" : e.target.value))}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setShowApps((value: string) => (value ? "" : e.target.value))
+        }
       >
         Vis alle
       </Switch>
-      <div className={styles.homeApps}>{appCards()}</div>
+      <div className={styles["appCardGrid"]}>{appCards()}</div>
     </>
   );
 }

@@ -41,6 +41,7 @@ spec:
           - id: "de776092-a8ed-46a2-be5e-ec2eae4dcf2b" # 0000-GA-SOKOS-MF-Resending-Bank-READ
           - id: "08723132-a7ba-40eb-a6f4-0a9247f230d2" # 0000-GA-SOKOS-MF-Buntkontroll-READ
           - id: "ad41e055-af0c-4a26-a31c-c51d6ea236cd" # 0000-CA-SOKOS-MF-Meldingsflyt-READ
+          - id: "ae51bc06-2f9a-47a4-b33d-f0825ecb9985" # 0000-GA-SOKOS-MF-Attestasjon
         extra:
           - "NAVident"
     sidecar:
@@ -71,8 +72,9 @@ spec:
       memory: 1024Mi
   env:
 
-    - name: UTBETALINGSPORTALEN_URL
-      value: utbetalingsportalen.intern.nav.no
+    # sokos-utbetalingsportalen
+    - name: UMAMI_SPORINGSKODE
+      value: "e1b661e6-a812-4433-a1e7-4648212fddfe"
 
     # sokos-up-ors-api
     - name: SOKOS_UP_ORS_API
@@ -137,7 +139,3 @@ spec:
       value: api://prod-fss.okonomi.sokos-utbetaling-api/.default
     - name: SOKOS_UTBETALING_API_PROXY
       value: "/sokos-utbetaling-api"
-
-    # umami
-    - name: UMAMI_SPORINGSKODE
-      value: "e1b661e6-a812-4433-a1e7-4648212fddfe"

@@ -1,9 +1,8 @@
-import type { PropsWithChildren } from "react";
-import { useEffect, useState } from "react";
-import { microfrontendConfigArray as allApps } from "src/microfrontend";
-import { hasAccessToAdGroup } from "src/utils/common";
 import { HouseIcon, MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
 import { Button, Link } from "@navikt/ds-react";
+import type { PropsWithChildren } from "react";
+import { useEffect, useState, useRef } from "react";
+import { getAuthorizedApps } from "@utils/accessControl";
 import styles from "./SideBar.module.css";
 
 type SideBarProps = {
@@ -11,7 +10,9 @@ type SideBarProps = {
 };
 
 export default function SideBar({ adGroups }: SideBarProps) {
+  const authorizedApps = getAuthorizedApps(adGroups);
   const [isOpen, setIsOpen] = useState(false);
+  const sidebarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const event = new CustomEvent("sidebarStateChange", {
@@ -20,11 +21,23 @@ export default function SideBar({ adGroups }: SideBarProps) {
     document.dispatchEvent(event);
   }, [isOpen]);
 
-  const authorizedApps = allApps.filter(
-    (app) =>
-      hasAccessToAdGroup(adGroups, app.adGroupDevelopment) ||
-      hasAccessToAdGroup(adGroups, app.adGroupProduction),
-  );
+  useEffect(() => {
+    if (!isOpen) return;
+
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -41,33 +54,20 @@ export default function SideBar({ adGroups }: SideBarProps) {
 
     return (
       <Link
-        className={`${styles.sidebarLink} ${isActive ? styles.active : ""}`}
+        className={`${styles["sidebar__link"]} ${isActive ? styles["sidebar__link--active"] : ""}`}
         href={route}
       >
-        <div className={styles.sidebarLinkChild}>{children}</div>
+        <div className={styles["sidebar__linkChild"]}>{children}</div>
       </Link>
     );
   };
-
-  if (!isOpen) {
-    return (
-      <div className={`${styles.closed} ${styles.sidebar}`} role="navigation">
-        <Button
-          className={styles.buttonColor}
-          onClick={handleToggle}
-          variant="primary-neutral"
-          icon={<MenuHamburgerIcon title="Hamburgermeny ikon" />}
-        />
-      </div>
-    );
-  }
 
   function getMicrofrontendLinks() {
     return authorizedApps
       .slice()
       .sort((a, b) => a.title.localeCompare(b.title))
       .map((page) => (
-        <li key={page.app} className={styles.sidebarLinks}>
+        <li key={page.app} className={styles["sidebar__links"]}>
           {renderSideBarLink({
             route: page.route,
             children: page.title,
@@ -76,11 +76,27 @@ export default function SideBar({ adGroups }: SideBarProps) {
       ));
   }
 
-  return (
-    <div className={styles.sidebar} role="navigation">
-      <div className={styles.closeButton}>
+  if (!isOpen) {
+    return (
+      <div
+        className={`${styles["sidebar--closed"]} ${styles["sidebar"]}`}
+        role="navigation"
+      >
         <Button
-          className={styles.buttonColor}
+          className={styles["sidebar__buttonColor"]}
+          onClick={handleToggle}
+          variant="primary-neutral"
+          icon={<MenuHamburgerIcon title="Hamburgermeny ikon" />}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles["sidebar"]} role="navigation" ref={sidebarRef}>
+      <div className={styles["sidebar__closeButton"]}>
+        <Button
+          className={styles["sidebar__buttonColor"]}
           onClick={handleToggle}
           icon={<XMarkIcon title="Kryss ikon" />}
           iconPosition="right"
@@ -90,13 +106,16 @@ export default function SideBar({ adGroups }: SideBarProps) {
         </Button>
       </div>
 
-      <ul className={styles.sidebarList}>
-        <li className={styles.sidebarLinks}>
+      <ul className={styles["sidebar__list"]}>
+        <li className={styles["sidebar__links"]}>
           {renderSideBarLink({
             route: "/",
             children: (
               <>
-                <HouseIcon className={styles.iconStyle} title="Hus ikon" />
+                <HouseIcon
+                  className={styles["sidebar__icon"]}
+                  title="Hus ikon"
+                />
                 Hjem
               </>
             ),

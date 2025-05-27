@@ -22,14 +22,14 @@ const environment = getApplicationEnvironment();
 
 {
   environment && (
-    <div class={styles.banner}>
+    <div class={styles["environmentbanner"]}>
       <svg
         aria-hidden="true"
         role="img"
         xmlns="http://www.w3.org/2000/svg"
         height="110"
         width="110"
-        class={styles.bannerIcon}
+        class={styles["environmentbanner__icon"]}
       >
         <polygon points="0,0 110,0 110,110" />
         <text x="25" y="10" transform="rotate(45 20,40)">

@@ -33,9 +33,8 @@ spec:
       claims:
         groups:
           - id: "0e58dc41-7c57-4b79-a8c7-d0caec129e53" # 0000-GA-SOKOS-MF-SPK-Mottak-ADMIN
-          - id: "e0023d91-26bc-4d5d-95ba-3148b6123afc" # 0000-GA-SOKOS-MF-OppdragsInfo-READ
+          - id: "e0023d91-26bc-4d5d-95ba-3148b6123afc" # 0000-GA-SOKOS-MF-OppdragsInfo
           - id: "0de8d01f-8ad0-4391-841c-55392956bc17" # 0000-GA-SOKOS-MF-Attestasjon
-          - id: "48a80bbb-be45-4ef6-aab8-21604f057f47" # 0000-GA-SOKOS-MF-Venteregister
         extra:
           - "NAVident"
     sidecar:
@@ -59,10 +58,11 @@ spec:
       memory: 1024Mi
   env:
 
-    - name: UTBETALINGSPORTALEN_URL
-      value: utbetalingsportalen-qx.intern.dev.nav.no
+    # sokos-utbetalingsportalen
     - name: UTBETALINGSPORTALEN_ENVIRONMENT
       value: QX
+    - name: UMAMI_SPORINGSKODE
+      value: "e174f8d8-4082-4cb0-8280-b992d0a47901"
 
     # sokos-oppdrag
     - name: SOKOS_OPPDRAG_API
@@ -79,7 +79,3 @@ spec:
       value: api://dev-fss.okonomi.sokos-spk-mottak-qx/.default
     - name: SOKOS_SPK_MOTTAK_PROXY
       value: "/spk-mottak-api"
-
-    # umami
-    - name: UMAMI_SPORINGSKODE
-      value: "e174f8d8-4082-4cb0-8280-b992d0a47901"

@@ -1,9 +1,10 @@
 ---
-import Environmentbanner from "src/components/environmentbanner/environmentbanner.astro";
-import SideBar from "src/components/sidebar/sidebar.astro";
-import Header from "../components/header/header.astro";
+import Environmentbanner from "@components/environmentbanner/environmentbanner.astro";
+import Header from "@components/header/header.astro";
+import Observability from "@components/observability/Observability";
+import SideBar from "@components/sidebar/sidebar.astro";
+import { getServerSideEnvironment } from "@utils/server/environment";
 import styles from "./Layout.module.css";
-import { getServerSideEnvironment } from "../utils/server/environment";
 
 export type LayoutProps = {
   title: string;
@@ -15,9 +16,13 @@ const pageTitle = title
   ? `${title} | Utbetalingsportalen`
   : "Utbetalingsportalen";
 
-const sporingskode = process.env.UMAMI_SPORINGSKODE
+const sporingskode = process.env.UMAMI_SPORINGSKODE;
 
 const isProduction = getServerSideEnvironment() === "production";
+
+const enableObservability =
+  process.env.NAIS_CLUSTER_NAME === "dev-gcp" ||
+  process.env.NAIS_CLUSTER_NAME === "prod-gcp";
 ---
 
 <!doctype html>
@@ -30,12 +35,12 @@ const isProduction = getServerSideEnvironment() === "production";
     <title>{pageTitle}</title>
     <link
       rel="preload"
-      href="https://cdn.nav.no/aksel/@navikt/ds-css/7.21.0/index.min.css"
+      href="https://cdn.nav.no/aksel/@navikt/ds-css/7.21.1/index.min.css"
       as="style"
     />
     <link
       rel="stylesheet"
-      href="https://cdn.nav.no/aksel/@navikt/ds-css/7.21.0/index.min.css"
+      href="https://cdn.nav.no/aksel/@navikt/ds-css/7.21.1/index.min.css"
     />
     <script is:inline type="importmap">
       {
@@ -45,12 +50,18 @@ const isProduction = getServerSideEnvironment() === "production";
         }
       }
     </script>
-    {!isProduction && <script is:inline
-            defer
-            data-astro-rerun
-            src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
-            data-host-url="https://umami.nav.no"
-            data-website-id={sporingskode} />}
+    {
+      !isProduction && (
+        <script
+          is:inline
+          defer
+          data-astro-rerun
+          src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
+          data-host-url="https://umami.nav.no"
+          data-website-id={sporingskode}
+        />
+      )
+    }
   </head>
   <body>
     <Header />
@@ -59,5 +70,6 @@ const isProduction = getServerSideEnvironment() === "production";
     <main class={styles.container}>
       <slot />
     </main>
+    {enableObservability && <Observability client:only="react" />}
   </body>
 </html>
