@@ -21,7 +21,6 @@
     "@navikt/oasis": "^3.8.0",
     "@opentelemetry/sdk-node": "^0.201.1",
     "astro": "^5.8.0",
-    "dayjs": "^1.11.13",
     "pino": "^9.7.0",
     "prom-client": "^15.1.3",
     "react": "18.3.1",
@@ -32,8 +31,8 @@
   },
   "devDependencies": {
     "@hono/node-server": "1.14.3",
-    "@navikt/aksel-stylelint": "^7.21.1",
-    "@types/node": "22.15.21",
+    "@navikt/aksel-stylelint": "^7.22.0",
+    "@types/node": "22.15.22",
     "@types/react": "18.3.23",
     "@types/react-dom": "18.3.7",
     "hono": "4.7.10",

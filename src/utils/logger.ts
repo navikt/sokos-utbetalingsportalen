@@ -1,5 +1,4 @@
 import { logs, NodeSDK, tracing } from "@opentelemetry/sdk-node";
-import dayjs from "dayjs";
 import fs from "fs";
 import pino from "pino";
 
@@ -32,24 +31,23 @@ process.on("SIGTERM", () => {
 const secureLogPath = () =>
   fs.existsSync("/secure-logs/") ? "/secure-logs/secure.log" : "./secure.log";
 
-const secureLogStream = fs.createWriteStream(secureLogPath(), { flags: "a" });
+const secureLogStream = pino.destination({
+  dest: secureLogPath(),
+  sync: false,
+});
 
 export const logger = pino({
-  timestamp: () => `,"@timestamp":"${dayjs().format("YYYY-MM-DD HH:mm:ss")}"`,
+  timestamp: () => `,"@timestamp":"${pino.stdTimeFunctions.isoTime}"`,
   formatters: {
-    level: (label) => {
-      return { level: label.toUpperCase() };
-    },
+    level: (label) => ({ level: label.toUpperCase() }),
   },
 });
 
 export const secureLogger = pino(
   {
-    timestamp: () => `,"@timestamp":"${dayjs().format("YYYY-MM-DD HH:mm:ss")}"`,
+    timestamp: () => `,"@timestamp":"${pino.stdTimeFunctions.isoTime}"`,
     formatters: {
-      level: (label) => {
-        return { level: label.toUpperCase() };
-      },
+      level: (label) => ({ level: label.toUpperCase() }),
     },
   },
   secureLogStream,
