@@ -1,7 +1,7 @@
 import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import ErrorMessage from "@components/error/ErrorMessage.tsx";
 import ContentLoader from "@components/loader/ContentLoader.tsx";
+import { MicrofrontendError } from "@components/microfrontend/MicrofrontendError";
 
 type MicrofrontendType = {
   url: string;
@@ -17,7 +17,7 @@ export default function Microfrontend(props: MicrofrontendType) {
 
   return (
     <React.Suspense fallback={<ContentLoader />}>
-      <ErrorBoundary FallbackComponent={ErrorMessage}>
+      <ErrorBoundary fallback={MicrofrontendError()}>
         <MicrofrontendBundle />
       </ErrorBoundary>
     </React.Suspense>
