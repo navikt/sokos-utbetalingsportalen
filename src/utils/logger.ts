@@ -1,5 +1,4 @@
 import { logs, NodeSDK, tracing } from "@opentelemetry/sdk-node";
-import { ecsFormat } from "@elastic/ecs-pino-format";
 import fs from "fs";
 import pino from "pino";
 
@@ -38,8 +37,7 @@ const secureLogStream = pino.destination({
 });
 
 export const logger = pino({
-  ...ecsFormat(),
-  timestamp: false,
+  timestamp: () => `,"@timestamp":"${new Date().toISOString()}"`,
   formatters: {
     level: (label) => ({ level: label.toUpperCase() }),
   },
@@ -47,8 +45,7 @@ export const logger = pino({
 
 export const secureLogger = pino(
   {
-    ...ecsFormat(),
-    timestamp: false,
+    timestamp: () => `,"@timestamp":"${new Date().toISOString()}"`,
     formatters: {
       level: (label) => ({ level: label.toUpperCase() }),
     },

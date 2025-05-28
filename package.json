@@ -15,7 +15,6 @@
     "@astrojs/check": "^0.9.4",
     "@astrojs/node": "^9.2.2",
     "@astrojs/react": "^4.3.0",
-    "@elastic/ecs-pino-format": "^1.5.0",
     "@grafana/faro-web-sdk": "^1.18.2",
     "@navikt/aksel-icons": "7.22.0",
     "@navikt/ds-react": "7.22.0",
