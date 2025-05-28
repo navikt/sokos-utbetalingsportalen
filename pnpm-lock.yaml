@@ -12,10 +12,10 @@ importers:
         version: 0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.5.3)(typescript@5.8.3)
       "@astrojs/node":
         specifier: ^9.2.2
-        version: 9.2.2(astro@5.8.0(@types/node@22.15.21)(rollup@4.40.1)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.7.1))
+        version: 9.2.2(astro@5.8.0(@types/node@22.15.22)(rollup@4.40.1)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.7.1))
       "@astrojs/react":
         specifier: ^4.3.0
-        version: 4.3.0(@types/node@22.15.21)(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tsx@4.19.4)(yaml@2.7.1)
+        version: 4.3.0(@types/node@22.15.22)(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tsx@4.19.4)(yaml@2.7.1)
       "@grafana/faro-web-sdk":
         specifier: ^1.18.2
         version: 1.18.2
@@ -33,10 +33,7 @@ importers:
         version: 0.201.1(@opentelemetry/api@1.9.0)
       astro:
         specifier: ^5.8.0
-        version: 5.8.0(@types/node@22.15.21)(rollup@4.40.1)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.7.1)
-      dayjs:
-        specifier: ^1.11.13
-        version: 1.11.13
+        version: 5.8.0(@types/node@22.15.22)(rollup@4.40.1)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.7.1)
       pino:
         specifier: ^9.7.0
         version: 9.7.0
@@ -63,11 +60,11 @@ importers:
         specifier: 1.14.3
         version: 1.14.3(hono@4.7.10)
       "@navikt/aksel-stylelint":
-        specifier: ^7.21.1
-        version: 7.21.1
+        specifier: ^7.22.0
+        version: 7.22.0
       "@types/node":
-        specifier: 22.15.21
-        version: 22.15.21
+        specifier: 22.15.22
+        version: 22.15.22
       "@types/react":
         specifier: 18.3.23
         version: 18.3.23
@@ -964,11 +961,11 @@ packages:
         tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/7.22.0/8cd947078332dbbc5f48e32d10746fd876acb581,
       }
 
-  "@navikt/aksel-stylelint@7.21.1":
+  "@navikt/aksel-stylelint@7.22.0":
     resolution:
       {
-        integrity: sha512-Ga02H2IkIMl+beEKarfqu29vpWUxEnCtUORVYzEDZfPQACW9SOXtN9kUUft74r7lfdCefARCGMibrmt+8QT+zg==,
-        tarball: https://npm.pkg.github.com/download/@navikt/aksel-stylelint/7.21.1/dbac3fc3d08103de07dc7bb5d5826c9f1fd58fb8,
+        integrity: sha512-iJ0e++Bx53xRhtrmIEom8rRzPmS9/vApXs6fAIjXO4OgVmO1JUtZiPFp7y0MBLclkVAel7b0M9fga3hiMmaJwQ==,
+        tarball: https://npm.pkg.github.com/download/@navikt/aksel-stylelint/7.22.0/7cdcc59244b10dd053f583d2a9f98662678501f2,
       }
 
   "@navikt/ds-react@7.22.0":
@@ -980,6 +977,9 @@ packages:
     peerDependencies:
       "@types/react": ">=17.0.30"
       react: ">=17.0.0 || >19.0.0-rc"
+    peerDependenciesMeta:
+      "@types/react":
+        optional: true
 
   "@navikt/ds-tokens@7.22.0":
     resolution:
@@ -1614,10 +1614,10 @@ packages:
         integrity: sha512-vSYNSDe6Ix3q+6Z7ri9lyWqgGhJTmzRjZRqyq15N0Z/1/UnVsno9G/N40NBijoYx2seFDIl0+B2mgAb9mezUCA==,
       }
 
-  "@types/node@22.15.21":
+  "@types/node@22.15.22":
     resolution:
       {
-        integrity: sha512-EV/37Td6c+MgKAbkcLG6vqZ2zEYHD7bvSrzqqs2RIhbA6w3x+Dqz8MZM3sP6kGTeLrdoOgKZe+Xja7tUB2DNkQ==,
+        integrity: sha512-IZ8lyY8xikZwGTJ9tsmbE68+mZbx2tsR+WnN1ZJU/h5flim8xBxEbpDrouMQNkMeT4pYxyJOTkf7YyDcQaUvQw==,
       }
 
   "@types/prop-types@15.7.14":
@@ -2170,12 +2170,6 @@ packages:
     resolution:
       {
         integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==,
-      }
-
-  dayjs@1.11.13:
-    resolution:
-      {
-        integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==,
       }
 
   debug@4.4.0:
@@ -5183,10 +5177,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  "@astrojs/node@9.2.2(astro@5.8.0(@types/node@22.15.21)(rollup@4.40.1)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.7.1))":
+  "@astrojs/node@9.2.2(astro@5.8.0(@types/node@22.15.22)(rollup@4.40.1)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.7.1))":
     dependencies:
       "@astrojs/internal-helpers": 0.6.1
-      astro: 5.8.0(@types/node@22.15.21)(rollup@4.40.1)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.7.1)
+      astro: 5.8.0(@types/node@22.15.22)(rollup@4.40.1)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.7.1)
       send: 1.2.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -5196,15 +5190,15 @@ snapshots:
     dependencies:
       prismjs: 1.30.0
 
-  "@astrojs/react@4.3.0(@types/node@22.15.21)(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tsx@4.19.4)(yaml@2.7.1)":
+  "@astrojs/react@4.3.0(@types/node@22.15.22)(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tsx@4.19.4)(yaml@2.7.1)":
     dependencies:
       "@types/react": 18.3.23
       "@types/react-dom": 18.3.7(@types/react@18.3.23)
-      "@vitejs/plugin-react": 4.4.1(vite@6.3.5(@types/node@22.15.21)(tsx@4.19.4)(yaml@2.7.1))
+      "@vitejs/plugin-react": 4.4.1(vite@6.3.5(@types/node@22.15.22)(tsx@4.19.4)(yaml@2.7.1))
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       ultrahtml: 1.6.0
-      vite: 6.3.5(@types/node@22.15.21)(tsx@4.19.4)(yaml@2.7.1)
+      vite: 6.3.5(@types/node@22.15.22)(tsx@4.19.4)(yaml@2.7.1)
     transitivePeerDependencies:
       - "@types/node"
       - jiti
@@ -5639,7 +5633,7 @@ snapshots:
 
   "@navikt/aksel-icons@7.22.0": {}
 
-  "@navikt/aksel-stylelint@7.21.1": {}
+  "@navikt/aksel-stylelint@7.22.0": {}
 
   "@navikt/ds-react@7.22.0(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)":
     dependencies:
@@ -5647,11 +5641,12 @@ snapshots:
       "@floating-ui/react-dom": 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       "@navikt/aksel-icons": 7.22.0
       "@navikt/ds-tokens": 7.22.0
-      "@types/react": 18.3.23
       clsx: 2.1.1
       date-fns: 4.1.0
       react: 18.3.1
       react-day-picker: 9.6.1(react@18.3.1)
+    optionalDependencies:
+      "@types/react": 18.3.23
     transitivePeerDependencies:
       - react-dom
 
@@ -6063,7 +6058,7 @@ snapshots:
 
   "@types/fontkit@2.0.8":
     dependencies:
-      "@types/node": 22.15.21
+      "@types/node": 22.15.22
 
   "@types/hast@3.0.4":
     dependencies:
@@ -6079,7 +6074,7 @@ snapshots:
     dependencies:
       "@types/unist": 3.0.3
 
-  "@types/node@22.15.21":
+  "@types/node@22.15.22":
     dependencies:
       undici-types: 6.21.0
 
@@ -6100,14 +6095,14 @@ snapshots:
 
   "@ungap/structured-clone@1.3.0": {}
 
-  "@vitejs/plugin-react@4.4.1(vite@6.3.5(@types/node@22.15.21)(tsx@4.19.4)(yaml@2.7.1))":
+  "@vitejs/plugin-react@4.4.1(vite@6.3.5(@types/node@22.15.22)(tsx@4.19.4)(yaml@2.7.1))":
     dependencies:
       "@babel/core": 7.27.1
       "@babel/plugin-transform-react-jsx-self": 7.25.9(@babel/core@7.27.1)
       "@babel/plugin-transform-react-jsx-source": 7.25.9(@babel/core@7.27.1)
       "@types/babel__core": 7.20.5
       react-refresh: 0.17.0
-      vite: 6.3.5(@types/node@22.15.21)(tsx@4.19.4)(yaml@2.7.1)
+      vite: 6.3.5(@types/node@22.15.22)(tsx@4.19.4)(yaml@2.7.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -6207,7 +6202,7 @@ snapshots:
 
   astral-regex@2.0.0: {}
 
-  astro@5.8.0(@types/node@22.15.21)(rollup@4.40.1)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.7.1):
+  astro@5.8.0(@types/node@22.15.22)(rollup@4.40.1)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.7.1):
     dependencies:
       "@astrojs/compiler": 2.11.0
       "@astrojs/internal-helpers": 0.6.1
@@ -6262,8 +6257,8 @@ snapshots:
       unist-util-visit: 5.0.0
       unstorage: 1.15.0
       vfile: 6.0.3
-      vite: 6.3.5(@types/node@22.15.21)(tsx@4.19.4)(yaml@2.7.1)
-      vitefu: 1.0.6(vite@6.3.5(@types/node@22.15.21)(tsx@4.19.4)(yaml@2.7.1))
+      vite: 6.3.5(@types/node@22.15.22)(tsx@4.19.4)(yaml@2.7.1)
+      vitefu: 1.0.6(vite@6.3.5(@types/node@22.15.22)(tsx@4.19.4)(yaml@2.7.1))
       xxhash-wasm: 1.1.0
       yargs-parser: 21.1.1
       yocto-spinner: 0.2.1
@@ -6471,8 +6466,6 @@ snapshots:
   date-fns-jalali@4.1.0-0: {}
 
   date-fns@4.1.0: {}
-
-  dayjs@1.11.13: {}
 
   debug@4.4.0:
     dependencies:
@@ -7533,7 +7526,7 @@ snapshots:
       "@protobufjs/path": 1.1.2
       "@protobufjs/pool": 1.1.0
       "@protobufjs/utf8": 1.1.0
-      "@types/node": 22.15.21
+      "@types/node": 22.15.22
       long: 5.3.2
 
   queue-microtask@1.2.3: {}
@@ -8141,7 +8134,7 @@ snapshots:
       "@types/unist": 3.0.3
       vfile-message: 4.0.2
 
-  vite@6.3.5(@types/node@22.15.21)(tsx@4.19.4)(yaml@2.7.1):
+  vite@6.3.5(@types/node@22.15.22)(tsx@4.19.4)(yaml@2.7.1):
     dependencies:
       esbuild: 0.25.2
       fdir: 6.4.4(picomatch@4.0.2)
@@ -8150,14 +8143,14 @@ snapshots:
       rollup: 4.40.1
       tinyglobby: 0.2.13
     optionalDependencies:
-      "@types/node": 22.15.21
+      "@types/node": 22.15.22
       fsevents: 2.3.3
       tsx: 4.19.4
       yaml: 2.7.1
 
-  vitefu@1.0.6(vite@6.3.5(@types/node@22.15.21)(tsx@4.19.4)(yaml@2.7.1)):
+  vitefu@1.0.6(vite@6.3.5(@types/node@22.15.22)(tsx@4.19.4)(yaml@2.7.1)):
     optionalDependencies:
-      vite: 6.3.5(@types/node@22.15.21)(tsx@4.19.4)(yaml@2.7.1)
+      vite: 6.3.5(@types/node@22.15.22)(tsx@4.19.4)(yaml@2.7.1)
 
   volar-service-css@0.0.62(@volar/language-service@2.4.11):
     dependencies:
