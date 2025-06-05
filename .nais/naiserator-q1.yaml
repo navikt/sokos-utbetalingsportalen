@@ -82,6 +82,14 @@ spec:
     - name: UMAMI_SPORINGSKODE
       value: "e174f8d8-4082-4cb0-8280-b992d0a47901"
 
+    # sokos-dare-poc
+    - name: SOKOS_DARE_POC_API
+      value: https://sokos-dare-poc.dev-fss-pub.nais.io
+    - name: SOKOS_DARE_POC_API_AUDIENCE
+      value: api://dev-fss.okonomi.sokos-dare-poc/.default
+    - name: SOKOS_DARE_POC_API_PROXY
+      value: "/dare-poc-api"
+
     # sokos-up-ors-api
     - name: SOKOS_UP_ORS_API
       value: http://sokos-up-ors-api
