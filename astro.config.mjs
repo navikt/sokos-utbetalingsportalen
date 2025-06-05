@@ -10,14 +10,14 @@ export default defineConfig({
   integrations: [
     react(),
     {
-      name: 'importmap-externals',
+      name: "importmap-externals",
       hooks: {
-        'astro:build:setup': ({ vite, target }) => {
-          if(target === 'client') {
+        "astro:build:setup": ({ vite, target }) => {
+          if (target === "client") {
             vite.build.rollupOptions["external"] = ["react", "react-dom"];
           }
-        }
-      }
+        },
+      },
     },
   ],
   output: "server",
