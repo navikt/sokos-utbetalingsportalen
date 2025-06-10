@@ -12,6 +12,7 @@ type SideBarProps = {
 export default function SideBar({ adGroups }: SideBarProps) {
   const authorizedApps = getAuthorizedApps(adGroups);
   const [isOpen, setIsOpen] = useState(false);
+  const [showButton, setShowButton] = useState(true);
   const sidebarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -29,6 +30,7 @@ export default function SideBar({ adGroups }: SideBarProps) {
         sidebarRef.current &&
         !sidebarRef.current.contains(event.target as Node)
       ) {
+        setShowButton(false);
         setIsOpen(false);
       }
     }
@@ -40,7 +42,19 @@ export default function SideBar({ adGroups }: SideBarProps) {
   }, [isOpen]);
 
   const handleToggle = () => {
-    setIsOpen(!isOpen);
+    if (isOpen) {
+      setShowButton(false);
+      setIsOpen(false);
+    } else {
+      setIsOpen(true);
+      setShowButton(true);
+    }
+  };
+
+  const handleTransitionEnd = () => {
+    if (!isOpen) {
+      setShowButton(true);
+    }
   };
 
   const renderSideBarLink = ({
@@ -81,13 +95,16 @@ export default function SideBar({ adGroups }: SideBarProps) {
       <div
         className={`${styles["sidebar--closed"]} ${styles["sidebar"]}`}
         role="navigation"
+        onTransitionEnd={handleTransitionEnd}
       >
-        <Button
-          className={styles["sidebar__buttonColor"]}
-          onClick={handleToggle}
-          variant="primary-neutral"
-          icon={<MenuHamburgerIcon title="Hamburgermeny ikon" />}
-        />
+        {showButton && (
+          <Button
+            className={styles["sidebar__buttonColor"]}
+            onClick={handleToggle}
+            variant="primary-neutral"
+            icon={<MenuHamburgerIcon title="Hamburgermeny ikon" />}
+          />
+        )}
       </div>
     );
   }

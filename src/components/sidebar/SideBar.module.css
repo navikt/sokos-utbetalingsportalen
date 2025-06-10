@@ -75,7 +75,7 @@
   background-color: var(--a-purple-400);
   text-decoration: none;
   transition-property: all;
-  transition-duration: 200ms;
+  transition-duration: 100ms;
 }
 
 .sidebar__linkChild {
