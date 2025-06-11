@@ -49,11 +49,18 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
             "Reverse Proxy HTTP Request",
           );
 
+          const xHeaders = Object.fromEntries(
+            context.request.headers
+              .entries()
+              .filter(([key, _]) => key.toLowerCase().startsWith("x-")),
+          );
+
           const response = await fetch(url.href, {
             method: context.request.method,
             headers: {
               Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",
+              ...xHeaders,
             },
             body: context.request.body,
             // @ts-expect-error
