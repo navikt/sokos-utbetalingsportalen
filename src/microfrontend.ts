@@ -49,8 +49,8 @@ export const microfrontendConfigArray: MicroFrontend[] = [
   },
   {
     app: "FASTEDATA",
-    title: "Fastedata",
-    description: "En beskrivelse",
+    title: "Faste data",
+    description: "Oppslag og oversikt over gjeldende oppsettsregler",
     adGroupDevelopment: "7e0c2ad1-d0e7-4fa8-8169-7a9d68435644",
     adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
     route: "/fastedata",
