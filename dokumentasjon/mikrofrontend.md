@@ -116,6 +116,8 @@
       <MicrofrontendWrapper appName="attestasjon" />
     ```
 
+🚨‼️ **NB** `appName` variablen må være lik `app` i [microfrontend.ts](/src/microfrontend.ts)
+
 Har du en routing i mikrofrontend? Følg pkt. 1. </br>
 Har du ikke routing i mikrofrontend? Følg pkt. 2 </br>
 
