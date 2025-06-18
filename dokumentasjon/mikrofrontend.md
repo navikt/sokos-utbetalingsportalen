@@ -128,5 +128,6 @@ Har du ikke routing i mikrofrontend? Følg pkt. 2 </br>
       ```
       til å hente config fra [microfrontend.ts](/src/microfrontend.ts).
 
+<br></br>
 
 # Nå er `Utbetalingsportalen` klar til å kunne rendre mikrofrontend'en og rute api kallene til riktig backend 🎉
