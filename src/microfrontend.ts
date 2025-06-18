@@ -21,7 +21,7 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     naisAppName: "sokos-mikrofrontend-template",
   },
   {
-    app: "DARE-POC",
+    app: "DARE",
     title: "DARE POC",
     description: "Utkast av beregning av AAP",
     adGroupDevelopment: "2477057d-7f80-4517-a885-20c948bf0367",
