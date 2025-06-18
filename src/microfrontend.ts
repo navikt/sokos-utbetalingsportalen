@@ -26,7 +26,7 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     description: "Utkast av beregning av AAP",
     adGroupDevelopment: "2477057d-7f80-4517-a885-20c948bf0367",
     adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-    route: "/dare-poc",
+    route: "/dare",
     naisAppName: "sokos-up-dare",
   },
   {
