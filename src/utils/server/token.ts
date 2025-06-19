@@ -14,7 +14,7 @@ export const getOboToken = async (
     logger.error(
       `Error getting obo token for audience ${audienceService}: ${oboResult.error}`,
     );
-    throw new Error(`Request oboToken for ${audience} failed `);
+    return "";
   }
 
   return oboResult.token;
