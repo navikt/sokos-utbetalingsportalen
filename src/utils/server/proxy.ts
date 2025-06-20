@@ -62,7 +62,11 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
               "Content-Type": "application/json",
               ...xHeaders,
             },
-            body: context.request.body,
+            // Only include body if method is not GET
+            ...(context.request.method !== "GET" && {
+              body: context.request.body,
+            }),
+
             // @ts-expect-error
             duplex: "half",
           });

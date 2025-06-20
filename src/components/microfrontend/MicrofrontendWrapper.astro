@@ -14,7 +14,7 @@ const appHostname = Astro.url.hostname;
 const appConfig = getMicrofrontendConfig(Astro.props.appName);
 const appAccess = hasAccessToApp(Astro.locals.userInfo.groups, appConfig);
 
-export function fetchBundle(appHostname: String, appName: string) {
+export function fetchBundle(appHostname: string, appName: string) {
   if (getServerSideEnvironment() === "local") {
     return "http://localhost:3000/bundle.js";
   }

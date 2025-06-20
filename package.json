@@ -9,7 +9,8 @@
     "mock": "tsx mock/server.ts",
     "preview": "astro preview",
     "stylelint": "stylelint '**/*.css'",
-    "prepare": "husky"
+    "prepare": "husky",
+    "lint": "oxlint --config .oxlintrc.json"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -38,6 +39,7 @@
     "hono": "4.7.11",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
+    "oxlint": "^1.2.0",
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
     "stylelint": "^16.20.0",
