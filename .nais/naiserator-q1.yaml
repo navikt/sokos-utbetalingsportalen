@@ -58,6 +58,7 @@ spec:
       rules:
         - application: sokos-up-ors-api
         - application: sokos-up-kontoregister-api
+        - application: sokos-up-astro-template
       external:
         - host: sokos-skattekort-person.dev-fss-pub.nais.io
         - host: sokos-oppdrag.dev-fss-pub.nais.io
