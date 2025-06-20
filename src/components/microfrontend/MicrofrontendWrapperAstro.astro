@@ -1,0 +1,32 @@
+---
+import { getOboToken } from "@utils/server/token";
+
+const oboToken = await getOboToken(
+  Astro.locals.token,
+  "api://dev-fss.okonomi.sokos-up-astro-template/.default"
+);
+
+let html;
+
+try {
+  const response = await fetch("http://sokos-up-astro-template", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${oboToken}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Http error with status: ${response.status}`);
+  }
+
+  html = await response.text();
+} catch (error) {
+  console.error(
+    `Failed to fetch microfrontend: http://sokos-up-astro-template. Error: `,
+    error
+  );
+}
+---
+
+<Fragment set:html={html} />
