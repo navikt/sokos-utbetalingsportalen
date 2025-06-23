@@ -12,15 +12,6 @@ type MicrofrontendDictionary = Record<string, MicroFrontend>;
 
 export const microfrontendConfigArray: MicroFrontend[] = [
   {
-    app: "GRENSESNITTMAL",
-    title: "Grensesnittmal",
-    description: "Dette er en blank mal for et grensesnitt",
-    adGroupDevelopment: "1b717a23-d376-471c-9fc6-356299fadc2b",
-    adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-    route: "/grensesnittmal",
-    naisAppName: "sokos-mikrofrontend-template",
-  },
-  {
     app: "DARE",
     title: "DARE POC",
     description: "Utkast av beregning av AAP",
