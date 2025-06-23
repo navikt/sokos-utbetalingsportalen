@@ -1,5 +1,26 @@
 ---
-import MicrofrontendWrapper from "@components/microfrontend/MicrofrontendWrapper.astro";
+import Microfrontend from "@components/microfrontend/Microfrontend";
+import Layout from "@layouts/Layout.astro";
+import { getServerSideEnvironment } from "@utils/server/environment";
+
+const appHostname = Astro.url.hostname;
+
+export function fetchBundle(appHostname: String, appName: string) {
+  if (getServerSideEnvironment() === "local") {
+    return "http://localhost:3000/bundle.js";
+  }
+  return `https://${appHostname}/${appName}/bundle.js`;
+}
 ---
 
-<MicrofrontendWrapper appName="grensesnittmal" />
+<!-- Dette er et grensesnittmal for React applikasjoner -->
+<Layout title={"Grensesnittmal React"}>
+  {
+    (
+      <Microfrontend
+        url={fetchBundle(appHostname, "sokos-mikrofrontend-template")}
+        client:only="react"
+      />
+    )
+  }
+</Layout>
