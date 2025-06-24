@@ -3,7 +3,6 @@ import Environmentbanner from "@components/environmentbanner/environmentbanner.a
 import Header from "@components/header/header.astro";
 import Observability from "@components/observability/Observability";
 import SideBar from "@components/sidebar/sidebar.astro";
-import { getServerSideEnvironment } from "@utils/server/environment";
 import styles from "./Layout.module.css";
 
 export type LayoutProps = {
@@ -17,8 +16,6 @@ const pageTitle = title
   : "Utbetalingsportalen";
 
 const sporingskode = process.env.UMAMI_SPORINGSKODE;
-
-const isProduction = getServerSideEnvironment() === "production";
 
 const enableObservability =
   process.env.NAIS_CLUSTER_NAME === "dev-gcp" ||
@@ -50,18 +47,13 @@ const enableObservability =
         }
       }
     </script>
-    {
-      !isProduction && (
-        <script
-          is:inline
-          defer
-          data-astro-rerun
-          src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
-          data-host-url="https://umami.nav.no"
-          data-website-id={sporingskode}
-        />
-      )
-    }
+    <script
+      is:inline
+      defer
+      data-astro-rerun
+      src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
+      data-host-url="https://umami.nav.no"
+      data-website-id={sporingskode}></script>
   </head>
   <body>
     <Header />
