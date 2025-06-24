@@ -32,7 +32,6 @@ spec:
       allowAllUsers: false
       claims:
         groups:
-          - id: "1b717a23-d376-471c-9fc6-356299fadc2b" # 0000-GA-SOKOS-MF-Mikrofrontend-READ
           - id: "0e58dc41-7c57-4b79-a8c7-d0caec129e53" # 0000-GA-SOKOS-MF-SPK-Mottak-ADMIN
           - id: "a13b4176-e328-4e1c-b181-ff676a7146b1" # 0000-GA-SOKOS-MF-Skattekort-READ
           - id: "b01fb216-fcb3-4ede-b7da-71fffe859763" # 0000-GA-SOKOS-MF-ORS-READ
