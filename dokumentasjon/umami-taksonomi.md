@@ -11,6 +11,21 @@ Det er dog opp til hver enkelt arbeidsflate å vurdere hvilke hendelser man øns
 Hendelser man ikke tror er relevante for spørsmålene man håper å få svar på med analyse, kan utelates.
 
 Taksonomien her er basert på [Navs taksonomi for produktanalyser](https://startumami.ansatt.nav.no/taksonomi).
+En del av hendelsene som er beskrevet der er også med under - da forhåpentligvis her med bedre info om hva
+hendelses-typen er tenkt brukt til, og/eller bedre beskrivelse av hvordan hendelsens detaljer er ment brukt.
+Det er dog ikke et mål at vi skal ende opp med vår egen kopi av hele Nav-taksonomien under her.
+
+## Hvordan oppdatere taksonomien?
+
+Dersom noen har behov for å kunne sende hendelser som ikke er beskrevet i taksonomien, eller med ekstra detaljer på en
+hendelse som allerede finnes, bør taksonomien oppdateres først. På den måten vil neste person som har et tilsvarende
+behov kunne gjøre ting likt, og man unngår å ende opp med unødvendig divergens i hvordan forskjellige arbeidsflater
+strukturerer Umami-hendelsene sine.
+
+Har man behov for å endre på navn eller detaljer for hendelses-typer som allerede er nevnt i taksonomien, bør alle
+relevante team holdes informert. Dette er i noen grad forsøkt hensyntatt ved å sette `@navikt/okonomi` som codeowner
+for dette dokumentet - slik at nye PRs med endringer her automatisk varsler hele `okonomi`-teamet... men det er
+helt klart ønskelig at man også bruker andre kanaler for å informere om/diskutere slike endringer.
 
 ## Taksonomien
 
@@ -20,7 +35,7 @@ Hendelsene er her forsøkt listet opp alfabetisk etter navn.
 
 ### `accordion lukket` (kilde: [Aksel-taksonomi])
 
-Typisk brukt når en [Aksel Accordion](https://aksel.nav.no/komponenter/core/accordion) blir lukket.
+Typisk brukt når en [Aksel \<Accordion/>](https://aksel.nav.no/komponenter/core/accordion) blir lukket.
 
 | Detalj        | Forklaring                                           |
 |---------------|------------------------------------------------------|
@@ -29,7 +44,7 @@ Typisk brukt når en [Aksel Accordion](https://aksel.nav.no/komponenter/core/acc
 
 ### `accordion åpnet` (kilde: [Aksel-taksonomi])
 
-Typisk brukt når en [Aksel Accordion](https://aksel.nav.no/komponenter/core/accordion) blir åpnet.
+Typisk brukt når en [Aksel \<Accordion/>](https://aksel.nav.no/komponenter/core/accordion) blir åpnet.
 
 | Detalj        | Forklaring                                           |
 |---------------|------------------------------------------------------|
@@ -38,7 +53,7 @@ Typisk brukt når en [Aksel Accordion](https://aksel.nav.no/komponenter/core/acc
 
 ### `alert lukket` (kilde: [Aksel-taksonomi])
 
-Typisk brukt når en [Aksel Alert](https://aksel.nav.no/komponenter/core/alert) blir lukket.
+Typisk brukt når en [Aksel \<Alert/>](https://aksel.nav.no/komponenter/core/alert) blir lukket.
 
 | Detalj         | Forklaring                                        |
 |----------------|---------------------------------------------------|
@@ -47,7 +62,7 @@ Typisk brukt når en [Aksel Alert](https://aksel.nav.no/komponenter/core/alert) 
 
 ### `expandablerow lukket` (kilde: dette dokumentet)
 
-En [Aksel Table.ExpandableRow](https://aksel.nav.no/komponenter/core/table#bb01ec258f5f) blir lukket.
+En [Aksel \<Table.ExpandableRow/>](https://aksel.nav.no/komponenter/core/table#bb01ec258f5f) blir lukket.
 
 | Detalj  | Forklaring                                        |
 |---------|---------------------------------------------------|
@@ -55,7 +70,7 @@ En [Aksel Table.ExpandableRow](https://aksel.nav.no/komponenter/core/table#bb01e
 
 ### `expandablerow åpnet` (kilde: dette dokumentet)
 
-En [Aksel Table.ExpandableRow](https://aksel.nav.no/komponenter/core/table#bb01ec258f5f) blir åpnet.
+En [Aksel \<Table.ExpandableRow/>](https://aksel.nav.no/komponenter/core/table#bb01ec258f5f) blir åpnet.
 
 | Detalj  | Forklaring                                        |
 |---------|---------------------------------------------------|
@@ -63,7 +78,7 @@ En [Aksel Table.ExpandableRow](https://aksel.nav.no/komponenter/core/table#bb01e
 
 ### `knapp klikket` (kilde: [Aksel-taksonomi])
 
-En knapp, f.eks. en [Aksel Button](https://aksel.nav.no/komponenter/core/button), har blitt klikket på.
+En knapp, f.eks. en [Aksel \<Button/>](https://aksel.nav.no/komponenter/core/button), har blitt klikket på.
 
 | Detalj         | Forklaring                                   |
 |----------------|----------------------------------------------|
@@ -73,7 +88,7 @@ En knapp, f.eks. en [Aksel Button](https://aksel.nav.no/komponenter/core/button)
 
 ### `les mer lukket` (kilde: [Aksel-taksonomi])
 
-Panel med "les mer"-tekst, f.eks. en [Aksel ReadMore](https://aksel.nav.no/komponenter/core/read-more) blir lukket.
+Panel med "les mer"-tekst, f.eks. en [Aksel \<ReadMore/>](https://aksel.nav.no/komponenter/core/read-more) blir lukket.
 
 | Detalj     | Forklaring                                           |
 |------------|------------------------------------------------------|
@@ -82,7 +97,7 @@ Panel med "les mer"-tekst, f.eks. en [Aksel ReadMore](https://aksel.nav.no/kompo
 
 ### `les mer åpnet` (kilde: [Aksel-taksonomi])
 
-Panel med "les mer"-tekst, f.eks. en [Aksel ReadMore](https://aksel.nav.no/komponenter/core/read-more) blir åpnet.
+Panel med "les mer"-tekst, f.eks. en [Aksel \<ReadMore/>](https://aksel.nav.no/komponenter/core/read-more) blir åpnet.
 
 | Detalj     | Forklaring                                           |
 |------------|------------------------------------------------------|
@@ -91,7 +106,7 @@ Panel med "les mer"-tekst, f.eks. en [Aksel ReadMore](https://aksel.nav.no/kompo
 
 ### `modal lukket` (kilde: [Aksel-taksonomi])
 
-En modal dialog blir lukket, f.eks. en [Aksel Modal](https://aksel.nav.no/komponenter/core/modal).
+En modal dialog blir lukket, f.eks. en [Aksel \<Modal/>](https://aksel.nav.no/komponenter/core/modal).
 
 | Detalj    | Forklaring                                       |
 |-----------|--------------------------------------------------|
@@ -100,7 +115,7 @@ En modal dialog blir lukket, f.eks. en [Aksel Modal](https://aksel.nav.no/kompon
 
 ### `modal åpnet` (kilde: [Aksel-taksonomi])
 
-En modal dialog blir åpnet, f.eks. en [Aksel Modal](https://aksel.nav.no/komponenter/core/modal).
+En modal dialog blir åpnet, f.eks. en [Aksel \<Modal/>](https://aksel.nav.no/komponenter/core/modal).
 
 | Detalj    | Forklaring                                       |
 |-----------|--------------------------------------------------|
@@ -117,8 +132,8 @@ utelates eller få verdi `false`.
 
 ### `tekst kopiert` (kilde: [Aksel-taksonomi])
 
-Bruker har kopiert ut tekst fra et element, enten ved hjelp av
-egen [Aksel CopyButton](https://aksel.nav.no/komponenter/core/copybutton) eller med manuell markering og nettleserens
+Bruker har kopiert ut tekst fra et element, enten ved hjelp av en egen
+[Aksel \<CopyButton/>](https://aksel.nav.no/komponenter/core/copybutton) eller med manuell markering og nettleserens
 "kopier"-funksjon.
 
 | Detalj | Forklaring                                         |
