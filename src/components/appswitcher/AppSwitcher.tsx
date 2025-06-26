@@ -1,7 +1,6 @@
 import { Heading, Switch } from "@navikt/ds-react";
-import { getAuthorizedApps, hasAccessToApp } from "@utils/accessControl";
+import { getAuthorizedApps, getEnvironmentFilteredApps, hasAccessToApp } from "@utils/accessControl";
 import { useState } from "react";
-import { microfrontendConfigArray as allApps } from "src/microfrontend";
 import AppCard from "./AppCard";
 import styles from "./AppSwitcher.module.css";
 
@@ -11,10 +10,11 @@ type AppSwitcherProps = {
 
 export default function AppSwitcher(props: AppSwitcherProps) {
   const authorizedApps = getAuthorizedApps(props.adGroups);
+  const environmentFilteredApps = getEnvironmentFilteredApps();
   const [showApps, setShowApps] = useState<string>("");
 
   function appCards() {
-    return (showApps ? allApps : authorizedApps)
+    return (showApps ? environmentFilteredApps : authorizedApps)
       .slice()
       .sort((a, b) => a.title.localeCompare(b.title))
       .map((app) => (
