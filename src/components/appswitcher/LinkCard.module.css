@@ -1,13 +1,13 @@
-.appcard {
+.linkCard {
   height: 100%;
   background-color: var(--a-surface-alt-2-subtle);
 }
 
-.appcard:hover {
+.linkCard:hover {
   background-color: var(--a-surface-alt-1-subtle);
 }
 
-.appcard--disabled {
+.linkCard--disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
