@@ -1,5 +1,9 @@
 import { Heading, Switch } from "@navikt/ds-react";
-import { getAuthorizedApps, getEnvironmentFilteredApps, hasAccessToApp } from "@utils/accessControl";
+import {
+  getAuthorizedApps,
+  getEnvironmentFilteredApps,
+  hasAccessToApp,
+} from "@utils/accessControl";
 import { useState } from "react";
 import AppCard from "./AppCard";
 import styles from "./AppSwitcher.module.css";

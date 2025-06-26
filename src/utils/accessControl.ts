@@ -11,12 +11,14 @@ function hasAccessToAdGroup(adGroups: string[], uuid: string): boolean {
  * @param app The microfrontend application configuration
  * @returns true if the app is available in the current environment
  */
-export function isAppAvailableInCurrentEnvironment(app: MicroFrontend): boolean {
+export function isAppAvailableInCurrentEnvironment(
+  app: MicroFrontend,
+): boolean {
   const environment = getClientSideEnvironment();
-  
+
   // Placeholder UUID pattern - indicates app is not available in that environment
   const placeholderPattern = /^x{8}-x{4}-x{4}-x{4}-x{12}$/;
-  
+
   switch (environment) {
     case "production":
       // In production, only show apps with valid (non-placeholder) production AD groups
