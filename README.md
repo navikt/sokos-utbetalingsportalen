@@ -1,4 +1,4 @@
-en test # Utbetalingsportalen
+# Utbetalingsportalen
 
 Container for å sette sammen ulike mikrofrontend som utgjør interne arbeidsflaten i nav som benyttes av økonomimedarbeidere, Nav Kontaktsenter m.fl.
 Arbeidsflatene som tilbys gir mulighet til å se og/eller behandle saker som gjelder utbetaling av ytelser i Nav.
