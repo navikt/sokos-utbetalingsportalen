@@ -12,15 +12,6 @@ type MicrofrontendDictionary = Record<string, MicroFrontend>;
 
 export const microfrontendConfigArray: MicroFrontend[] = [
   {
-    app: "GRENSESNITTMAL",
-    title: "Grensesnittmal",
-    description: "Dette er en blank mal for et grensesnitt",
-    adGroupDevelopment: "1b717a23-d376-471c-9fc6-356299fadc2b",
-    adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-    route: "/grensesnittmal",
-    naisAppName: "sokos-mikrofrontend-template",
-  },
-  {
     app: "DARE",
     title: "DARE POC",
     description: "Utkast av beregning av AAP",
@@ -34,7 +25,7 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     title: "Attestasjon",
     description: "Attestering av oppdrag",
     adGroupDevelopment: "0de8d01f-8ad0-4391-841c-55392956bc17",
-    adGroupProduction: "ae51bc06-2f9a-47a4-b33d-f0825ecb9985",
+    adGroupProduction: "b37d0866-fae3-43c7-abd4-91cf485852c5",
     route: "/attestasjon",
     naisAppName: "sokos-up-attestasjon",
   },
@@ -43,7 +34,7 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     title: "Oppdragsinfo",
     description: "Søk etter oppdrag i Oppdragssystemet",
     adGroupDevelopment: "e0023d91-26bc-4d5d-95ba-3148b6123afc",
-    adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    adGroupProduction: "f3d2cfe1-f437-412f-9165-075cb3d27a58",
     route: "/oppdragsinfo",
     naisAppName: "sokos-up-oppdragsinfo",
   },

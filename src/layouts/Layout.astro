@@ -3,7 +3,6 @@ import Environmentbanner from "@components/environmentbanner/environmentbanner.a
 import Header from "@components/header/header.astro";
 import Observability from "@components/observability/Observability";
 import SideBar from "@components/sidebar/sidebar.astro";
-import { getServerSideEnvironment } from "@utils/server/environment";
 import styles from "./Layout.module.css";
 
 export type LayoutProps = {
@@ -17,8 +16,6 @@ const pageTitle = title
   : "Utbetalingsportalen";
 
 const sporingskode = process.env.UMAMI_SPORINGSKODE;
-
-const isProduction = getServerSideEnvironment() === "production";
 
 const enableObservability =
   process.env.NAIS_CLUSTER_NAME === "dev-gcp" ||
@@ -35,33 +32,28 @@ const enableObservability =
     <title>{pageTitle}</title>
     <link
       rel="preload"
-      href="https://cdn.nav.no/aksel/@navikt/ds-css/7.23.0/index.min.css"
+      href="https://cdn.nav.no/aksel/@navikt/ds-css/7.24.0/index.min.css"
       as="style"
     />
     <link
       rel="stylesheet"
-      href="https://cdn.nav.no/aksel/@navikt/ds-css/7.23.0/index.min.css"
+      href="https://cdn.nav.no/aksel/@navikt/ds-css/7.24.0/index.min.css"
     />
     <script is:inline type="importmap">
       {
         "imports": {
-          "react": "https://www.nav.no/tms-min-side-assets/react/18/esm/index.js",
-          "react-dom": "https://www.nav.no/tms-min-side-assets/react-dom/18/esm/index.js"
+          "react": "https://cdn.nav.no/okonomi/sokos-shared-dependencies/packages/react/19.1.0/react.mjs",
+          "react-dom": "https://cdn.nav.no/okonomi/sokos-shared-dependencies/packages/react-dom/19.1.0/react-dom.mjs"
         }
       }
     </script>
-    {
-      !isProduction && (
-        <script
-          is:inline
-          defer
-          data-astro-rerun
-          src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
-          data-host-url="https://umami.nav.no"
-          data-website-id={sporingskode}
-        />
-      )
-    }
+    <script
+      is:inline
+      defer
+      data-astro-rerun
+      src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
+      data-host-url="https://umami.nav.no"
+      data-website-id={sporingskode}></script>
   </head>
   <body>
     <Header />

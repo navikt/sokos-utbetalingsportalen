@@ -10,6 +10,10 @@ Arbeidsflatene som tilbys gir mulighet til å se og/eller behandle saker som gje
 
 [Guide for å legge til en mikrofrontend](dokumentasjon/mikrofrontend.md)
 
+### 📍 Umami-taksonomi - Anebfaling og bruk av navngivning av Umami-hendelser og hendelsenes tilhørende detaljer
+
+[Umami-taksonomi](dokumentasjon/umami-taksonomi.md)
+
 ## Innholdsoversikt
 
 - [1. Teknisk stack](#1-teknisk-stack)
