@@ -1,5 +1,4 @@
 ---
-import NoAccess from "@pages/NoAccess.astro";
 import { logger } from "@utils/logger";
 import { getOboToken } from "@utils/server/token";
 
@@ -36,7 +35,7 @@ if (!Astro.props.appIngressUrl || !Astro.props.appAudience) {
     }
 
     html = await response.text();
-    
+
   } catch (error) {
     logger.error(
       `Microfrontend fetch from ${Astro.props.appIngressUrl} failed with error : ${error}`
