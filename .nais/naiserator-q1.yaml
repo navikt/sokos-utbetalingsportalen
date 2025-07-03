@@ -84,7 +84,7 @@ spec:
       value: "e174f8d8-4082-4cb0-8280-b992d0a47901"
 
     # sokos-astro-template (Astro mikrofrontend template)
-    - name: SOKOS_ASTRO_TEMPLATE
+    - name: SOKOS_ASTRO_TEMPLATE_URL
       value: http://sokos-astro-template
     - name: SOKOS_ASTRO_TEMPLATE_AUDIENCE
       value: api://dev-gcp.okonomi.sokos-astro-template/.default
