@@ -13,8 +13,11 @@ let html = null;
 let error = null;
 
 if (!appIngressUrl || !appAudience) {
-  logger.error("Missing required props: appIngressUrl or appAudience");
-  error = "Configuration error: Missing required microfrontend parameters";
+  logger.error(
+    "Configuration error: Missing required microfrontend parameters, appIngressUrl or appAudience"
+  );
+  error =
+    "Configuration error: Missing required microfrontend parameters, appIngressUrl or appAudience";
 } else {
   try {
     const oboToken = await getOboToken(Astro.locals.token, appAudience);
@@ -33,15 +36,15 @@ if (!appIngressUrl || !appAudience) {
           status: response.status,
           statusText: response.statusText,
         },
-        "Failed to fetch microfrontend"
+        "Failed to fetch html"
       );
-      error = `Failed to load component (${response.status})`;
+      error = `Failed to fetch html content from ${response.url} with status: ${response.status} ${response.statusText}`;
     } else {
       html = await response.text();
     }
   } catch (e) {
     logger.error(`Fetch from ${appIngressUrl} failed: ${e}`);
-    error = "An error occurred while loading the component";
+    error = "An error occurred while loading the html content.";
   }
 }
 ---
