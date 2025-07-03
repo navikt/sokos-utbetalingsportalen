@@ -1,5 +1,8 @@
 ---
-import MicrofrontendWrapperAstro from "@components/microfrontend/MicrofrontendWrapperAstro.astro";
+import MicrofrontendWrapperServer from "@components/microfrontend/MicrofrontendWrapperServer.astro";
 ---
 
-<MicrofrontendWrapperAstro />
+<MicrofrontendWrapperServer
+  appIngressUrl={process.env.SOKOS_UP_ASTRO_TEMPLATE}
+  appAudience={process.env.SOKOS_UP_ASTRO_TEMPLATE_AUDIENCE}
+/>

@@ -110,7 +110,7 @@
 
     ```js
       ---
-      import MicrofrontendWrapper from "../components/microfrontend/MicrofrontendWrapper.astro";
+      import MicrofrontendWrapper from "../components/microfrontend/MicrofrontendWrapperClient.astro";
       ---
 
       <MicrofrontendWrapper appName="attestasjon" />

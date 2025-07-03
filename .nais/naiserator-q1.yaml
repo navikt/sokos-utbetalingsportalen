@@ -83,7 +83,13 @@ spec:
     - name: UMAMI_SPORINGSKODE
       value: "e174f8d8-4082-4cb0-8280-b992d0a47901"
 
-    # sokos-dare-poc
+    # sokos-up-astro-template (Mikrofrontend)
+    - name: SOKOS_UP_ASTRO_TEMPLATE
+      value: http://sokos-up-astro-template
+    - name: SOKOS_UP_ASTRO_TEMPLATE_AUDIENCE
+      value: api://dev-gcp.okonomi.sokos-up-astro-template/.default
+
+    # sokos-dare-poc (Backend)
     - name: SOKOS_DARE_POC_API
       value: https://sokos-dare-poc.dev-fss-pub.nais.io
     - name: SOKOS_DARE_POC_API_AUDIENCE
@@ -91,7 +97,7 @@ spec:
     - name: SOKOS_DARE_POC_API_PROXY
       value: "/dare-poc-api"
 
-    # sokos-up-ors-api
+    # sokos-up-ors-api (Backend)
     - name: SOKOS_UP_ORS_API
       value: http://sokos-up-ors-api
     - name: SOKOS_UP_ORS_API_AUDIENCE
@@ -99,7 +105,7 @@ spec:
     - name: SOKOS_UP_ORS_API_PROXY
       value: "/up-ors-api"
 
-    # sokos-skattekort-person
+    # sokos-skattekort-person (Backend)
     - name: SOKOS_SKATTEKORT_PERSON_API
       value: https://sokos-skattekort-person.dev-fss-pub.nais.io
     - name: SOKOS_SKATTEKORT_PERSON_API_AUDIENCE
@@ -107,7 +113,7 @@ spec:
     - name: SOKOS_SKATTEKORT_PERSON_API_PROXY
       value: "/skattekort-api"
 
-    # sokos-spk-mottak
+    # sokos-spk-mottak (Backend)
     - name: SOKOS_SPK_MOTTAK_API
       value: https://sokos-spk-mottak.dev-fss-pub.nais.io
     - name: SOKOS_SPK_MOTTAK_API_AUDIENCE
@@ -115,7 +121,7 @@ spec:
     - name: SOKOS_SPK_MOTTAK_API_PROXY
       value: "/spk-mottak-api"
 
-    # sokos-oppdrag
+    # sokos-oppdrag (Backend)
     - name: SOKOS_OPPDRAG_API
       value: https://sokos-oppdrag.dev-fss-pub.nais.io
     - name: SOKOS_OPPDRAG_API_AUDIENCE
@@ -123,7 +129,7 @@ spec:
     - name: SOKOS_OPPDRAG_API_PROXY
       value: "/oppdrag-api"
 
-    # sokos-up-kontoregister-api
+    # sokos-up-kontoregister-api (Backend)
     - name: SOKOS_KONTOREGISTER_API
       value: http://sokos-up-kontoregister-api
     - name: SOKOS_KONTOREGISTER_API_AUDIENCE
@@ -131,7 +137,7 @@ spec:
     - name: SOKOS_KONTOREGISTER_API_PROXY
       value: "/up-kr-api"
 
-    # sokos-ur-iso
+    # sokos-ur-iso (Backend)
     - name: SOKOS_UR_ISO_API
       value: https://sokos-ur-iso.dev-fss-pub.nais.io
     - name: SOKOS_UR_ISO_API_AUDIENCE
@@ -139,7 +145,7 @@ spec:
     - name: SOKOS_UR_ISO_API_PROXY
       value: "/sokos-ur-iso"
 
-    # sokos-utbetaling-api
+    # sokos-utbetaling-api (Backend)
     - name: SOKOS_UTBETALING_API
       value: https://sokos-utbetaling-api.dev-fss-pub.nais.io
     - name: SOKOS_UTBETALING_API_AUDIENCE
@@ -147,7 +153,7 @@ spec:
     - name: SOKOS_UTBETALING_API_PROXY
       value: "/sokos-utbetaling-api"
 
-    # up-meldingsflyt-api
+    # up-meldingsflyt-api (Backend)
     - name: SOKOS_MELDINGSFLYT_API
       value: https://sokos-betsys.dev-fss-pub.nais.io
     - name: SOKOS_MELDINGSFLYT_API_AUDIENCE

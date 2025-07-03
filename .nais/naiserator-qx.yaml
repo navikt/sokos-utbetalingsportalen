@@ -64,7 +64,7 @@ spec:
     - name: UMAMI_SPORINGSKODE
       value: "e174f8d8-4082-4cb0-8280-b992d0a47901"
 
-    # sokos-oppdrag
+    # sokos-oppdrag (Backend)
     - name: SOKOS_OPPDRAG_API
       value: https://sokos-oppdrag-qx.dev-fss-pub.nais.io
     - name: SOKOS_OPPDRAG_API_AUDIENCE
@@ -72,7 +72,7 @@ spec:
     - name: SOKOS_OPPDRAG_API_PROXY
       value: "/oppdrag-api"
 
-    # sokos-spk-mottak
+    # sokos-spk-mottak (Backend)
     - name: SOKOS_SPK_MOTTAK_API
       value: https://sokos-spk-mottak-qx.dev-fss-pub.nais.io
     - name: SOKOS_SPK_MOTTAK_API_AUDIENCE

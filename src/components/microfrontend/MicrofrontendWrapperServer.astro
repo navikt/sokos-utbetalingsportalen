@@ -1,0 +1,48 @@
+---
+import NoAccess from "@pages/NoAccess.astro";
+import { logger } from "@utils/logger";
+import { getOboToken } from "@utils/server/token";
+
+type Props = {
+  appIngressUrl?: string;
+  appAudience?: string;
+};
+
+let html;
+if (!Astro.props.appIngressUrl || !Astro.props.appAudience) {
+  logger.error(
+    "Missing appIngressUrl or appAudience"
+  );
+  return new Response(500);
+} else {
+
+  const oboToken = await getOboToken(
+    Astro.locals.token,
+    Astro.props.appAudience
+  );
+
+  try {
+    const response = await fetch(Astro.props.appIngressUrl, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${oboToken}`,
+      },
+    });
+
+    if (!response.ok) {
+      logger.info(
+        `Http error with status: ${response.status} while fetching microfrontend: ${Astro.props.appIngressUrl}`
+      );
+    }
+
+    html = await response.text();
+    
+  } catch (error) {
+    logger.error(
+      `Microfrontend fetch from ${Astro.props.appIngressUrl} failed with error : ${error}`
+    );
+  }
+}
+---
+
+<Fragment set:html={html} />
