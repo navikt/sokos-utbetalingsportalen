@@ -83,10 +83,10 @@ spec:
     - name: UMAMI_SPORINGSKODE
       value: "e174f8d8-4082-4cb0-8280-b992d0a47901"
 
-    # sokos-up-astro-template (Mikrofrontend)
-    - name: SOKOS_UP_ASTRO_TEMPLATE
+    # sokos-astro-template (Astro mikrofrontend template)
+    - name: SOKOS_ASTRO_TEMPLATE
       value: http://sokos-astro-template
-    - name: SOKOS_UP_ASTRO_TEMPLATE_AUDIENCE
+    - name: SOKOS_ASTRO_TEMPLATE_AUDIENCE
       value: api://dev-gcp.okonomi.sokos-astro-template/.default
 
     # sokos-dare-poc (Backend)
