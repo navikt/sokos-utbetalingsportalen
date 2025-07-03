@@ -8,11 +8,12 @@ Arbeidsflatene som tilbys gir mulighet til å se og/eller behandle saker som gje
 
 ### 📍 Hvordan legger til en mikrofrontend i Utbetalingsportalen?
 
-[Guide for å legge til en mikrofrontend](dokumentasjon/mikrofrontend.md)
+- [Guide for å legge til React client-side mikrofrontend](dokumentasjon/react-mikrofrontend.md)
+- [Guide for å legge til Astro server-side mikrofrontend](dokumentasjon/astro-mikrofrontend.md)
 
 ### 📍 Umami-taksonomi - Anebfaling og bruk av navngivning av Umami-hendelser og hendelsenes tilhørende detaljer
 
-[Umami-taksonomi](dokumentasjon/umami-taksonomi.md)
+- [Umami-taksonomi](dokumentasjon/umami-taksonomi.md)
 
 ## Innholdsoversikt
 
