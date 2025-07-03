@@ -36,7 +36,7 @@ spec:
           - id: "e0023d91-26bc-4d5d-95ba-3148b6123afc" # 0000-CA-SOKOS-MF-OppdragsInfo
           - id: "0de8d01f-8ad0-4391-841c-55392956bc17" # 0000-CA-SOKOS-MF-Attestasjon
         extra:
-          - "NAVident"
+          - NAVident
     sidecar:
       enabled: true
       autoLogin: true
