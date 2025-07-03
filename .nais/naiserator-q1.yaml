@@ -45,8 +45,9 @@ spec:
           - id: "2020a765-ffae-4042-b4cc-2a5a783a3ec5" # 0000-CA-SOKOS-MF-Meldingsflyt-READ
           - id: "7e0c2ad1-d0e7-4fa8-8169-7a9d68435644" # 0000-GA-SOKOS-MF-Fastedata
           - id: "2477057d-7f80-4517-a885-20c948bf0367" # 0000-GA-SOKOS-MF-DARE-POC
+          - id: "4a485519-e9aa-483a-a509-0d56816902ff" # 0000-CA-SOKOS-MF-Astro-Template
         extra:
-          - "NAVident"
+          - NAVident
     sidecar:
       enabled: true
       autoLogin: true
