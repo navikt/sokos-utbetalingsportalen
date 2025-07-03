@@ -4,15 +4,15 @@ import { logger } from "@utils/logger";
 import { getOboToken } from "@utils/server/token";
 
 type Props = {
-  appIngressUrl?: string;
+  appUrl?: string;
   appAudience?: string;
 };
 
-const { appIngressUrl, appAudience } = Astro.props;
+const { appUrl, appAudience } = Astro.props;
 let html = null;
 let error = null;
 
-if (!appIngressUrl || !appAudience) {
+if (!appUrl || !appAudience) {
   logger.error(
     "Configuration error: Missing required microfrontend parameters, appIngressUrl or appAudience"
   );
@@ -22,7 +22,7 @@ if (!appIngressUrl || !appAudience) {
   try {
     const oboToken = await getOboToken(Astro.locals.token, appAudience);
 
-    const response = await fetch(appIngressUrl, {
+    const response = await fetch(appUrl, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${oboToken}`,
@@ -43,7 +43,7 @@ if (!appIngressUrl || !appAudience) {
       html = await response.text();
     }
   } catch (e) {
-    logger.error(`Fetch from ${appIngressUrl} failed: ${e}`);
+    logger.error(`Fetch from ${appUrl} failed: ${e}`);
     error = "An error occurred while loading the html content.";
   }
 }
