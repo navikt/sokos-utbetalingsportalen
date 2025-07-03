@@ -85,9 +85,9 @@ spec:
 
     # sokos-up-astro-template (Mikrofrontend)
     - name: SOKOS_UP_ASTRO_TEMPLATE
-      value: http://sokos-up-astro-template
+      value: http://sokos-astro-template
     - name: SOKOS_UP_ASTRO_TEMPLATE_AUDIENCE
-      value: api://dev-gcp.okonomi.sokos-up-astro-template/.default
+      value: api://dev-gcp.okonomi.sokos-astro-template/.default
 
     # sokos-dare-poc (Backend)
     - name: SOKOS_DARE_POC_API
