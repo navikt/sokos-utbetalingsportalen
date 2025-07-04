@@ -16,10 +16,10 @@ let error = null;
 
 if (!appUrl || !appAudience) {
   logger.error(
-    "Missing required microfrontend parameters, appIngressUrl or appAudience"
+    "Missing required microfrontend parameters, appUrl or appAudience"
   );
   error =
-    "Missing required microfrontend parameters, appIngressUrl or appAudience";
+    "Missing required microfrontend parameters, appUrl or appAudience";
 } else {
   try {
     const oboToken = await getOboToken(Astro.locals.token, appAudience);
