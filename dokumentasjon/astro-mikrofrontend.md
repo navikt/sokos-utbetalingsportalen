@@ -33,12 +33,13 @@
     ---
 
     <MicrofrontendWrapperServer
+        appTitle="Astro Template"
         appUrl={process.env.SOKOS_ASTRO_TEMPLATE_URL}
         appAudience={process.env.SOKOS_ASTRO_TEMPLATE_AUDIENCE}
     />
     ```
 
-🚨‼️ **NB** `appUrl` og `appAudience` variablen henter `env` fra [naiserator-dev.yaml](../.) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml).
+🚨‼️ **NB** `appUrl` og `appAudience` variablen henter `env` fra [naiserator-dev.yaml](../.) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml). `appTitle` er tittelen som vises i tab-bar i browser vinduet (Helst tittel med stor bokstav først).
 
 <br>
 
