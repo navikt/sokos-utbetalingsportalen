@@ -1,9 +1,8 @@
 # Guide for å legge til en mikrofrontend
 
-1. I [naiserator-dev.yaml](../.nais/naiserator-dev.yaml) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs.
-   Se for eksempel hvilke `env` variabler andre har lagt inn.
-   Husk å legge inn under `accessPolicy` hvilken backend mikrofrontend'en skal snakke med.
-    Eksempel:
+1. I [naiserator-q1.yaml](../.nais/naiserator-q1.yaml) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs.<br>
+Se for eksempel hvilke `env` variabler andre har lagt inn.
+Husk å legge inn under `accessPolicy` hvilken backend mikrofrontend'en skal snakke med.
 
    ```yaml
     accessPolicy:
@@ -15,7 +14,7 @@
    ```
 
    Skal mikrofrontend'en snakke med en applikasjon  i `fss` cluster så må du gjøre [følgende](https://docs.nais.io/workloads/explanations/migrating-to-gcp/#how-do-i-reach-an-application-found-on-premises-from-my-application-in-gcp). Den må da ligge under `accessPolicy -> outbound -> external` som i eksempelet over.
-   Det må også være åpnet opp for trafikk fra Utbetalingsportalen inn til applikasjonen:
+   Det må også være åpnet opp for trafikk fra `sokos-utbetalingsportalen` inn til API:
 
      ```yaml
        accessPolicy:
@@ -38,7 +37,8 @@
             value: "/oppdrag-api"
       ```
 
-    </br></br>
+    <br>
+
       *API er den faktiske adressen til tjenesten*
       ```yaml
           # eksempel for en tjeneste i fss
@@ -60,7 +60,7 @@
               value: "/oppdrag-api"
       ```
 
-<br></br>
+<br>
 
 2. Legg inn følgende verdier i [microfrontend.ts](/src/microfrontend.ts) :
     ```typescript
@@ -89,7 +89,7 @@
           ```
       - **naisAppName** -> (NAIS app navn til mikrofrontend)
 
-<br></br>
+<br>
 
 3. Lag en mappe som har samme navn som proxy routen satt i mikrofrontend. F.eks `/oppdrag-api`, da navngir du mappen `oppdrag-api` under [pages](/src/pages/).
    Inne i den mappen lager du en fil som heter `[...proxy].ts`.
@@ -106,30 +106,28 @@
     });
    ````
 
-4. Nå skal du legge inn følgende kode:
+    Har du en routing i mikrofrontend? Følg pkt. 1. </br>
+    Har du ikke routing i mikrofrontend? Følg pkt. 2 </br>
 
-    ```js
-      ---
-      import MicrofrontendWrapper from "../components/microfrontend/MicrofrontendWrapper.astro";
-      ---
+    1. Routing -> Lag en mappe som heter det samme som `route: "/attestasjon"` i pkt. 2. Altså [attestasjon](/src/pages/attestasjon/) under [pages](/src/pages/). Inne i mappen lager du en fil med navn `[...attestasjon].astro`. Inne i denne filen legger du inn koden ovenfor.
+    2. Ikke routing -> Lag filen `attestasjon.astro` direkte under [pages](/src/pages/). Inne i denne filen legger du inn koden ovenfor.
+    3. Nå skal du legge inn følgende kode:
 
-      <MicrofrontendWrapper appName="attestasjon" />
-    ```
+        ```js
+          ---
+          import MicrofrontendWrapperClient from "../components/microfrontend/MicrofrontendWrapperClient.astro";
+          ---
+
+          <MicrofrontendWrapperClient appName="attestasjon" />
+        ```
+
+    4. Endre `attestasjon` til appnavn du skal hente config for
+
+<br>
 
 🚨‼️ **NB** `appName` variablen må være lik `app` i [microfrontend.ts](/src/microfrontend.ts)
-
-Har du en routing i mikrofrontend? Følg pkt. 1. </br>
-Har du ikke routing i mikrofrontend? Følg pkt. 2 </br>
-
-  1. Routing -> Lag en mappe som heter det samme som `route: "/attestasjon"` i pkt. 2. Altså [attestasjon](/src/pages/attestasjon/) under [pages](/src/pages/). Inne i mappen lager du en fil med navn `[...attestasjon].astro`. Inne i denne filen legger du inn koden ovenfor.
-  2. Ikke routing -> Lag filen `attestasjon.astro` direkte under [pages](/src/pages/). Inne i denne filen legger du inn koden ovenfor.
-  3. Endre `attestasjon` til appnavn du skal hente config for ->
-
-      ```
-      <MicrofrontendWrapper appName="attestasjon" />
-      ```
       til å hente config fra [microfrontend.ts](/src/microfrontend.ts).
 
-<br></br>
+<br>
 
 # Nå er `Utbetalingsportalen` klar til å kunne rendre mikrofrontend'en og rute api kallene til riktig backend 🎉
