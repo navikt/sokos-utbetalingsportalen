@@ -14,12 +14,12 @@ const { appTitle, appUrl, appAudience } = Astro.props;
 let html = null;
 let error = null;
 
-if (!appUrl || !appAudience) {
+if (!appUrl || !appAudience || !appTitle) {
   logger.error(
-    "Missing required microfrontend parameters, appUrl or appAudience"
+    "Missing some required microfrontend parameters, appTitle, appUrl or appAudience"
   );
   error =
-    "Missing required microfrontend parameters, appUrl or appAudience";
+    "Missing some required microfrontend parameters, appTitle, appUrl or appAudience";
 } else {
   try {
     const oboToken = await getOboToken(Astro.locals.token, appAudience);
