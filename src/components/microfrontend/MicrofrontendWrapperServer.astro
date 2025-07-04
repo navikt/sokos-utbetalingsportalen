@@ -52,13 +52,5 @@ if (!appUrl || !appAudience) {
 ---
 
 <Layout title={appTitle}>
-
-    html ? (
-      <Fragment set:html={html} />
-    ) : (
-      <Alert variant="error" client:only="react">
-        {error}
-      </Alert>
-    )
-  }
+  {html ? <Fragment set:html={html} /> : <Alert variant="error">{error}</Alert>}
 </Layout>
