@@ -49,4 +49,12 @@ if (!appUrl || !appAudience) {
 }
 ---
 
-{html ? <Fragment set:html={html} /> : <Alert variant="error">{error}</Alert>}
+{
+  html ? (
+    <Fragment set:html={html} />
+  ) : (
+    <Alert variant="error" client:only="react">
+      {error}
+    </Alert>
+  )
+}
