@@ -1,5 +1,5 @@
 ---
-import { Alert } from "@navikt/ds-react";
+import ErrorAlert from "@components/error/ErrorAlert";
 import { logger } from "@utils/logger";
 import { getOboToken } from "@utils/server/token";
 
@@ -14,10 +14,10 @@ let error = null;
 
 if (!appUrl || !appAudience) {
   logger.error(
-    "Configuration error: Missing required microfrontend parameters, appIngressUrl or appAudience"
+    "Missing required microfrontend parameters, appIngressUrl or appAudience"
   );
   error =
-    "Configuration error: Missing required microfrontend parameters, appIngressUrl or appAudience";
+    "Missing required microfrontend parameters, appIngressUrl or appAudience";
 } else {
   try {
     const oboToken = await getOboToken(Astro.locals.token, appAudience);
@@ -53,8 +53,6 @@ if (!appUrl || !appAudience) {
   html ? (
     <Fragment set:html={html} />
   ) : (
-    <Alert client:only="react" variant="error">
-      {error}
-    </Alert>
+    <ErrorAlert error={error} client:only="react" />
   )
 }
