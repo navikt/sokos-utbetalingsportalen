@@ -18,7 +18,7 @@ spec:
     enabled: true
     path: /api/internal/metrics
   replicas:
-    min: 2
+    min: 1
     max: 2
   secureLogs:
     enabled: true
@@ -69,8 +69,8 @@ spec:
     limits:
       memory: 1024Mi
     requests:
-      cpu: 500m
-      memory: 1024Mi
+      cpu: 100m
+      memory: 512Mi
   env:
 
     # sokos-utbetalingsportalen
