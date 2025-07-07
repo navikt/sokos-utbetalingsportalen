@@ -54,8 +54,8 @@ importers:
         specifier: 2.3.4
         version: 2.3.4(react@19.1.0)
       zod:
-        specifier: ^3.25.73
-        version: 3.25.73
+        specifier: ^3.25.74
+        version: 3.25.74
     devDependencies:
       '@hono/node-server':
         specifier: 1.15.0
@@ -2966,8 +2966,8 @@ packages:
       typescript: ^4.9.4 || ^5.0.2
       zod: ^3
 
-  zod@3.25.73:
-    resolution: {integrity: sha512-fuIKbQAWQl22Ba5d1quwEETQYjqnpKVyZIWAhbnnHgnDd3a+z4YgEfkI5SZ2xMELnLAXo/Flk2uXgysZNf0uaA==}
+  zod@3.25.74:
+    resolution: {integrity: sha512-J8poo92VuhKjNknViHRAIuuN6li/EwFbAC8OedzI8uxpEPGiXHGQu9wemIAioIpqgfB4SySaJhdk0mH5Y4ICBg==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -4141,9 +4141,9 @@ snapshots:
       xxhash-wasm: 1.1.0
       yargs-parser: 21.1.1
       yocto-spinner: 0.2.3
-      zod: 3.25.73
-      zod-to-json-schema: 3.24.6(zod@3.25.73)
-      zod-to-ts: 1.2.0(typescript@5.8.3)(zod@3.25.73)
+      zod: 3.25.74
+      zod-to-json-schema: 3.24.6(zod@3.25.74)
+      zod-to-ts: 1.2.0(typescript@5.8.3)(zod@3.25.74)
     optionalDependencies:
       sharp: 0.33.5
     transitivePeerDependencies:
@@ -6227,15 +6227,15 @@ snapshots:
 
   yoctocolors@2.1.1: {}
 
-  zod-to-json-schema@3.24.6(zod@3.25.73):
+  zod-to-json-schema@3.24.6(zod@3.25.74):
     dependencies:
-      zod: 3.25.73
+      zod: 3.25.74
 
-  zod-to-ts@1.2.0(typescript@5.8.3)(zod@3.25.73):
+  zod-to-ts@1.2.0(typescript@5.8.3)(zod@3.25.74):
     dependencies:
       typescript: 5.8.3
-      zod: 3.25.73
+      zod: 3.25.74
 
-  zod@3.25.73: {}
+  zod@3.25.74: {}
 
   zwitch@2.0.4: {}
