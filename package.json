@@ -27,7 +27,7 @@
     "react-dom": "19.1.0",
     "react-error-boundary": "^6.0.0",
     "swr": "2.3.4",
-    "zod": "^3.25.73"
+    "zod": "^4.0.5"
   },
   "devDependencies": {
     "@hono/node-server": "1.17.1",
