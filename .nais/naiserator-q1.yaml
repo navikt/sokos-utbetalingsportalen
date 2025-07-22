@@ -59,6 +59,8 @@ spec:
         - application: sokos-up-ors-api
         - application: sokos-up-kontoregister-api
         - application: sokos-astro-template
+        - application: logging
+          namespace: nais-system
       external:
         - host: sokos-skattekort-person.dev-fss-pub.nais.io
         - host: sokos-oppdrag.dev-fss-pub.nais.io

@@ -7,11 +7,11 @@ export const createLogger = (
   pino(
     {
       ...defaultConfig,
-      timestamp: false,
+      timestamp: () => `,"@timestamp":"${new Date().toISOString()}"`,
       messageKey: "message",
       formatters: {
         level: (label) => {
-          return { level: label };
+          return { level: label.toUpperCase() };
         },
         log: (object: any) => {
           if (object.err) {
