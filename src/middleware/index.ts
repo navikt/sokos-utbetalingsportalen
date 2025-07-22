@@ -47,8 +47,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
   const validatedToken = await validateAzureToken(token);
 
-  teamLogger.info("dette er en test logg");
-
   if (!validatedToken.ok) {
     const error = new Error(
       `Invalid JWT token found (cause: ${validatedToken.errorType} ${validatedToken.error}, redirecting to login.`,

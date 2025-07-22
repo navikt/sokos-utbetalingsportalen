@@ -1,6 +1,6 @@
 import { api } from "@opentelemetry/sdk-node";
 import { extractAudienceService } from "@utils/audience";
-import { logger } from "@utils/logger/index";
+import { logger, teamLogger } from "@utils/logger/index";
 import { getOboToken } from "@utils/server/token";
 import type { APIContext, APIRoute } from "astro";
 
@@ -35,6 +35,19 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
           const url = getProxyUrl(context.request, proxyConfig);
 
           const spanContext = span.spanContext();
+
+          teamLogger.info(
+            {
+              method: context.request.method,
+              url: context.request.url,
+              proxyFrom: proxyConfig.apiProxy,
+              proxyTo: proxyConfig.apiUrl,
+              trace_id: spanContext.traceId,
+              span_id: spanContext.spanId,
+              trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
+            },
+            "Reverse Proxy HTTP Request",
+          );
 
           logger.info(
             {
