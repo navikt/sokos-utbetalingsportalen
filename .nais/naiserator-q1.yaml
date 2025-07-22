@@ -20,8 +20,6 @@ spec:
   replicas:
     min: 1
     max: 2
-  secureLogs:
-    enabled: true
   observability:
     autoInstrumentation:
       enabled: true
@@ -59,6 +57,8 @@ spec:
         - application: sokos-up-ors-api
         - application: sokos-up-kontoregister-api
         - application: sokos-astro-template
+        - application: logging
+          namespace: nais-system
       external:
         - host: sokos-skattekort-person.dev-fss-pub.nais.io
         - host: sokos-oppdrag.dev-fss-pub.nais.io
