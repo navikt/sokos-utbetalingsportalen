@@ -1,6 +1,5 @@
 import { logs, NodeSDK, tracing } from "@opentelemetry/sdk-node";
-import fs from "fs";
-import pino from "pino";
+import { logger } from "./logger/index";
 
 // configure the SDK to export telemetry data to the console
 // enable all auto-instrumentations from the meta package
@@ -28,6 +27,7 @@ process.on("SIGTERM", () => {
     .finally(() => process.exit(0));
 });
 
+/*
 const secureLogPath = () =>
   fs.existsSync("/secure-logs/") ? "/secure-logs/secure.log" : "./secure.log";
 
@@ -52,3 +52,4 @@ export const secureLogger = pino(
   },
   secureLogStream,
 );
+ */
