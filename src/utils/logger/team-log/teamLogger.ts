@@ -1,6 +1,7 @@
 import pino, { DestinationStream, LoggerOptions } from "pino";
 import { createLogger } from "../logger";
 import { getClientSideEnvironment } from "@utils/client/environments";
+import { getServerSideEnvironment } from "@utils/server/environment";
 
 export { createLogger } from "../logger";
 
@@ -21,7 +22,7 @@ function getConfig(): TeamLogConfigTuple {
   const env = process.env.NAIS_CLUSTER_NAME;
   console.log("PROCESS", env);
 
-  const env2 = getClientSideEnvironment();
+  const env2 = getServerSideEnvironment();
   console.log("ENVIONMENT", env2);
 
   if (process.env.NAIS_CLUSTER_NAME === "dev-gcp") {
