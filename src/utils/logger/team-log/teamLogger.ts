@@ -17,7 +17,7 @@ function getConfig(): TeamLogConfigTuple {
     return config;
   }
 
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NAIS_CLUSTER_NAME === "dev-gcp") {
     const requiredFields = getTeamLogRequiredFields();
 
     config = [
