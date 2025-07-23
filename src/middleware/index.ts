@@ -73,7 +73,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
       name: context.locals.userInfo.name,
       groups: context.locals.userInfo.groups,
     },
-    "User authenticated successfully",
+    `${context.locals.userInfo.name}(${context.locals.userInfo.NAVident}) navigating, ${context.url}`,
   );
 
   return next();
