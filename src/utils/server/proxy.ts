@@ -1,6 +1,6 @@
 import { api } from "@opentelemetry/sdk-node";
 import { extractAudienceService } from "@utils/audience";
-import { logger } from "@utils/logger";
+import { logger } from "@utils/logger/index";
 import { getOboToken } from "@utils/server/token";
 import type { APIContext, APIRoute } from "astro";
 
