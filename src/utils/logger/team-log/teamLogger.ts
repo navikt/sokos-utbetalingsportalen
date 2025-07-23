@@ -1,8 +1,5 @@
 import pino, { DestinationStream, LoggerOptions } from "pino";
 import { createLogger } from "../logger";
-import { getServerSideEnvironment } from "@utils/server/environment";
-
-export { createLogger } from "../logger";
 
 type RequiredNaisFields = Record<string, string>;
 
@@ -13,47 +10,6 @@ type TeamLogConfigTuple = [
 ];
 
 let config: TeamLogConfigTuple | null = null;
-function getConfig(): TeamLogConfigTuple {
-  if (config != null) {
-    return config;
-  }
-
-  const env = process.env.NAIS_CLUSTER_NAME;
-  console.log("PROCESS", env);
-
-  const env2 = getServerSideEnvironment();
-  console.log("ENVIONMENT", env2);
-
-  if (process.env.NAIS_CLUSTER_NAME === "dev-gcp") {
-    const requiredFields = getTeamLogRequiredFields();
-
-    config = [
-      pino.transport({
-        target: "pino-socket",
-        options: {
-          address: "team-logs.nais-system",
-          port: 5170,
-          mode: "tcp",
-        },
-      }),
-      requiredFields,
-      {},
-    ];
-    return config;
-  }
-
-  console.warn(
-    "[TEAM LOG]: Will log secure log to stdout/stderr. Do not use in production.",
-  );
-  config = [
-    undefined,
-    {},
-    {
-      msgPrefix: "[TEAM LOG (local dev)]: ",
-    },
-  ];
-  return config;
-}
 
 /**
  * Uses a proxy to defer the creation of the logger until it is first accessed, this is so that build systems
@@ -81,6 +37,43 @@ export const createTeamLogger = (
     },
   ) as ReturnType<typeof createLogger>;
 };
+
+function getConfig(): TeamLogConfigTuple {
+  if (config != null) {
+    return config;
+  }
+
+  if (
+    process.env.NAIS_CLUSTER_NAME === "dev-gcp" ||
+    process.env.NAIS_CLUSTER_NAME === "prod-gcp"
+  ) {
+    config = [
+      pino.transport({
+        target: "pino-socket",
+        options: {
+          address: "team-logs.nais-system",
+          port: 5170,
+          mode: "tcp",
+        },
+      }),
+      getTeamLogRequiredFields(),
+      {},
+    ];
+    return config;
+  }
+
+  console.warn(
+    "[TEAM LOG]: Will log secure log to stdout/stderr. Do not use in production.",
+  );
+  config = [
+    undefined,
+    {},
+    {
+      msgPrefix: "[TEAM LOG (local dev)]: ",
+    },
+  ];
+  return config;
+}
 
 function getTeamLogRequiredFields(): Record<string, string> {
   const requiredFields = {

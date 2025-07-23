@@ -3,7 +3,7 @@ import { defineMiddleware } from "astro/middleware";
 import { isInternal } from "./utils";
 import { getServerSideEnvironment } from "@utils/server/environment.ts";
 import { UserDataSchema } from "@schema/UserDataSchema";
-import { logger } from "@utils/logger/index";
+import { logger, teamLogger } from "@utils/logger/index";
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const loginPath = `/oauth2/login?redirect=${context.url}`;
@@ -67,6 +67,14 @@ export const onRequest = defineMiddleware(async (context, next) => {
   }
 
   context.locals.userInfo = UserDataSchema.parse(response.data);
+  teamLogger.info(
+    {
+      NAVident: context.locals.userInfo.NAVident,
+      name: context.locals.userInfo.name,
+      groups: context.locals.userInfo.groups,
+    },
+    "User authenticated successfully",
+  );
 
   return next();
 });
