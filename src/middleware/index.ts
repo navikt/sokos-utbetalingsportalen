@@ -67,14 +67,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
   }
 
   context.locals.userInfo = UserDataSchema.parse(response.data);
-  teamLogger.info(
-    {
-      NAVident: context.locals.userInfo.NAVident,
-      name: context.locals.userInfo.name,
-      groups: context.locals.userInfo.groups,
-    },
-    `${context.locals.userInfo.name}(${context.locals.userInfo.NAVident}) navigating, ${context.url}`,
-  );
 
   return next();
 });
