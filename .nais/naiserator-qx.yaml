@@ -20,8 +20,6 @@ spec:
   replicas:
     min: 1
     max: 2
-  secureLogs:
-    enabled: true
   observability:
     autoInstrumentation:
       enabled: true
@@ -47,6 +45,9 @@ spec:
       external:
         - host: sokos-oppdrag-qx.dev-fss-pub.nais.io
         - host: sokos-spk-mottak-qx.dev-fss-pub.nais.io
+      rules:
+        - application: logging
+          namespace: nais-system
   ingresses:
     - "https://utbetalingsportalen-qx.intern.dev.nav.no"
     - "https://utbetalingsportalen-qx.ansatt.dev.nav.no"

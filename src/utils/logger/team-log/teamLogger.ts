@@ -1,6 +1,5 @@
 import pino, { DestinationStream, LoggerOptions } from "pino";
 import { createLogger } from "../logger";
-import { getClientSideEnvironment } from "@utils/client/environments";
 import { getServerSideEnvironment } from "@utils/server/environment";
 
 export { createLogger } from "../logger";

@@ -1,4 +1,4 @@
-import { logs, NodeSDK, tracing } from "@opentelemetry/sdk-node";
+/* import { logs, NodeSDK, tracing } from "@opentelemetry/sdk-node";
 import { logger } from "./logger/index";
 
 // configure the SDK to export telemetry data to the console
@@ -25,7 +25,7 @@ process.on("SIGTERM", () => {
       logger.error("Error terminating Opentelemetry Tracing", error),
     )
     .finally(() => process.exit(0));
-});
+}); */
 
 /*
 const secureLogPath = () =>
