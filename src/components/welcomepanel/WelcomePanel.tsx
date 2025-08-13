@@ -1,6 +1,6 @@
 import { BodyLong, Heading, GuidePanel as Panel, Link } from "@navikt/ds-react";
 import styles from "./WelcomePanel.module.css";
-import moneyBag from "../../../public/images/pengesekk.svg";
+import moneyBag from "../../images/pengesekk.svg";
 
 type WelcomePanelProps = {
   name: string;
