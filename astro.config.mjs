@@ -7,6 +7,11 @@ export default defineConfig({
   /*build: {
     assetsPrefix: "https://cdn.nav.no/min-side/utbetalingsportalen", // TODO: oppdatere med vår cdn bucket
   },*/
+  image: {
+    service: {
+      entrypoint: "astro/assets/services/sharp",
+    },
+  },
   integrations: [
     react(),
     {
