@@ -1,4 +1,4 @@
-import { defineConfig, passthroughImageService } from "astro/config";
+import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import node from "@astrojs/node";
 
@@ -8,7 +8,9 @@ export default defineConfig({
     assetsPrefix: "https://cdn.nav.no/min-side/utbetalingsportalen", // TODO: oppdatere med vår cdn bucket
   },*/
   image: {
-    service: passthroughImageService(),
+    responsiveStyles: true,
+    format: ["webp", "avif", "svg"],
+    quality: 80,
   },
   integrations: [
     react(),
