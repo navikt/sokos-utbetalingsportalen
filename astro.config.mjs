@@ -9,9 +9,6 @@ export default defineConfig({
   },*/
   image: {
     service: passthroughImageService(),
-    responsiveStyles: true,
-    format: ["webp", "avif"],
-    quality: 80,
   },
   integrations: [
     react(),
