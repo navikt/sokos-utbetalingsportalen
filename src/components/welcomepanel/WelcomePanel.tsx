@@ -1,13 +1,18 @@
 import { BodyLong, Heading, GuidePanel as Panel, Link } from "@navikt/ds-react";
 import styles from "./WelcomePanel.module.css";
-import moneyBag from "../../../public/images/pengesekk.svg";
+import { ReactNode } from "react";
 
 type WelcomePanelProps = {
   name: string;
   greeting: string;
+  children?: ReactNode; // <Image> fra astro wrapperen
 };
 
-export default function GuidePanel({ name, greeting }: WelcomePanelProps) {
+export default function GuidePanel({
+  name,
+  greeting,
+  children,
+}: WelcomePanelProps) {
   return (
     <div className={styles["welcomeGuidepanel"]}>
       <div className={styles["welcomeGuidepanel__heading"]}>
@@ -15,7 +20,7 @@ export default function GuidePanel({ name, greeting }: WelcomePanelProps) {
           {greeting}, {name}
         </Heading>
       </div>
-      <Panel poster illustration={<img src={moneyBag.src} alt="Pengesekk" />}>
+      <Panel poster illustration={children}>
         <Heading level="2" size="small" spacing>
           Informasjon om Utbetalingsportalen
         </Heading>

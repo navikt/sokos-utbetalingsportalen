@@ -1,0 +1,16 @@
+---
+import { Image } from "astro:assets";
+import WelcomePanel from "./WelcomePanel";
+import moneyBag from "../../assets/images/pengesekk.svg";
+
+export interface Props {
+  name: string;
+  greeting: string;
+}
+
+const { name, greeting } = Astro.props;
+---
+
+<WelcomePanel name={name} greeting={greeting} client:load>
+  <Image src={moneyBag} alt="Pengesekk" width={26} height={43} format="svg" />
+</WelcomePanel>

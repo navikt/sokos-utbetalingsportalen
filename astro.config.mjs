@@ -5,8 +5,13 @@ import node from "@astrojs/node";
 // https://astro.build/config
 export default defineConfig({
   /*build: {
-    assetsPrefix: "https://cdn.nav.no/min-side/utbetalingsportalen", // Change this to your CDN prefix
+    assetsPrefix: "https://cdn.nav.no/min-side/utbetalingsportalen", // TODO: oppdatere med vår cdn bucket
   },*/
+  image: {
+    responsiveStyles: true,
+    format: ["webp", "avif"],
+    quality: 80,
+  },
   integrations: [
     react(),
     {
