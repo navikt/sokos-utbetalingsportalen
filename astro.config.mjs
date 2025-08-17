@@ -7,11 +7,6 @@ export default defineConfig({
   /*build: {
     assetsPrefix: "https://cdn.nav.no/min-side/utbetalingsportalen", // TODO: oppdatere med vår cdn bucket
   },*/
-  image: {
-    responsiveStyles: true,
-    format: ["webp", "avif", "svg"],
-    quality: 80,
-  },
   integrations: [
     react(),
     {
@@ -29,7 +24,4 @@ export default defineConfig({
   adapter: node({
     mode: "standalone",
   }),
-  vite: {
-    publicDir: "./public",
-  },
 });
