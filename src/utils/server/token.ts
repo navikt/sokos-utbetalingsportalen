@@ -1,6 +1,6 @@
 import { requestOboToken } from "@navikt/oasis";
 import { extractAudienceService } from "@utils/audience";
-import { logger } from "@utils/logger";
+import { logger } from "@utils/logger/index";
 
 export const getOboToken = async (
   token: string,

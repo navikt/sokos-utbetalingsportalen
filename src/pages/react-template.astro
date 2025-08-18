@@ -14,11 +14,11 @@ export function fetchBundle(appHostname: String, appName: string) {
 ---
 
 <!-- Dette er et grensesnittmal for React applikasjoner -->
-<Layout title={"Grensesnittmal React"}>
+<Layout title={"React Template"}>
   {
     (
       <Microfrontend
-        url={fetchBundle(appHostname, "sokos-mikrofrontend-template")}
+        url={fetchBundle(appHostname, "sokos-react-template")}
         client:only="react"
       />
     )

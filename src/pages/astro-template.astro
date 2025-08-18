@@ -1,0 +1,9 @@
+---
+import MicrofrontendWrapperServer from "@components/microfrontend/MicrofrontendWrapperServer.astro";
+---
+
+<MicrofrontendWrapperServer
+  appTitle="Astro Template"
+  appUrl={process.env.SOKOS_ASTRO_TEMPLATE_URL}
+  appAudience={process.env.SOKOS_ASTRO_TEMPLATE_AUDIENCE}
+/>
