@@ -86,7 +86,18 @@ Det benyttes også [OBO On-Behalf-Of](https://docs.nais.io/security/auth/azure-a
 
 ### Alarmer
 
-Vi bruker [nais-alerts](https://doc.nais.io/observability/alerts) for å sette opp alarmer. Disse finner man konfigurert i [.nais](.nais) mappen.
+Applikasjonen bruker [Grafana Alerting](https://grafana.nav.cloud.nais.io/alerting/) for overvåkning og varsling.
+Dette er konfigurert via NAIS sin [alerting-integrasjon](https://doc.nais.io/observability/alerts).
+
+Alarmene overvåker metrics som:
+
+- HTTP-feilrater
+- JVM-metrikker
+
+Varsler blir sendt til følgende Slack-kanaler:
+
+- Dev-miljø: [#team-mob-alerts-dev](https://nav-it.slack.com/archives/C042SF2FEQM)
+- Prod-miljø: [#team-mob-alerts-prod](https://nav-it.slack.com/archives/C042ESY71GX)
 
 ## 8. Henvendelser
 
