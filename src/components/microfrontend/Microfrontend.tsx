@@ -17,7 +17,7 @@ export default function Microfrontend(props: MicrofrontendType) {
 
   return (
     <React.Suspense fallback={<ContentLoader />}>
-      <ErrorBoundary fallback={MicrofrontendError()}>
+      <ErrorBoundary fallback={<MicrofrontendError />}>
         <MicrofrontendBundle />
       </ErrorBoundary>
     </React.Suspense>
