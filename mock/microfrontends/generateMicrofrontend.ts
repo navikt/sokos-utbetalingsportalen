@@ -1,24 +1,18 @@
-interface MicrofrontendConfig {
-  name: string;
-  title: string;
-  description: string;
-  color?: string;
-}
+import { type MicroFrontend } from "../../src/microfrontend";
 
-export function generateMicrofrontend(config: MicrofrontendConfig): string {
-  const { name, title, description, color = "#0067C5" } = config;
+export function generateMicrofrontend(config: MicroFrontend): string {
+  const { app, title, description } = config;
+  const defaultColor = "#0067C5";
 
   return `
-// Mock microfrontend for ${name}
 import React from 'react';
 
-// Mock microfrontend component
 const MockMicrofrontend = () => {
   return React.createElement('div', {
     style: {
       padding: '2rem',
       textAlign: 'center',
-      border: \`3px solid ${color}\`,
+      border: \`3px solid ${defaultColor}\`,
       borderRadius: '8px',
       backgroundColor: '#f8f9fa',
       fontFamily: 'system-ui, sans-serif',
@@ -29,7 +23,7 @@ const MockMicrofrontend = () => {
     React.createElement('h1', {
       key: 'title',
       style: {
-        color: '${color}',
+        color: '${defaultColor}',
         marginBottom: '1rem',
         fontSize: '2rem'
       }
@@ -45,25 +39,16 @@ const MockMicrofrontend = () => {
     React.createElement('div', {
       key: 'badge',
       style: {
-        backgroundColor: '${color}',
+        backgroundColor: '${defaultColor}',
         color: 'white',
         padding: '1rem',
         borderRadius: '4px',
         marginBottom: '1rem'
       }
-    }, \`Mock implementation av \${${JSON.stringify(name)}}\`),
-    React.createElement('p', {
-      key: 'subtitle',
-      style: {
-        fontSize: '0.9rem',
-        color: '#888',
-        fontStyle: 'italic'
-      }
-    }, 'Dette er en mock microfrontend for lokal utvikling')
+    }, \`Mock implementasjon av \${${JSON.stringify(app)}}\`),
   ]);
 };
 
-// Export the component as default
 export default MockMicrofrontend;
 `.trim();
 }
