@@ -1,7 +1,6 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import microfrontend from "./microfrontend";
 import {
   getMockBundle,
   getLocalMicrofrontendUrl,
@@ -21,60 +20,6 @@ api.use(
     credentials: true,
   }),
 );
-
-api.all("/local/:microfrontend/*", async (c) => {
-  const microfrontendName = `sokos-up-${c.req.param("microfrontend")}`;
-  const localUrl = getLocalMicrofrontendUrl(microfrontendName);
-
-  if (!localUrl) {
-    return c.text("Local microfrontend not configured", 404);
-  }
-
-  const targetUrl = new URL(c.req.url);
-  const path = targetUrl.pathname.replace(
-    `/local/${c.req.param("microfrontend")}`,
-    "",
-  );
-  const fullUrl = `${localUrl.replace(/\/[^\/]*$/, "")}${path}${targetUrl.search}`;
-
-  console.log(`Proxyer til lokal microfrontend: ${fullUrl}`);
-
-  try {
-    const requestBody =
-      c.req.method !== "GET" && c.req.method !== "HEAD"
-        ? await c.req.raw.clone().arrayBuffer()
-        : undefined;
-
-    const response = await fetch(fullUrl, {
-      method: c.req.method,
-      headers: c.req.header(),
-      body: requestBody,
-    });
-
-    const newHeaders = new Headers(response.headers);
-    newHeaders.set("Access-Control-Allow-Origin", "*");
-    newHeaders.set("Access-Control-Allow-Methods", "*");
-    newHeaders.set("Access-Control-Allow-Headers", "*");
-
-    return new Response(response.body, {
-      status: response.status,
-      statusText: response.statusText,
-      headers: newHeaders,
-    });
-  } catch (error) {
-    console.error(`Feil ved proxying til ${fullUrl}:`, error);
-    return c.text(`Proxy feil til lokal microfrontend: ${error.message}`, 500);
-  }
-});
-
-// Fjerne denne?
-api.get("/bundle.js", (c) => {
-  return new Response(microfrontend, {
-    headers: {
-      "Content-Type": "text/javascript",
-    },
-  });
-});
 
 api.get("/:microfrontend/bundle.js", async (c) => {
   const microfrontendName = c.req.param("microfrontend");
