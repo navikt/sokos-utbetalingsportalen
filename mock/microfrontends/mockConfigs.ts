@@ -88,6 +88,25 @@ export const mockMicrofrontends: Record<string, MockMicrofrontendConfig> = {
   },
 };
 
+export interface LocalMicrofrontendConfig {
+  port: number;
+  path?: string;
+  enabled: boolean;
+}
+
+export const localMicrofrontends: Record<string, LocalMicrofrontendConfig> = {
+  "sokos-up-attestasjon": {
+    port: 5173,
+    path: "/attestasjon",
+    enabled: true,
+  },
+  "sokos-up-oppdragsinfo": {
+    port: 5174,
+    path: "/oppdragsinfo",
+    enabled: false,
+  },
+};
+
 export function getMockBundle(microfrontendName: string): string {
   const config = mockMicrofrontends[microfrontendName];
 
@@ -101,4 +120,17 @@ export function getMockBundle(microfrontendName: string): string {
   }
 
   return generateMicrofrontend(config);
+}
+
+export function getLocalMicrofrontendUrl(
+  microfrontendName: string,
+): string | null {
+  const localConfig = localMicrofrontends[microfrontendName];
+  if (!localConfig || !localConfig.enabled) {
+    return null;
+  }
+
+  const path =
+    localConfig.path || `/${microfrontendName.replace("sokos-up-", "")}`;
+  return `http://localhost:${localConfig.port}${path}`;
 }
