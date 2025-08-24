@@ -1,24 +1,25 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import { generateMicrofrontend } from "./microfrontends/generateMicrofrontend";
+import { createMockApp } from "./microfrontends/mock";
 import { microfrontendConfigArray } from "../src/microfrontend";
+import { createLocalApp } from "./microfrontends/local";
 
 const api = new Hono();
 const PORT = 3000;
 
 const localMicrofrontends: Record<
   string,
-  { port: number; path?: string; enabled: boolean }
+  { port: number; route?: string; enabled: boolean }
 > = {
   "sokos-up-attestasjon": {
     port: 5173,
-    path: "/attestasjon",
+    route: "/attestasjon",
     enabled: true,
   },
   "sokos-up-oppdragsinfo": {
     port: 5174,
-    path: "/oppdragsinfo",
+    route: "/oppdragsinfo",
     enabled: true,
   },
 };
@@ -33,16 +34,16 @@ function getLocalMicrofrontendUrl(microfrontendName: string): string | null {
     return null;
   }
 
-  const path =
-    localConfig.path || `/${microfrontendName.replace("sokos-up-", "")}`;
-  return `http://localhost:${localConfig.port}${path}`;
+  const route =
+    localConfig.route || `/${microfrontendName.replace("sokos-up-", "")}`;
+  return `http://localhost:${localConfig.port}${route}`;
 }
 
 function getMockBundle(microfrontendName: string): string {
   const config = microfrontendConfigMap[microfrontendName];
 
   if (!config) {
-    return generateMicrofrontend({
+    return createMockApp({
       app: microfrontendName,
       title: "Ukjent Microfrontend",
       description: `Mock ikke funnet for "${microfrontendName}"`,
@@ -53,7 +54,7 @@ function getMockBundle(microfrontendName: string): string {
     });
   }
 
-  return generateMicrofrontend(config);
+  return createMockApp(config);
 }
 
 api.use(
@@ -77,26 +78,9 @@ api.get("/:microfrontend/bundle.js", async (c) => {
           `Lokal microfrontend funnet på ${localUrl}, genererer iframe bundle`,
         );
 
-        const localIframeBundle = `import React from 'react';
+        const localBundle = createLocalApp(microfrontendName, localUrl);
 
-const LocalMicrofrontendIframe = () => {
-  console.log('Lokal MF lastet via iframe:', '${localUrl}');
-
-  return React.createElement('iframe', {
-    src: '${localUrl}',
-    style: { 
-      width: '100%', 
-      height: '100vh', 
-      border: 'none',
-      display: 'block'
-    },
-    title: '${microfrontendName} - Lokal utvikling',
-  });
-};
-
-export default LocalMicrofrontendIframe;`;
-
-        return new Response(localIframeBundle, {
+        return new Response(localBundle, {
           headers: {
             "Content-Type": "text/javascript",
             "Access-Control-Allow-Origin": "*",
