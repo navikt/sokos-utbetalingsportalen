@@ -16,21 +16,21 @@ const appAccess = hasAccessToApp(Astro.locals.userInfo.groups, appConfig);
 
 export function fetchBundle(appHostname: String, appName: string) {
   if (getServerSideEnvironment() === "local") {
-    return "http://localhost:3000/bundle.js";
+    return `http://localhost:3000/${appName}/bundle.js`;
   }
   return `https://${appHostname}/${appName}/bundle.js`;
 }
 ---
 
 <Layout title={appConfig.title}>
-    {
-      appAccess ? (
-        <Microfrontend
-          url={fetchBundle(appHostname, appConfig.naisAppName)}
-          client:only="react"
-        />
-      ) : (
-        <NoAccess />
-      )
-    }
+  {
+    appAccess ? (
+      <Microfrontend
+        url={fetchBundle(appHostname, appConfig.naisAppName)}
+        client:only="react"
+      />
+    ) : (
+      <NoAccess />
+    )
+  }
 </Layout>
