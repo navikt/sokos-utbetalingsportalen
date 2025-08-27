@@ -67,28 +67,6 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
             duplex: "half",
           });
 
-          if (!response.ok) {
-            logger.error(
-              {
-                url: response.url,
-                status: response.status,
-                statusText: response.statusText,
-                trace_id: spanContext.traceId,
-                span_id: spanContext.spanId,
-                trace_flags: spanContext.traceFlags
-                  .toString(16)
-                  .padStart(2, "0"),
-              },
-              "Reverse Proxy HTTP Error",
-            );
-
-            return new Response(response.body, {
-              status: response.status,
-              statusText: response.statusText,
-              headers: response.headers,
-            });
-          }
-
           logger.info(
             {
               url: response.url,
