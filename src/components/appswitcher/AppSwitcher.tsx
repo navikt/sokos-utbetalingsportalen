@@ -1,12 +1,9 @@
-import { Heading, Switch } from "@navikt/ds-react";
-import {
-  getAuthorizedApps,
-  getEnvironmentFilteredApps,
-  hasAccessToApp,
-} from "@utils/accessControl";
+import { Heading, LinkCard, Switch, Tooltip } from "@navikt/ds-react";
+import { getAuthorizedApps, getEnvironmentFilteredApps, hasAccessToApp } from "@utils/accessControl";
 import { useState } from "react";
-import AppCard from "./AppCard";
+import { microfrontendConfigArray as allApps } from "src/microfrontend";
 import styles from "./AppSwitcher.module.css";
+import linkCardStyles from "./LinkCard.module.css";
 
 type AppSwitcherProps = {
   adGroups: string[];
@@ -21,15 +18,29 @@ export default function AppSwitcher(props: AppSwitcherProps) {
     return (showApps ? environmentFilteredApps : authorizedApps)
       .slice()
       .sort((a, b) => a.title.localeCompare(b.title))
-      .map((app) => (
-        <AppCard
-          key={app.app}
-          hasAccess={hasAccessToApp(props.adGroups, app)}
-          route={app.route}
-          title={app.title}
-          description={app.description}
-        />
-      ));
+      .map((app) => {
+        const hasAccess = hasAccessToApp(props.adGroups, app);
+
+        return hasAccess ? (
+          <LinkCard key={app.app} className={linkCardStyles.linkCard}>
+            <LinkCard.Title as="h3">
+              <LinkCard.Anchor href={app.route}>{app.title}</LinkCard.Anchor>
+            </LinkCard.Title>
+            <LinkCard.Description>{app.description}</LinkCard.Description>
+          </LinkCard>
+        ) : (
+          <Tooltip key={app.app} content="Du har ikke tilgang til denne appen">
+            <LinkCard
+              className={`${linkCardStyles.linkCard} ${linkCardStyles["linkCard--disabled"]}`}
+            >
+              <LinkCard.Title as="h3">
+                <span>{app.title}</span>
+              </LinkCard.Title>
+              <LinkCard.Description>{app.description}</LinkCard.Description>
+            </LinkCard>
+          </Tooltip>
+        );
+      });
   }
 
   return (
@@ -46,7 +57,7 @@ export default function AppSwitcher(props: AppSwitcherProps) {
       >
         Vis alle
       </Switch>
-      <div className={styles["appCardGrid"]}>{appCards()}</div>
+      <div className={styles.linkCardGrid}>{appCards()}</div>
     </>
   );
 }

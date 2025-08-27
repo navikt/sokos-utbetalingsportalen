@@ -7,18 +7,18 @@ const appHostname = Astro.url.hostname;
 
 export function fetchBundle(appHostname: String, appName: string) {
   if (getServerSideEnvironment() === "local") {
-    return "http://localhost:3000/bundle.js";
+    return `http://localhost:3000/${appName}/bundle.js`;
   }
   return `https://${appHostname}/${appName}/bundle.js`;
 }
 ---
 
 <!-- Dette er et grensesnittmal for React applikasjoner -->
-<Layout title={"Grensesnittmal React"}>
+<Layout title={"React Template"}>
   {
     (
       <Microfrontend
-        url={fetchBundle(appHostname, "sokos-mikrofrontend-template")}
+        url={fetchBundle(appHostname, "sokos-react-template")}
         client:only="react"
       />
     )

@@ -5,6 +5,7 @@
   "scripts": {
     "astro": "astro",
     "dev": "astro dev",
+    "dev:mock": "concurrently \"pnpm dev\" \"pnpm mock\"",
     "build": "astro check && astro build",
     "mock": "tsx mock/server.ts",
     "preview": "astro preview",
@@ -13,43 +14,46 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/node": "^9.2.2",
+    "@astrojs/node": "^9.4.2",
     "@astrojs/react": "^4.3.0",
-    "@grafana/faro-web-sdk": "^1.18.2",
-    "@navikt/aksel-icons": "7.23.0",
-    "@navikt/ds-react": "7.23.0",
+    "@grafana/faro-web-sdk": "^1.19.0",
+    "@navikt/aksel-icons": "7.28.1",
+    "@navikt/ds-react": "7.28.1",
     "@navikt/oasis": "^3.8.0",
-    "@opentelemetry/sdk-node": "^0.202.0",
-    "astro": "^5.10.0",
-    "pino": "^9.7.0",
+    "@opentelemetry/sdk-node": "^0.203.0",
+    "astro": "^5.13.2",
+    "pino": "^9.9.0",
+    "pino-socket": "^7.4.0",
     "prom-client": "^15.1.3",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
     "react-error-boundary": "^6.0.0",
-    "swr": "2.3.3",
-    "zod": "^3.25.67"
+    "swr": "2.3.6",
+    "zod": "^4.0.17"
   },
   "devDependencies": {
-    "@hono/node-server": "1.14.4",
-    "@navikt/aksel-stylelint": "^7.23.0",
-    "@types/node": "24.0.3",
-    "@types/react": "18.3.23",
-    "@types/react-dom": "18.3.7",
-    "hono": "4.8.2",
+    "@hono/node-server": "1.19.0",
+    "@navikt/aksel-stylelint": "^7.28.1",
+    "@types/node": "24.3.0",
+    "@types/react": "19.1.10",
+    "@types/react-dom": "19.1.7",
+    "concurrently": "^9.1.2",
+    "hono": "4.9.2",
     "husky": "^9.1.7",
-    "lint-staged": "^16.1.2",
-    "prettier": "^3.6.0",
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
-    "stylelint": "^16.21.0",
-    "stylelint-config-standard": "^38.0.0",
-    "tsx": "4.20.3",
-    "typescript": "5.8.3"
+    "stylelint": "^16.23.1",
+    "stylelint-config-standard": "^39.0.0",
+    "tsx": "4.20.4",
+    "typescript": "5.9.2"
   },
   "lint-staged": {
     "*.css": "stylelint --fix",
     "*": "prettier --write --ignore-unknown"
   },
   "engines": {
-    "pnpm": ">=9.15"
+    "pnpm": ">=9.15.9",
+    "node": ">=22.17.1"
   }
 }

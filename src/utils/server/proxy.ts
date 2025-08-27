@@ -1,6 +1,6 @@
 import { api } from "@opentelemetry/sdk-node";
 import { extractAudienceService } from "@utils/audience";
-import { logger } from "@utils/logger";
+import { logger } from "@utils/logger/index";
 import { getOboToken } from "@utils/server/token";
 import type { APIContext, APIRoute } from "astro";
 
@@ -31,7 +31,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
       async (span) => {
         try {
           const audience = proxyConfig.audience;
-          const token = await getOboToken(context.locals.token, audience);
+          const oboToken = await getOboToken(context.locals.token, audience);
           const url = getProxyUrl(context.request, proxyConfig);
 
           const spanContext = span.spanContext();
@@ -58,7 +58,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
           const response = await fetch(url.href, {
             method: context.request.method,
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${oboToken}`,
               "Content-Type": "application/json",
               ...xHeaders,
             },
@@ -66,28 +66,6 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
             // @ts-expect-error
             duplex: "half",
           });
-
-          if (!response.ok) {
-            logger.error(
-              {
-                url: response.url,
-                status: response.status,
-                statusText: response.statusText,
-                trace_id: spanContext.traceId,
-                span_id: spanContext.spanId,
-                trace_flags: spanContext.traceFlags
-                  .toString(16)
-                  .padStart(2, "0"),
-              },
-              "Reverse Proxy HTTP Error",
-            );
-
-            return new Response(response.body, {
-              status: response.status,
-              statusText: response.statusText,
-              headers: response.headers,
-            });
-          }
 
           logger.info(
             {

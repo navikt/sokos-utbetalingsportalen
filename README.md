@@ -8,7 +8,12 @@ Arbeidsflatene som tilbys gir mulighet til å se og/eller behandle saker som gje
 
 ### 📍 Hvordan legger til en mikrofrontend i Utbetalingsportalen?
 
-[Guide for å legge til en mikrofrontend](dokumentasjon/mikrofrontend.md)
+- [Guide for å legge til React client-side mikrofrontend](dokumentasjon/react-mikrofrontend.md)
+- [Guide for å legge til Astro server-side mikrofrontend](dokumentasjon/astro-mikrofrontend.md)
+
+### 📍 Umami-taksonomi - Anebfaling og bruk av navngivning av Umami-hendelser og hendelsenes tilhørende detaljer
+
+- [Umami-taksonomi](dokumentasjon/umami-taksonomi.md)
 
 ## Innholdsoversikt
 
@@ -46,7 +51,26 @@ Arbeidsflatene som tilbys gir mulighet til å se og/eller behandle saker som gje
 
 - `pnpm run mock` - Starter mock-server for lokal utvikling (Hvis du ønsker å gjøre kall til mock)
 - `pnpm run dev` - Starter Astro dev-server (Kan kjøres uten `mock`)
+- `pnpm run dev:mock` - Starter både Astro og mock-server samtidig
 - `pnpm run build` - Bygger prosjektet
+
+#### Kjøre mikrofrontend lokalt
+
+For å kjøre en eller flere mikrofrontender lokalt sammen med Utbetalingsportalen:
+
+1. **Start alt samtidig**: `pnpm run dev:mock`
+   - Dette starter både Utbetalingsportalen (port 4321) og mock-serveren (port 3000)
+
+2. **Start din mikrofrontend** på konfigurert port (se `mock/server.ts` for portnummer)
+
+Mock-serveren sjekker automatisk om en lokal mikrofrontend kjører og laster den via iframe. Hvis den lokale mikrofrontenden ikke er tilgjengelig, vises en mock-komponent i stedet.
+
+**Satt opp for lokal kjøring:**
+
+- `sokos-up-attestasjon`: `http://localhost:5173/attestasjon`
+- `sokos-up-oppdragsinfo`: `http://localhost:5174/oppdragsinfo`
+
+For å legge til flere lokale mikrofrontends, oppdater `localMicrofrontends`-objektet i `mock/server.ts`. Det er nødvendig å gjøre noe konfigurasjon med mock-serveren for å håndtere flere instanser samtidig.
 
 ## 3. Programvarearkitektur
 
@@ -81,7 +105,18 @@ Det benyttes også [OBO On-Behalf-Of](https://docs.nais.io/security/auth/azure-a
 
 ### Alarmer
 
-Vi bruker [nais-alerts](https://doc.nais.io/observability/alerts) for å sette opp alarmer. Disse finner man konfigurert i [.nais](.nais) mappen.
+Applikasjonen bruker [Grafana Alerting](https://grafana.nav.cloud.nais.io/alerting/) for overvåkning og varsling.
+Dette er konfigurert via NAIS sin [alerting-integrasjon](https://doc.nais.io/observability/alerts).
+
+Alarmene overvåker metrics som:
+
+- HTTP-feilrater
+- JVM-metrikker
+
+Varsler blir sendt til følgende Slack-kanaler:
+
+- Dev-miljø: [#team-mob-alerts-dev](https://nav-it.slack.com/archives/C042SF2FEQM)
+- Prod-miljø: [#team-mob-alerts-prod](https://nav-it.slack.com/archives/C042ESY71GX)
 
 ## 8. Henvendelser
 
