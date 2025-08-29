@@ -3,7 +3,7 @@ import { defineMiddleware } from "astro/middleware";
 import { isInternal } from "./utils";
 import { getServerSideEnvironment } from "@utils/server/environment.ts";
 import { UserDataSchema } from "@schema/UserDataSchema";
-import { logger, teamLogger } from "@utils/logger/index";
+import { logger } from "@utils/logger/index";
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const loginPath = `/oauth2/login?redirect=${context.url}`;
