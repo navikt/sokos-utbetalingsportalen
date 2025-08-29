@@ -6,9 +6,14 @@ Arbeidsflatene som tilbys gir mulighet til å se og/eller behandle saker som gje
 - [Utbetalingsportalen Q1-miljlø](https://utbetalingsportalen.intern.dev.nav.no)
 - [Utbetalingsportalen QX-miljø](https://utbetalingsportalen-qx.intern.dev.nav.no)
 
-### 📍 Hvordan legger til en mikrofrontend i Utbetalingsportalen?
+### 📍 Templates og hvordan legger til en mikrofrontend i Utbetalingsportalen?
+
+[Client side React template](https://github.com/navikt/sokos-react-template)
 
 - [Guide for å legge til React client-side mikrofrontend](dokumentasjon/react-mikrofrontend.md)
+
+[Server side Astro template](https://github.com/navikt/sokos-astro-template)
+
 - [Guide for å legge til Astro server-side mikrofrontend](dokumentasjon/astro-mikrofrontend.md)
 
 ### 📍 Umami-taksonomi - Anebfaling og bruk av navngivning av Umami-hendelser og hendelsenes tilhørende detaljer
