@@ -32,7 +32,7 @@ spec:
         groups:
           - id: "f49b797d-600d-46da-8061-7746e48d1aca" # 0000-CA-SOKOS-MF-SPK-Mottak-ADMIN
           - id: "6c93762e-ea37-4043-919f-3a758a136943" # 0000-CA-SOKOS-MF-Skattekort
-          - id: "25723642-e1da-4d15-87ce-8c4d2b87e33a" # 0000-GA-SOKOS-MF-PosteringSok-READ
+          - id: "40ee7ce5-7ec8-405e-b2ea-951401c2633e" # 0000-CA-SOKOS-MF-ORS-READ
           - id: "bb9c7baf-768b-4e84-816c-f10d0a6c7d25" # 0000-GA-SOKOS-MF-KRP-READ
           - id: "e1635067-dfc9-4fb8-8405-d50e9672cf5c" # 0000-GA-SOKOS-MF-KRO-READ
           - id: "f8919276-46bf-43a2-a9cb-9a5c5f9c8e16" # 0000-GA-SOKOS-MF-Utbetaling

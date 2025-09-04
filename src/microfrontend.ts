@@ -97,7 +97,7 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     title: "Oppslag i Reskontro Stønad",
     description: "Søk etter posteringer fra Abetal og UR",
     adGroupDevelopment: "b01fb216-fcb3-4ede-b7da-71fffe859763",
-    adGroupProduction: "25723642-e1da-4d15-87ce-8c4d2b87e33a",
+    adGroupProduction: "40ee7ce5-7ec8-405e-b2ea-951401c2633e",
     route: "/oppslag-reskontro-stoenad",
     naisAppName: "sokos-up-ors",
   },
