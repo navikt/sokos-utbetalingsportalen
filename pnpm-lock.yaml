@@ -62,7 +62,7 @@ importers:
     devDependencies:
       '@hono/node-server':
         specifier: 1.19.1
-        version: 1.19.1(hono@4.9.6)
+        version: 1.19.1(hono@4.9.7)
       '@navikt/aksel-stylelint':
         specifier: ^7.29.1
         version: 7.29.1
@@ -79,8 +79,8 @@ importers:
         specifier: ^9.2.1
         version: 9.2.1
       hono:
-        specifier: 4.9.6
-        version: 4.9.6
+        specifier: 4.9.7
+        version: 4.9.7
       husky:
         specifier: ^9.1.7
         version: 9.1.7
@@ -1662,8 +1662,8 @@ packages:
   hastscript@9.0.1:
     resolution: {integrity: sha512-g7df9rMFX/SPi34tyGCyUBREQoKkapwdY/T04Qn9TDWfHhAYt4/I0gMVirzK5wEzeUqIjEB+LXC/ypb7Aqno5w==}
 
-  hono@4.9.6:
-    resolution: {integrity: sha512-doVjXhSFvYZ7y0dNokjwwSahcrAfdz+/BCLvAMa/vHLzjj8+CFyV5xteThGUsKdkaasgN+gF2mUxao+SGLpUeA==}
+  hono@4.9.7:
+    resolution: {integrity: sha512-t4Te6ERzIaC48W3x4hJmBwgNlLhmiEdEE5ViYb02ffw4ignHNHa5IBtPjmbKstmtKa8X6C35iWwK4HaqvrzG9w==}
     engines: {node: '>=16.9.0'}
 
   hookified@1.11.0:
@@ -3507,9 +3507,9 @@ snapshots:
       protobufjs: 7.5.4
       yargs: 17.7.2
 
-  '@hono/node-server@1.19.1(hono@4.9.6)':
+  '@hono/node-server@1.19.1(hono@4.9.7)':
     dependencies:
-      hono: 4.9.6
+      hono: 4.9.7
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:
@@ -4832,7 +4832,7 @@ snapshots:
       property-information: 7.1.0
       space-separated-tokens: 2.0.2
 
-  hono@4.9.6: {}
+  hono@4.9.7: {}
 
   hookified@1.11.0: {}
 
