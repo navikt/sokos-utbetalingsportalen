@@ -10,6 +10,9 @@
     "mock": "tsx mock/server.ts",
     "preview": "astro preview",
     "stylelint": "stylelint '**/*.css'",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:ui": "vitest --ui",
     "prepare": "husky"
   },
   "dependencies": {
