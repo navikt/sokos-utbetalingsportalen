@@ -21,6 +21,8 @@ env:
 permissions:
   contents: write
   id-token: write
+  deployments: "write"
+  pull-requests: "write"
 
 jobs:
   build:
@@ -31,7 +33,7 @@ jobs:
   deploy-q1:
     needs: build
     name: Deploy to q1
-    uses: navikt/mob-gha-workflows/.github/workflows/nais-app-deploy.yaml@main
+    uses: navikt/mob-gha-workflows/.github/workflows/nais-deploy.yaml@main
     with:
       cluster: dev-gcp
       resource: .nais/naiserator-q1.yaml
@@ -40,7 +42,7 @@ jobs:
   deploy-qx:
     needs: [build, deploy-q1]
     name: Deploy to qx
-    uses: navikt/mob-gha-workflows/.github/workflows/nais-app-deploy.yaml@main
+    uses: navikt/mob-gha-workflows/.github/workflows/nais-deploy.yaml@main
     with:
       cluster: dev-gcp
       resource: .nais/naiserator-qx.yaml
@@ -49,7 +51,7 @@ jobs:
   deploy-prod:
     needs: [build, deploy-q1, deploy-qx]
     name: Deploy to prod
-    uses: navikt/mob-gha-workflows/.github/workflows/nais-app-deploy.yaml@main
+    uses: navikt/mob-gha-workflows/.github/workflows/nais-deploy.yaml@main
     with:
       cluster: prod-gcp
       resource: .nais/naiserator-prod.yaml
