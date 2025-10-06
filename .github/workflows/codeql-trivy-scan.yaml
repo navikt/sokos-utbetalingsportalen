@@ -1,18 +1,17 @@
-name: Security
+name: CodeQL/Trivy Scan
 
 on:
   schedule:
     - cron: "0 6 * * 1"
   workflow_dispatch:
 
-permissions:
-  contents: read
-  id-token: write
-  security-events: write
-
 jobs:
-  security-analyze:
-    name: Security analyze
+  codeql-trivy-scan:
+    permissions:
+      contents: read
+      id-token: write
+      security-events: write
+    name: CodeQL/Trivy Scan
     if: success() || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     uses: navikt/mob-gha-workflows/.github/workflows/codeql-trivy-scan.yaml@main
     secrets: inherit

@@ -10,49 +10,61 @@ on:
       - "CODEOWNERS"
       - ".gitignore"
       - ".github/workflows/build-pr.yaml"
+      - ".github/workflows/codeql-trivy-scan.yaml"
       - ".github/workflows/manual-deploy.yaml"
       - ".github/workflows/playwright.yaml"
-      - ".github/workflows/security.yaml"
       - ".github/dependabot.yaml"
 
 env:
   TZ: Europe/Oslo
 
-permissions:
-  contents: write
-  id-token: write
-  deployments: "write"
-  pull-requests: "write"
-
 jobs:
-  build:
-    name: Build/test & push image
+  build-push-image:
+    permissions:
+      contents: read
+      id-token: write
+    name: Build application & build/push image
     uses: navikt/mob-gha-workflows/.github/workflows/node-build-push-image-v2.yaml@main
     secrets: inherit
 
   deploy-q1:
-    needs: build
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+      deployments: write
+    needs: [build-push-image]
     name: Deploy to q1
     uses: navikt/mob-gha-workflows/.github/workflows/nais-deploy.yaml@main
     with:
       cluster: dev-gcp
       resource: .nais/naiserator-q1.yaml
-      image: ${{ needs.build.outputs.image }}
+      image: ${{ needs.build-push-image.outputs.image }}
 
   deploy-qx:
-    needs: [build, deploy-q1]
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+      deployments: write
+    needs: [build-push-image]
     name: Deploy to qx
     uses: navikt/mob-gha-workflows/.github/workflows/nais-deploy.yaml@main
     with:
       cluster: dev-gcp
       resource: .nais/naiserator-qx.yaml
-      image: ${{ needs.build.outputs.image }}
+      image: ${{ needs.build-push-image.outputs.image }}
 
   deploy-prod:
-    needs: [build, deploy-q1, deploy-qx]
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+      deployments: write
+    needs: [build-push-image, deploy-q1, deploy-qx]
     name: Deploy to prod
     uses: navikt/mob-gha-workflows/.github/workflows/nais-deploy.yaml@main
     with:
       cluster: prod-gcp
       resource: .nais/naiserator-prod.yaml
-      image: ${{ needs.build.outputs.image }}
+      image: ${{ needs.build-push-image.outputs.image }}

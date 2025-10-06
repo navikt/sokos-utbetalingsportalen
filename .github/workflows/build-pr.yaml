@@ -1,4 +1,4 @@
-name: Build/test and validate PR
+name: Build & test PR
 
 on:
   pull_request:
@@ -7,15 +7,16 @@ on:
       - "LICENCE"
       - "CODEOWNERS"
       - ".gitignore"
-      - ".nais/**"
+      - ".github/workflows/codeql-trivy-scan.yaml"
       - ".github/workflows/deploy.yaml"
       - ".github/workflows/manual-deploy.yaml"
       - ".github/workflows/playwright.yaml"
-      - ".github/workflows/security.yaml"
       - ".github/dependabot.yaml"
 
 jobs:
-  build-pr:
-    name: Build and test
+  build-test-pr:
+    permissions:
+      contents: read
+    name: Build & test application
     uses: navikt/mob-gha-workflows/.github/workflows/node-build-pr-v2.yaml@main
     secrets: inherit
