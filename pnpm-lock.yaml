@@ -61,7 +61,7 @@ importers:
     devDependencies:
       "@hono/node-server":
         specifier: 1.19.5
-        version: 1.19.5(hono@4.9.9)
+        version: 1.19.5(hono@4.9.10)
       "@navikt/aksel-stylelint":
         specifier: ^7.31.0
         version: 7.31.0
@@ -78,8 +78,8 @@ importers:
         specifier: ^9.2.1
         version: 9.2.1
       hono:
-        specifier: 4.9.9
-        version: 4.9.9
+        specifier: 4.9.10
+        version: 4.9.10
       husky:
         specifier: ^9.1.7
         version: 9.1.7
@@ -93,11 +93,11 @@ importers:
         specifier: ^0.14.1
         version: 0.14.1
       stylelint:
-        specifier: ^16.24.0
-        version: 16.24.0(typescript@5.9.3)
+        specifier: ^16.25.0
+        version: 16.25.0(typescript@5.9.3)
       stylelint-config-standard:
         specifier: ^39.0.0
-        version: 39.0.0(stylelint@16.24.0(typescript@5.9.3))
+        version: 39.0.0(stylelint@16.25.0(typescript@5.9.3))
       tsx:
         specifier: 4.20.6
         version: 4.20.6
@@ -3102,10 +3102,10 @@ packages:
         integrity: sha512-g7df9rMFX/SPi34tyGCyUBREQoKkapwdY/T04Qn9TDWfHhAYt4/I0gMVirzK5wEzeUqIjEB+LXC/ypb7Aqno5w==,
       }
 
-  hono@4.9.9:
+  hono@4.9.10:
     resolution:
       {
-        integrity: sha512-Hxw4wT6zjJGZJdkJzAx9PyBdf7ZpxaTSA0NfxqjLghwMrLBX8p33hJBzoETRakF3UJu6OdNQBZAlNSkGqKFukw==,
+        integrity: sha512-AlI15ijFyKTXR7eHo7QK7OR4RoKIedZvBuRjO8iy4zrxvlY5oFCdiRG/V/lFJHCNXJ0k72ATgnyzx8Yqa5arug==,
       }
     engines: { node: ">=16.9.0" }
 
@@ -4798,10 +4798,10 @@ packages:
     peerDependencies:
       stylelint: ^16.23.0
 
-  stylelint@16.24.0:
+  stylelint@16.25.0:
     resolution:
       {
-        integrity: sha512-7ksgz3zJaSbTUGr/ujMXvLVKdDhLbGl3R/3arNudH7z88+XZZGNLMTepsY28WlnvEFcuOmUe7fg40Q3lfhOfSQ==,
+        integrity: sha512-Li0avYWV4nfv1zPbdnxLYBGq4z8DVZxbRgx4Kn6V+Uftz1rMoF1qiEI3oL4kgWqyYgCgs7gT5maHNZ82Gk03vQ==,
       }
     engines: { node: ">=18.12.0" }
     hasBin: true
@@ -6217,9 +6217,9 @@ snapshots:
       protobufjs: 7.5.4
       yargs: 17.7.2
 
-  "@hono/node-server@1.19.5(hono@4.9.9)":
+  "@hono/node-server@1.19.5(hono@4.9.10)":
     dependencies:
-      hono: 4.9.9
+      hono: 4.9.10
 
   "@img/colour@1.0.0":
     optional: true
@@ -7636,7 +7636,7 @@ snapshots:
       property-information: 7.1.0
       space-separated-tokens: 2.0.2
 
-  hono@4.9.9: {}
+  hono@4.9.10: {}
 
   hookified@1.12.0: {}
 
@@ -8767,16 +8767,16 @@ snapshots:
     dependencies:
       ansi-regex: 6.2.2
 
-  stylelint-config-recommended@17.0.0(stylelint@16.24.0(typescript@5.9.3)):
+  stylelint-config-recommended@17.0.0(stylelint@16.25.0(typescript@5.9.3)):
     dependencies:
-      stylelint: 16.24.0(typescript@5.9.3)
+      stylelint: 16.25.0(typescript@5.9.3)
 
-  stylelint-config-standard@39.0.0(stylelint@16.24.0(typescript@5.9.3)):
+  stylelint-config-standard@39.0.0(stylelint@16.25.0(typescript@5.9.3)):
     dependencies:
-      stylelint: 16.24.0(typescript@5.9.3)
-      stylelint-config-recommended: 17.0.0(stylelint@16.24.0(typescript@5.9.3))
+      stylelint: 16.25.0(typescript@5.9.3)
+      stylelint-config-recommended: 17.0.0(stylelint@16.25.0(typescript@5.9.3))
 
-  stylelint@16.24.0(typescript@5.9.3):
+  stylelint@16.25.0(typescript@5.9.3):
     dependencies:
       "@csstools/css-parser-algorithms": 3.0.5(@csstools/css-tokenizer@3.0.4)
       "@csstools/css-tokenizer": 3.0.4
