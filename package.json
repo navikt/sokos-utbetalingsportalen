@@ -20,7 +20,7 @@
     "@navikt/aksel-icons": "7.31.0",
     "@navikt/ds-react": "7.31.0",
     "@navikt/oasis": "^3.8.0",
-    "@opentelemetry/sdk-node": "^0.205.0",
+    "@opentelemetry/sdk-node": "^0.206.0",
     "astro": "^5.14.1",
     "pino": "^10.0.0",
     "pino-socket": "^7.4.0",
@@ -29,14 +29,14 @@
     "react-dom": "19.2.0",
     "react-error-boundary": "^6.0.0",
     "swr": "2.3.6",
-    "zod": "^4.1.11"
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@hono/node-server": "1.19.5",
     "@navikt/aksel-stylelint": "^7.31.0",
-    "@types/node": "24.6.2",
-    "@types/react": "19.2.0",
-    "@types/react-dom": "19.2.0",
+    "@types/node": "24.7.0",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.1",
     "concurrently": "^9.2.1",
     "hono": "4.9.10",
     "husky": "^9.1.7",
@@ -44,7 +44,7 @@
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "stylelint": "^16.25.0",
-    "stylelint-config-standard": "^39.0.0",
+    "stylelint-config-standard": "^39.0.1",
     "tsx": "4.20.6",
     "typescript": "5.9.3"
   },
