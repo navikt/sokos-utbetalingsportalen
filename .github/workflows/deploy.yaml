@@ -24,7 +24,7 @@ jobs:
       contents: read
       id-token: write
     name: Build application & build/push image
-    uses: navikt/mob-gha-workflows/.github/workflows/node-build-push-image-v2.yaml@main
+    uses: navikt/mob-gha-workflows/.github/workflows/node-build-push-image.yaml@main
     secrets: inherit
 
   deploy-q1:
