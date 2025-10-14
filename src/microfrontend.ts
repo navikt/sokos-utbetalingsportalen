@@ -128,6 +128,15 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     route: "/meldingsflyt",
     naisAppName: "sokos-up-meldingsflyt",
   },
+  {
+    app: "RETUR-FRA-BANK",
+    title: "Retur fra bank",
+    description: "Oversikt over returer fra bank",
+    adGroupDevelopment: "c9b8da69-652a-4d54-adeb-ca4ec73fa99b",
+    adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    route: "/retur-fra-bank",
+    naisAppName: "sokos-up-retur-fra-bank",
+  },
 ];
 
 /**
