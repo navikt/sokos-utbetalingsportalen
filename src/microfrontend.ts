@@ -129,7 +129,7 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     naisAppName: "sokos-up-meldingsflyt",
   },
   {
-    app: "RETUR_FRA_BANK",
+    app: "RETUR-FRA-BANK",
     title: "Retur fra bank",
     description: "Oversikt over returer fra bank",
     adGroupDevelopment: "c9b8da69-652a-4d54-adeb-ca4ec73fa99b",
