@@ -34,11 +34,11 @@
   "devDependencies": {
     "@hono/node-server": "1.19.5",
     "@navikt/aksel-stylelint": "^7.32.2",
-    "@types/node": "24.7.2",
+    "@types/node": "24.8.1",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "concurrently": "^9.2.1",
-    "hono": "4.9.12",
+    "hono": "4.10.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.4",
     "prettier": "^3.6.2",
