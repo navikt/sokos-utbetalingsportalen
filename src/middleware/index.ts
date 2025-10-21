@@ -66,7 +66,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return context.redirect(`${loginPath}${params}`);
   }
 
-  context.locals.userInfo = UserDataSchema.parse(response.data);
+  context.locals.userInfo = response.data;
 
   return next();
 });
