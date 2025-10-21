@@ -10,15 +10,16 @@ type Props = {
   appName: string;
 };
 
-const appHostname = Astro.url.hostname;
+const hostname = Astro.url.hostname;
 const appConfig = getMicrofrontendConfig(Astro.props.appName);
 const appAccess = hasAccessToApp(Astro.locals.userInfo.groups, appConfig);
+const environment = getServerSideEnvironment();
 
-export function fetchBundle(appHostname: String, appName: string) {
-  if (getServerSideEnvironment() === "local") {
+function fetchBundle(hostname: string, appName: string, env: string) {
+  if (env === "local") {
     return `http://localhost:3000/${appName}/bundle.js`;
   }
-  return `https://${appHostname}/${appName}/bundle.js`;
+  return `https://${hostname}/${appName}/bundle.js`;
 }
 ---
 
@@ -26,7 +27,7 @@ export function fetchBundle(appHostname: String, appName: string) {
   {
     appAccess ? (
       <Microfrontend
-        url={fetchBundle(appHostname, appConfig.naisAppName)}
+        url={fetchBundle(hostname, appConfig.naisAppName, environment)}
         client:only="react"
       />
     ) : (
