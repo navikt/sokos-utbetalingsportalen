@@ -1,0 +1,29 @@
+---
+import MicrofrontendWrapperClient from "@components/microfrontend/MicrofrontendWrapperClient.astro";
+import { apps } from "@config/apps.config";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  const appsWithInternalRouting = [
+    "/attestasjon",
+    "/dare",
+    "/fastedata",
+    "/oppdragsinfo",
+  ];
+
+  const hasInternalRouting = (route: string) =>
+    appsWithInternalRouting.includes(route);
+
+  return apps
+    .filter((app) => !hasInternalRouting(app.route))
+    .map((app) => ({
+      params: { microfrontend: app.route.slice(1) },
+      props: { appName: app.app.toLowerCase() },
+    }));
+}
+
+const { appName } = Astro.props;
+---
+
+<MicrofrontendWrapperClient appName={appName} />

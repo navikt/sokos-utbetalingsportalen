@@ -10,7 +10,7 @@ export type MicroFrontend = {
 
 type MicrofrontendDictionary = Record<string, MicroFrontend>;
 
-export const microfrontendConfigArray: MicroFrontend[] = [
+export const apps: MicroFrontend[] = [
   {
     app: "DARE",
     title: "DARE POC",
@@ -156,9 +156,8 @@ function createMicrofrontendConfig(
  * Dictionary of page configurations, accessible by lowercase app name
  * Example: pagesConfig.attestasjon
  */
-const microfrontendConfig: MicrofrontendDictionary = createMicrofrontendConfig(
-  microfrontendConfigArray,
-);
+const microfrontendConfig: MicrofrontendDictionary =
+  createMicrofrontendConfig(apps);
 
 /**
  * Gets a page configuration by app name (case insensitive)

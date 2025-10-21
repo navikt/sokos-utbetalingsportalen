@@ -1,4 +1,4 @@
-import { type MicroFrontend } from "../../src/microfrontend";
+import { type MicroFrontend } from "../../src/config/apps.config";
 
 export function createMockApp(config: MicroFrontend): string {
   const { app, title, description } = config;

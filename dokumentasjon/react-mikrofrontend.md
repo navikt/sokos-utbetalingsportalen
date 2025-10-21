@@ -62,7 +62,7 @@ Husk å legge inn under `accessPolicy` hvilken backend mikrofrontend'en skal sna
 
 <br>
 
-2. Legg inn følgende verdier i [microfrontend.ts](/src/microfrontend.ts) :
+2. Legg inn følgende verdier i [apps.config.ts](/src/config/apps.config.ts) :
     ```typescript
     {
       app: "ATTESTASJON",
@@ -125,8 +125,8 @@ Husk å legge inn under `accessPolicy` hvilken backend mikrofrontend'en skal sna
 
 <br>
 
-🚨‼️ **NB** `appName` variablen må være lik `app` i [microfrontend.ts](/src/microfrontend.ts)
-      til å hente config fra [microfrontend.ts](/src/microfrontend.ts).
+🚨‼️ **NB** `appName` variablen må være lik `app` i [apps.config.ts](/src/config/apps.config.ts)
+      til å hente config fra [apps.config.ts](/src/config/apps.config.ts).
 
 <br>
 

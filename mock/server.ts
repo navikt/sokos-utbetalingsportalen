@@ -2,7 +2,7 @@ import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { createMockApp } from "./microfrontends/mock";
-import { microfrontendConfigArray } from "../src/microfrontend";
+import { apps } from "../src/config/apps.config";
 import { createLocalApp } from "./microfrontends/local";
 
 const api = new Hono();
@@ -24,8 +24,8 @@ const localMicrofrontends: Record<
   },
 };
 
-const microfrontendConfigMap = Object.fromEntries(
-  microfrontendConfigArray.map((mf) => [mf.naisAppName, mf]),
+const appsByNaisName = Object.fromEntries(
+  apps.map((mf) => [mf.naisAppName, mf]),
 );
 
 function getLocalMicrofrontendUrl(microfrontendName: string): string | null {
@@ -40,7 +40,7 @@ function getLocalMicrofrontendUrl(microfrontendName: string): string | null {
 }
 
 function getMockBundle(microfrontendName: string): string {
-  const config = microfrontendConfigMap[microfrontendName];
+  const config = appsByNaisName[microfrontendName];
 
   if (!config) {
     return createMockApp({
@@ -88,8 +88,10 @@ api.get("/:microfrontend/bundle.js", async (c) => {
         });
       }
     } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
       console.log(
-        `Lokal microfrontend ikke tilgjengelig på ${localUrl}, bruker mock: ${error.message}`,
+        `Lokal microfrontend ikke tilgjengelig på ${localUrl}, bruker mock: ${errorMessage}`,
       );
     }
   }

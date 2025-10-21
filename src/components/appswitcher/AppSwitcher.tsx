@@ -1,7 +1,7 @@
 import { Heading, LinkCard, Switch, Tooltip } from "@navikt/ds-react";
 import { getAuthorizedApps, hasAccessToApp } from "@utils/accessControl";
 import { useState } from "react";
-import { microfrontendConfigArray as allApps } from "src/microfrontend";
+import { apps } from "@config/apps.config";
 import styles from "./AppSwitcher.module.css";
 import linkCardStyles from "./LinkCard.module.css";
 
@@ -14,7 +14,7 @@ export default function AppSwitcher(props: AppSwitcherProps) {
   const [showApps, setShowApps] = useState<string>("");
 
   function appCards() {
-    return (showApps ? allApps : authorizedApps)
+    return (showApps ? apps : authorizedApps)
       .slice()
       .sort((a, b) => a.title.localeCompare(b.title))
       .map((app) => {

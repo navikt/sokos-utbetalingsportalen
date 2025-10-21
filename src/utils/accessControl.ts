@@ -1,12 +1,12 @@
-import type { MicroFrontend } from "../microfrontend";
-import { microfrontendConfigArray as allApps } from "../microfrontend";
+import type { MicroFrontend } from "@config/apps.config";
+import { apps } from "@config/apps.config";
 
 function hasAccessToAdGroup(adGroups: string[], uuid: string): boolean {
   return adGroups.includes(uuid);
 }
 
 export function getAuthorizedApps(adGroups: string[]): MicroFrontend[] {
-  return allApps.filter((app) => hasAccessToApp(adGroups, app));
+  return apps.filter((app) => hasAccessToApp(adGroups, app));
 }
 
 export function hasAccessToApp(

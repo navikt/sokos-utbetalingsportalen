@@ -8,6 +8,7 @@
     "types": ["astro/client"],
     "paths": {
       "@components/*": ["src/components/*"],
+      "@config/*": ["src/config/*"],
       "@layouts/*": ["src/layouts/*"],
       "@pages/*": ["src/pages/*"],
       "@types/*": ["src/types/*"],
