@@ -64,5 +64,9 @@ const enableObservability =
       <slot />
     </main>
     {enableObservability && <Observability client:only="react" />}
+    <script>
+      import { initializeStoreRegistry } from "@utils/storeRegistry";
+      initializeStoreRegistry();
+    </script>
   </body>
 </html>
