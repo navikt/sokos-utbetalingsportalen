@@ -21,7 +21,7 @@
     "@navikt/ds-react": "7.32.3",
     "@navikt/oasis": "^3.8.0",
     "@opentelemetry/sdk-node": "^0.207.0",
-    "astro": "^5.14.8",
+    "astro": "^5.15.1",
     "pino": "^10.1.0",
     "pino-socket": "^7.4.0",
     "prom-client": "^15.1.3",
