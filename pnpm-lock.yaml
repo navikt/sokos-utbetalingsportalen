@@ -27,8 +27,8 @@ importers:
         specifier: 7.32.3
         version: 7.32.3(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@navikt/oasis':
-        specifier: ^3.8.0
-        version: 3.8.0
+        specifier: ^4.1.0
+        version: 4.1.0
       '@opentelemetry/sdk-node':
         specifier: ^0.207.0
         version: 0.207.0(@opentelemetry/api@1.9.0)
@@ -838,8 +838,13 @@ packages:
   '@navikt/ds-tokens@7.32.3':
     resolution: {integrity: sha512-sU8e33NfS70Rs75+IJfYLgMLMkMZt24Vy7P3OvyKTVZdiUA9bVY94zwbHY3KN85ImOGsmSDGen2y5hkAwv1EVA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/7.32.3/ea5e5b87965331382c72b794f1c17166662d9620}
 
-  '@navikt/oasis@3.8.0':
-    resolution: {integrity: sha512-5CDsv3wop9eIw2YNBCJRr0w6PwwkoTiHzZQXn1+5YZnsksCkHJAFsfKSbRle6zgsD+XRBnc/TPOP0nvNly7NWg==, tarball: https://npm.pkg.github.com/download/@navikt/oasis/3.8.0/fc6862d934adfbefa382220614af18160688cd1e}
+  '@navikt/oasis@4.1.0':
+    resolution: {integrity: sha512-CGBm7RfTzBO5SlifvVyQYVCpu4Gt/wqEKM8evG0aL1kbsUPNSRZA2agKqyQfGbs+F6uoJosq8wZbs/1xYrTM/A==, tarball: https://npm.pkg.github.com/download/@navikt/oasis/4.1.0/ed0d98fe57279240a53fe82bf518776ddce59a0a}
+    engines: {node: ^20.19.0 || >= 22.12.0 || 24.x || 25.x}
+
+  '@navikt/texas@4.1.0':
+    resolution: {integrity: sha512-zNAXkY9fiBVsKK8DhP3q2uMTKzy1bci2VkpK7QV1Jyhk4UIu3OtPQnBZjDGThWkVXIFizl5xBoLGhGcqvR9XMA==, tarball: https://npm.pkg.github.com/download/@navikt/texas/4.1.0/36e6f1a056838a6777e4e0680cb45e1a568c15d1}
+    engines: {node: ^20.19.0 || >= 22.12.0 || 24.x || 25.x}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -2059,11 +2064,8 @@ packages:
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
-  jose@4.15.9:
-    resolution: {integrity: sha512-1vUQX+IdDMVPj4k8kOxgUqlcK518yluMuGZwqlr44FS1ppZB/5GWh4rZG89erpOBOJjU/OBsnCVFfapsRz6nEA==}
-
-  jose@5.9.6:
-    resolution: {integrity: sha512-AMlnetc9+CV9asI19zHmrgS/WYsWUwCn2R7RzlbJWD7F9eWYUTGyBmU9o6PxngtLGOiDGPRu+Uc4fhKzbpteZQ==}
+  jose@6.1.0:
+    resolution: {integrity: sha512-TTQJyoEoKcC1lscpVDCSsVgYzUDg/0Bt3WE//WiTPK6uOCQC2KZS4MpugbMWt/zyjkopgZoXhZuCi00gLudfUA==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -2148,10 +2150,6 @@ packages:
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
-
-  lru-cache@6.0.0:
-    resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
-    engines: {node: '>=10'}
 
   magic-string@0.30.19:
     resolution: {integrity: sha512-2N21sPY9Ws53PZvsEpVtNuSW+ScYbQdp4b9qUaL+9QkHUrGFKo56Lg9Emg5s9V/qrtNBmiR01sYhUOwu3H+VOw==}
@@ -2362,19 +2360,11 @@ packages:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
 
-  object-hash@2.2.0:
-    resolution: {integrity: sha512-gScRMn0bS5fH+IuwyIFgnh9zBdo4DV+6GhygmWM9HyNJSgS0hScp1f5vjtm7oIIOiT9trXrShAkLFSc2IqKNgw==}
-    engines: {node: '>= 6'}
-
   ofetch@1.4.1:
     resolution: {integrity: sha512-QZj2DfGplQAr2oj9KzceK9Hwz6Whxazmn85yYeVuS3u9XTMOGMRx0kO95MQ+vLsj/S/NwBDMMLU5hpxvI6Tklw==}
 
   ohash@2.0.11:
     resolution: {integrity: sha512-RdR9FQrFwNBNXAr4GixM8YaRZRJ5PUWbKYbE5eOsrwAjJW0q2REGcf79oYPsLyskQCZG1PLN+S/K1V00joZAoQ==}
-
-  oidc-token-hash@5.0.3:
-    resolution: {integrity: sha512-IF4PcGgzAr6XXSff26Sk/+P4KZFJVuHAJZj3wgO3vX2bMdNVp/QXTP3P7CEm9V1IdG8lDLY3HhiqpsE/nOwpPw==}
-    engines: {node: ^10.13.0 || >=12.0.0}
 
   on-exit-leak-free@2.1.2:
     resolution: {integrity: sha512-0eJJY6hXLGf1udHwfNftBqH+g73EU4B504nZeKpz1sYRKafAghwxEJunB2O7rDZkL4PGfsMVnTXZ2EjibbqcsA==}
@@ -2396,9 +2386,6 @@ packages:
 
   oniguruma-to-es@4.3.3:
     resolution: {integrity: sha512-rPiZhzC3wXwE59YQMRDodUwwT9FZ9nNBwQQfsd1wfdtlKEyCdRV0avrTcSZ5xlIvGRVPd/cx6ZN45ECmS39xvg==}
-
-  openid-client@5.7.1:
-    resolution: {integrity: sha512-jDBPgSVfTnkIh71Hg9pRvtJc6wTwqjRkN88+gCFtYWrlP4Yx2Dsrow8uPi3qLr/aeymPF3o2+dS+wOpglK04ew==}
 
   p-limit@6.2.0:
     resolution: {integrity: sha512-kuUqqHNUqoIWp/c467RI4X6mmyuojY5jGutNU0wVTmEOOfcuwLqyMVoAi9MKi2Ak+5i9+nhmrK4ufZE8069kHA==}
@@ -3314,9 +3301,6 @@ packages:
   yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
 
-  yallist@4.0.0:
-    resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
-
   yaml-language-server@1.15.0:
     resolution: {integrity: sha512-N47AqBDCMQmh6mBLmI6oqxryHRzi33aPFPsJhYy3VTUGCdLHYjGh4FZzpUjRlphaADBBkDmnkM/++KNIOHi5Rw==}
     hasBin: true
@@ -4018,11 +4002,14 @@ snapshots:
 
   '@navikt/ds-tokens@7.32.3': {}
 
-  '@navikt/oasis@3.8.0':
+  '@navikt/oasis@4.1.0':
     dependencies:
-      jose: 5.9.6
-      openid-client: 5.7.1
+      '@navikt/texas': 4.1.0
+      '@opentelemetry/api': 1.9.0
+      jose: 6.1.0
       prom-client: 15.1.3
+
+  '@navikt/texas@4.1.0': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -5379,9 +5366,7 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  jose@4.15.9: {}
-
-  jose@5.9.6: {}
+  jose@6.1.0: {}
 
   js-tokens@4.0.0: {}
 
@@ -5457,10 +5442,6 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
-
-  lru-cache@6.0.0:
-    dependencies:
-      yallist: 4.0.0
 
   magic-string@0.30.19:
     dependencies:
@@ -5836,8 +5817,6 @@ snapshots:
 
   normalize-path@3.0.0: {}
 
-  object-hash@2.2.0: {}
-
   ofetch@1.4.1:
     dependencies:
       destr: 2.0.5
@@ -5845,8 +5824,6 @@ snapshots:
       ufo: 1.6.1
 
   ohash@2.0.11: {}
-
-  oidc-token-hash@5.0.3: {}
 
   on-exit-leak-free@2.1.2: {}
 
@@ -5869,13 +5846,6 @@ snapshots:
       oniguruma-parser: 0.12.1
       regex: 6.0.1
       regex-recursion: 6.0.2
-
-  openid-client@5.7.1:
-    dependencies:
-      jose: 4.15.9
-      lru-cache: 6.0.0
-      object-hash: 2.2.0
-      oidc-token-hash: 5.0.3
 
   p-limit@6.2.0:
     dependencies:
@@ -6867,8 +6837,6 @@ snapshots:
   y18n@5.0.8: {}
 
   yallist@3.1.1: {}
-
-  yallist@4.0.0: {}
 
   yaml-language-server@1.15.0:
     dependencies:
