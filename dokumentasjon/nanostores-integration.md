@@ -10,15 +10,6 @@ Basert på [Astro's anbefaling for deling av state mellom islands](https://docs.
 
 ### Hvordan det fungerer
 
-Nanostores er framework-agnostisk og fungerer på tvers av alle Astro-islands automatisk:
-
-```typescript
-// src/stores/shared.ts
-import { atom } from "nanostores";
-
-export const selectedId = atom<string | null>(null);
-```
-
 Alle komponenter som importerer samme store deler samme state
 
 ### Tilgjengelige Stores
@@ -100,45 +91,19 @@ function MyComponent() {
 }
 ```
 
-### Eksempel: Fra Attestasjon til Oppdragsinfo
-
-**Mikrofrontend A (Attestasjon)** - setter ID:
-```tsx
-import { selectedId } from "@stores/shared";
-
-function AttestasjonList() {
-  const handleClick = (id: string) => {
-    selectedId.set(id);
-    window.location.href = `/oppdragsinfo`;
-  };
-
-  return <button onClick={() => handleClick("12345")}>Vis oppdrag</button>;
-}
-```
-
-**Mikrofrontend B (Oppdragsinfo)** - leser ID:
-```tsx
-import { useStore } from "@nanostores/react";
-import { selectedId } from "@stores/shared";
-import { useEffect } from "react";
-
-function OppdragsinfoPage() {
-  const id = useStore(selectedId);
-
-  useEffect(() => {
-    if (id) {
-      console.log("Mottok ID fra forrige side:", id);
-    }
-  }, [id]);
-
-  return <div>Viser oppdrag: {id}</div>;
-}
-```
-
 ## Best Practices
 
 ### 1. Bruk hooks for reaktivitet
 
+```tsx
+// Riktig - komponenten re-rendres ved endringer
+import { useStore } from "@nanostores/react";
+import { selectedId } from "@stores/shared";
+
+const id = useStore(selectedId);
+```
+
+// Feil - komponenten re-rendres IKKE
 ```tsx
 // Riktig - komponenten re-rendres ved endringer
 import { useStore } from "@nanostores/react";
@@ -154,29 +119,6 @@ import { selectedId } from "@stores/shared";
 const id = selectedId.get(); // Statisk verdi
 ```
 
-### 2. Type safety
-
-Bruk TypeScript og definer typer for shared context:
-
-```typescript
-type SharedContext = {
-  currentOppdrag?: string;
-  currentKontonummer?: string;
-  navigationHistory?: string[];
-};
-```
-
-### 3. Ikke overbruk
-
-Bruk nanostores kun for:
-
-- Kommunikasjon mellom komponenter/islands
-- Kommunikasjon mellom mikrofrontends
-- Navigasjons-kontekst
-- Delt seleksjon/fokus
-
-Bruk lokal state (useState, Context) for komponent-intern state.
-
 ### 4. Rydd opp når nødvendig
 
 ```tsx
@@ -187,107 +129,6 @@ useEffect(() => {
     clearSelectedId();
   };
 }, []);
-```
-
-## Eksempel Use Case: Attestasjon → Oppdragsinfo
-
-### Attestasjon (sender)
-
-```tsx
-function AttestasjonRow({ oppdrag }) {
-  const stores = getStores();
-
-  const handleViewDetails = () => {
-    stores?.setSharedContext({
-      currentOppdrag: oppdrag.id,
-      navigationHistory: ["/attestasjon"],
-    });
-
-    window.location.href = `/oppdragsinfo?oppdrag=${oppdrag.id}`;
-  };
-
-  return (
-    <tr>
-      <td>{oppdrag.id}</td>
-      <td>
-        <button onClick={handleViewDetails}>Gå til Oppdragsinfo</button>
-      </td>
-    </tr>
-  );
-}
-```
-
-### Oppdragsinfo (mottaker)
-
-```tsx
-function OppdragsinfoPage() {
-  const context = useSharedContext();
-  const [oppdragData, setOppdragData] = useState(null);
-
-  useEffect(() => {
-    if (context.currentOppdrag) {
-      fetchOppdragData(context.currentOppdrag).then(setOppdragData);
-    }
-  }, [context.currentOppdrag]);
-
-  return (
-    <div>
-      {context.navigationHistory && (
-        <button onClick={() => (window.location.href = context.navigationHistory[0])}>
-          ← Tilbake til {context.navigationHistory[0]}
-        </button>
-      )}
-      {oppdragData && <OppdragDetails data={oppdragData} />}
-    </div>
-  );
-}
-```
-
-## Testing
-
-### Verifiser at stores fungerer
-
-1. **Åpne browser DevTools** (F12)
-2. **Gå til Console-fanen**
-3. Test stores direkte:
-   ```javascript
-   // Import stores (hvis du er i en modul-kontekst)
-   // eller test via komponenten
-   ```
-
-### Test sessionStorage persistence
-
-1. Legg til StoreExample-komponenten (se under)
-2. Sett verdier via UI
-3. Refresh siden (F5)
-4. Sjekk at verdiene er bevart
-5. Verifiser i DevTools → Application → Session Storage:
-   - `utbetalingsportalen:selectedId`
-   - `utbetalingsportalen:sharedContext`
-
-### Test med StoreExample-komponenten
-
-For visuell testing, legg til eksempelkomponenten midlertidig:
-
-```astro
-// src/pages/index.astro
-import { StoreExample } from "@components/common/StoreExample";
-
-<StoreExample client:only="react" />
-```
-
-
-```typescript
-import { persistentAtom } from "@nanostores/persistent";
-
-export const selectedId = persistentAtom<string | null>(
-  "utbetalingsportalen:selectedId",
-  null,
-  {
-    encode: JSON.stringify,
-    decode: JSON.parse,
-  },
-);
 ```
 
 ## Videre Utvikling
