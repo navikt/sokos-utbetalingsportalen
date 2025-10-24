@@ -16,8 +16,6 @@ Alle komponenter som importerer samme store deler samme state
 
 #### `selectedId`
 
-En persistent atom store for å dele en ID mellom islands/mikrofrontends.
-
 ```typescript
 import { persistentAtom } from "@nanostores/persistent";
 
@@ -26,16 +24,16 @@ export const selectedId = persistentAtom<string | null>(
   null,
   {
     encode: JSON.stringify,
-    decode: JSON.parse,
-  }
+    decode: (value) => {
+      try {
+        return JSON.parse(value);
+      } catch {
+        return null;
+      }
+    },
+  },
 );
 ```
-
-**Funksjoner:**
-
-- Persisterer i localStorage
-- Synkroniseres automatisk mellom browser tabs
-- SSR-safe
 
 **Bruk:**
 
@@ -103,15 +101,6 @@ import { selectedId } from "@stores/shared";
 const id = useStore(selectedId);
 ```
 
-// Feil - komponenten re-rendres IKKE
-```tsx
-// Riktig - komponenten re-rendres ved endringer
-import { useStore } from "@nanostores/react";
-import { selectedId } from "@stores/shared";
-
-const id = useStore(selectedId);
-```
-
 ```tsx
 // Feil - komponenten re-rendres IKKE
 import { selectedId } from "@stores/shared";
@@ -119,7 +108,7 @@ import { selectedId } from "@stores/shared";
 const id = selectedId.get(); // Statisk verdi
 ```
 
-### 4. Rydd opp når nødvendig
+### 2. Rydd opp når nødvendig
 
 ```tsx
 import { clearSelectedId } from "@stores/shared";
@@ -134,6 +123,5 @@ useEffect(() => {
 ## Videre Utvikling
 
 - [ ] Legg til flere stores etter behov (f.eks. `selectedKontonummer`, `selectedOppdrag`)
-- [ ] Implementer persistence med `@nanostores/persistent` hvis nødvendig
-- [ ] Legg til TypeScript types for komplekse data
+- [ ] Legg til TypeScript typer for komplekse data
 - [ ] Logging av state-endringer for debugging
