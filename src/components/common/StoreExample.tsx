@@ -1,46 +1,15 @@
-import {
-  useSharedId,
-  useSharedContext,
-  getStores,
-} from "@hooks/useSharedStore";
+import { useSharedId } from "@hooks/useSharedStore";
+import { selectedId } from "@stores/shared";
 
 export function StoreExample() {
-  const selectedId = useSharedId();
-  const context = useSharedContext();
-  const stores = getStores();
+  const id = useSharedId();
 
   const handleSetId = () => {
-    if (stores) {
-      stores.setSelectedId("12345-DEMO");
-    }
+    selectedId.set("12345-DEMO");
   };
 
   const handleClearId = () => {
-    if (stores) {
-      stores.clearSelectedId();
-    }
-  };
-
-  const handleSetContext = () => {
-    if (stores) {
-      stores.setSharedContext({
-        currentOppdrag: "OPPDRAG-001",
-        currentKontonummer: "12345678901",
-        navigationHistory: ["/attestasjon", "/oppdragsinfo"],
-      });
-    }
-  };
-
-  const handleClearContext = () => {
-    if (stores) {
-      stores.clearSharedContext();
-    }
-  };
-
-  const handleClearAll = () => {
-    if (stores) {
-      stores.clearAllStores?.();
-    }
+    selectedId.set(null);
   };
 
   return (
@@ -54,30 +23,16 @@ export function StoreExample() {
         }}
       >
         <small>
-          💾 State lagres i sessionStorage og persisterer ved sideoppdatering.
+          � Delt state mellom islands/mikrofrontends
           <br />
-          Prøv å sette verdier og refresh siden!
+          Sett en ID her og hent den i en annen komponent!
         </small>
       </div>
       <div>
         <h4>Selected ID:</h4>
-        <p>{selectedId || "No ID selected"}</p>
+        <p>{id || "No ID selected"}</p>
         <button onClick={handleSetId}>Set ID</button>
         <button onClick={handleClearId}>Clear ID</button>
-      </div>
-      <div>
-        <h4>Shared Context:</h4>
-        <pre>{JSON.stringify(context, null, 2)}</pre>
-        <button onClick={handleSetContext}>Set Context</button>
-        <button onClick={handleClearContext}>Clear Context</button>
-      </div>
-      <div style={{ marginTop: "1rem" }}>
-        <button
-          onClick={handleClearAll}
-          style={{ background: "#c30000", color: "white" }}
-        >
-          Clear All (inkl. sessionStorage)
-        </button>
       </div>
     </div>
   );
