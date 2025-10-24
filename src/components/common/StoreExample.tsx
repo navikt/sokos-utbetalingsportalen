@@ -5,16 +5,26 @@ export function StoreExample() {
   const id = useSharedId();
 
   const handleSetId = () => {
-    selectedId.set("12345-DEMO");
+    const newId = `OPPDRAG-${Date.now()}`;
+    selectedId.set(newId);
+    console.log("✅ ID satt i localStorage:", newId);
   };
 
   const handleClearId = () => {
     selectedId.set(null);
+    console.log("🗑️ ID fjernet fra localStorage");
+  };
+
+  const handleNavigate = () => {
+    if (id) {
+      console.log("🚀 Navigerer med ID:", id);
+      window.location.href = "/oppdragsinfo";
+    }
   };
 
   return (
     <div style={{ padding: "1rem", border: "1px solid #ccc", margin: "1rem" }}>
-      <h3>Nanostores Example</h3>
+      <h3>Nanostores Persistent Example</h3>
       <div
         style={{
           marginBottom: "1rem",
@@ -23,16 +33,34 @@ export function StoreExample() {
         }}
       >
         <small>
-          � Delt state mellom islands/mikrofrontends
+          💾 State lagres i localStorage og overlever page reload
           <br />
-          Sett en ID her og hent den i en annen komponent!
+          🔄 Synkroniseres automatisk mellom browser tabs
         </small>
       </div>
       <div>
         <h4>Selected ID:</h4>
-        <p>{id || "No ID selected"}</p>
-        <button onClick={handleSetId}>Set ID</button>
-        <button onClick={handleClearId}>Clear ID</button>
+        <p style={{ fontFamily: "monospace", fontSize: "14px" }}>
+          {id || "No ID selected"}
+        </p>
+        <div style={{ display: "flex", gap: "0.5rem", marginTop: "1rem" }}>
+          <button onClick={handleSetId}>Set Random ID</button>
+          <button onClick={handleClearId}>Clear ID</button>
+          {id && (
+            <button
+              onClick={handleNavigate}
+              style={{
+                background: "#0066cc",
+                color: "white",
+                border: "none",
+                padding: "0.5rem 1rem",
+                cursor: "pointer",
+              }}
+            >
+              Navigate to Oppdragsinfo →
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

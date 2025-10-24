@@ -1,10 +1,10 @@
 # Stores
 
-State management med [Nanostores](https://github.com/nanostores/nanostores) for deling av state mellom Astro islands og mikrofrontends, basert på [Astro's anbefaling](https://docs.astro.build/en/recipes/sharing-state-islands/).
+State management med [Nanostores](https://github.com/nanostores/nanostores) og [@nanostores/persistent](https://github.com/nanostores/persistent) for deling av state mellom Astro islands og mikrofrontends, basert på [Astro's anbefaling](https://docs.astro.build/en/recipes/sharing-state-islands/).
 
 ## Struktur
 
-- **`shared.ts`** - Enkelt atom store for valgt ID
+- **`shared.ts`** - Persistent atom store for valgt ID (lagres i localStorage)
 - **`index.ts`** - Eksporterer alle stores
 
 ## Quick Start

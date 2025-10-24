@@ -25,13 +25,29 @@ Alle komponenter som importerer samme store deler samme state
 
 #### `selectedId`
 
-En enkel atom store for å dele en ID mellom islands/mikrofrontends.
+En persistent atom store for å dele en ID mellom islands/mikrofrontends.
 
 ```typescript
-export const selectedId = atom<string | null>(null);
+import { persistentAtom } from "@nanostores/persistent";
+
+export const selectedId = persistentAtom<string | null>(
+  "utbetalingsportalen:selectedId",
+  null,
+  {
+    encode: JSON.stringify,
+    decode: JSON.parse,
+  }
+);
 ```
 
+**Funksjoner:**
+
+- Persisterer i localStorage
+- Synkroniseres automatisk mellom browser tabs
+- SSR-safe
+
 **Bruk:**
+
 ```tsx
 selectedId.set("12345");
 
@@ -260,19 +276,18 @@ import { StoreExample } from "@components/common/StoreExample";
 <StoreExample client:only="react" />
 ```
 
-Komponenten viser alle funksjoner og lar deg teste persistence ved sideoppdatering.
-
-### State nullstilles ved page reload
-
-**Dette er forventet!** Stores er in-memory og nullstilles ved reload.
-
-**Hvis vi trenger persistence**:
 
 ```typescript
-// Legg til sessionStorage persistence
 import { persistentAtom } from "@nanostores/persistent";
 
-export const selectedId = persistentAtom<string | null>("selectedId", null);
+export const selectedId = persistentAtom<string | null>(
+  "utbetalingsportalen:selectedId",
+  null,
+  {
+    encode: JSON.stringify,
+    decode: JSON.parse,
+  },
+);
 ```
 
 ## Videre Utvikling
