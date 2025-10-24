@@ -12,7 +12,7 @@ importers:
         version: 0.9.5(prettier-plugin-astro@0.14.1)(prettier@3.6.2)(typescript@5.9.3)
       "@astrojs/node":
         specifier: ^9.5.0
-        version: 9.5.0(astro@5.14.8(@types/node@24.9.1)(rollup@4.52.5)(tsx@4.20.6)(typescript@5.9.3)(yaml@2.8.1))
+        version: 9.5.0(astro@5.15.1(@types/node@24.9.1)(rollup@4.52.5)(tsx@4.20.6)(typescript@5.9.3)(yaml@2.8.1))
       "@astrojs/react":
         specifier: ^4.4.0
         version: 4.4.0(@types/node@24.9.1)(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tsx@4.20.6)(yaml@2.8.1)
@@ -32,14 +32,14 @@ importers:
         specifier: 7.32.3
         version: 7.32.3(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       "@navikt/oasis":
-        specifier: ^3.8.0
-        version: 3.8.0
+        specifier: ^4.1.0
+        version: 4.1.0
       "@opentelemetry/sdk-node":
         specifier: ^0.207.0
         version: 0.207.0(@opentelemetry/api@1.9.0)
       astro:
-        specifier: ^5.14.8
-        version: 5.14.8(@types/node@24.9.1)(rollup@4.52.5)(tsx@4.20.6)(typescript@5.9.3)(yaml@2.8.1)
+        specifier: ^5.15.1
+        version: 5.15.1(@types/node@24.9.1)(rollup@4.52.5)(tsx@4.20.6)(typescript@5.9.3)(yaml@2.8.1)
       nanostores:
         specifier: ^1.0.1
         version: 1.0.1
@@ -93,8 +93,8 @@ importers:
         specifier: ^9.1.7
         version: 9.1.7
       lint-staged:
-        specifier: ^16.2.5
-        version: 16.2.5
+        specifier: ^16.2.6
+        version: 16.2.6
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
@@ -1309,12 +1309,21 @@ packages:
         tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/7.32.3/ea5e5b87965331382c72b794f1c17166662d9620,
       }
 
-  "@navikt/oasis@3.8.0":
+  "@navikt/oasis@4.1.0":
     resolution:
       {
-        integrity: sha512-5CDsv3wop9eIw2YNBCJRr0w6PwwkoTiHzZQXn1+5YZnsksCkHJAFsfKSbRle6zgsD+XRBnc/TPOP0nvNly7NWg==,
-        tarball: https://npm.pkg.github.com/download/@navikt/oasis/3.8.0/fc6862d934adfbefa382220614af18160688cd1e,
+        integrity: sha512-CGBm7RfTzBO5SlifvVyQYVCpu4Gt/wqEKM8evG0aL1kbsUPNSRZA2agKqyQfGbs+F6uoJosq8wZbs/1xYrTM/A==,
+        tarball: https://npm.pkg.github.com/download/@navikt/oasis/4.1.0/ed0d98fe57279240a53fe82bf518776ddce59a0a,
       }
+    engines: { node: ^20.19.0 || >= 22.12.0 || 24.x || 25.x }
+
+  "@navikt/texas@4.1.0":
+    resolution:
+      {
+        integrity: sha512-zNAXkY9fiBVsKK8DhP3q2uMTKzy1bci2VkpK7QV1Jyhk4UIu3OtPQnBZjDGThWkVXIFizl5xBoLGhGcqvR9XMA==,
+        tarball: https://npm.pkg.github.com/download/@navikt/texas/4.1.0/36e6f1a056838a6777e4e0680cb45e1a568c15d1,
+      }
+    engines: { node: ^20.19.0 || >= 22.12.0 || 24.x || 25.x }
 
   "@nodelib/fs.scandir@2.1.5":
     resolution:
@@ -2401,10 +2410,10 @@ packages:
       }
     engines: { node: ">=8" }
 
-  astro@5.14.8:
+  astro@5.15.1:
     resolution:
       {
-        integrity: sha512-nKqCLs7BFvGQL9QWQOUqxHhlHtV0UMLXz1ANJygozvjcexBWS7FYkWI2LzRPMNYmbW4msIWNWnX2RvLdvI5Cnw==,
+        integrity: sha512-VM679M1qxOjGo6q3vKYDNDddkALGgMopG93IwbEXd3Buc2xVLuuPj4HNziNugSbPQx5S6UReMp5uzw10EJN81A==,
       }
     engines:
       { node: 18.20.8 || ^20.3.0 || >=22.0.0, npm: ">=9.6.5", pnpm: ">=7.1.0" }
@@ -3435,16 +3444,10 @@ packages:
         integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==,
       }
 
-  jose@4.15.9:
+  jose@6.1.0:
     resolution:
       {
-        integrity: sha512-1vUQX+IdDMVPj4k8kOxgUqlcK518yluMuGZwqlr44FS1ppZB/5GWh4rZG89erpOBOJjU/OBsnCVFfapsRz6nEA==,
-      }
-
-  jose@5.9.6:
-    resolution:
-      {
-        integrity: sha512-AMlnetc9+CV9asI19zHmrgS/WYsWUwCn2R7RzlbJWD7F9eWYUTGyBmU9o6PxngtLGOiDGPRu+Uc4fhKzbpteZQ==,
+        integrity: sha512-TTQJyoEoKcC1lscpVDCSsVgYzUDg/0Bt3WE//WiTPK6uOCQC2KZS4MpugbMWt/zyjkopgZoXhZuCi00gLudfUA==,
       }
 
   js-tokens@4.0.0:
@@ -3539,10 +3542,10 @@ packages:
         integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==,
       }
 
-  lint-staged@16.2.5:
+  lint-staged@16.2.6:
     resolution:
       {
-        integrity: sha512-o36wH3OX0jRWqDw5dOa8a8x6GXTKaLM+LvhRaucZxez0IxA+KNDUCiyjBfNgsMNmchwSX6urLSL7wShcUqAang==,
+        integrity: sha512-s1gphtDbV4bmW1eylXpVMk2u7is7YsrLl8hzrtvC70h4ByhcMLZFY01Fx05ZUDNuv1H8HO4E+e2zgejV1jVwNw==,
       }
     engines: { node: ">=20.17" }
     hasBin: true
@@ -3602,13 +3605,6 @@ packages:
       {
         integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==,
       }
-
-  lru-cache@6.0.0:
-    resolution:
-      {
-        integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==,
-      }
-    engines: { node: ">=10" }
 
   magic-string@0.30.19:
     resolution:
@@ -4021,13 +4017,6 @@ packages:
       }
     engines: { node: ">=0.10.0" }
 
-  object-hash@2.2.0:
-    resolution:
-      {
-        integrity: sha512-gScRMn0bS5fH+IuwyIFgnh9zBdo4DV+6GhygmWM9HyNJSgS0hScp1f5vjtm7oIIOiT9trXrShAkLFSc2IqKNgw==,
-      }
-    engines: { node: ">= 6" }
-
   ofetch@1.4.1:
     resolution:
       {
@@ -4039,13 +4028,6 @@ packages:
       {
         integrity: sha512-RdR9FQrFwNBNXAr4GixM8YaRZRJ5PUWbKYbE5eOsrwAjJW0q2REGcf79oYPsLyskQCZG1PLN+S/K1V00joZAoQ==,
       }
-
-  oidc-token-hash@5.0.3:
-    resolution:
-      {
-        integrity: sha512-IF4PcGgzAr6XXSff26Sk/+P4KZFJVuHAJZj3wgO3vX2bMdNVp/QXTP3P7CEm9V1IdG8lDLY3HhiqpsE/nOwpPw==,
-      }
-    engines: { node: ^10.13.0 || >=12.0.0 }
 
   on-exit-leak-free@2.1.2:
     resolution:
@@ -4084,12 +4066,6 @@ packages:
     resolution:
       {
         integrity: sha512-rPiZhzC3wXwE59YQMRDodUwwT9FZ9nNBwQQfsd1wfdtlKEyCdRV0avrTcSZ5xlIvGRVPd/cx6ZN45ECmS39xvg==,
-      }
-
-  openid-client@5.7.1:
-    resolution:
-      {
-        integrity: sha512-jDBPgSVfTnkIh71Hg9pRvtJc6wTwqjRkN88+gCFtYWrlP4Yx2Dsrow8uPi3qLr/aeymPF3o2+dS+wOpglK04ew==,
       }
 
   p-limit@6.2.0:
@@ -5621,12 +5597,6 @@ packages:
         integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==,
       }
 
-  yallist@4.0.0:
-    resolution:
-      {
-        integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==,
-      }
-
   yaml-language-server@1.15.0:
     resolution:
       {
@@ -5789,10 +5759,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  "@astrojs/node@9.5.0(astro@5.14.8(@types/node@24.9.1)(rollup@4.52.5)(tsx@4.20.6)(typescript@5.9.3)(yaml@2.8.1))":
+  "@astrojs/node@9.5.0(astro@5.15.1(@types/node@24.9.1)(rollup@4.52.5)(tsx@4.20.6)(typescript@5.9.3)(yaml@2.8.1))":
     dependencies:
       "@astrojs/internal-helpers": 0.7.4
-      astro: 5.14.8(@types/node@24.9.1)(rollup@4.52.5)(tsx@4.20.6)(typescript@5.9.3)(yaml@2.8.1)
+      astro: 5.15.1(@types/node@24.9.1)(rollup@4.52.5)(tsx@4.20.6)(typescript@5.9.3)(yaml@2.8.1)
       send: 1.2.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -6376,11 +6346,14 @@ snapshots:
 
   "@navikt/ds-tokens@7.32.3": {}
 
-  "@navikt/oasis@3.8.0":
+  "@navikt/oasis@4.1.0":
     dependencies:
-      jose: 5.9.6
-      openid-client: 5.7.1
+      "@navikt/texas": 4.1.0
+      "@opentelemetry/api": 1.9.0
+      jose: 6.1.0
       prom-client: 15.1.3
+
+  "@navikt/texas@4.1.0": {}
 
   "@nodelib/fs.scandir@2.1.5":
     dependencies:
@@ -7044,7 +7017,7 @@ snapshots:
 
   astral-regex@2.0.0: {}
 
-  astro@5.14.8(@types/node@24.9.1)(rollup@4.52.5)(tsx@4.20.6)(typescript@5.9.3)(yaml@2.8.1):
+  astro@5.15.1(@types/node@24.9.1)(rollup@4.52.5)(tsx@4.20.6)(typescript@5.9.3)(yaml@2.8.1):
     dependencies:
       "@astrojs/compiler": 2.13.0
       "@astrojs/internal-helpers": 0.7.4
@@ -7078,7 +7051,6 @@ snapshots:
       http-cache-semantics: 4.2.0
       import-meta-resolve: 4.2.0
       js-yaml: 4.1.0
-      kleur: 4.1.5
       magic-string: 0.30.19
       magicast: 0.3.5
       mrmime: 2.0.1
@@ -7086,6 +7058,7 @@ snapshots:
       p-limit: 6.2.0
       p-queue: 8.1.1
       package-manager-detector: 1.5.0
+      picocolors: 1.1.1
       picomatch: 4.0.3
       prompts: 2.4.2
       rehype: 13.0.2
@@ -7737,9 +7710,7 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  jose@4.15.9: {}
-
-  jose@5.9.6: {}
+  jose@6.1.0: {}
 
   js-tokens@4.0.0: {}
 
@@ -7773,7 +7744,7 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
-  lint-staged@16.2.5:
+  lint-staged@16.2.6:
     dependencies:
       commander: 14.0.1
       listr2: 9.0.5
@@ -7815,10 +7786,6 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
-
-  lru-cache@6.0.0:
-    dependencies:
-      yallist: 4.0.0
 
   magic-string@0.30.19:
     dependencies:
@@ -8196,8 +8163,6 @@ snapshots:
 
   normalize-path@3.0.0: {}
 
-  object-hash@2.2.0: {}
-
   ofetch@1.4.1:
     dependencies:
       destr: 2.0.5
@@ -8205,8 +8170,6 @@ snapshots:
       ufo: 1.6.1
 
   ohash@2.0.11: {}
-
-  oidc-token-hash@5.0.3: {}
 
   on-exit-leak-free@2.1.2: {}
 
@@ -8229,13 +8192,6 @@ snapshots:
       oniguruma-parser: 0.12.1
       regex: 6.0.1
       regex-recursion: 6.0.2
-
-  openid-client@5.7.1:
-    dependencies:
-      jose: 4.15.9
-      lru-cache: 6.0.0
-      object-hash: 2.2.0
-      oidc-token-hash: 5.0.3
 
   p-limit@6.2.0:
     dependencies:
@@ -9227,8 +9183,6 @@ snapshots:
   y18n@5.0.8: {}
 
   yallist@3.1.1: {}
-
-  yallist@4.0.0: {}
 
   yaml-language-server@1.15.0:
     dependencies:
