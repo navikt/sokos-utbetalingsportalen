@@ -2,7 +2,7 @@
 
 ## Oversikt
 
-Utbetalingsportalen bruker [Nanostores](https://github.com/nanostores/nanostores) for delt state mellom mikrofrontends. Dette vil bli satt i `localStorage` og håndtert mellom mikrofrontender direkte i nettleseren. Bruk en relevant key for å unngå kollisjoner.
+Utbetalingsportalen bruker [Nanostores](https://github.com/nanostores/nanostores) for delt state mellom mikrofrontends. Dette vil bli satt i `localStorage` by default. Vi vil helst bruke `sessionStorage` så eventuelle sensitive opplysninger ikke blir værende. Se eksemplene for hvordan å gjøre dette. Bruk en relevant key for å unngå kollisjoner.
 
 Basert på [Astro's anbefaling for deling av state mellom islands](https://docs.astro.build/en/recipes/sharing-state-islands/)
 
@@ -15,15 +15,24 @@ pnpm add @nanostores/react @nanostores/persistent
 
 ### Opprette stores
 
-Lag en `stores`-mappe i prosjektet med en `shared.ts`-fil for delte stores:
+Lag for eksempel en `stores`-mappe i prosjektet med en `shared.ts`-fil for delte stores:
+PS: Man kan kalle filen hva man ønsker, dette er kun et forslag.
 
 Eksempel 1: Enkel string store
 
 ```typescript
-import { persistentAtom } from "@nanostores/persistent";
+import { persistentAtom, setPersistentEngine } from "@nanostores/persistent";
+
+if (typeof window !== "undefined") { // for å bruke sessionStorage kun i nettleseren
+  setPersistentEngine(sessionStorage, {
+    addEventListener() {},
+    removeEventListener() {},
+    perKey: false,
+  });
+}
 
 export const selectedId = persistentAtom<string | null>(
-  "utbetalingsportalen:selectedId",
+  "utbetalingsportalen:selectedId", // bruk en unik key som passer ditt prosjekt
   null,
   {
     encode: JSON.stringify,
@@ -41,11 +50,19 @@ export const selectedId = persistentAtom<string | null>(
 Eksempel 2: Objekt store
 
 ```typescript
-import { persistentAtom } from "@nanostores/persistent";
+import { persistentAtom, setPersistentEngine } from "@nanostores/persistent";
 import { SokeData } from "@types/SokeData";
 
+if (typeof window !== "undefined") { // for å bruke sessionStorage kun i nettleseren
+  setPersistentEngine(sessionStorage, {
+    addEventListener() {},
+    removeEventListener() {},
+    perKey: false,
+  });
+}
+
 export const sokeData = persistentAtom<SokeData | null>(
-  "utbetalingsportalen:sokeData",
+  "utbetalingsportalen:sokeData", // bruk en unik key som passer ditt prosjekt
   null,
   {
     encode: JSON.stringify,
