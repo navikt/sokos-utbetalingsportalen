@@ -20,6 +20,10 @@ Arbeidsflatene som tilbys gir mulighet til å se og/eller behandle saker som gje
 
 - [Umami-taksonomi](dokumentasjon/umami-taksonomi.md)
 
+### 📍 Nanostores
+
+- [Nanostores Guide](dokumentasjon/nanostores.md)
+
 ## Innholdsoversikt
 
 - [1. Teknisk stack](#1-teknisk-stack)
