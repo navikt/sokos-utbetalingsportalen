@@ -1,4 +1,12 @@
-import { persistentAtom } from "@nanostores/persistent";
+import { persistentAtom, setPersistentEngine } from "@nanostores/persistent";
+
+if (typeof window !== "undefined") {
+  setPersistentEngine(sessionStorage, {
+    addEventListener() {},
+    removeEventListener() {},
+    perKey: false,
+  });
+}
 
 export const selectedId = persistentAtom<string | null>(
   "utbetalingsportalen:selectedId",

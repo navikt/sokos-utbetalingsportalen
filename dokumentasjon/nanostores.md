@@ -1,23 +1,32 @@
-# Nanostores Integration Guide
+# Nanostores Guide
 
-## Overview
+## Oversikt
 
-Utbetalingsportalen bruker [Nanostores](https://github.com/nanostores/nanostores) for delt state-håndtering mellom mikrofrontends. Dette gjør det mulig å dele data og navigere mellom forskjellige apper med kontekst.
+Utbetalingsportalen bruker [Nanostores](https://github.com/nanostores/nanostores) for delt state-håndtering mellom mikrofrontends. Akkurat nå tilbys en enkel `selectedId` store som lagrer valgt ID i `sessionStorage`.
 
 ## Arkitektur
 
-Basert på [Astro's anbefaling for deling av state mellom islands](https://docs.astro.build/en/recipes/sharing-state-islands/), bruker vi Nanostores direkte uten ekstra wrappere.
+Basert på [Astro's anbefaling for deling av state mellom islands](https://docs.astro.build/en/recipes/sharing-state-islands/)
 
-### Hvordan det fungerer
+### Installasjon i mikrofrontend
 
-Alle komponenter som importerer samme store deler samme state
+```bash
+npm install @nanostores/react @nanostores/persistent
+pnpm add @nanostores/react @nanostores/persistent
+```
 
-### Tilgjengelige Stores
-
-#### `selectedId`
+Lag en `stores`-mappe i prosjektet med en `shared.ts`-fil for delte stores:
 
 ```typescript
-import { persistentAtom } from "@nanostores/persistent";
+import { persistentAtom, setPersistentEngine } from "@nanostores/persistent";
+
+if (typeof window !== "undefined") {
+  setPersistentEngine(sessionStorage, {
+    addEventListener() {},
+    removeEventListener() {},
+    perKey: false,
+  });
+}
 
 export const selectedId = persistentAtom<string | null>(
   "utbetalingsportalen:selectedId",
@@ -31,7 +40,7 @@ export const selectedId = persistentAtom<string | null>(
         return null;
       }
     },
-  },
+  }
 );
 ```
 
@@ -79,22 +88,12 @@ function MyComponent() {
 }
 ```
 
-### Custom hook (optional)
-
-```tsx
-import { useSharedId } from "@hooks/useSharedStore";
-
-function MyComponent() {
-  const id = useSharedId(); // wrapper rundt useStore
-}
-```
-
 ## Best Practices
 
 ### 1. Bruk hooks for reaktivitet
 
 ```tsx
-// Riktig - komponenten re-rendres ved endringer
+// komponenten re-rendres ved endringer
 import { useStore } from "@nanostores/react";
 import { selectedId } from "@stores/shared";
 
@@ -102,10 +101,10 @@ const id = useStore(selectedId);
 ```
 
 ```tsx
-// Feil - komponenten re-rendres IKKE
+// komponenten re-rendres ikke
 import { selectedId } from "@stores/shared";
 
-const id = selectedId.get(); // Statisk verdi
+const id = selectedId.get(); 
 ```
 
 ### 2. Rydd opp når nødvendig
@@ -120,7 +119,7 @@ useEffect(() => {
 }, []);
 ```
 
-## Videre Utvikling
+## TODO
 
 - [ ] Legg til flere stores etter behov (f.eks. `selectedKontonummer`, `selectedOppdrag`)
 - [ ] Legg til TypeScript typer for komplekse data
