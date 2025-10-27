@@ -1,4 +1,4 @@
-import { persistentAtom } from "@nanostores/persistent";
+/* import { persistentAtom } from "@nanostores/persistent";
 
 export const selectedId = persistentAtom<string | null>(
   "utbetalingsportalen:selectedId",
@@ -14,3 +14,4 @@ export const selectedId = persistentAtom<string | null>(
     },
   },
 );
+ */
