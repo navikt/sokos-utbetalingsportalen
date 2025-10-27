@@ -2,7 +2,7 @@
 
 ## Oversikt
 
-Utbetalingsportalen bruker [Nanostores](https://github.com/nanostores/nanostores) for delt state-håndtering mellom mikrofrontends. Akkurat nå tilbys en enkel `selectedId` store som lagrer valgt ID i `sessionStorage`.
+Utbetalingsportalen bruker [Nanostores](https://github.com/nanostores/nanostores) for delt state-håndtering mellom mikrofrontends. Akkurat nå tilbys en enkel `selectedId` store som lagrer valgt ID i `localStorage`.
 
 ## Arkitektur
 
@@ -18,15 +18,7 @@ pnpm add @nanostores/react @nanostores/persistent
 Lag en `stores`-mappe i prosjektet med en `shared.ts`-fil for delte stores:
 
 ```typescript
-import { persistentAtom, setPersistentEngine } from "@nanostores/persistent";
-
-if (typeof window !== "undefined") {
-  setPersistentEngine(sessionStorage, {
-    addEventListener() {},
-    removeEventListener() {},
-    perKey: false,
-  });
-}
+import { persistentAtom } from "@nanostores/persistent";
 
 export const selectedId = persistentAtom<string | null>(
   "utbetalingsportalen:selectedId",
@@ -40,7 +32,7 @@ export const selectedId = persistentAtom<string | null>(
         return null;
       }
     },
-  }
+  },
 );
 ```
 
