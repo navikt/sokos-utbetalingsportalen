@@ -2,7 +2,7 @@
 
 ## Oversikt
 
-Utbetalingsportalen bruker [Nanostores](https://github.com/nanostores/nanostores) for delt state mellom mikrofrontends. Dette vil bli satt i `localStorage`.
+Utbetalingsportalen bruker [Nanostores](https://github.com/nanostores/nanostores) for delt state mellom mikrofrontends. Dette vil bli satt i `localStorage` og håndtert mellom mikrofrontender direkte i nettleseren. Bruk en relevant key for å unngå kollisjoner.
 
 Basert på [Astro's anbefaling for deling av state mellom islands](https://docs.astro.build/en/recipes/sharing-state-islands/)
 
@@ -13,9 +13,11 @@ npm install @nanostores/react @nanostores/persistent
 pnpm add @nanostores/react @nanostores/persistent
 ```
 
-Eksempel for å lage en delt store for en enkel string `selectedId`:
+### Opprette stores
 
 Lag en `stores`-mappe i prosjektet med en `shared.ts`-fil for delte stores:
+
+Eksempel 1: Enkel string store
 
 ```typescript
 import { persistentAtom } from "@nanostores/persistent";
@@ -36,7 +38,7 @@ export const selectedId = persistentAtom<string | null>(
 );
 ```
 
-Eksempel for å lage en delt store for et søkeobjekt `SokeData`:
+Eksempel 2: Objekt store
 
 ```typescript
 import { persistentAtom } from "@nanostores/persistent";
@@ -58,19 +60,11 @@ export const sokeData = persistentAtom<SokeData | null>(
 );
 ```
 
-**Bruk:**
-
-```tsx
-selectedId.set("12345");
-
-const id = selectedId.get();
-
-const id = useStore(selectedId);
-```
-
 ## Bruk i React-komponenter
 
 ### Metode 1: Med hook (anbefalt for reaktivitet)
+
+String store:
 
 ```tsx
 import { useStore } from "@nanostores/react";
@@ -88,12 +82,14 @@ function MyComponent() {
 }
 ```
 
+Objekt store:
+
 ```tsx
 import { useStore } from "@nanostores/react";
 import { sokeData } from "@types/SokeData";
 
 function MyComponent() {
-  const data = useStore(sokeData);
+  const data = useStore(sokeData); // skal trigge rerendering ved endring av state
 
   const handleSave = () => {
     sokeData.set({
@@ -104,11 +100,18 @@ function MyComponent() {
     });
   };
 
-  return <div>Gjelder ID: {data?.gjelderId}</div>;
+  return (
+    <div>
+      <p>Gjelder ID: {data?.gjelderId}</p>
+      <button onClick={handleSave}>Save</button>
+    </div>
+  );
 }
 ```
 
 ### Metode 2: Direkte (hvis du bare setter verdier)
+
+String store:
 
 ```tsx
 import { selectedId } from "@stores/shared";
@@ -122,33 +125,104 @@ function MyComponent() {
 }
 ```
 
+Objekt store:
+
+```tsx
+import { sokeData } from "@stores/shared";
+
+function MyComponent() {
+  const handleClick = () => {
+    sokeData.set({
+      gjelderId: "12345678901",
+      fagSystemId: "ABC-123",
+      fagGruppe: "OSTBAR",
+      alternativer: "ALLE",
+    });
+  };
+
+  return <button onClick={handleClick}>Save Data</button>;
+}
+```
+
+## Navigering mellom mikrofrontends
+
+### Eksempel: Send ID ved navigering
+
+#### Avsender
+
+```tsx
+import { selectedId } from "@stores/shared";
+
+export default function Treffliste() {
+  const navigateToMikrofrontend = (oppdragsId: string) => {
+    selectedId.set(oppdragsId);
+    window.location.href = "/mikrofrontend";
+  };
+
+  return (
+    <Button onClick={() => navigateToMikrofrontend("12345")}>
+      Gå til Mikrofrontend
+    </Button>
+  );
+}
+```
+
+#### Mottaker
+
+```tsx
+import { useStore } from "@nanostores/react";
+import { selectedId } from "@stores/shared";
+
+export default function Sok() {
+  const oppdragsId = useStore(selectedId);
+
+  useEffect(() => {
+    if (oppdragsId) {
+      console.log("Mottatt ID:", oppdragsId); // for debugging
+      // fetch med ID'en her
+      
+      selectedId.set(null); // Rydd opp etter bruk hvis denne ikke skal brukes videre
+    }
+  }, [oppdragsId]);
+
+  return (
+    <div>
+      {oppdragsId && <Alert>Søker etter: {oppdragsId}</Alert>}
+    </div>
+  );
+}
+```
+
 ## Best Practices
 
 ### 1. Bruk hooks for reaktivitet
 
 ```tsx
-// komponenten re-rendres ved endringer
+// ✅ Komponenten re-rendres ved endringer
 import { useStore } from "@nanostores/react";
-import { selectedId } from "@stores/shared";
+import { selectedId, sokeData } from "@stores/shared";
 
 const id = useStore(selectedId);
+const data = useStore(sokeData);
 ```
 
 ```tsx
-// komponenten re-rendres ikke
-import { selectedId } from "@stores/shared";
+// ❌ Komponenten re-rendres IKKE
+import { selectedId, sokeData } from "@stores/shared";
 
-const id = selectedId.get(); 
+const id = selectedId.get();
+const data = sokeData.get();
 ```
 
 ### 2. Rydd opp når nødvendig
 
 ```tsx
-import { clearSelectedId } from "@stores/shared";
+import { selectedId, sokeData } from "@stores/shared";
 
 useEffect(() => {
   return () => {
-    clearSelectedId();
+    selectedId.set(null);
+    sokeData.set(null);
   };
 }, []);
 ```
