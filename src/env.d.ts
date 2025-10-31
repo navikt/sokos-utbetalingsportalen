@@ -1,12 +1,11 @@
-/// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
-declare namespace App {
-  interface Locals {
-    token: string;
-    userInfo: {
-      NAVident: string;
-      name: string;
-      groups: string[];
-    };
+import type { UserData } from "@types/UserData";
+
+declare global {
+  namespace App {
+    interface Locals {
+      token: string;
+      userInfo: UserData;
+    }
   }
 }

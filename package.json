@@ -10,7 +10,8 @@
     "mock": "tsx mock/server.ts",
     "preview": "astro preview",
     "stylelint": "stylelint '**/*.css'",
-    "prepare": "husky"
+    "prepare": "husky",
+    "knip": "knip"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.5",
@@ -28,7 +29,6 @@
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-error-boundary": "^6.0.0",
-    "swr": "2.3.6",
     "zod": "^4.1.12"
   },
   "devDependencies": {
@@ -40,6 +40,7 @@
     "concurrently": "^9.2.1",
     "hono": "4.10.4",
     "husky": "^9.1.7",
+    "knip": "^5.66.2",
     "lint-staged": "^16.2.6",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
