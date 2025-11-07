@@ -1,30 +1,25 @@
 .sidebar {
   position: fixed;
-  z-index: 1000;
+  top: 0;
+  left: 0;
+  z-index: 999;
   height: 100vh;
-  min-height: 100vh;
   width: 17.5rem;
-  min-width: 17.5rem;
-  overflow: hidden;
   overflow-y: auto;
   background-color: var(--a-surface-inverted);
-  transition-property: width, min-width;
-  transition-duration: 0.4s;
-  transition-timing-function: ease-in-out;
+  transition: width 0.4s ease-in-out;
+  padding-top: 3rem;
+  scrollbar-gutter: stable;
 }
 
 .sidebar--closed {
-  z-index: 1000;
   width: 3rem;
-  min-width: 3rem;
 }
 
 .sidebar__links {
   display: flex;
-  min-width: 18rem;
   flex-direction: column;
-  padding-left: 0.1rem;
-  padding-right: 0.1rem;
+  padding-inline: 0.1rem;
 }
 
 .sidebar__list {
@@ -34,11 +29,9 @@
 
 .sidebar__closeButton {
   display: flex;
-  flex-direction: row;
   justify-content: flex-end;
   background-color: var(--a-surface-inverted);
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-block: 0.5rem;
   padding-right: 0.5rem;
 }
 
@@ -57,8 +50,7 @@
 }
 
 .sidebar__link {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+  margin-inline: 0.5rem;
   white-space: nowrap;
   border-radius: 0.25rem;
   padding: 0.5rem 2rem;
@@ -74,12 +66,10 @@
   pointer-events: none;
   background-color: var(--a-purple-400);
   text-decoration: none;
-  transition-property: all;
-  transition-duration: 100ms;
+  transition: all 100ms;
 }
 
 .sidebar__linkChild {
   display: flex;
-  flex-direction: row;
   gap: 0.25rem;
 }
