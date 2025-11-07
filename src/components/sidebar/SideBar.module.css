@@ -11,6 +11,7 @@
   transition-property: width, min-width;
   transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
+  scrollbar-gutter: stable;
 }
 
 .sidebar--closed {
