@@ -1,4 +1,4 @@
-export type MicroFrontend = {
+export type App = {
   app: string;
   title: string;
   description: string;
@@ -8,15 +8,17 @@ export type MicroFrontend = {
   naisAppName: string;
 };
 
-type MicrofrontendDictionary = Record<string, MicroFrontend>;
+type AppDictionary = Record<string, App>;
 
-export const microfrontendConfigArray: MicroFrontend[] = [
+export const PLACEHOLDER_AD_GROUP = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+
+export const apps: App[] = [
   {
     app: "DARE",
     title: "DARE POC",
     description: "Utkast av beregning av AAP",
     adGroupDevelopment: "2477057d-7f80-4517-a885-20c948bf0367",
-    adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    adGroupProduction: PLACEHOLDER_AD_GROUP,
     route: "/dare",
     naisAppName: "sokos-up-dare",
   },
@@ -43,7 +45,7 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     title: "Faste data",
     description: "Oppslag og oversikt over gjeldende oppsettsregler",
     adGroupDevelopment: "7e0c2ad1-d0e7-4fa8-8169-7a9d68435644",
-    adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    adGroupProduction: PLACEHOLDER_AD_GROUP,
     route: "/fastedata",
     naisAppName: "sokos-up-fastedata",
   },
@@ -133,7 +135,7 @@ export const microfrontendConfigArray: MicroFrontend[] = [
     title: "Retur fra bank",
     description: "Oversikt over returer fra bank",
     adGroupDevelopment: "c9b8da69-652a-4d54-adeb-ca4ec73fa99b",
-    adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    adGroupProduction: PLACEHOLDER_AD_GROUP,
     route: "/retur-fra-bank",
     naisAppName: "sokos-up-retur-fra-bank",
   },
@@ -144,27 +146,23 @@ export const microfrontendConfigArray: MicroFrontend[] = [
  * @param pages Array of page configurations
  * @returns Dictionary with page configs accessible by lowercase app name
  */
-function createMicrofrontendConfig(
-  pages: MicroFrontend[],
-): MicrofrontendDictionary {
+function createAppConfig(pages: App[]): AppDictionary {
   return Object.fromEntries(
     pages.map((page) => [page.app.toLowerCase(), page]),
-  ) as MicrofrontendDictionary;
+  ) as AppDictionary;
 }
 
 /**
  * Dictionary of page configurations, accessible by lowercase app name
  * Example: pagesConfig.attestasjon
  */
-const microfrontendConfig: MicrofrontendDictionary = createMicrofrontendConfig(
-  microfrontendConfigArray,
-);
+const appConfig: AppDictionary = createAppConfig(apps);
 
 /**
  * Gets a page configuration by app name (case insensitive)
  * @param appName The name of the app to get config for
  * @returns The page configuration
  */
-export function getMicrofrontendConfig(appName: string): MicroFrontend {
-  return microfrontendConfig[appName.toLowerCase()];
+export function getAppConfig(appName: string): App {
+  return appConfig[appName.toLowerCase()];
 }
