@@ -1,46 +1,98 @@
-# Guide for å legge til en mikrofrontend
+# Guide: Astro Mikrofrontend
 
-1. I [naiserator-dev.yaml](../.) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs.
+Denne guiden viser hvordan du integrerer en server-side rendered Astro mikrofrontend i Utbetalingsportalen.
 
-   Se for eksempel på [`sokos-astro-template`](https://github.com/navikt/sokos-astro-template) i [naiserator-q1.yaml](../.nais/naiserator-q1.yaml) hvilken `env` variabler du må legge inn.
+## Forutsetninger
 
-   Husk å legge inn under `accessPolicy` hvilken Astro mikrofrontend du skal hente HTML fra.
+- En Astro-applikasjon som kan deployes som mikrofrontend
+- Tilgang til NAIS-konfigurasjonsfilene
+- AD-grupper for dev og prod
 
-   ```yaml
-    accessPolicy:
-       outbound:
-         rules:
-           - application: sokos-astro-template
-         external:
-           - host: sokos-astro-template.dev-fss-pub.nais.io
-   ```
+## Steg 1: Konfigurer NAIS
 
-   Skal du hente HTML fra mikrofrontend'en i `fss` cluster så må du gjøre [følgende](https://docs.nais.io/workloads/explanations/migrating-to-gcp/#how-do-i-reach-an-application-found-on-premises-from-my-application-in-gcp). Den må da ligge under `accessPolicy -> outbound -> external` som i eksempelet over.
-   Det må også være åpnet opp for trafikk fra `sokos-utbetalingsportalen` inn til mikrofrontenden:
+### 1.1 Oppdater naiserator-filer
 
-   ```yaml
-      accessPolicy:
-        inbound:
-          rules:
-            - application: sokos-utbetalingsportalen
-   ```
+Legg til nødvendige miljøvariabler og tilgangspolicies i både `.nais/naiserator-q1.yaml` og `.nais/naiserator-prod.yaml`.
 
-2. Legg inn AD-Gruppe for mikrofrontenden i [naiserator-dev.yaml](../.) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml). Denne AD-Gruppen gir kun tilgang til brukeren for å hente ut HTML. Resten av tilgangene kan styres fra mikrofrontenden.
+**Eksempel på miljøvariabler:**
 
-3. Nå skal du legge inn følgende kode:
+```yaml
+env:
+  - name: SOKOS_EKSEMPEL_URL
+    value: https://sokos-eksempel.dev-gcp.nais.io
+  - name: SOKOS_EKSEMPEL_AUDIENCE
+    value: api://dev-gcp.okonomi.sokos-eksempel/.default
+```
 
-    ```js
-    ---
-    import MicrofrontendWrapperServer from "@components/microfrontend/MicrofrontendWrapperServer.astro";
-    ---
+### 1.2 Konfigurer tilgangspolicies
 
-    <MicrofrontendWrapperServer
-        appTitle="Astro Template"
-        appUrl={process.env.SOKOS_ASTRO_TEMPLATE_URL}
-        appAudience={process.env.SOKOS_ASTRO_TEMPLATE_AUDIENCE}
-    />
-    ```
+**For GCP-mikrofrontend:**
 
-🚨‼️ **NB** `appUrl` og `appAudience` variablen henter `env` fra [naiserator-dev.yaml](../.) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml). `appTitle` er tittelen som vises i tab-bar i browser vinduet (Helst tittel med stor bokstav først).
+```yaml
+accessPolicy:
+  outbound:
+    rules:
+      - application: sokos-eksempel
+        namespace: okonomi
+```
 
-## Nå er `Utbetalingsportalen` klar til å kunne rendre HTML fra mikrofrontend'en 🎉
+**For FSS-mikrofrontend:**
+
+Se [NAIS-dokumentasjonen](https://docs.nais.io/workloads/explanations/migrating-to-gcp/#how-do-i-reach-an-application-found-on-premises-from-my-application-in-gcp) for kommunikasjon mellom GCP og FSS.
+
+```yaml
+accessPolicy:
+  outbound:
+    external:
+      - host: sokos-eksempel.dev-fss-pub.nais.io
+```
+
+### 1.3 Åpne for innkommende trafikk
+
+Legg til i mikrofrontend sin `naiserator.yaml`:
+
+```yaml
+accessPolicy:
+  inbound:
+    rules:
+      - application: sokos-utbetalingsportalen
+        namespace: okonomi
+        cluster: dev-gcp
+```
+
+## Steg 2: Opprett side i Utbetalingsportalen
+
+Lag en ny `.astro`-fil under `src/pages/` med navnet på ruten (f.eks. `min-mikrofrontend.astro`):
+
+```astro
+---
+import MicrofrontendWrapperServer from "@components/microfrontend/MicrofrontendWrapperServer.astro";
+---
+
+<MicrofrontendWrapperServer
+  appTitle="Min Mikrofrontend"
+  appUrl={process.env.SOKOS_EKSEMPEL_URL}
+  appAudience={process.env.SOKOS_EKSEMPEL_AUDIENCE}
+/>
+```
+
+### Props-forklaring
+
+| Prop | Beskrivelse | Eksempel |
+|------|-------------|----------|
+| `appTitle` | Tittelen som vises i browser-fanen | `"Min Mikrofrontend"` |
+| `appUrl` | URL til mikrofrontend (fra naiserator) | `process.env.SOKOS_EKSEMPEL_URL` |
+| `appAudience` | Azure AD audience scope (fra naiserator) | `process.env.SOKOS_EKSEMPEL_AUDIENCE` |
+
+## Verifisering
+
+Mikrofrontenden er nå integrert! Test at:
+
+1. Siden lastes uten feil
+2. HTML fra mikrofrontend rendres korrekt
+3. Tilgangskontroll fungerer som forventet
+
+## Tips
+
+- **URL-navngivning**: Bruk hele ord, små bokstaver og bindestreker. Unngå æ/ø/å.
+- **Environment-variabler**: Dobbeltsjekk at alle miljøvariabler er definert i både dev og prod.
