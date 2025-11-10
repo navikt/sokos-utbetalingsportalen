@@ -1,7 +1,9 @@
 # Guide for å legge til en mikrofrontend
 
-1. I [naiserator-dev.yaml](../.) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs. <br>
-   Se for eksempel `# sokos-astro-template (Astro mikrofrontend template)` i [naiserator-q1.yaml](../.nais/naiserator-q1.yaml) hvilken `env` variabler du må legge inn. <br>
+1. I [naiserator-dev.yaml](../.) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml) må du legge inn de `env` variablene som trengs.
+
+   Se for eksempel på [`sokos-astro-template`](https://github.com/navikt/sokos-astro-template) i [naiserator-q1.yaml](../.nais/naiserator-q1.yaml) hvilken `env` variabler du må legge inn.
+
    Husk å legge inn under `accessPolicy` hvilken Astro mikrofrontend du skal hente HTML fra.
 
    ```yaml
@@ -41,6 +43,4 @@
 
 🚨‼️ **NB** `appUrl` og `appAudience` variablen henter `env` fra [naiserator-dev.yaml](../.) og [naiserator-prod.yaml](../.nais/naiserator-prod.yaml). `appTitle` er tittelen som vises i tab-bar i browser vinduet (Helst tittel med stor bokstav først).
 
-<br>
-
-# Nå er `Utbetalingsportalen` klar til å kunne rendre HTML fra mikrofrontend'en 🎉
+## Nå er `Utbetalingsportalen` klar til å kunne rendre HTML fra mikrofrontend'en 🎉
