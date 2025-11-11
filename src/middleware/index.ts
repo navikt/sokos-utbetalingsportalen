@@ -11,7 +11,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const params = encodeURIComponent(context.url.search);
 
   if (getServerSideEnvironment() === "local") {
-    context.locals.userInfo = {
+    context.locals.userData = {
       NAVident: "Z123456",
       name: "Ola Mohammed",
       groups: [
@@ -66,7 +66,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return context.redirect(`${loginPath}${params}`);
   }
 
-  context.locals.userInfo = UserDataSchema.parse(response.data);
+  context.locals.userData = response.data;
 
   return next();
 });

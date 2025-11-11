@@ -5,7 +5,7 @@ import GuidePanel from "@components/welcomepanel/WelcomePanel";
 import Layout from "@layouts/Layout.astro";
 import styles from "./_index.module.css";
 
-const userInfo = Astro.locals.userInfo;
+const userData = Astro.locals.userData;
 
 const currentHour = new Date().getHours();
 const greeting =
@@ -21,8 +21,8 @@ const greeting =
 <Layout title="Hjem">
   <div class={styles["home"]}>
     <div class={styles["home__content"]}>
-      <GuidePanel greeting={greeting} name={userInfo.name} />
-      <AppSwitcher server:defer adGroups={userInfo.groups} client:only="react">
+      <GuidePanel greeting={greeting} name={userData.name} />
+      <AppSwitcher server:defer adGroups={userData.groups} client:only="react">
         <AppSwitcherSkeleton slot="fallback" />
       </AppSwitcher>
     </div>

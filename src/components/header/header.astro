@@ -5,7 +5,7 @@ import AppSwitcherHeaderSkeleton from './AppSwitcherHeaderSkeleton';
 import AppSwitcherHeader from './AppSwitcherHeader';
 import styles from './header.module.css';
 
-const userInfo = Astro.locals.userInfo;
+const userData = Astro.locals.userData;
 ---
 
 <div class={styles["header"]}>
@@ -15,11 +15,11 @@ const userInfo = Astro.locals.userInfo;
     <Spacer />
     <AppSwitcherHeader
       server:defer
-      adGroups={userInfo.groups}
+      adGroups={userData.groups}
       client:only="react"
     >
       <AppSwitcherHeaderSkeleton slot="fallback" />
     </AppSwitcherHeader>
-    <InternalHeader.User name={userInfo.name} description={userInfo.NAVident} />
+    <InternalHeader.User name={userData.name} description={userData.NAVident} />
   </InternalHeader>
 </div>

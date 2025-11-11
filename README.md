@@ -1,12 +1,12 @@
 # Utbetalingsportalen
 
-Container for å sette sammen ulike mikrofrontend som utgjør interne arbeidsflaten i nav som benyttes av økonomimedarbeidere, Nav Kontaktsenter m.fl.
-Arbeidsflatene som tilbys gir mulighet til å se og/eller behandle saker som gjelder utbetaling av ytelser i Nav.
+Container for å sette sammen ulike mikrofrontends/applikasjoner som tilsammen utgjør et internt saksbehandlingssystem som benyttes av økonomimedarbeidere, Nav Kontaktsenter m.fl.
+Arbeidsflatene som tilbys gir mulighet til å se eller behandle saker som gjelder utbetaling av ytelser i Nav.
 
-- [Utbetalingsportalen Q1-miljlø](https://utbetalingsportalen.intern.dev.nav.no)
+- [Utbetalingsportalen Q1-miljø](https://utbetalingsportalen.intern.dev.nav.no)
 - [Utbetalingsportalen QX-miljø](https://utbetalingsportalen-qx.intern.dev.nav.no)
 
-### 📍 Templates og hvordan legger til en mikrofrontend i Utbetalingsportalen?
+## 📍 Templates og guider for å legge til en mikrofrontend i Utbetalingsportalen
 
 [Client side React template](https://github.com/navikt/sokos-react-template)
 
@@ -16,11 +16,11 @@ Arbeidsflatene som tilbys gir mulighet til å se og/eller behandle saker som gje
 
 - [Guide for å legge til Astro server-side mikrofrontend](dokumentasjon/astro-mikrofrontend.md)
 
-### 📍 Umami-taksonomi - Anebfaling og bruk av navngivning av Umami-hendelser og hendelsenes tilhørende detaljer
+## 📍 Umami-taksonomi - Anebfaling og bruk av navngivning av Umami-hendelser og hendelsenes tilhørende detaljer
 
 - [Umami-taksonomi](dokumentasjon/umami-taksonomi.md)
 
-### 📍 Nanostores
+## 📍 Nanostores
 
 - [Nanostores Guide](dokumentasjon/nanostores.md)
 
@@ -84,6 +84,15 @@ For å legge til flere lokale mikrofrontends, oppdater `localMicrofrontends`-obj
 ## 3. Programvarearkitektur
 
 [System diagram](dokumentasjon/system-diagram.md)
+
+### Konfigurasjon av mikrofrontends
+
+Alle mikrofrontends er konfigurert i [src/config/appConfig.ts](src/config/appConfig.ts). Her defineres:
+
+- App navn og metadata (tittel, beskrivelse)
+- AD-grupper for tilgangskontroll (dev/prod)
+- Routing
+- NAIS app-navn
 
 ## 4. Design
 

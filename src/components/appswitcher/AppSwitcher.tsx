@@ -1,7 +1,7 @@
 import { Heading, LinkCard, Switch, Tooltip } from "@navikt/ds-react";
 import { getAuthorizedApps, hasAccessToApp } from "@utils/accessControl";
 import { useState } from "react";
-import { microfrontendConfigArray as allApps } from "src/microfrontend";
+import { apps, PLACEHOLDER_AD_GROUP } from "src/config/appConfig";
 import styles from "./AppSwitcher.module.css";
 import linkCardStyles from "./LinkCard.module.css";
 import { getClientSideEnvironment } from "@utils/client/environments";
@@ -10,18 +10,14 @@ type AppSwitcherProps = {
   adGroups: string[];
 };
 
-const PLACEHOLDER_AD_GROUP = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
-
 function getAvailableApps() {
   const environment = getClientSideEnvironment();
 
   if (environment === "production") {
-    return allApps.filter(
-      (app) => app.adGroupProduction !== PLACEHOLDER_AD_GROUP,
-    );
+    return apps.filter((app) => app.adGroupProduction !== PLACEHOLDER_AD_GROUP);
   }
 
-  return allApps;
+  return apps;
 }
 
 export default function AppSwitcher(props: AppSwitcherProps) {

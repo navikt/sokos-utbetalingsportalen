@@ -2,11 +2,11 @@
 import SideBar from './SideBar';
 import SideBarSkeleton from './SideBarSkeleton';
 
-const userInfo = Astro.locals.userInfo;
+const userData = Astro.locals.userData;
 ---
 
 <div class="sidebar">
-  <SideBar server:defer adGroups={userInfo.groups} client:only="react">
+  <SideBar server:defer adGroups={userData.groups} client:only="react">
     <SideBarSkeleton slot="fallback" />
   </SideBar>
 </div>
