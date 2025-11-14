@@ -91,6 +91,12 @@ spec:
     - name: SOKOS_ASTRO_TEMPLATE_AUDIENCE
       value: api://dev-gcp.okonomi.sokos-astro-template/.default
 
+    # sokos-skattekort-ssr 
+    - name: SOKOS_SKATTEKORT_SSR_URL
+      value: http://sokos-up-skattekort-ssr
+    - name: SOKOS_SKATTEKORT_SSR_AUDIENCE
+      value: api://dev-gcp.okonomi.sokos-up-skattekort-ssr/.default   
+
     # sokos-dare-poc (Backend)
     - name: SOKOS_DARE_POC_API
       value: https://sokos-dare-poc.dev-fss-pub.nais.io
