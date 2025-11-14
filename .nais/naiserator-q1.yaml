@@ -59,6 +59,7 @@ spec:
         - application: sokos-up-kontoregister-api
         - application: sokos-retur-fra-bank-api
         - application: sokos-astro-template
+        - application: sokos-up-skattekort-ssr
         - application: logging
           namespace: nais-system
       external:
