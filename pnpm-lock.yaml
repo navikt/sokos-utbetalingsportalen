@@ -27,8 +27,8 @@ importers:
         specifier: 7.33.1
         version: 7.33.1(@types/react@19.2.6)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@navikt/oasis':
-        specifier: ^4.1.0
-        version: 4.1.0
+        specifier: ^4.1.1
+        version: 4.1.1
       '@opentelemetry/sdk-node':
         specifier: ^0.208.0
         version: 0.208.0(@opentelemetry/api@1.9.0)
@@ -850,12 +850,12 @@ packages:
   '@navikt/ds-tokens@7.33.1':
     resolution: {integrity: sha512-aL1b3mhcCL2k6yD/+V6OzARBEo0g5mxm48mU0P8GnQn6/vVC4Agxu/nug4xcWf+N1tRnS3Hj+XSmVsKx7+T7lg==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/7.33.1/6cfc90daa4f6daf6d7e776144d05590996f80775}
 
-  '@navikt/oasis@4.1.0':
-    resolution: {integrity: sha512-CGBm7RfTzBO5SlifvVyQYVCpu4Gt/wqEKM8evG0aL1kbsUPNSRZA2agKqyQfGbs+F6uoJosq8wZbs/1xYrTM/A==, tarball: https://npm.pkg.github.com/download/@navikt/oasis/4.1.0/ed0d98fe57279240a53fe82bf518776ddce59a0a}
+  '@navikt/oasis@4.1.1':
+    resolution: {integrity: sha512-WNAoUvK9z098/4lFzAD/09Q0Oz+Hf2mTTN8iAVi62xUgEXryq3am3t82cVfi3YttDKPrYrsrkEo8bJnte8qxbg==, tarball: https://npm.pkg.github.com/download/@navikt/oasis/4.1.1/970a0555b93c862b7c7b0919349f48fc8e7de53c}
     engines: {node: ^20.19.0 || >= 22.12.0 || 24.x || 25.x}
 
-  '@navikt/texas@4.1.0':
-    resolution: {integrity: sha512-zNAXkY9fiBVsKK8DhP3q2uMTKzy1bci2VkpK7QV1Jyhk4UIu3OtPQnBZjDGThWkVXIFizl5xBoLGhGcqvR9XMA==, tarball: https://npm.pkg.github.com/download/@navikt/texas/4.1.0/36e6f1a056838a6777e4e0680cb45e1a568c15d1}
+  '@navikt/texas@4.1.1':
+    resolution: {integrity: sha512-9g48mKgn1iVMgy/7QtHx28rbgEB4V3PvGQ092trIbpTxjsxcyTmwUvejZH8bHac1QCxi61/VN0beySPgE+Q1xQ==, tarball: https://npm.pkg.github.com/download/@navikt/texas/4.1.1/a4875c9cc658d6cebf4185bb2c89a17c54f15827}
     engines: {node: ^20.19.0 || >= 22.12.0 || 24.x || 25.x}
 
   '@nodelib/fs.scandir@2.1.5':
@@ -1966,8 +1966,8 @@ packages:
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
-  jose@6.1.0:
-    resolution: {integrity: sha512-TTQJyoEoKcC1lscpVDCSsVgYzUDg/0Bt3WE//WiTPK6uOCQC2KZS4MpugbMWt/zyjkopgZoXhZuCi00gLudfUA==}
+  jose@6.1.2:
+    resolution: {integrity: sha512-MpcPtHLE5EmztuFIqB0vzHAWJPpmN1E6L4oo+kze56LIs3MyXIj9ZHMDxqOvkP38gBR7K1v3jqd4WU2+nrfONQ==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -3867,14 +3867,14 @@ snapshots:
 
   '@navikt/ds-tokens@7.33.1': {}
 
-  '@navikt/oasis@4.1.0':
+  '@navikt/oasis@4.1.1':
     dependencies:
-      '@navikt/texas': 4.1.0
+      '@navikt/texas': 4.1.1
       '@opentelemetry/api': 1.9.0
-      jose: 6.1.0
+      jose: 6.1.2
       prom-client: 15.1.3
 
-  '@navikt/texas@4.1.0': {}
+  '@navikt/texas@4.1.1': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -5165,7 +5165,7 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  jose@6.1.0: {}
+  jose@6.1.2: {}
 
   js-tokens@4.0.0: {}
 
