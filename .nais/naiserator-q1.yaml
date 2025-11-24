@@ -45,6 +45,7 @@ spec:
           - id: "7e0c2ad1-d0e7-4fa8-8169-7a9d68435644" # 0000-CA-SOKOS-MF-Fastedata
           - id: "2477057d-7f80-4517-a885-20c948bf0367" # 0000-CA-SOKOS-MF-DARE-POC
           - id: "4a485519-e9aa-483a-a509-0d56816902ff" # 0000-CA-SOKOS-MF-Astro-Template
+          - id: "62e34335-63b3-420a-8978-62d48d218c19" # 0000-CA-SOKOS-MF-Skattekort-ssr
         extra:
           - NAVident
     sidecar:
@@ -59,6 +60,7 @@ spec:
         - application: sokos-up-kontoregister-api
         - application: sokos-retur-fra-bank-api
         - application: sokos-astro-template
+        - application: sokos-up-skattekort-ssr
         - application: logging
           namespace: nais-system
       external:
@@ -90,6 +92,12 @@ spec:
       value: http://sokos-astro-template
     - name: SOKOS_ASTRO_TEMPLATE_AUDIENCE
       value: api://dev-gcp.okonomi.sokos-astro-template/.default
+
+    # sokos-skattekort-ssr 
+    - name: SOKOS_SKATTEKORT_SSR_URL
+      value: http://sokos-up-skattekort-ssr
+    - name: SOKOS_SKATTEKORT_SSR_AUDIENCE
+      value: api://dev-gcp.okonomi.sokos-up-skattekort-ssr/.default   
 
     # sokos-dare-poc (Backend)
     - name: SOKOS_DARE_POC_API
