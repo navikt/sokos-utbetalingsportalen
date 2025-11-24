@@ -62,7 +62,7 @@ export const apps: App[] = [
     app: "SKATTEKORT-SSR",
     title: "Skattekort-ssr",
     description: "Test for astro ssr",
-    adGroupDevelopment: "4a485519-e9aa-483a-a509-0d56816902ff",
+    adGroupDevelopment: "62e34335-63b3-420a-8978-62d48d218c19",
     adGroupProduction: PLACEHOLDER_AD_GROUP,
     route: "/skattekort-ssr",
     naisAppName: "sokos-up-skattekort-ssr",
