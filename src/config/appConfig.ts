@@ -144,7 +144,7 @@ export const apps: App[] = [
     title: "Retur fra bank",
     description: "Oversikt over returer fra bank",
     adGroupDevelopment: "c9b8da69-652a-4d54-adeb-ca4ec73fa99b",
-    adGroupProduction: PLACEHOLDER_AD_GROUP,
+    adGroupProduction: "d192b937-5da1-46f5-b460-a3a5a2a63712",
     route: "/retur-fra-bank",
     naisAppName: "sokos-up-retur-fra-bank",
   },
