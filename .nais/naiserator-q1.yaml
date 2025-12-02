@@ -61,6 +61,7 @@ spec:
         - application: sokos-retur-fra-bank-api
         - application: sokos-astro-template
         - application: sokos-up-skattekort-ssr
+        - application: sokos-skattekort
         - application: logging
           namespace: nais-system
       external:
@@ -98,6 +99,14 @@ spec:
       value: http://sokos-up-skattekort-ssr
     - name: SOKOS_SKATTEKORT_SSR_AUDIENCE
       value: api://dev-gcp.okonomi.sokos-up-skattekort-ssr/.default   
+
+     # sokos-skattekort (Backend)
+    - name: SOKOS_SKATTEKORT_API
+      value: http://sokos-skattekort
+    - name: SOKOS_SKATTEKORT_API_AUDIENCE
+      value: api://dev-gcp.okonomi.sokos-skattekort/.default
+    - name: SOKOS_SKATTEKORT_API_PROXY
+      value: "/sokos-skattekort"  
 
     # sokos-dare-poc (Backend)
     - name: SOKOS_DARE_POC_API
