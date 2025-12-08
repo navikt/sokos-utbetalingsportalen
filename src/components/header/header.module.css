@@ -22,3 +22,11 @@
   display: block;
   margin: auto 0;
 }
+
+.header__lyslenkeContainer {
+  height: 3rem;
+  flex-grow: 1;
+  background-repeat: repeat-x;
+  background-position: left center;
+  background-size: auto 100%;
+}

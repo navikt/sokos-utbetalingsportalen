@@ -28,7 +28,11 @@ const userData = Astro.locals.userData;
         loading="eager"
       />
     </InternalHeader.Title>
-    <Spacer />
+    <div
+      class={styles["header__lyslenkeContainer"]}
+      style={{ backgroundImage: `url(${lyslenke.src})` }}
+    >
+    </div>
     <AppSwitcherHeader
       server:defer
       adGroups={userData.groups}
