@@ -16,7 +16,7 @@
     "@astrojs/check": "^0.9.6",
     "@astrojs/node": "^9.5.1",
     "@astrojs/react": "^4.4.2",
-    "@grafana/faro-web-sdk": "^1.19.0",
+    "@grafana/faro-web-sdk": "^2.0.2",
     "@navikt/aksel-icons": "7.34.0",
     "@navikt/ds-react": "7.34.0",
     "@navikt/oasis": "^4.1.1",
