@@ -1,18 +1,38 @@
 ---
-import { InternalHeader, Spacer } from '@navikt/ds-react';
-import navLogo from '../../../public/images/nav-icon-hvit.webp';
-import AppSwitcherHeaderSkeleton from './AppSwitcherHeaderSkeleton';
-import AppSwitcherHeader from './AppSwitcherHeader';
-import styles from './header.module.css';
+import { InternalHeader, Spacer } from "@navikt/ds-react";
+import navLogo from "../../../public/images/nav-icon-hvit.webp";
+import AppSwitcherHeaderSkeleton from "./AppSwitcherHeaderSkeleton";
+import AppSwitcherHeader from "./AppSwitcherHeader";
+import styles from "./header.module.css";
+import juleLogo from "../../../public/images/julelogo-liten.png";
+import lyslenke from "../../../public/images/lyslenke.svg";
 
 const userData = Astro.locals.userData;
 ---
 
 <div class={styles["header"]}>
   <InternalHeader>
-    <img src={navLogo.src} alt="NAV logo" class={styles["header__navLogo"]} width="72" height="48" loading="eager" />
-    <InternalHeader.Title href="/">Utbetalingsportalen</InternalHeader.Title>
-    <Spacer />
+    <img
+      src={navLogo.src}
+      alt="NAV logo"
+      class={styles["header__navLogo"]}
+      width="72"
+      height="48"
+      loading="eager"
+    />
+    <InternalHeader.Title href="/"
+      ><img
+        src={juleLogo.src}
+        alt="Julelogo"
+        class={styles["header__juleLogo"]}
+        loading="eager"
+      />
+    </InternalHeader.Title>
+    <div
+      class={styles["header__lyslenkeContainer"]}
+      style={{ backgroundImage: `url(${lyslenke.src})` }}
+    >
+    </div>
     <AppSwitcherHeader
       server:defer
       adGroups={userData.groups}

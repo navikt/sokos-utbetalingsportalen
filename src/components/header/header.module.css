@@ -15,3 +15,17 @@
   object-fit: contain;
   display: block;
 }
+
+.header__juleLogo {
+  height: 2rem;
+  width: auto;
+  display: block;
+}
+
+.header__lyslenkeContainer {
+  height: 3rem;
+  flex-grow: 1;
+  background-repeat: repeat-x;
+  background-position: left center;
+  background-size: auto 100%;
+}
