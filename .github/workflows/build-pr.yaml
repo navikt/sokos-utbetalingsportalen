@@ -7,6 +7,7 @@ on:
       - "LICENCE"
       - "CODEOWNERS"
       - ".gitignore"
+      - ".github/workflows/chainguard-digestabot.yaml"
       - ".github/workflows/codeql-trivy-scan.yaml"
       - ".github/workflows/deploy.yaml"
       - ".github/workflows/manual-deploy.yaml"

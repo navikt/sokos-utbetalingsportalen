@@ -1,0 +1,14 @@
+name: Chainguard Digest Check
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  check-chainguard-digests:
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    uses: navikt/mob-gha-workflows/.github/workflows/chainguard-digestabot.yaml@main
