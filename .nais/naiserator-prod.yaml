@@ -56,6 +56,7 @@ spec:
         - application: sokos-up-kontoregister-api
         - application: sokos-retur-fra-bank-api
         - application: logging
+        - application: sokos-skattekort
           namespace: nais-system
       external:
         - host: sokos-skattekort-person.prod-fss-pub.nais.io
@@ -78,7 +79,15 @@ spec:
     # sokos-utbetalingsportalen
     - name: UMAMI_SPORINGSKODE
       value: "e1b661e6-a812-4433-a1e7-4648212fddfe"
-
+    
+    # sokos-skattekort (Backend)
+    - name: SOKOS_SKATTEKORT_API
+      value: http://sokos-skattekort
+    - name: SOKOS_SKATTEKORT_API_AUDIENCE
+      value: api://prod-gcp.okonomi.sokos-skattekort/.default
+    - name: SOKOS_SKATTEKORT_API_PROXY
+      value: "/sokos-skattekort"
+      
     # sokos-up-ors-api (Backend)
     - name: SOKOS_UP_ORS_API
       value: http://sokos-up-ors-api
