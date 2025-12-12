@@ -4,14 +4,7 @@ import { isInternal } from "./utils";
 import { getServerSideEnvironment } from "@utils/server/environment.ts";
 import { UserDataSchema } from "@schema/UserDataSchema";
 import { logger } from "@utils/logger/index";
-
-const formatUserName = (name: string): string => {
-  if (name.includes(",")) {
-    const [lastName, firstName] = name.split(",").map((part) => part.trim());
-    return `${firstName} ${lastName}`;
-  }
-  return name;
-};
+import { formatUserName } from "@utils/formatUserName";
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const loginPath = `/oauth2/login?redirect=${context.url}`;

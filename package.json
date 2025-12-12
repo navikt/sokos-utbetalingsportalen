@@ -46,7 +46,8 @@
     "stylelint": "^16.26.1",
     "stylelint-config-standard": "^39.0.1",
     "tsx": "4.21.0",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vitest": "^4.0.15"
   },
   "lint-staged": {
     "*.css": "stylelint --fix",
