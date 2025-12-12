@@ -4,6 +4,7 @@ import { isInternal } from "./utils";
 import { getServerSideEnvironment } from "@utils/server/environment.ts";
 import { UserDataSchema } from "@schema/UserDataSchema";
 import { logger } from "@utils/logger/index";
+import { formatUserName } from "@utils/formatUserName";
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const loginPath = `/oauth2/login?redirect=${context.url}`;
@@ -67,6 +68,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   }
 
   context.locals.userData = response.data;
+  context.locals.userData.name = formatUserName(response.data.name);
 
   return next();
 });
