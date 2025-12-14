@@ -1,10 +1,10 @@
 import { getToken, validateAzureToken } from "@navikt/oasis";
+import { UserDataSchema } from "@schema/UserDataSchema";
+import { formatNameClaim } from "@utils/formatNameClaim";
+import { logger } from "@utils/logger/index";
+import { getServerSideEnvironment } from "@utils/server/environment.ts";
 import { defineMiddleware } from "astro/middleware";
 import { isInternal } from "./utils";
-import { getServerSideEnvironment } from "@utils/server/environment.ts";
-import { UserDataSchema } from "@schema/UserDataSchema";
-import { logger } from "@utils/logger/index";
-import { formatUserName } from "@utils/formatUserName";
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const loginPath = `/oauth2/login?redirect=${context.url}`;
@@ -67,8 +67,10 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return context.redirect(`${loginPath}${params}`);
   }
 
-  context.locals.userData = response.data;
-  context.locals.userData.name = formatUserName(response.data.name);
+  context.locals.userData = {
+    ...response.data,
+    name: formatNameClaim(response.data.name),
+  };
 
   return next();
 });

@@ -1,4 +1,4 @@
-export const formatUserName = (name: string): string => {
+export const formatNameClaim = (name: string): string => {
   if (name.includes(",")) {
     const [lastName, firstName] = name.split(",").map((part) => part.trim());
     return `${firstName} ${lastName}`;
