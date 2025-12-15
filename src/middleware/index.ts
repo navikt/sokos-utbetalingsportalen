@@ -1,6 +1,6 @@
 import { getToken, validateAzureToken } from "@navikt/oasis";
 import { UserDataSchema } from "@schema/UserDataSchema";
-import { formatNameClaim } from "@utils/formatNameClaim";
+import { formatNameFromToken } from "@utils/formatNameFromToken";
 import { logger } from "@utils/logger/index";
 import { getServerSideEnvironment } from "@utils/server/environment.ts";
 import { defineMiddleware } from "astro/middleware";
@@ -69,7 +69,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
   context.locals.userData = {
     ...response.data,
-    name: formatNameClaim(response.data.name),
+    name: formatNameFromToken(response.data.name),
   };
 
   return next();
