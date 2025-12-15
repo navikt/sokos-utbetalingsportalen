@@ -7,6 +7,7 @@
     "dev": "astro dev",
     "dev:mock": "concurrently \"pnpm dev\" \"pnpm mock\"",
     "build": "astro check && astro build",
+    "vitest": "vitest",
     "mock": "tsx mock/server.ts",
     "preview": "astro preview",
     "stylelint": "stylelint '**/*.css'",
