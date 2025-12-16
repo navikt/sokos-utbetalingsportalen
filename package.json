@@ -33,9 +33,9 @@
     "zod": "^4.1.13"
   },
   "devDependencies": {
-    "@hono/node-server": "1.19.6",
+    "@hono/node-server": "1.19.7",
     "@navikt/aksel-stylelint": "^7.35.1",
-    "@types/node": "24.10.1",
+    "@types/node": "24.10.2",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "concurrently": "^9.2.1",
