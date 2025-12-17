@@ -187,3 +187,9 @@ spec:
       value: api://dev-gcp.okonomi.sokos-retur-fra-bank-api/.default
     - name: SOKOS_RETUR_FRA_BANK_API_PROXY
       value: "/sokos-retur-fra-bank-api"
+
+    # sokos-up-oppgjorsrapporter (Frontend)
+    - name: SOKOS_UP_OPPGJORSRAPPORTER_URL
+      value: http://sokos-up-oppgjorsrapporter
+    - name: SOKOS_UP_OPPGJORSRAPPORTER_AUDIENCE
+      value: api://dev-gcp.okonomi.sokos-up-oppgjorsrapporter/.default

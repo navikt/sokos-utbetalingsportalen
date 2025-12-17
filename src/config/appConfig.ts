@@ -148,6 +148,15 @@ export const apps: App[] = [
     route: "/retur-fra-bank",
     naisAppName: "sokos-up-retur-fra-bank",
   },
+  {
+    app: "OPPGJORSRAPPORTER",
+    title: "Oppgjorsrapporter",
+    description: "Oversikt over returer fra bank",
+    adGroupDevelopment: "9c5b24f2-5e01-4966-adaf-bc9fb6410a32",
+    adGroupProduction: "",
+    route: "/oppgjorsrapporter",
+    naisAppName: "sokos-up-oppgjorsrapporter",
+  },
 ];
 
 /**
