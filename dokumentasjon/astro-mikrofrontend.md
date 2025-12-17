@@ -60,7 +60,43 @@ accessPolicy:
         cluster: dev-gcp
 ```
 
-## Steg 2: Opprett side i Utbetalingsportalen
+## Steg 2: Registrer applikasjonen
+
+Legg til applikasjonskonfigurasjon i `src/config/appConfig.ts`:
+
+```typescript
+{
+  app: "MIKROFRONTEND",
+  title: "Min Mikrofrontend",
+  description: "Beskrivelse av mikrofrontenden",
+  adGroupDevelopment: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  adGroupProduction: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  route: "/min-mikrofrontend",
+  naisAppName: "sokos-up-min-mikrofrontend",
+}
+```
+
+**Felt-forklaring:**
+
+| Felt | Beskrivelse | Eksempel |
+|------|-------------|----------|
+| `app` | Unik nøkkel (store bokstaver) | `"MIKROFRONTEND"` |
+| `title` | Visningsnavn i menyer | `"Min Mikrofrontend"` |
+| `description` | Kort beskrivelse | `"Beskrivelse av mikrofrontenden"` |
+| `adGroupDevelopment` | Azure AD gruppe UUID for dev | `"abc123..."` |
+| `adGroupProduction` | Azure AD gruppe UUID for prod | `"xyz789..."` eller `PLACEHOLDER_AD_GROUP` |
+| `route` | URL-path i portalen | `"/min-mikrofrontend"` |
+| `naisAppName` | NAIS applikasjonsnavn | `"sokos-up-min-mikrofrontend"` |
+
+**URL-navngivningsregler:**
+
+- Bruk hele ord, ikke forkortelser
+- Små bokstaver
+- Bindestrek for å skille ord
+- Translitterer norske tegn: Æ→AE, Ø→OE, Å→AA
+
+
+## Steg 3: Opprett side i Utbetalingsportalen
 
 Lag en ny `.astro`-fil under `src/pages/` med navnet på ruten (f.eks. `min-mikrofrontend.astro`):
 
