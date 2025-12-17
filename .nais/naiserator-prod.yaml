@@ -39,6 +39,7 @@ spec:
           - id: "072fb5d2-1cf5-4af2-8ce1-2a2585b9f0ce" # 0000-CA-SOKOS-MF-Resending-Bank-READ
           - id: "3309383f-4b8f-4778-99c1-311dc75bc482" # 0000-CA-SOKOS-MF-Buntkontroll-READ
           - id: "d192b937-5da1-46f5-b460-a3a5a2a63712" # 0000-CA-SOKOS-MF-Retur-fra-bank
+          - id: "9c5b24f2-5e01-4966-adaf-bc9fb6410a32" # 0000-CA-SOKOS-MF-OPPGJORSRAPPORTER
           - id: "ad41e055-af0c-4a26-a31c-c51d6ea236cd" # 0000-CA-SOKOS-MF-Meldingsflyt-READ
           - id: "b37d0866-fae3-43c7-abd4-91cf485852c5" # 0000-CA-SOKOS-MF-Attestasjon
           - id: "f3d2cfe1-f437-412f-9165-075cb3d27a58" # 0000-CA-SOKOS-MF-Oppdragsinfo
@@ -159,3 +160,9 @@ spec:
       value: api://prod-gcp.okonomi.sokos-retur-fra-bank-api/.default
     - name: SOKOS_RETUR_FRA_BANK_API_PROXY
       value: "/sokos-retur-fra-bank-api"
+
+    # sokos-up-oppgjorsrapporter (Frontend)
+    - name: SOKOS_UP_OPPGJORSRAPPORTER_URL
+      value: http://sokos-up-oppgjorsrapporter
+    - name: SOKOS_UP_OPPGJORSRAPPORTER_AUDIENCE
+      value: api://prod-gcp.okonomi.sokos-up-oppgjorsrapporter/.default
