@@ -17,20 +17,20 @@
     "@astrojs/check": "^0.9.6",
     "@astrojs/node": "^9.5.1",
     "@astrojs/react": "^4.4.2",
-    "@grafana/faro-web-sdk": "^2.0.2",
+    "@grafana/faro-web-sdk": "^2.1.0",
     "@navikt/aksel-icons": "7.35.1",
     "@navikt/ds-react": "7.35.1",
     "@navikt/oasis": "^4.1.1",
     "@opentelemetry/sdk-node": "^0.208.0",
-    "astro": "^5.16.4",
+    "astro": "^5.16.6",
     "pino": "^10.1.0",
     "pino-socket": "^7.4.0",
     "prom-client": "^15.1.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-error-boundary": "^6.0.0",
-    "swr": "2.3.7",
-    "zod": "^4.1.13"
+    "swr": "2.3.8",
+    "zod": "^4.2.1"
   },
   "devDependencies": {
     "@hono/node-server": "1.19.7",
@@ -39,7 +39,7 @@
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "concurrently": "^9.2.1",
-    "hono": "4.10.8",
+    "hono": "4.11.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
@@ -48,7 +48,7 @@
     "stylelint-config-standard": "^39.0.1",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
-    "vitest": "^4.0.15"
+    "vitest": "^4.0.16"
   },
   "lint-staged": {
     "*.css": "stylelint --fix",
