@@ -62,7 +62,7 @@ importers:
     devDependencies:
       '@hono/node-server':
         specifier: 1.19.7
-        version: 1.19.7(hono@4.11.2)
+        version: 1.19.7(hono@4.11.3)
       '@navikt/aksel-stylelint':
         specifier: ^7.36.0
         version: 7.36.0
@@ -79,8 +79,8 @@ importers:
         specifier: ^9.2.1
         version: 9.2.1
       hono:
-        specifier: 4.11.2
-        version: 4.11.2
+        specifier: 4.11.3
+        version: 4.11.3
       husky:
         specifier: ^9.1.7
         version: 9.1.7
@@ -2148,8 +2148,8 @@ packages:
   hastscript@9.0.1:
     resolution: {integrity: sha512-g7df9rMFX/SPi34tyGCyUBREQoKkapwdY/T04Qn9TDWfHhAYt4/I0gMVirzK5wEzeUqIjEB+LXC/ypb7Aqno5w==}
 
-  hono@4.11.2:
-    resolution: {integrity: sha512-o+avdUAD1v94oHkjGBhiMhBV4WBHxhbu0+CUVH78hhphKy/OKQLxtKjkmmNcrMlbYAhAbsM/9F+l3KnYxyD3Lg==}
+  hono@4.11.3:
+    resolution: {integrity: sha512-PmQi306+M/ct/m5s66Hrg+adPnkD5jiO6IjA7WhWw0gSBSo1EcRegwuI1deZ+wd5pzCGynCcn2DprnE4/yEV4w==}
     engines: {node: '>=16.9.0'}
 
   hookified@1.13.0:
@@ -3574,8 +3574,8 @@ packages:
   web-vitals@5.1.0:
     resolution: {integrity: sha512-ArI3kx5jI0atlTtmV0fWU3fjpLmq/nD3Zr1iFFlJLaqa5wLBkUSzINwBPySCX/8jRyjlmy1Volw1kz1g9XE4Jg==}
 
-  webidl-conversions@8.0.0:
-    resolution: {integrity: sha512-n4W4YFyz5JzOfQeA8oN7dUYpR+MBP3PIUsn2jLjWXwK5ASUzt0Jc/A5sAUZoCYFJRGF0FBKJ+1JjN43rNdsQzA==}
+  webidl-conversions@8.0.1:
+    resolution: {integrity: sha512-BMhLD/Sw+GbJC21C/UgyaZX41nPt8bUTg+jWyDeg7e7YN4xOM05YPSIXceACnXVtqyEw/LMClUQMtMZ+PGGpqQ==}
     engines: {node: '>=20'}
 
   whatwg-encoding@3.1.1:
@@ -4340,9 +4340,9 @@ snapshots:
       protobufjs: 7.5.4
       yargs: 17.7.2
 
-  '@hono/node-server@1.19.7(hono@4.11.2)':
+  '@hono/node-server@1.19.7(hono@4.11.3)':
     dependencies:
-      hono: 4.11.2
+      hono: 4.11.3
 
   '@img/colour@1.0.0':
     optional: true
@@ -5836,7 +5836,7 @@ snapshots:
       property-information: 7.1.0
       space-separated-tokens: 2.0.2
 
-  hono@4.11.2: {}
+  hono@4.11.3: {}
 
   hookified@1.13.0: {}
 
@@ -5969,7 +5969,7 @@ snapshots:
       symbol-tree: 3.2.4
       tough-cookie: 6.0.0
       w3c-xmlserializer: 5.0.0
-      webidl-conversions: 8.0.0
+      webidl-conversions: 8.0.1
       whatwg-encoding: 3.1.1
       whatwg-mimetype: 4.0.0
       whatwg-url: 15.1.0
@@ -7478,7 +7478,7 @@ snapshots:
 
   web-vitals@5.1.0: {}
 
-  webidl-conversions@8.0.0:
+  webidl-conversions@8.0.1:
     optional: true
 
   whatwg-encoding@3.1.1:
@@ -7495,7 +7495,7 @@ snapshots:
   whatwg-url@15.1.0:
     dependencies:
       tr46: 6.0.0
-      webidl-conversions: 8.0.0
+      webidl-conversions: 8.0.1
     optional: true
 
   which-pm-runs@1.1.0: {}
