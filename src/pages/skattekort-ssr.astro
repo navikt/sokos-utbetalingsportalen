@@ -1,7 +1,7 @@
 ---
+import ContentLoader from "@components/loader/ContentLoader";
 import MicrofrontendSSR from "@components/microfrontend/MicrofrontendSSR.astro";
 import Layout from "@layouts/Layout.astro";
-import { Skeleton } from "@navikt/ds-react";
 ---
 
 <Layout title="Skattekort ssr">
@@ -11,4 +11,6 @@ import { Skeleton } from "@navikt/ds-react";
     appAudience={process.env.SOKOS_SKATTEKORT_SSR_AUDIENCE}
     server:defer
   >
+    <ContentLoader slot="fallback" />
+  </MicrofrontendSSR>
 </Layout>

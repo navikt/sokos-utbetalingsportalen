@@ -11,4 +11,6 @@ import Layout from "@layouts/Layout.astro";
   appAudience={process.env.SOKOS_ASTRO_TEMPLATE_AUDIENCE}
     server:defer
   >
+    <ContentLoader slot="fallback" />
+  </MicrofrontendSSR>
 </Layout>
