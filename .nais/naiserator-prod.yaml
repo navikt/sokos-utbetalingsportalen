@@ -31,7 +31,6 @@ spec:
       claims:
         groups:
           - id: "f49b797d-600d-46da-8061-7746e48d1aca" # 0000-CA-SOKOS-MF-SPK-Mottak-ADMIN
-          - id: "6c93762e-ea37-4043-919f-3a758a136943" # 0000-CA-SOKOS-MF-Skattekort
           - id: "40ee7ce5-7ec8-405e-b2ea-951401c2633e" # 0000-CA-SOKOS-MF-ORS-READ
           - id: "bb9c7baf-768b-4e84-816c-f10d0a6c7d25" # 0000-GA-SOKOS-MF-KRP-READ
           - id: "e1635067-dfc9-4fb8-8405-d50e9672cf5c" # 0000-GA-SOKOS-MF-KRO-READ
@@ -60,7 +59,6 @@ spec:
         - application: logging
           namespace: nais-system
       external:
-        - host: sokos-skattekort-person.prod-fss-pub.nais.io
         - host: sokos-oppdrag.prod-fss-pub.nais.io
         - host: sokos-ur-iso.prod-fss-pub.nais.io
         - host: sokos-spk-mottak.prod-fss-pub.nais.io
@@ -80,7 +78,7 @@ spec:
     # sokos-utbetalingsportalen
     - name: UMAMI_SPORINGSKODE
       value: "e1b661e6-a812-4433-a1e7-4648212fddfe"
-    
+
     # sokos-skattekort (Backend)
     - name: SOKOS_SKATTEKORT_API
       value: http://sokos-skattekort
@@ -88,7 +86,7 @@ spec:
       value: api://prod-gcp.okonomi.sokos-skattekort/.default
     - name: SOKOS_SKATTEKORT_API_PROXY
       value: "/sokos-skattekort"
-      
+
     # sokos-up-ors-api (Backend)
     - name: SOKOS_UP_ORS_API
       value: http://sokos-up-ors-api
@@ -104,14 +102,6 @@ spec:
       value: api://prod-gcp.okonomi.sokos-up-kontoregister-api/.default
     - name: SOKOS_KONTOREGISTER_API_PROXY
       value: "/up-kr-api"
-
-    # sokos-skattekort-person (Backend)
-    - name: SOKOS_SKATTEKORT_PERSON_API
-      value: https://sokos-skattekort-person.prod-fss-pub.nais.io
-    - name: SOKOS_SKATTEKORT_PERSON_API_AUDIENCE
-      value: api://prod-fss.okonomi.sokos-skattekort-person/.default
-    - name: SOKOS_SKATTEKORT_PERSON_API_PROXY
-      value: "/skattekort-api"
 
     # sokos-ur-iso (Backend)
     - name: SOKOS_UR_ISO_API

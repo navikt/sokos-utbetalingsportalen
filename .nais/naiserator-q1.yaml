@@ -31,7 +31,6 @@ spec:
       claims:
         groups:
           - id: "0e58dc41-7c57-4b79-a8c7-d0caec129e53" # 0000-CA-SOKOS-MF-SPK-Mottak-ADMIN
-          - id: "a13b4176-e328-4e1c-b181-ff676a7146b1" # 0000-CA-SOKOS-MF-Skattekort
           - id: "b01fb216-fcb3-4ede-b7da-71fffe859763" # 0000-CA-SOKOS-MF-ORS-READ
           - id: "98146b9a-1891-44e3-9b61-92130c2fcd8b" # 0000-GA-SOKOS-MF-KRP-READ
           - id: "e0023d91-26bc-4d5d-95ba-3148b6123afc" # 0000-CA-SOKOS-MF-OppdragsInfo
@@ -67,7 +66,6 @@ spec:
         - application: logging
           namespace: nais-system
       external:
-        - host: sokos-skattekort-person.dev-fss-pub.nais.io
         - host: sokos-oppdrag.dev-fss-pub.nais.io
         - host: sokos-ur-iso.dev-fss-pub.nais.io
         - host: sokos-utbetaling-api.dev-fss-pub.nais.io
@@ -96,11 +94,11 @@ spec:
     - name: SOKOS_ASTRO_TEMPLATE_AUDIENCE
       value: api://dev-gcp.okonomi.sokos-astro-template/.default
 
-    # sokos-skattekort-ssr 
+    # sokos-skattekort-ssr
     - name: SOKOS_SKATTEKORT_SSR_URL
       value: http://sokos-up-skattekort-ssr
     - name: SOKOS_SKATTEKORT_SSR_AUDIENCE
-      value: api://dev-gcp.okonomi.sokos-up-skattekort-ssr/.default   
+      value: api://dev-gcp.okonomi.sokos-up-skattekort-ssr/.default
 
      # sokos-skattekort (Backend)
     - name: SOKOS_SKATTEKORT_API
@@ -108,7 +106,7 @@ spec:
     - name: SOKOS_SKATTEKORT_API_AUDIENCE
       value: api://dev-gcp.okonomi.sokos-skattekort/.default
     - name: SOKOS_SKATTEKORT_API_PROXY
-      value: "/sokos-skattekort"  
+      value: "/sokos-skattekort"
 
     # sokos-dare-poc (Backend)
     - name: SOKOS_DARE_POC_API
@@ -125,14 +123,6 @@ spec:
       value: api://dev-gcp.okonomi.sokos-up-ors-api/.default
     - name: SOKOS_UP_ORS_API_PROXY
       value: "/up-ors-api"
-
-    # sokos-skattekort-person (Backend)
-    - name: SOKOS_SKATTEKORT_PERSON_API
-      value: https://sokos-skattekort-person.dev-fss-pub.nais.io
-    - name: SOKOS_SKATTEKORT_PERSON_API_AUDIENCE
-      value: api://dev-fss.okonomi.sokos-skattekort-person/.default
-    - name: SOKOS_SKATTEKORT_PERSON_API_PROXY
-      value: "/skattekort-api"
 
     # sokos-spk-mottak (Backend)
     - name: SOKOS_SPK_MOTTAK_API
