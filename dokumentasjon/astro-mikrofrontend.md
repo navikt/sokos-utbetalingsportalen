@@ -102,10 +102,10 @@ Lag en ny `.astro`-fil under `src/pages/` med navnet på ruten (f.eks. `min-mikr
 
 ```astro
 ---
-import MicrofrontendWrapperServer from "@components/microfrontend/MicrofrontendWrapperServer.astro";
+import MicrofrontendSSR from "@components/microfrontend/MicrofrontendSSR.astro";
 ---
 
-<MicrofrontendWrapperServer
+<MicrofrontendSSR
   appTitle="Min Mikrofrontend"
   appUrl={process.env.SOKOS_EKSEMPEL_URL}
   appAudience={process.env.SOKOS_EKSEMPEL_AUDIENCE}

@@ -130,10 +130,10 @@ Opprett `src/pages/min-mikrofrontend/[...min-mikrofrontend].astro`:
 
 ```astro
 ---
-import MicrofrontendWrapperClient from "@components/microfrontend/MicrofrontendWrapperClient.astro";
+import MicrofrontendCSR from "@components/microfrontend/MicrofrontendCSR.astro";
 ---
 
-<MicrofrontendWrapperClient appName="mikrofrontend" />
+<MicrofrontendCSR appName="mikrofrontend" />
 ```
 
 ### Uten routing
@@ -142,10 +142,10 @@ Opprett `src/pages/min-mikrofrontend.astro`:
 
 ```astro
 ---
-import MicrofrontendWrapperClient from "@components/microfrontend/MicrofrontendWrapperClient.astro";
+import MicrofrontendCSR from "@components/microfrontend/MicrofrontendCSR.astro";
 ---
 
-<MicrofrontendWrapperClient appName="mikrofrontend" />
+<MicrofrontendCSR appName="mikrofrontend" />
 ```
 
 > ⚠️ `appName` må være lowercase-versjonen av `app` fra `appConfig.ts`.
