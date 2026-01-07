@@ -3,7 +3,6 @@ import Layout from "@layouts/Layout.astro";
 import { Alert } from "@navikt/ds-react";
 import { logger } from "@utils/logger/index";
 import { getOboToken } from "@utils/server/token";
-import ContentLoader from "@components/loader/ContentLoader.tsx";
 
 type Props = {
   appTitle: string;
@@ -54,5 +53,4 @@ if (!appUrl || !appAudience || !appTitle) {
 
 <Layout title={appTitle}>
   {html ? <Fragment set:html={html} /> : <Alert variant="error">{error}</Alert>}
-  <ContentLoader slot="fallback" client:only="react" />
 </Layout>
