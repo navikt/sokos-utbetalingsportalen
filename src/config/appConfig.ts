@@ -50,15 +50,6 @@ export const apps: App[] = [
     naisAppName: "sokos-up-fastedata",
   },
   {
-    app: "SKATTEKORT",
-    title: "Skattekort",
-    description: "Søk etter skattekort for personer i OS-Eskatt",
-    adGroupDevelopment: "a13b4176-e328-4e1c-b181-ff676a7146b1",
-    adGroupProduction: "6c93762e-ea37-4043-919f-3a758a136943",
-    route: "/skattekort",
-    naisAppName: "sokos-up-skattekort",
-  },
-  {
     app: "SKATTEKORT-SSR",
     title: "Skattekort-ssr",
     description: "Test for astro ssr",
