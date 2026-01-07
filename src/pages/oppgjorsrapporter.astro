@@ -1,9 +1,19 @@
 ---
+import ContentLoader from "@components/loader/ContentLoader";
 import MicrofrontendSSR from "@components/microfrontend/MicrofrontendSSR.astro";
-import { getServerSideEnvironment } from "@utils/server/environment.ts";
+import Layout from "@layouts/Layout.astro";
+import { getServerSideEnvironment } from "@utils/server/environment";
 const isLocalEnv = getServerSideEnvironment() === "local";
 const appUrl = isLocalEnv ? "http://localhost:4322/" : process.env.SOKOS_UP_OPPGJORSRAPPORTER_URL;
 const appAudience = isLocalEnv ? "api://dev-gcp.okonomi.sokos-up-oppgjorsrapporter/.default" : process.env.SOKOS_UP_OPPGJORSRAPPORTER_AUDIENCE;
 ---
 
-<MicrofrontendSSR appTitle="Oppgjørsrapporter" appUrl={appUrl} appAudience={appAudience} />
+<Layout title="Oppgjørsrapporter">
+    <MicrofrontendSSR
+        appTitle="Oppgjørsrapporter"
+        appUrl={appUrl} appAudience={appAudience}
+        server:defer
+    >
+        <ContentLoader slot="fallback" />
+    </MicrofrontendSSR>
+</Layout>
