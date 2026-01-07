@@ -67,7 +67,6 @@ spec:
         - application: logging
           namespace: nais-system
       external:
-        - host: sokos-skattekort-person.dev-fss-pub.nais.io
         - host: sokos-oppdrag.dev-fss-pub.nais.io
         - host: sokos-ur-iso.dev-fss-pub.nais.io
         - host: sokos-utbetaling-api.dev-fss-pub.nais.io
@@ -96,11 +95,11 @@ spec:
     - name: SOKOS_ASTRO_TEMPLATE_AUDIENCE
       value: api://dev-gcp.okonomi.sokos-astro-template/.default
 
-    # sokos-skattekort-ssr 
+    # sokos-skattekort-ssr
     - name: SOKOS_SKATTEKORT_SSR_URL
       value: http://sokos-up-skattekort-ssr
     - name: SOKOS_SKATTEKORT_SSR_AUDIENCE
-      value: api://dev-gcp.okonomi.sokos-up-skattekort-ssr/.default   
+      value: api://dev-gcp.okonomi.sokos-up-skattekort-ssr/.default
 
      # sokos-skattekort (Backend)
     - name: SOKOS_SKATTEKORT_API
@@ -108,7 +107,7 @@ spec:
     - name: SOKOS_SKATTEKORT_API_AUDIENCE
       value: api://dev-gcp.okonomi.sokos-skattekort/.default
     - name: SOKOS_SKATTEKORT_API_PROXY
-      value: "/sokos-skattekort"  
+      value: "/sokos-skattekort"
 
     # sokos-dare-poc (Backend)
     - name: SOKOS_DARE_POC_API
@@ -125,14 +124,6 @@ spec:
       value: api://dev-gcp.okonomi.sokos-up-ors-api/.default
     - name: SOKOS_UP_ORS_API_PROXY
       value: "/up-ors-api"
-
-    # sokos-skattekort-person (Backend)
-    - name: SOKOS_SKATTEKORT_PERSON_API
-      value: https://sokos-skattekort-person.dev-fss-pub.nais.io
-    - name: SOKOS_SKATTEKORT_PERSON_API_AUDIENCE
-      value: api://dev-fss.okonomi.sokos-skattekort-person/.default
-    - name: SOKOS_SKATTEKORT_PERSON_API_PROXY
-      value: "/skattekort-api"
 
     # sokos-spk-mottak (Backend)
     - name: SOKOS_SPK_MOTTAK_API

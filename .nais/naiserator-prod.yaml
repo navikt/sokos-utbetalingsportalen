@@ -60,7 +60,6 @@ spec:
         - application: logging
           namespace: nais-system
       external:
-        - host: sokos-skattekort-person.prod-fss-pub.nais.io
         - host: sokos-oppdrag.prod-fss-pub.nais.io
         - host: sokos-ur-iso.prod-fss-pub.nais.io
         - host: sokos-spk-mottak.prod-fss-pub.nais.io
@@ -80,7 +79,7 @@ spec:
     # sokos-utbetalingsportalen
     - name: UMAMI_SPORINGSKODE
       value: "e1b661e6-a812-4433-a1e7-4648212fddfe"
-    
+
     # sokos-skattekort (Backend)
     - name: SOKOS_SKATTEKORT_API
       value: http://sokos-skattekort
@@ -88,7 +87,7 @@ spec:
       value: api://prod-gcp.okonomi.sokos-skattekort/.default
     - name: SOKOS_SKATTEKORT_API_PROXY
       value: "/sokos-skattekort"
-      
+
     # sokos-up-ors-api (Backend)
     - name: SOKOS_UP_ORS_API
       value: http://sokos-up-ors-api
@@ -104,14 +103,6 @@ spec:
       value: api://prod-gcp.okonomi.sokos-up-kontoregister-api/.default
     - name: SOKOS_KONTOREGISTER_API_PROXY
       value: "/up-kr-api"
-
-    # sokos-skattekort-person (Backend)
-    - name: SOKOS_SKATTEKORT_PERSON_API
-      value: https://sokos-skattekort-person.prod-fss-pub.nais.io
-    - name: SOKOS_SKATTEKORT_PERSON_API_AUDIENCE
-      value: api://prod-fss.okonomi.sokos-skattekort-person/.default
-    - name: SOKOS_SKATTEKORT_PERSON_API_PROXY
-      value: "/skattekort-api"
 
     # sokos-ur-iso (Backend)
     - name: SOKOS_UR_ISO_API
