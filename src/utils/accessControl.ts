@@ -1,5 +1,5 @@
-import type { App } from "../config/appConfig";
-import { apps } from "../config/appConfig";
+import type { App } from "@config/appConfig";
+import { apps } from "@config/appConfig";
 
 function hasAccessToAdGroup(adGroups: string[], uuid: string): boolean {
 	return adGroups.includes(uuid);

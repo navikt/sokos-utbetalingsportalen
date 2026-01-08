@@ -1,8 +1,8 @@
+import { apps, PLACEHOLDER_AD_GROUP } from "@config/appConfig";
 import { Heading, LinkCard, Switch, Tooltip } from "@navikt/ds-react";
 import { getAuthorizedApps, hasAccessToApp } from "@utils/accessControl";
 import { getClientSideEnvironment } from "@utils/client/environments";
 import { useState } from "react";
-import { apps, PLACEHOLDER_AD_GROUP } from "src/config/appConfig";
 import styles from "./AppSwitcher.module.css";
 import linkCardStyles from "./LinkCard.module.css";
 

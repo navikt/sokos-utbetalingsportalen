@@ -1,9 +1,9 @@
 ---
+import { getAppConfig } from "@config/appConfig";
 import Layout from "@layouts/Layout.astro";
 import NoAccess from "@pages/NoAccess.astro";
 import { hasAccessToApp } from "@utils/accessControl";
 import { getServerSideEnvironment } from "@utils/server/environment";
-import { getAppConfig } from "src/config/appConfig";
 import Microfrontend from "./Microfrontend";
 
 type Props = {

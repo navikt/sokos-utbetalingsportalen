@@ -12,7 +12,8 @@
 			"@pages/*": ["src/pages/*"],
 			"@types/*": ["src/types/*"],
 			"@schema/*": ["src/types/schema/*"],
-			"@utils/*": ["src/utils/*"]
+			"@utils/*": ["src/utils/*"],
+			"@config/*": ["src/config/*"]
 		}
 	},
 	"include": ["src/**/*"],
