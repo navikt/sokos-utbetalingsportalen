@@ -4,10 +4,10 @@
 import { UserData } from "@types/UserData";
 
 declare global {
-  namespace App {
-    interface Locals {
-      token: string;
-      userData: UserData;
-    }
-  }
+	namespace App {
+		interface Locals {
+			token: string;
+			userData: UserData;
+		}
+	}
 }

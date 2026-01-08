@@ -1,74 +1,74 @@
 import { Heading, LinkCard, Switch, Tooltip } from "@navikt/ds-react";
 import { getAuthorizedApps, hasAccessToApp } from "@utils/accessControl";
+import { getClientSideEnvironment } from "@utils/client/environments";
 import { useState } from "react";
 import { apps, PLACEHOLDER_AD_GROUP } from "src/config/appConfig";
 import styles from "./AppSwitcher.module.css";
 import linkCardStyles from "./LinkCard.module.css";
-import { getClientSideEnvironment } from "@utils/client/environments";
 
 type AppSwitcherProps = {
-  adGroups: string[];
+	adGroups: string[];
 };
 
 function getAvailableApps() {
-  const environment = getClientSideEnvironment();
+	const environment = getClientSideEnvironment();
 
-  if (environment === "production") {
-    return apps.filter((app) => app.adGroupProduction !== PLACEHOLDER_AD_GROUP);
-  }
+	if (environment === "production") {
+		return apps.filter((app) => app.adGroupProduction !== PLACEHOLDER_AD_GROUP);
+	}
 
-  return apps;
+	return apps;
 }
 
 export default function AppSwitcher(props: AppSwitcherProps) {
-  const authorizedApps = getAuthorizedApps(props.adGroups);
-  const [showApps, setShowApps] = useState<string>("");
-  const availableApps = getAvailableApps();
+	const authorizedApps = getAuthorizedApps(props.adGroups);
+	const [showApps, setShowApps] = useState<string>("");
+	const availableApps = getAvailableApps();
 
-  function appCards() {
-    return (showApps ? availableApps : authorizedApps)
-      .slice()
-      .sort((a, b) => a.title.localeCompare(b.title))
-      .map((app) => {
-        const hasAccess = hasAccessToApp(props.adGroups, app);
+	function appCards() {
+		return (showApps ? availableApps : authorizedApps)
+			.slice()
+			.sort((a, b) => a.title.localeCompare(b.title))
+			.map((app) => {
+				const hasAccess = hasAccessToApp(props.adGroups, app);
 
-        return hasAccess ? (
-          <LinkCard key={app.app} className={linkCardStyles.linkCard}>
-            <LinkCard.Title as="h3">
-              <LinkCard.Anchor href={app.route}>{app.title}</LinkCard.Anchor>
-            </LinkCard.Title>
-            <LinkCard.Description>{app.description}</LinkCard.Description>
-          </LinkCard>
-        ) : (
-          <Tooltip key={app.app} content="Du har ikke tilgang til denne appen">
-            <LinkCard
-              className={`${linkCardStyles.linkCard} ${linkCardStyles["linkCard--disabled"]}`}
-            >
-              <LinkCard.Title as="h3">
-                <span>{app.title}</span>
-              </LinkCard.Title>
-              <LinkCard.Description>{app.description}</LinkCard.Description>
-            </LinkCard>
-          </Tooltip>
-        );
-      });
-  }
+				return hasAccess ? (
+					<LinkCard key={app.app} className={linkCardStyles.linkCard}>
+						<LinkCard.Title as="h3">
+							<LinkCard.Anchor href={app.route}>{app.title}</LinkCard.Anchor>
+						</LinkCard.Title>
+						<LinkCard.Description>{app.description}</LinkCard.Description>
+					</LinkCard>
+				) : (
+					<Tooltip key={app.app} content="Du har ikke tilgang til denne appen">
+						<LinkCard
+							className={`${linkCardStyles.linkCard} ${linkCardStyles["linkCard--disabled"]}`}
+						>
+							<LinkCard.Title as="h3">
+								<span>{app.title}</span>
+							</LinkCard.Title>
+							<LinkCard.Description>{app.description}</LinkCard.Description>
+						</LinkCard>
+					</Tooltip>
+				);
+			});
+	}
 
-  return (
-    <>
-      <Heading level="3" size="medium" spacing>
-        Apper
-      </Heading>
-      <Switch
-        value="show"
-        checked={showApps === "show"}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setShowApps((value: string) => (value ? "" : e.target.value))
-        }
-      >
-        Vis alle
-      </Switch>
-      <div className={styles.linkCardGrid}>{appCards()}</div>
-    </>
-  );
+	return (
+		<>
+			<Heading level="3" size="medium" spacing>
+				Apper
+			</Heading>
+			<Switch
+				value="show"
+				checked={showApps === "show"}
+				onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+					setShowApps((value: string) => (value ? "" : e.target.value))
+				}
+			>
+				Vis alle
+			</Switch>
+			<div className={styles.linkCardGrid}>{appCards()}</div>
+		</>
+	);
 }

@@ -1,8 +1,8 @@
 export function createLocalApp(
-  microfrontendName: string,
-  localUrl: string,
+	microfrontendName: string,
+	localUrl: string,
 ): string {
-  return `import React from 'react';
+	return `import React from 'react';
 
 const LocalMicrofrontendIframe = () => {
   console.log('Lokal MF lastet via iframe:', '${localUrl}');

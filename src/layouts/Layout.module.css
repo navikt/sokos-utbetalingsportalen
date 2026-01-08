@@ -1,15 +1,15 @@
 body {
-  background-color: var(--a-bg-subtle);
+	background-color: var(--a-bg-subtle);
 }
 
 /* Skal ikke endres */
 .container {
-  margin: 3rem 4rem 4rem 7rem;
-  padding-top: 1rem;
+	margin: 3rem 4rem 4rem 7rem;
+	padding-top: 1rem;
 }
 
 :global(body.sidebar-open) .container {
-  opacity: 0.4;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
+	opacity: 0.4;
+	transition: opacity 0.3s ease;
+	pointer-events: none;
 }

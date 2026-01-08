@@ -4,9 +4,9 @@ import { logger } from "@utils/logger/index";
 import { getOboToken } from "@utils/server/token";
 
 type Props = {
-  appTitle: string;
-  appUrl?: string;
-  appAudience?: string;
+	appTitle: string;
+	appUrl?: string;
+	appAudience?: string;
 };
 
 const { appTitle, appUrl, appAudience } = Astro.props;
@@ -14,39 +14,39 @@ let html = null;
 let error = null;
 
 if (!appUrl || !appAudience || !appTitle) {
-  logger.error(
-    "Missing some required microfrontend parameters, appTitle, appUrl or appAudience"
-  );
-  error =
-    "Missing some required microfrontend parameters, appTitle, appUrl or appAudience";
+	logger.error(
+		"Missing some required microfrontend parameters, appTitle, appUrl or appAudience",
+	);
+	error =
+		"Missing some required microfrontend parameters, appTitle, appUrl or appAudience";
 } else {
-  try {
-    const oboToken = await getOboToken(Astro.locals.token, appAudience);
+	try {
+		const oboToken = await getOboToken(Astro.locals.token, appAudience);
 
-    const response = await fetch(appUrl, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${oboToken}`,
-      },
-    });
+		const response = await fetch(appUrl, {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${oboToken}`,
+			},
+		});
 
-    if (!response.ok) {
-      logger.info(
-        {
-          url: response.url,
-          status: response.status,
-          statusText: response.statusText,
-        },
-        "Failed to fetch html"
-      );
-      error = `Failed to fetch html content from ${response.url} with status: ${response.status} ${response.statusText}`;
-    } else {
-      html = await response.text();
-    }
-  } catch (e) {
-    logger.error(`Fetch from ${appUrl} failed: ${e}`);
-    error = "An error occurred while loading the html content.";
-  }
+		if (!response.ok) {
+			logger.info(
+				{
+					url: response.url,
+					status: response.status,
+					statusText: response.statusText,
+				},
+				"Failed to fetch html",
+			);
+			error = `Failed to fetch html content from ${response.url} with status: ${response.status} ${response.statusText}`;
+		} else {
+			html = await response.text();
+		}
+	} catch (e) {
+		logger.error(`Fetch from ${appUrl} failed: ${e}`);
+		error = "An error occurred while loading the html content.";
+	}
 }
 ---
 
