@@ -1,7 +1,0 @@
-# Ignore artifacts:
-dokumentasjon
-public
-dist
-**/node_modules
-**/github*.yaml
-**/nais*.yaml

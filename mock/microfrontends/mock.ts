@@ -1,10 +1,10 @@
-import { type MicroFrontend } from "../../src/microfrontend";
+import type { App } from "../../src/config/appConfig";
 
-export function createMockApp(config: MicroFrontend): string {
-  const { app, title, description } = config;
-  const defaultColor = "#0067C5";
+export function createMockApp(config: App): string {
+	const { app, title, description } = config;
+	const defaultColor = "#0067C5";
 
-  return `
+	return `
 import React from 'react';
 
 const MockMicrofrontend = () => {

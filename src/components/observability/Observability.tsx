@@ -3,20 +3,20 @@ import { getTelemetryCollectorUR } from "@utils/grafanaFaro";
 import { useEffect } from "react";
 
 const Observability = () => {
-  useEffect(() => {
-    initializeFaro({
-      url: getTelemetryCollectorUR(),
-      app: {
-        name: "sokos-utbetalingsportalen",
-      },
+	useEffect(() => {
+		initializeFaro({
+			url: getTelemetryCollectorUR(),
+			app: {
+				name: "sokos-utbetalingsportalen",
+			},
 
-      instrumentations: [
-        ...getWebInstrumentations({
-          captureConsole: false,
-        }),
-      ],
-    });
-  }, []);
+			instrumentations: [
+				...getWebInstrumentations({
+					captureConsole: false,
+				}),
+			],
+		});
+	}, []);
 };
 
 export default Observability;

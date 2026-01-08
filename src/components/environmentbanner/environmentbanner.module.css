@@ -1,12 +1,12 @@
 .environmentbanner {
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 1000;
-  margin-top: 3rem;
-  font-weight: bold;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 1000;
+	margin-top: 3rem;
+	font-weight: bold;
 }
 
 .environmentbanner__icon polygon {
-  fill: #4ade80;
+	fill: #4ade80;
 }

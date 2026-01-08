@@ -1,13 +1,13 @@
 ---
+import { getAppConfig } from "@config/appConfig";
 import Layout from "@layouts/Layout.astro";
 import NoAccess from "@pages/NoAccess.astro";
 import { hasAccessToApp } from "@utils/accessControl";
-import { getAppConfig } from "src/config/appConfig";
-import Microfrontend from "./Microfrontend";
 import { getServerSideEnvironment } from "@utils/server/environment";
+import Microfrontend from "./Microfrontend";
 
 type Props = {
-  appName: string;
+	appName: string;
 };
 
 const appHostname = Astro.url.hostname;
@@ -15,10 +15,10 @@ const appConfig = getAppConfig(Astro.props.appName);
 const appAccess = hasAccessToApp(Astro.locals.userData.groups, appConfig);
 
 export function fetchBundle(appHostname: string, appName: string) {
-  if (getServerSideEnvironment() === "local") {
-    return `http://localhost:3000/${appName}/bundle.js`;
-  }
-  return `https://${appHostname}/${appName}/bundle.js`;
+	if (getServerSideEnvironment() === "local") {
+		return `http://localhost:3000/${appName}/bundle.js`;
+	}
+	return `https://${appHostname}/${appName}/bundle.js`;
 }
 ---
 

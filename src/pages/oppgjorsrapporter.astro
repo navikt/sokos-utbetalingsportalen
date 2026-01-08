@@ -3,9 +3,14 @@ import ContentLoader from "@components/loader/ContentLoader";
 import MicrofrontendSSR from "@components/microfrontend/MicrofrontendSSR.astro";
 import Layout from "@layouts/Layout.astro";
 import { getServerSideEnvironment } from "@utils/server/environment";
+
 const isLocalEnv = getServerSideEnvironment() === "local";
-const appUrl = isLocalEnv ? "http://localhost:4322/" : process.env.SOKOS_UP_OPPGJORSRAPPORTER_URL;
-const appAudience = isLocalEnv ? "api://dev-gcp.okonomi.sokos-up-oppgjorsrapporter/.default" : process.env.SOKOS_UP_OPPGJORSRAPPORTER_AUDIENCE;
+const appUrl = isLocalEnv
+	? "http://localhost:4322/"
+	: process.env.SOKOS_UP_OPPGJORSRAPPORTER_URL;
+const appAudience = isLocalEnv
+	? "api://dev-gcp.okonomi.sokos-up-oppgjorsrapporter/.default"
+	: process.env.SOKOS_UP_OPPGJORSRAPPORTER_AUDIENCE;
 ---
 
 <Layout title="Oppgjørsrapporter">

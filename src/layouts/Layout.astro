@@ -6,20 +6,20 @@ import SideBar from "@components/sidebar/sidebar.astro";
 import styles from "./Layout.module.css";
 
 export type LayoutProps = {
-  title: string;
+	title: string;
 };
 
 const { title } = Astro.props as LayoutProps;
 
 const pageTitle = title
-  ? `${title} | Utbetalingsportalen`
-  : "Utbetalingsportalen";
+	? `${title} | Utbetalingsportalen`
+	: "Utbetalingsportalen";
 
 const sporingskode = process.env.UMAMI_SPORINGSKODE;
 
 const enableObservability =
-  process.env.NAIS_CLUSTER_NAME === "dev-gcp" ||
-  process.env.NAIS_CLUSTER_NAME === "prod-gcp";
+	process.env.NAIS_CLUSTER_NAME === "dev-gcp" ||
+	process.env.NAIS_CLUSTER_NAME === "prod-gcp";
 ---
 
 <!doctype html>
