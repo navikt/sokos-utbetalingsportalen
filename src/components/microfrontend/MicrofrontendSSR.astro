@@ -1,5 +1,4 @@
 ---
-import Layout from "@layouts/Layout.astro";
 import { Alert } from "@navikt/ds-react";
 import { logger } from "@utils/logger/index";
 import { getOboToken } from "@utils/server/token";
@@ -51,6 +50,4 @@ if (!appUrl || !appAudience || !appTitle) {
 }
 ---
 
-<Layout title={appTitle}>
-  {html ? <Fragment set:html={html} /> : <Alert variant="error">{error}</Alert>}
-</Layout>
+{html ? <Fragment set:html={html} /> : <Alert variant="error">{error}</Alert>}

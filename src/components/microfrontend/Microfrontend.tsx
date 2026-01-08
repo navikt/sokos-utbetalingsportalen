@@ -1,6 +1,6 @@
 import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import ContentLoader from "@components/loader/ContentLoader.tsx";
+import ContentLoader from "@components/loader/ContentLoader";
 import { MicrofrontendError } from "@components/microfrontend/MicrofrontendError";
 
 type MicrofrontendType = {

@@ -1,9 +1,16 @@
 ---
+import ContentLoader from "@components/loader/ContentLoader";
 import MicrofrontendSSR from "@components/microfrontend/MicrofrontendSSR.astro";
+import Layout from "@layouts/Layout.astro";
 ---
 
-<MicrofrontendSSR
+<Layout title="Skattekort ssr">
+  <MicrofrontendSSR
   appTitle="Astro Template"
   appUrl={process.env.SOKOS_ASTRO_TEMPLATE_URL}
   appAudience={process.env.SOKOS_ASTRO_TEMPLATE_AUDIENCE}
-/>
+    server:defer
+  >
+    <ContentLoader slot="fallback" />
+  </MicrofrontendSSR>
+</Layout>

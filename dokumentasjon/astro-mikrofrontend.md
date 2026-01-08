@@ -102,14 +102,21 @@ Lag en ny `.astro`-fil under `src/pages/` med navnet på ruten (f.eks. `min-mikr
 
 ```astro
 ---
+import ContentLoader from "@components/loader/ContentLoader";
 import MicrofrontendSSR from "@components/microfrontend/MicrofrontendSSR.astro";
+import Layout from "@layouts/Layout.astro";
 ---
 
-<MicrofrontendSSR
-  appTitle="Min Mikrofrontend"
-  appUrl={process.env.SOKOS_EKSEMPEL_URL}
-  appAudience={process.env.SOKOS_EKSEMPEL_AUDIENCE}
-/>
+<Layout title="Min mikrofrontend">
+  <MicrofrontendSSR
+    appTitle="Min Mikrofrontend"
+    appUrl={process.env.SOKOS_EKSEMPEL_URL}
+    appAudience={process.env.SOKOS_EKSEMPEL_AUDIENCE}
+    server:defer
+  >
+    <ContentLoader slot="fallback" />
+  </MicrofrontendSSR>
+</Layout>
 ```
 
 ### Props-forklaring
