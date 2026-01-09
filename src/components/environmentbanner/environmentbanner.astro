@@ -4,17 +4,17 @@ import styles from "./environmentbanner.module.css";
 type ApplicationEnvironment = "LOCAL" | `TEST ${string}` | null;
 
 function getApplicationEnvironment(): ApplicationEnvironment {
-	const naisClusterName = process.env.NAIS_CLUSTER_NAME;
+  const naisClusterName = process.env.NAIS_CLUSTER_NAME;
 
-	if (!naisClusterName) {
-		return "LOCAL";
-	}
+  if (!naisClusterName) {
+    return "LOCAL";
+  }
 
-	if (naisClusterName === "dev-gcp") {
-		return `TEST ${process.env.UTBETALINGSPORTALEN_ENVIRONMENT}`;
-	}
+  if (naisClusterName === "dev-gcp") {
+    return `TEST ${process.env.UTBETALINGSPORTALEN_ENVIRONMENT}`;
+  }
 
-	return null;
+  return null;
 }
 
 const environment = getApplicationEnvironment();

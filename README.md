@@ -58,9 +58,8 @@ Arbeidsflatene som tilbys gir mulighet til å se eller behandle saker som gjelde
 
 ### Lokal utvikling
 
-- `pnpm run mock` - Starter mock-server for lokal utvikling (Hvis du ønsker å gjøre kall til mock)
-- `pnpm run dev` - Starter Astro dev-server (Kan kjøres uten `mock`)
-- `pnpm run dev:mock` - Starter både Astro og mock-server samtidig
+- `pnpm run dev` - Starter applikasjonen uten `mock`-server
+- `pnpm run dev:mock` - Starter applikasjonen med `mock`-server
 - `pnpm run build` - Bygger prosjektet
 
 #### Kjøre mikrofrontend lokalt

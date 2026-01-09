@@ -9,13 +9,13 @@ const userData = Astro.locals.userData;
 
 const currentHour = new Date().getHours();
 const greeting =
-	currentHour < 10
-		? "God morgen"
-		: currentHour < 12
-			? "God formiddag"
-			: currentHour < 18
-				? "God ettermiddag"
-				: "God kveld";
+  currentHour < 10
+    ? "God morgen"
+    : currentHour < 12
+      ? "God formiddag"
+      : currentHour < 18
+        ? "God ettermiddag"
+        : "God kveld";
 ---
 
 <Layout title="Hjem">
