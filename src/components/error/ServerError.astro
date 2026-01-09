@@ -1,3 +1,4 @@
+---
 import {
 	BodyShort,
 	Box,
@@ -8,11 +9,11 @@ import {
 	VStack,
 } from "@navikt/ds-react";
 import styles from "../../common-styles.module.css";
+---
 
-export function MicrofrontendError() {
-	return (
+
 		<Box paddingBlock="20 8">
-			<div className={styles["error-page"]}>
+			<div class={styles["error-page"]}>
 				<VStack gap="16">
 					<VStack gap="12" align="start">
 						<div>
@@ -46,5 +47,3 @@ export function MicrofrontendError() {
 				</VStack>
 			</div>
 		</Box>
-	);
-}

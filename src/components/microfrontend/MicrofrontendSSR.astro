@@ -1,5 +1,6 @@
 ---
-import { Alert } from "@navikt/ds-react";
+import ServerError from "@components/error/ServerError.astro";
+import NoAccess from "@pages/NoAccess.astro";
 import { logger } from "@utils/logger/index";
 import { getOboToken } from "@utils/server/token";
 
@@ -12,6 +13,7 @@ type Props = {
 const { appTitle, appUrl, appAudience } = Astro.props;
 let html = null;
 let error = null;
+let statusCode: number | null = null;
 
 if (!appUrl || !appAudience || !appTitle) {
 	logger.error(
@@ -31,6 +33,7 @@ if (!appUrl || !appAudience || !appTitle) {
 		});
 
 		if (!response.ok) {
+			statusCode = response.status;
 			logger.info(
 				{
 					url: response.url,
@@ -50,4 +53,12 @@ if (!appUrl || !appAudience || !appTitle) {
 }
 ---
 
-{html ? <Fragment set:html={html} /> : <Alert variant="error">{error}</Alert>}
+{
+	html ? (
+		<Fragment set:html={html} />
+	) : statusCode === 401 || statusCode === 403 ? (
+		<NoAccess />
+	) : (
+		<ServerError />
+	)
+}
