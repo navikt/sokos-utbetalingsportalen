@@ -7,6 +7,7 @@ Denne guiden viser hvordan du integrerer en server-side rendered Astro mikrofron
 - En Astro-applikasjon som kan deployes som mikrofrontend
 - Tilgang til NAIS-konfigurasjonsfilene
 - AD-grupper for dev og prod
+- React-versjon i mikrofrontenden må være høyere enn eller lik React-versjonen i Utbetalingsportalen
 
 ## Steg 1: Konfigurer NAIS
 
@@ -95,8 +96,49 @@ Legg til applikasjonskonfigurasjon i `src/config/appConfig.ts`:
 - Bindestrek for å skille ord
 - Translitterer norske tegn: Æ→AE, Ø→OE, Å→AA
 
+## Steg 3: Sett opp API-proxy
 
-## Steg 3: Opprett side i Utbetalingsportalen
+For at vi skal kunne snakke til Astro backenden gjennom Utbetalingsportalen, må vi sette opp en API-proxy.
+
+### 3.1 Opprett proxy-rute
+
+Lag en ny mappe under `src/pages/` med samme navn som ruten din, og opprett filen `[...proxy].ts` i denne mappen:
+
+```
+src/pages/
+  min-mikrofrontend/
+    [...proxy].ts
+```
+
+**Eksempel `[...proxy].ts`:**
+
+```typescript
+import { routeProxyWithOboToken } from "@utils/server/proxy";
+import type { APIRoute } from "astro";
+
+export const ALL: APIRoute = routeProxyWithOboToken({
+  apiProxy: "/min-mikrofrontend",
+  apiUrl: `${process.env.SOKOS_EKSEMPEL_URL}`,
+  audience: `${process.env.SOKOS_EKSEMPEL_AUDIENCE}`,
+});
+```
+
+### Parametere
+
+| Parameter | Beskrivelse | Eksempel |
+|-----------|-------------|----------|
+| `apiProxy` | Path som matcher din mikrofrontend-rute | `"/min-mikrofrontend"` |
+| `apiUrl` | URL til backend-tjenesten (fra naiserator) | `process.env.SOKOS_EKSEMPEL_URL` |
+| `audience` | Azure AD audience scope (fra naiserator) | `process.env.SOKOS_EKSEMPEL_AUDIENCE` |
+
+### Hvordan det fungerer
+
+- Proxy-ruten fanger alle forespørsler til `/min-mikrofrontend/*`
+- OBO-token (On-Behalf-Of) hentes automatisk basert på audience
+- Forespørsler videresendes til backend med riktig autentisering
+- Svar returneres til mikrofrontenden
+
+## Steg 4: Opprett side i Utbetalingsportalen
 
 Lag en ny `.astro`-fil under `src/pages/` med navnet på ruten (f.eks. `min-mikrofrontend.astro`):
 
