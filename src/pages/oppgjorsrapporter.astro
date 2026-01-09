@@ -14,11 +14,12 @@ const appAudience = isLocalEnv
 ---
 
 <Layout title="Oppgjørsrapporter">
-    <MicrofrontendSSR
-        appTitle="Oppgjørsrapporter"
-        appUrl={appUrl} appAudience={appAudience}
-        server:defer
-    >
-        <ContentLoader slot="fallback" />
-    </MicrofrontendSSR>
+  <MicrofrontendSSR
+    appTitle="Oppgjørsrapporter"
+    appUrl={appUrl}
+    appAudience={appAudience}
+    server:defer
+  >
+    <ContentLoader slot="fallback" />
+  </MicrofrontendSSR>
 </Layout>
