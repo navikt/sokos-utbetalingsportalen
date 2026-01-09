@@ -9,7 +9,7 @@ import {
 } from "@navikt/ds-react";
 import styles from "../../common-styles.module.css";
 
-export function MicrofrontendError() {
+export function ClientError() {
 	return (
 		<Box paddingBlock="20 8">
 			<div className={styles["error-page"]}>
