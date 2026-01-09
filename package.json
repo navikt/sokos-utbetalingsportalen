@@ -8,8 +8,11 @@
 		"dev:mock": "concurrently \"pnpm dev\" \"tsx mock/server.ts\"",
 		"build": "astro check && astro build",
 		"vitest": "vitest",
-		"lint": "biome check --no-errors-on-unmatched",
-		"stylelint": "stylelint '**/*.css'",
+		"biome:check": "biome check --files-ignore-unknown=true",
+		"biome:fix": "biome check --write --no-errors-on-unmatched",
+		"prettier:format": "prettier --write '**/*.astro'",
+		"stylelint:check": "stylelint '**/*.css'",
+		"stylelint:fix": "stylelint '**/*.css' --fix",
 		"prepare": "husky"
 	},
 	"dependencies": {
@@ -51,7 +54,8 @@
 		"vitest": "^4.0.16"
 	},
 	"lint-staged": {
-		"*.{ts,tsx,js,jsx,json}": "biome check --write --no-errors-on-unmatched",
+		"*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": "biome check --write --no-errors-on-unmatched",
+		"*.astro": "prettier --write",
 		"*.css": "stylelint --fix"
 	},
 	"engines": {

@@ -5,9 +5,9 @@ import { logger } from "@utils/logger/index";
 import { getOboToken } from "@utils/server/token";
 
 type Props = {
-	appTitle: string;
-	appUrl?: string;
-	appAudience?: string;
+  appTitle: string;
+  appUrl?: string;
+  appAudience?: string;
 };
 
 const { appTitle, appUrl, appAudience } = Astro.props;
@@ -16,49 +16,49 @@ let _error = null;
 let statusCode: number | null = null;
 
 if (!appUrl || !appAudience || !appTitle) {
-	logger.error(
-		"Missing some required microfrontend parameters, appTitle, appUrl or appAudience",
-	);
-	_error =
-		"Missing some required microfrontend parameters, appTitle, appUrl or appAudience";
+  logger.error(
+    "Missing some required microfrontend parameters, appTitle, appUrl or appAudience",
+  );
+  _error =
+    "Missing some required microfrontend parameters, appTitle, appUrl or appAudience";
 } else {
-	try {
-		const oboToken = await getOboToken(Astro.locals.token, appAudience);
+  try {
+    const oboToken = await getOboToken(Astro.locals.token, appAudience);
 
-		const response = await fetch(appUrl, {
-			method: "GET",
-			headers: {
-				Authorization: `Bearer ${oboToken}`,
-			},
-		});
+    const response = await fetch(appUrl, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${oboToken}`,
+      },
+    });
 
-		if (!response.ok) {
-			statusCode = response.status;
-			logger.info(
-				{
-					url: response.url,
-					status: response.status,
-					statusText: response.statusText,
-				},
-				"Failed to fetch html",
-			);
-			_error = `Failed to fetch html content from ${response.url} with status: ${response.status} ${response.statusText}`;
-		} else {
-			html = await response.text();
-		}
-	} catch (e) {
-		logger.error(`Fetch from ${appUrl} failed: ${e}`);
-		_error = "An error occurred while loading the html content.";
-	}
+    if (!response.ok) {
+      statusCode = response.status;
+      logger.info(
+        {
+          url: response.url,
+          status: response.status,
+          statusText: response.statusText,
+        },
+        "Failed to fetch html",
+      );
+      _error = `Failed to fetch html content from ${response.url} with status: ${response.status} ${response.statusText}`;
+    } else {
+      html = await response.text();
+    }
+  } catch (e) {
+    logger.error(`Fetch from ${appUrl} failed: ${e}`);
+    _error = "An error occurred while loading the html content.";
+  }
 }
 ---
 
 {
-	html ? (
-		<Fragment set:html={html} />
-	) : statusCode === 401 || statusCode === 403 ? (
-		<NoAccess />
-	) : (
-		<ServerError />
-	)
+  html ? (
+    <Fragment set:html={html} />
+  ) : statusCode === 401 || statusCode === 403 ? (
+    <NoAccess />
+  ) : (
+    <ServerError />
+  )
 }

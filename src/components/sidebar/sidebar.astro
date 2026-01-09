@@ -12,9 +12,9 @@ const userData = Astro.locals.userData;
 </div>
 
 <script>
-  document.addEventListener('sidebarStateChange', (event) => {
+  document.addEventListener("sidebarStateChange", (event) => {
     const customEvent = event as CustomEvent;
     const isOpen = customEvent.detail.isOpen;
-    document.body.classList.toggle('sidebar-open', isOpen);
+    document.body.classList.toggle("sidebar-open", isOpen);
   });
 </script>
