@@ -8,6 +8,7 @@ Denne guiden viser hvordan du integrerer en client-side React mikrofrontend i Ut
 - Backend API som mikrofrontenden skal kommunisere med
 - AD-grupper for tilgangskontroll
 - Tilgang til NAIS-konfigurasjonsfilene
+- React-versjon i mikrofrontend må være samme major versjon som React i Utbetalingsportalen
 
 ## Steg 1: Konfigurer NAIS
 
