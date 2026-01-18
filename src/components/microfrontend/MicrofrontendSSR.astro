@@ -12,15 +12,12 @@ type Props = {
 
 const { appTitle, appUrl, appAudience } = Astro.props;
 let html = null;
-let _error = null;
 let statusCode: number | null = null;
 
 if (!appUrl || !appAudience || !appTitle) {
   logger.error(
     "Missing some required microfrontend parameters, appTitle, appUrl or appAudience",
   );
-  _error =
-    "Missing some required microfrontend parameters, appTitle, appUrl or appAudience";
 } else {
   try {
     const oboToken = await getOboToken(Astro.locals.token, appAudience);
@@ -42,13 +39,14 @@ if (!appUrl || !appAudience || !appTitle) {
         },
         "Failed to fetch html",
       );
-      _error = `Failed to fetch html content from ${response.url} with status: ${response.status} ${response.statusText}`;
+      logger.error(
+        `Failed to fetch html content from ${response.url} with status: ${response.status} ${response.statusText}`,
+      );
     } else {
       html = await response.text();
     }
   } catch (e) {
-    logger.error(`Fetch from ${appUrl} failed: ${e}`);
-    _error = "An error occurred while loading the html content.";
+    logger.error(`Fetch from: ${appUrl}, failed: ${e}`);
   }
 }
 ---
