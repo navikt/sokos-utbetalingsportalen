@@ -1,5 +1,5 @@
 import { api } from "@opentelemetry/sdk-node";
-import { extractAudienceService } from "@utils/audience";
+import { extractServiceNameFromAudience } from "@utils/audience";
 import { logger } from "@utils/logger/index";
 import { getOboToken } from "@utils/server/token";
 import type { APIContext, APIRoute } from "astro";
@@ -24,7 +24,9 @@ function getProxyUrl(request: Request, proxyConfig: ProxyConfig): URL {
 export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 	return async (context: APIContext) => {
 		const tracer = api.trace.getTracer("Reverse-Proxy");
-		const audienceService = extractAudienceService(proxyConfig.audience);
+		const audienceService = extractServiceNameFromAudience(
+			proxyConfig.audience,
+		);
 
 		return tracer.startActiveSpan(
 			`Reverse-Proxy[${audienceService}]`,
