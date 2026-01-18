@@ -1,10 +1,21 @@
 ---
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import Environmentbanner from "@components/environmentbanner/environmentbanner.astro";
 import Header from "@components/header/header.astro";
 import Observability from "@components/observability/Observability";
 import SideBar from "@components/sidebar/sidebar.astro";
-import { akselVersion } from "./aksel-util";
 import styles from "./Layout.module.css";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const packageJson = JSON.parse(
+  readFileSync(join(__dirname, "../../package.json"), "utf-8"),
+);
+
+// Vi henter versjonen av @navikt/ds-react fra package.json slik at vi bruker samme versjon i CDN-lenken i Layout.astro
+// Slik unngår vi manual oppdatering av versjonen i CDN-lenken hver gang dependabot oppdaterer pakken.
+const akselVersion = packageJson.dependencies["@navikt/ds-react"];
 
 export type LayoutProps = {
   title: string;
