@@ -1,5 +1,5 @@
 import { requestOboToken } from "@navikt/oasis";
-import { extractAudienceService } from "@utils/audience";
+import { extractServiceNameFromAudience } from "@utils/audience";
 import { logger } from "@utils/logger/index";
 
 export const getOboToken = async (
@@ -8,7 +8,7 @@ export const getOboToken = async (
 ): Promise<string> => {
 	const oboResult = await requestOboToken(token, audience);
 
-	const audienceService = extractAudienceService(audience);
+	const audienceService = extractServiceNameFromAudience(audience);
 
 	if (!oboResult.ok) {
 		logger.error(
