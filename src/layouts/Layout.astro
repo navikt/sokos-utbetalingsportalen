@@ -3,6 +3,7 @@ import Environmentbanner from "@components/environmentbanner/environmentbanner.a
 import Header from "@components/header/header.astro";
 import Observability from "@components/observability/Observability";
 import SideBar from "@components/sidebar/sidebar.astro";
+import { akselVersion } from "./aksel-util";
 import styles from "./Layout.module.css";
 
 export type LayoutProps = {
@@ -32,12 +33,12 @@ const enableObservability =
     <title>{pageTitle}</title>
     <link
       rel="preload"
-      href="https://cdn.nav.no/aksel/@navikt/ds-css/7.36.0/index.min.css"
+      href={`https://cdn.nav.no/aksel/@navikt/ds-css/${akselVersion}/index.min.css`}
       as="style"
     />
     <link
       rel="stylesheet"
-      href="https://cdn.nav.no/aksel/@navikt/ds-css/7.36.0/index.min.css"
+      href={`https://cdn.nav.no/aksel/@navikt/ds-css/${akselVersion}/index.min.css`}
     />
     <script is:inline type="importmap">
       {
