@@ -98,9 +98,10 @@ export default function SideBar({ adGroups }: SideBarProps) {
 			>
 				{showButton && (
 					<Button
+						data-color="neutral"
 						className={styles.sidebar__buttonColor}
 						onClick={handleToggle}
-						variant="primary-neutral"
+						variant="primary"
 						icon={<MenuHamburgerIcon title="Hamburgermeny ikon" />}
 					/>
 				)}
@@ -112,16 +113,16 @@ export default function SideBar({ adGroups }: SideBarProps) {
 		<nav className={styles.sidebar} ref={sidebarRef}>
 			<div className={styles.sidebar__closeButton}>
 				<Button
+					data-color="neutral"
 					className={styles.sidebar__buttonColor}
 					onClick={handleToggle}
 					icon={<XMarkIcon title="Kryss ikon" />}
 					iconPosition="right"
-					variant="primary-neutral"
+					variant="primary"
 				>
 					Lukk
 				</Button>
 			</div>
-
 			<ul className={styles.sidebar__list}>
 				<li className={styles.sidebar__links}>
 					{renderSideBarLink({

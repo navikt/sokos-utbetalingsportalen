@@ -6,7 +6,7 @@
 	height: 100vh;
 	width: 17.5rem;
 	overflow-y: auto;
-	background-color: var(--a-surface-inverted);
+	background-color: var(--ax-text-neutral);
 	transition: width 0.4s ease-in-out;
 	padding-top: 3rem;
 	scrollbar-gutter: stable;
@@ -30,7 +30,7 @@
 .sidebar__closeButton {
 	display: flex;
 	justify-content: flex-end;
-	background-color: var(--a-surface-inverted);
+	background-color: var(--ax-text-neutral);
 	padding-block: 0.5rem;
 	padding-right: 0.5rem;
 }
@@ -56,7 +56,7 @@
 	white-space: nowrap;
 	border-radius: 0.25rem;
 	padding: 0.5rem 2rem;
-	color: var(--a-surface-default);
+	color: var(--ax-bg-default);
 	text-decoration: underline;
 }
 
@@ -66,7 +66,7 @@
 
 .sidebar__link--active {
 	pointer-events: none;
-	background-color: var(--a-purple-400);
+	background-color: var(--ax-bg-meta-purple-strong);
 	text-decoration: none;
 	transition: all 100ms;
 }

@@ -11,10 +11,10 @@ import styles from "../../common-styles.module.css";
 
 export function ClientError() {
 	return (
-		<Box paddingBlock="20 8">
+		<Box paddingBlock="space-80 space-32">
 			<div className={styles["error-page"]}>
-				<VStack gap="16">
-					<VStack gap="12" align="start">
+				<VStack gap="space-64">
+					<VStack gap="space-48" align="start">
 						<div>
 							<Heading level="1" size="large" spacing>
 								Beklager, noe gikk galt.
@@ -23,21 +23,23 @@ export function ClientError() {
 								En teknisk feil gjør at siden er utilgjengelig.
 							</BodyShort>
 							<BodyShort>Du kan prøve å</BodyShort>
-							<List>
-								<List.Item>
-									vente noen minutter og{" "}
-									<Link href="#" onClick={() => location.reload()}>
-										laste siden på nytt
-									</Link>
-								</List.Item>
-								<List.Item>
-									{window.history.length > 1 && (
-										<Link href="#" onClick={() => history.back()}>
-											gå tilbake til forrige side
+							<Box marginBlock="space-16" asChild>
+								<List data-aksel-migrated-v8>
+									<List.Item>
+										vente noen minutter og{" "}
+										<Link href="#" onClick={() => location.reload()}>
+											laste siden på nytt
 										</Link>
-									)}
-								</List.Item>
-							</List>
+									</List.Item>
+									<List.Item>
+										{window.history.length > 1 && (
+											<Link href="#" onClick={() => history.back()}>
+												gå tilbake til forrige side
+											</Link>
+										)}
+									</List.Item>
+								</List>
+							</Box>
 							<Button as="a" href="/">
 								Gå til hovedsiden
 							</Button>
