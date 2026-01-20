@@ -36,9 +36,9 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.11",
-		"@hono/node-server": "1.19.8",
+		"@hono/node-server": "1.19.9",
 		"@navikt/aksel-stylelint": "^7.38.0",
-		"@types/node": "25.0.6",
+		"@types/node": "25.0.8",
 		"@types/react": "19.2.7",
 		"@types/react-dom": "19.2.3",
 		"concurrently": "^9.2.1",
