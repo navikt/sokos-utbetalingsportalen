@@ -6,7 +6,7 @@
 	height: 100vh;
 	width: 17.5rem;
 	overflow-y: auto;
-	background-color: var(--ax-text-neutral);
+	background-color: var(--ax-bg-raised);
 	transition: width 0.4s ease-in-out;
 	padding-top: 3rem;
 	scrollbar-gutter: stable;
@@ -30,7 +30,7 @@
 .sidebar__closeButton {
 	display: flex;
 	justify-content: flex-end;
-	background-color: var(--ax-text-neutral);
+	background-color: #0E151F;
 	padding-block: 0.5rem;
 	padding-right: 0.5rem;
 }
@@ -43,12 +43,12 @@
 
 .sidebar__buttonColor {
 	/* biome-ignore lint/complexity/noImportantStyles: <use-important-styles> */
-	background-color: var(--a-surface-inverted) !important;
+	background-color: #0E151F !important;
 }
 
 .sidebar__buttonColor:hover {
 	/* biome-ignore lint/complexity/noImportantStyles: <use-important-styles> */
-	background-color: var(--a-surface-inverted-hover) !important;
+	background-color: #242B37 !important;
 }
 
 .sidebar__link {

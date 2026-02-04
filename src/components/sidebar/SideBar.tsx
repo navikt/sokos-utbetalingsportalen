@@ -93,13 +93,12 @@ export default function SideBar({ adGroups }: SideBarProps) {
 	if (!isOpen) {
 		return (
 			<nav
-				className={`${styles["sidebar--closed"]} ${styles.sidebar}`}
+				className={`dark ${styles["sidebar--closed"]} ${styles.sidebar}`}
 				onTransitionEnd={handleTransitionEnd}
 			>
 				{showButton && (
 					<Button
 						data-color="neutral"
-						className={styles.sidebar__buttonColor}
 						onClick={handleToggle}
 						variant="primary"
 						icon={<MenuHamburgerIcon title="Hamburgermeny ikon" />}
@@ -110,11 +109,10 @@ export default function SideBar({ adGroups }: SideBarProps) {
 	}
 
 	return (
-		<nav className={styles.sidebar} ref={sidebarRef}>
+		<nav className={`dark ${styles.sidebar}`} ref={sidebarRef}>
 			<div className={styles.sidebar__closeButton}>
 				<Button
 					data-color="neutral"
-					className={styles.sidebar__buttonColor}
 					onClick={handleToggle}
 					icon={<XMarkIcon title="Kryss ikon" />}
 					iconPosition="right"
