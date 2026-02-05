@@ -7,7 +7,7 @@ Denne guiden viser hvordan du integrerer en server-side rendered Astro mikrofron
 - En Astro-applikasjon som kan deployes som mikrofrontend
 - Tilgang til NAIS-konfigurasjonsfilene
 - AD-grupper for dev og prod
-- React-versjon i mikrofrontenden må være lik React-versjon i Utbetalingsportalen
+- React-versjon i mikrofrontend må være samme major versjon som React i Utbetalingsportalen
 
 ## Steg 1: Konfigurer NAIS
 
