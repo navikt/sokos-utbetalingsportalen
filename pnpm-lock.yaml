@@ -18,8 +18,8 @@ importers:
         specifier: ^4.4.2
         version: 4.4.2(@types/node@25.1.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tsx@4.21.0)(yaml@2.8.2)
       '@grafana/faro-web-sdk':
-        specifier: ^2.2.1
-        version: 2.2.1
+        specifier: ^2.2.2
+        version: 2.2.2
       '@navikt/aksel-icons':
         specifier: 7.39.1
         version: 7.39.1
@@ -908,8 +908,8 @@ packages:
   '@grafana/faro-core@2.2.2':
     resolution: {integrity: sha512-H6j9lSWvbYSDD2bHH3F6z5IOnHgK6qA4Scy36i0dGbB0pptU0SbOClq6HAOGqK1yIcZ73XesJH6hEeGjfrckEg==}
 
-  '@grafana/faro-web-sdk@2.2.1':
-    resolution: {integrity: sha512-BwzPyH/2VLkPTmmEcMVyVXtCk4yMN6Baw0oEQycEglxiB3dxLusgvqH2ukgXDrECGj1oBS+wPjJ++Qpf7ykuFg==}
+  '@grafana/faro-web-sdk@2.2.2':
+    resolution: {integrity: sha512-WFkC23pXbBYUbyfAB2QHXob/HJnX/dfBQyAjVsEpnDpY3COrH41Ry1WSbH8WKsc+7YSFOYi4sYdmAOkRs9h7ZA==}
 
   '@grpc/grpc-js@1.14.3':
     resolution: {integrity: sha512-Iq8QQQ/7X3Sac15oB6p0FmUg/klxQvXLeileoqrTRGJYLV+/9tubbr9ipz0GKHjmXVsgFPo/+W+2cA8eNcR+XA==}
@@ -4559,7 +4559,7 @@ snapshots:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/otlp-transformer': 0.211.0(@opentelemetry/api@1.9.0)
 
-  '@grafana/faro-web-sdk@2.2.1':
+  '@grafana/faro-web-sdk@2.2.2':
     dependencies:
       '@grafana/faro-core': 2.2.2
       ua-parser-js: 1.0.41
