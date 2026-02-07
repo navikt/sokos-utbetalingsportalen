@@ -10,10 +10,10 @@ on:
       - "CODEOWNERS"
       - ".gitignore"
       - ".github/workflows/build-pr.yaml"
-      - ".github/workflows/chainguard-digestabot.yaml"
       - ".github/workflows/codeql-trivy-scan.yaml"
+      - '.github/workflows/digestabot-automerge.yaml'
+      - '.github/workflows/digestabot-update.yaml'
       - ".github/workflows/manual-deploy.yaml"
-      - ".github/workflows/playwright.yaml"
       - ".github/dependabot.yaml"
 
 env:

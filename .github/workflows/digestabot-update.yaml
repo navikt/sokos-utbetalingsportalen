@@ -1,4 +1,4 @@
-name: Chainguard Digest Check
+name: Digestabot Update
 
 on:
   schedule:
@@ -6,9 +6,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  check-chainguard-digests:
+  digestabot-update:
     permissions:
       contents: write
       pull-requests: write
       id-token: write
-    uses: navikt/mob-gha-workflows/.github/workflows/chainguard-digestabot.yaml@main
+    name: Digestabot Update
+    uses: navikt/mob-gha-workflows/.github/workflows/digestabot-update.yaml@main
