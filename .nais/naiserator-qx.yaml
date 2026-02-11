@@ -78,5 +78,5 @@ spec:
       value: https://sokos-spk-mottak-qx.dev-fss-pub.nais.io
     - name: SOKOS_SPK_MOTTAK_API_AUDIENCE
       value: api://dev-fss.okonomi.sokos-spk-mottak-qx/.default
-    - name: SOKOS_SPK_MOTTAK_PROXY
+    - name: SOKOS_SPK_MOTTAK_API_PROXY
       value: "/spk-mottak-api"
