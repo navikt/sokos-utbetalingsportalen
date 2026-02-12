@@ -62,6 +62,7 @@ spec:
         - application: sokos-astro-template
         - application: sokos-up-skattekort-ssr
         - application: sokos-up-oppgjorsrapporter
+          namespace: oppgjorsrapporter
         - application: sokos-skattekort
         - application: logging
           namespace: nais-system
@@ -182,6 +183,6 @@ spec:
 
     # sokos-up-oppgjorsrapporter (Frontend)
     - name: SOKOS_UP_OPPGJORSRAPPORTER_URL
-      value: http://sokos-up-oppgjorsrapporter
+      value: http://sokos-up-oppgjorsrapporter.oppgjorsrapporter
     - name: SOKOS_UP_OPPGJORSRAPPORTER_AUDIENCE
-      value: api://dev-gcp.okonomi.sokos-up-oppgjorsrapporter/.default
+      value: api://dev-gcp.oppgjorsrapporter.sokos-up-oppgjorsrapporter/.default
