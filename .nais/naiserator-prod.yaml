@@ -153,6 +153,6 @@ spec:
 
     # sokos-up-oppgjorsrapporter (Frontend)
     - name: SOKOS_UP_OPPGJORSRAPPORTER_URL
-      value: http://sokos-up-oppgjorsrapporter
+      value: http://sokos-up-oppgjorsrapporter.oppgjorsrapporter
     - name: SOKOS_UP_OPPGJORSRAPPORTER_AUDIENCE
-      value: api://prod-gcp.okonomi.sokos-up-oppgjorsrapporter/.default
+      value: api://prod-gcp.oppgjorsrapporter.sokos-up-oppgjorsrapporter/.default
