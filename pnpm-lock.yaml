@@ -21,11 +21,11 @@ importers:
         specifier: ^2.2.2
         version: 2.2.2
       '@navikt/aksel-icons':
-        specifier: 7.39.1
-        version: 7.39.1
+        specifier: 8.2.2
+        version: 8.2.2
       '@navikt/ds-react':
-        specifier: 7.39.1
-        version: 7.39.1(@types/react@19.2.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: 8.2.2
+        version: 8.2.2(@types/react@19.2.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@navikt/oasis':
         specifier: ^4.1.4
         version: 4.1.4
@@ -67,8 +67,8 @@ importers:
         specifier: 1.19.9
         version: 1.19.9(hono@4.11.7)
       '@navikt/aksel-stylelint':
-        specifier: ^7.39.1
-        version: 7.39.1
+        specifier: ^8.2.2
+        version: 8.2.2
       '@types/node':
         specifier: 25.2.1
         version: 25.2.1
@@ -331,8 +331,8 @@ packages:
     resolution: {integrity: sha512-NmXRccUJMk2AWA5A7e5a//3bCIMyOu2hAtdRYrhPPHjDxINuCwX1w6rnIZ4xjLcp0ayv6h8Pc3X0eJUGiAAXHQ==}
     engines: {node: '>=20.19.0'}
 
-  '@csstools/css-calc@3.1.0':
-    resolution: {integrity: sha512-JWouqB5za07FUA2iXZWq4gPXNGWXjRwlfwEXNr7cSsGr7OKgzhDVwkJjlsrbqSyFmDGSi1Rt7zs8ln87jX9yRg==}
+  '@csstools/css-calc@3.1.1':
+    resolution: {integrity: sha512-HJ26Z/vmsZQqs/o3a6bgKslXGFAungXGbinULZO3eMsOyNJHeBBZfup5FiZInOghgoM4Hwnmw+OgbJCNg1wwUQ==}
     engines: {node: '>=20.19.0'}
     peerDependencies:
       '@csstools/css-parser-algorithms': ^4.0.0
@@ -884,14 +884,14 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@floating-ui/core@1.7.3':
-    resolution: {integrity: sha512-sGnvb5dmrJaKEZ+LDIpguvdX3bDlEllmv4/ClQ9awcmCZrlx5jQyyMWFM5kBI+EyNOCDDiKk8il0zeuX3Zlg/w==}
+  '@floating-ui/core@1.7.4':
+    resolution: {integrity: sha512-C3HlIdsBxszvm5McXlB8PeOEWfBhcGBTZGkGlWc2U0KFY5IwG5OQEuQ8rq52DZmcHDlPLd+YFBK+cZcytwIFWg==}
 
-  '@floating-ui/dom@1.7.4':
-    resolution: {integrity: sha512-OOchDgh4F2CchOX94cRVqhvy7b3AFb+/rQXyswmzmGakRfkMgoWVjfnLWkRirfLEfuD4ysVW16eXzwt3jHIzKA==}
+  '@floating-ui/dom@1.7.5':
+    resolution: {integrity: sha512-N0bD2kIPInNHUHehXhMke1rBGs1dwqvC9O9KYMyyjK7iXt7GAhnro7UlcuYcGdS/yYOlq0MAVgrow8IbWJwyqg==}
 
-  '@floating-ui/react-dom@2.1.6':
-    resolution: {integrity: sha512-4JX6rEatQEvlmgU80wZyq9RT96HZJa88q8hp0pBd+LrczeDI4o6uA2M+uvxngVHo4Ihr8uibXxH6+70zhAFrVw==}
+  '@floating-ui/react-dom@2.1.7':
+    resolution: {integrity: sha512-0tLRojf/1Go2JgEVm+3Frg9A3IW8bJgKgdO0BN5RkF//ufuz2joZM63Npau2ff3J6lUVYgDSNzNkR+aH3IVfjg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -1091,21 +1091,21 @@ packages:
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
 
-  '@navikt/aksel-icons@7.39.1':
-    resolution: {integrity: sha512-cMu+gBb1/vJ+YbnYtFZAGeJTvPcy4pBa2OLHGcaU9PsoZJett7CmYsWVt7zodo6BD8h8Ne2ZkokFSP+aHCBoLA==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/7.39.1/07c4f141221b98e918a1b033cfd6448042ec619c}
+  '@navikt/aksel-icons@8.2.2':
+    resolution: {integrity: sha512-eTvToTv7V3iR6b9H4bnGa23ONZNY2aOUuLCtjYE/+BjPph/ULrel12k6/H2I3ShcUu9liYAzTUn6q/oeqhKRtw==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.2.2/1faa9eded50736d7c382132852b540eebd2b8dcf}
 
-  '@navikt/aksel-stylelint@7.39.1':
-    resolution: {integrity: sha512-tQd4izqJyFq+cQMYEn6PwsDoWZtzJpSck/dZzW272lIttUgc27UJMRWZ2i99q8qZZkq3ui5KOGEmxc0sOjKpyg==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-stylelint/7.39.1/996dec7e9ee990625c654a851623d76713bb66e0}
+  '@navikt/aksel-stylelint@8.2.2':
+    resolution: {integrity: sha512-nq8Yd1CZQXDXfizsWBt3iw19HlNV4tUXfzT4htKTcZV94xt7JPgDGApKgzXNuCmy26CIWunliwzX9Kp1mUU1Sg==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-stylelint/8.2.2/c98aee133f09593c89e29fd717db5b9b570390f4}
 
-  '@navikt/ds-react@7.39.1':
-    resolution: {integrity: sha512-SQKhmXwMrkd1DGVs9h2kb6d7dpY6p4PQHebUYI7bhY5zxEAG42t+HYcHGTUzT2d4YqiV31SDCmioSMkrh07GAw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/7.39.1/6e1c8a690a2a5530f95e3ff206c0fcba6ef58ceb}
+  '@navikt/ds-react@8.2.2':
+    resolution: {integrity: sha512-jnuXTt1oKFgBx6QxuDN8FyyY3iiQkjKX7qIisspI37erUrbUYJ66aqQjOsMQ41QlpZ4yeEzzknB7fv3SuMCq3Q==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/8.2.2/03f71885f10b43720f46d3cc848259de69bf769d}
     peerDependencies:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
 
-  '@navikt/ds-tokens@7.40.0':
-    resolution: {integrity: sha512-zBaBKLS5R2OZyXI4UUPOmiB15L/u/aJPHiyoccJDtmqrv5wRkc1oM6UCjzKK0D4gLZHBoxp7YBT0sR9Mp4DXFQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/7.40.0/36f981e12d4d90f18155615b7666b737039a3ff0}
+  '@navikt/ds-tokens@8.4.0':
+    resolution: {integrity: sha512-IdPkBnnPEQDwFjWOzCMi7qid2vitj7SQMB2PxTYYk7v44x3VoVS40heNh25ViAEM7Vdr7pASNKn16OlDJHj+xA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.4.0/0302d75f67ae4a99629f10ea305d1d66c3c783f9}
 
   '@navikt/oasis@4.1.4':
     resolution: {integrity: sha512-v+LW8V5CTiHkfIXhceQ8RXRtrBktCK8wSFYmiR6hmzl9CJRYRLUpFC7YbLiC7jwHIuLHKUyl+Zawf8zQm6fDeQ==, tarball: https://npm.pkg.github.com/download/@navikt/oasis/4.1.4/0d9c93820b9b6d93b1bd9da134feb95461ad8a47}
@@ -3919,7 +3919,7 @@ snapshots:
 
   '@asamuzakjp/css-color@4.1.2':
     dependencies:
-      '@csstools/css-calc': 3.1.0(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
+      '@csstools/css-calc': 3.1.1(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
       '@csstools/css-color-parser': 4.0.1(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
       '@csstools/css-parser-algorithms': 4.0.0(@csstools/css-tokenizer@4.0.0)
       '@csstools/css-tokenizer': 4.0.0
@@ -4225,7 +4225,7 @@ snapshots:
   '@csstools/color-helpers@6.0.1':
     optional: true
 
-  '@csstools/css-calc@3.1.0(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)':
+  '@csstools/css-calc@3.1.1(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)':
     dependencies:
       '@csstools/css-parser-algorithms': 4.0.0(@csstools/css-tokenizer@4.0.0)
       '@csstools/css-tokenizer': 4.0.0
@@ -4234,7 +4234,7 @@ snapshots:
   '@csstools/css-color-parser@4.0.1(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)':
     dependencies:
       '@csstools/color-helpers': 6.0.1
-      '@csstools/css-calc': 3.1.0(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
+      '@csstools/css-calc': 3.1.1(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
       '@csstools/css-parser-algorithms': 4.0.0(@csstools/css-tokenizer@4.0.0)
       '@csstools/css-tokenizer': 4.0.0
     optional: true
@@ -4533,24 +4533,24 @@ snapshots:
   '@esbuild/win32-x64@0.27.3':
     optional: true
 
-  '@floating-ui/core@1.7.3':
+  '@floating-ui/core@1.7.4':
     dependencies:
       '@floating-ui/utils': 0.2.10
 
-  '@floating-ui/dom@1.7.4':
+  '@floating-ui/dom@1.7.5':
     dependencies:
-      '@floating-ui/core': 1.7.3
+      '@floating-ui/core': 1.7.4
       '@floating-ui/utils': 0.2.10
 
-  '@floating-ui/react-dom@2.1.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+  '@floating-ui/react-dom@2.1.7(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
-      '@floating-ui/dom': 1.7.4
+      '@floating-ui/dom': 1.7.5
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
 
   '@floating-ui/react@0.27.8(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
-      '@floating-ui/react-dom': 2.1.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@floating-ui/react-dom': 2.1.7(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@floating-ui/utils': 0.2.10
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
@@ -4711,24 +4711,23 @@ snapshots:
 
   '@keyv/serialize@1.1.1': {}
 
-  '@navikt/aksel-icons@7.39.1': {}
+  '@navikt/aksel-icons@8.2.2': {}
 
-  '@navikt/aksel-stylelint@7.39.1': {}
+  '@navikt/aksel-stylelint@8.2.2': {}
 
-  '@navikt/ds-react@7.39.1(@types/react@19.2.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+  '@navikt/ds-react@8.2.2(@types/react@19.2.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       '@floating-ui/react': 0.27.8(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-      '@floating-ui/react-dom': 2.1.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-      '@navikt/aksel-icons': 7.39.1
-      '@navikt/ds-tokens': 7.40.0
+      '@floating-ui/react-dom': 2.1.7(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@navikt/aksel-icons': 8.2.2
+      '@navikt/ds-tokens': 8.4.0
       '@types/react': 19.2.7
-      clsx: 2.1.1
       date-fns: 4.1.0
       react: 19.2.0
       react-day-picker: 9.7.0(react@19.2.0)
       react-dom: 19.2.0(react@19.2.0)
 
-  '@navikt/ds-tokens@7.40.0': {}
+  '@navikt/ds-tokens@8.4.0': {}
 
   '@navikt/oasis@4.1.4':
     dependencies:
