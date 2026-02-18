@@ -46,6 +46,7 @@ spec:
           - id: "4a485519-e9aa-483a-a509-0d56816902ff" # 0000-CA-SOKOS-MF-Astro-Template
           - id: "62e34335-63b3-420a-8978-62d48d218c19" # 0000-CA-SOKOS-MF-Skattekort-ssr
           - id: "9c5b24f2-5e01-4966-adaf-bc9fb6410a32" # 0000-CA-SOKOS-MF-OPPGJORSRAPPORTER
+          - id: "c1c0f5d7-cdaa-4011-b4f6-b3815a7432e5" # 0000-CA-SOKOS-MF-YTELSESRAPPORTERING-PERSON-ADMIN
         extra:
           - NAVident
     sidecar:
@@ -64,6 +65,8 @@ spec:
         - application: sokos-up-oppgjorsrapporter
           namespace: oppgjorsrapporter
         - application: sokos-skattekort
+        - application: sokos-up-ray-ray-admin
+          namespace: ytelsesrapportering
         - application: logging
           namespace: nais-system
       external:
@@ -186,3 +189,9 @@ spec:
       value: http://sokos-up-oppgjorsrapporter.oppgjorsrapporter
     - name: SOKOS_UP_OPPGJORSRAPPORTER_AUDIENCE
       value: api://dev-gcp.oppgjorsrapporter.sokos-up-oppgjorsrapporter/.default
+
+    # sokos-up-ray-ray-admin (Frontend)
+    - name: SOKOS_UP_RAYRAY_ADMIN_URL
+      value: http://sokos-up-ray-ray-admin.ytelsesrapportering
+    - name: SOKOS_UP_RAYRAY_ADMIN_AUDIENCE
+      value: api://dev-gcp.ytelsesrapportering.sokos-up-ray-ray-admin/.default

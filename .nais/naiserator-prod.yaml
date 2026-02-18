@@ -156,3 +156,9 @@ spec:
       value: http://sokos-up-oppgjorsrapporter.oppgjorsrapporter
     - name: SOKOS_UP_OPPGJORSRAPPORTER_AUDIENCE
       value: api://prod-gcp.oppgjorsrapporter.sokos-up-oppgjorsrapporter/.default
+
+    # sokos-up-ray-ray-admin (Frontend)
+    - name: SOKOS_UP_RAYRAY_ADMIN_URL
+      value: http://sokos-up-ray-ray-admin.ytelsesrapportering
+    - name: SOKOS_UP_RAYRAY_ADMIN_AUDIENCE
+      value: api://prod-gcp.ytelsesrapportering.sokos-up-ray-ray-admin/.default

@@ -148,6 +148,15 @@ export const apps: App[] = [
 		route: "/oppgjorsrapporter",
 		naisAppName: "sokos-up-oppgjorsrapporter",
 	},
+	{
+		app: "RAY-RAY-ADMIN",
+		title: "Ray-ray administrasjon",
+		description: "Administrasjonsflate for Ray-Ray",
+		adGroupDevelopment: "c1c0f5d7-cdaa-4011-b4f6-b3815a7432e5",
+		adGroupProduction: PLACEHOLDER_AD_GROUP,
+		route: "/ray-ray-admin",
+		naisAppName: "sokos-up-ray-ray-admin",
+	},
 ];
 
 /**
