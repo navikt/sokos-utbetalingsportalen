@@ -10,6 +10,8 @@ updates:
     registries: "*"
     schedule:
       interval: "daily"
+      time: "08:00"
+      timezone: "Europe/Oslo"
     open-pull-requests-limit: 20
     cooldown:
       default-days: 7

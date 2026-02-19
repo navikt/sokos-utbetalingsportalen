@@ -5,6 +5,9 @@ on:
   schedule:
     - cron: "0 7 * * 1"
 
+env:
+  TZ: Europe/Oslo
+
 jobs:
   digestabot-automerge:
     permissions:
