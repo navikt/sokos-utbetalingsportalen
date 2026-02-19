@@ -42,6 +42,7 @@ spec:
           - id: "ad41e055-af0c-4a26-a31c-c51d6ea236cd" # 0000-CA-SOKOS-MF-Meldingsflyt-READ
           - id: "b37d0866-fae3-43c7-abd4-91cf485852c5" # 0000-CA-SOKOS-MF-Attestasjon
           - id: "f3d2cfe1-f437-412f-9165-075cb3d27a58" # 0000-CA-SOKOS-MF-Oppdragsinfo
+          - id: "bd7e171d-c029-4062-bbc1-a340f377d0f9" # 0000-CA-SOKOS-MF-Fastedata-Nasjonalt-READ
         extra:
           - NAVident
     sidecar:
