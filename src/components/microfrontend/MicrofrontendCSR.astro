@@ -16,6 +16,7 @@ const appConfig = getAppConfig(Astro.props.appName);
 const appAccess = hasAccessToApp(Astro.locals.userData.groups, appConfig);
 
 export function fetchBundle(appHostname: string, appName: string) {
+  console.log("Printer ut clustername:", process.env.NAIS_CLUSTER_NAME);
   const env = getServerSideEnvironment();
   console.log("Server-side environment:", env);
 
