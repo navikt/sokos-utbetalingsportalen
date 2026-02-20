@@ -44,7 +44,7 @@ export const apps: App[] = [
 		app: "FASTEDATA",
 		title: "Faste data",
 		description: "Oppslag og oversikt over gjeldende oppsettsregler",
-		adGroupDevelopment: "7e0c2ad1-d0e7-4fa8-8169-7a9d68435644",
+		adGroupDevelopment: "f4bcf57f-4f44-49b6-bffa-0b249fd35591",
 		adGroupProduction: "bd7e171d-c029-4062-bbc1-a340f377d0f9",
 		route: "/fastedata",
 		naisAppName: "sokos-up-fastedata",
