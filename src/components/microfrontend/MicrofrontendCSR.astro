@@ -11,6 +11,7 @@ type Props = {
 };
 
 const appHostname = Astro.url.hostname;
+console.log("App hostname:", appHostname);
 const appConfig = getAppConfig(Astro.props.appName);
 const appAccess = hasAccessToApp(Astro.locals.userData.groups, appConfig);
 
