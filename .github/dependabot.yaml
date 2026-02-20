@@ -10,6 +10,8 @@ updates:
     registries: "*"
     schedule:
       interval: "daily"
+      time: "08:00"
+      timezone: "Europe/Oslo"
     open-pull-requests-limit: 20
     cooldown:
       default-days: 7
@@ -22,6 +24,9 @@ updates:
         patterns:
           - "react"
           - "react-dom"
+      astro:
+        patterns:
+          - "astro"
       minor-and-patch:
         update-types:
           - "patch"
@@ -31,3 +36,4 @@ updates:
           - "react-dom"
           - "@navikt/aksel-*"
           - "@navikt/ds-*"
+          - "astro"
