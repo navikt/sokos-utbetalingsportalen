@@ -67,7 +67,7 @@ spec:
 
     # sokos-oppdrag (Backend)
     - name: SOKOS_OPPDRAG_API
-      value: https://sokos-oppdrag-qx.dev-fss-pub.nais.io
+      value: http://sokos-oppdrag-qx.dev-fss-pub.nais.io
     - name: SOKOS_OPPDRAG_API_AUDIENCE
       value: api://dev-fss.okonomi.sokos-oppdrag-qx/.default
     - name: SOKOS_OPPDRAG_API_PROXY
@@ -75,7 +75,7 @@ spec:
 
     # sokos-spk-mottak (Backend)
     - name: SOKOS_SPK_MOTTAK_API
-      value: https://sokos-spk-mottak-qx.dev-fss-pub.nais.io
+      value: http://sokos-spk-mottak-qx.dev-fss-pub.nais.io
     - name: SOKOS_SPK_MOTTAK_API_AUDIENCE
       value: api://dev-fss.okonomi.sokos-spk-mottak-qx/.default
     - name: SOKOS_SPK_MOTTAK_API_PROXY
