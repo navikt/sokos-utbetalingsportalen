@@ -23,6 +23,22 @@ export default defineConfig({
 		},
 	],
 	output: "server",
+	security: {
+		allowedDomains: [
+			{
+				hostname: "utbetalingsportalen.dev.nav.no",
+				protocol: "https",
+			},
+			{
+				hostname: "utbetalingsportalen.intern.dev.nav.no",
+				protocol: "https",
+			},
+			{
+				hostname: "utbetalingsportalen-qx.intern.dev.nav.no",
+				protocol: "https",
+			},
+		],
+	},
 	adapter: node({
 		mode: "standalone",
 	}),
