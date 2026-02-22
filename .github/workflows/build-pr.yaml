@@ -13,6 +13,10 @@ on:
       - '.github/workflows/digestabot-update.yaml'
       - ".github/workflows/manual-deploy.yaml"
       - ".github/dependabot.yaml"
+      - ".nais/**"
+
+env:
+  TZ: Europe/Oslo
 
 jobs:
   build-test-pr:
