@@ -106,7 +106,7 @@ spec:
 
     # sokos-ur-iso (Backend)
     - name: SOKOS_UR_ISO_API
-      value: https://sokos-ur-iso.prod-fss-pub.nais.io
+      value: http://sokos-ur-iso.prod-fss-pub.nais.io
     - name: SOKOS_UR_ISO_API_AUDIENCE
       value: api://prod-fss.okonomi.sokos-ur-iso/.default
     - name: SOKOS_UR_ISO_API_PROXY
@@ -114,7 +114,7 @@ spec:
 
     # sokos-spk-mottak (Backend)
     - name: SOKOS_SPK_MOTTAK_API
-      value: https://sokos-spk-mottak.prod-fss-pub.nais.io
+      value: http://sokos-spk-mottak.prod-fss-pub.nais.io
     - name: SOKOS_SPK_MOTTAK_API_AUDIENCE
       value: api://prod-fss.okonomi.sokos-spk-mottak/.default
     - name: SOKOS_SPK_MOTTAK_API_PROXY
@@ -122,7 +122,7 @@ spec:
 
     # sokos-oppdrag (Backend)
     - name: SOKOS_OPPDRAG_API
-      value: https://sokos-oppdrag.prod-fss-pub.nais.io
+      value: http://sokos-oppdrag.prod-fss-pub.nais.io
     - name: SOKOS_OPPDRAG_API_AUDIENCE
       value: api://prod-fss.okonomi.sokos-oppdrag/.default
     - name: SOKOS_OPPDRAG_API_PROXY
@@ -130,7 +130,7 @@ spec:
 
     # up-meldingsflyt-api (Backend)
     - name: SOKOS_MELDINGSFLYT_API
-      value: https://sokos-betsys.prod-fss-pub.nais.io
+      value: http://sokos-betsys.prod-fss-pub.nais.io
     - name: SOKOS_MELDINGSFLYT_API_AUDIENCE
       value: api://prod-fss.okonomi.sokos-betsys/.default
     - name: SOKOS_MELDINGSFLYT_API_PROXY
@@ -138,7 +138,7 @@ spec:
 
     # sokos-utbetaling-api (Backend)
     - name: SOKOS_UTBETALING_API
-      value: https://sokos-utbetaling-api.prod-fss-pub.nais.io
+      value: http://sokos-utbetaling-api.prod-fss-pub.nais.io
     - name: SOKOS_UTBETALING_API_AUDIENCE
       value: api://prod-fss.okonomi.sokos-utbetaling-api/.default
     - name: SOKOS_UTBETALING_API_PROXY

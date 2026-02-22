@@ -11,13 +11,21 @@ type Props = {
 };
 
 const appHostname = Astro.url.hostname;
+console.log("Astro url:", Astro.url);
+console.log("App hostname:", appHostname);
 const appConfig = getAppConfig(Astro.props.appName);
 const appAccess = hasAccessToApp(Astro.locals.userData.groups, appConfig);
 
 export function fetchBundle(appHostname: string, appName: string) {
+  console.log("Printer ut clustername:", process.env.NAIS_CLUSTER_NAME);
+  const env = getServerSideEnvironment();
+  console.log("Server-side environment:", env);
+
   if (getServerSideEnvironment() === "local") {
+    console.log("Returning local bundle URL for app:", appName);
     return `http://localhost:3000/${appName}/bundle.js`;
   }
+  console.log("Returning production bundle URL for app:", appName);
   return `https://${appHostname}/${appName}/bundle.js`;
 }
 ---
