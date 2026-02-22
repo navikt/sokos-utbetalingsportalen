@@ -30,12 +30,24 @@ export default defineConfig({
 				protocol: "https",
 			},
 			{
+				hostname: "utbetalingsportalen.dev.nav.no",
+				protocol: "http",
+			},
+			{
 				hostname: "utbetalingsportalen.intern.dev.nav.no",
 				protocol: "https",
 			},
 			{
+				hostname: "utbetalingsportalen.intern.dev.nav.no",
+				protocol: "http",
+			},
+			{
 				hostname: "utbetalingsportalen-qx.intern.dev.nav.no",
 				protocol: "https",
+			},
+			{
+				hostname: "utbetalingsportalen-qx.intern.dev.nav.no",
+				protocol: "http",
 			},
 		],
 	},
