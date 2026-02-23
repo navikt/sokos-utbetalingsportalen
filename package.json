@@ -17,7 +17,7 @@
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.6",
-		"@astrojs/node": "^9.5.3",
+		"@astrojs/node": "^9.5.4",
 		"@astrojs/react": "^4.4.2",
 		"@grafana/faro-web-sdk": "^2.2.3",
 		"@navikt/aksel-icons": "7.39.1",
