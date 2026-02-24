@@ -144,7 +144,7 @@ export const apps: App[] = [
 		title: "Oppgjørsrapporter",
 		description: "Oversikt over Oppgjørsrapporter",
 		adGroupDevelopment: "9c5b24f2-5e01-4966-adaf-bc9fb6410a32",
-		adGroupProduction: PLACEHOLDER_AD_GROUP,
+		adGroupProduction: "2abbcfe4-98c8-4b30-8bac-5ea1e0c6d0e1",
 		route: "/oppgjorsrapporter",
 		naisAppName: "sokos-up-oppgjorsrapporter",
 	},
