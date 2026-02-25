@@ -56,6 +56,8 @@ spec:
         - application: sokos-up-ors-api
         - application: sokos-up-kontoregister-api
         - application: sokos-retur-fra-bank-api
+        - application: sokos-up-oppgjorsrapporter
+          namespace: oppgjorsrapporter
         - application: sokos-skattekort
         - application: logging
           namespace: nais-system
