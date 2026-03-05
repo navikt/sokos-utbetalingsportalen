@@ -44,6 +44,7 @@ spec:
           - id: "f4bcf57f-4f44-49b6-bffa-0b249fd35591" # 0000-CA-SOKOS-MF-Fastedata-Nasjonalt-READ
           - id: "2477057d-7f80-4517-a885-20c948bf0367" # 0000-CA-SOKOS-MF-DARE-POC
           - id: "4a485519-e9aa-483a-a509-0d56816902ff" # 0000-CA-SOKOS-MF-Astro-Template
+          - id: "a13b4176-e328-4e1c-b181-ff676a7146b1" # 0000-CA-SOKOS-MF-Skattekort
           - id: "62e34335-63b3-420a-8978-62d48d218c19" # 0000-CA-SOKOS-MF-Skattekort-ssr
           - id: "9c5b24f2-5e01-4966-adaf-bc9fb6410a32" # 0000-CA-SOKOS-MF-OPPGJORSRAPPORTER
           - id: "c1c0f5d7-cdaa-4011-b4f6-b3815a7432e5" # 0000-CA-SOKOS-MF-YTELSESRAPPORTERING-PERSON-ADMIN
