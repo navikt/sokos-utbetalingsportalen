@@ -67,8 +67,8 @@ importers:
         specifier: 2.4.5
         version: 2.4.5
       '@hono/node-server':
-        specifier: 1.19.10
-        version: 1.19.10(hono@4.12.7)
+        specifier: 1.19.11
+        version: 1.19.11(hono@4.12.7)
       '@navikt/aksel-stylelint':
         specifier: ^7.39.1
         version: 7.39.1
@@ -923,8 +923,8 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  '@hono/node-server@1.19.10':
-    resolution: {integrity: sha512-hZ7nOssGqRgyV3FVVQdfi+U4q02uB23bpnYpdvNXkYTRRyWx84b7yf1ans+dnJ/7h41sGL3CeQTfO+ZGxuO+Iw==}
+  '@hono/node-server@1.19.11':
+    resolution: {integrity: sha512-dr8/3zEaB+p0D2n/IUrlPF1HZm586qgJNXK1a9fhg/PzdtkK7Ksd5l312tJX2yBuALqDYBlG20QEbayqPyxn+g==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: ^4
@@ -4502,7 +4502,7 @@ snapshots:
       protobufjs: 7.5.4
       yargs: 17.7.2
 
-  '@hono/node-server@1.19.10(hono@4.12.7)':
+  '@hono/node-server@1.19.11(hono@4.12.7)':
     dependencies:
       hono: 4.12.7
 
