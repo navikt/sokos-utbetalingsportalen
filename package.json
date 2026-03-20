@@ -16,10 +16,10 @@
 		"prepare": "husky"
 	},
 	"dependencies": {
-		"@astrojs/check": "^0.9.6",
+		"@astrojs/check": "^0.9.7",
 		"@astrojs/node": "^9.5.4",
 		"@astrojs/react": "^4.4.2",
-		"@grafana/faro-web-sdk": "^2.2.4",
+		"@grafana/faro-web-sdk": "^2.3.0",
 		"@navikt/aksel-icons": "7.39.1",
 		"@navikt/ds-react": "7.39.1",
 		"@navikt/oasis": "^4.1.4",
@@ -38,7 +38,7 @@
 		"@biomejs/biome": "2.4.6",
 		"@hono/node-server": "1.19.11",
 		"@navikt/aksel-stylelint": "^7.39.1",
-		"@types/node": "25.4.0",
+		"@types/node": "25.5.0",
 		"@types/react": "19.2.7",
 		"@types/react-dom": "19.2.3",
 		"concurrently": "^9.2.1",
@@ -51,7 +51,7 @@
 		"stylelint-config-standard": "^39.0.1",
 		"tsx": "4.21.0",
 		"typescript": "5.9.3",
-		"vitest": "^4.0.18"
+		"vitest": "^4.1.0"
 	},
 	"lint-staged": {
 		"*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": "biome check --write --no-errors-on-unmatched",
