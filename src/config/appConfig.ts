@@ -162,7 +162,7 @@ export const apps: App[] = [
 		title: "Ray-ray administrasjon",
 		description: "Administrasjonsflate for Ray-Ray",
 		adGroupDevelopment: "c1c0f5d7-cdaa-4011-b4f6-b3815a7432e5",
-		adGroupProduction: PLACEHOLDER_AD_GROUP,
+		adGroupProduction: "3d96c8b8-4108-42d6-81ad-e358ce8a3a77",
 		route: "/ray-ray-admin",
 		naisAppName: "sokos-up-ray-ray-admin",
 	},
