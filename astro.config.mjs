@@ -4,7 +4,12 @@ import { defineConfig } from "astro/config";
 
 export default defineConfig({
 	security: {
-		allowedDomains: [{}],
+		allowedDomains: [
+			{ hostname: "**.intern.nav.no", protocol: "https" },
+			{ hostname: "**.ansatt.nav.no", protocol: "https" },
+			{ hostname: "**.intern.dev.nav.no", protocol: "https" },
+			{ hostname: "**.ansatt.dev.nav.no", protocol: "https" },
+		],
 	},
 	integrations: [
 		react(),
