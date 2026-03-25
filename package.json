@@ -16,7 +16,7 @@
 		"prepare": "husky"
 	},
 	"dependencies": {
-		"@astrojs/check": "^0.9.7",
+		"@astrojs/check": "^0.9.8",
 		"@astrojs/node": "^9.5.4",
 		"@astrojs/react": "^5.0.0",
 		"@grafana/faro-web-sdk": "^2.3.0",
@@ -39,7 +39,7 @@
 		"@hono/node-server": "1.19.11",
 		"@navikt/aksel-stylelint": "^7.39.1",
 		"@types/node": "25.5.0",
-		"@types/react": "19.2.7",
+		"@types/react": "19.2.14",
 		"@types/react-dom": "19.2.3",
 		"concurrently": "^9.2.1",
 		"hono": "4.12.8",
