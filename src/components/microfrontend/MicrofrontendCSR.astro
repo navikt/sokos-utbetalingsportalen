@@ -5,20 +5,31 @@ import NoAccess from "@pages/NoAccess.astro";
 import { hasAccessToApp } from "@utils/accessControl";
 import { getServerSideEnvironment } from "@utils/server/environment";
 import Microfrontend from "./Microfrontend";
+import { logger } from "@utils/logger";
 
 type Props = {
   appName: string;
 };
 
 const appHostname = Astro.url.hostname;
-console.log("App hostname:", appHostname);
+logger.info(
+  `Rendering microfrontend for app ${Astro.props.appName} on host ${appHostname}`,
+); // Log the app name and hostname
 const appConfig = getAppConfig(Astro.props.appName);
+logger.info(
+  `App config for ${Astro.props.appName}: ${JSON.stringify(appConfig)}`,
+); // Log the app config
 const appAccess = hasAccessToApp(Astro.locals.userData.groups, appConfig);
 
 export function fetchBundle(appHostname: string, appName: string) {
   if (getServerSideEnvironment() === "local") {
+    const url = `http://localhost:3000/${appName}/bundle.js`;
+    logger.info(`Fetching microfrontend bundle from local URL: ${url}`); // Log the
     return `http://localhost:3000/${appName}/bundle.js`;
   }
+  logger.info(
+    `Fetching microfrontend bundle from production URL: https://${appHostname}/${appName}/bundle.js`,
+  ); // Log the production URL
   return `https://${appHostname}/${appName}/bundle.js`;
 }
 ---
