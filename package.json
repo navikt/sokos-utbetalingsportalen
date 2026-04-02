@@ -23,7 +23,7 @@
 		"@navikt/aksel-icons": "7.40.0",
 		"@navikt/ds-react": "7.40.0",
 		"@navikt/oasis": "^4.1.4",
-		"@opentelemetry/sdk-node": "^0.213.0",
+		"@opentelemetry/sdk-node": "^0.214.0",
 		"astro": "^6.0.8",
 		"pino": "^10.3.1",
 		"pino-socket": "^8.0.0",
@@ -35,7 +35,7 @@
 		"zod": "^4.3.6"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.4.8",
+		"@biomejs/biome": "2.4.9",
 		"@hono/node-server": "1.19.11",
 		"@navikt/aksel-stylelint": "^7.40.0",
 		"@types/node": "25.5.0",
