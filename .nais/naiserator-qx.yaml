@@ -62,7 +62,11 @@ spec:
     # sokos-utbetalingsportalen
     - name: UTBETALINGSPORTALEN_ENVIRONMENT
       value: QX
-    - name: UMAMI_SPORINGSKODE
+    - name: UMAMI_SCRIPT_URL
+      value: "https://cdn.nav.no/team-researchops/sporing/sporing-dev.js"
+    - name: UMAMI_HOST_URL
+      value: "https://reops-event-proxy.ekstern.dev.nav.no"
+    - name: UMAMI_WEBSITE_ID
       value: "e174f8d8-4082-4cb0-8280-b992d0a47901"
 
     # sokos-oppdrag (Backend)

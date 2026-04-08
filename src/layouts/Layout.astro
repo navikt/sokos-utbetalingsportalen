@@ -15,7 +15,9 @@ const pageTitle = title
   ? `${title} | Utbetalingsportalen`
   : "Utbetalingsportalen";
 
-const sporingskode = process.env.UMAMI_SPORINGSKODE;
+const umamiScript = process.env.UMAMI_SCRIPT_URL;
+const umamiUrl = process.env.UMAMI_HOST_URL;
+const umamiKode = process.env.UMAMI_WEBSITE_ID;
 
 const enableObservability =
   process.env.NAIS_CLUSTER_NAME === "dev-gcp" ||
@@ -54,9 +56,9 @@ const enableObservability =
       is:inline
       defer
       data-astro-rerun
-      src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
-      data-host-url="https://umami.nav.no"
-      data-website-id={sporingskode}></script>
+      src={umamiScript}
+      data-host-url={umamiUrl}
+      data-website-id={umamiKode}></script>
   </head>
   <body>
     <Header />
