@@ -16,7 +16,6 @@ const pageTitle = title
   : "Utbetalingsportalen";
 
 const umamiScript = process.env.UMAMI_SCRIPT_URL;
-const umamiUrl = process.env.UMAMI_HOST_URL;
 const umamiKode = process.env.UMAMI_WEBSITE_ID;
 
 const enableObservability =
@@ -57,7 +56,6 @@ const enableObservability =
       defer
       data-astro-rerun
       src={umamiScript}
-      data-host-url={umamiUrl}
       data-website-id={umamiKode}></script>
   </head>
   <body>
