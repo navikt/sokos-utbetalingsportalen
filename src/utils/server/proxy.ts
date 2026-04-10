@@ -33,7 +33,13 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 			async (span) => {
 				try {
 					const audience = proxyConfig.audience;
-					const oboToken = await getOboToken(context.locals.token, audience);
+					const oboToken = await getOboToken(context.locals.token, audience, {
+						navident: context.locals.userData?.NAVident,
+						route: context.request.url,
+						method: context.request.method,
+						proxyFrom: proxyConfig.apiProxy,
+						proxyTo: proxyConfig.apiUrl,
+					});
 					const url = getProxyUrl(context.request, proxyConfig);
 
 					const spanContext = span.spanContext();
@@ -42,6 +48,9 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 						{
 							method: context.request.method,
 							url: context.request.url,
+							clientIp:
+								context.request.headers.get("x-forwarded-for") ??
+								context.clientAddress,
 							proxyFrom: proxyConfig.apiProxy,
 							proxyTo: proxyConfig.apiUrl,
 							trace_id: spanContext.traceId,
