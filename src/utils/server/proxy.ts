@@ -48,6 +48,9 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 						{
 							method: context.request.method,
 							url: context.request.url,
+							clientIp:
+								context.request.headers.get("x-forwarded-for") ??
+								context.clientAddress,
 							proxyFrom: proxyConfig.apiProxy,
 							proxyTo: proxyConfig.apiUrl,
 							trace_id: spanContext.traceId,

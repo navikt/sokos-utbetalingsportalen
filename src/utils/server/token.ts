@@ -23,7 +23,7 @@ export const getOboToken = async (
 			`Error getting obo token for audience ${audienceService}: ${oboResult.error}`,
 		);
 		teamLogger.error(
-			{ ...debugContext, audience, token },
+			{ ...debugContext, audience },
 			`Error getting obo token for audience ${audienceService}: ${oboResult.error}`,
 		);
 		return "";
