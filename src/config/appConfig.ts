@@ -54,7 +54,7 @@ export const apps: App[] = [
 		title: "Skattekort",
 		description: "Søk etter skattekort for personer i Sokos-skattekort",
 		adGroupDevelopment: "573f2934-940e-48ee-a4e5-cf7e28075f70",
-		adGroupProduction: PLACEHOLDER_AD_GROUP, //"adb2804b-c04a-45d4-ac69-e2abda94ce3b" - kommenter inn ved prodsetting
+		adGroupProduction: "adb2804b-c04a-45d4-ac69-e2abda94ce3b",
 		route: "/skattekort",
 		naisAppName: "sokos-up-skattekort",
 	},
