@@ -117,9 +117,9 @@ spec:
 
     # sokos-dare-poc (Backend)
     - name: SOKOS_DARE_POC_API
-      value: https://sokos-dare-poc.dev-fss-pub.nais.io
+      value: https://sokos-dare-poc
     - name: SOKOS_DARE_POC_API_AUDIENCE
-      value: api://dev-fss.okonomi.sokos-dare-poc/.default
+      value: api://dev-gcp.okonomi.sokos-dare-poc/.default
     - name: SOKOS_DARE_POC_API_PROXY
       value: "/dare-poc-api"
 
