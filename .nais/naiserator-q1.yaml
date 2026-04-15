@@ -58,6 +58,7 @@ spec:
   accessPolicy:
     outbound:
       rules:
+        - application: sokos-dare-poc
         - application: sokos-up-ors-api
         - application: sokos-up-kontoregister-api
         - application: sokos-retur-fra-bank-api
@@ -117,9 +118,9 @@ spec:
 
     # sokos-dare-poc (Backend)
     - name: SOKOS_DARE_POC_API
-      value: https://sokos-dare-poc.dev-fss-pub.nais.io
+      value: http://sokos-dare-poc
     - name: SOKOS_DARE_POC_API_AUDIENCE
-      value: api://dev-fss.okonomi.sokos-dare-poc/.default
+      value: api://dev-gcp.okonomi.sokos-dare-poc/.default
     - name: SOKOS_DARE_POC_API_PROXY
       value: "/dare-poc-api"
 
