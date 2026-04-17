@@ -64,7 +64,8 @@
 	},
 	"pnpm": {
 		"overrides": {
-			"vite": ">=7.3.2"
+			"vite": ">=7.3.2",
+			"protobufjs": "8.0.1"
 		}
 	}
 }
