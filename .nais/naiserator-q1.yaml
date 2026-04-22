@@ -45,6 +45,7 @@ spec:
           - id: "2477057d-7f80-4517-a885-20c948bf0367" # 0000-CA-SOKOS-MF-DARE-POC
           - id: "4a485519-e9aa-483a-a509-0d56816902ff" # 0000-CA-SOKOS-MF-Astro-Template
           - id: "573f2934-940e-48ee-a4e5-cf7e28075f70" # 0000-CA-SOKOS-SKATTEKORT-READ
+          - id: "f5dad04c-26ab-4d8e-8c9b-de123ec5090f" # 0000-CA-SOKOS-SKATTEKORT-ADMIN-READ
           - id: "9c5b24f2-5e01-4966-adaf-bc9fb6410a32" # 0000-CA-SOKOS-MF-OPPGJORSRAPPORTER
           - id: "c1c0f5d7-cdaa-4011-b4f6-b3815a7432e5" # 0000-CA-SOKOS-MF-YTELSESRAPPORTERING-PERSON-ADMIN
         extra:
