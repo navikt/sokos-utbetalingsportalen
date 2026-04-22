@@ -64,7 +64,6 @@ spec:
         - application: sokos-retur-fra-bank-api
         - application: sokos-astro-template
         - application: sokos-skattekort
-        - application: sokos-skattekort-admin
         - application: sokos-up-oppgjorsrapporter
           namespace: oppgjorsrapporter
         - application: sokos-up-ray-ray-admin
