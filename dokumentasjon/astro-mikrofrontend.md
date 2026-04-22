@@ -4,20 +4,9 @@ Denne guiden viser hvordan du integrerer en server-side rendered Astro mikrofron
 
 ## Forutsetninger
 
-- En Astro-applikasjon som kan deployes som mikrofrontend
+- En Astro-applikasjon klar til å deployes som mikrofrontend
 - Tilgang til NAIS-konfigurasjonsfilene
-- AD-grupper for dev og prod
 - React-versjon i mikrofrontend må være samme major versjon som React i Utbetalingsportalen
-
-## Hurtigspor: Backend allerede registrert
-
-Hvis backend-tjenesten allerede er konfigurert i portalen (NAIS-tilgangspolicies og API-proxy er på plass), trenger du kun:
-
-1. **[Steg 1](#steg-1-opprett-ad-grupper)** – Opprett AD-grupper og legg dem til i naiserator
-2. **[Steg 3](#steg-3-registrer-applikasjonen)** – Legg til oppføring i `appConfig.ts`
-3. **[Steg 5](#steg-5-opprett-side-i-utbetalingsportalen)** – Opprett `.astro`-siden
-
-Hopp over Steg 2 og Steg 4.
 
 ---
 
@@ -54,44 +43,35 @@ azure:
 
 ### 2.1 Oppdater naiserator-filer
 
-Legg til nødvendige miljøvariabler og tilgangspolicies i både `.nais/naiserator-q1.yaml` og `.nais/naiserator-prod.yaml`.
+Legg til miljøvariabler i både `.nais/naiserator-q1.yaml` og `.nais/naiserator-prod.yaml`.
 
-**Eksempel på miljøvariabler:**
+Navngi variablene etter mønsteret `SOKOS_UP_<APPNAVN>_URL` og `SOKOS_UP_<APPNAVN>_AUDIENCE`:
 
 ```yaml
 env:
-  - name: SOKOS_EKSEMPEL_URL
-    value: https://sokos-eksempel.dev-gcp.nais.io
-  - name: SOKOS_EKSEMPEL_AUDIENCE
-    value: api://dev-gcp.okonomi.sokos-eksempel/.default
+  - name: SOKOS_UP_EKSEMPEL_URL
+    value: http://sokos-up-eksempel.eksempel          # dev-gcp intern URL
+  - name: SOKOS_UP_EKSEMPEL_AUDIENCE
+    value: api://dev-gcp.eksempel.sokos-up-eksempel/.default
 ```
+
+> URL-formatet for GCP er `http://<appnavn>.<namespace>`. Audience-formatet er `api://<cluster>.<namespace>.<appnavn>/.default`.
 
 ### 2.2 Konfigurer tilgangspolicies
 
-**For GCP-mikrofrontend:**
+Legg til outbound-regel i Utbetalingsportalen sin naiserator for å tillate kommunikasjon med Astro-appen:
 
 ```yaml
 accessPolicy:
   outbound:
     rules:
-      - application: sokos-eksempel
-        namespace: okonomi
-```
-
-**For FSS-mikrofrontend:**
-
-Se [NAIS-dokumentasjonen](https://docs.nais.io/workloads/explanations/migrating-to-gcp/#how-do-i-reach-an-application-found-on-premises-from-my-application-in-gcp) for kommunikasjon mellom GCP og FSS.
-
-```yaml
-accessPolicy:
-  outbound:
-    external:
-      - host: sokos-eksempel.dev-fss-pub.nais.io
+      - application: sokos-up-eksempel
+        namespace: eksempel
 ```
 
 ### 2.3 Åpne for innkommende trafikk
 
-Legg til i mikrofrontend sin `naiserator.yaml`:
+Legg til inbound-regel i Astro-mikrofrontend sin `naiserator.yaml`:
 
 ```yaml
 accessPolicy:
@@ -139,7 +119,7 @@ Legg til applikasjonskonfigurasjon i `src/config/appConfig.ts`:
 
 ## Steg 4: Sett opp API-proxy
 
-For at vi skal kunne snakke til Astro backenden gjennom Utbetalingsportalen, må vi sette opp en API-proxy.
+Astro-appen kjører server-side og kommuniserer med Utbetalingsportalen via en proxy-rute.
 
 ### 4.1 Opprett proxy-rute
 
@@ -159,8 +139,8 @@ import type { APIRoute } from "astro";
 
 export const ALL: APIRoute = routeProxyWithOboToken({
   apiProxy: "/min-mikrofrontend",
-  apiUrl: `${process.env.SOKOS_EKSEMPEL_URL}`,
-  audience: `${process.env.SOKOS_EKSEMPEL_AUDIENCE}`,
+  apiUrl: `${process.env.SOKOS_UP_EKSEMPEL_URL}`,
+  audience: `${process.env.SOKOS_UP_EKSEMPEL_AUDIENCE}`,
 });
 ```
 
@@ -169,15 +149,15 @@ export const ALL: APIRoute = routeProxyWithOboToken({
 | Parameter | Beskrivelse | Eksempel |
 |-----------|-------------|----------|
 | `apiProxy` | Path som matcher din mikrofrontend-rute | `"/min-mikrofrontend"` |
-| `apiUrl` | URL til backend-tjenesten (fra naiserator) | `process.env.SOKOS_EKSEMPEL_URL` |
-| `audience` | Azure AD audience scope (fra naiserator) | `process.env.SOKOS_EKSEMPEL_AUDIENCE` |
+| `apiUrl` | URL til Astro-appen (fra naiserator) | `process.env.SOKOS_UP_EKSEMPEL_URL` |
+| `audience` | Azure AD audience scope (fra naiserator) | `process.env.SOKOS_UP_EKSEMPEL_AUDIENCE` |
 
 ### Hvordan det fungerer
 
 - Proxy-ruten fanger alle forespørsler til `/min-mikrofrontend/*`
 - OBO-token (On-Behalf-Of) hentes automatisk basert på audience
-- Forespørsler videresendes til backend med riktig autentisering
-- Svar returneres til mikrofrontenden
+- Forespørsler videresendes til Astro-appen med riktig autentisering
+- Svar returneres til Utbetalingsportalen
 
 ## Steg 5: Opprett side i Utbetalingsportalen
 
@@ -190,11 +170,11 @@ import MicrofrontendSSR from "@components/microfrontend/MicrofrontendSSR.astro";
 import Layout from "@layouts/Layout.astro";
 ---
 
-<Layout title="Min mikrofrontend">
+<Layout title="Min Mikrofrontend">
   <MicrofrontendSSR
     appTitle="Min Mikrofrontend"
-    appUrl={process.env.SOKOS_EKSEMPEL_URL}
-    appAudience={process.env.SOKOS_EKSEMPEL_AUDIENCE}
+    appUrl={process.env.SOKOS_UP_EKSEMPEL_URL}
+    appAudience={process.env.SOKOS_UP_EKSEMPEL_AUDIENCE}
     server:defer
   >
     <ContentLoader slot="fallback" />
@@ -207,8 +187,42 @@ import Layout from "@layouts/Layout.astro";
 | Prop | Beskrivelse | Eksempel |
 |------|-------------|----------|
 | `appTitle` | Tittelen som vises i browser-fanen | `"Min Mikrofrontend"` |
-| `appUrl` | URL til mikrofrontend (fra naiserator) | `process.env.SOKOS_EKSEMPEL_URL` |
-| `appAudience` | Azure AD audience scope (fra naiserator) | `process.env.SOKOS_EKSEMPEL_AUDIENCE` |
+| `appUrl` | URL til Astro-appen | `process.env.SOKOS_UP_EKSEMPEL_URL` |
+| `appAudience` | Azure AD audience scope | `process.env.SOKOS_UP_EKSEMPEL_AUDIENCE` |
+
+### Med støtte for lokal utvikling
+
+Hvis du ønsker å kjøre Astro-mikrofrontenden lokalt sammen med Utbetalingsportalen, kan du legge til en lokal URL-override med `getServerSideEnvironment()`:
+
+```astro
+---
+import ContentLoader from "@components/loader/ContentLoader";
+import MicrofrontendSSR from "@components/microfrontend/MicrofrontendSSR.astro";
+import Layout from "@layouts/Layout.astro";
+import { getServerSideEnvironment } from "@utils/server/environment";
+
+const isLocalEnv = getServerSideEnvironment() === "local";
+const appUrl = isLocalEnv
+  ? "http://localhost:4322/"
+  : process.env.SOKOS_UP_EKSEMPEL_URL;
+const appAudience = isLocalEnv
+  ? "api://dev-gcp.eksempel.sokos-up-eksempel/.default"
+  : process.env.SOKOS_UP_EKSEMPEL_AUDIENCE;
+---
+
+<Layout title="Min Mikrofrontend">
+  <MicrofrontendSSR
+    appTitle="Min Mikrofrontend"
+    appUrl={appUrl}
+    appAudience={appAudience}
+    server:defer
+  >
+    <ContentLoader slot="fallback" />
+  </MicrofrontendSSR>
+</Layout>
+```
+
+> Husk å oppdatere `localhost`-porten til den porten Astro-mikrofrontenden din kjører på lokalt.
 
 ## Verifisering
 
@@ -221,4 +235,6 @@ Mikrofrontenden er nå integrert! Test at:
 ## Tips
 
 - **URL-navngivning**: Bruk hele ord, små bokstaver og bindestreker. Unngå æ/ø/å.
-- **Environment-variabler**: Dobbeltsjekk at alle miljøvariabler er definert i både dev og prod.
+- **Env var-navngivning**: Følg mønsteret `SOKOS_UP_<APPNAVN>_URL` og `SOKOS_UP_<APPNAVN>_AUDIENCE` konsekvent i naiserator, proxy og side.
+- **Lokal utvikling**: Husk å starte Astro-mikrofrontenden lokalt på riktig port og oppdater localhost-URL-en i `.astro`-filen tilsvarende.
+- **Environment-variabler**: Dobbeltsjekk at alle miljøvariabler er definert i både dev og prod naiserator.
