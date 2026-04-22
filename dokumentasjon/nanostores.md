@@ -9,16 +9,16 @@ Basert på [Astro's anbefaling for deling av state mellom islands](https://docs.
 ### Installasjon i mikrofrontend
 
 ```bash
-npm install @nanostores/react @nanostores/persistent
 pnpm add @nanostores/react @nanostores/persistent
 ```
 
 ### Opprette stores
 
-Lag for eksempel en `stores`-mappe i prosjektet med en `shared.ts`-fil for delte stores:
-PS: Man kan kalle filen hva man ønsker, dette er kun et forslag.
+Lag for eksempel en `stores`-mappe i prosjektet med en `shared.ts`-fil for delte stores.
 
-Eksempel 1: Enkel string store
+> Filen kan hete hva som helst – `shared.ts` er kun et forslag.
+
+#### Eksempel 1: Enkel string store
 
 ```typescript
 import { persistentAtom, setPersistentEngine } from "@nanostores/persistent";
@@ -47,7 +47,7 @@ export const selectedId = persistentAtom<string | null>(
 );
 ```
 
-Eksempel 2: Objekt store
+#### Eksempel 2: Objekt store
 
 ```typescript
 import { persistentAtom, setPersistentEngine } from "@nanostores/persistent";
@@ -81,7 +81,7 @@ export const sokeData = persistentAtom<SokeData | null>(
 
 ### Metode 1: Med hook (anbefalt for reaktivitet)
 
-String store:
+#### String store
 
 ```tsx
 import { useStore } from "@nanostores/react";
@@ -99,11 +99,11 @@ function MyComponent() {
 }
 ```
 
-Objekt store:
+#### Objekt store
 
 ```tsx
 import { useStore } from "@nanostores/react";
-import { sokeData } from "@types/SokeData";
+import { sokeData } from "@stores/shared";
 
 function MyComponent() {
   const data = useStore(sokeData); // skal trigge rerendering ved endring av state
@@ -128,7 +128,7 @@ function MyComponent() {
 
 ### Metode 2: Direkte (hvis du bare setter verdier)
 
-String store:
+#### String store
 
 ```tsx
 import { selectedId } from "@stores/shared";
@@ -142,7 +142,7 @@ function MyComponent() {
 }
 ```
 
-Objekt store:
+#### Objekt store
 
 ```tsx
 import { sokeData } from "@stores/shared";
