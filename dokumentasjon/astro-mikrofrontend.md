@@ -9,9 +9,50 @@ Denne guiden viser hvordan du integrerer en server-side rendered Astro mikrofron
 - AD-grupper for dev og prod
 - React-versjon i mikrofrontend må være samme major versjon som React i Utbetalingsportalen
 
-## Steg 1: Konfigurer NAIS
+## Hurtigspor: Backend allerede registrert
 
-### 1.1 Oppdater naiserator-filer
+Hvis backend-tjenesten allerede er konfigurert i portalen (NAIS-tilgangspolicies og API-proxy er på plass), trenger du kun:
+
+1. **[Steg 1](#steg-1-opprett-ad-grupper)** – Opprett AD-grupper og legg dem til i naiserator
+2. **[Steg 3](#steg-3-registrer-applikasjonen)** – Legg til oppføring i `appConfig.ts`
+3. **[Steg 5](#steg-5-opprett-side-i-utbetalingsportalen)** – Opprett `.astro`-siden
+
+Hopp over Steg 2 og Steg 4.
+
+---
+
+## Steg 1: Opprett AD-grupper
+
+Hver applikasjon i Utbetalingsportalen krever egne AD-grupper for å styre tilgang i henholdsvis dev og prod.
+
+### 1.1 Opprett dev-gruppe
+
+Dev-grupper kan opprettes selv via [My Groups](https://mygroups.microsoft.com/). Navngi gruppen etter konvensjonen `0000-CA-SOKOS-MF-<APPNAVN>-<ROLLE>`, f.eks. `0000-CA-SOKOS-MF-MIN-APP-READ`.
+
+Logg inn med trygdeetaten bruker. UUID'en ligger i URL'en etter /groups/.
+
+### 1.2 Prod-gruppe
+
+Prod-grupper administreres via [nav.omada.cloud](https://nav.omada.cloud/). Hvis applikasjonen kun skal eksistere i dev, brukes konstanten `PLACEHOLDER_AD_GROUP` som verdi for `adGroupProduction` i `appConfig.ts` (se Steg 3).
+
+### 1.3 Legg til AD-grupper i naiserator
+
+Legg til UUID-ene i `claims.groups` i både `.nais/naiserator-q1.yaml` og `.nais/naiserator-prod.yaml`:
+
+```yaml
+azure:
+  application:
+    claims:
+      groups:
+        - id: "<dev-gruppe-uuid>"   # 0000-CA-SOKOS-MF-MIN-APP-READ (kun i naiserator-q1.yaml)
+        - id: "<prod-gruppe-uuid>"  # 0000-CA-SOKOS-MF-MIN-APP-READ (kun i naiserator-prod.yaml)
+```
+
+---
+
+## Steg 2: Konfigurer NAIS
+
+### 2.1 Oppdater naiserator-filer
 
 Legg til nødvendige miljøvariabler og tilgangspolicies i både `.nais/naiserator-q1.yaml` og `.nais/naiserator-prod.yaml`.
 
@@ -25,7 +66,7 @@ env:
     value: api://dev-gcp.okonomi.sokos-eksempel/.default
 ```
 
-### 1.2 Konfigurer tilgangspolicies
+### 2.2 Konfigurer tilgangspolicies
 
 **For GCP-mikrofrontend:**
 
@@ -48,7 +89,7 @@ accessPolicy:
       - host: sokos-eksempel.dev-fss-pub.nais.io
 ```
 
-### 1.3 Åpne for innkommende trafikk
+### 2.3 Åpne for innkommende trafikk
 
 Legg til i mikrofrontend sin `naiserator.yaml`:
 
@@ -61,7 +102,7 @@ accessPolicy:
         cluster: dev-gcp
 ```
 
-## Steg 2: Registrer applikasjonen
+## Steg 3: Registrer applikasjonen
 
 Legg til applikasjonskonfigurasjon i `src/config/appConfig.ts`:
 
@@ -85,7 +126,7 @@ Legg til applikasjonskonfigurasjon i `src/config/appConfig.ts`:
 | `title` | Visningsnavn i menyer | `"Min Mikrofrontend"` |
 | `description` | Kort beskrivelse | `"Beskrivelse av mikrofrontenden"` |
 | `adGroupDevelopment` | Azure AD gruppe UUID for dev | `"abc123..."` |
-| `adGroupProduction` | Azure AD gruppe UUID for prod | `"xyz789..."` eller `PLACEHOLDER_AD_GROUP` |
+| `adGroupProduction` | Azure AD gruppe UUID for prod. Bruk `PLACEHOLDER_AD_GROUP` hvis applikasjonen kun er i dev. | `"xyz789..."` eller `PLACEHOLDER_AD_GROUP` |
 | `route` | URL-path i portalen | `"/min-mikrofrontend"` |
 | `naisAppName` | NAIS applikasjonsnavn | `"sokos-up-min-mikrofrontend"` |
 
@@ -96,11 +137,11 @@ Legg til applikasjonskonfigurasjon i `src/config/appConfig.ts`:
 - Bindestrek for å skille ord
 - Translitterer norske tegn: Æ→AE, Ø→OE, Å→AA
 
-## Steg 3: Sett opp API-proxy
+## Steg 4: Sett opp API-proxy
 
 For at vi skal kunne snakke til Astro backenden gjennom Utbetalingsportalen, må vi sette opp en API-proxy.
 
-### 3.1 Opprett proxy-rute
+### 4.1 Opprett proxy-rute
 
 Lag en ny mappe under `src/pages/` med samme navn som ruten din, og opprett filen `[...proxy].ts` i denne mappen:
 
@@ -138,7 +179,7 @@ export const ALL: APIRoute = routeProxyWithOboToken({
 - Forespørsler videresendes til backend med riktig autentisering
 - Svar returneres til mikrofrontenden
 
-## Steg 4: Opprett side i Utbetalingsportalen
+## Steg 5: Opprett side i Utbetalingsportalen
 
 Lag en ny `.astro`-fil under `src/pages/` med navnet på ruten (f.eks. `min-mikrofrontend.astro`):
 

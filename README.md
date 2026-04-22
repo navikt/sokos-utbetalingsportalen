@@ -1,28 +1,10 @@
 # Utbetalingsportalen
 
-Container for å sette sammen ulike mikrofrontends/applikasjoner som tilsammen utgjør et internt saksbehandlingssystem som benyttes av økonomimedarbeidere, Nav Kontaktsenter m.fl.
-Arbeidsflatene som tilbys gir mulighet til å se eller behandle saker som gjelder utbetaling av ytelser i Nav.
+Container for å sette sammen ulike mikrofrontends/applikasjoner som tilsammen utgjør et internt saksbehandlingssystem. Benyttes av økonomimedarbeidere, Nav Kontaktsenter m.fl. for å se eller behandle saker som gjelder utbetaling av ytelser i Nav.
 
 - [Utbetalingsportalen Q1-miljø](https://utbetalingsportalen.intern.dev.nav.no)
 - [Utbetalingsportalen QX-miljø](https://utbetalingsportalen-qx.intern.dev.nav.no)
-
-## 📍 Templates og guider for å legge til en mikrofrontend i Utbetalingsportalen
-
-[Client side React template](https://github.com/navikt/sokos-react-template)
-
-- [Guide for å legge til React client-side mikrofrontend](dokumentasjon/react-mikrofrontend.md)
-
-[Server side Astro template](https://github.com/navikt/sokos-astro-template)
-
-- [Guide for å legge til Astro server-side mikrofrontend](dokumentasjon/astro-mikrofrontend.md)
-
-## 📍 Umami-taksonomi - Anebfaling og bruk av navngivning av Umami-hendelser og hendelsenes tilhørende detaljer
-
-- [Umami-taksonomi](dokumentasjon/umami-taksonomi.md)
-
-## 📍 Nanostores
-
-- [Nanostores Guide](dokumentasjon/nanostores.md)
+- [Utbetalingsportalen Prod-miljø](https://utbetalingsportalen.intern.nav.no)
 
 ## Innholdsoversikt
 
@@ -32,8 +14,9 @@ Arbeidsflatene som tilbys gir mulighet til å se eller behandle saker som gjelde
 - [4. Design](#4-design)
 - [5. Deployment](#5-deployment)
 - [6. Autentisering](#6-autentisering)
-- [7. Drift og støtte](#7-drift-og-støtte)
-- [8. Henvendelser](#8-henvendelser)
+- [7. Guider og dokumentasjon](#7-guider-og-dokumentasjon)
+- [8. Drift og støtte](#8-drift-og-støtte)
+- [9. Henvendelser](#9-henvendelser)
 
 ---
 
@@ -52,15 +35,15 @@ Arbeidsflatene som tilbys gir mulighet til å se eller behandle saker som gjelde
 - [Node.js](https://nodejs.org/en)
 - [pnpm](https://pnpm.io/) `npm install -g pnpm`
 
-### Bygge prosjekt
+### Installasjon og bygg
 
-- `pnpm install` for å installere avhengigheter
+- `pnpm install` - Installerer avhengigheter
+- `pnpm run build` - Bygger prosjektet
 
 ### Lokal utvikling
 
 - `pnpm run dev` - Starter applikasjonen uten `mock`-server
 - `pnpm run dev:mock` - Starter applikasjonen med `mock`-server
-- `pnpm run build` - Bygger prosjektet
 
 #### Kjøre mikrofrontend lokalt
 
@@ -78,7 +61,7 @@ Mock-serveren sjekker automatisk om en lokal mikrofrontend kjører og laster den
 - `sokos-up-attestasjon`: `http://localhost:5173/attestasjon`
 - `sokos-up-oppdragsinfo`: `http://localhost:5174/oppdragsinfo`
 
-For å legge til flere lokale mikrofrontends, oppdater `localMicrofrontends`-objektet i `mock/server.ts`. Det er nødvendig å gjøre noe konfigurasjon med mock-serveren for å håndtere flere instanser samtidig.
+For å legge til flere lokale mikrofrontends, oppdater `localMicrofrontends`-objektet i `mock/server.ts`.
 
 ## 3. Programvarearkitektur
 
@@ -109,10 +92,30 @@ Det foreligger også mulighet for manuell deploy til dev.
 
 ## 6. Autentisering
 
-Applikasjonen bruker SSO (Single Sign On) løsningen gjennom [Wonderwall](https://docs.nais.io/addons/wonderwall/?h=wonder).
-Det benyttes også [OBO On-Behalf-Of](https://docs.nais.io/security/auth/azure-ad/usage/?h=behal#oauth-20-on-behalf-of-grant) for å gjøre kall til APIene bak mikrofrontendene.
+Applikasjonen bruker SSO (Single Sign-On) gjennom [Wonderwall](https://docs.nais.io/addons/wonderwall/?h=wonder). API-kall til backend-tjenester sikres med [OBO (On-Behalf-Of)](https://docs.nais.io/security/auth/azure-ad/usage/?h=behal#oauth-20-on-behalf-of-grant)-tokens.
 
-## 7. Drift og støtte
+## 7. Guider og dokumentasjon
+
+### Mikrofrontend-guider
+
+| Type | Template | Guide |
+|------|----------|-------|
+| React (client-side) | [sokos-react-template](https://github.com/navikt/sokos-react-template) | [Guide for React mikrofrontend](dokumentasjon/react-mikrofrontend.md) |
+| Astro (server-side) | [sokos-astro-template](https://github.com/navikt/sokos-astro-template) | [Guide for Astro mikrofrontend](dokumentasjon/astro-mikrofrontend.md) |
+
+### Umami-taksonomi
+
+Anbefaling og bruk av navngivning av Umami-hendelser og tilhørende detaljer på tvers av arbeidsflatene.
+
+[Umami-taksonomi](dokumentasjon/umami-taksonomi.md)
+
+### Nanostores
+
+Guide for deling av state mellom mikrofrontends via `sessionStorage`.
+
+[Nanostores guide](dokumentasjon/nanostores.md)
+
+## 8. Drift og støtte
 
 ### Logging
 
@@ -122,20 +125,19 @@ Det benyttes også [OBO On-Behalf-Of](https://docs.nais.io/security/auth/azure-a
 
 ### Alarmer
 
-Applikasjonen bruker [Grafana Alerting](https://grafana.nav.cloud.nais.io/alerting/) for overvåkning og varsling.
-Dette er konfigurert via NAIS sin [alerting-integrasjon](https://doc.nais.io/observability/alerts).
+Applikasjonen bruker [Grafana Alerting](https://grafana.nav.cloud.nais.io/alerting/) for overvåkning og varsling, konfigurert via NAIS sin [alerting-integrasjon](https://doc.nais.io/observability/alerts).
 
-Alarmene overvåker metrics som:
+Alarmene overvåker:
 
 - HTTP-feilrater
 - JVM-metrikker
 
-Varsler blir sendt til følgende Slack-kanaler:
+Varsler sendes til disse Slack kanalene:
 
 - Dev-miljø: [#team-mob-alerts-dev](https://nav-it.slack.com/archives/C042SF2FEQM)
 - Prod-miljø: [#team-mob-alerts-prod](https://nav-it.slack.com/archives/C042ESY71GX)
 
-## 8. Henvendelser
+## 9. Henvendelser
 
 Spørsmål knyttet til koden eller prosjektet kan stilles som issues her på Github.
-Interne henvendelser kan sendes via Slack i kanalen [#utbetaling](https://nav-it.slack.com/archives/CKZADNFBP)
+Interne henvendelser kan sendes via Slack i kanalen [#utbetaling](https://nav-it.slack.com/archives/CKZADNFBP).
