@@ -17,7 +17,7 @@
 	},
 	"dependencies": {
 		"@astrojs/check": "0.9.8",
-		"@astrojs/node": "10.0.4",
+		"@astrojs/node": "10.0.5",
 		"@astrojs/react": "5.0.3",
 		"@grafana/faro-web-sdk": "2.3.1",
 		"@navikt/aksel-icons": "7.40.0",
@@ -35,8 +35,8 @@
 		"zod": "4.3.6"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.4.11",
-		"@hono/node-server": "1.19.13",
+		"@biomejs/biome": "2.4.12",
+		"@hono/node-server": "1.19.14",
 		"@navikt/aksel-stylelint": "7.40.0",
 		"@types/node": "25.6.0",
 		"@types/react": "19.2.14",
@@ -45,9 +45,9 @@
 		"hono": "4.12.14",
 		"husky": "9.1.7",
 		"lint-staged": "16.4.0",
-		"prettier": "3.8.2",
+		"prettier": "3.8.3",
 		"prettier-plugin-astro": "0.14.1",
-		"stylelint": "17.6.0",
+		"stylelint": "17.8.0",
 		"stylelint-config-standard": "40.0.0",
 		"tsx": "4.21.0",
 		"typescript": "6.0.2",
