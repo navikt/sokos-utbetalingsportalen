@@ -1,13 +1,6 @@
-.welcomeGuidepanel {
-	padding-bottom: 2.5rem;
-}
-
-/* stylelint-disable aksel/no-class-override */
-.welcomeGuidepanel :global(.aksel-guide-panel) {
-	width: 100%;
-}
-/* stylelint-enable aksel/no-class-override */
-
-.welcomeGuidepanel__heading {
-	text-align: center;
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2.5rem;
 }

@@ -1,4 +1,4 @@
-import { BodyLong, Heading, Link, GuidePanel as Panel } from "@navikt/ds-react";
+import { BodyLong, GuidePanel, Heading, Link } from "@navikt/ds-react";
 import moneyBag from "../../../public/images/pengesekk.svg";
 import styles from "./WelcomePanel.module.css";
 
@@ -7,15 +7,16 @@ type WelcomePanelProps = {
 	greeting: string;
 };
 
-export default function GuidePanel({ name, greeting }: WelcomePanelProps) {
+export default function WelcomePanel({ name, greeting }: WelcomePanelProps) {
 	return (
-		<div className={styles.welcomeGuidepanel}>
-			<div className={styles.welcomeGuidepanel__heading}>
-				<Heading level="1" size="large" spacing>
-					{greeting}, {name}
-				</Heading>
-			</div>
-			<Panel poster illustration={<img src={moneyBag.src} alt="Pengesekk" />}>
+		<div className={styles.container}>
+			<Heading level="1" size="large" spacing align="center">
+				{greeting}, {name}
+			</Heading>
+			<GuidePanel
+				poster
+				illustration={<img src={moneyBag.src} alt="Pengesekk" />}
+			>
 				<Heading level="2" size="small" spacing>
 					Informasjon om Utbetalingsportalen
 				</Heading>
@@ -32,7 +33,7 @@ export default function GuidePanel({ name, greeting }: WelcomePanelProps) {
 						ulike arbeidsflatene (Navet)
 					</Link>
 				</BodyLong>
-			</Panel>
+			</GuidePanel>
 		</div>
 	);
 }
