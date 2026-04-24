@@ -1,5 +1,5 @@
 import { HouseIcon, MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
-import { Button, Link } from "@navikt/ds-react";
+import { InternalHeader, Link, Theme } from "@navikt/ds-react";
 import { getAuthorizedApps } from "@utils/accessControl";
 import type { PropsWithChildren } from "react";
 import { useEffect, useRef, useState } from "react";
@@ -92,50 +92,58 @@ export default function SideBar({ adGroups }: SideBarProps) {
 
 	if (!isOpen) {
 		return (
-			<nav
-				className={`${styles["sidebar--closed"]} ${styles.sidebar}`}
-				onTransitionEnd={handleTransitionEnd}
-			>
-				{showButton && (
-					<Button
-						className={styles.sidebar__buttonColor}
-						onClick={handleToggle}
-						variant="primary-neutral"
-						icon={<MenuHamburgerIcon title="Hamburgermeny ikon" />}
-					/>
-				)}
-			</nav>
+			<Theme theme="dark" asChild hasBackground={false}>
+				<nav
+					className={`aksel-internalheader ${styles["sidebar--closed"]} ${styles.sidebar}`}
+					onTransitionEnd={handleTransitionEnd}
+				>
+					{showButton && (
+						<InternalHeader.Button
+							className={styles.sidebar__toggleButton}
+							onClick={handleToggle}
+						>
+							<MenuHamburgerIcon title="Hamburgermeny ikon" />
+						</InternalHeader.Button>
+					)}
+				</nav>
+			</Theme>
 		);
 	}
 
 	return (
-		<nav className={styles.sidebar} ref={sidebarRef}>
-			<div className={styles.sidebar__closeButton}>
-				<Button
-					className={styles.sidebar__buttonColor}
-					onClick={handleToggle}
-					icon={<XMarkIcon title="Kryss ikon" />}
-					iconPosition="right"
-					variant="primary-neutral"
-				>
-					Lukk
-				</Button>
-			</div>
+		<Theme theme="dark" asChild hasBackground={false}>
+			<nav
+				className={`aksel-internalheader ${styles.sidebar}`}
+				ref={sidebarRef}
+			>
+				<div className={styles.sidebar__closeButton}>
+					<InternalHeader.Button
+						className={styles.sidebar__toggleButton}
+						onClick={handleToggle}
+					>
+						<XMarkIcon title="Kryss ikon" />
+						Lukk
+					</InternalHeader.Button>
+				</div>
 
-			<ul className={styles.sidebar__list}>
-				<li className={styles.sidebar__links}>
-					{renderSideBarLink({
-						route: "/",
-						children: (
-							<>
-								<HouseIcon className={styles.sidebar__icon} title="Hus ikon" />
-								Hjem
-							</>
-						),
-					})}
-				</li>
-				{getMicrofrontendLinks()}
-			</ul>
-		</nav>
+				<ul className={styles.sidebar__list}>
+					<li className={styles.sidebar__links}>
+						{renderSideBarLink({
+							route: "/",
+							children: (
+								<>
+									<HouseIcon
+										className={styles.sidebar__icon}
+										title="Hus ikon"
+									/>
+									Hjem
+								</>
+							),
+						})}
+					</li>
+					{getMicrofrontendLinks()}
+				</ul>
+			</nav>
+		</Theme>
 	);
 }

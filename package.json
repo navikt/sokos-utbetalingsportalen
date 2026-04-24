@@ -20,8 +20,8 @@
 		"@astrojs/node": "10.0.5",
 		"@astrojs/react": "5.0.3",
 		"@grafana/faro-web-sdk": "2.3.1",
-		"@navikt/aksel-icons": "7.40.0",
-		"@navikt/ds-react": "7.40.0",
+		"@navikt/aksel-icons": "8.9.1",
+		"@navikt/ds-react": "8.9.1",
 		"@navikt/oasis": "4.1.4",
 		"@opentelemetry/sdk-node": "0.214.0",
 		"astro": "6.1.7",
@@ -37,7 +37,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "2.4.12",
 		"@hono/node-server": "1.19.14",
-		"@navikt/aksel-stylelint": "7.40.0",
+		"@navikt/aksel-stylelint": "8.9.1",
 		"@types/node": "25.6.0",
 		"@types/react": "19.2.14",
 		"@types/react-dom": "19.2.3",
@@ -50,7 +50,7 @@
 		"stylelint": "17.8.0",
 		"stylelint-config-standard": "40.0.0",
 		"tsx": "4.21.0",
-		"typescript": "6.0.2",
+		"typescript": "6.0.3",
 		"vitest": "4.1.4"
 	},
 	"lint-staged": {
