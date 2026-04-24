@@ -9,8 +9,9 @@ updates:
     directory: "/"
     registries: "*"
     schedule:
-      interval: "daily"
-      time: "08:00"
+      interval: "weekly"
+      day: "tuesday"
+      time: "09:00"
       timezone: "Europe/Oslo"
     open-pull-requests-limit: 20
     cooldown:
