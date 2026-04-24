@@ -1,83 +1,77 @@
 .sidebar {
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 999;
-	height: 100vh;
-	width: 17.5rem;
-	overflow-y: auto;
-	flex-direction: column;
-	border-right: 1px solid var(--ax-border-neutral-subtle);
-	border-bottom: none;
-	transition: width 0.4s ease-in-out;
-	padding-top: 3rem;
-	scrollbar-gutter: stable;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 100vh;
+  width: 17.5rem;
+  overflow-y: auto;
+  flex-direction: column;
+  border-right: 1px solid var(--ax-border-neutral-subtle);
+  transition: width 0.4s ease-in-out;
+  padding-top: 3rem;
+  scrollbar-gutter: stable;
 }
 
 .sidebar--closed {
-	width: 3rem;
-}
-
-.sidebar__links {
-	display: flex;
-	flex-direction: column;
-	padding-inline: 0.1rem;
+  width: 3rem;
 }
 
 .sidebar__list {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .sidebar__toggleButton {
-	min-height: 3rem;
-	padding-inline: var(--ax-space-12);
-	border: none;
-	gap: 0.5rem;
+  min-height: 3rem;
+  padding-inline: var(--ax-space-12);
+  border: none;
+  gap: 0.5rem;
 }
 
 .sidebar__toggleButton--closed {
-	font-size: 2rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sidebar__closeButton {
-	display: flex;
-	justify-content: flex-end;
-	padding-block: 0.5rem;
-	padding-right: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+  padding-block: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .sidebar__icon {
-	width: 1.5rem;
-	height: 1.5rem;
-	padding-bottom: 2px;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding-bottom: 2px;
 }
 
 .sidebar__link {
-	margin-inline: 0.5rem;
-	white-space: nowrap;
-	border-radius: var(--ax-radius-4);
-	padding: 0.5rem 2rem;
-	color: var(--ax-text-neutral);
-	text-decoration: underline;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-inline: 0.5rem;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  border-radius: var(--ax-radius-4);
+  padding: 0.5rem 2rem;
+  color: var(--ax-text-neutral);
+  text-decoration: underline;
 }
 
 .sidebar__link:hover {
-	text-decoration: none;
-	background: var(--ax-bg-neutral-moderate-hover);
+  text-decoration: none;
+  background: var(--ax-bg-neutral-moderate-hover);
 }
 
 .sidebar__link--active {
-	pointer-events: none;
-	background-color: var(--ax-meta-purple-500);
-	text-decoration: none;
-	transition: all 100ms;
-}
-
-.sidebar__linkChild {
-	display: flex;
-	gap: 0.25rem;
+  pointer-events: none;
+  background-color: var(--ax-meta-purple-500);
+  text-decoration: none;
+  transition: all 100ms;
 }

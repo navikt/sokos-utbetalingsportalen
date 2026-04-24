@@ -1,5 +1,5 @@
 import { HouseIcon, MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
-import { Button, InternalHeader, Link, Theme } from "@navikt/ds-react";
+import { InternalHeader, Link, Theme } from "@navikt/ds-react";
 import { getAuthorizedApps } from "@utils/accessControl";
 import type { PropsWithChildren } from "react";
 import { useEffect, useRef, useState } from "react";
@@ -8,6 +8,25 @@ import styles from "./SideBar.module.css";
 type SideBarProps = {
 	adGroups: string[];
 };
+
+function SideBarLink({
+	children,
+	route,
+}: PropsWithChildren & { route: string }) {
+	const isActive =
+		typeof window !== "undefined" &&
+		(window.location.pathname === route ||
+			(route !== "/" && window.location.pathname.startsWith(`${route}/`)));
+
+	return (
+		<Link
+			className={`${styles.sidebar__link} ${isActive ? styles["sidebar__link--active"] : ""}`}
+			href={route}
+		>
+			{children}
+		</Link>
+	);
+}
 
 export default function SideBar({ adGroups }: SideBarProps) {
 	const authorizedApps = getAuthorizedApps(adGroups);
@@ -57,92 +76,55 @@ export default function SideBar({ adGroups }: SideBarProps) {
 		}
 	};
 
-	const renderSideBarLink = ({
-		children,
-		route,
-	}: PropsWithChildren & { route: string }) => {
-		const isActive =
-			typeof window !== "undefined" &&
-			(window.location.pathname === route ||
-				(route !== "/" && window.location.pathname.startsWith(`${route}/`)));
-
-		return (
-			<Link
-				className={`${styles.sidebar__link} ${isActive ? styles["sidebar__link--active"] : ""}`}
-				href={route}
+	return (
+		<Theme theme="dark" asChild hasBackground={false}>
+			<nav
+				className={`aksel-internalheader ${styles.sidebar} ${!isOpen ? styles["sidebar--closed"] : ""}`}
+				ref={sidebarRef}
+				onTransitionEnd={handleTransitionEnd}
 			>
-				<div className={styles.sidebar__linkChild}>{children}</div>
-			</Link>
-		);
-	};
-
-	function getMicrofrontendLinks() {
-		return authorizedApps
-			.slice()
-			.sort((a, b) => a.title.localeCompare(b.title))
-			.map((page) => (
-				<li key={page.app} className={styles.sidebar__links}>
-					{renderSideBarLink({
-						route: page.route,
-						children: page.title,
-					})}
-				</li>
-			));
-	}
-
-	if (!isOpen) {
-		return (
-			<Theme theme="dark" asChild hasBackground={false}>
-				<nav
-					className={`aksel-internalheader ${styles["sidebar--closed"]} ${styles.sidebar}`}
-					onTransitionEnd={handleTransitionEnd}
-				>
-					{showButton && (
+				{!isOpen ? (
+					showButton && (
 						<InternalHeader.Button
 							className={`${styles.sidebar__toggleButton} ${styles["sidebar__toggleButton--closed"]}`}
 							onClick={handleToggle}
 						>
 							<MenuHamburgerIcon title="Hamburgermeny ikon" />
 						</InternalHeader.Button>
-					)}
-				</nav>
-			</Theme>
-		);
-	}
+					)
+				) : (
+					<>
+						<div className={styles.sidebar__closeButton}>
+							<InternalHeader.Button
+								className={styles.sidebar__toggleButton}
+								onClick={handleToggle}
+							>
+								Lukk
+								<XMarkIcon title="Lukk ikon" />
+							</InternalHeader.Button>
+						</div>
 
-	return (
-		<Theme theme="dark" asChild hasBackground={false}>
-			<nav
-				className={`aksel-internalheader ${styles.sidebar}`}
-				ref={sidebarRef}
-			>
-				<div className={styles.sidebar__closeButton}>
-					<InternalHeader.Button
-						className={styles.sidebar__toggleButton}
-						onClick={handleToggle}
-					>
-						<XMarkIcon title="Lukk ikon" />
-						Lukk
-					</InternalHeader.Button>
-				</div>
-
-				<ul className={styles.sidebar__list}>
-					<li className={styles.sidebar__links}>
-						{renderSideBarLink({
-							route: "/",
-							children: (
-								<>
+						<ul className={styles.sidebar__list}>
+							<li>
+								<SideBarLink route="/">
 									<HouseIcon
 										className={styles.sidebar__icon}
 										title="Hus ikon"
 									/>
 									Hjem
-								</>
-							),
-						})}
-					</li>
-					{getMicrofrontendLinks()}
-				</ul>
+								</SideBarLink>
+							</li>
+							{authorizedApps
+								.slice()
+								.sort((a, b) => a.title.localeCompare(b.title))
+								.map((page) => (
+									<li key={page.app}>
+										<SideBarLink route={page.route}>{page.title}</SideBarLink>
+									</li>
+								))}
+						</ul>
+					</>
+				)}
 			</nav>
 		</Theme>
 	);
