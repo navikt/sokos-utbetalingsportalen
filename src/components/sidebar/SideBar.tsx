@@ -1,5 +1,5 @@
 import { HouseIcon, MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
-import { InternalHeader, Link, Theme } from "@navikt/ds-react";
+import { Button, Link, Theme } from "@navikt/ds-react";
 import { getAuthorizedApps } from "@utils/accessControl";
 import type { PropsWithChildren } from "react";
 import { useEffect, useRef, useState } from "react";
@@ -98,12 +98,13 @@ export default function SideBar({ adGroups }: SideBarProps) {
 					onTransitionEnd={handleTransitionEnd}
 				>
 					{showButton && (
-						<InternalHeader.Button
+						<Button
 							className={styles.sidebar__toggleButton}
+							variant="tertiary"
 							onClick={handleToggle}
 						>
 							<MenuHamburgerIcon title="Hamburgermeny ikon" />
-						</InternalHeader.Button>
+						</Button>
 					)}
 				</nav>
 			</Theme>
@@ -117,13 +118,15 @@ export default function SideBar({ adGroups }: SideBarProps) {
 				ref={sidebarRef}
 			>
 				<div className={styles.sidebar__closeButton}>
-					<InternalHeader.Button
+					<Button
 						className={styles.sidebar__toggleButton}
 						onClick={handleToggle}
+						variant="tertiary"
+						icon={<XMarkIcon title="Kryss ikon" />}
+						iconPosition="left"
 					>
-						<XMarkIcon title="Kryss ikon" />
 						Lukk
-					</InternalHeader.Button>
+					</Button>
 				</div>
 
 				<ul className={styles.sidebar__list}>
