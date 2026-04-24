@@ -32,6 +32,15 @@
 .sidebar__toggleButton {
 	min-height: 3rem;
 	padding-inline: var(--ax-space-12);
+	border: none;
+	gap: 0.5rem;
+}
+
+.sidebar__toggleButton--closed {
+	font-size: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .sidebar__closeButton {
