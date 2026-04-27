@@ -1,5 +1,5 @@
 import { HouseIcon, MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
-import { Button, Link } from "@navikt/ds-react";
+import { InternalHeader, Link, Theme } from "@navikt/ds-react";
 import { getAuthorizedApps } from "@utils/accessControl";
 import type { PropsWithChildren } from "react";
 import { useEffect, useRef, useState } from "react";
@@ -8,6 +8,25 @@ import styles from "./SideBar.module.css";
 type SideBarProps = {
 	adGroups: string[];
 };
+
+function SideBarLink({
+	children,
+	route,
+}: PropsWithChildren & { route: string }) {
+	const isActive =
+		typeof window !== "undefined" &&
+		(window.location.pathname === route ||
+			(route !== "/" && window.location.pathname.startsWith(`${route}/`)));
+
+	return (
+		<Link
+			className={`${styles.sidebar__link} ${isActive ? styles["sidebar__link--active"] : ""}`}
+			href={route}
+		>
+			{children}
+		</Link>
+	);
+}
 
 export default function SideBar({ adGroups }: SideBarProps) {
 	const authorizedApps = getAuthorizedApps(adGroups);
@@ -57,85 +76,56 @@ export default function SideBar({ adGroups }: SideBarProps) {
 		}
 	};
 
-	const renderSideBarLink = ({
-		children,
-		route,
-	}: PropsWithChildren & { route: string }) => {
-		const isActive =
-			typeof window !== "undefined" &&
-			(window.location.pathname === route ||
-				(route !== "/" && window.location.pathname.startsWith(`${route}/`)));
-
-		return (
-			<Link
-				className={`${styles.sidebar__link} ${isActive ? styles["sidebar__link--active"] : ""}`}
-				href={route}
-			>
-				<div className={styles.sidebar__linkChild}>{children}</div>
-			</Link>
-		);
-	};
-
-	function getMicrofrontendLinks() {
-		return authorizedApps
-			.slice()
-			.sort((a, b) => a.title.localeCompare(b.title))
-			.map((page) => (
-				<li key={page.app} className={styles.sidebar__links}>
-					{renderSideBarLink({
-						route: page.route,
-						children: page.title,
-					})}
-				</li>
-			));
-	}
-
-	if (!isOpen) {
-		return (
+	return (
+		<Theme theme="dark" asChild hasBackground={false}>
 			<nav
-				className={`${styles["sidebar--closed"]} ${styles.sidebar}`}
+				className={`aksel-internalheader ${styles.sidebar} ${!isOpen ? styles["sidebar--closed"] : ""}`}
+				ref={sidebarRef}
 				onTransitionEnd={handleTransitionEnd}
 			>
-				{showButton && (
-					<Button
-						className={styles.sidebar__buttonColor}
-						onClick={handleToggle}
-						variant="primary-neutral"
-						icon={<MenuHamburgerIcon title="Hamburgermeny ikon" />}
-					/>
+				{!isOpen ? (
+					showButton && (
+						<InternalHeader.Button
+							className={`${styles.sidebar__toggleButton} ${styles["sidebar__toggleButton--closed"]}`}
+							onClick={handleToggle}
+						>
+							<MenuHamburgerIcon title="Hamburgermeny ikon" />
+						</InternalHeader.Button>
+					)
+				) : (
+					<>
+						<div className={styles.sidebar__closeButton}>
+							<InternalHeader.Button
+								className={styles.sidebar__toggleButton}
+								onClick={handleToggle}
+							>
+								Lukk
+								<XMarkIcon title="Lukk ikon" />
+							</InternalHeader.Button>
+						</div>
+
+						<ul className={styles.sidebar__list}>
+							<li>
+								<SideBarLink route="/">
+									<HouseIcon
+										className={styles.sidebar__icon}
+										title="Hus ikon"
+									/>
+									Hjem
+								</SideBarLink>
+							</li>
+							{authorizedApps
+								.slice()
+								.sort((a, b) => a.title.localeCompare(b.title))
+								.map((page) => (
+									<li key={page.app}>
+										<SideBarLink route={page.route}>{page.title}</SideBarLink>
+									</li>
+								))}
+						</ul>
+					</>
 				)}
 			</nav>
-		);
-	}
-
-	return (
-		<nav className={styles.sidebar} ref={sidebarRef}>
-			<div className={styles.sidebar__closeButton}>
-				<Button
-					className={styles.sidebar__buttonColor}
-					onClick={handleToggle}
-					icon={<XMarkIcon title="Kryss ikon" />}
-					iconPosition="right"
-					variant="primary-neutral"
-				>
-					Lukk
-				</Button>
-			</div>
-
-			<ul className={styles.sidebar__list}>
-				<li className={styles.sidebar__links}>
-					{renderSideBarLink({
-						route: "/",
-						children: (
-							<>
-								<HouseIcon className={styles.sidebar__icon} title="Hus ikon" />
-								Hjem
-							</>
-						),
-					})}
-				</li>
-				{getMicrofrontendLinks()}
-			</ul>
-		</nav>
+		</Theme>
 	);
 }

@@ -1,29 +1,36 @@
 ---
 import GoBack from "@components/go-back/GoBack";
 import Layout from "@layouts/Layout.astro";
-import { BodyShort, Box, Button, Heading, List } from "@navikt/ds-react";
+import {
+  BodyShort,
+  Box,
+  Button,
+  Heading,
+  List,
+  VStack,
+} from "@navikt/ds-react";
 import styles from "../common-styles.module.css";
 ---
 
 <Layout title="404 - Fant ikke siden">
-  <Box paddingBlock="20 16" data-aksel-template="404-v2">
+  <Box paddingBlock="space-80 space-64" data-aksel-template="404-v3">
     <div class={styles["error-page"]}>
-      <Heading level="1" size="large" spacing>
-        Beklager, vi fant ikke siden
-      </Heading>
-      <BodyShort>
-        Denne siden kan være slettet eller flyttet, eller det er en feil i
-        lenken.
-      </BodyShort>
-      <List>
-        <List.Item>Bruk gjerne menyen</List.Item>
-        <List.Item>
-          <GoBack fallbackUrl="/" client:load>
-            Gå tilbake til forrige side
-          </GoBack>
-        </List.Item>
-      </List>
-      <Button as="a" href="/">Gå til hovedsiden</Button>
+      <VStack gap="space-16" align="start">
+        <Heading level="1" size="large"> Beklager, vi fant ikke siden </Heading>
+        <BodyShort>
+          Denne siden kan være slettet eller flyttet, eller det er en feil i
+          lenken.
+        </BodyShort>
+        <List>
+          <List.Item>Bruk gjerne menyen</List.Item>
+          <List.Item>
+            <GoBack fallbackUrl="/" client:load>
+              Gå tilbake til forrige side
+            </GoBack>
+          </List.Item>
+        </List>
+        <Button as="a" href="/">Gå til hovedsiden</Button>
+      </VStack>
     </div>
   </Box>
 </Layout>

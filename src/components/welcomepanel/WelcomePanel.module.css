@@ -1,7 +1,6 @@
-.welcomeGuidepanel {
-	padding-bottom: 2.5rem;
-}
-
-.welcomeGuidepanel__heading {
-	text-align: center;
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2.5rem;
 }
