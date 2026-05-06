@@ -1,6 +1,6 @@
 import { ClientError } from "@components/error/ClientError";
 import ContentLoader from "@components/loader/ContentLoader";
-import React from "react";
+import React, { useMemo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
 type MicrofrontendType = {
@@ -13,7 +13,10 @@ function createMicrofrontendBundle(url: string) {
 }
 
 export default function Microfrontend(props: MicrofrontendType) {
-	const MicrofrontendBundle = createMicrofrontendBundle(props.url);
+	const MicrofrontendBundle = useMemo(
+		() => createMicrofrontendBundle(props.url),
+		[props.url],
+	);
 
 	return (
 		<React.Suspense fallback={<ContentLoader />}>
