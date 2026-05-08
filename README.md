@@ -103,6 +103,26 @@ Applikasjonen bruker SSO (Single Sign-On) gjennom [Wonderwall](https://docs.nais
 | React (client-side) | [sokos-react-template](https://github.com/navikt/sokos-react-template) | [Guide for React mikrofrontend](dokumentasjon/react-mikrofrontend.md) |
 | Astro (server-side) | [sokos-astro-template](https://github.com/navikt/sokos-astro-template) | [Guide for Astro mikrofrontend](dokumentasjon/astro-mikrofrontend.md) |
 
+### AI-assistert integrasjon med GitHub Copilot
+
+Repoet inneholder ferdige Copilot-skills som veileder deg steg for steg gjennom integrasjon av ny mikrofrontend — fra AD-grupper og Nais-konfig til proxy og side, klar for PR.
+
+**Installer skills (én gang per maskin):**
+
+```bash
+cp -r .github/skills/astro-mikrofrontend ~/.copilot/skills/
+cp -r .github/skills/react-mikrofrontend ~/.copilot/skills/
+```
+
+**Bruk i Copilot:**
+
+| Skill | Prompt-eksempel |
+|-------|----------------|
+| `$astro-mikrofrontend` | `$astro-mikrofrontend Legg til sokos-up-min-app i portalen` |
+| `$react-mikrofrontend` | `$react-mikrofrontend Integrer sokos-up-min-api med GCP-backend` |
+
+Copilot stiller de nødvendige spørsmålene og genererer alle filer PR-klart.
+
 ### Umami-taksonomi
 
 Anbefaling og bruk av navngivning av Umami-hendelser og tilhørende detaljer på tvers av arbeidsflatene.

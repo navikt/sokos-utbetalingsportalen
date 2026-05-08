@@ -1,0 +1,26 @@
+{
+	"description": "Integrer en ny Astro SSR-mikrofrontend i sokos-utbetalingsportalen — AD-grupper, Nais-konfig, proxy og side",
+	"domain": "frontend",
+	"tags": [
+		"astro",
+		"microfrontend",
+		"nais",
+		"sokos",
+		"utbetalingsportalen",
+		"ssr"
+	],
+	"examples": [
+		{
+			"prompt": "Legg til en ny Astro mikrofrontend for sokos-up-min-app i utbetalingsportalen",
+			"scenario": "Ny Astro SSR-mikrofrontend i okonomi-namespace"
+		},
+		{
+			"prompt": "Integrer sokos-up-oppdragsinfo som Astro mikrofrontend i portalen med lokal utviklingsstøtte",
+			"scenario": "Astro mikrofrontend med localhost-override og annet namespace"
+		},
+		{
+			"prompt": "Hvilke filer må jeg endre for å legge til en ny Astro-app i utbetalingsportalen?",
+			"scenario": "Oversikt over integrasjonssteg"
+		}
+	]
+}
