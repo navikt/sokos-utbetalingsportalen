@@ -186,6 +186,21 @@ const appAudience = isLocalEnv
 
 ---
 
+## Steg 6 — Middleware: Lokal utvikling
+
+Legg til `adGroupDevelopment`-UUID-en i `groups`-arrayen i `src/middleware/index.ts`.
+
+Dette gjør at menypunktet vises når portalen kjøres lokalt, siden middleware simulerer en innlogget bruker med faste AD-grupper i `local`-miljøet.
+
+```typescript
+// src/middleware/index.ts — legg til i groups-arrayen
+"<dev-gruppe-uuid>", // 0000-CA-SOKOS-MF-<APPNAVN>-READ
+```
+
+> Kun `adGroupDevelopment` legges inn her — prod-gruppen håndteres av Azure AD i kjørende miljøer.
+
+---
+
 ## Mappestruktur oppsummering
 
 ```
@@ -196,6 +211,9 @@ src/pages/
 
 src/config/
 └── appConfig.ts             ← Ny oppføring i apps-array
+
+src/middleware/
+└── index.ts                 ← adGroupDevelopment i groups-array (lokal utvikling)
 
 .nais/
 ├── naiserator-q1.yaml       ← AD-gruppe, env vars, accessPolicy
@@ -217,6 +235,7 @@ Generer dette som PR-beskrivelse eller sjekkliste:
 - [ ] `src/config/appConfig.ts` — ny app-oppføring
 - [ ] `src/pages/<rute>/[...proxy].ts` — ny API-proxy
 - [ ] `src/pages/<rute>.astro` — ny side
+- [ ] `src/middleware/index.ts` — adGroupDevelopment lagt til i groups-array
 
 ### Verifisering
 - [ ] Siden laster uten feil i dev
