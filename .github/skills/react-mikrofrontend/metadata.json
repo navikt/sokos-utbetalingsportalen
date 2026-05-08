@@ -15,7 +15,7 @@
 			"scenario": "Ny React CSR-mikrofrontend mot GCP backend"
 		},
 		{
-			"prompt": "Integrer sokos-oppdrag som React mikrofrontend i portalen, backend er på FSS",
+			"prompt": "Integrer sokos-up-min-app som React mikrofrontend i portalen, backend er på FSS",
 			"scenario": "React mikrofrontend mot FSS/on-prem backend"
 		},
 		{
@@ -23,7 +23,7 @@
 			"scenario": "Oversikt over integrasjonssteg"
 		},
 		{
-			"prompt": "Backend er allerede registrert i portalen, legg bare til React-frontend for sokos-up-buntkontroll",
+			"prompt": "Backend er allerede registrert i portalen, legg bare til React-frontend for sokos-up-min-app",
 			"scenario": "Hurtigspor — bare frontend-steg"
 		}
 	]

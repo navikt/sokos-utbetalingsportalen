@@ -15,7 +15,7 @@
 			"scenario": "Ny Astro SSR-mikrofrontend i okonomi-namespace"
 		},
 		{
-			"prompt": "Integrer sokos-up-oppdragsinfo som Astro mikrofrontend i portalen med lokal utviklingsstøtte",
+			"prompt": "Integrer sokos-up-min-app som Astro mikrofrontend i portalen med lokal utviklingsstøtte",
 			"scenario": "Astro mikrofrontend med localhost-override og annet namespace"
 		},
 		{
