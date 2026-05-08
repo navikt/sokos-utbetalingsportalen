@@ -9,6 +9,7 @@ on:
       - "LICENCE"
       - "CODEOWNERS"
       - ".gitignore"
+      - ".github/skills/**"
       - ".github/workflows/build-pr.yaml"
       - ".github/workflows/codeql-trivy-scan.yaml"
       - '.github/workflows/digestabot-automerge.yaml'
