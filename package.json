@@ -23,7 +23,7 @@
 		"@navikt/aksel-icons": "7.40.0",
 		"@navikt/ds-react": "7.40.0",
 		"@navikt/oasis": "4.1.4",
-		"@opentelemetry/sdk-node": "0.215.0",
+		"@opentelemetry/sdk-node": "0.217.0",
 		"astro": "6.1.9",
 		"pino": "10.3.1",
 		"pino-socket": "8.0.0",
@@ -42,7 +42,7 @@
 		"@types/react": "19.2.14",
 		"@types/react-dom": "19.2.3",
 		"concurrently": "9.2.1",
-		"hono": "4.12.16",
+		"hono": "4.12.18",
 		"husky": "9.1.7",
 		"lint-staged": "16.4.0",
 		"prettier": "3.8.3",
@@ -63,6 +63,9 @@
 		"node": ">=24.12.0"
 	},
 	"pnpm": {
-		"overrides": {}
+		"overrides": {
+			"protobufjs": "8.0.2",
+			"yaml": "2.8.3"
+		}
 	}
 }
