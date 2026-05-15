@@ -1,0 +1,11 @@
+overrides:
+  protobufjs: 8.0.2
+  yaml: 2.8.3
+engineStrict: true
+saveExact: true
+ignoreScripts: true
+minimumReleaseAge: 10080
+allowBuilds:
+  esbuild: true
+  protobufjs: true
+  sharp: true
