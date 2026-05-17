@@ -21,6 +21,7 @@ jobs:
     name: Build application & build/push image
     uses: navikt/mob-gha-workflows/.github/workflows/node-build-push-image.yaml@main
     with:
+      image-tag: snapshot
       has-vitest: true
     secrets: inherit
 
