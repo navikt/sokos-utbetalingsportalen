@@ -25,4 +25,6 @@ jobs:
       contents: read
     name: Build & test application
     uses: navikt/mob-gha-workflows/.github/workflows/node-build-pr.yaml@main
+    with:
+      has-vitest: true
     secrets: inherit
