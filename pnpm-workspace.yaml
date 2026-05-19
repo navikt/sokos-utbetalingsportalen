@@ -1,10 +1,13 @@
 overrides:
-  protobufjs: 8.0.2
+  protobufjs: 8.2.0
   yaml: 2.8.3
+  devalue: 5.8.1
 engineStrict: true
 saveExact: true
 ignoreScripts: true
 minimumReleaseAge: 10080
+minimumReleaseAgeExclude:
+  - devalue@5.8.1
 allowBuilds:
   esbuild: true
   protobufjs: true
