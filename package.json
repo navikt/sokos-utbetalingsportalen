@@ -45,7 +45,7 @@
 		"concurrently": "9.2.1",
 		"hono": "4.12.18",
 		"husky": "9.1.7",
-		"lint-staged": "16.4.0",
+		"lint-staged": "17.0.4",
 		"prettier": "3.8.3",
 		"prettier-plugin-astro": "0.14.1",
 		"stylelint": "17.9.1",
