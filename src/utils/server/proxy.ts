@@ -21,6 +21,11 @@ function getProxyUrl(request: Request, proxyConfig: ProxyConfig): URL {
 	return new URL(url);
 }
 
+const keepHeader: (h: string) => boolean = h => {
+  const lowered: string = h.toLowerCase()
+  return lowered === "accept" || lowered.startsWith("x-")
+};
+
 export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 	return async (context: APIContext) => {
 		const tracer = api.trace.getTracer("Reverse-Proxy");
@@ -60,10 +65,10 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 						"Reverse Proxy HTTP Request",
 					);
 
-					const xHeaders = Object.fromEntries(
+					const keptHeaders = Object.fromEntries(
 						context.request.headers
 							.entries()
-							.filter(([key, _]) => key.toLowerCase().startsWith("x-")),
+							.filter(([key, _]) => keepHeader(key)),
 					);
 
 					const response = await fetch(url.href, {
@@ -71,7 +76,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 						headers: {
 							Authorization: `Bearer ${oboToken}`,
 							"Content-Type": "application/json",
-							...xHeaders,
+              ...keptHeaders,
 						},
 						body: context.request.body,
 						// @ts-expect-error
