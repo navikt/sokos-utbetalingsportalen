@@ -30,7 +30,7 @@ const microfrontendConfigMap = Object.fromEntries(
 
 function getLocalMicrofrontendUrl(microfrontendName: string): string | null {
 	const localConfig = localMicrofrontends[microfrontendName];
-	if (!localConfig || !localConfig.enabled) {
+	if (!localConfig?.enabled) {
 		return null;
 	}
 

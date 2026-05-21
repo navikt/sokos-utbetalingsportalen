@@ -40,7 +40,4 @@ export default defineConfig({
 			{ hostname: "utbetalingsportalen.ansatt.nav.no", protocol: "https" },
 		],
 	},
-	vite: {
-		publicDir: "./public",
-	},
 });
