@@ -22,7 +22,7 @@ const greeting =
   <div class={styles["home"]}>
     <div class={styles["home__content"]}>
       <GuidePanel greeting={greeting} name={userData.name} />
-      <AppSwitcher server:defer adGroups={userData.groups} client:only="react">
+      <AppSwitcher adGroups={userData.groups} client:only="react">
         <AppSwitcherSkeleton slot="fallback" />
       </AppSwitcher>
     </div>

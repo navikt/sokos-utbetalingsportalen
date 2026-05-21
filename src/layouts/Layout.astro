@@ -5,11 +5,11 @@ import Observability from "@components/observability/Observability";
 import SideBar from "@components/sidebar/sidebar.astro";
 import styles from "./Layout.module.css";
 
-export type LayoutProps = {
+interface Props {
   title: string;
-};
+}
 
-const { title } = Astro.props as LayoutProps;
+const { title } = Astro.props;
 
 const pageTitle = title
   ? `${title} | Utbetalingsportalen`
