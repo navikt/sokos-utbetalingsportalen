@@ -39,3 +39,4 @@ updates:
           - "@navikt/aksel-*"
           - "@navikt/ds-*"
           - "astro"
+          - "@astrojs/*"
