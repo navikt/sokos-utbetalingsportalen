@@ -1,0 +1,27 @@
+{
+	"description": "Bump React-versjonen i importmap (Layout.astro) og package.json — validerer mot navikt/sokos-shared-dependencies",
+	"domain": "frontend",
+	"tags": [
+		"react",
+		"importmap",
+		"cdn",
+		"versjon",
+		"bump",
+		"sokos",
+		"utbetalingsportalen"
+	],
+	"examples": [
+		{
+			"prompt": "Bump react til 19.2.6",
+			"scenario": "Oppdater React til en spesifikk versjon som finnes i shared-dependencies"
+		},
+		{
+			"prompt": "Oppdater react-versjonen til 19.3.0",
+			"scenario": "Bump React med alternativ formulering"
+		},
+		{
+			"prompt": "Bump react til nyeste versjon",
+			"scenario": "Finn og bruk nyeste React-versjon fra shared-dependencies"
+		}
+	]
+}
