@@ -1,0 +1,27 @@
+{
+	"description": "Bump Aksel ds-css CDN-versjonen i Layout.astro — synkroniserer med @navikt/ds-react i package.json",
+	"domain": "frontend",
+	"tags": [
+		"aksel",
+		"ds-css",
+		"cdn",
+		"versjon",
+		"bump",
+		"sokos",
+		"utbetalingsportalen"
+	],
+	"examples": [
+		{
+			"prompt": "Bump cdn css",
+			"scenario": "Synkroniser CDN-lenken i Layout.astro med @navikt/ds-react-versjonen i package.json"
+		},
+		{
+			"prompt": "Bump cdn css til 7.41.0",
+			"scenario": "Oppdater både package.json og CDN-lenken til en spesifikk versjon"
+		},
+		{
+			"prompt": "Oppdater aksel css cdn",
+			"scenario": "Alternativ formulering for å bumpe CDN CSS"
+		}
+	]
+}
