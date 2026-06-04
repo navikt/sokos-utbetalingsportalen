@@ -8,7 +8,7 @@ on:
       - "CODEOWNERS"
       - ".gitignore"
       - ".github/skills/**"
-      - ".github/workflows/codeql-trivy-scan.yaml"
+      - ".github/workflows/codeql-scan.yaml"
       - ".github/workflows/deploy.yaml"
       - '.github/workflows/digestabot-automerge.yaml'
       - '.github/workflows/digestabot-update.yaml'
