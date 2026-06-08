@@ -48,7 +48,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 							span_id: spanContext.spanId,
 							trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
 						},
-						"Reverse Proxy HTTP Request",
+						`Proxy request -> Method: ${context.request.method} | URL: ${url.href}`,
 					);
 
 					const acceptHeader = context.request.headers.get("accept");
@@ -73,18 +73,18 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 							span_id: spanContext.spanId,
 							trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
 						},
-						"Reverse Proxy HTTP Response",
+						`Proxy response -> Statuscode:  ${response.status} | URL: ${response.url}`,
 					);
 
 					teamLogger.info(
 						{
 							NAVident: context.locals.userData?.NAVident,
 							method: context.request.method,
-							proxyFrom: proxyConfig.apiProxy,
+							url: response.url,
 							status: response.status,
 							trace_id: spanContext.traceId,
 						},
-						"Proxy audit",
+						`Proxy Audit -> Ident: ${context.locals.userData?.NAVident} | Method: ${context.request.method} | URL: ${response.url} → ${response.status}`,
 					);
 
 					return new Response(response.body, {
