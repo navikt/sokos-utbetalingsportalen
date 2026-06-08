@@ -33,13 +33,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 			async (span) => {
 				try {
 					const audience = proxyConfig.audience;
-					const oboToken = await getOboToken(context.locals.token, audience, {
-						navident: context.locals.userData?.NAVident,
-						route: context.request.url,
-						method: context.request.method,
-						proxyFrom: proxyConfig.apiProxy,
-						proxyTo: proxyConfig.apiUrl,
-					});
+					const oboToken = await getOboToken(context.locals.token, audience);
 					const url = getProxyUrl(context.request, proxyConfig);
 
 					const spanContext = span.spanContext();
@@ -48,9 +42,6 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 						{
 							method: context.request.method,
 							url: context.request.url,
-							clientIp:
-								context.request.headers.get("x-forwarded-for") ??
-								context.clientAddress,
 							proxyFrom: proxyConfig.apiProxy,
 							proxyTo: proxyConfig.apiUrl,
 							trace_id: spanContext.traceId,
@@ -60,15 +51,15 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 						"Reverse Proxy HTTP Request",
 					);
 
-				const acceptHeader = context.request.headers.get("accept");
+					const acceptHeader = context.request.headers.get("accept");
 
-				const response = await fetch(url.href, {
-					method: context.request.method,
-					headers: {
-						Authorization: `Bearer ${oboToken}`,
-						"Content-Type": "application/json",
-						...(acceptHeader && { Accept: acceptHeader }),
-					},
+					const response = await fetch(url.href, {
+						method: context.request.method,
+						headers: {
+							Authorization: `Bearer ${oboToken}`,
+							"Content-Type": "application/json",
+							...(acceptHeader && { Accept: acceptHeader }),
+						},
 						body: context.request.body,
 						// @ts-expect-error
 						duplex: "half",
