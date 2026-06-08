@@ -48,7 +48,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 							span_id: spanContext.spanId,
 							trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
 						},
-						`Proxy request -> Method: ${context.request.method} | URL: ${url.href}`,
+						`Proxy Request -> Method: ${context.request.method} | URL: ${url.href}`,
 					);
 
 					const acceptHeader = context.request.headers.get("accept");
@@ -73,7 +73,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 							span_id: spanContext.spanId,
 							trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
 						},
-						`Proxy response -> Statuscode:  ${response.status} | URL: ${response.url}`,
+						`Proxy Response -> Status:  ${response.status} | URL: ${response.url}`,
 					);
 
 					teamLogger.info(
@@ -83,8 +83,9 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 							url: response.url,
 							status: response.status,
 							trace_id: spanContext.traceId,
+							span_id: spanContext.spanId,
 						},
-						`Proxy Audit -> Ident: ${context.locals.userData?.NAVident} | Method: ${context.request.method} | URL: ${response.url} → ${response.status}`,
+						`Proxy Audit -> Ident: ${context.locals.userData?.NAVident} | Method: ${context.request.method} | URL: ${response.url}`,
 					);
 
 					return new Response(response.body, {
