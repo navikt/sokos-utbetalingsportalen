@@ -1,0 +1,20 @@
+name: CodeQL Scan
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+env:
+  TZ: Europe/Oslo
+
+jobs:
+  codeql-scan:
+    permissions:
+      contents: read
+      security-events: write
+    name: CodeQL Scan
+    uses: navikt/mob-gha-workflows/.github/workflows/codeql-scan.yaml@main
+    secrets: inherit
+    with:
+      language: "javascript"

@@ -1,6 +1,6 @@
 import { api } from "@opentelemetry/sdk-node";
 import { extractServiceNameFromAudience } from "@utils/audience";
-import { logger } from "@utils/logger/index";
+import { logger, teamLogger } from "@utils/logger/index";
 import { getOboToken } from "@utils/server/token";
 import type { APIContext, APIRoute } from "astro";
 
@@ -33,13 +33,7 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 			async (span) => {
 				try {
 					const audience = proxyConfig.audience;
-					const oboToken = await getOboToken(context.locals.token, audience, {
-						navident: context.locals.userData?.NAVident,
-						route: context.request.url,
-						method: context.request.method,
-						proxyFrom: proxyConfig.apiProxy,
-						proxyTo: proxyConfig.apiUrl,
-					});
+					const oboToken = await getOboToken(context.locals.token, audience);
 					const url = getProxyUrl(context.request, proxyConfig);
 
 					const spanContext = span.spanContext();
@@ -48,27 +42,24 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 						{
 							method: context.request.method,
 							url: context.request.url,
-							clientIp:
-								context.request.headers.get("x-forwarded-for") ??
-								context.clientAddress,
 							proxyFrom: proxyConfig.apiProxy,
 							proxyTo: proxyConfig.apiUrl,
 							trace_id: spanContext.traceId,
 							span_id: spanContext.spanId,
 							trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
 						},
-						"Reverse Proxy HTTP Request",
+						`Proxy Request -> Method: ${context.request.method} | URL: ${url.href}`,
 					);
 
-				const acceptHeader = context.request.headers.get("accept");
+					const acceptHeader = context.request.headers.get("accept");
 
-				const response = await fetch(url.href, {
-					method: context.request.method,
-					headers: {
-						Authorization: `Bearer ${oboToken}`,
-						"Content-Type": "application/json",
-						...(acceptHeader && { Accept: acceptHeader }),
-					},
+					const response = await fetch(url.href, {
+						method: context.request.method,
+						headers: {
+							Authorization: `Bearer ${oboToken}`,
+							"Content-Type": "application/json",
+							...(acceptHeader && { Accept: acceptHeader }),
+						},
 						body: context.request.body,
 						// @ts-expect-error
 						duplex: "half",
@@ -82,7 +73,19 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 							span_id: spanContext.spanId,
 							trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
 						},
-						"Reverse Proxy HTTP Response",
+						`Proxy Response -> Status:  ${response.status} | URL: ${response.url}`,
+					);
+
+					teamLogger.info(
+						{
+							NAVident: context.locals.userData?.NAVident,
+							method: context.request.method,
+							url: response.url,
+							status: response.status,
+							trace_id: spanContext.traceId,
+							span_id: spanContext.spanId,
+						},
+						`Proxy Audit -> Ident: ${context.locals.userData?.NAVident} | Method: ${context.request.method} | URL: ${response.url}`,
 					);
 
 					return new Response(response.body, {

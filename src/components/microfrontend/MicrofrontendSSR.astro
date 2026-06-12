@@ -20,12 +20,7 @@ if (!appUrl || !appAudience || !appTitle) {
   );
 } else {
   try {
-    const oboToken = await getOboToken(Astro.locals.token, appAudience, {
-      navident: Astro.locals.userData?.NAVident,
-      route: Astro.url.pathname,
-      appTitle,
-      appUrl,
-    });
+    const oboToken = await getOboToken(Astro.locals.token, appAudience);
 
     const response = await fetch(appUrl, {
       method: "GET",
