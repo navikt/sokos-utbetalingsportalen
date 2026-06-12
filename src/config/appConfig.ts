@@ -63,7 +63,7 @@ export const apps: App[] = [
 		title: "Skattekort Administrator",
 		description: "Arbeidsflate for drift av Sokos-skattekort",
 		adGroupDevelopment: "f760594e-4918-4246-a636-329148c82fa7",
-		adGroupProduction: PLACEHOLDER_AD_GROUP,
+		adGroupProduction: "8f27b0f8-b78c-45d3-b0a1-7b3075b636c2",
 		route: "/skattekort-admin",
 		naisAppName: "sokos-up-skattekort-admin",
 	},
