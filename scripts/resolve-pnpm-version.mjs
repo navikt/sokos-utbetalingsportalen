@@ -14,13 +14,18 @@ import {
 	createHash,
 	timingSafeEqual as cryptoTimingSafeEqual,
 } from "node:crypto";
+import { readFile, writeFile } from "node:fs/promises";
+import { dirname, resolve } from "node:path";
 import {
 	argv,
 	env,
+	stdin,
 	version as nodeVersion,
 	stderr,
 	stdout,
 } from "node:process";
+import { createInterface } from "node:readline";
+import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 
 const REGISTRY_URL = "https://registry.npmjs.org/pnpm";
@@ -134,7 +139,7 @@ stderr.write(
 		`  ${c.bold}Released${c.reset}           ${releasedAt} ${c.dim}(${ageDays} days ago)${c.reset}\n` +
 		`  ${c.bold}Tarball check${c.reset}      ${c.green}OK${c.reset} ${c.dim}(independently re-hashed)${c.reset}\n` +
 		`  ${c.bold}Integrity (SRI)${c.reset}    ${sri}\n\n` +
-		`${c.bold}${c.cyan}Paste these into package.json:${c.reset}\n\n`,
+		`${c.bold}${c.cyan}Verdier som skal inn i package.json (root):${c.reset}\n\n`,
 );
 
 // stdout = the only thing meant to be piped/copied. NO COLOR codes here.
@@ -144,20 +149,43 @@ stdout.write(
 
 stderr.write(
 	`\n${c.dim}Keep the version in "engines.pnpm" aligned with "packageManager" so${c.reset}\n` +
-		`${c.dim}'engineStrict' rejects mismatched local pnpm installs.${c.reset}\n\n` +
-		bar +
-		`${c.bold}${c.yellow}!  VERIFY BEFORE PUSHING TO GITHUB${c.reset}\n` +
-		bar +
-		`  1. Confirm version on the official release page:\n` +
-		`     ${c.cyan}https://github.com/pnpm/pnpm/releases/tag/v${version}${c.reset}\n` +
-		`  2. Compare the integrity hash above with npm's published value:\n` +
-		`     ${c.cyan}https://registry.npmjs.org/pnpm/${version}${c.reset}\n` +
-		`  3. Make sure the version exists on pnpm's GitHub releases (not yanked).\n` +
-		`  4. Update ${c.bold}engines.pnpm${c.reset} in package.json to ${c.green}">=${version}"${c.reset}.\n` +
-		`  5. Run ${c.bold}pnpm install${c.reset} locally and verify it succeeds before committing.\n` +
-		`  6. Open a PR — let CI run before merging.\n` +
-		bar,
+		`${c.dim}'engineStrict' rejects mismatched local pnpm installs.${c.reset}\n\n`,
 );
+
+if (stdin.isTTY) {
+	const updated = await promptAndUpdate(version, packageManager);
+	if (!updated) {
+		stderr.write(
+			bar +
+				`${c.bold}${c.yellow}!  VERIFY BEFORE PUSHING TO GITHUB${c.reset}\n` +
+				bar +
+				`  1. Confirm version on the official release page:\n` +
+				`     ${c.cyan}https://github.com/pnpm/pnpm/releases/tag/v${version}${c.reset}\n` +
+				`  2. Compare the integrity hash above with npm's published value:\n` +
+				`     ${c.cyan}https://registry.npmjs.org/pnpm/${version}${c.reset}\n` +
+				`  3. Make sure the version exists on pnpm's GitHub releases (not yanked).\n` +
+				`  4. Oppdater manuelt ${c.bold}engines.pnpm${c.reset} i package.json til ${c.green}">=${version}"${c.reset}.\n` +
+				`  5. Run ${c.bold}pnpm install${c.reset} locally and verify it succeeds before committing.\n` +
+				`  6. Open a PR — let CI run before merging.\n` +
+				bar,
+		);
+	}
+} else {
+	stderr.write(
+		bar +
+			`${c.bold}${c.yellow}!  VERIFY BEFORE PUSHING TO GITHUB${c.reset}\n` +
+			bar +
+			`  1. Confirm version on the official release page:\n` +
+			`     ${c.cyan}https://github.com/pnpm/pnpm/releases/tag/v${version}${c.reset}\n` +
+			`  2. Compare the integrity hash above with npm's published value:\n` +
+			`     ${c.cyan}https://registry.npmjs.org/pnpm/${version}${c.reset}\n` +
+			`  3. Make sure the version exists on pnpm's GitHub releases (not yanked).\n` +
+			`  4. Update ${c.bold}engines.pnpm${c.reset} in package.json to ${c.green}">=${version}"${c.reset}.\n` +
+			`  5. Run ${c.bold}pnpm install${c.reset} locally and verify it succeeds before committing.\n` +
+			`  6. Open a PR — let CI run before merging.\n` +
+			bar,
+	);
+}
 
 // ---------- helpers ----------
 
@@ -176,6 +204,69 @@ function requirePositiveInt(raw, label) {
 		fatal(`${label} must be a positive integer (got '${raw}').`);
 	}
 	return n;
+}
+
+async function promptAndUpdate(version, packageManager) {
+	const rl = createInterface({ input: stdin, output: stderr });
+	const answer = await new Promise((res) => {
+		rl.question(
+			`\n${c.bold}${c.cyan}Ønsker du å oppdatere package.json automatisk?${c.reset} ${c.dim}(j/n)${c.reset} `,
+			(a) => {
+				rl.close();
+				res(a.trim().toLowerCase());
+			},
+		);
+	});
+
+	if (answer !== "j" && answer !== "ja") {
+		stderr.write(
+			`\n${c.dim}Ingen filer ble endret. Kopier verdiene manuelt.${c.reset}\n\n`,
+		);
+		return false;
+	}
+
+	const root = dirname(fileURLToPath(import.meta.url));
+	const targets = [
+		resolve(root, "../package.json"),
+	];
+
+	for (const filePath of targets) {
+		await updatePackageJson(filePath, version, packageManager);
+	}
+
+	stderr.write(
+		`\n${c.bold}${c.green}✔ Verdiene er oppdatert i package.json.${c.reset}\n` +
+			`  Du kan nå kjøre ${c.bold}pnpm install${c.reset}\n\n` +
+			bar +
+			`${c.bold}${c.yellow}!  VERIFY BEFORE PUSHING TO GITHUB${c.reset}\n` +
+			bar +
+			`  1. Confirm version on the official release page:\n` +
+			`     ${c.cyan}https://github.com/pnpm/pnpm/releases/tag/v${version}${c.reset}\n` +
+			`  2. Compare the integrity hash above with npm's published value:\n` +
+			`     ${c.cyan}https://registry.npmjs.org/pnpm/${version}${c.reset}\n` +
+			`  3. Make sure the version exists on pnpm's GitHub releases (not yanked).\n` +
+			`  4. Run ${c.bold}pnpm install${c.reset} locally and verify it succeeds before committing.\n` +
+			`  5. Open a PR — let CI run before merging.\n` +
+			bar,
+	);
+	return true;
+}
+
+async function updatePackageJson(filePath, version, packageManager) {
+	const raw = await readFile(filePath, "utf8");
+	const pkg = JSON.parse(raw);
+
+	if (!pkg.engines || typeof pkg.engines !== "object") {
+		pkg.engines = {};
+	}
+	pkg.engines.pnpm = `>=${version}`;
+	pkg.packageManager = packageManager;
+
+	// Preserve tab indentation and trailing newline.
+	await writeFile(filePath, JSON.stringify(pkg, null, "\t") + "\n", "utf8");
+	stderr.write(
+		`  ${c.green}✔${c.reset} Oppdaterte ${c.bold}${filePath.replace(resolve(dirname(fileURLToPath(import.meta.url)), "..") + "/", "")}${c.reset}\n`,
+	);
 }
 
 async function fetchJson(url, accept) {
