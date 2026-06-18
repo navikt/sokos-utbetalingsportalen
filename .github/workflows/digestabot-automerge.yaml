@@ -13,7 +13,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-    uses: navikt/mob-gha-workflows/.github/workflows/digestabot-automerge.yaml@main
+    uses: navikt/mob-gha-workflows/.github/workflows/digestabot-automerge.yaml@dac7a1ac47e76110d90af301b2152057c215c867 # ratchet:navikt/mob-gha-workflows/.github/workflows/digestabot-automerge.yaml@v1.0.0
     name: Digestabot Auto-merge
     secrets:
       APP_ID: ${{ vars.APP_ID }}
