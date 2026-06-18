@@ -18,8 +18,8 @@
 	},
 	"dependencies": {
 		"@astrojs/check": "0.9.9",
-		"@astrojs/node": "10.1.1",
-		"@astrojs/react": "5.0.5",
+		"@astrojs/node": "10.1.4",
+		"@astrojs/react": "5.0.7",
 		"@grafana/faro-react": "2.7.1",
 		"@grafana/faro-web-sdk": "2.7.1",
 		"@grafana/faro-web-tracing": "2.7.1",
