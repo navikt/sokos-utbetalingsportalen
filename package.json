@@ -36,8 +36,8 @@
 		"zod": "4.4.3"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.4.16",
-		"@hono/node-server": "2.0.4",
+		"@biomejs/biome": "2.5.0",
+		"@hono/node-server": "2.0.5",
 		"@navikt/aksel-stylelint": "7.40.0",
 		"@types/node": "25.9.3",
 		"@types/react": "19.2.17",
@@ -52,7 +52,7 @@
 		"stylelint-config-standard": "40.0.0",
 		"tsx": "4.22.4",
 		"typescript": "6.0.3",
-		"vitest": "4.1.8"
+		"vitest": "4.1.9"
 	},
 	"lint-staged": {
 		"*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": "biome check --write --no-errors-on-unmatched",
