@@ -139,9 +139,9 @@ spec:
 
     # up-meldingsflyt-api (Backend)
     - name: SOKOS_MELDINGSFLYT_API
-      value: https://sokos-betsys.prod-fss-pub.nais.io
+      value: https://sokos-betsys-bk.prod-fss-pub.nais.io
     - name: SOKOS_MELDINGSFLYT_API_AUDIENCE
-      value: api://prod-fss.okonomi.sokos-betsys/.default
+      value: api://prod-fss.bankkommunikasjon.sokos-betsys/.default
     - name: SOKOS_MELDINGSFLYT_API_PROXY
       value: "/up-meldingsflyt-api"
 
