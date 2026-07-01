@@ -15,7 +15,7 @@ export default function GuidePanel({ name, greeting }: WelcomePanelProps) {
 					{greeting}, {name}
 				</Heading>
 			</div>
-			<Panel poster illustration={<img src={moneyBag.src} alt="Pengesekk" />}>
+			<Panel poster illustration={<img src={moneyBag.src} alt="" />}>
 				<Heading level="2" size="small" spacing>
 					Informasjon om Utbetalingsportalen
 				</Heading>

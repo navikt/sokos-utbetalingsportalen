@@ -30,7 +30,6 @@
 .sidebar__closeButton {
 	display: flex;
 	justify-content: flex-end;
-	background-color: var(--a-surface-inverted);
 	padding-block: 0.5rem;
 	padding-right: 0.5rem;
 }
@@ -38,7 +37,11 @@
 .sidebar__icon {
 	width: 1.5rem;
 	height: 1.5rem;
-	padding-bottom: 2px;
+	padding-bottom: 0.125rem;
+}
+
+.sidebar__loader {
+	padding: 0.75rem;
 }
 
 .sidebar__buttonColor {

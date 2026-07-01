@@ -43,6 +43,8 @@ export default function AppSwitcher(props: AppSwitcherProps) {
 					<Tooltip key={app.app} content="Du har ikke tilgang til denne appen">
 						<LinkCard
 							className={`${linkCardStyles.linkCard} ${linkCardStyles["linkCard--disabled"]}`}
+							aria-disabled="true"
+							tabIndex={0}
 						>
 							<LinkCard.Title as="h3">
 								<span>{app.title}</span>
@@ -56,7 +58,7 @@ export default function AppSwitcher(props: AppSwitcherProps) {
 
 	return (
 		<>
-			<Heading level="3" size="medium" spacing>
+			<Heading level="2" size="medium" spacing>
 				Apper
 			</Heading>
 			<Switch

@@ -1,25 +1,66 @@
 import { HouseIcon, MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
 import { Button, Link } from "@navikt/ds-react";
 import { getAuthorizedApps } from "@utils/accessControl";
-import type { PropsWithChildren } from "react";
-import { useEffect, useRef, useState } from "react";
+import type { ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./SideBar.module.css";
 
 type SideBarProps = {
 	adGroups: string[];
 };
 
+interface SideBarLinkProps {
+	route: string;
+	children: ReactNode;
+}
+
+function SideBarLink({ route, children }: SideBarLinkProps) {
+	const isActive =
+		window.location.pathname === route ||
+		(route !== "/" && window.location.pathname.startsWith(`${route}/`));
+
+	return (
+		<Link
+			className={`${styles.sidebar__link} ${isActive ? styles["sidebar__link--active"] : ""}`}
+			href={route}
+		>
+			<div className={styles.sidebar__linkChild}>{children}</div>
+		</Link>
+	);
+}
+
 export default function SideBar({ adGroups }: SideBarProps) {
-	const authorizedApps = getAuthorizedApps(adGroups);
 	const [isOpen, setIsOpen] = useState(false);
-	const [showButton, setShowButton] = useState(true);
+	const [isHamburgerVisible, setIsHamburgerVisible] = useState(true);
 	const sidebarRef = useRef<HTMLDivElement>(null);
+	const closeButtonRef = useRef<HTMLButtonElement>(null);
+	const hamburgerButtonRef = useRef<HTMLButtonElement>(null);
+	const isMounted = useRef(false);
+
+	const authorizedApps = useMemo(
+		() =>
+			getAuthorizedApps(adGroups).sort((a, b) =>
+				a.title.localeCompare(b.title),
+			),
+		[adGroups],
+	);
 
 	useEffect(() => {
-		const event = new CustomEvent("sidebarStateChange", {
-			detail: { isOpen },
-		});
-		document.dispatchEvent(event);
+		document.dispatchEvent(
+			new CustomEvent("sidebarStateChange", { detail: { isOpen } }),
+		);
+	}, [isOpen]);
+
+	useEffect(() => {
+		if (!isMounted.current) {
+			isMounted.current = true;
+			return;
+		}
+		if (isOpen) {
+			closeButtonRef.current?.focus();
+		} else {
+			hamburgerButtonRef.current?.focus();
+		}
 	}, [isOpen]);
 
 	useEffect(() => {
@@ -30,112 +71,88 @@ export default function SideBar({ adGroups }: SideBarProps) {
 				sidebarRef.current &&
 				!sidebarRef.current.contains(event.target as Node)
 			) {
-				setShowButton(false);
+				setIsHamburgerVisible(false);
+				setIsOpen(false);
+			}
+		}
+
+		function handleKeyDown(event: KeyboardEvent) {
+			if (event.key === "Escape") {
+				setIsHamburgerVisible(false);
 				setIsOpen(false);
 			}
 		}
 
 		document.addEventListener("mousedown", handleClickOutside);
+		document.addEventListener("keydown", handleKeyDown);
 		return () => {
 			document.removeEventListener("mousedown", handleClickOutside);
+			document.removeEventListener("keydown", handleKeyDown);
 		};
 	}, [isOpen]);
 
-	const handleToggle = () => {
-		if (isOpen) {
-			setShowButton(false);
-			setIsOpen(false);
-		} else {
-			setIsOpen(true);
-			setShowButton(true);
-		}
-	};
-
-	const handleTransitionEnd = () => {
-		if (!isOpen) {
-			setShowButton(true);
-		}
-	};
-
-	const renderSideBarLink = ({
-		children,
-		route,
-	}: PropsWithChildren & { route: string }) => {
-		const isActive =
-			typeof window !== "undefined" &&
-			(window.location.pathname === route ||
-				(route !== "/" && window.location.pathname.startsWith(`${route}/`)));
-
-		return (
-			<Link
-				className={`${styles.sidebar__link} ${isActive ? styles["sidebar__link--active"] : ""}`}
-				href={route}
-			>
-				<div className={styles.sidebar__linkChild}>{children}</div>
-			</Link>
-		);
-	};
-
-	function getMicrofrontendLinks() {
-		return authorizedApps
-			.slice()
-			.sort((a, b) => a.title.localeCompare(b.title))
-			.map((page) => (
-				<li key={page.app} className={styles.sidebar__links}>
-					{renderSideBarLink({
-						route: page.route,
-						children: page.title,
-					})}
-				</li>
-			));
+	function handleOpen() {
+		setIsOpen(true);
+		setIsHamburgerVisible(true);
 	}
 
-	if (!isOpen) {
-		return (
-			<nav
-				className={`${styles["sidebar--closed"]} ${styles.sidebar}`}
-				onTransitionEnd={handleTransitionEnd}
-			>
-				{showButton && (
-					<Button
-						className={styles.sidebar__buttonColor}
-						onClick={handleToggle}
-						variant="primary-neutral"
-						icon={<MenuHamburgerIcon title="Hamburgermeny ikon" />}
-					/>
-				)}
-			</nav>
-		);
+	function handleClose() {
+		setIsHamburgerVisible(false);
+		setIsOpen(false);
+	}
+
+	function handleTransitionEnd() {
+		if (!isOpen) setIsHamburgerVisible(true);
 	}
 
 	return (
-		<nav className={styles.sidebar} ref={sidebarRef}>
-			<div className={styles.sidebar__closeButton}>
-				<Button
-					className={styles.sidebar__buttonColor}
-					onClick={handleToggle}
-					icon={<XMarkIcon title="Kryss ikon" />}
-					iconPosition="right"
-					variant="primary-neutral"
-				>
-					Lukk
-				</Button>
-			</div>
+		<nav
+			aria-label="Sidemeny"
+			className={`${styles.sidebar} ${isOpen ? "" : styles["sidebar--closed"]}`}
+			ref={sidebarRef}
+			onTransitionEnd={handleTransitionEnd}
+		>
+			{isOpen ? (
+				<>
+					<div className={styles.sidebar__closeButton}>
+						<Button
+							ref={closeButtonRef}
+							className={styles.sidebar__buttonColor}
+							onClick={handleClose}
+							icon={<XMarkIcon title="Kryss ikon" />}
+							iconPosition="right"
+							variant="primary-neutral"
+						>
+							Lukk
+						</Button>
+					</div>
 
-			<ul className={styles.sidebar__list}>
-				<li className={styles.sidebar__links}>
-					{renderSideBarLink({
-						route: "/",
-						children: (
-							<>
+					<ul className={styles.sidebar__list}>
+						<li className={styles.sidebar__links}>
+							<SideBarLink route="/">
 								<HouseIcon className={styles.sidebar__icon} title="Hus ikon" />
 								Hjem
-							</>
-						),
-					})}
-				</li>
-				{getMicrofrontendLinks()}
-			</ul>
+							</SideBarLink>
+						</li>
+						{authorizedApps.map((page) => (
+							<li key={page.app} className={styles.sidebar__links}>
+								<SideBarLink route={page.route}>{page.title}</SideBarLink>
+							</li>
+						))}
+					</ul>
+				</>
+			) : (
+				isHamburgerVisible && (
+					<Button
+						ref={hamburgerButtonRef}
+						aria-expanded={isOpen}
+						className={styles.sidebar__buttonColor}
+						onClick={handleOpen}
+						variant="primary-neutral"
+						icon={<MenuHamburgerIcon title="Åpne sidemeny" />}
+					/>
+				)
+			)}
 		</nav>
 	);
 }

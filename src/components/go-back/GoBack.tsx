@@ -1,4 +1,4 @@
-import { Link } from "@navikt/ds-react";
+import { Button } from "@navikt/ds-react";
 import { useCallback } from "react";
 
 interface GoBackProps {
@@ -16,14 +16,8 @@ export default function GoBack({ fallbackUrl = "/", children }: GoBackProps) {
 	}, [fallbackUrl]);
 
 	return (
-		<Link
-			href="#"
-			onClick={(e) => {
-				e.preventDefault();
-				handleGoBack();
-			}}
-		>
+		<Button variant="tertiary" onClick={handleGoBack}>
 			{children}
-		</Link>
+		</Button>
 	);
 }

@@ -1,0 +1,8 @@
+---
+import { ClientError } from "@components/error/ClientError";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="ClientError test">
+  <ClientError client:only="react" />
+</Layout>

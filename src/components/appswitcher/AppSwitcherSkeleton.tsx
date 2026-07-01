@@ -4,7 +4,7 @@ import styles from "./AppSwitcherSkeleton.module.css";
 export default function AppSwitcherSkeleton() {
 	return (
 		<>
-			<Heading level="3" size="medium" spacing>
+			<Heading level="2" size="medium" spacing>
 				Apper
 			</Heading>
 			<Switch loading>Vis alle</Switch>
