@@ -19,7 +19,7 @@ export default function AppSwitcherHeader(props: AppSwitcherHeaderProps) {
 					href={page.route}
 					key={`${page.title}dropdown`}
 				>
-					<div aria-hidden>{page.title}</div>
+					{page.title}
 				</Dropdown.Menu.GroupedList.Item>
 			));
 	}

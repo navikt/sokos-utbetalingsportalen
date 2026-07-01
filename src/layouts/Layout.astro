@@ -61,10 +61,11 @@ const appVersion = process.env.NAIS_APP_IMAGE?.split(":").at(-1) ?? "local";
       data-website-id={umamiKode}></script>
   </head>
   <body>
+    <a href="#main-content" class={styles["skip-link"]}>Hopp til hovedinnhold</a>
     <Header />
     <Environmentbanner />
     <SideBar />
-    <main class={styles.container}>
+    <main id="main-content" class={styles.container}>
       <slot />
     </main>
     {enableObservability && <Observability version={appVersion} client:only="react" />}

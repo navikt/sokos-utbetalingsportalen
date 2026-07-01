@@ -2,6 +2,24 @@ body {
 	background-color: var(--a-bg-subtle);
 }
 
+.skip-link {
+	position: absolute;
+	top: -100%;
+	left: 1rem;
+	z-index: 9999;
+	padding: 0.5rem 1rem;
+	background-color: var(--a-surface-default);
+	color: var(--a-text-default);
+	border: 2px solid var(--a-border-focus);
+	border-radius: var(--a-border-radius-medium);
+	font-weight: var(--a-font-weight-bold);
+	text-decoration: none;
+}
+
+.skip-link:focus {
+	top: 1rem;
+}
+
 /* Skal ikke endres */
 .container {
 	margin: 3rem 4rem 4rem 7rem;
