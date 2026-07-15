@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// Resolves the latest pnpm version that satisfies the repo's minimumReleaseAge
-// policy and prints the matching packageManager string with SHA-512 integrity
-// hash. The script independently downloads the tarball and verifies the hash
-// before printing, so what you paste into package.json is provably bound to
-// real bytes — not just whatever the registry manifest claimed.
+// Resolves eligible pnpm versions that satisfy the repo's minimumReleaseAge
+// policy and lets you pick from the 5 most recent. Prints the matching
+// packageManager string with SHA-512 integrity hash. The script independently
+// downloads the tarball and verifies the hash before printing, so what you
+// paste into package.json is provably bound to real bytes — not just whatever
+// the registry manifest claimed.
 //
 // Usage:
 //   node scripts/resolve-pnpm-version.mjs                       # major 11, min age 7d
@@ -87,7 +88,16 @@ if (eligible.length === 0) {
 	fatal(`No pnpm@${MAJOR}.x release is at least ${MIN_AGE_DAYS} days old.`);
 }
 
-const [version, releasedAtMs, releasedAt] = eligible[0];
+const candidates = eligible.slice(0, 5);
+
+let chosen;
+if (candidates.length === 1 || !stdin.isTTY) {
+	chosen = candidates[0];
+} else {
+	chosen = await arrowSelect(candidates);
+}
+
+const [version, releasedAtMs, releasedAt] = chosen;
 const versionMeta = meta.versions?.[version];
 if (!versionMeta || typeof versionMeta !== "object") {
 	fatal(`Manifest for ${version} is missing or malformed.`);
@@ -188,6 +198,82 @@ if (stdin.isTTY) {
 }
 
 // ---------- helpers ----------
+
+async function arrowSelect(candidates) {
+	let selected = 0;
+	const lines = candidates.length;
+
+	function renderList() {
+		const items = candidates.map(([v, ts, t], i) => {
+			const age = ((Date.now() - ts) / MS_PER_DAY).toFixed(1);
+			const pointer = i === selected ? `${c.cyan}❯${c.reset}` : " ";
+			const label =
+				i === selected
+					? `${c.bold}${c.green}${v}${c.reset}`
+					: `${c.dim}${v}${c.reset}`;
+			// \x1b[2K clears the entire line before writing
+			return `\x1b[2K${pointer} ${label}  ${c.dim}${t} (${age} dager)${c.reset}`;
+		});
+		return items.join("\n");
+	}
+
+	stderr.write(
+		`\n${c.bold}${c.cyan}Gyldige pnpm-versjoner${c.reset} ${c.dim}(minst ${MIN_AGE_DAYS} dager gamle)${c.reset}\n` +
+			`${c.dim}Bruk ↑/↓ piltaster for å velge, Enter for å bekrefte${c.reset}\n\n`,
+	);
+	stderr.write(renderList());
+
+	return new Promise((resolve) => {
+		stdin.setRawMode(true);
+		stdin.resume();
+		stdin.setEncoding("utf8");
+
+		const cleanup = () => {
+			try { stdin.setRawMode(false); } catch {}
+		};
+		process.on("exit", cleanup);
+		process.on("SIGTERM", cleanup);
+
+		function redraw() {
+			// Move cursor to start of list and redraw all lines
+			stderr.write(`\x1b[${lines - 1}A\r`);
+			stderr.write(renderList());
+		}
+
+		function onData(key) {
+			if (key === "\u0003") {
+				stderr.write("\n");
+				stdin.setRawMode(false);
+				stdin.removeListener("data", onData);
+				process.exit(130);
+			}
+			if (key === "\r" || key === "\n") {
+				stdin.setRawMode(false);
+				stdin.pause();
+				stdin.removeListener("data", onData);
+				stderr.write("\n\n");
+				resolve(candidates[selected]);
+				return;
+			}
+			if (key === "\u001b[A" || key === "k") {
+				if (selected > 0) {
+					selected--;
+					redraw();
+				}
+				return;
+			}
+			if (key === "\u001b[B" || key === "j") {
+				if (selected < candidates.length - 1) {
+					selected++;
+					redraw();
+				}
+				return;
+			}
+		}
+
+		stdin.on("data", onData);
+	});
+}
 
 function info(msg) {
 	stderr.write(`${msg}\n`);
