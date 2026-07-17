@@ -1,3 +1,4 @@
+import { getAppConfig } from "@config/appConfig";
 import { getToken, validateAzureToken } from "@navikt/oasis";
 import { UserDataSchema } from "@schema/UserDataSchema";
 import { formatNameFromToken } from "@utils/formatNameFromToken";
@@ -14,24 +15,24 @@ export const onRequest = defineMiddleware(async (context, next) => {
 	if (getServerSideEnvironment() === "local") {
 		context.locals.userData = {
 			NAVident: "Z123456",
-			name: "Ola Mohammed",
+			name: "Erling Braut Haaland",
 			groups: [
-				"0e58dc41-7c57-4b79-a8c7-d0caec129e53", // 0000-GA-SOKOS-MF-SPK-Mottak-ADMIN
-				"a13b4176-e328-4e1c-b181-ff676a7146b1", // 0000-GA-SOKOS-MF-Skattekort-READ
-				"b01fb216-fcb3-4ede-b7da-71fffe859763", // 0000-GA-SOKOS-MF-ORS-READ
-				"98146b9a-1891-44e3-9b61-92130c2fcd8b", // 0000-GA-SOKOS-MF-KRP-READ
-				"e0023d91-26bc-4d5d-95ba-3148b6123afc", // 0000-GA-SOKOS-MF-Oppdragsinfo-READ
-				"391bec9e-e71e-42cb-a030-56c394dd13fd", // 0000-GA-SOKOS-MF-Resending-Bank-READ
-				"bdcedce3-dab5-4b68-b1d3-8625cd0d3b55", // 0000-GA-SOKOS-MF-KRO-READ
-				"138d21fb-4e96-46d6-91e4-e3926aa349e5", // 0000-GA-SOKOS-MF-Utbetaling
-				"9c5b24f2-5e01-4966-adaf-bc9fb6410a32", // 0000-CA-SOKOS-MF-OPPGJORSRAPPORTER
-				"3bc37bf2-8e76-407c-ad4a-d2c79edc241e", // 0000-GA-SOKOS-MF-Buntkontroll-READ
-				"2020a765-ffae-4042-b4cc-2a5a783a3ec5", // 0000-GA-SOKOS-MF-Meldingsflyt-READ
-				"f4bcf57f-4f44-49b6-bffa-0b249fd35591", // 0000-CA-SOKOS-MF-Fastedata-Nasjonalt-READ
-				"573f2934-940e-48ee-a4e5-cf7e28075f70", // 0000-CA-SOKOS-SKATTEKORT-READ
-				"f760594e-4918-4246-a636-329148c82fa7", // 0000-CA-SOKOS-UP-SKATTEKORT-ADMIN-WRITE
-				"2477057d-7f80-4517-a885-20c948bf0367", // 0000-GA-SOKOS-MF-DARE-POC
-				"c1c0f5d7-cdaa-4011-b4f6-b3815a7432e5", // 0000-CA-SOKOS-MF-YTELSESRAPPORTERING-PERSON-ADMIN
+				getAppConfig("DARE").adGroupDevelopment,
+				getAppConfig("ATTESTASJON").adGroupDevelopment,
+				getAppConfig("OPPDRAGSINFO").adGroupDevelopment,
+				getAppConfig("FASTEDATA").adGroupDevelopment,
+				getAppConfig("SKATTEKORT").adGroupDevelopment,
+				getAppConfig("SKATTEKORT-ADMIN").adGroupDevelopment,
+				getAppConfig("SPK-MOTTAK").adGroupDevelopment,
+				getAppConfig("RESENDING-BANK").adGroupDevelopment,
+				getAppConfig("KRP").adGroupDevelopment,
+				getAppConfig("KRO").adGroupDevelopment,
+				getAppConfig("ORS").adGroupDevelopment,
+				getAppConfig("UTBETALING").adGroupDevelopment,
+				getAppConfig("BUNTKONTROLL").adGroupDevelopment,
+				getAppConfig("MELDINGSFLYT").adGroupDevelopment,
+				getAppConfig("RETUR-FRA-BANK").adGroupDevelopment,
+				getAppConfig("OPPGJORSRAPPORTER").adGroupDevelopment,
 			],
 		};
 
