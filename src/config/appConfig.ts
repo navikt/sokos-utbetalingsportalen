@@ -1,6 +1,4 @@
-import type { App } from "@types/App";
-
-export type { App };
+import type { App } from "@domain/App";
 
 type AppDictionary = Record<string, App>;
 

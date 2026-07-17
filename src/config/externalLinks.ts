@@ -1,6 +1,4 @@
-import type { ExternalLink } from "@types/ExternalLink";
-
-export type { ExternalLink };
+import type { ExternalLink } from "@domain/ExternalLink";
 
 const OKONOMIPORTALEN_URLS: Record<string, string> = {
 	"prod-gcp": "https://wasapp.adeo.no/oppdrag/portal/login.jsp",

@@ -1,6 +1,6 @@
 import { apps, PLACEHOLDER_AD_GROUP } from "@config/appConfig";
+import type { ExternalLink } from "@domain/ExternalLink";
 import { Heading, LinkCard, Switch, Tooltip, VStack } from "@navikt/ds-react";
-import type { ExternalLink } from "@types/ExternalLink";
 import { getAuthorizedApps, hasAccessToApp } from "@utils/accessControl";
 import { getClientSideEnvironment } from "@utils/client/environments";
 import { useState } from "react";
