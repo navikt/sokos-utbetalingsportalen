@@ -13,7 +13,7 @@ function getOkonomiportalenUrl(
 	const key =
 		naisClusterName === "prod-gcp"
 			? "prod-gcp"
-			: `dev-gcp:${utbetalingsportalenEnvironment === "qx" ? "qx" : "q1"}`;
+			: `dev-gcp:${utbetalingsportalenEnvironment.toLowerCase() === "qx" ? "qx" : "q1"}`;
 
 	return OKONOMIPORTALEN_URLS[key] ?? OKONOMIPORTALEN_URLS["dev-gcp:q1"];
 }
