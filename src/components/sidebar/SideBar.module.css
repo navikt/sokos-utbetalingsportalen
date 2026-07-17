@@ -6,7 +6,7 @@
 	height: 100vh;
 	width: 17.5rem;
 	overflow-y: auto;
-	background-color: var(--a-surface-inverted);
+	background-color: var(--ax-bg-raised);
 	transition: width 0.4s ease-in-out;
 	padding-top: 3rem;
 	scrollbar-gutter: stable;
@@ -46,12 +46,26 @@
 
 .sidebar__buttonColor {
 	/* biome-ignore lint/complexity/noImportantStyles: <use-important-styles> */
-	background-color: var(--a-surface-inverted) !important;
+	background-color: var(--ax-bg-raised) !important;
+	/* biome-ignore lint/complexity/noImportantStyles: <use-important-styles> */
+	color: white !important;
 }
 
 .sidebar__buttonColor:hover {
 	/* biome-ignore lint/complexity/noImportantStyles: <use-important-styles> */
-	background-color: var(--a-surface-inverted-hover) !important;
+	background-color: #313846 !important;
+}
+
+.sidebar__buttonColorClose {
+	/* biome-ignore lint/complexity/noImportantStyles: <use-important-styles> */
+	background-color: var(--ax-bg-raised) !important;
+	/* biome-ignore lint/complexity/noImportantStyles: <use-important-styles> */
+	color: white !important;
+}
+
+.sidebar__buttonColorClose:hover {
+	/* biome-ignore lint/complexity/noImportantStyles: <use-important-styles> */
+	background-color: #313846 !important;
 }
 
 .sidebar__link {
@@ -59,17 +73,17 @@
 	white-space: nowrap;
 	border-radius: 0.25rem;
 	padding: 0.5rem 2rem;
-	color: var(--a-surface-default);
-	text-decoration: underline;
+	color: #dee0e5;
+	text-decoration: none;
 }
 
 .sidebar__link:hover {
-	text-decoration: none;
+	background-color: #1e3759;
 }
 
 .sidebar__link--active {
 	pointer-events: none;
-	background-color: var(--a-purple-400);
+	background-color: var(--ax-bg-meta-purple-strong);
 	text-decoration: none;
 	transition: all 100ms;
 }
