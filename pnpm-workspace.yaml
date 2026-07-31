@@ -1,7 +1,5 @@
 overrides:
-  esbuild: 0.28.1
-  '@opentelemetry/core': 2.8.0
-  yaml: 2.9.0
+  shell-quote: 1.10.0
 engineStrict: true
 saveExact: true
 ignoreScripts: true
@@ -10,3 +8,19 @@ allowBuilds:
   esbuild: true
   protobufjs: true
   sharp: true
+minimumReleaseAgeExclude:
+  - '@astrojs/compiler-binding-darwin-arm64@0.3.2'
+  - '@astrojs/compiler-binding-darwin-x64@0.3.2'
+  - '@astrojs/compiler-binding-linux-arm64-gnu@0.3.2'
+  - '@astrojs/compiler-binding-linux-arm64-musl@0.3.2'
+  - '@astrojs/compiler-binding-linux-x64-gnu@0.3.2'
+  - '@astrojs/compiler-binding-linux-x64-musl@0.3.2'
+  - '@astrojs/compiler-binding-wasm32-wasi@0.3.2'
+  - '@astrojs/compiler-binding-win32-arm64-msvc@0.3.2'
+  - '@astrojs/compiler-binding-win32-x64-msvc@0.3.2'
+  - '@astrojs/compiler-binding@0.3.2'
+  - '@astrojs/compiler-rs@0.3.2'
+  - '@astrojs/internal-helpers@0.10.2'
+  - '@astrojs/markdown-satteri@0.3.5'
+  - '@napi-rs/wasm-runtime@1.2.0'
+  - astro@7.1.6
