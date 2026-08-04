@@ -17,7 +17,7 @@
 		"pnpm:resolve": "node scripts/resolve-pnpm-version.mjs"
 	},
 	"dependencies": {
-		"@astrojs/check": "0.9.9",
+		"@astrojs/check": "0.9.10",
 		"@astrojs/node": "11.0.2",
 		"@astrojs/react": "6.0.1",
 		"@grafana/faro-react": "2.8.2",
