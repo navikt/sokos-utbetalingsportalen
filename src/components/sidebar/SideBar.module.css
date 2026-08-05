@@ -81,6 +81,10 @@
 	background-color: #1e3759;
 }
 
+.sidebar__link:active {
+	background-color: var(--ax-bg-meta-purple-moderate-pressedA);
+}
+
 .sidebar__link--active {
 	pointer-events: none;
 	background-color: var(--ax-bg-meta-purple-strong);
