@@ -43,7 +43,7 @@
 		"@types/react": "19.2.17",
 		"@types/react-dom": "19.2.3",
 		"concurrently": "10.0.4",
-		"hono": "4.12.32",
+		"hono": "4.12.34",
 		"husky": "9.1.7",
 		"lint-staged": "17.2.0",
 		"prettier": "3.9.6",
