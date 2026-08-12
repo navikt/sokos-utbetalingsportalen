@@ -33,6 +33,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
 				getAppConfig("MELDINGSFLYT").adGroupDevelopment,
 				getAppConfig("RETUR-FRA-BANK").adGroupDevelopment,
 				getAppConfig("OPPGJORSRAPPORTER").adGroupDevelopment,
+				getAppConfig("RAY-RAY-ADMIN").adGroupDevelopment,
 			],
 		};
 

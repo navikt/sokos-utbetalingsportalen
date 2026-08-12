@@ -91,6 +91,7 @@ export default function AppSwitcher(props: AppSwitcherProps) {
 				<Switch
 					className={styles.showAllToggle}
 					checked={showAll}
+					disabled={unauthorizedApps.length === 0}
 					onChange={(e) => setShowAll(e.target.checked)}
 				>
 					Vis også applikasjoner jeg ikke har tilgang til
