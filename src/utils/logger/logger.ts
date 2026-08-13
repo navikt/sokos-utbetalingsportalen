@@ -1,10 +1,10 @@
 import pino, { type DestinationStream, type LoggerOptions } from "pino";
 
-export const createLogger = (
+export function createLogger(
 	defaultConfig: LoggerOptions = {},
 	destination?: DestinationStream,
-): pino.Logger =>
-	pino(
+): pino.Logger {
+	return pino(
 		{
 			...defaultConfig,
 			timestamp: () => `,"@timestamp":"${new Date().toISOString()}"`,
@@ -33,3 +33,4 @@ export const createLogger = (
 		},
 		destination,
 	);
+}

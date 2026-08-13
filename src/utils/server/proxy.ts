@@ -21,7 +21,7 @@ function getProxyUrl(request: Request, proxyConfig: ProxyConfig): URL {
 	return new URL(url);
 }
 
-export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
+export function routeProxyWithOboToken(proxyConfig: ProxyConfig): APIRoute {
 	return async (context: APIContext) => {
 		const tracer = api.trace.getTracer("Reverse-Proxy");
 		const audienceService = extractServiceNameFromAudience(
@@ -114,4 +114,4 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 			},
 		);
 	};
-};
+}

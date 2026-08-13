@@ -1,7 +1,7 @@
 import { init } from "@nais/apm";
 import { useEffect } from "react";
 
-const NaisApm = () => {
+export default function NaisApm() {
 	useEffect(() => {
 		init({
 			app: "sokos-utbetalingsportalen",
@@ -21,6 +21,4 @@ const NaisApm = () => {
 			},
 		});
 	}, []);
-};
-
-export default NaisApm;
+}
