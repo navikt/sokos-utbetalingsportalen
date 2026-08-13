@@ -28,8 +28,19 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 			proxyConfig.audience,
 		);
 
+		const incomingCarrier: Record<string, string> = {};
+		context.request.headers.forEach((value, key) => {
+			incomingCarrier[key] = value;
+		});
+		const parentCtx = api.propagation.extract(
+			api.context.active(),
+			incomingCarrier,
+		);
+
 		return tracer.startActiveSpan(
 			`Reverse-Proxy[${audienceService}]`,
+			{},
+			parentCtx,
 			async (span) => {
 				try {
 					const audience = proxyConfig.audience;
@@ -52,18 +63,18 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 					);
 
 					const acceptHeader = context.request.headers.get("accept");
-					const traceparent = context.request.headers.get("traceparent");
-					const tracestate = context.request.headers.get("tracestate");
+					const contentTypeHeader = context.request.headers.get("content-type");
+
+					const outgoingHeaders: Record<string, string> = {
+						Authorization: `Bearer ${oboToken}`,
+						...(acceptHeader && { Accept: acceptHeader }),
+						...(contentTypeHeader && { "Content-Type": contentTypeHeader }),
+					};
+					api.propagation.inject(api.context.active(), outgoingHeaders);
 
 					const response = await fetch(url.href, {
 						method: context.request.method,
-						headers: {
-							Authorization: `Bearer ${oboToken}`,
-							"Content-Type": "application/json",
-							...(acceptHeader && { Accept: acceptHeader }),
-							...(traceparent && { traceparent }),
-							...(tracestate && { tracestate }),
-						},
+						headers: outgoingHeaders,
 						body: context.request.body,
 						// @ts-expect-error
 						duplex: "half",
