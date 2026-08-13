@@ -52,6 +52,8 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 					);
 
 					const acceptHeader = context.request.headers.get("accept");
+					const traceparent = context.request.headers.get("traceparent");
+					const tracestate = context.request.headers.get("tracestate");
 
 					const response = await fetch(url.href, {
 						method: context.request.method,
@@ -59,6 +61,8 @@ export const routeProxyWithOboToken = (proxyConfig: ProxyConfig): APIRoute => {
 							Authorization: `Bearer ${oboToken}`,
 							"Content-Type": "application/json",
 							...(acceptHeader && { Accept: acceptHeader }),
+							...(traceparent && { traceparent }),
+							...(tracestate && { tracestate }),
 						},
 						body: context.request.body,
 						// @ts-expect-error
