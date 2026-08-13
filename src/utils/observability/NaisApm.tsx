@@ -4,6 +4,8 @@ import { useEffect } from "react";
 const NaisApm = () => {
 	useEffect(() => {
 		init({
+			app: "sokos-utbetalingsportalen",
+			namespace: "okonomi",
 			tracing: true,
 			beforeSend: (item) => {
 				if (item.meta?.page?.url) {
