@@ -2,10 +2,10 @@ import { requestOboToken } from "@navikt/oasis";
 import { extractServiceNameFromAudience } from "@utils/audience";
 import { logger } from "@utils/logger/index";
 
-export const getOboToken = async (
+export async function getOboToken(
 	token: string,
 	audience: string,
-): Promise<string> => {
+): Promise<string> {
 	const oboResult = await requestOboToken(token, audience);
 
 	const audienceService = extractServiceNameFromAudience(audience);
@@ -18,4 +18,4 @@ export const getOboToken = async (
 	}
 
 	return oboResult.token;
-};
+}

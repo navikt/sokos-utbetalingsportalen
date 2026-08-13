@@ -1,7 +1,7 @@
 ---
 import Environmentbanner from "@components/environmentbanner/environmentbanner.astro";
 import Header from "@components/header/header.astro";
-import Observability from "@components/observability/Observability";
+import NaisApm from "@utils/observability/NaisApm";
 import SideBar from "@components/sidebar/sidebar.astro";
 import styles from "./Layout.module.css";
 
@@ -22,7 +22,8 @@ const enableObservability =
 	process.env.NAIS_CLUSTER_NAME === "dev-gcp" ||
 	process.env.NAIS_CLUSTER_NAME === "prod-gcp";
 
-const appVersion = process.env.NAIS_APP_IMAGE?.split(":").at(-1) ?? "local";
+const naisVersion = process.env.NAIS_APP_IMAGE?.split(":").at(-1);
+const naisTelemetryUrl = process.env.NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL;
 ---
 
 <!doctype html>
@@ -32,6 +33,11 @@ const appVersion = process.env.NAIS_APP_IMAGE?.split(":").at(-1) ?? "local";
     <meta name="description" content="Utbetalingsportalen" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    {enableObservability && <meta name="nais-app" content="sokos-utbetalingsportalen" />}
+    {enableObservability && <meta name="nais-team" content="okonomi" />}
+    {enableObservability && process.env.NAIS_CLUSTER_NAME && <meta name="nais-cluster" content={process.env.NAIS_CLUSTER_NAME} />}
+    {enableObservability && naisVersion && <meta name="nais-version" content={naisVersion} />}
+    {enableObservability && naisTelemetryUrl && <meta name="nais-telemetry-url" content={naisTelemetryUrl} />}
     <title>{pageTitle}</title>
     <link
       rel="preload"
@@ -68,6 +74,6 @@ const appVersion = process.env.NAIS_APP_IMAGE?.split(":").at(-1) ?? "local";
     <main id="main-content" class={styles.container}>
       <slot />
     </main>
-    {enableObservability && <Observability version={appVersion} client:only="react" />}
+    {enableObservability && <NaisApm client:only="react" />}
   </body>
 </html>
