@@ -1,7 +1,7 @@
 ---
 import Environmentbanner from "@components/environmentbanner/environmentbanner.astro";
 import Header from "@components/header/header.astro";
-import Observability from "@components/observability/Observability";
+import NaisApm from "@utils/observability/NaisApm";
 import SideBar from "@components/sidebar/sidebar.astro";
 import styles from "./Layout.module.css";
 
@@ -68,6 +68,6 @@ const appVersion = process.env.NAIS_APP_IMAGE?.split(":").at(-1) ?? "local";
     <main id="main-content" class={styles.container}>
       <slot />
     </main>
-    {enableObservability && <Observability version={appVersion} client:only="react" />}
+    {enableObservability && <NaisApm client:only="react" />}
   </body>
 </html>

@@ -7,3 +7,16 @@ declare namespace App {
 		userData: import("./types/UserData").UserData;
 	}
 }
+
+declare global {
+	interface Window {
+		nais?: {
+			app: {
+				name: string;
+				namespace: string;
+				version: string;
+			};
+			telemetryCollectorURL: string;
+		};
+	}
+}
