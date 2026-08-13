@@ -1,6 +1,6 @@
 import { ClientError } from "@components/error/ClientError";
 import ContentLoader from "@components/loader/ContentLoader";
-import { FaroErrorBoundary } from "@grafana/faro-react";
+import { ApmErrorBoundary } from "@nais/apm/react";
 import React, { useMemo } from "react";
 
 type MicrofrontendType = {
@@ -20,9 +20,9 @@ export default function Microfrontend(props: MicrofrontendType) {
 
 	return (
 		<React.Suspense fallback={<ContentLoader />}>
-			<FaroErrorBoundary fallback={<ClientError />}>
+			<ApmErrorBoundary fallback={<ClientError />}>
 				<MicrofrontendBundle />
-			</FaroErrorBoundary>
+			</ApmErrorBoundary>
 		</React.Suspense>
 	);
 }
