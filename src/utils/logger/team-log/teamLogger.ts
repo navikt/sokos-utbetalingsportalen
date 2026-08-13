@@ -15,9 +15,9 @@ let config: TeamLogConfigTuple | null = null;
  * Uses a proxy to defer the creation of the logger until it is first accessed, this is so that build systems
  * such as nextjs that ofter traverse the module tree during build doesn't try to load pino-socket before runtime.
  */
-export const createTeamLogger = (
+export function createTeamLogger(
 	defaultConfig: LoggerOptions = {},
-): ReturnType<typeof createLogger> => {
+): ReturnType<typeof createLogger> {
 	let logger: ReturnType<typeof createLogger> | null = null;
 
 	const getLogger = () => {
