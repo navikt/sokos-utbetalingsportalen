@@ -3,6 +3,7 @@ import Environmentbanner from "@components/environmentbanner/environmentbanner.a
 import Header from "@components/header/header.astro";
 import NaisApm from "@utils/observability/NaisApm";
 import SideBar from "@components/sidebar/sidebar.astro";
+import { renderNaisMetaTags } from "@nais/apm";
 import styles from "./Layout.module.css";
 
 interface Props {
@@ -21,9 +22,6 @@ const umamiKode = process.env.UMAMI_WEBSITE_ID;
 const enableObservability =
 	process.env.NAIS_CLUSTER_NAME === "dev-gcp" ||
 	process.env.NAIS_CLUSTER_NAME === "prod-gcp";
-
-const naisVersion = process.env.NAIS_APP_IMAGE?.split(":").at(-1);
-const naisTelemetryUrl = process.env.NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL;
 ---
 
 <!doctype html>
@@ -33,11 +31,7 @@ const naisTelemetryUrl = process.env.NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL;
     <meta name="description" content="Utbetalingsportalen" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    {enableObservability && <meta name="nais-app" content="sokos-utbetalingsportalen" />}
-    {enableObservability && <meta name="nais-team" content="okonomi" />}
-    {enableObservability && process.env.NAIS_CLUSTER_NAME && <meta name="nais-cluster" content={process.env.NAIS_CLUSTER_NAME} />}
-    {enableObservability && naisVersion && <meta name="nais-version" content={naisVersion} />}
-    {enableObservability && naisTelemetryUrl && <meta name="nais-telemetry-url" content={naisTelemetryUrl} />}
+    {enableObservability && <Fragment set:html={renderNaisMetaTags()} />}
     <title>{pageTitle}</title>
     <link
       rel="preload"
