@@ -34,14 +34,14 @@
 		"zod": "4.4.3"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.5.7",
-		"@hono/node-server": "2.1.0",
+		"@biomejs/biome": "2.5.9",
+		"@hono/node-server": "2.1.1",
 		"@navikt/aksel-stylelint": "7.40.0",
 		"@types/node": "26.2.0",
 		"@types/react": "19.2.18",
 		"@types/react-dom": "19.2.4",
-		"concurrently": "10.0.4",
-		"hono": "4.13.1",
+		"concurrently": "10.0.5",
+		"hono": "4.13.2",
 		"husky": "9.1.7",
 		"lint-staged": "17.3.0",
 		"prettier": "3.9.6",
