@@ -24,7 +24,7 @@ jobs:
     permissions:
       contents: read
     name: Build & test application
-    uses: navikt/mob-gha-workflows/.github/workflows/node-build-pr.yaml@e80242212870d8674570d82f812590617942930c # ratchet:navikt/mob-gha-workflows/.github/workflows/node-build-pr.yaml@v1.0.1
+    uses: navikt/mob-gha-workflows/.github/workflows/node-build-pr.yaml@6d597f4b49bff3f5e59833b784eb63aa5ddc8603 # ratchet:navikt/mob-gha-workflows/.github/workflows/node-build-pr.yaml@v1.0.2
     with:
       has-vitest: true
     secrets: inherit
