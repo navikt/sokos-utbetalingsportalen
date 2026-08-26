@@ -3,6 +3,7 @@ import type { App } from "../../src/config/appConfig";
 export function createMockApp(config: App): string {
 	const { app, title, description } = config;
 	const defaultColor = "#0067C5";
+	const badgeText = `Mock implementasjon av ${app}`;
 
 	return `
 import React from 'react';
@@ -27,7 +28,7 @@ const MockMicrofrontend = () => {
         marginBottom: '1rem',
         fontSize: '2rem'
       }
-    }, '${title}'),
+    }, ${JSON.stringify(title)}),
     React.createElement('p', {
       key: 'description',
       style: {
@@ -35,7 +36,7 @@ const MockMicrofrontend = () => {
         fontSize: '1.1rem',
         marginBottom: '2rem'
       }
-    }, '${description}'),
+    }, ${JSON.stringify(description)}),
     React.createElement('div', {
       key: 'badge',
       style: {
@@ -45,7 +46,7 @@ const MockMicrofrontend = () => {
         borderRadius: '4px',
         marginBottom: '1rem'
       }
-    }, \`Mock implementasjon av \${${JSON.stringify(app)}}\`),
+    }, ${JSON.stringify(badgeText)}),
   ]);
 };
 

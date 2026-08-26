@@ -7,7 +7,7 @@ Astro-basert mikrofrontend-container for NAVs utbetalingsportal. TypeScript + Re
 ```bash
 pnpm install
 pnpm dev            # Start utviklingsserver
-pnpm dev:mock       # Start med mock-API (Hono)
+pnpm dev:mock       # Start med mock-oauth2-server/Wonderwall + mikrofrontend-mock (Hono)
 ```
 
 ## Bygg og valider

@@ -6,7 +6,7 @@ import { createLocalApp } from "./microfrontends/local";
 import { createMockApp } from "./microfrontends/mock";
 
 const api = new Hono();
-const PORT = 3000;
+const PORT = Number(process.env.MOCK_SERVER_PORT) || 3001;
 
 const localMicrofrontends: Record<
 	string,
@@ -60,7 +60,11 @@ function getMockBundle(microfrontendName: string): string {
 api.use(
 	"/*",
 	cors({
-		origin: ["http://localhost:4321", "http://localhost:4322"],
+		origin: [
+			"http://localhost:4321",
+			"http://localhost:4322",
+			"http://localhost:3000",
+		],
 		credentials: true,
 	}),
 );

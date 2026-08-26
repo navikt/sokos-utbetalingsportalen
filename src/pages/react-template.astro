@@ -7,7 +7,9 @@ const appHostname = Astro.url.hostname;
 
 export function fetchBundle(appHostname: string, appName: string) {
 	if (getServerSideEnvironment() === "local") {
-		return `http://localhost:3000/${appName}/bundle.js`;
+		const mockServerUrl =
+			process.env.MOCK_SERVER_URL ?? "http://localhost:3001";
+		return `${mockServerUrl}/${appName}/bundle.js`;
 	}
 	return `https://${appHostname}/${appName}/bundle.js`;
 }

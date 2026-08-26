@@ -42,15 +42,15 @@ Container for å sette sammen ulike mikrofrontends/applikasjoner som tilsammen u
 
 ### Lokal utvikling
 
-- `pnpm run dev` - Starter applikasjonen uten `mock`-server
-- `pnpm run dev:mock` - Starter applikasjonen med `mock`-server
+- `pnpm run dev` - Starter applikasjonen uten `mock`-server, uten docker/Wonderwall (syntetisk lokal bruker automatisk)
+- `pnpm run dev:mock` - Starter alt: docker-stack (mock-oauth2-server + Wonderwall) + applikasjonen + `mock`-server (mikrofrontend-bundles), for å teste ekte innlogging (se «Teste innlogging lokalt»)
 
 #### Kjøre mikrofrontend lokalt
 
 For å kjøre en eller flere mikrofrontender lokalt sammen med Utbetalingsportalen:
 
 1. **Start alt samtidig**: `pnpm run dev:mock`
-   - Dette starter både Utbetalingsportalen (port 4321) og mock-serveren (port 3000)
+   - Dette starter både Utbetalingsportalen (port 4321) og mock-serveren (port 3001)
 
 2. **Start din mikrofrontend** på konfigurert port (se `mock/server.ts` for portnummer)
 
@@ -62,6 +62,62 @@ Mock-serveren sjekker automatisk om en lokal mikrofrontend kjører og laster den
 - `sokos-up-oppdragsinfo`: `http://localhost:5174/oppdragsinfo`
 
 For å legge til flere lokale mikrofrontends, oppdater `localMicrofrontends`-objektet i `mock/server.ts`.
+
+#### Teste innlogging lokalt
+
+Lokal innlogging bruker
+[mock-oauth2-server](https://github.com/navikt/mock-oauth2-server) som
+OIDC-provider og Wonderwall som lokal BFF. Dette er kun for lokal utvikling.
+
+Opprett `.env.template` i repo-roten (unntatt fra `.gitignore`, ingen hemmeligheter):
+
+```bash
+LOCAL_AUTH_PROXY_ENABLED=true
+LOCAL_AUTH_PROXY_URL=http://localhost:3000
+AZURE_APP_CLIENT_ID=local-client
+AZURE_OPENID_CONFIG_ISSUER=http://localhost:8080/default
+AZURE_OPENID_CONFIG_JWKS_URI=http://localhost:8080/default/jwks
+```
+
+Start alt (docker-stack + Astro + mock-server) med:
+
+```bash
+pnpm dev:mock
+```
+
+Åpne `http://localhost:3000`. Innlogging skjer automatisk uten login-skjema
+(`interactiveLogin` er satt til `false`). Mock-tokenet inneholder syntetiske
+claims for `Ola Mohammed`, `Z123456` og AD-gruppene fra `mock/auth/localDevGroups.ts`
+(delt kilde for både `pnpm dev` og `pnpm dev:mock`).
+`mock/auth/oauth-config.json` genereres automatisk av `pnpm dev:mock`
+(`mock/auth/generate-oauth-config.ts`) og er ikke sjekket inn i git.
+
+Logg ut ved å åpne `http://localhost:3000/oauth2/logout`.
+
+Astro må nås gjennom Wonderwall på port `3000`; port `4321` er upstream-porten.
+`LOCAL_AUTH_PROXY_ENABLED` virker bare når `NAIS_CLUSTER_NAME` ikke er
+`dev-gcp` eller `prod-gcp`. I dev-gcp og prod-gcp brukes alltid
+Nais-autentisering. Kjører du `pnpm dev` (uten docker-stacken), får du en
+syntetisk lokal bruker automatisk (se `mock/auth/localDevUser.ts`).
+
+Wonderwall bruker en fast lokal krypteringsnøkkel
+(`WONDERWALL_ENCRYPTION_KEY`) slik at sesjonen overlever restart av
+containeren under utvikling. Denne nøkkelen skal aldri brukes utenfor lokalt
+miljø.
+
+Stopp tjenestene:
+
+```bash
+pnpm dev:mock:down
+```
+
+**Se logger** hvis noe ikke fungerer som forventet:
+
+```bash
+docker compose logs -f wonderwall            # Wonderwall (BFF/proxy)
+docker compose logs -f mock-oauth2-server     # OIDC-provider
+docker compose logs -f wonderwall mock-oauth2-server  # begge samtidig
+```
 
 ## 3. Programvarearkitektur
 

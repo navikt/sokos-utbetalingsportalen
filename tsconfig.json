@@ -14,6 +14,6 @@
 			"@config/*": ["./src/config/*"]
 		}
 	},
-	"include": [".astro/types.d.ts", "src/**/*"],
+	"include": [".astro/types.d.ts", "src/**/*", "mock/**/*"],
 	"exclude": ["node_modules", "dist"]
 }

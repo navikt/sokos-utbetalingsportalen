@@ -4,16 +4,22 @@ applyTo: "mock/**/*.ts"
 
 # Mock-server — utbetalingsportalen
 
-Hono-basert mock-server for lokal utvikling. Starter med `pnpm dev:mock` på port 3000.
+Hono-basert mock-server for lokal utvikling. Starter automatisk sammen med
+`pnpm dev:mock` (og kan også startes separat via `tsx mock/server.ts`) på port 3001.
 
 ## Struktur
 
 ```
 mock/
-  server.ts              # Hono-app med CORS og ruting
+  server.ts              # Hono-app med CORS og ruting (mikrofrontend-bundles)
   microfrontends/
     mock.ts              # Genererer placeholder-UI for mikrofrontender uten lokal instans
     local.ts             # Proxyer til lokalt kjørende mikrofrontend via iframe
+  auth/
+    localDevGroups.ts       # Delt kilde: navn/NAVident/AD-grupper for lokal testbruker
+    localDevUser.ts         # Syntetisk bruker for `pnpm dev` (uten mock-oauth2-server)
+    generate-oauth-config.ts # Genererer oauth-config.json fra localDevGroups.ts
+    oauth-config.json        # Generert artefakt (gitignored), lest av mock-oauth2-server
 ```
 
 ## Legge til en ny mikrofrontend i mock
