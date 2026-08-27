@@ -66,7 +66,7 @@ For å kjøre en eller flere mikrofrontender lokalt sammen med Utbetalingsportal
    endre `.env.template` — nyttig for en rask engangstest:
 
    ```bash
-   LOCAL_MICROFRONTENDS=sokos-up-attestasjon=5173 pnpm dev
+   LOCAL_MICROFRONTENDS=sokos-up-attestasjon=5173 pnpm dev:mock
    ```
 
 2. **Start alt samtidig**: `pnpm run dev` (eller `pnpm run dev:mock` for å teste ekte innlogging)
@@ -108,6 +108,11 @@ Start alt (docker-stack + Astro + mock-server) med:
 ```bash
 pnpm dev:mock
 ```
+
+Docker-tjenestene kjører i bakgrunnen. For å følge Docker-loggene manuelt,
+åpner du en ekstra terminal og kjører `docker compose logs -f`. Docker-
+tjenestene kjører videre etter at utviklingskommandoen stoppes; bruk
+`pnpm dev:mock:down` for å stoppe dem.
 
 Åpne `http://localhost:3000`. Innlogging skjer automatisk uten login-skjema
 (`interactiveLogin` er satt til `false`). Mock-tokenet inneholder syntetiske
