@@ -2,51 +2,49 @@ import { getToken, validateAzureToken } from "@navikt/oasis";
 import { UserDataSchema } from "@schema/UserDataSchema";
 import { formatNameFromToken } from "@utils/formatNameFromToken";
 import { logger } from "@utils/logger/index";
-import { getServerSideEnvironment } from "@utils/server/environment.ts";
+import {
+	getServerSideEnvironment,
+	isLocalAuthProxyEnabled,
+} from "@utils/server/environment.ts";
 import { defineMiddleware } from "astro/middleware";
+import { MOCK_USER } from "../../mock/auth/devUser";
 import { isInternal } from "./utils";
 
 export const onRequest = defineMiddleware(async (context, next) => {
-	const loginPath = `/oauth2/login?redirect=${context.url}`;
-	const token = getToken(context.request.headers);
-	const params = encodeURIComponent(context.url.search);
-
-	if (getServerSideEnvironment() === "local") {
-		context.locals.userData = {
-			NAVident: "Z123456",
-			name: "Ola Mohammed",
-			groups: [
-				"0e58dc41-7c57-4b79-a8c7-d0caec129e53", // 0000-GA-SOKOS-MF-SPK-Mottak-ADMIN
-				"a13b4176-e328-4e1c-b181-ff676a7146b1", // 0000-GA-SOKOS-MF-Skattekort-READ
-				"b01fb216-fcb3-4ede-b7da-71fffe859763", // 0000-GA-SOKOS-MF-ORS-READ
-				"98146b9a-1891-44e3-9b61-92130c2fcd8b", // 0000-GA-SOKOS-MF-KRP-READ
-				"e0023d91-26bc-4d5d-95ba-3148b6123afc", // 0000-GA-SOKOS-MF-Oppdragsinfo-READ
-				"391bec9e-e71e-42cb-a030-56c394dd13fd", // 0000-GA-SOKOS-MF-Resending-Bank-READ
-				"bdcedce3-dab5-4b68-b1d3-8625cd0d3b55", // 0000-GA-SOKOS-MF-KRO-READ
-				"138d21fb-4e96-46d6-91e4-e3926aa349e5", // 0000-GA-SOKOS-MF-Utbetaling
-				"9c5b24f2-5e01-4966-adaf-bc9fb6410a32", // 0000-CA-SOKOS-MF-OPPGJORSRAPPORTER
-				"3bc37bf2-8e76-407c-ad4a-d2c79edc241e", // 0000-GA-SOKOS-MF-Buntkontroll-READ
-				"2020a765-ffae-4042-b4cc-2a5a783a3ec5", // 0000-GA-SOKOS-MF-Meldingsflyt-READ
-				"f4bcf57f-4f44-49b6-bffa-0b249fd35591", // 0000-CA-SOKOS-MF-Fastedata-Nasjonalt-READ
-				"573f2934-940e-48ee-a4e5-cf7e28075f70", // 0000-CA-SOKOS-SKATTEKORT-READ
-				"f760594e-4918-4246-a636-329148c82fa7", // 0000-CA-SOKOS-UP-SKATTEKORT-ADMIN-WRITE
-				"2477057d-7f80-4517-a885-20c948bf0367", // 0000-GA-SOKOS-MF-DARE-POC
-				"c1c0f5d7-cdaa-4011-b4f6-b3815a7432e5", // 0000-CA-SOKOS-MF-YTELSESRAPPORTERING-PERSON-ADMIN
-			],
-		};
-
-		return next();
-	}
-
 	if (isInternal(context)) {
 		return next();
 	}
+
+	const localAuthenticationEnabled = isLocalAuthProxyEnabled();
+
+	// `pnpm dev` kjører uten mock-oauth2-server/Wonderwall i front, så det
+	// finnes ingen ekte /oauth2/login å redirecte til. Bruk en syntetisk
+	// lokal bruker for rask utvikling. Ekte innloggingsflyt testes med
+	// `pnpm dev:mock` (se README «Teste innlogging lokalt»).
+	if (getServerSideEnvironment() === "local" && !localAuthenticationEnabled) {
+		context.locals.token = "local-dev-token";
+		context.locals.userData = MOCK_USER;
+		return next();
+	}
+
+	const proxyUrl = localAuthenticationEnabled
+		? (process.env.LOCAL_AUTH_PROXY_URL ?? "http://localhost:3000")
+		: context.url.origin;
+	const loginUrl = new URL("/oauth2/login", proxyUrl);
+	const redirectTarget = localAuthenticationEnabled
+		? new URL(
+				`${context.url.pathname}${context.url.search}`,
+				proxyUrl,
+			).toString()
+		: context.url.toString();
+	loginUrl.searchParams.set("redirect", redirectTarget);
+	const token = getToken(context.request.headers);
 
 	if (!token) {
 		logger.info(
 			"Could not find any bearer token on the request. Redirecting to login.",
 		);
-		return context.redirect(loginPath);
+		return context.redirect(loginUrl.toString());
 	}
 
 	const validatedToken = await validateAzureToken(token);
@@ -56,7 +54,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
 			`Invalid JWT token found (cause: ${validatedToken.errorType} ${validatedToken.error}, redirecting to login.`,
 		);
 		logger.error(error);
-		return context.redirect(`${loginPath}${params}`);
+		return context.redirect(loginUrl.toString());
 	}
 
 	context.locals.token = token;
@@ -67,7 +65,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
 			`Invalid user info found in JWT token (cause: ${response.error}, redirecting to login.`,
 		);
 		logger.error(error);
-		return context.redirect(`${loginPath}${params}`);
+		return context.redirect(loginUrl.toString());
 	}
 
 	context.locals.userData = {

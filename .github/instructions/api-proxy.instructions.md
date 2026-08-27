@@ -46,7 +46,7 @@ Autentisering skjer i `src/middleware/index.ts` med `@navikt/oasis`:
 - `context.locals.userData` — inneholder `NAVident`, `name`, `groups` etter vellykket validering
 - `context.locals.token` — raw token, brukes av proxy for OBO-bytte
 
-Lokalt (`getServerSideEnvironment() === "local"`) bypasses auth og `userData` settes med hardkodede testgrupper.
+Lokalt (`getServerSideEnvironment() === "local"`, uten `pnpm dev:mock`) bypasses auth og `userData` settes til `MOCK_USER` fra `mock/auth/devUser.ts` (syntetisk NAVident/navn/AD-grupper).
 
 ```ts
 const token = getToken(context.request.headers);
