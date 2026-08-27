@@ -1,0 +1,53 @@
+services:
+  redis:
+    image: redis:8-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 2s
+      retries: 15
+
+  mock-oauth2-server:
+    image: ghcr.io/navikt/mock-oauth2-server:latest
+    hostname: mock-oauth2-server
+    ports:
+      - "8080:8080"
+    environment:
+      JSON_CONFIG_PATH: /config/oauth-config.json
+    volumes:
+      - ./mock/auth/mock-oauth-config.json:/config/oauth-config.json:ro
+    healthcheck:
+      # Ingen curl/wget i imaget - sjekker med bash sitt innebygde /dev/tcp
+      # at porten faktisk lytter.
+      test: ["CMD-SHELL", "bash -c 'echo > /dev/tcp/127.0.0.1/8080'"]
+      interval: 2s
+      timeout: 2s
+      retries: 15
+
+  wonderwall:
+    image: ghcr.io/nais/wonderwall:latest
+    ports:
+      - "3000:3000"
+    environment:
+      WONDERWALL_OPENID_CLIENT_ID: local-client
+      WONDERWALL_OPENID_CLIENT_SECRET: local-secret
+      WONDERWALL_OPENID_WELL_KNOWN_URL: http://localhost:8080/default/.well-known/openid-configuration
+      WONDERWALL_INGRESS: http://localhost:3000
+      WONDERWALL_BIND_ADDRESS: 0.0.0.0:3000
+      WONDERWALL_UPSTREAM_HOST: host.docker.internal:4321
+      WONDERWALL_REDIS_URI: redis://redis:6379
+      WONDERWALL_COOKIE_SECURE: "false"
+      WONDERWALL_LOG_LEVEL: info
+      WONDERWALL_LOG_FORMAT: text
+      WONDERWALL_ENCRYPTION_KEY: ${WONDERWALL_ENCRYPTION_KEY:-YWJjZGVmZ2hpajEyMzQ1Njc4OTBhYmNkZWZnaGlqMTI=}
+    restart: on-failure
+    extra_hosts:
+      # Wonderwall må nå mock-oauth2-server på 'localhost:8080' (samme URL som
+      # brukeren i nettleseren blir redirigert til), og Astro på host.
+      - localhost:host-gateway
+      - host.docker.internal:host-gateway
+    depends_on:
+      redis:
+        condition: service_healthy
+      mock-oauth2-server:
+        condition: service_healthy

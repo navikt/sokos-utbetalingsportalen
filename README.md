@@ -42,26 +42,111 @@ Container for å sette sammen ulike mikrofrontends/applikasjoner som tilsammen u
 
 ### Lokal utvikling
 
-- `pnpm run dev` - Starter applikasjonen uten `mock`-server
-- `pnpm run dev:mock` - Starter applikasjonen med `mock`-server
+- `pnpm run dev` - Starter applikasjonen + mikrofrontend-`mock`-serveren, uten docker/Wonderwall (syntetisk lokal bruker automatisk)
+- `pnpm run dev:mock` - Starter alt: docker-stack (mock-oauth2-server + Wonderwall) + applikasjonen + `mock`-server (mikrofrontend-bundles), for å teste ekte innlogging (se «Teste innlogging lokalt»)
 
 #### Kjøre mikrofrontend lokalt
 
 For å kjøre en eller flere mikrofrontender lokalt sammen med Utbetalingsportalen:
 
-1. **Start alt samtidig**: `pnpm run dev:mock`
-   - Dette starter både Utbetalingsportalen (port 4321) og mock-serveren (port 3000)
+1. Sett `LOCAL_MICROFRONTENDS` i `.env.template`, med `naisAppName=port` for
+   hver mikrofrontend du kjører lokalt. Legg til flere ved å komma-separere
+   dem:
 
-2. **Start din mikrofrontend** på konfigurert port (se `mock/server.ts` for portnummer)
+   ```bash
+   LOCAL_MICROFRONTENDS=sokos-up-attestasjon=5173,sokos-up-oppdragsinfo=5174
+   ```
 
-Mock-serveren sjekker automatisk om en lokal mikrofrontend kjører og laster den via iframe. Hvis den lokale mikrofrontenden ikke er tilgjengelig, vises en mock-komponent i stedet.
+   Bruk en egen, ledig port per mikrofrontend — ikke gjenbruk samme port for
+   flere apper, og unngå porter som allerede er i bruk i dette repoet
+   (`4321` Astro, `3000` Wonderwall, `3001` mock-serveren, `8080`
+   mock-oauth2-server).
 
-**Satt opp for lokal kjøring:**
+   Alternativt kan du sette variabelen inline foran kommandoen, uten å
+   endre `.env.template` — nyttig for en rask engangstest:
 
-- `sokos-up-attestasjon`: `http://localhost:5173/attestasjon`
-- `sokos-up-oppdragsinfo`: `http://localhost:5174/oppdragsinfo`
+   ```bash
+   LOCAL_MICROFRONTENDS=sokos-up-attestasjon=5173 pnpm dev:mock
+   ```
 
-For å legge til flere lokale mikrofrontends, oppdater `localMicrofrontends`-objektet i `mock/server.ts`.
+2. **Start alt samtidig**: `pnpm run dev` (eller `pnpm run dev:mock` for å teste ekte innlogging)
+   - Dette starter både Utbetalingsportalen (port 4321) og mock-serveren (port 3001)
+
+3. **Start hver mikrofrontend** (i sin egen mappe/terminal) på porten du satte
+   i `LOCAL_MICROFRONTENDS`
+
+Mock-serveren sjekker automatisk om en lokal mikrofrontend kjører og laster den via iframe. Hvis den lokale mikrofrontenden ikke er tilgjengelig (eller ikke er satt opp i `LOCAL_MICROFRONTENDS`), vises en mock-komponent i stedet.
+
+`naisAppName` og `route` hentes automatisk fra `src/config/appConfig.ts` — du
+trenger bare oppgi porten. Alle apper i `appConfig.ts` kan brukes, ingen
+kodeendring i `mock/server.ts` nødvendig.
+
+#### Teste innlogging lokalt
+
+Lokal innlogging bruker
+[mock-oauth2-server](https://github.com/navikt/mock-oauth2-server) som
+OIDC-provider og Wonderwall som lokal BFF. Dette er kun for lokal utvikling.
+
+`.env.template` i repo-roten er sjekket inn i git (ingen hemmeligheter) og
+inneholder all nødvendig lokal konfigurasjon, inkludert:
+
+```bash
+LOCAL_AUTH_PROXY_ENABLED=true
+LOCAL_AUTH_PROXY_URL=http://localhost:3000
+AZURE_APP_CLIENT_ID=local-client
+AZURE_OPENID_CONFIG_ISSUER=http://localhost:8080/default
+AZURE_OPENID_CONFIG_JWKS_URI=http://localhost:8080/default/jwks
+ALLOWED_ORIGINS=http://localhost:4321,http://localhost:4322,http://localhost:3000
+```
+
+`ALLOWED_ORIGINS` styrer hvilke origins mock-serveren (`mock/server.ts`)
+tillater CORS-forespørsler fra. Legg til eller fjern porter her — ingen
+kodeendring nødvendig.
+
+Start alt (docker-stack + Astro + mock-server) med:
+
+```bash
+pnpm dev:mock
+```
+
+Docker-tjenestene kjører i bakgrunnen. For å følge Docker-loggene manuelt,
+åpner du en ekstra terminal og kjører `docker compose logs -f`. Docker-
+tjenestene kjører videre etter at utviklingskommandoen stoppes; bruk
+`pnpm dev:mock:down` for å stoppe dem.
+
+Åpne `http://localhost:3000`. Innlogging skjer automatisk uten login-skjema
+(`interactiveLogin` er satt til `false`). Mock-tokenet inneholder syntetiske
+claims for `Ola Mohammed`, `Z123456` og AD-gruppene fra `mock/auth/adGroups.ts`
+(delt kilde for både `pnpm dev` og `pnpm dev:mock`).
+`mock/auth/mock-oauth-config.json` genereres automatisk av `pnpm dev:mock`
+(`mock/auth/generate-oauth-config.ts`) og er ikke sjekket inn i git.
+
+Logg ut ved å åpne `http://localhost:3000/oauth2/logout`.
+
+Astro må nås gjennom Wonderwall på port `3000`; port `4321` er upstream-porten.
+`LOCAL_AUTH_PROXY_ENABLED` virker bare når `NAIS_CLUSTER_NAME` ikke er
+`dev-gcp` eller `prod-gcp`. I dev-gcp og prod-gcp brukes alltid
+Nais-autentisering. Kjører du `pnpm dev` (uten docker-stacken), får du en
+syntetisk lokal bruker automatisk (se `mock/auth/devUser.ts`).
+
+Wonderwall bruker en fast lokal krypteringsnøkkel
+(`WONDERWALL_ENCRYPTION_KEY`) slik at sesjonen overlever restart av
+containeren under utvikling. Denne nøkkelen skal aldri brukes utenfor lokalt
+miljø.
+
+Stopp tjenestene:
+
+```bash
+pnpm dev:mock:down
+```
+
+**Se logger** hvis noe ikke fungerer som forventet:
+
+```bash
+docker compose logs -f wonderwall            # Wonderwall (BFF/proxy)
+docker compose logs -f mock-oauth2-server     # OIDC-provider
+docker compose logs -f wonderwall mock-oauth2-server  # begge samtidig
+```
 
 ## 3. Programvarearkitektur
 

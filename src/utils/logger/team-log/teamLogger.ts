@@ -36,7 +36,7 @@ export function createTeamLogger(
 			},
 		},
 	) as ReturnType<typeof createLogger>;
-};
+}
 
 function getConfig(): TeamLogConfigTuple {
 	if (config != null) {

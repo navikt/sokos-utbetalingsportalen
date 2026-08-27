@@ -1,54 +1,50 @@
-import { getAppConfig } from "@config/appConfig";
 import { getToken, validateAzureToken } from "@navikt/oasis";
 import { UserDataSchema } from "@schema/UserDataSchema";
 import { formatNameFromToken } from "@utils/formatNameFromToken";
 import { logger } from "@utils/logger/index";
-import { getServerSideEnvironment } from "@utils/server/environment.ts";
+import {
+	getServerSideEnvironment,
+	isLocalAuthProxyEnabled,
+} from "@utils/server/environment.ts";
 import { defineMiddleware } from "astro/middleware";
+import { MOCK_USER } from "../../mock/auth/devUser";
 import { isInternal } from "./utils";
 
 export const onRequest = defineMiddleware(async (context, next) => {
-	const loginPath = `/oauth2/login?redirect=${context.url}`;
-	const token = getToken(context.request.headers);
-	const params = encodeURIComponent(context.url.search);
-
-	if (getServerSideEnvironment() === "local") {
-		context.locals.userData = {
-			NAVident: "Z123456",
-			name: "Erling Braut Haaland",
-			groups: [
-				getAppConfig("DARE").adGroupDevelopment,
-				getAppConfig("ATTESTASJON").adGroupDevelopment,
-				getAppConfig("OPPDRAGSINFO").adGroupDevelopment,
-				getAppConfig("FASTEDATA").adGroupDevelopment,
-				getAppConfig("SKATTEKORT").adGroupDevelopment,
-				getAppConfig("SKATTEKORT-ADMIN").adGroupDevelopment,
-				getAppConfig("SPK-MOTTAK").adGroupDevelopment,
-				getAppConfig("RESENDING-BANK").adGroupDevelopment,
-				getAppConfig("KRP").adGroupDevelopment,
-				getAppConfig("KRO").adGroupDevelopment,
-				getAppConfig("ORS").adGroupDevelopment,
-				getAppConfig("UTBETALING").adGroupDevelopment,
-				getAppConfig("BUNTKONTROLL").adGroupDevelopment,
-				getAppConfig("MELDINGSFLYT").adGroupDevelopment,
-				getAppConfig("RETUR-FRA-BANK").adGroupDevelopment,
-				getAppConfig("OPPGJORSRAPPORTER").adGroupDevelopment,
-				getAppConfig("RAY-RAY-ADMIN").adGroupDevelopment,
-			],
-		};
-
-		return next();
-	}
-
 	if (isInternal(context)) {
 		return next();
 	}
+
+	const localAuthenticationEnabled = isLocalAuthProxyEnabled();
+
+	// `pnpm dev` kjører uten mock-oauth2-server/Wonderwall i front, så det
+	// finnes ingen ekte /oauth2/login å redirecte til. Bruk en syntetisk
+	// lokal bruker for rask utvikling. Ekte innloggingsflyt testes med
+	// `pnpm dev:mock` (se README «Teste innlogging lokalt»).
+	if (getServerSideEnvironment() === "local" && !localAuthenticationEnabled) {
+		context.locals.token = "local-dev-token";
+		context.locals.userData = MOCK_USER;
+		return next();
+	}
+
+	const proxyUrl = localAuthenticationEnabled
+		? (process.env.LOCAL_AUTH_PROXY_URL ?? "http://localhost:3000")
+		: context.url.origin;
+	const loginUrl = new URL("/oauth2/login", proxyUrl);
+	const redirectTarget = localAuthenticationEnabled
+		? new URL(
+				`${context.url.pathname}${context.url.search}`,
+				proxyUrl,
+			).toString()
+		: context.url.toString();
+	loginUrl.searchParams.set("redirect", redirectTarget);
+	const token = getToken(context.request.headers);
 
 	if (!token) {
 		logger.info(
 			"Could not find any bearer token on the request. Redirecting to login.",
 		);
-		return context.redirect(loginPath);
+		return context.redirect(loginUrl.toString());
 	}
 
 	const validatedToken = await validateAzureToken(token);
@@ -58,7 +54,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
 			`Invalid JWT token found (cause: ${validatedToken.errorType} ${validatedToken.error}, redirecting to login.`,
 		);
 		logger.error(error);
-		return context.redirect(`${loginPath}${params}`);
+		return context.redirect(loginUrl.toString());
 	}
 
 	context.locals.token = token;
@@ -69,7 +65,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
 			`Invalid user info found in JWT token (cause: ${response.error}, redirecting to login.`,
 		);
 		logger.error(error);
-		return context.redirect(`${loginPath}${params}`);
+		return context.redirect(loginUrl.toString());
 	}
 
 	context.locals.userData = {

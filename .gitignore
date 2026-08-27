@@ -21,13 +21,17 @@ jspm_packages/
 .idea/
 
 # Environment variables
-.env
+.env*
+!.env.template
 
 # MacOS files
 .DS_Store
 
 # Astro files
 .astro/
+
+# Generert av mock/auth/generate-oauth-config.ts (kjøres automatisk av `pnpm dev:mock`)
+mock/auth/mock-oauth-config.json
 
 # Securelog
 secure.log

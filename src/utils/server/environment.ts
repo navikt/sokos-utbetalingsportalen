@@ -14,3 +14,10 @@ export function getServerSideEnvironment(): Environment {
 
 	return "local";
 }
+
+export function isLocalAuthProxyEnabled(): boolean {
+	return (
+		!process.env.NAIS_CLUSTER_NAME &&
+		process.env.LOCAL_AUTH_PROXY_ENABLED === "true"
+	);
+}
