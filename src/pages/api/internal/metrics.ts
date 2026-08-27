@@ -1,4 +1,4 @@
-import { register } from "prom-client";
+import { register } from "@prometheus-io/client";
 
 export async function GET() {
 	return new Response(await register.metrics(), {

@@ -10,3 +10,5 @@ allowBuilds:
   esbuild: true
   protobufjs: true
   sharp: true
+minimumReleaseAgeExclude:
+  - '@prometheus-io/client@0.16.0'
