@@ -1,4 +1,4 @@
-export function createLocalApp(
+export function createLocalIframeBundle(
 	microfrontendName: string,
 	localUrl: string,
 ): string {

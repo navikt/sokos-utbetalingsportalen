@@ -4,9 +4,9 @@
 	"version": "1.0.0",
 	"scripts": {
 		"astro": "astro",
-		"dev": "astro dev",
+		"dev": "concurrently \"astro dev --host 0.0.0.0\" \"tsx mock/server.ts\"",
 		"mock:sync-oauth-config": "tsx mock/auth/generate-oauth-config.ts",
-		"dev:mock": "pnpm mock:sync-oauth-config && docker compose up -d && dotenv -e .env.template -- concurrently \"pnpm dev --host 0.0.0.0\" \"tsx mock/server.ts\"",
+		"dev:mock": "pnpm mock:sync-oauth-config && docker compose up -d && dotenv -e .env.local -e .env.template -- pnpm dev",
 		"dev:mock:down": "docker compose down",
 		"build": "astro check && astro build",
 		"vitest": "vitest",

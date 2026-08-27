@@ -7,7 +7,7 @@ import {
 	isLocalAuthProxyEnabled,
 } from "@utils/server/environment.ts";
 import { defineMiddleware } from "astro/middleware";
-import { LOCAL_DEV_USER } from "../../mock/auth/localDevUser";
+import { MOCK_USER } from "../../mock/auth/devUser";
 import { isInternal } from "./utils";
 
 export const onRequest = defineMiddleware(async (context, next) => {
@@ -23,7 +23,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
 	// `pnpm dev:mock` (se README «Teste innlogging lokalt»).
 	if (getServerSideEnvironment() === "local" && !localAuthenticationEnabled) {
 		context.locals.token = "local-dev-token";
-		context.locals.userData = LOCAL_DEV_USER;
+		context.locals.userData = MOCK_USER;
 		return next();
 	}
 

@@ -1,14 +1,10 @@
 /**
- * Delt kilde for den syntetiske lokale testbrukeren. Brukes av både
- * `mock/auth/localDevUser.ts` (auth-bypass i `pnpm dev`) og
- * `mock/auth/generate-oauth-config.ts` (genererer `oauth-config.json` for
- * mock-oauth2-server i `pnpm dev:mock`), slik at de to lokale
- * innloggingsmodusene alltid gir identisk tilgang.
+ * AD-gruppe-UUID-er for mock-brukeren. Delt kilde brukt av
+ * `mock/auth/devUser.ts` og `mock/auth/generate-oauth-config.ts`,
+ * slik at `pnpm dev` (syntetisk bypass) og `pnpm dev:mock` (ekte OIDC-flyt)
+ * alltid gir identisk tilgang.
  */
-export const LOCAL_DEV_NAME = "Ola Mohammed";
-export const LOCAL_DEV_NAVIDENT = "Z123456";
-
-export const LOCAL_DEV_GROUPS: string[] = [
+export const MOCK_USER_GROUPS: string[] = [
 	"0e58dc41-7c57-4b79-a8c7-d0caec129e53",
 	"a13b4176-e328-4e1c-b181-ff676a7146b1",
 	"b01fb216-fcb3-4ede-b7da-71fffe859763",

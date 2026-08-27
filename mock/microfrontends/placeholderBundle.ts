@@ -1,6 +1,8 @@
 import type { App } from "../../src/config/appConfig";
 
-export function createMockApp(config: App): string {
+type PlaceholderConfig = Pick<App, "app" | "title" | "description">;
+
+export function createPlaceholderBundle(config: PlaceholderConfig): string {
 	const { app, title, description } = config;
 	const defaultColor = "#0067C5";
 	const badgeText = `Mock implementasjon av ${app}`;
@@ -8,7 +10,7 @@ export function createMockApp(config: App): string {
 	return `
 import React from 'react';
 
-const MockMicrofrontend = () => {
+const PlaceholderMicrofrontend = () => {
   return React.createElement('div', {
     style: {
       padding: '2rem',
@@ -50,6 +52,6 @@ const MockMicrofrontend = () => {
   ]);
 };
 
-export default MockMicrofrontend;
+export default PlaceholderMicrofrontend;
 `.trim();
 }

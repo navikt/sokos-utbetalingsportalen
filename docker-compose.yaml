@@ -15,7 +15,7 @@ services:
     environment:
       JSON_CONFIG_PATH: /config/oauth-config.json
     volumes:
-      - ./mock/auth/oauth-config.json:/config/oauth-config.json:ro
+      - ./mock/auth/mock-oauth-config.json:/config/oauth-config.json:ro
     healthcheck:
       # Ingen curl/wget i imaget - sjekker med bash sitt innebygde /dev/tcp
       # at porten faktisk lytter.

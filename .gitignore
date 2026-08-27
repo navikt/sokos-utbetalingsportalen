@@ -30,8 +30,8 @@ jspm_packages/
 # Astro files
 .astro/
 
-# Generert av mock/auth/generate-oauth-config.ts (kjøres automatisk av `pnpm dev:auth`)
-mock/auth/oauth-config.json
+# Generert av mock/auth/generate-oauth-config.ts (kjøres automatisk av `pnpm dev:mock`)
+mock/auth/mock-oauth-config.json
 
 # Securelog
 secure.log
