@@ -11,3 +11,5 @@ allowBuilds:
   sharp: true
 minimumReleaseAgeExclude:
   - '@prometheus-io/client@0.16.0'
+  - '@navikt/oasis@4.2.2'
+  - '@navikt/texas@4.2.2'

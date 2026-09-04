@@ -26,7 +26,7 @@
 		"@nais/apm": "0.6.0",
 		"@navikt/aksel-icons": "8.15.0",
 		"@navikt/ds-react": "8.15.0",
-		"@navikt/oasis": "4.1.4",
+		"@navikt/oasis": "4.2.2",
 		"@opentelemetry/sdk-node": "0.221.0",
 		"@prometheus-io/client": "0.16.0",
 		"astro": "7.2.6",
