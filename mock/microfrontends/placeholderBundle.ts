@@ -1,4 +1,4 @@
-import type { App } from "../../src/config/appConfig";
+import type { App } from "../../src/types/App";
 
 type PlaceholderConfig = Pick<App, "app" | "title" | "description">;
 

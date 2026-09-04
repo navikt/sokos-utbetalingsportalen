@@ -7,6 +7,10 @@
 	width: 100%;
 }
 
+:global(.aksel-dropdown__item:active) {
+	background-color: var(--ax-bg-meta-purple-moderate-pressedA);
+}
+
 .header__navLogo {
 	margin-left: 0.5rem;
 	width: 4.5rem;

@@ -16,5 +16,16 @@ const userData = Astro.locals.userData;
     const customEvent = event as CustomEvent;
     const isOpen = customEvent.detail.isOpen;
     document.body.classList.toggle("sidebar-open", isOpen);
+
+    const mainContent = document.getElementById("main-content");
+    if (mainContent) {
+      if (isOpen) {
+        mainContent.setAttribute("inert", "");
+        mainContent.setAttribute("aria-hidden", "true");
+      } else {
+        mainContent.removeAttribute("inert");
+        mainContent.removeAttribute("aria-hidden");
+      }
+    }
   });
 </script>
