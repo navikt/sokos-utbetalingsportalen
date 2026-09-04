@@ -63,7 +63,7 @@ spec:
         - application: sokos-up-kontoregister-api
         - application: sokos-retur-fra-bank-api
         - application: sokos-astro-template
-        - application: sokos-skattekort
+        - application: sokos-skattekort-q1
         - application: sokos-up-oppgjorsrapporter
           namespace: oppgjorsrapporter
         - application: sokos-up-ray-ray-admin
@@ -101,11 +101,11 @@ spec:
     - name: SOKOS_ASTRO_TEMPLATE_AUDIENCE
       value: api://dev-gcp.okonomi.sokos-astro-template/.default
 
-     # sokos-skattekort (Backend)
+     # sokos-skattekort-q1 (Backend)
     - name: SOKOS_SKATTEKORT_API
-      value: http://sokos-skattekort
+      value: http://sokos-skattekort-q1
     - name: SOKOS_SKATTEKORT_API_AUDIENCE
-      value: api://dev-gcp.okonomi.sokos-skattekort/.default
+      value: api://dev-gcp.okonomi.sokos-skattekort-q1/.default
     - name: SOKOS_SKATTEKORT_API_PROXY
       value: "/sokos-skattekort"
 
