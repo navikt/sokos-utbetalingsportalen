@@ -1,7 +1,8 @@
-.welcomeGuidepanel {
-	padding-bottom: 2.5rem;
-}
-
 .welcomeGuidepanel__heading {
 	text-align: center;
+}
+
+.welcomeGuidepanel__panel {
+	max-width: 64rem;
+	margin-inline: auto;
 }

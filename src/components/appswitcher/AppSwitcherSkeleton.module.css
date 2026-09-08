@@ -1,8 +1,7 @@
 .appCardGrid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-	gap: 1rem;
-	justify-content: center;
+	gap: var(--ax-space-16);
 }
 
 .appCardGrid__skeleton {
@@ -24,4 +23,8 @@
 .appCardGrid__descriptionWrapper {
 	padding-top: 0.1rem;
 	margin-right: 1.25rem;
+}
+
+.showAllToggle {
+	margin-top: var(--ax-space-12);
 }

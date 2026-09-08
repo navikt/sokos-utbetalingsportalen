@@ -1,12 +1,4 @@
-export type App = {
-	app: string;
-	title: string;
-	description: string;
-	adGroupDevelopment: string;
-	adGroupProduction: string;
-	route: string;
-	naisAppName: string;
-};
+import type { App } from "@domain/App";
 
 type AppDictionary = Record<string, App>;
 
