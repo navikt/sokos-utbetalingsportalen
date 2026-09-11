@@ -42,6 +42,7 @@ export function routeProxyWithOboToken(proxyConfig: ProxyConfig): APIRoute {
 			{},
 			parentCtx,
 			async (span) => {
+				span.setAttribute("proxy.audience_service", audienceService);
 				try {
 					const audience = proxyConfig.audience;
 					const oboToken = await getOboToken(context.locals.token, audience);
@@ -80,16 +81,29 @@ export function routeProxyWithOboToken(proxyConfig: ProxyConfig): APIRoute {
 						duplex: "half",
 					});
 
-					logger.info(
-						{
-							url: response.url,
-							status: response.status,
-							trace_id: spanContext.traceId,
-							span_id: spanContext.spanId,
-							trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
-						},
-						`Proxy Response -> Status:  ${response.status} | URL: ${response.url}`,
-					);
+					const isServerError = response.status >= 500;
+
+					if (isServerError) {
+						span.setStatus({
+							code: api.SpanStatusCode.ERROR,
+							message: `Proxy received status ${response.status}`,
+						});
+					}
+
+					const responseLogFields = {
+						url: response.url,
+						status: response.status,
+						trace_id: spanContext.traceId,
+						span_id: spanContext.spanId,
+						trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
+					};
+					const responseLogMessage = `Proxy Response -> Status:  ${response.status} | URL: ${response.url}`;
+
+					if (isServerError) {
+						logger.error(responseLogFields, responseLogMessage);
+					} else {
+						logger.info(responseLogFields, responseLogMessage);
+					}
 
 					teamLogger.info(
 						{
