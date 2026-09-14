@@ -18,8 +18,8 @@ spec:
     enabled: true
     path: /api/internal/metrics
   replicas:
-    min: 1
-    max: 2
+    min: 2
+    max: 4
   observability:
     autoInstrumentation:
       enabled: true
@@ -79,7 +79,7 @@ spec:
     limits:
       memory: 1024Mi
     requests:
-      cpu: 100m
+      cpu: 50m
       memory: 512Mi
   env:
 
