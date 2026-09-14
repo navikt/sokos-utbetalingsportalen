@@ -1,5 +1,5 @@
 import { HouseIcon, MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
-import { Button, Link } from "@navikt/ds-react";
+import { Button, Link, Theme } from "@navikt/ds-react";
 import { getAuthorizedApps } from "@utils/accessControl";
 import type { ReactNode } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -23,6 +23,7 @@ function SideBarLink({ route, children }: SideBarLinkProps) {
 		<Link
 			className={`${styles.sidebar__link} ${isActive ? styles["sidebar__link--active"] : ""}`}
 			href={route}
+			aria-current={isActive ? "page" : undefined}
 		>
 			<div className={styles.sidebar__linkChild}>{children}</div>
 		</Link>
@@ -106,53 +107,64 @@ export default function SideBar({ adGroups }: SideBarProps) {
 	}
 
 	return (
-		<nav
-			aria-label="Sidemeny"
-			className={`${styles.sidebar} ${isOpen ? "" : styles["sidebar--closed"]}`}
-			ref={sidebarRef}
-			onTransitionEnd={handleTransitionEnd}
-		>
-			{isOpen ? (
-				<>
-					<div className={styles.sidebar__closeButton}>
-						<Button
-							ref={closeButtonRef}
-							className={styles.sidebar__buttonColor}
-							onClick={handleClose}
-							icon={<XMarkIcon title="Kryss ikon" />}
-							iconPosition="right"
-							variant="primary-neutral"
-						>
-							Lukk
-						</Button>
-					</div>
+		<Theme theme="dark" hasBackground={false}>
+			<nav
+				id="sidebar-nav"
+				aria-label="Sidemeny"
+				className={`${styles.sidebar} ${isOpen ? "" : styles["sidebar--closed"]}`}
+				ref={sidebarRef}
+				onTransitionEnd={handleTransitionEnd}
+			>
+				{isOpen ? (
+					<>
+						<div className={styles.sidebar__closeButton}>
+							<Button
+								ref={closeButtonRef}
+								className={styles.sidebar__buttonColorClose}
+								aria-label="Lukk"
+								onClick={handleClose}
+								icon={<XMarkIcon aria-hidden="true" />}
+								iconPosition="right"
+								variant="primary"
+								data-color="neutral"
+							>
+								Lukk
+							</Button>
+						</div>
 
-					<ul className={styles.sidebar__list}>
-						<li className={styles.sidebar__links}>
-							<SideBarLink route="/">
-								<HouseIcon className={styles.sidebar__icon} title="Hus ikon" />
-								Hjem
-							</SideBarLink>
-						</li>
-						{authorizedApps.map((page) => (
-							<li key={page.app} className={styles.sidebar__links}>
-								<SideBarLink route={page.route}>{page.title}</SideBarLink>
+						<ul className={styles.sidebar__list}>
+							<li className={styles.sidebar__links}>
+								<SideBarLink route="/">
+									<HouseIcon
+										className={styles.sidebar__icon}
+										aria-hidden="true"
+									/>
+									Hjem
+								</SideBarLink>
 							</li>
-						))}
-					</ul>
-				</>
-			) : (
-				isHamburgerVisible && (
-					<Button
-						ref={hamburgerButtonRef}
-						aria-expanded={isOpen}
-						className={styles.sidebar__buttonColor}
-						onClick={handleOpen}
-						variant="primary-neutral"
-						icon={<MenuHamburgerIcon title="Åpne sidemeny" />}
-					/>
-				)
-			)}
-		</nav>
+							{authorizedApps.map((page) => (
+								<li key={page.app} className={styles.sidebar__links}>
+									<SideBarLink route={page.route}>{page.title}</SideBarLink>
+								</li>
+							))}
+						</ul>
+					</>
+				) : (
+					isHamburgerVisible && (
+						<Button
+							ref={hamburgerButtonRef}
+							aria-expanded={isOpen}
+							aria-controls="sidebar-nav"
+							aria-label="Åpne sidemeny"
+							className={styles.sidebar__buttonColor}
+							onClick={handleOpen}
+							variant="primary"
+							data-color="neutral"
+							icon={<MenuHamburgerIcon aria-hidden="true" />}
+						/>
+					)
+				)}
+			</nav>
+		</Theme>
 	);
 }

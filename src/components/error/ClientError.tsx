@@ -3,7 +3,7 @@ import styles from "../../common-styles.module.css";
 
 export function ClientError() {
 	return (
-		<Box paddingBlock="20 8">
+		<Box paddingBlock="space-80 space-32">
 			<div className={styles["error-page"]}>
 				<Heading level="1" size="large" spacing>
 					Beklager, noe gikk galt.
@@ -12,7 +12,7 @@ export function ClientError() {
 					En teknisk feil gjør at siden er utilgjengelig. Du kan prøve å vente
 					noen minutter og prøve igjen.
 				</BodyShort>
-				<HStack gap="3" wrap={false}>
+				<HStack gap="space-12" wrap={false}>
 					<Button
 						variant="secondary"
 						size="small"
@@ -30,7 +30,7 @@ export function ClientError() {
 						</Button>
 					)}
 				</HStack>
-				<Button as="a" href="/" style={{ marginTop: "var(--a-spacing-6)" }}>
+				<Button as="a" href="/" style={{ marginTop: "var(--ax-space-24)" }}>
 					Gå til hovedsiden
 				</Button>
 			</div>
