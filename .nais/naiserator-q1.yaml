@@ -83,7 +83,7 @@ spec:
     limits:
       memory: 1024Mi
     requests:
-      cpu: 100m
+      cpu: 50m
       memory: 512Mi
   env:
 
