@@ -52,6 +52,7 @@ export function routeProxyWithOboToken(proxyConfig: ProxyConfig): APIRoute {
 
 					logger.info(
 						{
+							backend: audienceService,
 							method: context.request.method,
 							url: context.request.url,
 							proxyFrom: proxyConfig.apiProxy,
@@ -91,6 +92,7 @@ export function routeProxyWithOboToken(proxyConfig: ProxyConfig): APIRoute {
 					}
 
 					const responseLogFields = {
+						backend: audienceService,
 						url: response.url,
 						status: response.status,
 						trace_id: spanContext.traceId,
@@ -108,6 +110,7 @@ export function routeProxyWithOboToken(proxyConfig: ProxyConfig): APIRoute {
 					teamLogger.info(
 						{
 							NAVident: context.locals.userData?.NAVident,
+							backend: audienceService,
 							method: context.request.method,
 							url: response.url,
 							status: response.status,
