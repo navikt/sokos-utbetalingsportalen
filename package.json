@@ -29,7 +29,7 @@
 		"@navikt/oasis": "4.2.2",
 		"@opentelemetry/sdk-node": "0.222.0",
 		"@prometheus-io/client": "0.16.1",
-		"astro": "7.2.10",
+		"astro": "7.3.1",
 		"pino": "10.3.1",
 		"pino-socket": "8.0.0",
 		"react": "19.2.8",
