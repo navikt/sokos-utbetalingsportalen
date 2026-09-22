@@ -12,6 +12,7 @@ export async function getOboToken(
 
 	if (!oboResult.ok) {
 		logger.error(
+			{ backend: audienceService },
 			`Error getting obo token for audience ${audienceService}: ${oboResult.error}`,
 		);
 		return "";
