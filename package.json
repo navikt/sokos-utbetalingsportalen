@@ -32,8 +32,8 @@
 		"astro": "7.3.2",
 		"pino": "10.3.1",
 		"pino-socket": "8.0.0",
-		"react": "19.2.8",
-		"react-dom": "19.2.8",
+		"react": "19.3.0",
+		"react-dom": "19.3.0",
 		"zod": "4.6.5"
 	},
 	"devDependencies": {
@@ -41,8 +41,8 @@
 		"@hono/node-server": "2.1.1",
 		"@navikt/aksel-stylelint": "7.40.0",
 		"@types/node": "26.5.1",
-		"@types/react": "19.2.18",
-		"@types/react-dom": "19.2.5",
+		"@types/react": "19.3.0",
+		"@types/react-dom": "19.3.0",
 		"concurrently": "10.0.5",
 		"dotenv-cli": "11.0.0",
 		"hono": "4.13.7",
