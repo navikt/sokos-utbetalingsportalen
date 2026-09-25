@@ -30,7 +30,6 @@ spec:
       allowAllUsers: false
       claims:
         groups:
-          - id: "f49b797d-600d-46da-8061-7746e48d1aca" # 0000-CA-SOKOS-MF-SPK-Mottak-ADMIN
           - id: "40ee7ce5-7ec8-405e-b2ea-951401c2633e" # 0000-CA-SOKOS-MF-ORS-READ
           - id: "bb9c7baf-768b-4e84-816c-f10d0a6c7d25" # 0000-GA-SOKOS-MF-KRP-READ
           - id: "e1635067-dfc9-4fb8-8405-d50e9672cf5c" # 0000-GA-SOKOS-MF-KRO-READ
@@ -69,7 +68,6 @@ spec:
       external:
         - host: sokos-oppdrag.prod-fss-pub.nais.io
         - host: sokos-ur-iso.prod-fss-pub.nais.io
-        - host: sokos-spk-mottak.prod-fss-pub.nais.io
         - host: sokos-meldingingsflyt.prod-fss-pub.nais.io
         - host: sokos-utbetaling-api.prod-fss-pub.nais.io
   ingresses:
@@ -120,14 +118,6 @@ spec:
       value: api://prod-fss.okonomi.sokos-ur-iso/.default
     - name: SOKOS_UR_ISO_API_PROXY
       value: "/sokos-ur-iso"
-
-    # sokos-spk-mottak (Backend)
-    - name: SOKOS_SPK_MOTTAK_API
-      value: https://sokos-spk-mottak.prod-fss-pub.nais.io
-    - name: SOKOS_SPK_MOTTAK_API_AUDIENCE
-      value: api://prod-fss.okonomi.sokos-spk-mottak/.default
-    - name: SOKOS_SPK_MOTTAK_API_PROXY
-      value: "/spk-mottak-api"
 
     # sokos-oppdrag (Backend)
     - name: SOKOS_OPPDRAG_API
