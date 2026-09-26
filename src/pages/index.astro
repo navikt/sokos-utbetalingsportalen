@@ -1,8 +1,10 @@
 ---
 import AppSwitcher from "@components/appswitcher/AppSwitcher";
 import AppSwitcherSkeleton from "@components/appswitcher/AppSwitcherSkeleton";
-import GuidePanel from "@components/welcomepanel/WelcomePanel";
+import WelcomePanel from "@components/welcomepanel/WelcomePanel";
+import { getExternalLinks } from "@config/externalLinks";
 import Layout from "@layouts/Layout.astro";
+import { BodyLong, Heading, Link } from "@navikt/ds-react";
 import styles from "./_index.module.css";
 
 const userData = Astro.locals.userData;
@@ -16,13 +18,37 @@ const greeting =
 			: currentHour < 18
 				? "God ettermiddag"
 				: "God kveld";
+
+const naisClusterName = process.env.NAIS_CLUSTER_NAME ?? "";
+const utbetalingsportalenEnvironment = process.env.UTBETALINGSPORTALEN_ENVIRONMENT ?? "";
+const externalLinks = getExternalLinks(naisClusterName, utbetalingsportalenEnvironment);
 ---
 
 <Layout title="Hjem">
   <div class={styles["home"]}>
     <div class={styles["home__content"]}>
-      <GuidePanel greeting={greeting} name={userData.name} />
-      <AppSwitcher adGroups={userData.groups} client:only="react">
+      <WelcomePanel greeting={greeting} name={userData.name}>
+        <Heading level="2" size="small" spacing>
+          Ny design!
+        </Heading>
+        <BodyLong spacing>
+          Fordi Aksel, designspråket til Nav, har oppdatert til versjon 8 har vi
+          måttet gjøre noen endringer og dermed også forbedringer. Du vil i en
+          overgangsperiode oppleve at applikasjonene endrer over til nytt design
+          i forskjellig tempo og det vil være litt forskjeller.
+        </BodyLong>
+        <BodyLong>
+          <Link
+            href="https://navno.sharepoint.com/sites/fag-og-ytelser-stonadsokonomi/SitePages/Utbetalingsportalen.aspx"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Les mer om Utbetalingsportalen og hvordan du får tilgang til de ulike
+            arbeidsflatene (Navet)
+          </Link>
+        </BodyLong>
+      </WelcomePanel>
+      <AppSwitcher adGroups={userData.groups} externalLinks={externalLinks} client:only="react">
         <AppSwitcherSkeleton slot="fallback" />
       </AppSwitcher>
     </div>

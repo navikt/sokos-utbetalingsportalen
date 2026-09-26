@@ -1,6 +1,14 @@
 .linkCardGrid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-	gap: 1rem;
-	justify-content: center;
+	gap: var(--ax-space-16);
+}
+
+.linkCardGrid--inaccessible {
+	margin-top: var(--ax-space-16);
+	opacity: 0.5;
+}
+
+.showAllToggle {
+	margin-top: var(--ax-space-12);
 }

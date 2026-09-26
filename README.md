@@ -237,10 +237,10 @@ Alarmene overvåker:
 - HTTP-feilrater
 - JVM-metrikker
 
-Varsler sendes til disse Slack kanalene:
+Varsler sendes til disse Slack-kanalene:
 
-- Dev-miljø: [#team-mob-alerts-dev](https://nav-it.slack.com/archives/C042SF2FEQM)
-- Prod-miljø: [#team-mob-alerts-prod](https://nav-it.slack.com/archives/C042ESY71GX)
+- Dev-miljø: [#utbetaling-team-beregning-alerts-dev](https://nav-it.slack.com/archives/C0BHK19HMPD)
+- Prod-miljø: [#utbetaling-team-beregning-alerts-prod](https://nav-it.slack.com/archives/C0BUZH3FLLF)
 
 ## 9. Henvendelser
 
