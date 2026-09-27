@@ -1,6 +1,6 @@
 # AGENTS.md — sokos-utbetalingsportalen
 
-Astro-basert mikrofrontend-container for NAVs utbetalingsportal. TypeScript + React + CSS Modules + Aksel designsystem.
+Astro-basert mikrofrontend-container for Navs utbetalingsportal. TypeScript + React + CSS Modules + Aksel designsystem.
 
 ## Kom i gang
 
@@ -14,7 +14,7 @@ pnpm dev:mock       # Start med mock-oauth2-server/Wonderwall i tillegg (ekte in
 
 ```bash
 pnpm build          # astro check + astro build (begge må passere)
-pnpm vitest         # Kjør enhetstester
+pnpm vitest run     # Kjør enhetstester én gang (uten `run` starter watch-modus)
 pnpm biome:check    # Linting og formatering
 pnpm stylelint:check  # CSS-linting
 ```
@@ -35,14 +35,28 @@ pnpm add -D <pakke>       # Legg til dev-avhengighet
 ```
 src/
   components/     # Gjenbrukbare React-komponenter (PascalCase.tsx)
-  pages/          # Astro-sider (kebab-case.astro) og API-ruter
+  pages/          # Astro-sider (kebab-case.astro), proxy-ruter og interne endepunkter
   layouts/        # Astro-layouts
-  config/         # Konfigurasjon og konstanter
-  middleware/     # Astro middleware
-  types/          # TypeScript-typer og interfaces
-  utils/          # Hjelpefunksjoner
+  config/         # appConfig.ts (mikrofrontender og AD-grupper) og externalLinks.ts
+  middleware/     # Astro middleware (autentisering)
+  types/          # TypeScript-typer, med Zod-skjemaer i types/schema/
+  utils/          # Hjelpefunksjoner: server/, client/, logger/, observability/
 mock/             # Hono-basert mock-server for lokal utvikling
 ```
+
+### Import-aliaser
+
+Definert i `tsconfig.json`. Merk at `@domain/*` peker på `src/types/*`, ikke en egen `domain`-mappe.
+
+| Alias | Mappe |
+|-------|-------|
+| `@components/*` | `src/components/*` |
+| `@layouts/*` | `src/layouts/*` |
+| `@pages/*` | `src/pages/*` |
+| `@domain/*` | `src/types/*` |
+| `@schema/*` | `src/types/schema/*` |
+| `@utils/*` | `src/utils/*` |
+| `@config/*` | `src/config/*` |
 
 ## Filnavnkonvensjoner
 
@@ -57,14 +71,14 @@ mock/             # Hono-basert mock-server for lokal utvikling
 
 ### TypeScript
 
-- Alltid eksplisitt typing på komponent-props (bruk `interface`, ikke `type` for props)
+- Alltid eksplisitt typing på komponent-props. Bruk `type`, ikke `interface`, slik resten av koden gjør. `interface` brukes kun der declaration merging er nødvendig, som `Locals` i `src/env.d.ts`
 - Bruk TypeScript-typer som dokumentasjon — ikke skriv kommentarer som forklarer hva kode gjør
 - Skriv selvdokumenterende kode med beskrivende navn
 
 ### React-komponenter
 
 - Én komponent per fil, én fil per ansvar
-- Wrap mikrofrontender alltid med `ErrorBoundary`
+- Wrap mikrofrontender alltid med `ApmErrorBoundary` fra `@nais/apm/react`, og send mikrofrontendens `naisAppName` i `context` slik at APM viser hvilken mikrofrontend som feilet
 - Bruk `Suspense` + fallback for async-komponenter
 - Sjekk tilganger før sensitiv innhold rendres
 
@@ -114,8 +128,10 @@ Dette er et kritisk finanssystem for norsk offentlig forvaltning.
 
 ## Observability
 
-- Grafana Faro for web vitals og feilsporing (allerede konfigurert i `src/components/observability/`)
-- Pino + OpenTelemetry for strukturert logging
+- `@nais/apm` (bygger på Grafana Faro) for web vitals og feilsporing. Nettleser-APM startes én gang i `src/layouts/Layout.astro` via `src/utils/observability/NaisApm.tsx`. Ikke kall `init()` på nytt i mikrofrontendene
+- Servertracing kommer fra `observability.autoInstrumentation` i Nais-manifestene. Proxy-rutene lager egne spans i `src/utils/server/proxy.ts`
+- Pino for strukturert logging: `logger` til applikasjonslogg og `teamLogger` til auditlogg
+- Prometheus-metrikker eksponeres på `/api/internal/metrics`
 
 ## Språk
 
@@ -127,8 +143,9 @@ Dette er et kritisk finanssystem for norsk offentlig forvaltning.
 
 Følgende logikk er kritisk og bør skrives manuelt for å bygge forståelse:
 
-- 🔴 Tilgangskontroll og AD-gruppe-sjekker
+- 🔴 Tilgangskontroll og AD-gruppe-sjekker (`src/utils/accessControl.ts`)
+- 🔴 Autentisering i `src/middleware/index.ts`
 - 🔴 Mikrofrontend-routing og lazy loading-logikk
-- 🔴 Proxy-logikk i API-ruter (`src/pages/api/`)
+- 🔴 Proxy-logikk og OBO-token-bytte (`src/utils/server/proxy.ts` og `src/pages/<tjeneste>/[...proxy].ts`)
 
 For rød-sone-kode: generer kun stubs med `TODO`-kommentarer og testskeletter — ikke full implementasjon.

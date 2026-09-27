@@ -6,9 +6,9 @@ import { renderNaisMetaTags } from "@nais/apm";
 import NaisApm from "@utils/observability/NaisApm";
 import styles from "./Layout.module.css";
 
-interface Props {
+type Props = {
 	title: string;
-}
+};
 
 const { title } = Astro.props;
 

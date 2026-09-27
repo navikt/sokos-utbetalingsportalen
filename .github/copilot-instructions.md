@@ -1,67 +1,66 @@
-# Copilot Instructions for Utbetalingsportalen
+# Copilot-instruksjoner for Utbetalingsportalen
 
-## Project Overview
+## Om prosjektet
 
-Astro-based microfrontend container for NAV's payment processing platform. TypeScript + React components with CSS Modules and NAV's Aksel design system.
+Astro-basert mikrofrontend-container for Navs utbetalingsportal. TypeScript og React-komponenter med CSS Modules og Aksel, Navs designsystem.
 
-## Coding Standards
+## Kodestandard
 
-### File Naming
+### Filnavn
 
-- **Components**: `PascalCase.tsx`
-- **Pages**: `kebab-case.astro`
+- **Komponenter**: `PascalCase.tsx`
+- **Sider**: `kebab-case.astro`
 - **CSS Modules**: `ComponentName.module.css`
-- **API Routes**: `[...proxy].ts`
+- **Proxy-ruter**: `[...proxy].ts`
 
 Se `.github/instructions/` for filtype-spesifikke regler (CSS, testing, API-proxy, React/Astro-mønstre).
 
-## Development Workflow
+## Arbeidsflyt
 
-### Adding New Features
+### Ny funksjonalitet
 
-1. **Identify component responsibility**: What single thing does it do?
-2. **Define TypeScript interfaces**: Props, state, return types
-3. **Create minimal implementation**: Start simple, iterate
-4. **Add error handling**: Loading states, error boundaries, access control
-5. **Style with CSS modules**: Follow BEM-like naming
-6. **Test integration**: Verify with microfrontend system
+1. **Avklar ansvaret**: hva er den ene tingen komponenten gjør?
+2. **Definer TypeScript-typer**: props, state og returtyper. Bruk `type` for props, slik resten av koden gjør
+3. **Start minimalt**: enkleste versjon først, så itererer du
+4. **Håndter feil**: loading-tilstand, error boundaries og tilgangskontroll
+5. **Stil med CSS Modules**: følg BEM-lignende navngiving
+6. **Test integrasjonen**: verifiser mot mikrofrontend-oppsettet
 
-### Component Refactoring
+### Refaktorering
 
-- **Extract repeated JSX** into render helper functions
-- **Move complex logic** to custom hooks
-- **Split large components** by responsibility
-- **Use composition** over complex prop drilling
+- **Trekk ut gjentatt JSX** til egne render-funksjoner
+- **Flytt kompleks logikk** til custom hooks
+- **Del opp store komponenter** etter ansvar
+- **Bruk komposisjon** i stedet for dyp prop drilling
 
-### Performance Optimization
+### Ytelse
 
-- Use `server:defer` for non-critical components
-- Implement proper loading states with skeletons
-- Avoid unnecessary re-renders with proper dependency arrays
-- Lazy load microfrontends and large components
+- Bruk `server:defer` for ikke-kritiske komponenter
+- Vis loading-tilstand med skeletons
+- Unngå unødvendige re-renders (sjekk dependency arrays)
+- Lazy load mikrofrontender og store komponenter
 
-## Development Workflow
+### Avhengigheter
 
-### Adding Dependencies
+- Bruk `pnpm add <pakke>`
+- Foretrekk Aksel-komponenter fremfor egne implementasjoner
+- React og React-DOM leveres via importmap, ikke i klient-bundelen
 
-- Use `pnpm add <package>` for dependencies
-- Prefer NAV's Aksel components over custom implementations
-- External React/React-DOM are provided via importmap
+## Ytelse og observability
 
-## Performance & Observability
+- **Lazy loading**: mikrofrontender lastes dynamisk med `React.lazy()`
+- **Error boundaries**: wrap mikrofrontender i `ApmErrorBoundary` fra `@nais/apm/react`, og send mikrofrontendens `naisAppName` som APM-kontekst
+- **Overvåking**: `@nais/apm` for web vitals og feil, initialisert én gang i layouten
+- **Logging**: strukturert logging med Pino (`logger` og `teamLogger`)
+- **Metrikker**: Prometheus-registeret eksponeres på `/api/internal/metrics`
+- **CDN**: eksterne avhengigheter serveres fra Nav CDN
 
-- **Lazy Loading**: Microfrontends loaded dynamically with React.lazy()
-- **Error Boundaries**: Wrap microfrontends to prevent crashes
-- **Monitoring**: Grafana Faro for web vitals and errors
-- **Logging**: Structured logging with Pino + OpenTelemetry
-- **CDN**: External dependencies served from NAV CDN
+## Norsk kontekst
 
-## Norwegian Context Notes
+- Grensesnittet er på norsk bokmål
+- URL-er: norske ord translitterert til latinske tegn (ingen æ/ø/å)
+- Følg WCAG 2.1 AA
+- Domene: utbetaling av ytelser og økonomioppgaver i Nav
+- Brukere: Nav-ansatte, blant annet økonomimedarbeidere og Nav Kontaktsenter
 
-- Interface language: Norwegian Bokmål
-- URLs: Use Norwegian words translated to Latin characters
-- Accessibility: Follow Norwegian WCAG standards
-- Business domain: NAV payment processing and financial operations
-- Users: NAV employees (economists, customer service, etc.)
-
-Remember: This is a critical financial system for Norwegian government operations. Follow security best practices and test thoroughly before deployment.
+Dette er et kritisk finanssystem for norsk offentlig forvaltning. Følg sikkerhetspraksisen i `AGENTS.md`, og test grundig før deploy.

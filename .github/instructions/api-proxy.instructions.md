@@ -23,18 +23,18 @@ export const ALL: APIRoute = routeProxyWithOboToken({
 
 Plasser filen i `src/pages/<tjenestenavn>/[...proxy].ts`. Miljøvariablene settes i Nais-manifestet.
 
+`routeProxyWithOboToken` gjør mer enn å bytte token. Den lager også et OpenTelemetry-span per forespørsel, propagerer trace-headere til backend, og skriver auditlogg med `teamLogger`. Behold denne funksjonen som eneste vei ut til backend, slik at tracing og auditlogg blir likt for alle tjenester.
+
 🔴 **Rød sone** — proxy-logikk og OBO-token-bytte skal forstås manuelt. Ikke endre `routeProxyWithOboToken` uten å forstå token-flyten.
 
 ## Interne endepunkter
 
-`/isAlive`, `/isReady` og `/metrics` skal alltid være tilgjengelige uten autentisering. Middleware-filen håndterer dette via `isInternal(context)`.
+`/api/internal/isAlive`, `/api/internal/isReady` og `/api/internal/metrics` skal alltid være tilgjengelige uten autentisering. Middleware slipper dem gjennom via `isInternal(context)`, som matcher på `/internal` i URL-en. Nais-manifestene peker på de samme stiene, og `autoLoginIgnorePaths` unntar `/api/internal/*` fra Wonderwall-innlogging.
 
 ```ts
-import type { APIRoute } from "astro";
-
-export const GET: APIRoute = async function get() {
-  return new Response(null, { status: 200 });
-};
+export async function GET() {
+	return new Response(null, { status: 200 });
+}
 ```
 
 ## Middleware og autentisering

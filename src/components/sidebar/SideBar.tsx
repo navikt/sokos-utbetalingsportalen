@@ -9,10 +9,10 @@ type SideBarProps = {
 	adGroups: string[];
 };
 
-interface SideBarLinkProps {
+type SideBarLinkProps = {
 	route: string;
 	children: ReactNode;
-}
+};
 
 function SideBarLink({ route, children }: SideBarLinkProps) {
 	const isActive =

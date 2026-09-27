@@ -1,10 +1,10 @@
 import { Button } from "@navikt/ds-react";
 import { useCallback } from "react";
 
-interface GoBackProps {
+type GoBackProps = {
 	fallbackUrl?: string;
 	children: React.ReactNode;
-}
+};
 
 export default function GoBack({ fallbackUrl = "/", children }: GoBackProps) {
 	const handleGoBack = useCallback(() => {
