@@ -21,6 +21,7 @@ export function fetchBundle(appHostname: string, appName: string) {
     (
       <Microfrontend
         url={fetchBundle(appHostname, "sokos-react-template")}
+        microfrontendName="sokos-react-template"
         client:only="react"
       />
     )

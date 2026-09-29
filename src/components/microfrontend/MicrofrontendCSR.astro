@@ -29,6 +29,7 @@ export function fetchBundle(appHostname: string, appName: string) {
     appAccess ? (
       <Microfrontend
         url={fetchBundle(appHostname, appConfig.naisAppName)}
+        microfrontendName={appConfig.naisAppName}
         client:only="react"
       />
     ) : (

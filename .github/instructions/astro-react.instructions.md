@@ -4,21 +4,26 @@ applyTo: "src/**/*.astro,src/**/*.tsx,src/middleware/**/*.ts"
 
 # Astro + React — utbetalingsportalen
 
-Astro SSR-container med React-mikrofrontender på Nais/GCP. Brukere er NAV-ansatte (saksbehandlere, økonomer). Dette er et kritisk finanssystem.
+Astro SSR-container med React-mikrofrontender på Nais/GCP. Brukere er Nav-ansatte (saksbehandlere, økonomer). Dette er et kritisk finanssystem.
 
 ## Mikrofrontender
 
-Alle mikrofrontender lastes med `React.lazy()` og skal alltid wrappes med `ErrorBoundary` og `Suspense`:
+Alle mikrofrontender lastes med `React.lazy()` og skal alltid wrappes med `ApmErrorBoundary` fra `@nais/apm/react` og `Suspense`:
 
 ```tsx
-const MinMikrofrontend = React.lazy(() => import("./MinMikrofrontend"));
+import { ApmErrorBoundary } from "@nais/apm/react";
 
-<ErrorBoundary>
-  <Suspense fallback={<Loader />}>
-    <MinMikrofrontend />
-  </Suspense>
-</ErrorBoundary>
+<React.Suspense fallback={<ContentLoader />}>
+  <ApmErrorBoundary
+    fallback={<ClientError />}
+    context={{ microfrontend: naisAppName }}
+  >
+    <MicrofrontendBundle />
+  </ApmErrorBoundary>
+</React.Suspense>
 ```
+
+Send alltid mikrofrontendens `naisAppName` i `context`. Uten det viser APM-rapporten bare containerens URL, og det er umulig å se hvilken mikrofrontend som feilet.
 
 Bruk `server:defer` i `.astro`-filer for ikke-kritiske komponenter.
 
@@ -35,14 +40,15 @@ if (!hasAccess) return <NoAccess />;
 
 ## React og ReactDOM
 
-Leveres via importmap fra NAV CDN. **Ikke importer dem direkte** i klientkode som bundlesi:
+React og React-DOM leveres fra Nav CDN via importmap, ikke i klient-bundelen. Du importerer dem som vanlig i kildekoden:
 
 ```tsx
-// ❌ Ikke gjør dette i klientkode
-import React from "react";
-
-// ✅ Anta at React er tilgjengelig globalt via importmap
+import React, { useMemo } from "react";
 ```
+
+`astro.config.mjs` markerer `react`, `react/jsx-runtime`, `react-dom`, `react-dom/client` og `scheduler` som `external` i klientbygget, slik at importene løses mot importmappet i `src/layouts/Layout.astro`.
+
+Versjonene i importmappet må holdes i synk med `package.json`. Oppgraderer du React der, må du oppdatere importmap-URL-ene i `Layout.astro` i samme endring, ellers kjører serveren og nettleseren ulike React-versjoner.
 
 ## Logging og personvern
 

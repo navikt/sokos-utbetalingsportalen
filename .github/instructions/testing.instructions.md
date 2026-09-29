@@ -4,54 +4,30 @@ applyTo: "src/**/*.test.ts,src/**/*.test.tsx"
 
 # Testing — utbetalingsportalen
 
-Vitest + React Testing Library. Tester ligger ved siden av filen de tester.
+Vitest via `getViteConfig` fra Astro (se `vitest.config.ts`). Tester ligger ved siden av filen de tester, som `formatNameFromToken.test.ts`.
+
+```bash
+pnpm vitest run     # Kjør én gang
+pnpm vitest         # Watch-modus
+```
+
+## Dagens testoppsett
+
+Prosjektet har kun enhetstester av rene funksjoner. Det finnes ingen DOM-testmiljø: verken `@testing-library/react`, `@testing-library/user-event` eller `jsdom` er installert, og `vitest.config.ts` setter ingen `environment`.
+
+Skriv derfor enhetstester av ren logikk som standard. Gode kandidater er `src/utils/`-funksjoner som `formatNameFromToken`, `accessControl` og `audience`.
 
 ## Struktur
 
 ```ts
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
+import { formatNameFromToken } from "./formatNameFromToken";
 
-describe("MinKomponent", () => {
-  it("viser tittel", () => {
-    // ...
-  });
-
-  it("kaller onKlikk ved klikk på knapp", () => {
-    // ...
-  });
+describe("formatNameFromToken", () => {
+	it("should reverse name format when comma-separated (Azure AD format)", () => {
+		expect(formatNameFromToken("Nilsen, Tom")).toBe("Tom Nilsen");
+	});
 });
-```
-
-## React Testing Library
-
-Test atferd, ikke implementasjon. Bruk semantiske spørringer:
-
-```tsx
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-
-it("viser feilmelding ved ugyldig input", async () => {
-  render(<MinKomponent />);
-  await userEvent.click(screen.getByRole("button", { name: /send/i }));
-  expect(screen.getByRole("alert")).toBeInTheDocument();
-});
-```
-
-## Prioriter spørringer (høyest til lavest)
-
-1. `getByRole` — semantisk og tilgjengelighetsvennlig
-2. `getByLabelText` — for skjemaelementer
-3. `getByText` — for synlig tekst
-4. `getByTestId` — siste utvei
-
-## Ikke test implementasjonsdetaljer
-
-```tsx
-// ❌ Tester intern state
-expect(component.state.isOpen).toBe(true);
-
-// ✅ Tester det brukeren ser
-expect(screen.getByRole("dialog")).toBeVisible();
 ```
 
 ## Testdata
@@ -63,12 +39,47 @@ const GYLDIG_SAKID = "2024-123456";
 const UGYLDIG_SAKID = "";
 ```
 
-## Tilgangskontroll i tester
+Bruk aldri ekte fødselsnumre eller ekte persondata i tester. Syntetiske AD-grupper finnes i `mock/auth/adGroups.ts`.
 
-Mock AD-grupper eksplisitt i tester som sjekker tilgang:
+## Tilgangskontroll
+
+Tilganger kommer fra `Astro.locals.userData.groups` og sjekkes med `hasAccessToApp` i `src/utils/accessControl.ts`. Det finnes ingen `useUserGroups`-hook.
+
+AD-grupper er UUID-er, ikke lesbare navn:
+
+```ts
+import { hasAccessToApp } from "@utils/accessControl";
+
+const ATTESTASJON_DEV_GRUPPE = "0de8d01f-8ad0-4391-841c-55392956bc17";
+
+it("gir tilgang når brukeren har riktig AD-gruppe", () => {
+	expect(hasAccessToApp([ATTESTASJON_DEV_GRUPPE], attestasjonApp)).toBe(true);
+});
+```
+
+🔴 **Rød sone** — tilgangskontroll er sikkerhetskritisk. Skriv disse testene selv.
+
+## Komponenttesting
+
+Komponenttester krever at avhengighetene installeres først:
+
+```bash
+pnpm add -D @testing-library/react @testing-library/user-event jsdom
+```
+
+Deretter må `environment: "jsdom"` settes i `vitest.config.ts`. Ikke skriv komponenttester som forutsetter disse pakkene før de faktisk er lagt til.
+
+Når oppsettet er på plass: test atferd, ikke implementasjon, og prioriter spørringer i denne rekkefølgen:
+
+1. `getByRole` — semantisk og tilgjengelighetsvennlig
+2. `getByLabelText` — for skjemaelementer
+3. `getByText` — for synlig tekst
+4. `getByTestId` — siste utvei
 
 ```tsx
-vi.mock("../hooks/useUserGroups", () => ({
-  useUserGroups: () => ["sokos-utbetalingsportalen-les"],
-}));
+// ❌ Tester intern state
+expect(component.state.isOpen).toBe(true);
+
+// ✅ Tester det brukeren ser
+expect(screen.getByRole("dialog")).toBeVisible();
 ```

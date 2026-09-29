@@ -1,5 +1,5 @@
 body {
-	background-color: var(--a-bg-subtle);
+	background-color: var(--ax-bg-sunken);
 }
 
 .skip-link {
@@ -8,11 +8,11 @@ body {
 	left: 1rem;
 	z-index: 9999;
 	padding: 0.5rem 1rem;
-	background-color: var(--a-surface-default);
-	color: var(--a-text-default);
-	border: 2px solid var(--a-border-focus);
-	border-radius: var(--a-border-radius-medium);
-	font-weight: var(--a-font-weight-bold);
+	background-color: var(--ax-bg-default);
+	color: var(--ax-text-default);
+	border: 2px solid var(--ax-border-focus);
+	border-radius: var(--ax-radius-4);
+	font-weight: var(--ax-font-weight-bold);
 	text-decoration: none;
 }
 

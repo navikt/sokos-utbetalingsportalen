@@ -28,6 +28,8 @@ BEM-lignende navngiving med Aksel tokens. Ikke hardkod verdier som finnes som Ak
 
 ## Bruk Aksel tokens
 
+Aksel v8 bruker `--ax-`-prefiks. Gamle `--a-`-tokens skal ikke brukes. Spacing-tokens navngis etter pikselverdien: `--ax-space-16` er 16px.
+
 ```css
 /* ❌ Unngå hardkodede verdier */
 .kort {
@@ -36,13 +38,21 @@ BEM-lignende navngiving med Aksel tokens. Ikke hardkod verdier som finnes som Ak
   border-radius: 4px;
 }
 
-/* ✅ Bruk Aksel tokens */
+/* ❌ Utdatert tokenprefiks fra Aksel v6/v7 */
 .kort {
   padding: var(--a-spacing-4);
   color: var(--a-text-default);
-  border-radius: var(--a-border-radius-medium);
+}
+
+/* ✅ Bruk Aksel v8-tokens */
+.kort {
+  padding: var(--ax-space-16);
+  color: var(--ax-text-default);
+  border-radius: var(--ax-radius-4);
 }
 ```
+
+Fullstendig tokenoversikt: <https://aksel.nav.no/grunnleggende/styling/design-tokens>
 
 ## Responsivt design
 

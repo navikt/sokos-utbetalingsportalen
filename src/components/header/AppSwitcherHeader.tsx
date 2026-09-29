@@ -16,6 +16,7 @@ export default function AppSwitcherHeader(props: AppSwitcherHeaderProps) {
 				<Dropdown.Menu.GroupedList.Item
 					as="a"
 					target="_blank"
+					rel="noopener noreferrer"
 					href={page.route}
 					key={`${page.title}dropdown`}
 				>
