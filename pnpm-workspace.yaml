@@ -8,3 +8,5 @@ allowBuilds:
   esbuild: true
   protobufjs: true
   sharp: true
+minimumReleaseAgeExclude:
+  - '@nais/apm@0.7.2'
