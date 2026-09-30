@@ -235,7 +235,9 @@ Applikasjonen bruker [Grafana Alerting](https://grafana.nav.cloud.nais.io/alerti
 Alarmene overvåker:
 
 - HTTP-feilrater
-- JVM-metrikker
+- Node.js- og containerressurser
+- Proxykall, inkludert feilrate og responstid per backend
+- Frontendfeil og traces fra Nais APM
 
 Varsler sendes til disse Slack-kanalene:
 
