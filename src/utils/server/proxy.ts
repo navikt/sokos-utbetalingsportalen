@@ -1,6 +1,7 @@
 import { api } from "@opentelemetry/sdk-node";
 import { extractServiceNameFromAudience } from "@utils/audience";
 import { logger, teamLogger } from "@utils/logger/index";
+import { recordProxyRequest } from "@utils/observability/proxyMetrics";
 import { getOboToken } from "@utils/server/token";
 import type { APIContext, APIRoute } from "astro";
 
@@ -43,10 +44,14 @@ export function routeProxyWithOboToken(proxyConfig: ProxyConfig): APIRoute {
 			parentCtx,
 			async (span) => {
 				span.setAttribute("proxy.audience_service", audienceService);
+				const startedAt = performance.now();
+				let requestStage: "token_exchange" | "backend_request" =
+					"token_exchange";
 				try {
 					const audience = proxyConfig.audience;
 					const oboToken = await getOboToken(context.locals.token, audience);
 					const url = getProxyUrl(context.request, proxyConfig);
+					const route = new URL(context.request.url).pathname;
 
 					const spanContext = span.spanContext();
 
@@ -54,14 +59,12 @@ export function routeProxyWithOboToken(proxyConfig: ProxyConfig): APIRoute {
 						{
 							backend: audienceService,
 							method: context.request.method,
-							url: context.request.url,
-							proxyFrom: proxyConfig.apiProxy,
-							proxyTo: proxyConfig.apiUrl,
+							route,
 							trace_id: spanContext.traceId,
 							span_id: spanContext.spanId,
 							trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
 						},
-						`Proxy Request -> Method: ${context.request.method} | URL: ${url.href}`,
+						"Proxy request",
 					);
 
 					const acceptHeader = context.request.headers.get("accept");
@@ -74,6 +77,7 @@ export function routeProxyWithOboToken(proxyConfig: ProxyConfig): APIRoute {
 					};
 					api.propagation.inject(api.context.active(), outgoingHeaders);
 
+					requestStage = "backend_request";
 					const response = await fetch(url.href, {
 						method: context.request.method,
 						headers: outgoingHeaders,
@@ -91,20 +95,30 @@ export function routeProxyWithOboToken(proxyConfig: ProxyConfig): APIRoute {
 						});
 					}
 
+					const statusClass = `${Math.floor(response.status / 100)}xx`;
+					recordProxyRequest(
+						{
+							backend: audienceService,
+							method: context.request.method,
+							status_class: statusClass,
+							error_type: "none",
+						},
+						(performance.now() - startedAt) / 1000,
+					);
 					const responseLogFields = {
 						backend: audienceService,
-						url: response.url,
+						route,
 						status: response.status,
+						status_class: statusClass,
 						trace_id: spanContext.traceId,
 						span_id: spanContext.spanId,
 						trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
 					};
-					const responseLogMessage = `Proxy Response -> Status:  ${response.status} | URL: ${response.url}`;
 
 					if (isServerError) {
-						logger.error(responseLogFields, responseLogMessage);
+						logger.error(responseLogFields, "Proxy response failed");
 					} else {
-						logger.info(responseLogFields, responseLogMessage);
+						logger.info(responseLogFields, "Proxy response");
 					}
 
 					teamLogger.info(
@@ -112,12 +126,13 @@ export function routeProxyWithOboToken(proxyConfig: ProxyConfig): APIRoute {
 							NAVident: context.locals.userData?.NAVident,
 							backend: audienceService,
 							method: context.request.method,
-							url: response.url,
+							route,
 							status: response.status,
+							status_class: statusClass,
 							trace_id: spanContext.traceId,
 							span_id: spanContext.spanId,
 						},
-						`Proxy Audit -> Ident: ${context.locals.userData?.NAVident} | Method: ${context.request.method} | URL: ${response.url}`,
+						"Proxy audit",
 					);
 
 					return new Response(response.body, {
@@ -125,6 +140,17 @@ export function routeProxyWithOboToken(proxyConfig: ProxyConfig): APIRoute {
 						statusText: response.statusText,
 						headers: response.headers,
 					});
+				} catch (error) {
+					recordProxyRequest(
+						{
+							backend: audienceService,
+							method: context.request.method,
+							status_class: "none",
+							error_type: requestStage,
+						},
+						(performance.now() - startedAt) / 1000,
+					);
+					throw error;
 				} finally {
 					span.end();
 				}
