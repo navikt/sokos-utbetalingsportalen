@@ -37,24 +37,24 @@
 		"zod": "4.6.5"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.5.13",
+		"@biomejs/biome": "2.5.14",
 		"@hono/node-server": "2.1.1",
 		"@navikt/aksel-stylelint": "8.16.2",
-		"@types/node": "26.5.1",
+		"@types/node": "26.6.2",
 		"@types/react": "19.3.0",
 		"@types/react-dom": "19.3.0",
 		"concurrently": "10.0.5",
 		"dotenv-cli": "11.0.0",
-		"hono": "4.13.7",
+		"hono": "4.13.8",
 		"husky": "9.1.7",
 		"lint-staged": "17.5.1",
-		"prettier": "3.9.6",
-		"prettier-plugin-astro": "1.0.0",
+		"prettier": "3.9.9",
+		"prettier-plugin-astro": "1.0.1",
 		"stylelint": "17.15.0",
 		"stylelint-config-standard": "40.0.0",
-		"tsx": "4.23.13",
+		"tsx": "4.23.15",
 		"typescript": "6.0.3",
-		"vitest": "5.0.0"
+		"vitest": "5.0.1"
 	},
 	"lint-staged": {
 		"*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": "biome check --write --no-errors-on-unmatched",
