@@ -1,3 +1,4 @@
+import { TEAM } from "@config/team";
 import { routeProxyWithOboToken } from "@utils/server/proxy";
 import type { APIRoute } from "astro";
 
@@ -5,4 +6,5 @@ export const ALL: APIRoute = routeProxyWithOboToken({
 	apiProxy: `${process.env.SOKOS_UR_ISO_API_PROXY}`,
 	apiUrl: `${process.env.SOKOS_UR_ISO_API}`,
 	audience: `${process.env.SOKOS_UR_ISO_API_AUDIENCE}`,
+	team: TEAM.PENGEFLYT,
 });

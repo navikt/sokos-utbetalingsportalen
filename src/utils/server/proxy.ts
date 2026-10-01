@@ -1,4 +1,5 @@
 import { api } from "@opentelemetry/sdk-node";
+import type { Team } from "@config/team";
 import { extractServiceNameFromAudience } from "@utils/audience";
 import { logger, teamLogger } from "@utils/logger/index";
 import { recordProxyRequest } from "@utils/observability/proxyMetrics";
@@ -9,6 +10,7 @@ type ProxyConfig = {
 	apiProxy: string;
 	apiUrl: string;
 	audience: string;
+	team: Team;
 };
 
 function getProxyUrl(request: Request, proxyConfig: ProxyConfig): URL {
@@ -44,6 +46,7 @@ export function routeProxyWithOboToken(proxyConfig: ProxyConfig): APIRoute {
 			parentCtx,
 			async (span) => {
 				span.setAttribute("proxy.audience_service", audienceService);
+				span.setAttribute("proxy.team", proxyConfig.team);
 				const startedAt = performance.now();
 				let requestStage: "token_exchange" | "backend_request" =
 					"token_exchange";
@@ -60,6 +63,7 @@ export function routeProxyWithOboToken(proxyConfig: ProxyConfig): APIRoute {
 							backend: audienceService,
 							method: context.request.method,
 							route,
+							team: proxyConfig.team,
 							trace_id: spanContext.traceId,
 							span_id: spanContext.spanId,
 							trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
@@ -110,6 +114,7 @@ export function routeProxyWithOboToken(proxyConfig: ProxyConfig): APIRoute {
 						route,
 						status: response.status,
 						status_class: statusClass,
+						team: proxyConfig.team,
 						trace_id: spanContext.traceId,
 						span_id: spanContext.spanId,
 						trace_flags: spanContext.traceFlags.toString(16).padStart(2, "0"),
@@ -129,6 +134,7 @@ export function routeProxyWithOboToken(proxyConfig: ProxyConfig): APIRoute {
 							route,
 							status: response.status,
 							status_class: statusClass,
+							team: proxyConfig.team,
 							trace_id: spanContext.traceId,
 							span_id: spanContext.spanId,
 						},
