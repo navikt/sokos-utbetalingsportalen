@@ -6,9 +6,9 @@ applyTo: "src/**/*.astro,src/**/*.tsx,src/middleware/**/*.ts"
 
 Astro SSR-container med React-mikrofrontender på Nais/GCP. Brukere er Nav-ansatte (saksbehandlere, økonomer). Dette er et kritisk finanssystem.
 
-## Mikrofrontender
+## React CSR-mikrofrontender
 
-Alle mikrofrontender lastes med `React.lazy()` og skal alltid wrappes med `ApmErrorBoundary` fra `@nais/apm/react` og `Suspense`:
+React CSR-mikrofrontender lastes med `React.lazy()` og wrappes med `ApmErrorBoundary` fra `@nais/apm/react` og `Suspense`:
 
 ```tsx
 import { ApmErrorBoundary } from "@nais/apm/react";
@@ -25,7 +25,11 @@ import { ApmErrorBoundary } from "@nais/apm/react";
 
 Send alltid mikrofrontendens `naisAppName` i `context`. Uten det viser APM-rapporten bare containerens URL, og det er umulig å se hvilken mikrofrontend som feilet.
 
-Bruk `server:defer` i `.astro`-filer for ikke-kritiske komponenter.
+## Astro SSR-mikrofrontender
+
+Astro SSR-mikrofrontender bruker `MicrofrontendSSR.astro`, som henter HTML fra mikrofrontendens server med OBO-token. Bruk `server:defer` i `.astro`-filer når innholdet ikke trengs for første svar, og angi en fallback.
+
+Ikke bruk CSR-mønsteret med `React.lazy()` og `ApmErrorBoundary` for SSR-mikrofrontender.
 
 ## Tilgangskontroll
 

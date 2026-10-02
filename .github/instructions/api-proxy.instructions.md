@@ -11,6 +11,7 @@ API-ruter i `src/pages/` er enten interne helseendepunkter eller OBO-proxy-ruter
 Bruk alltid `routeProxyWithOboToken` — aldri videresend token direkte. Funksjonen bytter Azure AD-token til OBO-token (on-behalf-of) for riktig audience:
 
 ```ts
+import { TEAM } from "@config/team";
 import { routeProxyWithOboToken } from "@utils/server/proxy";
 import type { APIRoute } from "astro";
 
@@ -18,10 +19,11 @@ export const ALL: APIRoute = routeProxyWithOboToken({
   apiProxy: `${process.env.MIN_TJENESTE_PROXY}`,
   apiUrl: `${process.env.MIN_TJENESTE_URL}`,
   audience: `${process.env.MIN_TJENESTE_AUDIENCE}`,
+  team: TEAM.BEREGNING,
 });
 ```
 
-Plasser filen i `src/pages/<tjenestenavn>/[...proxy].ts`. Miljøvariablene settes i Nais-manifestet.
+Velg riktig team fra `src/config/team.ts`. `team` brukes i auditloggen og er obligatorisk. Plasser filen i `src/pages/<tjenestenavn>/[...proxy].ts`. Miljøvariablene settes i Nais-manifestet.
 
 `routeProxyWithOboToken` gjør mer enn å bytte token. Den lager også et OpenTelemetry-span per forespørsel, propagerer trace-headere til backend, og skriver auditlogg med `teamLogger`. Behold denne funksjonen som eneste vei ut til backend, slik at tracing og auditlogg blir likt for alle tjenester.
 

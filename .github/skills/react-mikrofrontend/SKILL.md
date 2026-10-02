@@ -16,7 +16,7 @@ Denne skillet hjelper deg integrere en ny React CSR-mikrofrontend i sokos-utbeta
 
 Still disse spørsmålene før du genererer noe:
 
-1. **Appnavn** — kortnavn i UPPER_SNAKE_CASE, f.eks. `MIN_APP` (brukes som env var-prefix og `app`-nøkkel i appConfig)
+1. **Appnavn** — appnøkkel i store bokstaver, for eksempel `MIN_APP` eller `SKATTEKORT-ADMIN`. `appConfig` bruker små bokstaver av denne verdien for `appName`. Miljøvariabelprefikset følger UPPER_SNAKE_CASE.
 2. **Tittel** — visningsnavn i menyen, f.eks. `"Min Mikrofrontend"`
 3. **Beskrivelse** — kort setning om hva appen gjør
 4. **NAIS-appnavn** — frontend-appens NAIS-navn, f.eks. `sokos-up-min-app`
@@ -28,6 +28,8 @@ Still disse spørsmålene før du genererer noe:
 10. **AD-gruppe dev UUID** — fra [mygroups.microsoft.com](https://mygroups.microsoft.com/) (konvensjon: `0000-CA-SOKOS-MF-<APPNAVN>-READ`)
 11. **AD-gruppe prod UUID** — fra [nav.omada.cloud](https://nav.omada.cloud/). Bruk `PLACEHOLDER_AD_GROUP` hvis bare dev.
 12. **Er backend allerede registrert i portalen?** — hvis ja, hopp over Steg 2 og Steg 4
+13. **QX** — skal appen også være tilgjengelig i QX?
+14. **Team** — hvilket team skal stå som eier i proxyens auditlogg? Velg fra `src/config/team.ts`.
 
 ---
 
@@ -44,7 +46,7 @@ Hvis backend-tjenesten allerede har Nais-tilgangspolicies og API-proxy på plass
 
 ## Steg 1 — Naiserator: AD-grupper i `claims.groups`
 
-Legg til i **begge** naiserator-filene (`.nais/naiserator-q1.yaml` og `.nais/naiserator-prod.yaml`):
+Legg til dev-gruppen i `.nais/naiserator-q1.yaml` og prod-gruppen i `.nais/naiserator-prod.yaml`. Hvis appen skal være tilgjengelig i QX, legg også dev-gruppen i `.nais/naiserator-qx.yaml`.
 
 ```yaml
 # Legg til under azure.application.claims.groups
@@ -53,6 +55,7 @@ Legg til i **begge** naiserator-filene (`.nais/naiserator-q1.yaml` og `.nais/nai
 ```
 
 > Bruk `PLACEHOLDER_AD_GROUP` i prod-filen hvis appen bare skal eksistere i dev.
+> QX bruker dev-gruppen. Ikke legg prod-gruppen i QX.
 
 ---
 
@@ -60,7 +63,7 @@ Legg til i **begge** naiserator-filene (`.nais/naiserator-q1.yaml` og `.nais/nai
 
 ### 2.1 Miljøvariabler
 
-Legg til i `env:`-seksjonen i **begge** naiserator-filene:
+Legg til i `env:`-seksjonen i Q1 og prod. Hvis appen skal være tilgjengelig i QX, legg også inn variablene i `.nais/naiserator-qx.yaml` med QX-endepunkt og audience fra tjenesteeieren. Ikke kopier Q1-verdiene uten å kontrollere dem.
 
 **For GCP backend:**
 
@@ -97,7 +100,7 @@ I prod-filen: bytt `dev-gcp` → `prod-gcp` eller `dev-fss` → `prod-fss`.
 
 ### 2.2 Outbound accessPolicy
 
-**For GCP backend** (legg til i `accessPolicy.outbound.rules`):
+**For GCP backend** (legg til i `accessPolicy.outbound.rules` i hvert miljø appen skal være tilgjengelig i):
 
 ```yaml
 accessPolicy:
@@ -107,7 +110,7 @@ accessPolicy:
         namespace: <namespace>   # utelat hvis namespace er okonomi
 ```
 
-**For FSS backend** (legg til i `accessPolicy.outbound.external`):
+**For FSS backend** (legg til i `accessPolicy.outbound.external` i hvert miljø appen skal være tilgjengelig i):
 
 ```yaml
 accessPolicy:
@@ -115,6 +118,8 @@ accessPolicy:
     external:
       - host: <backend-nais-appnavn>.dev-fss-pub.nais.io
 ```
+
+For QX legger du til tilgang til QX-endepunktet i `.nais/naiserator-qx.yaml`. Avklar med backend-teamet at inbound-policyen tillater portalens QX-deployment og riktig cluster.
 
 ### 2.3 Inbound i backend-repoet
 
@@ -137,7 +142,7 @@ Legg til en ny oppføring i `src/config/appConfig.ts` i `apps`-arrayen:
 
 ```typescript
 {
-  app: "<APPNAVN>",                                          // UPPER_SNAKE_CASE
+  app: "<APPNAVN>",                                          // store bokstaver; bindestrek er også brukt
   title: "<Tittel>",
   description: "<Beskrivelse>",
   adGroupDevelopment: "<dev-gruppe-uuid>",
@@ -147,7 +152,7 @@ Legg til en ny oppføring i `src/config/appConfig.ts` i `apps`-arrayen:
 },
 ```
 
-> `app`-feltet i lowercase brukes som `appName` i `MicrofrontendCSR` (se Steg 5).
+> `app`-feltet konverteres til små bokstaver for `appName` i `MicrofrontendCSR` (se Steg 5). Tegn som bindestrek beholdes.
 
 **Navngiving for `route`:**
 - Hele ord, ikke forkortelser
@@ -161,15 +166,19 @@ Legg til en ny oppføring i `src/config/appConfig.ts` i `apps`-arrayen:
 Opprett `src/pages/<proxy-path>/[...proxy].ts` (mappenavnet **må** matche `*_API_PROXY`):
 
 ```typescript
-import type { APIRoute } from "astro";
+import { TEAM } from "@config/team";
 import { routeProxyWithOboToken } from "@utils/server/proxy";
+import type { APIRoute } from "astro";
 
 export const ALL: APIRoute = routeProxyWithOboToken({
-  apiProxy: `${process.env.SOKOS_<APPNAVN>_API_PROXY}`,
-  apiUrl: `${process.env.SOKOS_<APPNAVN>_API}`,
-  audience: `${process.env.SOKOS_<APPNAVN>_API_AUDIENCE}`,
+  apiProxy: `${process.env["SOKOS_<APPNAVN>_API_PROXY"]}`,
+  apiUrl: `${process.env["SOKOS_<APPNAVN>_API"]}`,
+  audience: `${process.env["SOKOS_<APPNAVN>_API_AUDIENCE"]}`,
+  team: TEAM.BEREGNING,
 });
 ```
+
+Bytt `TEAM.BEREGNING` til teamet utvikleren oppga. `team` brukes i auditloggen og er obligatorisk.
 
 ---
 
@@ -199,19 +208,19 @@ import MicrofrontendCSR from "@components/microfrontend/MicrofrontendCSR.astro";
 <MicrofrontendCSR appName="<appnavn-lowercase>" />
 ```
 
-> `appName` må være lowercase-versjonen av `app`-feltet i `appConfig.ts`.
-> Eksempel: `app: "MIN_APP"` → `appName="min_app"`
+> `appName` må være `app`-feltet fra `appConfig.ts` konvertert til små bokstaver.
+> Eksempel: `app: "MIN_APP"` → `appName="min_app"`. `app: "SKATTEKORT-ADMIN"` blir `appName="skattekort-admin"`.
 
 ---
 
-## Steg 6 — Middleware: Lokal utvikling
+## Steg 6 — Lokal tilgang i utviklingsmiljøet
 
-Legg til `adGroupDevelopment`-UUID-en i `groups`-arrayen i `src/middleware/index.ts`.
+Legg `adGroupDevelopment`-UUID-en i `MOCK_USER_GROUPS` i `mock/auth/adGroups.ts`.
 
-Dette gjør at menypunktet vises når portalen kjøres lokalt, siden middleware simulerer en innlogget bruker med faste AD-grupper i `local`-miljøet.
+Denne gruppelisten brukes av den syntetiske brukeren i `pnpm dev` og av mock-OIDC-oppsettet i `pnpm dev:mock`.
 
 ```typescript
-// src/middleware/index.ts — legg til i groups-arrayen
+// mock/auth/adGroups.ts — legg til i MOCK_USER_GROUPS
 "<dev-gruppe-uuid>", // 0000-CA-SOKOS-MF-<APPNAVN>-READ
 ```
 
@@ -233,11 +242,12 @@ src/pages/
 src/config/
 └── appConfig.ts             ← Ny oppføring i apps-array
 
-src/middleware/
-└── index.ts                 ← adGroupDevelopment i groups-array (lokal utvikling)
+mock/auth/
+└── adGroups.ts              ← adGroupDevelopment i MOCK_USER_GROUPS (lokal utvikling)
 
 .nais/
 ├── naiserator-q1.yaml       ← AD-gruppe, env vars, accessPolicy
+├── naiserator-qx.yaml       ← samme, hvis appen skal være tilgjengelig i QX
 └── naiserator-prod.yaml     ← AD-gruppe, env vars, accessPolicy
 ```
 
@@ -248,8 +258,8 @@ src/pages/
 └── <proxy-path>/
     └── [...proxy].ts        ← API-proxy
 
-src/middleware/
-└── index.ts                 ← adGroupDevelopment i groups-array (lokal utvikling)
+mock/auth/
+└── adGroups.ts              ← adGroupDevelopment i MOCK_USER_GROUPS (lokal utvikling)
 ```
 
 ---
@@ -262,19 +272,20 @@ Generer dette som PR-beskrivelse eller sjekkliste:
 ## Integrasjon: <Tittel> (React CSR)
 
 ### Filer endret
-- [ ] `.nais/naiserator-q1.yaml` — AD-gruppe, env vars, outbound accessPolicy
+- [ ] `.nais/naiserator-q1.yaml` — dev-gruppe, env vars, outbound accessPolicy
+- [ ] `.nais/naiserator-qx.yaml` — QX-gruppe, env vars og outbound accessPolicy hvis appen skal være tilgjengelig i QX
 - [ ] `.nais/naiserator-prod.yaml` — AD-gruppe, env vars, outbound accessPolicy
 - [ ] `src/config/appConfig.ts` — ny app-oppføring
 - [ ] `src/pages/<proxy-path>/[...proxy].ts` — ny API-proxy
 - [ ] `src/pages/<rute>.astro` eller `src/pages/<rute>/[...<rute>].astro` — ny side
-- [ ] `src/middleware/index.ts` — adGroupDevelopment lagt til i groups-array
+- [ ] `mock/auth/adGroups.ts` — adGroupDevelopment lagt til i MOCK_USER_GROUPS
 
 ### Verifisering
 - [ ] Mikrofrontend laster og rendres i dev
 - [ ] API-kall rutes til korrekt backend
 - [ ] Tilgangskontroll fungerer (bare AD-gruppemedlemmer ser appen)
 - [ ] Routing fungerer (hvis aktivert)
-- [ ] Alle tre env vars (`*_API`, `*_API_AUDIENCE`, `*_API_PROXY`) er definert i begge naiserator-filer
+- [ ] Alle tre env vars (`*_API`, `*_API_AUDIENCE`, `*_API_PROXY`) er definert i Q1 og prod, og i QX hvis appen skal være tilgjengelig der
 - [ ] Proxy-path (mappenavnet) samsvarer med `*_API_PROXY`-verdien
 
 ### Backend-repo (ekstern PR)
@@ -283,7 +294,7 @@ Generer dette som PR-beskrivelse eller sjekkliste:
 
 ---
 
-## Eksempel — ferdig integrasjon (GCP, med routing)
+## Eksempel — ferdig integrasjon (FSS, med routing)
 
 Med verdiene:
 - Appnavn: `OPPDRAGSINFO`
@@ -315,13 +326,15 @@ accessPolicy:
 
 **src/pages/oppdrag-api/[...proxy].ts:**
 ```typescript
-import type { APIRoute } from "astro";
+import { TEAM } from "@config/team";
 import { routeProxyWithOboToken } from "@utils/server/proxy";
+import type { APIRoute } from "astro";
 
 export const ALL: APIRoute = routeProxyWithOboToken({
   apiProxy: `${process.env.SOKOS_OPPDRAG_API_PROXY}`,
   apiUrl: `${process.env.SOKOS_OPPDRAG_API}`,
   audience: `${process.env.SOKOS_OPPDRAG_API_AUDIENCE}`,
+  team: TEAM.BEREGNING,
 });
 ```
 

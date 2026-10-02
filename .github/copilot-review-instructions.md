@@ -24,7 +24,7 @@ Du gjennomgår kode i et Astro-basert mikrofrontend-container for Navs utbetalin
 - **Manglende Suspense-fallback** — Async-komponenter trenger loading-tilstand.
 - **`React.lazy()` brukt uten feilhåndtering** — Sjekk at det finnes en `ApmErrorBoundary` i nærheten.
 - **Unødvendige re-renders** — Tomme eller feil dependency arrays i `useEffect`/`useMemo`/`useCallback`.
-- **Direkte import av React/ReactDOM i klientkode** — Disse leveres via importmap, ikke som bundlede pakker.
+- **React/ReactDOM bundlede i klientkode** — Importene i kildekoden er forventet. Kontroller at `astro.config.mjs` fortsatt eksternaliserer React-pakkene, og at importmap-versjonene i `Layout.astro` samsvarer med `package.json`.
 
 ### 🟢 CSS Modules (kommenter ved avvik)
 
