@@ -6,5 +6,5 @@ export const ALL: APIRoute = routeProxyWithOboToken({
 	apiProxy: `${process.env.SOKOS_OPPDRAG_API_PROXY}`,
 	apiUrl: `${process.env.SOKOS_OPPDRAG_API}`,
 	audience: `${process.env.SOKOS_OPPDRAG_API_AUDIENCE}`,
-	team: TEAM.BEREGNING,
+	team: TEAM.BEREGNINGSPLATTFORM,
 });
