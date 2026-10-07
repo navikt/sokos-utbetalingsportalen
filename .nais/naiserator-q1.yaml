@@ -62,6 +62,7 @@ spec:
         - application: sokos-up-kontoregister-api
         - application: sokos-retur-fra-bank-api
         - application: sokos-astro-template
+          namespace: beregningsplattform
         - application: sokos-skattekort-q1
         - application: sokos-up-oppgjorsrapporter
           namespace: oppgjorsrapporter
@@ -95,9 +96,9 @@ spec:
 
     # sokos-astro-template (Astro mikrofrontend template)
     - name: SOKOS_ASTRO_TEMPLATE_URL
-      value: http://sokos-astro-template
+      value: http://sokos-astro-template.beregningsplattform
     - name: SOKOS_ASTRO_TEMPLATE_AUDIENCE
-      value: api://dev-gcp.okonomi.sokos-astro-template/.default
+      value: api://dev-gcp.beregningsplattform.sokos-astro-template/.default
 
      # sokos-skattekort-q1 (Backend)
     - name: SOKOS_SKATTEKORT_API
