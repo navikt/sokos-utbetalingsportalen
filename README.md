@@ -226,7 +226,8 @@ Guide for deling av state mellom mikrofrontends via `sessionStorage`.
 
 #### Grafana
 
-- [sokos-utbetalingsportalen](https://grafana.nav.cloud.nais.io/d/6uYofme4z/sokos-utbetalingsportalen?orgId=1)
+- [Dev-miljø](https://grafana.nav.cloud.nais.io/a/nais-apm-app/services/okonomi/sokos-utbetalingsportalen?favorites=true&environment=dev)
+- [Prod-miljø](https://grafana.nav.cloud.nais.io/a/nais-apm-app/services/okonomi/sokos-utbetalingsportalen?favorites=true&environment=prod)
 
 ### Alarmer
 
