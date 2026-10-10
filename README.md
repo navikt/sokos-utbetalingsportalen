@@ -241,8 +241,8 @@ Alarmene overvåker:
 
 Varsler sendes til disse Slack-kanalene:
 
-- Dev-miljø: [#utbetaling-team-beregning-alerts-dev](https://nav-it.slack.com/archives/C0BHK19HMPD)
-- Prod-miljø: [#utbetaling-team-beregning-alerts-prod](https://nav-it.slack.com/archives/C0BUZH3FLLF)
+- Dev-miljø: [#utbetaling-team-beregningsplattform-alerts-dev](https://nav-it.slack.com/archives/C0BHK19HMPD)
+- Prod-miljø: [#utbetaling-team-beregningsplattform-alerts-prod](https://nav-it.slack.com/archives/C0BUZH3FLLF)
 
 ## 9. Henvendelser
 
