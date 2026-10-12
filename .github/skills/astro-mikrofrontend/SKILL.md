@@ -16,7 +16,7 @@ Denne skillet hjelper deg integrere en ny Astro SSR-mikrofrontend i sokos-utbeta
 
 Still disse spørsmålene før du genererer noe:
 
-1. **Appnavn** — appnøkkel i store bokstaver, for eksempel `MIN_APP` eller `SKATTEKORT-ADMIN`. `appConfig` bruker små bokstaver av denne verdien for `appName`. Miljøvariabelprefikset følger UPPER_SNAKE_CASE.
+1. **Appnavn** — appnøkkel i store bokstaver, for eksempel `MIN_APP`. `appConfig` bruker små bokstaver av denne verdien for `appName`. Miljøvariabelprefikset følger UPPER_SNAKE_CASE.
 2. **Tittel** — visningsnavn i menyen, f.eks. `"Min Mikrofrontend"`
 3. **Beskrivelse** — kort setning om hva appen gjør
 4. **NAIS-appnavn** — f.eks. `sokos-up-min-app` (samme som i mikrofrontend-repoets `naiserator.yaml`)
@@ -263,11 +263,11 @@ Generer dette som PR-beskrivelse eller sjekkliste:
 ## Eksempel — ferdig integrasjon
 
 Med verdiene:
-- Appnavn: `SKATTEKORT_ADMIN`
-- Tittel: `Skattekort Administrator`
-- NAIS-appnavn: `sokos-up-skattekort-admin`
+- Appnavn: `MIN_ADMIN_APP`
+- Tittel: `Min administrasjonsflate`
+- NAIS-appnavn: `sokos-up-min-admin-app`
 - Namespace: `okonomi`
-- Rute: `/skattekort-admin`
+- Rute: `/min-admin-app`
 
 Ser `astro-template.astro` slik ut:
 
@@ -278,11 +278,11 @@ import MicrofrontendSSR from "@components/microfrontend/MicrofrontendSSR.astro";
 import Layout from "@layouts/Layout.astro";
 ---
 
-<Layout title="Skattekort Administrator">
+<Layout title="Min administrasjonsflate">
   <MicrofrontendSSR
-    appTitle="Skattekort Administrator"
-    appUrl={process.env.SOKOS_UP_SKATTEKORT_ADMIN_URL}
-    appAudience={process.env.SOKOS_UP_SKATTEKORT_ADMIN_AUDIENCE}
+    appTitle="Min administrasjonsflate"
+    appUrl={process.env.SOKOS_UP_MIN_ADMIN_APP_URL}
+    appAudience={process.env.SOKOS_UP_MIN_ADMIN_APP_AUDIENCE}
     server:defer
   >
     <ContentLoader slot="fallback" />

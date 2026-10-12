@@ -18,7 +18,6 @@ export const MOCK_USER_GROUPS: string[] = [
 	"2020a765-ffae-4042-b4cc-2a5a783a3ec5",
 	"f4bcf57f-4f44-49b6-bffa-0b249fd35591",
 	"573f2934-940e-48ee-a4e5-cf7e28075f70",
-	"f760594e-4918-4246-a636-329148c82fa7",
 	"2477057d-7f80-4517-a885-20c948bf0367",
 	"c1c0f5d7-cdaa-4011-b4f6-b3815a7432e5",
 	"0de8d01f-8ad0-4391-841c-55392956bc17",

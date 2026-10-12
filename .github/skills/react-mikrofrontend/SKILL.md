@@ -16,7 +16,7 @@ Denne skillet hjelper deg integrere en ny React CSR-mikrofrontend i sokos-utbeta
 
 Still disse spørsmålene før du genererer noe:
 
-1. **Appnavn** — appnøkkel i store bokstaver, for eksempel `MIN_APP` eller `SKATTEKORT-ADMIN`. `appConfig` bruker små bokstaver av denne verdien for `appName`. Miljøvariabelprefikset følger UPPER_SNAKE_CASE.
+1. **Appnavn** — appnøkkel i store bokstaver, for eksempel `MIN_APP`. `appConfig` bruker små bokstaver av denne verdien for `appName`. Miljøvariabelprefikset følger UPPER_SNAKE_CASE.
 2. **Tittel** — visningsnavn i menyen, f.eks. `"Min Mikrofrontend"`
 3. **Beskrivelse** — kort setning om hva appen gjør
 4. **NAIS-appnavn** — frontend-appens NAIS-navn, f.eks. `sokos-up-min-app`
@@ -209,7 +209,7 @@ import MicrofrontendCSR from "@components/microfrontend/MicrofrontendCSR.astro";
 ```
 
 > `appName` må være `app`-feltet fra `appConfig.ts` konvertert til små bokstaver.
-> Eksempel: `app: "MIN_APP"` → `appName="min_app"`. `app: "SKATTEKORT-ADMIN"` blir `appName="skattekort-admin"`.
+> Eksempel: `app: "MIN_APP"` → `appName="min_app"`.
 
 ---
 
