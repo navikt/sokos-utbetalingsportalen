@@ -13,6 +13,11 @@ const SPK_MOTTAK_ADMIN_URLS: Partial<Record<EnvironmentKey, string>> = {
 	"dev-gcp:q1": "https://sokos-spk-mottak-admin.intern.dev.nav.no",
 };
 
+const SKATTEKORT_ADMIN_URLS: Partial<Record<EnvironmentKey, string>> = {
+	"prod-gcp": "https://sokos-skattekort-admin.intern.nav.no",
+	"dev-gcp:q1": "https://sokos-skattekort-admin.intern.dev.nav.no",
+};
+
 function getEnvironmentKey(
 	naisClusterName: string,
 	utbetalingsportalenEnvironment: string,
@@ -51,6 +56,16 @@ export function getExternalLinks(
 			title: "SPK Mottak Dashboard",
 			description: "Administrering for rekjøring av jobber i sokos-spk-mottak",
 			url: spkMottakAdminUrl,
+		});
+	}
+
+	const skattekortAdminUrl = SKATTEKORT_ADMIN_URLS[environmentKey];
+	if (skattekortAdminUrl !== undefined) {
+		externalLinks.push({
+			id: "skattekort-admin",
+			title: "Skattekort Dashboard",
+			description: "Administrering for sokos-skattekort",
+			url: skattekortAdminUrl,
 		});
 	}
 
