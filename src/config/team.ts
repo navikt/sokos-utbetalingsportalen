@@ -1,6 +1,6 @@
 export const TEAM = {
 	PENGEFLYT: "pengeflyt",
-	BEREGNING: "beregning",
+	BEREGNINGSPLATTFORM: "beregningsplattform",
 	KOBRA: "kobra",
 	SKATT_OG_TREKK: "skattogtrekk",
 } as const;

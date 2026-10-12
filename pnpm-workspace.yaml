@@ -1,5 +1,6 @@
 overrides:
-  fast-uri: 3.1.8
+  shell-quote: 1.11.0
+  http-cache-semantics: 4.3.0
 engineStrict: true
 saveExact: true
 ignoreScripts: true
@@ -9,4 +10,4 @@ allowBuilds:
   protobufjs: true
   sharp: true
 minimumReleaseAgeExclude:
-  - '@nais/apm@0.7.2'
+  - http-cache-semantics@4.3.0

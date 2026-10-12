@@ -226,7 +226,8 @@ Guide for deling av state mellom mikrofrontends via `sessionStorage`.
 
 #### Grafana
 
-- [sokos-utbetalingsportalen](https://grafana.nav.cloud.nais.io/d/6uYofme4z/sokos-utbetalingsportalen?orgId=1)
+- [Dev-miljø](https://grafana.nav.cloud.nais.io/a/nais-apm-app/services/okonomi/sokos-utbetalingsportalen?favorites=true&environment=dev)
+- [Prod-miljø](https://grafana.nav.cloud.nais.io/a/nais-apm-app/services/okonomi/sokos-utbetalingsportalen?favorites=true&environment=prod)
 
 ### Alarmer
 
@@ -241,8 +242,8 @@ Alarmene overvåker:
 
 Varsler sendes til disse Slack-kanalene:
 
-- Dev-miljø: [#utbetaling-team-beregning-alerts-dev](https://nav-it.slack.com/archives/C0BHK19HMPD)
-- Prod-miljø: [#utbetaling-team-beregning-alerts-prod](https://nav-it.slack.com/archives/C0BUZH3FLLF)
+- Dev-miljø: [#utbetaling-team-beregningsplattform-alerts-dev](https://nav-it.slack.com/archives/C0BHK19HMPD)
+- Prod-miljø: [#utbetaling-team-beregningsplattform-alerts-prod](https://nav-it.slack.com/archives/C0BUZH3FLLF)
 
 ## 9. Henvendelser
 
