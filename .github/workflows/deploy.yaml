@@ -1,6 +1,8 @@
 name: Deploy application
 
 on:
+  schedule:
+    - cron: '0 5 * * 1'
   push:
     branches:
       - main
@@ -12,8 +14,6 @@ on:
       - ".github/skills/**"
       - ".github/workflows/build-pr.yaml"
       - ".github/workflows/codeql-scan.yaml"
-      - '.github/workflows/digestabot-automerge.yaml'
-      - '.github/workflows/digestabot-update.yaml'
       - ".github/workflows/manual-deploy.yaml"
       - ".github/dependabot.yaml"
 

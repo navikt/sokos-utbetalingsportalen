@@ -10,8 +10,6 @@ on:
       - ".github/skills/**"
       - ".github/workflows/codeql-scan.yaml"
       - ".github/workflows/deploy.yaml"
-      - '.github/workflows/digestabot-automerge.yaml'
-      - '.github/workflows/digestabot-update.yaml'
       - ".github/workflows/manual-deploy.yaml"
       - ".github/dependabot.yaml"
       - ".nais/**"
