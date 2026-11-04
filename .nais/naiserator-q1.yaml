@@ -46,6 +46,8 @@ spec:
           - id: "573f2934-940e-48ee-a4e5-cf7e28075f70" # 0000-CA-SOKOS-SKATTEKORT-READ
           - id: "9c5b24f2-5e01-4966-adaf-bc9fb6410a32" # 0000-CA-SOKOS-MF-OPPGJORSRAPPORTER
           - id: "c1c0f5d7-cdaa-4011-b4f6-b3815a7432e5" # 0000-CA-SOKOS-MF-YTELSESRAPPORTERING-PERSON-ADMIN
+          - id: "b9c50759-8b85-4502-bfee-530d1cdb49ba" # 0000-CA-SKATT-OG-TREKK-ADMIN
+          - id: "ca7bd542-a668-44e4-b4b3-74ac15355109" # 0000-CA-SKE-KRAV-READ
         extra:
           - NAVident
     sidecar:
@@ -69,6 +71,8 @@ spec:
           namespace: ytelsesrapportering
         - application: logging
           namespace: nais-system
+        - application: sokos-ske-krav
+          namespace: okonomi
       external:
         - host: sokos-oppdrag.dev-fss-pub.nais.io
         - host: sokos-ur-iso.dev-fss-pub.nais.io
@@ -130,6 +134,14 @@ spec:
       value: api://dev-fss.okonomi.sokos-oppdrag/.default
     - name: SOKOS_OPPDRAG_API_PROXY
       value: "/oppdrag-api"
+
+    # Sokos-ske-krav (Backend)
+    - name: SKE_KRAV_API
+      value: https://sokos-ske-krav.intern.dev.nav.no
+    - name: SKE_KRAV_API_AUDIENCE
+      value: api://dev-gcp.okonomi.sokos-ske-krav/.default
+    - name: SKE_KRAV_API_PROXY
+      value: "/ske-krav"
 
     # sokos-up-kontoregister-api (Backend)
     - name: SOKOS_KONTOREGISTER_API

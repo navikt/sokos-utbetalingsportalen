@@ -64,6 +64,8 @@ spec:
           namespace: ytelsesrapportering
         - application: logging
           namespace: nais-system
+        - application: sokos-ske-krav
+          namespace: okonomi
       external:
         - host: sokos-oppdrag.prod-fss-pub.nais.io
         - host: sokos-ur-iso.prod-fss-pub.nais.io
@@ -125,6 +127,14 @@ spec:
       value: api://prod-fss.okonomi.sokos-oppdrag/.default
     - name: SOKOS_OPPDRAG_API_PROXY
       value: "/oppdrag-api"
+      
+    # Sokos-ske-krav (Backend)
+    - name: SKE_KRAV_API
+      value: https://sokos-ske-krav.intern.nav.no
+    - name: SKE_KRAV_API_AUDIENCE
+      value: api://prod-gcp.okonomi.sokos-ske-krav/.default
+    - name: SKE_KRAV_API_PROXY
+      value: "/ske-krav"
 
     # up-meldingsflyt-api (Backend)
     - name: SOKOS_MELDINGSFLYT_API
