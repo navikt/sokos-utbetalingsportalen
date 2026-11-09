@@ -1,4 +1,4 @@
-import { api } from "@opentelemetry/sdk-node";
+import * as api from "@opentelemetry/api";
 import type { Team } from "@config/team";
 import { extractServiceNameFromAudience } from "@utils/audience";
 import { logger, teamLogger } from "@utils/logger/index";
