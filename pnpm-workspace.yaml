@@ -1,5 +1,4 @@
-overrides:
-  undici: 8.12.3
+overrides: {}
 engineStrict: true
 saveExact: true
 ignoreScripts: true
