@@ -5,6 +5,8 @@ metadata:
   namespace: okonomi
   labels:
     team: okonomi
+  annotations:
+    haproxy.org/timeout-server: "5m"
 spec:
   image: "{{{ image }}}"
   port: 8080
