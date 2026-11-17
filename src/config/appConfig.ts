@@ -140,6 +140,15 @@ export const apps: App[] = [
 		route: "/ray-ray-admin",
 		naisAppName: "sokos-up-ray-ray-admin",
 	},
+	{
+		app: "SKE-KRAV-AVSTEMMING-DATA",
+		title: "Avstemmingsdata fra Ske-Krav",
+		description: "Avstemmingsdata fra Ske-Krav som kan eksporteres til excel",
+		adGroupDevelopment: "c7235d46-61a4-461c-8cb3-ca398760ff04", // 0000-CA-UP-SKE-KRAV-AVSTEMMING-DATA-READ(dev)
+		adGroupProduction: "5528b7f1-63f4-4d40-bf07-b8b9364017e4", // 0000-CA-UP-SKE-KRAV-AVSTEMMING-DATA-READ(prod)
+		route: "/ske-krav-avstemming-data",
+		naisAppName: "up-ske-krav-avstemming-data",
+	},
 ];
 
 /**
