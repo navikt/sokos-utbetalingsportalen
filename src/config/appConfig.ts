@@ -146,8 +146,8 @@ export const apps: App[] = [
 		description: "Avstemmingsdata fra Ske-Krav som kan eksporteres til excel",
 		adGroupDevelopment: "c7235d46-61a4-461c-8cb3-ca398760ff04",
 		adGroupProduction: "5528b7f1-63f4-4d40-bf07-b8b9364017e4",
-		route: "/up-ske-krav-avstemming-data",
-		naisAppName: "up-ske-krav-avstemming-data",
+		route: "/ske-krav-avstemming-data",
+		naisAppName: "ske-krav-avstemming-data",
 	},
 ];
 
