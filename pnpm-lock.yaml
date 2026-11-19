@@ -21,11 +21,11 @@ importers:
         specifier: 0.7.3
         version: 0.7.3(@grafana/faro-react@2.13.0(react-dom@19.3.1(react@19.3.1))(react-router-dom@7.18.5(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-router@8.5.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(supports-color@10.2.2))(react-dom@19.3.1(react@19.3.1))(react-router-dom@7.18.5(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-router@8.5.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(supports-color@10.2.2)
       '@navikt/aksel-icons':
-        specifier: 8.21.0
-        version: 8.21.0
+        specifier: 8.22.1
+        version: 8.22.1
       '@navikt/ds-react':
-        specifier: 8.21.0
-        version: 8.21.0(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: 8.22.1
+        version: 8.22.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@navikt/oasis':
         specifier: 4.2.2
         version: 4.2.2
@@ -61,8 +61,8 @@ importers:
         specifier: 2.1.6
         version: 2.1.6(hono@4.13.17)
       '@navikt/aksel-stylelint':
-        specifier: 8.21.0
-        version: 8.21.0
+        specifier: 8.22.1
+        version: 8.22.1
       '@types/node':
         specifier: 26.6.6
         version: 26.6.6
@@ -932,22 +932,22 @@ packages:
       '@emnapi/core': ^1.7.1 || 2.0.0-beta.2 || 2.0.0-beta.3
       '@emnapi/runtime': ^1.7.1 || 2.0.0-beta.2 || 2.0.0-beta.3
 
-  '@navikt/aksel-icons@8.21.0':
-    resolution: {integrity: sha512-/RXiUI1dt4lt/prvz2ngVp7BryHzLFIpq0wW1cjMKxqaaJwE4eYvTDFAdAFUpu3dL4hNRaXsji1GOxGGAK/jqw==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.21.0/3732daf4de6b0b26ae40aa42c2ad832b6acccc62}
+  '@navikt/aksel-icons@8.22.1':
+    resolution: {integrity: sha512-NmNg4vK6Hrabw8CleI6jJCwOb4aXnMjkE9Rw4OQjbfgHrg4UXWnUFgQJ3/Rk/unGdfXGNxV591RTwPNc2dZoTA==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.22.1/c93a3bad8be4134bd833ecc08db4583034be4d75}
 
-  '@navikt/aksel-stylelint@8.21.0':
-    resolution: {integrity: sha512-oSSK2P2vsYWWermMF6oJrFBxJCEJaI1ts63ldpCBcNIThBJ4SWqmtwgACWA6LfL0hHvza6kS66Y/ZOr8oNMY7w==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-stylelint/8.21.0/72fe12fb3729a747cd3137c6e72752cd417c9a6c}
+  '@navikt/aksel-stylelint@8.22.1':
+    resolution: {integrity: sha512-0h9LEDaFfsutu3hkZGE43MVBWhLGdKpzeAI3EvOMyBgJ1b4sAscpFx+tZJYgIsj5S9fNAawP8Ch+EbdUbCRsvQ==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-stylelint/8.22.1/f3874d212e788b059aa7acc561fc71e001266f9a}
     engines: {node: '>=18.12.0'}
 
-  '@navikt/ds-react@8.21.0':
-    resolution: {integrity: sha512-1AL7iE/iPlUTLPkBmQVNrutk7FuaO1A9NEjpD5xyiV/JLVZ8pHnqU4QQWqkzG01nOgi7IJpdjpDgCNGtH44JZg==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/8.21.0/4584f43909971b8c8957c655068ffa954e4dcfdd}
+  '@navikt/ds-react@8.22.1':
+    resolution: {integrity: sha512-rS7wmk/pE3KIDTV3Oimbnx/vd9nxQs3AQt7QgxILNrIGvE+uih5ohbcz9UOk970beUDc+xeQ5jmRK209dzNfcw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/8.22.1/864ade4ec3891f9bf5e94a71089665433ce351d7}
     peerDependencies:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
 
-  '@navikt/ds-tokens@8.21.0':
-    resolution: {integrity: sha512-sCD5F/CuWXXTEqiq9IRLZuklqedMKL5KjdlhncS9v8YQ8jElIRXF+1kEdhsAFH7M2d5MJkgUT2YH+1Kt2p6Q/Q==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.21.0/949e31cda0c51fa5022c09de3ed9f9a279c8da1f}
+  '@navikt/ds-tokens@8.22.1':
+    resolution: {integrity: sha512-cDmfPn5Q0HmE8eTie5jkj76zKMrS/AeZcAKscxtZFTL6sFdIFKON8AwWcS0pdRuC3yxYNGRmO176xGjn2POLCQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.22.1/43f354b993b9a56b9b4329ab54a9e17c5decf92b}
 
   '@navikt/oasis@4.2.2':
     resolution: {integrity: sha512-EVMsF8uKbLPNRWuPfH1IKVJhqtibFzSTSyNkzj5mTCVMZV2QPS5W3uYMD4r0rXsmLx7nv0HnLovDphb3AFEjvw==, tarball: https://npm.pkg.github.com/download/@navikt/oasis/4.2.2/3c43e1e89bb2d46646a9a2aaf27972a024377a6f}
@@ -3858,23 +3858,23 @@ snapshots:
       '@tybys/wasm-util': 0.10.4
     optional: true
 
-  '@navikt/aksel-icons@8.21.0': {}
+  '@navikt/aksel-icons@8.22.1': {}
 
-  '@navikt/aksel-stylelint@8.21.0': {}
+  '@navikt/aksel-stylelint@8.22.1': {}
 
-  '@navikt/ds-react@8.21.0(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@navikt/ds-react@8.22.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@floating-ui/react': 0.27.20(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@floating-ui/react-dom': 2.1.9(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@navikt/aksel-icons': 8.21.0
-      '@navikt/ds-tokens': 8.21.0
+      '@navikt/aksel-icons': 8.22.1
+      '@navikt/ds-tokens': 8.22.1
       '@types/react': 19.3.0
       date-fns: 4.4.0
       react: 19.3.1
       react-day-picker: 10.0.2(@types/react@19.3.0)(react@19.3.1)
       react-dom: 19.3.1(react@19.3.1)
 
-  '@navikt/ds-tokens@8.21.0': {}
+  '@navikt/ds-tokens@8.22.1': {}
 
   '@navikt/oasis@4.2.2':
     dependencies:
