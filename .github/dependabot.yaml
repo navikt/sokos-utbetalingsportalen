@@ -25,6 +25,8 @@ updates:
         patterns:
           - "react"
           - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
       astro:
         patterns:
           - "astro"
@@ -36,6 +38,8 @@ updates:
         exclude-patterns:
           - "react"
           - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
           - "@navikt/aksel-*"
           - "@navikt/ds-*"
           - "astro"
