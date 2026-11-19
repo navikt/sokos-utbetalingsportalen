@@ -141,7 +141,7 @@ export const apps: App[] = [
 		naisAppName: "sokos-up-ray-ray-admin",
 	},
 	{
-		app: "UP-SKE-KRAV-AVSTEMMING-DATA",
+		app: "SKE-KRAV-AVSTEMMING-DATA",
 		title: "Avstemmingsdata fra Ske-Krav",
 		description: "Avstemmingsdata fra Ske-Krav som kan eksporteres til excel",
 		adGroupDevelopment: "c7235d46-61a4-461c-8cb3-ca398760ff04",
