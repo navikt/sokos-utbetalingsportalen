@@ -4,7 +4,7 @@ import type { APIRoute } from "astro";
 
 export const ALL: APIRoute = routeProxyWithOboToken({
 	apiProxy: `${process.env.SKE_KRAV_API_PROXY}`,
-	apiUrl: `${process.env.SKE_KRAV_API_URL}`,
+	apiUrl: `${process.env.SKE_KRAV_API}`,
 	audience: `${process.env.SKE_KRAV_API_AUDIENCE}`,
 	team: TEAM.SKATT_OG_TREKK,
 });
