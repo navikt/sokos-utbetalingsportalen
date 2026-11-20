@@ -49,6 +49,7 @@ spec:
           - id: "9c5b24f2-5e01-4966-adaf-bc9fb6410a32" # 0000-CA-SOKOS-MF-OPPGJORSRAPPORTER
           - id: "c1c0f5d7-cdaa-4011-b4f6-b3815a7432e5" # 0000-CA-SOKOS-MF-YTELSESRAPPORTERING-PERSON-ADMIN
           - id: "c7235d46-61a4-461c-8cb3-ca398760ff04" # 0000-CA-UP-SKE-KRAV-AVSTEMMING-DATA-READ
+          - id: "b9c50759-8b85-4502-bfee-530d1cdb49ba" # 0000-CA-SKATT-OG-TREKK-ADMIN
         extra:
           - NAVident
     sidecar:
