@@ -138,7 +138,7 @@ spec:
 
     # Sokos-ske-krav (Backend)
     - name: SKE_KRAV_API
-      value: https://sokos-ske-krav.intern.dev.nav.no
+      value: https://sokos-ske-krav
     - name: SKE_KRAV_API_AUDIENCE
       value: api://dev-gcp.okonomi.sokos-ske-krav/.default
     - name: SKE_KRAV_API_PROXY
