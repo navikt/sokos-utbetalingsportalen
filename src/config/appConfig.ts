@@ -140,6 +140,15 @@ export const apps: App[] = [
 		route: "/ray-ray-admin",
 		naisAppName: "sokos-up-ray-ray-admin",
 	},
+	{
+		app: "AVSTEMMINGSDATA-FRA-SKE-KRAV",
+		title: "Avstemmingsdata fra Ske-Krav",
+		description: "Avstemmingsdata fra Ske-Krav som kan eksporteres til excel",
+		adGroupDevelopment: "c7235d46-61a4-461c-8cb3-ca398760ff04",
+		adGroupProduction: "5528b7f1-63f4-4d40-bf07-b8b9364017e4",
+		route: "/avstemmingsdata-fra-ske-krav",
+		naisAppName: "up-ske-krav-avstemming-data",
+	},
 ];
 
 /**
