@@ -37,7 +37,7 @@
 		"zod": "4.6.7"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.6.7",
+		"@biomejs/biome": "2.6.8",
 		"@hono/node-server": "2.1.8",
 		"@navikt/aksel-stylelint": "8.22.1",
 		"@types/node": "26.6.6",
@@ -45,9 +45,9 @@
 		"@types/react-dom": "19.3.0",
 		"concurrently": "10.0.7",
 		"dotenv-cli": "11.1.0",
-		"hono": "4.13.18",
+		"hono": "4.13.19",
 		"husky": "9.1.7",
-		"lint-staged": "17.6.0",
+		"lint-staged": "17.6.1",
 		"prettier": "3.10.1",
 		"prettier-plugin-astro": "1.1.2",
 		"stylelint": "17.16.0",
